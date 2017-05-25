@@ -1,5 +1,10 @@
 package doyenm.zooshell.context;
 
+import doyenm.zooshell.model.Biome;
+import doyenm.zooshell.model.ContraceptionMethod;
+import doyenm.zooshell.model.Diet;
+import doyenm.zooshell.model.PaddockType;
+import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +31,45 @@ public class LsContext {
 
     public List<String> getAnimalNames() {
         return new ArrayList<>(this.getZoo().getAnimals().keySet());
+    }
+
+    public List<String> getSexes() {
+        List<String> list = new ArrayList<>();
+        for (Sex sex : Sex.values()) {
+            list.add(sex.getId() + " - " + sex.toString());
+        }
+        return list;
+    }
+
+    public List<String> getDiets() {
+        List<String> list = new ArrayList<>();
+        for (Diet diet : Diet.values()) {
+            list.add(diet.getId() + " - " + diet.toString());
+        }
+        return list;
+    }
+
+    public List<String> getBiomes() {
+        List<String> list = new ArrayList<>();
+        for (Biome biome : Biome.values()) {
+            list.add(biome.getId() + " - " +  biome.toString());
+        }
+        return list;
+    }
+
+    public List<String> getPaddockTypes() {
+        List<String> list = new ArrayList<>();
+        for (PaddockType type : PaddockType.values()) {
+            list.add(type.getId() + " - " + type.toString());
+        }
+        return list;
+    }
+
+    public List<String> getContraceptionMethods() {
+        List<String> list = new ArrayList<>();
+        for (ContraceptionMethod method : ContraceptionMethod.values()) {
+            list.add(method.getId() + " - " + method.toString());
+        }
+        return list;
     }
 }

@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandManagerImpl;
 
-import doyenm.zooshell.commandLine.commandImpl.CreateZoo;
+import doyenm.zooshell.commandLine.commandImpl.zoo.CreateZoo;
 import doyenm.zooshell.commandLine.general.AbstractCommand;
 import doyenm.zooshell.commandLine.general.CommandManager;
 import doyenm.zooshell.commandLine.general.ReturnExec;

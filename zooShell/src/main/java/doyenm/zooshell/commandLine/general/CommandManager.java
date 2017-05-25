@@ -1,5 +1,9 @@
 package doyenm.zooshell.commandLine.general;
 
+import doyenm.zooshell.commandLine.commandImpl.animal.*;
+import doyenm.zooshell.commandLine.commandImpl.ls.*;
+import doyenm.zooshell.commandLine.commandImpl.paddock.*;
+import doyenm.zooshell.commandLine.commandImpl.zoo.*;
 import doyenm.zooshell.commandLine.commandImpl.*;
 import static java.util.Arrays.asList;
 import doyenm.zooshell.launch.options.Option;
@@ -39,7 +43,9 @@ public abstract class CommandManager {
                 new UpdateBiome(play), new UpdatePaddockType(play),
                 new CreateAnimal(play), new DetailAnimal(play),
                 new UpdateFoodQuantity(play), new UpdateDiet(play), new UpdateFastDays(play), new ResetDiet(play),
-                new DetailSpecie(play)
+                new DetailSpecie(play),
+                new LsSex(play), new LsBiome(play), new LsContraceptionMethod(play),
+                new LsDiet(play), new LsPaddockType(play)
         );
     }
 
