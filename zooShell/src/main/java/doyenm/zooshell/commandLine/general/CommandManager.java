@@ -1,21 +1,9 @@
 package doyenm.zooshell.commandLine.general;
 
-import doyenm.zooshell.commandLine.commandImpl.animal.ResetDiet;
-import doyenm.zooshell.commandLine.commandImpl.zoo.CreateZoo;
-import doyenm.zooshell.commandLine.commandImpl.zoo.DetailZoo;
-import doyenm.zooshell.commandLine.commandImpl.paddock.DetailPad;
-import doyenm.zooshell.commandLine.commandImpl.paddock.UpdatePaddockType;
-import doyenm.zooshell.commandLine.commandImpl.paddock.UpdateBiome;
-import doyenm.zooshell.commandLine.commandImpl.paddock.LsPaddock;
-import doyenm.zooshell.commandLine.commandImpl.paddock.CreatePaddockEntry;
-import doyenm.zooshell.commandLine.commandImpl.paddock.CreatePaddockExtension;
-import doyenm.zooshell.commandLine.commandImpl.paddock.CreatePaddock;
-import doyenm.zooshell.commandLine.commandImpl.animal.UpdateFoodQuantity;
-import doyenm.zooshell.commandLine.commandImpl.animal.CreateAnimal;
-import doyenm.zooshell.commandLine.commandImpl.animal.LsAnimal;
-import doyenm.zooshell.commandLine.commandImpl.animal.DetailAnimal;
-import doyenm.zooshell.commandLine.commandImpl.animal.UpdateFastDays;
-import doyenm.zooshell.commandLine.commandImpl.animal.UpdateDiet;
+import doyenm.zooshell.commandLine.commandImpl.animal.*;
+import doyenm.zooshell.commandLine.commandImpl.ls.*;
+import doyenm.zooshell.commandLine.commandImpl.paddock.*;
+import doyenm.zooshell.commandLine.commandImpl.zoo.*;
 import doyenm.zooshell.commandLine.commandImpl.*;
 import static java.util.Arrays.asList;
 import doyenm.zooshell.launch.options.Option;
@@ -55,7 +43,9 @@ public abstract class CommandManager {
                 new UpdateBiome(play), new UpdatePaddockType(play),
                 new CreateAnimal(play), new DetailAnimal(play),
                 new UpdateFoodQuantity(play), new UpdateDiet(play), new UpdateFastDays(play), new ResetDiet(play),
-                new DetailSpecie(play)
+                new DetailSpecie(play),
+                new LsSex(play), new LsBiome(play), new LsContraceptionMethod(play),
+                new LsDiet(play), new LsPaddockType(play)
         );
     }
 
