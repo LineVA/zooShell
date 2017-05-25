@@ -43,7 +43,7 @@ public class LsAnimal extends AbstractCommand{
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
             if (Arrays.asList(Constants.LS).contains(cmd[0])) {
-                if (Arrays.asList(Constants.SPEC_OR_SPECIE).contains(cmd[1])) {
+                if (Arrays.asList(Constants.ANIMAL).contains(cmd[1])) {
                     return true;
                 }
             }
