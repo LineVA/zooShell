@@ -1,7 +1,6 @@
 package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
 import doyenm.zooshell.commandLine.commandImpl.paddock.CreatePaddock;
-import doyenm.zooshell.commandLine.commandImpl.zoo.DetailZoo;
 import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
