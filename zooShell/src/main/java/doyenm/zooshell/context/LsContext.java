@@ -36,7 +36,7 @@ public class LsContext {
     public List<String> getSexes() {
         List<String> list = new ArrayList<>();
         for (Sex sex : Sex.values()) {
-            list.add(sex.toString());
+            list.add(sex.getId() + " - " + sex.toString());
         }
         return list;
     }
@@ -44,7 +44,7 @@ public class LsContext {
     public List<String> getDiets() {
         List<String> list = new ArrayList<>();
         for (Diet diet : Diet.values()) {
-            list.add(diet.toString());
+            list.add(diet.getId() + " - " + diet.toString());
         }
         return list;
     }
@@ -52,7 +52,7 @@ public class LsContext {
     public List<String> getBiomes() {
         List<String> list = new ArrayList<>();
         for (Biome biome : Biome.values()) {
-            list.add(biome.toString());
+            list.add(biome.getId() + " - " +  biome.toString());
         }
         return list;
     }
@@ -60,7 +60,7 @@ public class LsContext {
     public List<String> getPaddockTypes() {
         List<String> list = new ArrayList<>();
         for (PaddockType type : PaddockType.values()) {
-            list.add(type.toString());
+            list.add(type.getId() + " - " + type.toString());
         }
         return list;
     }
@@ -68,7 +68,7 @@ public class LsContext {
     public List<String> getContraceptionMethods() {
         List<String> list = new ArrayList<>();
         for (ContraceptionMethod method : ContraceptionMethod.values()) {
-            list.add(method.toString());
+            list.add(method.getId() + " - " + method.toString());
         }
         return list;
     }
