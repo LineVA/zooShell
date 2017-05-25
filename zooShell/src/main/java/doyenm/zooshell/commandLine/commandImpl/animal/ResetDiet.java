@@ -1,13 +1,14 @@
-package doyenm.zooshell.commandLine.commandImpl;
+package doyenm.zooshell.commandLine.commandImpl.animal;
 
 import doyenm.zooshell.commandLine.general.AbstractCommand;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
-import doyenm.zooshell.context.UpdateBiomeContext;
-import doyenm.zooshell.controller.paddockcontroller.UpdateBiomeController;
+import doyenm.zooshell.context.AnimalContext;
+import doyenm.zooshell.context.AnimalUpdateDietContext;
+import doyenm.zooshell.controller.animalcontroller.AnimalResetDietController;
 import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.utils.Constants;
-import doyenm.zooshell.validator.UpdateBiomeValidator;
+import doyenm.zooshell.validator.AnimalValidator;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -15,20 +16,20 @@ import java.util.stream.Stream;
  *
  * @author doyenm
  */
-public class UpdateBiome extends AbstractCommand {
+public class ResetDiet extends AbstractCommand{
 
-    private final UpdateBiomeValidator validator = new UpdateBiomeValidator();
-    private final UpdateBiomeController controller = new UpdateBiomeController();
+    private final AnimalValidator validator = new AnimalValidator();
+    private final AnimalResetDietController controller = new AnimalResetDietController();
 
-    public UpdateBiome(Play play) {
+    public ResetDiet(Play play) {
         super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            UpdateBiomeContext context = new UpdateBiomeContext(this.getPlay().getZooModel(),
-                    cmd[2], cmd[3]);
+            AnimalContext context = new AnimalContext(this.getPlay().getZooModel(),
+                    cmd[2]);
             context = Stream.of(context)
                     .filter(validator)
                     .map(controller)
@@ -36,7 +37,7 @@ public class UpdateBiome extends AbstractCommand {
                     .get();
             getPlay().setZooModel(context.getZoo());
             setSuccess(true);
-            return new ReturnExec("UPDATE_BIOME_SUCCESS", TypeReturn.SUCCESS);
+            return new ReturnExec("RESET_DIET_SUCCESS", TypeReturn.SUCCESS);
         } catch (java.util.NoSuchElementException ex) {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }
@@ -44,9 +45,9 @@ public class UpdateBiome extends AbstractCommand {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 4) {
-            if (Arrays.asList(Constants.PAD_OR_PADDOCK_BIOME).contains(cmd[0])) {
-                if (Arrays.asList(Constants.UPDATE).contains(cmd[1])) {
+        if (cmd.length == 3) {
+            if (Arrays.asList(Constants.ANIMAL_DIET).contains(cmd[0])) {
+                if (Arrays.asList(Constants.RESET).contains(cmd[1])) {
                     return true;
                 }
             }

@@ -1,13 +1,13 @@
-package doyenm.zooshell.commandLine.commandImpl;
+package doyenm.zooshell.commandLine.commandImpl.paddock;
 
 import doyenm.zooshell.commandLine.general.AbstractCommand;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
-import doyenm.zooshell.context.AnimalUpdateFoodQuantityContext;
-import doyenm.zooshell.controller.animalcontroller.AnimalUpdateFoodQuantityController;
+import doyenm.zooshell.context.UpdateBiomeContext;
+import doyenm.zooshell.controller.paddockcontroller.UpdateBiomeController;
 import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.utils.Constants;
-import doyenm.zooshell.validator.AnimalUpdateFoodQuantityValidator;
+import doyenm.zooshell.validator.UpdateBiomeValidator;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -15,19 +15,19 @@ import java.util.stream.Stream;
  *
  * @author doyenm
  */
-public class UpdateFoodQuantity extends AbstractCommand{
+public class UpdateBiome extends AbstractCommand {
 
-    private final AnimalUpdateFoodQuantityValidator validator = new AnimalUpdateFoodQuantityValidator();
-    private final AnimalUpdateFoodQuantityController controller = new AnimalUpdateFoodQuantityController();
+    private final UpdateBiomeValidator validator = new UpdateBiomeValidator();
+    private final UpdateBiomeController controller = new UpdateBiomeController();
 
-    public UpdateFoodQuantity(Play play) {
+    public UpdateBiome(Play play) {
         super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            AnimalUpdateFoodQuantityContext context = new AnimalUpdateFoodQuantityContext(this.getPlay().getZooModel(),
+            UpdateBiomeContext context = new UpdateBiomeContext(this.getPlay().getZooModel(),
                     cmd[2], cmd[3]);
             context = Stream.of(context)
                     .filter(validator)
@@ -36,7 +36,7 @@ public class UpdateFoodQuantity extends AbstractCommand{
                     .get();
             getPlay().setZooModel(context.getZoo());
             setSuccess(true);
-            return new ReturnExec("UPDATE_FOOD_QUANTITY_SUCCESS", TypeReturn.SUCCESS);
+            return new ReturnExec("UPDATE_BIOME_SUCCESS", TypeReturn.SUCCESS);
         } catch (java.util.NoSuchElementException ex) {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }
@@ -45,7 +45,7 @@ public class UpdateFoodQuantity extends AbstractCommand{
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 4) {
-            if (Arrays.asList(Constants.ANIMAL_FOOD_QUANTITY).contains(cmd[0])) {
+            if (Arrays.asList(Constants.PAD_OR_PADDOCK_BIOME).contains(cmd[0])) {
                 if (Arrays.asList(Constants.UPDATE).contains(cmd[1])) {
                     return true;
                 }

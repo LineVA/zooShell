@@ -1,7 +1,7 @@
-package doyenm.zooshell.commandLine.commandLineImpl;
+package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
-import doyenm.zooshell.commandLine.commandImpl.UpdateBiome;
-import doyenm.zooshell.commandLine.commandImpl.UpdatePaddockType;
+import doyenm.zooshell.commandLine.commandImpl.paddock.UpdateBiome;
+import doyenm.zooshell.commandLine.commandImpl.paddock.UpdatePaddockType;
 import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;

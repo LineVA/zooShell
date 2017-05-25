@@ -1,13 +1,13 @@
-package doyenm.zooshell.commandLine.commandImpl;
+package doyenm.zooshell.commandLine.commandImpl.paddock;
 
 import doyenm.zooshell.commandLine.general.AbstractCommand;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
-import doyenm.zooshell.context.AnimalUpdateFastDaysContext;
-import doyenm.zooshell.controller.animalcontroller.AnimalUpdateFastDaysController;
+import doyenm.zooshell.context.UpdatePaddockTypeContext;
+import doyenm.zooshell.controller.paddockcontroller.UpdatePaddockTypeController;
 import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.utils.Constants;
-import doyenm.zooshell.validator.AnimalUpdateFastDaysValidator;
+import doyenm.zooshell.validator.UpdatePaddockTypeValidator;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -15,19 +15,19 @@ import java.util.stream.Stream;
  *
  * @author doyenm
  */
-public class UpdateFastDays extends AbstractCommand{
+public class UpdatePaddockType extends AbstractCommand {
 
-    private final AnimalUpdateFastDaysValidator validator = new AnimalUpdateFastDaysValidator();
-    private final AnimalUpdateFastDaysController controller = new AnimalUpdateFastDaysController();
+    private final UpdatePaddockTypeValidator validator = new UpdatePaddockTypeValidator();
+    private final UpdatePaddockTypeController controller = new UpdatePaddockTypeController();
 
-    public UpdateFastDays(Play play) {
+    public UpdatePaddockType(Play play) {
         super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            AnimalUpdateFastDaysContext context = new AnimalUpdateFastDaysContext(this.getPlay().getZooModel(),
+            UpdatePaddockTypeContext context = new UpdatePaddockTypeContext(this.getPlay().getZooModel(),
                     cmd[2], cmd[3]);
             context = Stream.of(context)
                     .filter(validator)
@@ -36,7 +36,7 @@ public class UpdateFastDays extends AbstractCommand{
                     .get();
             getPlay().setZooModel(context.getZoo());
             setSuccess(true);
-            return new ReturnExec("UPDATE_FAST_DAYS_SUCCESS", TypeReturn.SUCCESS);
+            return new ReturnExec("UPDATE_PADDOCK_TYPE_SUCCESS", TypeReturn.SUCCESS);
         } catch (java.util.NoSuchElementException ex) {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }
@@ -45,7 +45,7 @@ public class UpdateFastDays extends AbstractCommand{
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 4) {
-            if (Arrays.asList(Constants.ANIMAL_FAST_DAYS).contains(cmd[0])) {
+            if (Arrays.asList(Constants.PAD_OR_PADDOCK_TYPE).contains(cmd[0])) {
                 if (Arrays.asList(Constants.UPDATE).contains(cmd[1])) {
                     return true;
                 }

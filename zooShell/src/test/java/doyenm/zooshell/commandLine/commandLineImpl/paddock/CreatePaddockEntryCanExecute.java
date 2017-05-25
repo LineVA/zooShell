@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandLine.commandLineImpl;
+package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
 /**
  *

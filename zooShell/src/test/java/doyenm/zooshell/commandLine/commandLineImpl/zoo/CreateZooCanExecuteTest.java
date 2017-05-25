@@ -1,6 +1,6 @@
-package doyenm.zooshell.commandLine.commandLineImpl;
+package doyenm.zooshell.commandLine.commandLineImpl.zoo;
 
-import doyenm.zooshell.commandLine.commandImpl.CreateZoo;
+import doyenm.zooshell.commandLine.commandImpl.zoo.CreateZoo;
 import doyenm.zooshell.launch.play.Play;
 import java.util.Random;
 import org.assertj.core.api.Assertions;

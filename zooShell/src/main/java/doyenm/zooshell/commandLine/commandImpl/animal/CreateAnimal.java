@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandLine.commandImpl;
+package doyenm.zooshell.commandLine.commandImpl.animal;
 
 import doyenm.zooshell.commandLine.general.AbstractCommand;
 import doyenm.zooshell.commandLine.general.ReturnExec;

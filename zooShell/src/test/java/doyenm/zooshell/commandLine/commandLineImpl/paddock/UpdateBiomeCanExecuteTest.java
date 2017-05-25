@@ -1,6 +1,6 @@
-package doyenm.zooshell.commandLine.commandLineImpl;
+package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
-import doyenm.zooshell.commandLine.commandImpl.UpdateFoodQuantity;
+import doyenm.zooshell.commandLine.commandImpl.paddock.UpdateBiome;
 import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
@@ -11,10 +11,10 @@ import org.mockito.Mockito;
  *
  * @author doyenm
  */
-public class UpdateFoodQuantityCanExecuteTest {
+public class UpdateBiomeCanExecuteTest {
 
-    private final String animalFQ = "animal-fq";
-    private final String animalFoodQuantity = "animal-foodQuantity";
+    private final String padBiome = "pad-biome";
+    private final String paddockBiome = "paddock-biome";
     private final String update = "update";
 
     private Play givenPlay() {
@@ -23,25 +23,25 @@ public class UpdateFoodQuantityCanExecuteTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByAnimalFoodQuantity() {
+    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPaddock() {
         // Given
         Play play = givenPlay();
-        UpdateFoodQuantity updateFoodQuantity = new UpdateFoodQuantity(play);
-        String[] cmd = {this.animalFoodQuantity, this.update, TestUtils.generateString(), TestUtils.generateString()};
+        UpdateBiome updateBiome = new UpdateBiome(play);
+        String[] cmd = {this.paddockBiome, this.update, TestUtils.generateString(), TestUtils.generateString()};
         // When
-        boolean actualResult = updateFoodQuantity.canExecute(cmd);
+        boolean actualResult = updateBiome.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isTrue();
     }
     
     @Test
-    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByAnimalFQ() {
+    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPad() {
         // Given
         Play play = givenPlay();
-        UpdateFoodQuantity updateFoodQuantity = new UpdateFoodQuantity(play);
-        String[] cmd = {this.animalFQ, this.update, TestUtils.generateString(), TestUtils.generateString()};
+        UpdateBiome updateBiome = new UpdateBiome(play);
+        String[] cmd = {this.padBiome, this.update, TestUtils.generateString(), TestUtils.generateString()};
         // When
-        boolean actualResult = updateFoodQuantity.canExecute(cmd);
+        boolean actualResult = updateBiome.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isTrue();
     }
@@ -50,10 +50,10 @@ public class UpdateFoodQuantityCanExecuteTest {
     public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
         // Given
         Play play = givenPlay();
-        UpdateFoodQuantity updateFoodQuantity = new UpdateFoodQuantity(play);
+        UpdateBiome updateBiome = new UpdateBiome(play);
         String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(), TestUtils.generateString()};
         // When
-        boolean actualResult = updateFoodQuantity.canExecute(cmd);
+        boolean actualResult = updateBiome.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
@@ -62,10 +62,10 @@ public class UpdateFoodQuantityCanExecuteTest {
     public void shouldReturnFalseWhenTheSecondElementIsIncorrect() {
         // Given
         Play play = givenPlay();
-        UpdateFoodQuantity updateFoodQuantity = new UpdateFoodQuantity(play);
-        String[] cmd = {this.animalFQ, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        UpdateBiome updateBiome = new UpdateBiome(play);
+        String[] cmd = {this.padBiome, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
         // When
-        boolean actualResult = updateFoodQuantity.canExecute(cmd);
+        boolean actualResult = updateBiome.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
@@ -74,10 +74,10 @@ public class UpdateFoodQuantityCanExecuteTest {
     public void shouldReturnFalseWhenThereIsLessThanFourElements() {
         // Give
         Play play = givenPlay();
-        UpdateFoodQuantity updateFoodQuantity = new UpdateFoodQuantity(play);
+        UpdateBiome updateBiome = new UpdateBiome(play);
         String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(),};
         // When
-        boolean actualResult = updateFoodQuantity.canExecute(cmd);
+        boolean actualResult = updateBiome.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
@@ -86,10 +86,10 @@ public class UpdateFoodQuantityCanExecuteTest {
     public void shouldReturnFalseWhenThereIsMoreThanFourElements() {
         // Given
         Play play = givenPlay();
-        UpdateFoodQuantity updateFoodQuantity = new UpdateFoodQuantity(play);
+        UpdateBiome updateBiome = new UpdateBiome(play);
         String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
         // When
-        boolean actualResult = updateFoodQuantity.canExecute(cmd);
+        boolean actualResult = updateBiome.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }

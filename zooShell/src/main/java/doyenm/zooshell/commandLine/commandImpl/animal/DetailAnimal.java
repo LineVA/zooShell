@@ -1,14 +1,14 @@
-package doyenm.zooshell.commandLine.commandImpl;
+package doyenm.zooshell.commandLine.commandImpl.animal;
 
 import doyenm.zooshell.commandLine.general.AbstractCommand;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.commandLine.utils.FormattingInList;
-import doyenm.zooshell.context.PaddockDetailsContext;
-import doyenm.zooshell.controller.paddockcontroller.PaddockDetailsController;
+import doyenm.zooshell.context.AnimalDetailsContext;
+import doyenm.zooshell.controller.animalcontroller.AnimalDetailsController;
 import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.utils.Constants;
-import doyenm.zooshell.validator.PaddockDetailsValidator;
+import doyenm.zooshell.validator.AnimalDetailsValidator;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -16,19 +16,19 @@ import java.util.stream.Stream;
  *
  * @author doyenm
  */
-public class DetailPad extends AbstractCommand {
+public class DetailAnimal extends AbstractCommand{
 
-    PaddockDetailsController controller = new PaddockDetailsController();
-    PaddockDetailsValidator validator = new PaddockDetailsValidator();
+    AnimalDetailsController controller = new AnimalDetailsController();
+    AnimalDetailsValidator validator = new AnimalDetailsValidator();
 
-    public DetailPad(Play play) {
+    public DetailAnimal(Play play) {
         super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
-        PaddockDetailsContext context = new PaddockDetailsContext(getPlay().getZooModel(), cmd[1]);
+        AnimalDetailsContext context = new AnimalDetailsContext(getPlay().getZooModel(), cmd[1]);
         context = Stream.of(context)
                 .filter(validator)
                 .map(controller)
@@ -43,11 +43,10 @@ public class DetailPad extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])) {
+            if (Arrays.asList(Constants.ANIMAL).contains(cmd[0])) {
                 return true;
             }
         }
         return false;
     }
-
 }

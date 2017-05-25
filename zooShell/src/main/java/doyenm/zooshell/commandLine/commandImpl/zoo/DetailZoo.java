@@ -1,13 +1,13 @@
-package doyenm.zooshell.commandLine.commandImpl;
+package doyenm.zooshell.commandLine.commandImpl.zoo;
 
 import doyenm.zooshell.commandLine.general.AbstractCommand;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.commandLine.utils.FormattingInList;
-import doyenm.zooshell.context.LsContext;
+import doyenm.zooshell.context.ZooDetailsContext;
+import doyenm.zooshell.controller.zoocontroller.ZooDetailsController;
 import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.utils.Constants;
-import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -15,23 +15,26 @@ import java.util.stream.Stream;
  *
  * @author doyenm
  */
-public class LsAnimal extends AbstractCommand{
+public class DetailZoo extends AbstractCommand {
 
-       public LsAnimal(Play play) {
+    ZooDetailsController controller = new ZooDetailsController();
+
+    public DetailZoo(Play play) {
         super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
-        LsContext context = new LsContext(getPlay().getZooModel());
+        ZooDetailsContext context = new ZooDetailsContext(getPlay().getZooModel());
         return Stream.of(context)
-                .map(new Function<LsContext, ReturnExec>() {
+                .map(controller)
+                .map(new Function<ZooDetailsContext, ReturnExec>() {
                     @Override
-                    public ReturnExec apply(LsContext t) {
+                    public ReturnExec apply(ZooDetailsContext t) {
                         setSuccess(true);
                         FormattingInList formatting = new FormattingInList();
-                        return new ReturnExec(formatting.formatList(context.getAnimalNames()), TypeReturn.SUCCESS);
+                        return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS);
                     }
 
                 })
@@ -41,14 +44,11 @@ public class LsAnimal extends AbstractCommand{
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2) {
-            if (Arrays.asList(Constants.LS).contains(cmd[0])) {
-                if (Arrays.asList(Constants.SPEC_OR_SPECIE).contains(cmd[1])) {
-                    return true;
-                }
+        if (cmd.length == 1) {
+            if (Constants.ZOO.equalsIgnoreCase(cmd[0])) {
+                return true;
             }
         }
         return false;
     }
-
 }
