@@ -1,6 +1,7 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalCreationContext;
+import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.validator.context.FindingPaddockContext;
 import doyenm.zooshell.validator.context.FindingSexContext;
 import doyenm.zooshell.validator.context.FindingSpecieContext;
@@ -30,9 +31,9 @@ public class AnimalCreationValidator implements Predicate<AnimalCreationContext>
         context.convert();
         boolean result;
         result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getName(), 50);
-        result &= this.uniquenessNamesBiPredicates.test(context.getName(), context.getZoo().getAnimals().keySet());
-        FindingSpecieContext findingSpecieContext = new FindingSpecieContext(context.getZoo().getSpecies(), context.getSpecieName());
-        FindingPaddockContext findingPaddockContext = new FindingPaddockContext(context.getZoo().getPaddocks(), context.getPaddockName());
+        result &= this.uniquenessNamesBiPredicates.test(context.getName(), context.getAnimals().keySet());
+        FindingSpecieContext findingSpecieContext = new FindingSpecieContext(context.getSpecies(), context.getSpecieName());
+        FindingPaddockContext findingPaddockContext = new FindingPaddockContext(context.getPaddocks(), context.getPaddockName());
         FindingSexContext findingSexContext = new FindingSexContext(context.getSexName());
         context.setSpecie(Stream.of(findingSpecieContext)
                 .map(findingSpecieFunction)
@@ -50,7 +51,7 @@ public class AnimalCreationValidator implements Predicate<AnimalCreationContext>
                 .get()
                 .getSex());
         if (context.getSpecie() != null && context.getPaddock() != null && context.getSex() != null) {
-            return result && context.getPaddock().getEntry() != null;
+            return Sex.UNKNOWN != context.getSex() && result && context.getPaddock().getEntry() != null;
         }
         return false;
     }

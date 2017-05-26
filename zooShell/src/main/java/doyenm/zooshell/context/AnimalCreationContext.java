@@ -19,6 +19,7 @@ import doyenm.zooshell.model.utils.SocialAttributesConstructor;
 import doyenm.zooshell.model.utils.TerritoryAttributesConstructor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -107,5 +108,17 @@ public class AnimalCreationContext {
 
     public List<Animal> getAnimalsList() {
         return new ArrayList<>(this.getZoo().getAnimals().values());
+    }
+
+    public Map<String, Animal> getAnimals() {
+        return getZoo().getAnimals();
+    }
+
+    public Map<String, Specie> getSpecies() {
+        return getZoo().getSpecies();
+    }
+
+    public Map<String, Paddock> getPaddocks() {
+        return getZoo().getPaddocks();
     }
 }
