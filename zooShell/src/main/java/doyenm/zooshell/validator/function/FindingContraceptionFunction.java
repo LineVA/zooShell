@@ -12,6 +12,8 @@ import java.util.function.Function;
 public class FindingContraceptionFunction
         implements Function<FindingContraceptionContext, FindingContraceptionContext> {
 
+    ReplaceSpacesWithUnderscores replaceSpacesWithUnderscores = new ReplaceSpacesWithUnderscores();
+
     @Override
     public FindingContraceptionContext apply(FindingContraceptionContext t) {
         FindingContraceptionContext context = t;
@@ -23,8 +25,9 @@ public class FindingContraceptionFunction
                 }
             }
         } catch (NumberFormatException ex) {
+            String input = replaceSpacesWithUnderscores.replace(context.getContraception());
             for (ContraceptionMethod method : ContraceptionMethod.values()) {
-                if (context.getContraception().equalsIgnoreCase(method.name())) {
+                if (input.equalsIgnoreCase(method.name())) {
                     context.setConvertedContraception(method);
                 }
             }
