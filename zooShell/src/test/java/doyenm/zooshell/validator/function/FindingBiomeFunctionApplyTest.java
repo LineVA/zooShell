@@ -33,7 +33,7 @@ public class FindingBiomeFunctionApplyTest {
     }
     
      @Test
-    public void shouldSetTheConvertedBiomeWhenTheInputIsStringCorrespondingToAnExistingBiome() {
+    public void shouldSetTheConvertedBiomeWhenTheInputIsStringCorrespondingToAnExistingBiomeWithoutSpace() {
         // Given
         String input = "tundra";
         FindingBiomeContext context = givenContextWithInput(input);
@@ -42,6 +42,18 @@ public class FindingBiomeFunctionApplyTest {
         FindingBiomeContext actualContext = function.apply(context);
         // Then 
         Assertions.assertThat(actualContext.getConvertedBiome()).isEqualTo(Biome.TUNDRA);
+    }
+    
+    @Test
+    public void shouldSetTheConvertedBiomeWhenTheInputIsStringCorrespondingToAnExistingBiomeWithSpace() {
+        // Given
+        String input = "tropical grasslands";
+        FindingBiomeContext context = givenContextWithInput(input);
+        FindingBiomeFunction function = new FindingBiomeFunction();
+        // When
+        FindingBiomeContext actualContext = function.apply(context);
+        // Then 
+        Assertions.assertThat(actualContext.getConvertedBiome()).isEqualTo(Biome.TROPICAL_GRASSLANDS);
     }
     
     @Test

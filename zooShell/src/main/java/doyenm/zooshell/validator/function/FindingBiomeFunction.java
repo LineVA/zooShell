@@ -10,6 +10,7 @@ import java.util.function.Function;
  */
 public class FindingBiomeFunction implements Function<FindingBiomeContext, FindingBiomeContext> {
 
+    ReplaceSpacesWithUnderscores replaceSpacesWithUnderscores = new ReplaceSpacesWithUnderscores();
 
     @Override
     public FindingBiomeContext apply(FindingBiomeContext t) {
@@ -22,8 +23,9 @@ public class FindingBiomeFunction implements Function<FindingBiomeContext, Findi
                 }
             }
         } catch (NumberFormatException ex) {
+            String input = replaceSpacesWithUnderscores.replace(context.getBiome());
             for (Biome biome : Biome.values()) {
-                if (context.getBiome().equalsIgnoreCase(biome.name())) {
+                if (input.equalsIgnoreCase(biome.name())) {
                     context.setConvertedBiome(biome);
                 }
             }

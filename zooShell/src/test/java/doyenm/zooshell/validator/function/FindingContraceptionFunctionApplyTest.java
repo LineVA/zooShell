@@ -33,7 +33,7 @@ public class FindingContraceptionFunctionApplyTest {
     }
 
     @Test
-    public void shouldSetTheConvertedContraceptionWhenTheInputIsStringCorrespondingToAnExistingContraception() {
+    public void shouldSetTheConvertedContraceptionWhenTheInputIsStringCorrespondingToAnExistingContraceptionWithoutSpace() {
         // Given
         String input = "none";
         FindingContraceptionContext context = givenContextWithInput(input);
@@ -42,6 +42,18 @@ public class FindingContraceptionFunctionApplyTest {
         FindingContraceptionContext actualContext = function.apply(context);
         // Then 
         Assertions.assertThat(actualContext.getConvertedContraception()).isEqualTo(ContraceptionMethod.NONE);
+    }
+    
+      @Test
+    public void shouldSetTheConvertedContraceptionWhenTheInputIsStringCorrespondingToAnExistingContraceptionWithSpace() {
+        // Given
+        String input = "female implant";
+        FindingContraceptionContext context = givenContextWithInput(input);
+        FindingContraceptionFunction function = new FindingContraceptionFunction();
+        // When
+        FindingContraceptionContext actualContext = function.apply(context);
+        // Then 
+        Assertions.assertThat(actualContext.getConvertedContraception()).isEqualTo(ContraceptionMethod.FEMALE_IMPLANT);
     }
 
     @Test

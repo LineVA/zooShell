@@ -10,6 +10,8 @@ import java.util.function.Function;
  */
 public class FindingDietFunction implements Function<FindingDietContext, FindingDietContext> {
 
+    ReplaceSpacesWithUnderscores replaceSpacesWithUnderscores = new ReplaceSpacesWithUnderscores();
+
     @Override
     public FindingDietContext apply(FindingDietContext t) {
         FindingDietContext context = t;
@@ -21,8 +23,9 @@ public class FindingDietFunction implements Function<FindingDietContext, Finding
                 }
             }
         } catch (NumberFormatException ex) {
+            String input = replaceSpacesWithUnderscores.replace(context.getDiet());
             for (Diet diet : Diet.values()) {
-                if (context.getDiet().equalsIgnoreCase(diet.name())) {
+                if (input.equalsIgnoreCase(diet.name())) {
                     context.setConvertedDiet(diet);
                 }
             }
