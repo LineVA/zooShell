@@ -16,7 +16,7 @@ public class Animal {
     private final Specie specie;
     private final String name;
     private final Sex sex;
-    private final Paddock paddock;
+    private Paddock paddock;
     private final ReproductionAttributes reproductionAttributes;
     private final LifespanAttributes lifespanAttributes;
     private int age;
