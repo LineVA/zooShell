@@ -10,6 +10,8 @@ import java.util.function.Function;
  */
 public class FindingPaddockTypeFunction implements Function<FindingPaddockTypeContext, FindingPaddockTypeContext> {
 
+    ReplaceSpacesWithUnderscores replaceSpacesWithUnderscores = new ReplaceSpacesWithUnderscores();
+
     @Override
     public FindingPaddockTypeContext apply(FindingPaddockTypeContext t) {
         FindingPaddockTypeContext context = t;
@@ -21,8 +23,9 @@ public class FindingPaddockTypeFunction implements Function<FindingPaddockTypeCo
                 }
             }
         } catch (NumberFormatException ex) {
+            String input = replaceSpacesWithUnderscores.replace(context.getType());
             for (PaddockType type : PaddockType.values()) {
-                if (context.getType().equalsIgnoreCase(type.name())) {
+                if (input.equalsIgnoreCase(type.name())) {
                     context.setConvertedType(type);
                 }
             }

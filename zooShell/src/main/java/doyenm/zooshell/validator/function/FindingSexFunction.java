@@ -8,7 +8,9 @@ import java.util.function.Function;
  *
  * @author doyenm
  */
-public class FindingSexFunction implements Function<FindingSexContext, FindingSexContext>{
+public class FindingSexFunction implements Function<FindingSexContext, FindingSexContext> {
+
+    ReplaceSpacesWithUnderscores replaceSpacesWithUnderscores = new ReplaceSpacesWithUnderscores();
 
     @Override
     public FindingSexContext apply(FindingSexContext t) {
@@ -21,8 +23,9 @@ public class FindingSexFunction implements Function<FindingSexContext, FindingSe
                 }
             }
         } catch (NumberFormatException ex) {
+            String input = replaceSpacesWithUnderscores.replace(context.getSexName());
             for (Sex sex : Sex.values()) {
-                if (context.getSexName().equalsIgnoreCase(sex.toString())) {
+                if (input.equalsIgnoreCase(sex.toString())) {
                     context.setSex(sex);
                 }
             }
