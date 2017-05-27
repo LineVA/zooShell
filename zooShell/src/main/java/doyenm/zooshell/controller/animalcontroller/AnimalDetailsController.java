@@ -1,6 +1,8 @@
 package doyenm.zooshell.controller.animalcontroller;
 
 import doyenm.zooshell.context.AnimalDetailsContext;
+import doyenm.zooshell.model.Animal;
+import doyenm.zooshell.model.Sex;
 import java.util.function.Function;
 
 /**
@@ -12,9 +14,14 @@ public class AnimalDetailsController implements Function<AnimalDetailsContext, A
     @Override
     public AnimalDetailsContext apply(AnimalDetailsContext t) {
         AnimalDetailsContext context = t;
+        Animal animal = context.getConvertedAnimal();
         context.addCouple("Name", context.getAnimal());
         context.addCouple("Specie", context.getSpecieName());
-        context.addCouple("Sex", context.getSexName());
+        if (animal.getAge() >= animal.getReproductionAttributes().getMaturityGivenSex(animal.getSex())) {
+            context.addCouple("Sex", context.getSexName());
+        } else {
+            context.addCouple("Sex", Sex.UNKNOWN.toString());
+        }
         context.addCouple("Age", context.getAge());
         context.addCouple("Paddock", context.getPaddockName());
         context.addCouple("Diet", context.getDiet().toString());
