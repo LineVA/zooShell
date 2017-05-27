@@ -11,10 +11,10 @@ import lombok.Setter;
 @Setter
 public class SizeAttributes {
 
-    private int femaleWeight;
-    private int maleWeight;
+    private double femaleWeight;
+    private double maleWeight;
 
-    public SizeAttributes(int femaleWeight, int maleWeight) {
+    public SizeAttributes(double femaleWeight, double maleWeight) {
         this.femaleWeight = femaleWeight;
         this.maleWeight = maleWeight;
     }
