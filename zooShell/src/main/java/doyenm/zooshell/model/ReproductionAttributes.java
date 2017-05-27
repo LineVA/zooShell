@@ -25,6 +25,10 @@ public class ReproductionAttributes {
     public ReproductionAttributes() {
     }
     
+    public int getMaturityGivenSex(Sex sex){
+        return Sex.FEMALE == sex ?
+                getFemaleMaturityAge() : getMaleMaturityAge();
+    }
     
     
 }
