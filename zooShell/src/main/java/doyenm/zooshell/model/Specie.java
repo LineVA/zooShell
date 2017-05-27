@@ -32,6 +32,7 @@ public class Specie {
     private FoodAttributes foodAttributes;
     private SocialAttributes socialAttributes;
     private TerritoryAttributes territoryAttributes;
+    private SizeAttributes sizeAttributes;
 //    private final int ecoregion;
 //    private final int conservation;
 //    private final int size;

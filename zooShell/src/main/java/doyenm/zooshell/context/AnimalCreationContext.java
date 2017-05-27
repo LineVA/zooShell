@@ -8,6 +8,7 @@ import doyenm.zooshell.model.LifespanAttributes;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.ReproductionAttributes;
 import doyenm.zooshell.model.Sex;
+import doyenm.zooshell.model.SizeAttributes;
 import doyenm.zooshell.model.SocialAttributes;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.model.TerritoryAttributes;
@@ -15,6 +16,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.model.utils.FoodAttributesConstructor;
 import doyenm.zooshell.model.utils.LifespanAttributesConstructor;
 import doyenm.zooshell.model.utils.ReproductionAttributesConstructor;
+import doyenm.zooshell.model.utils.SizeAttributesConstructor;
 import doyenm.zooshell.model.utils.SocialAttributesConstructor;
 import doyenm.zooshell.model.utils.TerritoryAttributesConstructor;
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class AnimalCreationContext {
     private final ReproductionAttributesConstructor reproductionAttributesConstructor = new ReproductionAttributesConstructor();
     private final SocialAttributesConstructor socialAttributesConstructor = new SocialAttributesConstructor();
     private final TerritoryAttributesConstructor territoryAttributesConstructor = new TerritoryAttributesConstructor();
+    private final SizeAttributesConstructor sizeAttributesConstructor = new SizeAttributesConstructor();
 
     public void convert() {
     }
@@ -60,6 +63,7 @@ public class AnimalCreationContext {
         SocialAttributes socialAttributes = socialAttributesConstructor.build(specie);
         TerritoryAttributes territoryAttributes = territoryAttributesConstructor.build(specie);
         FoodAttributes currentFoodAttributes = new FoodAttributes(0.0, 0);
+        SizeAttributes sizeAttributes = sizeAttributesConstructor.build(specie);
         List<Diet> diets = new ArrayList<>();
         diets.add(Diet.NONE);
         Animal animal = Animal.builder()
@@ -75,6 +79,7 @@ public class AnimalCreationContext {
                 .optimalFoodAttributes(optimalFoodAttributes)
                 .territoryAttributes(territoryAttributes)
                 .contraceptionMethod(ContraceptionMethod.NONE)
+                .sizeAttributes(sizeAttributes)
                 .age(age)
                 .build();
         this.getZoo().getAnimals().put(this.getName(), animal);
@@ -87,6 +92,7 @@ public class AnimalCreationContext {
         FoodAttributes currentFoodAttributes = new FoodAttributes(0.0, 0);
         SocialAttributes socialAttributes = socialAttributesConstructor.build(specie);
         TerritoryAttributes territoryAttributes = territoryAttributesConstructor.build(specie);
+        SizeAttributes sizeAttributes = sizeAttributesConstructor.build(specie);
         List<Diet> diets = new ArrayList<>();
         diets.add(Diet.NONE);
         return Animal.builder()
@@ -102,6 +108,7 @@ public class AnimalCreationContext {
                 .currentFoodAttributes(currentFoodAttributes)
                 .optimalFoodAttributes(optimalFoodAttributes)
                 .contraceptionMethod(ContraceptionMethod.NONE)
+                .sizeAttributes(sizeAttributes)
                 .age(0)
                 .build();
     }
