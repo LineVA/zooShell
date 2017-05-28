@@ -30,4 +30,5 @@ public class Animal {
     private final SocialAttributes socialAttributes;
     private final TerritoryAttributes territoryAttributes;
     private final SizeAttributes sizeAttributes;
+    private final CharacterAttributes characterAttributes;
 }

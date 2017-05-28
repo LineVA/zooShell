@@ -1,6 +1,7 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Animal;
+import doyenm.zooshell.model.CharacterAttributes;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.FoodAttributes;
@@ -13,6 +14,7 @@ import doyenm.zooshell.model.SocialAttributes;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.model.TerritoryAttributes;
 import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.model.utils.CharacterAttributesConstructor;
 import doyenm.zooshell.model.utils.FoodAttributesConstructor;
 import doyenm.zooshell.model.utils.LifespanAttributesConstructor;
 import doyenm.zooshell.model.utils.ReproductionAttributesConstructor;
@@ -51,6 +53,7 @@ public class AnimalCreationContext {
     private final SocialAttributesConstructor socialAttributesConstructor = new SocialAttributesConstructor();
     private final TerritoryAttributesConstructor territoryAttributesConstructor = new TerritoryAttributesConstructor();
     private final SizeAttributesConstructor sizeAttributesConstructor = new SizeAttributesConstructor();
+    private final CharacterAttributesConstructor characterConstructor = new CharacterAttributesConstructor();
 
     public void convert() {
     }
@@ -64,6 +67,7 @@ public class AnimalCreationContext {
         TerritoryAttributes territoryAttributes = territoryAttributesConstructor.build(specie);
         FoodAttributes currentFoodAttributes = new FoodAttributes(0.0, 0);
         SizeAttributes sizeAttributes = sizeAttributesConstructor.build(specie);
+        CharacterAttributes characterAttributes = characterConstructor.build(specie);
         List<Diet> diets = new ArrayList<>();
         diets.add(Diet.NONE);
         Animal animal = Animal.builder()
@@ -81,6 +85,7 @@ public class AnimalCreationContext {
                 .contraceptionMethod(ContraceptionMethod.NONE)
                 .sizeAttributes(sizeAttributes)
                 .age(age)
+                .characterAttributes(characterAttributes)
                 .build();
         this.getZoo().getAnimals().put(this.getName(), animal);
     }
@@ -93,6 +98,7 @@ public class AnimalCreationContext {
         SocialAttributes socialAttributes = socialAttributesConstructor.build(specie);
         TerritoryAttributes territoryAttributes = territoryAttributesConstructor.build(specie);
         SizeAttributes sizeAttributes = sizeAttributesConstructor.build(specie);
+        CharacterAttributes characterAttributes = characterConstructor.build(specie);
         List<Diet> diets = new ArrayList<>();
         diets.add(Diet.NONE);
         return Animal.builder()
@@ -109,6 +115,7 @@ public class AnimalCreationContext {
                 .optimalFoodAttributes(optimalFoodAttributes)
                 .contraceptionMethod(ContraceptionMethod.NONE)
                 .sizeAttributes(sizeAttributes)
+                .characterAttributes(characterAttributes)
                 .age(0)
                 .build();
     }
