@@ -21,5 +21,10 @@ public class SizeAttributes {
 
     public SizeAttributes() {
     }
+    
+       public double getWigthGivenSex(Sex sex){
+        return Sex.FEMALE == sex ?
+                getFemaleWeight(): getMaleWeight();
+    }
 
 }
