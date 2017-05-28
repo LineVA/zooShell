@@ -12,4 +12,5 @@ import lombok.RequiredArgsConstructor;
 public class CharacterAttributes {
 
     private final double agressivity;
+    private final double cohabitationFactor;
 }

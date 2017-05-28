@@ -67,9 +67,9 @@ public class AnimalCreationContext {
         TerritoryAttributes territoryAttributes = territoryAttributesConstructor.build(specie);
         FoodAttributes currentFoodAttributes = new FoodAttributes(0.0, 0);
         SizeAttributes sizeAttributes = sizeAttributesConstructor.build(specie);
-        CharacterAttributes characterAttributes = characterConstructor.build(specie);
         List<Diet> diets = new ArrayList<>();
         diets.add(Diet.NONE);
+        CharacterAttributes characterAttributes = characterConstructor.build(specie, sizeAttributes, sex);
         Animal animal = Animal.builder()
                 .name(this.getName())
                 .specie(this.getSpecie())
@@ -98,9 +98,9 @@ public class AnimalCreationContext {
         SocialAttributes socialAttributes = socialAttributesConstructor.build(specie);
         TerritoryAttributes territoryAttributes = territoryAttributesConstructor.build(specie);
         SizeAttributes sizeAttributes = sizeAttributesConstructor.build(specie);
-        CharacterAttributes characterAttributes = characterConstructor.build(specie);
         List<Diet> diets = new ArrayList<>();
         diets.add(Diet.NONE);
+        CharacterAttributes characterAttributes = characterConstructor.build(specie, sizeAttributes, sex);
         return Animal.builder()
                 .name(this.getName())
                 .specie(this.getSpecie())
