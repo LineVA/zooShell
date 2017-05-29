@@ -21,5 +21,10 @@ public class FoodAttributes {
         this.quantity = quantity;
         this.fastDays = fastDays;
     }
+
+    @Override
+    public String toString() {
+        return "FoodAttributes{" + "quantity=" + quantity + ", fastDays=" + fastDays + '}';
+    }
     
 }

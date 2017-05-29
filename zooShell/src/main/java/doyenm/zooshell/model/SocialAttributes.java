@@ -19,4 +19,10 @@ public class SocialAttributes {
 
     public SocialAttributes() {
     }
+
+    @Override
+    public String toString() {
+        return "SocialAttributes{" + "individualsPerGroup=" + individualsPerGroup + '}';
+    }
+    
 }

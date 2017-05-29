@@ -29,6 +29,14 @@ public class ReproductionAttributes {
         return Sex.FEMALE == sex ?
                 getFemaleMaturityAge() : getMaleMaturityAge();
     }
+
+    @Override
+    public String toString() {
+        return "ReproductionAttributes{" + "femaleMaturityAge=" + femaleMaturityAge + 
+                ", maleMaturityAge=" + maleMaturityAge + 
+                ", frequency=" + frequency + 
+                ", litterSize=" + litterSize + '}';
+    }
     
     
 }
