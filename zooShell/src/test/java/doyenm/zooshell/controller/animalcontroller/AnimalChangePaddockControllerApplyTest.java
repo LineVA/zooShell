@@ -1,16 +1,11 @@
 package doyenm.zooshell.controller.animalcontroller;
 
 import doyenm.zooshell.context.AnimalChangePaddockContext;
-import doyenm.zooshell.context.AnimalUpdateDietContext;
 import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
