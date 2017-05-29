@@ -35,10 +35,10 @@ public class Zoo {
      * The hashmap of the animals it contains
      */
     private Map<String, Animal> animals = new HashMap<>();
-//    /**
-//     * The hashmap of the animal keepers it contains
-//     */
-//    private Map<String, AnimalKeeper> keepers;
+    /**
+     * The hashmap of the animal keepers it contains
+     */
+    private Map<String, AnimalKeeper> keepers = new HashMap<>();
     /**
      * The HashMap of the existing species
      */
