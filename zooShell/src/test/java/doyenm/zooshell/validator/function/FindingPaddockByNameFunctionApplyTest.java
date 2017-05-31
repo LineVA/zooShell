@@ -1,9 +1,7 @@
 package doyenm.zooshell.validator.function;
 
-import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.testUtils.TestUtils;
-import doyenm.zooshell.validator.context.FindingBiomeContext;
 import doyenm.zooshell.validator.context.FindingPaddockContext;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +13,7 @@ import org.mockito.Mockito;
  *
  * @author doyenm
  */
-public class FndingPaddockByNameFunctionApplyTest {
+public class FindingPaddockByNameFunctionApplyTest {
 
     private FindingPaddockContext givenContextWithInput(String input, String key) {
         FindingPaddockContext context = Mockito.mock(FindingPaddockContext.class);
