@@ -1,10 +1,7 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.KeeperContext;
-import doyenm.zooshell.validator.context.FindingKeeperContext;
-import doyenm.zooshell.validator.function.FindingKeeperFunction;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 /**
  *
@@ -12,17 +9,11 @@ import java.util.stream.Stream;
  */
 public class KeeperDetailsValidator implements Predicate<KeeperContext> {
 
-    FindingKeeperFunction findingKeeperFunction = new FindingKeeperFunction();
+    FindKeeper findKeeper = new FindKeeper();
 
     @Override
     public boolean test(KeeperContext t) {
-        FindingKeeperContext findingKeeperContext = new FindingKeeperContext(t.getZoo().getKeepers(), t.getKeeper());
-
-        t.setConvertedKeeper(Stream.of(findingKeeperContext)
-                .map(findingKeeperFunction)
-                .findFirst()
-                .get()
-                .getConvertedKeeper());
+        t.setConvertedKeeper(findKeeper.find(t.getZoo(), t.getKeeper()));
         return t.getConvertedKeeper()!= null;
     }
 

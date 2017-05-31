@@ -2,6 +2,7 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.KeeperRenameContext;
 import doyenm.zooshell.model.AnimalKeeper;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,23 +23,29 @@ public class KeeperRenameValidatorTestTest {
         return map;
     }
 
-    private KeeperRenameContext givenContextWithNewNameCurrentNameAndMap(
-            String newName, String currentName, Map<String, AnimalKeeper> map) {
+    private KeeperRenameContext givenContextWithZooNewNameAndCurrentName(Zoo zoo,
+            String newName, String currentName) {
         KeeperRenameContext context = Mockito.mock(KeeperRenameContext.class);
         Mockito.when(context.getKeeper()).thenReturn(currentName);
         Mockito.when(context.getNewKeeperName()).thenReturn(newName);
-        Mockito.when(context.getKeepers()).thenReturn(map);
+        Mockito.when(context.getZoo()).thenReturn(zoo);
         AnimalKeeper keeper = Mockito.mock(AnimalKeeper.class);
         Mockito.when(context.getConvertedKeeper()).thenReturn(keeper);
         return context;
     }
-    
-    private KeeperRenameContext givenContextWithNewNameCurrentNameAndMap_NoExistingKeeper(
-            String newName, String currentName, Map<String, AnimalKeeper> map) {
+
+    private Zoo givenZooWithMap(Map<String, AnimalKeeper> map) {
+        Zoo zoo = Mockito.mock(Zoo.class);
+        Mockito.when(zoo.getKeepers()).thenReturn(map);
+        return zoo;
+    }
+
+    private KeeperRenameContext givenContextWithZooNewNameAndCurrentName_NoKeeper(
+            Zoo zoo, String newName, String currentName) {
         KeeperRenameContext context = Mockito.mock(KeeperRenameContext.class);
         Mockito.when(context.getKeeper()).thenReturn(currentName);
         Mockito.when(context.getNewKeeperName()).thenReturn(newName);
-        Mockito.when(context.getKeepers()).thenReturn(map);
+        Mockito.when(context.getZoo()).thenReturn(zoo);
         Mockito.when(context.getConvertedKeeper()).thenReturn(null);
         return context;
     }
@@ -54,7 +61,8 @@ public class KeeperRenameValidatorTestTest {
         String newName = TestUtils.generateString();
         String currentName = TestUtils.generateString();
         Map<String, AnimalKeeper> map = givenMapWithName(currentName);
-        KeeperRenameContext context = givenContextWithNewNameCurrentNameAndMap(newName, currentName, map);
+        Zoo zoo = givenZooWithMap(map);
+        KeeperRenameContext context = givenContextWithZooNewNameAndCurrentName(zoo, newName, currentName);
         KeeperRenameValidator validator = new KeeperRenameValidator();
         // When
         boolean result = validator.test(context);
@@ -68,7 +76,8 @@ public class KeeperRenameValidatorTestTest {
         String newName = TestUtils.generateStringWithLength(51);
         String currentName = TestUtils.generateString();
         Map<String, AnimalKeeper> map = givenMapWithName(currentName);
-        KeeperRenameContext context = givenContextWithNewNameCurrentNameAndMap(newName, currentName, map);
+        Zoo zoo = givenZooWithMap(map);
+        KeeperRenameContext context = givenContextWithZooNewNameAndCurrentName(zoo, newName, currentName);
         KeeperRenameValidator validator = new KeeperRenameValidator();
         // When
         boolean result = validator.test(context);
@@ -82,7 +91,8 @@ public class KeeperRenameValidatorTestTest {
         String newName = TestUtils.generateString();
         String currentName = TestUtils.generateString();
         Map<String, AnimalKeeper> map = givenMapWithName(newName);
-        KeeperRenameContext context = givenContextWithNewNameCurrentNameAndMap(newName, currentName, map);
+        Zoo zoo = givenZooWithMap(map);
+        KeeperRenameContext context = givenContextWithZooNewNameAndCurrentName(zoo, newName, currentName);
         KeeperRenameValidator validator = new KeeperRenameValidator();
         // When
         boolean result = validator.test(context);
@@ -98,7 +108,8 @@ public class KeeperRenameValidatorTestTest {
         String currentName = TestUtils.generateString();
         String existingName = TestUtils.generateString();
         Map<String, AnimalKeeper> map = givenMapWithName(existingName);
-        KeeperRenameContext context = givenContextWithNewNameCurrentNameAndMap_NoExistingKeeper(newName, currentName, map);
+        Zoo zoo = givenZooWithMap(map);
+        KeeperRenameContext context = givenContextWithZooNewNameAndCurrentName_NoKeeper(zoo, newName, currentName);
         KeeperRenameValidator validator = new KeeperRenameValidator();
         // When
         boolean result = validator.test(context);
