@@ -7,7 +7,7 @@ import java.util.function.Predicate;
  *
  * @author doyenm
  */
-public class KeeperDetailsValidator implements Predicate<KeeperContext> {
+public class KeeperValidator implements Predicate<KeeperContext> {
 
     FindKeeper findKeeper = new FindKeeper();
 
