@@ -32,6 +32,10 @@ public class LsContext {
     public List<String> getAnimalNames() {
         return new ArrayList<>(this.getZoo().getAnimals().keySet());
     }
+    
+    public List<String> getKeeperNames() {
+        return new ArrayList<>(this.getZoo().getKeepers().keySet());
+    }
 
     public List<String> getSexes() {
         List<String> list = new ArrayList<>();
