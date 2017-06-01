@@ -5,6 +5,10 @@ import doyenm.zooshell.commandLine.commandImpl.ls.*;
 import doyenm.zooshell.commandLine.commandImpl.paddock.*;
 import doyenm.zooshell.commandLine.commandImpl.zoo.*;
 import doyenm.zooshell.commandLine.commandImpl.*;
+import doyenm.zooshell.commandLine.commandImpl.keeper.ChangeKeeperName;
+import doyenm.zooshell.commandLine.commandImpl.keeper.CreateKeeper;
+import doyenm.zooshell.commandLine.commandImpl.keeper.DetailKeeper;
+import doyenm.zooshell.commandLine.commandImpl.keeper.LsKeeper;
 import static java.util.Arrays.asList;
 import doyenm.zooshell.launch.options.Option;
 import doyenm.zooshell.launch.play.Play;
@@ -46,7 +50,8 @@ public abstract class CommandManager {
                 new ChangePaddock(play), new ChangeAnimalName(play),
                 new DetailSpecie(play),
                 new LsSex(play), new LsBiome(play), new LsContraceptionMethod(play),
-                new LsDiet(play), new LsPaddockType(play)
+                new LsDiet(play), new LsPaddockType(play),
+                new CreateKeeper(play), new ChangeKeeperName(play), new DetailKeeper(play), new LsKeeper(play)
         );
     }
 
