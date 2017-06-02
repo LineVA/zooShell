@@ -11,7 +11,7 @@ public enum TaskType {
 
     UNKNOWN(0),
     CLEANING(1),
-    ENRCHMENT(2),
+    ENRICHMENT(2),
     FEEDING(3),
     MEDICAL_TRAINING(4);
     
