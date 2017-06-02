@@ -37,10 +37,12 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         return keeper;
     }
 
-    private TimedOccupation givenOccupationWithTimeAndTask(double time, TaskType task) {
+    private TimedOccupation givenOccupationWithPaddockTimeAndTask(Paddock pad, double time,
+            TaskType task) {
         TimedOccupation occ = Mockito.mock(TimedOccupation.class);
         Mockito.when(occ.getTaskType()).thenReturn(task);
         Mockito.when(occ.getTime()).thenReturn(time);
+        Mockito.when(occ.getPaddock()).thenReturn(pad);
         return occ;
     }
 
@@ -75,7 +77,6 @@ public class KeeperUpdateOccupationsValidatorTestTest {
      * entry - the task exists - the time is a Double - the time is greater or
      * equals than 0.0 - the sum of the occupations of the keeper is lower or
      * equals than 100.0
-     *
      */
     @Test
     public void shouldReturnTrueWhenEveryThingIsCorrect() {
@@ -84,7 +85,7 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         Paddock pad = givenPaddockWithEntry(entry);
         TaskType task = TaskType.CLEANING;
         double time = 10.0;
-        TimedOccupation occupation = givenOccupationWithTimeAndTask(5.0, TaskType.ENRICHMENT);
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 5.0, TaskType.ENRICHMENT);
         List<TimedOccupation> list = new ArrayList<>();
         list.add(occupation);
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
@@ -97,14 +98,14 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         Assertions.assertThat(result).isTrue();
     }
 
-      @Test
+    @Test
     public void shouldReturnFalseWhenTheKeeperDoesNotExist() {
         // Given
         Position entry = givenPosition();
         Paddock pad = givenPaddockWithEntry(entry);
         TaskType task = TaskType.CLEANING;
         double time = 10.0;
-        TimedOccupation occupation = givenOccupationWithTimeAndTask(5.0, TaskType.ENRICHMENT);
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 5.0, TaskType.ENRICHMENT);
         List<TimedOccupation> list = new ArrayList<>();
         list.add(occupation);
         AnimalKeeper keeper = null;
@@ -116,14 +117,14 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-      @Test
+
+    @Test
     public void shouldReturnFalseWhenThePaddockDoesNotExist() {
         // Given
         Paddock pad = null;
         TaskType task = TaskType.CLEANING;
         double time = 10.0;
-        TimedOccupation occupation = givenOccupationWithTimeAndTask(5.0, TaskType.ENRICHMENT);
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 5.0, TaskType.ENRICHMENT);
         List<TimedOccupation> list = new ArrayList<>();
         list.add(occupation);
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
@@ -136,14 +137,14 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         Assertions.assertThat(result).isFalse();
     }
 
-     @Test
+    @Test
     public void shouldReturnFalseWhenThePaddockExistsButDoesNotHaveAnEntry() {
         // Given
         Position entry = null;
         Paddock pad = givenPaddockWithEntry(entry);
         TaskType task = TaskType.CLEANING;
         double time = 10.0;
-        TimedOccupation occupation = givenOccupationWithTimeAndTask(5.0, TaskType.ENRICHMENT);
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 5.0, TaskType.ENRICHMENT);
         List<TimedOccupation> list = new ArrayList<>();
         list.add(occupation);
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
@@ -155,15 +156,15 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-     @Test
+
+    @Test
     public void shouldReturnFalseWhenTheTaskDoesNotExist() {
         // Given
         Position entry = givenPosition();
         Paddock pad = givenPaddockWithEntry(entry);
         TaskType task = null;
         double time = 10.0;
-        TimedOccupation occupation = givenOccupationWithTimeAndTask(50.0, TaskType.ENRICHMENT);
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 50.0, TaskType.ENRICHMENT);
         List<TimedOccupation> list = new ArrayList<>();
         list.add(occupation);
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
@@ -175,15 +176,15 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-     @Test
+
+    @Test
     public void shouldReturnFalseWhenTheTimeIsNegativ() {
         // Given
         Position entry = givenPosition();
         Paddock pad = givenPaddockWithEntry(entry);
         TaskType task = TaskType.CLEANING;
         double time = -10.0;
-        TimedOccupation occupation = givenOccupationWithTimeAndTask(50.0, TaskType.ENRICHMENT);
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 50.0, TaskType.ENRICHMENT);
         List<TimedOccupation> list = new ArrayList<>();
         list.add(occupation);
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
@@ -195,15 +196,16 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-     @Test
-    public void shouldReturnFalseWhenTheSumOfTimesIsGreaterThan100() {
+
+    @Test
+    public void shouldReturnFalseWhenTheSumOfTimesIsGreaterThan100WithNoOccupationWithThisPaddockOrTask() {
         // Given
         Position entry = givenPosition();
         Paddock pad = givenPaddockWithEntry(entry);
+        Paddock pad2 = givenPaddockWithEntry(entry);
         TaskType task = TaskType.CLEANING;
         double time = 100.0;
-        TimedOccupation occupation = givenOccupationWithTimeAndTask(50.0, TaskType.ENRICHMENT);
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad2, 50.0, TaskType.ENRICHMENT);
         List<TimedOccupation> list = new ArrayList<>();
         list.add(occupation);
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
@@ -214,5 +216,72 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
+    }
+
+    @Test
+    public void shouldReturnFalseWhenTheSumOfTimesIsGreaterThan100WithAnOccupationWithThisPaddockButNotWithThisTask() {
+        // Given
+        Position entry = givenPosition();
+        Paddock pad = givenPaddockWithEntry(entry);
+        TaskType task = TaskType.CLEANING;
+        double time = 100.0;
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 50.0, TaskType.ENRICHMENT);
+        List<TimedOccupation> list = new ArrayList<>();
+        list.add(occupation);
+        AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
+        Zoo zoo = givenZoo();
+        KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
+        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result).isFalse();
+    }
+
+    @Test
+    public void shouldReturnFalseWhenTheSumOfTimesIsGreaterThan100WithAnOccupationWithThisTaskButNotWithThisPaddock() {
+        // Given
+        Position entry = givenPosition();
+        Paddock pad = givenPaddockWithEntry(entry);
+        Paddock pad2 = givenPaddockWithEntry(entry);
+        TaskType task = TaskType.CLEANING;
+        double time = 100.0;
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad2, 50.0, TaskType.CLEANING);
+        List<TimedOccupation> list = new ArrayList<>();
+        list.add(occupation);
+        AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
+        Zoo zoo = givenZoo();
+        KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
+        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result).isFalse();
+    }
+
+    /**
+     * Should return true: - the keeper exists - the paddock exists and has an
+     * entry - the task exists - the time is a Double - the time is greater or
+     * equals than 0.0 - the sum of the occupations of the keeper is lower or
+     * equals than 100.0
+     */
+    @Test
+    public void shouldReturnTrueWhenTheSumOfTimesIsLowerOrEqualsThan100OnlyBecauseWeUpdateTheTimeOfAnAlreadyExistingOccupation() {
+        // Given
+        Position entry = givenPosition();
+        Paddock pad = givenPaddockWithEntry(entry);
+        TaskType task = TaskType.CLEANING;
+        double time = 100.0;
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 50.0, TaskType.CLEANING);
+        List<TimedOccupation> list = new ArrayList<>();
+        list.add(occupation);
+        AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
+        Zoo zoo = givenZoo();
+        KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
+        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result).isTrue();
     }
 }

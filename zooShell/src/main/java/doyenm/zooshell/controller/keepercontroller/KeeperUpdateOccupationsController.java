@@ -19,6 +19,16 @@ public class KeeperUpdateOccupationsController
                 .taskType(context.getConvertedTask())
                 .time(context.getConvertedTime())
                 .build();
+        TimedOccupation removingOccupation = null;
+        for (TimedOccupation occ : t.getConvertedKeeper().getOccupations()) {
+            if (occ.getPaddock().equals(t.getConvertedPaddock()) & occ.getTaskType().equals(t.getConvertedTask())) {
+                removingOccupation = occ;
+                break;
+            }
+        }
+        if (removingOccupation != null) {
+            context.getConvertedKeeper().getOccupations().remove(removingOccupation);
+        }
         context.getConvertedKeeper().getOccupations().add(timedOccupation);
         return context;
     }

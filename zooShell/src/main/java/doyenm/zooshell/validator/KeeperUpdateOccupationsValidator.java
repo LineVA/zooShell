@@ -6,7 +6,6 @@ import doyenm.zooshell.validator.context.FindingTaskContext;
 import doyenm.zooshell.validator.function.FindingTaskFunction;
 import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
 import java.util.function.Predicate;
-import java.util.function.ToDoubleFunction;
 import java.util.stream.Stream;
 
 /**
@@ -43,8 +42,11 @@ public class KeeperUpdateOccupationsValidator
             return false;
         }
         double sum = 0.0;
-        sum = t.getConvertedKeeper().getOccupations().stream().map(
-                (d) -> t.getConvertedTime()).reduce(sum, (accumulator, d) -> accumulator + d);
+        for(TimedOccupation occ : t.getConvertedKeeper().getOccupations()){
+            if(!occ.getPaddock().equals(t.getConvertedPaddock()) | !occ.getTaskType().equals(t.getConvertedTask())){
+                sum += t.getConvertedTime();
+            }
+        }
         sum += t.getConvertedTime();
         return this.doubleValuesPredicates.mustBeLowerOrEqualsThan(sum, 100.0);
     }
