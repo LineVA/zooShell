@@ -20,9 +20,9 @@ public class KeeperUpdateOccupationsContext {
     private final Zoo zoo;
     private final String keeper;
     private final String paddock;
-    private final String task;
     private final String time;
-
+    private final String task;
+    
     private AnimalKeeper convertedKeeper;
     private Paddock convertedPaddock;
     private TaskType convertedTask;

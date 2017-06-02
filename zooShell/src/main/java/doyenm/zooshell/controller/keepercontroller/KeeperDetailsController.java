@@ -15,6 +15,7 @@ public class KeeperDetailsController implements Function<KeeperContext, KeeperCo
         KeeperContext context = t;
         AnimalKeeper keeper = context.getConvertedKeeper();
         context.addCouple("Name", keeper.getName());
+        context.addCouple("Occupations", keeper.getOccupations().toString());
         return context;
     }
 

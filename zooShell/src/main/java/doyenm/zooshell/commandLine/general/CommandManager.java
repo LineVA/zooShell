@@ -1,15 +1,12 @@
 package doyenm.zooshell.commandLine.general;
 
+import doyenm.zooshell.commandLine.commandImpl.DetailSpecie;
+import doyenm.zooshell.commandLine.commandImpl.LsSpecie;
 import doyenm.zooshell.commandLine.commandImpl.animal.*;
 import doyenm.zooshell.commandLine.commandImpl.ls.*;
 import doyenm.zooshell.commandLine.commandImpl.paddock.*;
 import doyenm.zooshell.commandLine.commandImpl.zoo.*;
-import doyenm.zooshell.commandLine.commandImpl.*;
-import doyenm.zooshell.commandLine.commandImpl.keeper.ChangeKeeperName;
-import doyenm.zooshell.commandLine.commandImpl.keeper.CreateKeeper;
-import doyenm.zooshell.commandLine.commandImpl.keeper.DetailKeeper;
-import doyenm.zooshell.commandLine.commandImpl.keeper.LsKeeper;
-import doyenm.zooshell.commandLine.commandImpl.keeper.RemoveKeeper;
+import doyenm.zooshell.commandLine.commandImpl.keeper.*;
 import static java.util.Arrays.asList;
 import doyenm.zooshell.launch.options.Option;
 import doyenm.zooshell.launch.play.Play;
@@ -53,7 +50,8 @@ public abstract class CommandManager {
                 new LsSex(play), new LsBiome(play), new LsContraceptionMethod(play),
                 new LsDiet(play), new LsPaddockType(play),
                 new CreateKeeper(play), new ChangeKeeperName(play), new DetailKeeper(play),
-                new LsKeeper(play), new RemoveKeeper(play)
+                new LsKeeper(play), new RemoveKeeper(play),
+                new UpdateOccupations(play), new ResetOccupations(play)
         );
     }
 
