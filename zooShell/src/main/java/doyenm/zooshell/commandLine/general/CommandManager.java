@@ -48,7 +48,7 @@ public abstract class CommandManager {
                 new ChangePaddock(play), new ChangeAnimalName(play),
                 new DetailSpecie(play),
                 new LsSex(play), new LsBiome(play), new LsContraceptionMethod(play),
-                new LsDiet(play), new LsPaddockType(play),
+                new LsDiet(play), new LsPaddockType(play), new LsKeeperTask(play), 
                 new CreateKeeper(play), new ChangeKeeperName(play), new DetailKeeper(play),
                 new LsKeeper(play), new RemoveKeeper(play),
                 new UpdateOccupations(play), new ResetOccupations(play)
