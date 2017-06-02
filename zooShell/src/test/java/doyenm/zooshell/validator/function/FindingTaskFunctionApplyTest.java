@@ -1,7 +1,7 @@
 package doyenm.zooshell.validator.function;
 
-import doyenm.zooshell.model.Biome;
-import doyenm.zooshell.validator.context.FindingBiomeContext;
+import doyenm.zooshell.model.TaskType;
+import doyenm.zooshell.validator.context.FindingTaskContext;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -10,74 +10,74 @@ import org.mockito.Mockito;
  *
  * @author doyenm
  */
-public class FindingBiomeFunctionApplyTest {
+public class FindingTaskFunctionApplyTest {
 
-    private FindingBiomeContext givenContextWithInput(String input) {
-        FindingBiomeContext context = Mockito.mock(FindingBiomeContext.class);
-        Mockito.when(context.getConvertedBiome()).thenCallRealMethod();
-        Mockito.doCallRealMethod().when(context).setConvertedBiome(Mockito.any(Biome.class));
-        Mockito.when(context.getBiome()).thenReturn(input);
+    private FindingTaskContext givenContextWithInput(String input) {
+        FindingTaskContext context = Mockito.mock(FindingTaskContext.class);
+        Mockito.when(context.getConvertedTask()).thenCallRealMethod();
+        Mockito.doCallRealMethod().when(context).setConvertedTask(Mockito.any(TaskType.class));
+        Mockito.when(context.getTask()).thenReturn(input);
         return context;
     }
 
     @Test
-    public void shouldSetTheConvertedBiomeWhenTheInputIsIntegerCorrespondingToAnExistingBiome() {
+    public void shouldSetTheConvertedTaskTypeWhenTheInputIsIntegerCorrespondingToAnExistingTaskType() {
         // Given
-        String input = "11";
-        FindingBiomeContext context = givenContextWithInput(input);
-        FindingBiomeFunction function = new FindingBiomeFunction();
+        String input = "1";
+        FindingTaskContext context = givenContextWithInput(input);
+        FindingTaskFunction function = new FindingTaskFunction();
         // When
-        FindingBiomeContext actualContext = function.apply(context);
+        FindingTaskContext actualContext = function.apply(context);
         // Then 
-        Assertions.assertThat(actualContext.getConvertedBiome()).isEqualTo(Biome.TUNDRA);
+        Assertions.assertThat(actualContext.getConvertedTask()).isEqualTo(TaskType.CLEANING);
     }
     
      @Test
-    public void shouldSetTheConvertedBiomeWhenTheInputIsStringCorrespondingToAnExistingBiomeWithoutSpace() {
+    public void shouldSetTheConvertedTaskTypeWhenTheInputIsStringCorrespondingToAnExistingTaskTypeWithoutSpace() {
         // Given
-        String input = "tundra";
-        FindingBiomeContext context = givenContextWithInput(input);
-        FindingBiomeFunction function = new FindingBiomeFunction();
+        String input = "cleaning";
+        FindingTaskContext context = givenContextWithInput(input);
+        FindingTaskFunction function = new FindingTaskFunction();
         // When
-        FindingBiomeContext actualContext = function.apply(context);
+        FindingTaskContext actualContext = function.apply(context);
         // Then 
-        Assertions.assertThat(actualContext.getConvertedBiome()).isEqualTo(Biome.TUNDRA);
+        Assertions.assertThat(actualContext.getConvertedTask()).isEqualTo(TaskType.CLEANING);
     }
     
     @Test
-    public void shouldSetTheConvertedBiomeWhenTheInputIsStringCorrespondingToAnExistingBiomeWithSpace() {
+    public void shouldSetTheConvertedTaskTypeWhenTheInputIsStringCorrespondingToAnExistingTaskTypeWithSpace() {
         // Given
-        String input = "tropical grasslands";
-        FindingBiomeContext context = givenContextWithInput(input);
-        FindingBiomeFunction function = new FindingBiomeFunction();
+        String input = "medical training";
+        FindingTaskContext context = givenContextWithInput(input);
+        FindingTaskFunction function = new FindingTaskFunction();
         // When
-        FindingBiomeContext actualContext = function.apply(context);
+        FindingTaskContext actualContext = function.apply(context);
         // Then 
-        Assertions.assertThat(actualContext.getConvertedBiome()).isEqualTo(Biome.TROPICAL_GRASSLANDS);
+        Assertions.assertThat(actualContext.getConvertedTask()).isEqualTo(TaskType.MEDICAL_TRAINING);
     }
     
     @Test
-    public void shouldSetTheConvertedBiomeToNullWhenTheInputIsStringNotCorrespondingToAnExistingBiome() {
+    public void shouldSetTheConvertedTaskTypeToNullWhenTheInputIsStringNotCorrespondingToAnExistingTaskType() {
         // Given
-        String input = "FALSE_TUNDRA";
-        FindingBiomeContext context = givenContextWithInput(input);
-        FindingBiomeFunction function = new FindingBiomeFunction();
+        String input = "FALSE_CLEANING";
+        FindingTaskContext context = givenContextWithInput(input);
+        FindingTaskFunction function = new FindingTaskFunction();
         // When
-        FindingBiomeContext actualContext = function.apply(context);
+        FindingTaskContext actualContext = function.apply(context);
         // Then 
-        Assertions.assertThat(actualContext.getConvertedBiome()).isNull();
+        Assertions.assertThat(actualContext.getConvertedTask()).isNull();
     }
     
      @Test
-    public void shouldSetTheConvertedBiomeToNullWhenTheInputIsIntegerNotCorrespondingToAnExistingBiome() {
+    public void shouldSetTheConvertedTaskTypeToNullWhenTheInputIsIntegerNotCorrespondingToAnExistingTaskType() {
         // Given
         String input = "111";
-        FindingBiomeContext context = givenContextWithInput(input);
-        FindingBiomeFunction function = new FindingBiomeFunction();
+        FindingTaskContext context = givenContextWithInput(input);
+        FindingTaskFunction function = new FindingTaskFunction();
         // When
-        FindingBiomeContext actualContext = function.apply(context);
+        FindingTaskContext actualContext = function.apply(context);
         // Then 
-        Assertions.assertThat(actualContext.getConvertedBiome()).isNull();
+        Assertions.assertThat(actualContext.getConvertedTask()).isNull();
     }
 
 }
