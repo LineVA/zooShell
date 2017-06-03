@@ -4,11 +4,11 @@ import doyenm.zooshell.commandLine.general.AbstractCommand;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.commandLine.utils.FormattingInList;
-import doyenm.zooshell.context.PaddockDetailsContext;
+import doyenm.zooshell.context.PaddockContext;
 import doyenm.zooshell.controller.paddockcontroller.PaddockDetailsController;
 import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.utils.Constants;
-import doyenm.zooshell.validator.PaddockDetailsValidator;
+import doyenm.zooshell.validator.PaddockValidator;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 public class DetailPad extends AbstractCommand {
 
     PaddockDetailsController controller = new PaddockDetailsController();
-    PaddockDetailsValidator validator = new PaddockDetailsValidator();
+    PaddockValidator validator = new PaddockValidator();
 
     public DetailPad(Play play) {
         super(play);
@@ -28,7 +28,7 @@ public class DetailPad extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
-        PaddockDetailsContext context = new PaddockDetailsContext(getPlay().getZooModel(), cmd[1]);
+        PaddockContext context = new PaddockContext(getPlay().getZooModel(), cmd[1]);
         context = Stream.of(context)
                 .filter(validator)
                 .map(controller)

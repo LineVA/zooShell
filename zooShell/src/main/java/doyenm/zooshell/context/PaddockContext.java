@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class PaddockDetailsContext {
+public class PaddockContext {
 
     private final Zoo zoo;
     private final String paddock;
