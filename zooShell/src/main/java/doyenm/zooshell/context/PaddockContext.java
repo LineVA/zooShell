@@ -1,9 +1,11 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.commandLine.utils.Couple;
+import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +33,9 @@ public class PaddockContext {
 
     public void addCouple(String key, int value) {
         couples.add(new Couple(key, String.valueOf(value)));
+    }
+    
+    public Collection<Animal> getAnimals(){
+        return getZoo().getAnimals().values();
     }
 }
