@@ -33,12 +33,12 @@ public class Constants {
     public static final String ANIMALDIVERSITY = "animalDiversity";
     // animal-diet
     public static final String ANIMAL_DIET = "animal-diet";
-     // animal-fastDays || animal-fd
+    // animal-fastDays || animal-fd
     public static final String[] ANIMAL_FAST_DAYS = {"animal-fastDays", "animal-fd"};
     // animal-foodQuantity || animal-fq
     public static final String[] ANIMAL_FOOD_QUANTITY = {"animal-foodQuantity", "animal-fq"};
-     // animal-paddock || animal-pad
-    public static final String[] ANIMAL_PADDOCK= {"animal-paddock", "animal-pad"};
+    // animal-paddock || animal-pad
+    public static final String[] ANIMAL_PADDOCK = {"animal-paddock", "animal-pad"};
     // animalKeeper
     public static final String ANIMALKEEPER = "animalKeeper";
     // animalKeepers
@@ -222,6 +222,8 @@ public class Constants {
     public static final String QUANTITY = "quantity";
     // remove
     public static final String REMOVE = "remove";
+    // rename
+    public static final String RENAME = "rename";
     // reproduction
     public static final String REPRODUCTION = "reproduction";
     // reset

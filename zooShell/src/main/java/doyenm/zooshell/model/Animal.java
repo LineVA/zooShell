@@ -14,7 +14,7 @@ import lombok.Setter;
 @Builder
 public class Animal {
     private final Specie specie;
-    private final String name;
+    private String name;
     private final Sex sex;
     private Paddock paddock;
     private final ReproductionAttributes reproductionAttributes;

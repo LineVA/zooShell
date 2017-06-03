@@ -19,4 +19,10 @@ public class TerritoryAttributes {
     
      public TerritoryAttributes() {
     }
+
+    @Override
+    public String toString() {
+        return "TerritoryAttributes{" + "territorySizeForOneGroup=" + territorySizeForOneGroup + '}';
+    }
+     
 }
