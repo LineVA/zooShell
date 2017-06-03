@@ -10,8 +10,9 @@ import lombok.Getter;
 public enum Diet {
 
     NONE(0),
-    FOLIVOROUS(1),
-    NECTARIVOROUS(2);
+    CARNIVOROUS(1),
+    FOLIVOROUS(2),
+    NECTARIVOROUS(3);
 
     int id;
 

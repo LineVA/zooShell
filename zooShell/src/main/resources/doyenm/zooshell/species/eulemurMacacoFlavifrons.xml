@@ -36,4 +36,12 @@
     <socialAttributes>
         <individualsPerGroup>8</individualsPerGroup>
     </socialAttributes>
+    <sizeAttributes>
+        <femaleWeight>2.5</femaleWeight>
+        <femaleWeight>2.5</femaleWeight>
+    </sizeAttributes>
+    <characterAttributes>
+        <agressvity>0.0</agressvity>
+        <cohabitationFactor>0.0</cohabitationFactor>
+    </characterAttributes>
 </specie>
