@@ -45,6 +45,9 @@ public class Constants {
     public static final String ANIMALKEEPERS = "animalKeepers";
     // animalKeeper || ak
     public static final String[] AK_OR_ANIMALKEEPER = {"animalKeeper", "ak"};
+    // animalKeeper-occ || ak-occ
+    public static final String[] AK_OR_ANIMALKEEPER_OCCUPATIONS = {"animalKeeper-occupation", 
+        "ak-occupations", "animalKeeper-occ", "ak-occ"};
     // biome
     public static final String BIOME = "biome";
     // biomes

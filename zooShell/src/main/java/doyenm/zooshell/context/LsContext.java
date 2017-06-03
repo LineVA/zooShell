@@ -5,6 +5,7 @@ import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.model.Sex;
+import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,10 @@ public class LsContext {
 
     public List<String> getAnimalNames() {
         return new ArrayList<>(this.getZoo().getAnimals().keySet());
+    }
+    
+    public List<String> getKeeperNames() {
+        return new ArrayList<>(this.getZoo().getKeepers().keySet());
     }
 
     public List<String> getSexes() {
@@ -69,6 +74,14 @@ public class LsContext {
         List<String> list = new ArrayList<>();
         for (ContraceptionMethod method : ContraceptionMethod.values()) {
             list.add(method.getId() + " - " + method.toString());
+        }
+        return list;
+    }
+    
+     public List<String> getTasks() {
+        List<String> list = new ArrayList<>();
+        for (TaskType task : TaskType.values()) {
+            list.add(task.getId() + " - " + task.toString());
         }
         return list;
     }
