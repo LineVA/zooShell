@@ -13,4 +13,11 @@ public class CharacterAttributes {
 
     private final double agressivity;
     private final double cohabitationFactor;
+
+    @Override
+    public String toString() {
+        return "CharacterAttributes{" + "agressivity=" + agressivity + '}';
+    }
+    
+    
 }
