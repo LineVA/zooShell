@@ -30,15 +30,12 @@ public class CharacterAttributesConstructor {
         // Cohabitation = (
         //    weight/ 1 tonne
         //    + 1 if carnivore
-        //    + agressivity)
-        //    / 3
+        //    + agressivity
+        //        + specie_agresivity)
+        //    / 4
        return Stream.of(cohabitation)
                 .map((Double t) -> {
-                    if (weight >= 1000.0) {
-                        t += 1.0;
-                    } else {
-                        t += weight / 1000.0;
-                    }
+                    t+= weight >= 1000.0 ? 1.0 : weight / 1000.0; 
                     return t;
                 })
                 .map((Double t) -> {
@@ -48,7 +45,8 @@ public class CharacterAttributesConstructor {
                     return t;
                 })
                 .map((Double t) -> t += agressivity)
-                .map((Double t) -> t / 3.0)
+               .map((Double t) -> t+= specie.getCharacterAttributes().getAgressivity())
+                .map((Double t) -> t / 4.0)
                 .findFirst()
                 .get();
     }

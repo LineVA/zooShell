@@ -2,17 +2,26 @@ package doyenm.zooshell.model;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author doyenm
  */
 @Getter
-@RequiredArgsConstructor
+@Setter
 public class CharacterAttributes {
 
-    private final double agressivity;
-    private final double cohabitationFactor;
+    private double agressivity;
+    private double cohabitationFactor;
+
+    public CharacterAttributes(double agressivity, double cohabitationFactor) {
+        this.agressivity = agressivity;
+        this.cohabitationFactor = cohabitationFactor;
+    }
+    
+     public CharacterAttributes() {
+    }
 
     @Override
     public String toString() {
