@@ -4,7 +4,6 @@ import doyenm.zooshell.context.AnimalChangePaddockContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Position;
-import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.testUtils.TestUtils;
 import java.util.HashMap;
 import org.assertj.core.api.Assertions;
@@ -16,10 +15,6 @@ import org.mockito.Mockito;
  * @author doyenm
  */
 public class AnimalChangePaddockValidatorTest {
-
-    private Specie givenSpecie() {
-        return Mockito.mock(Specie.class);
-    }
 
     private Position givenPosition() {
         return Mockito.mock(Position.class);
@@ -89,7 +84,7 @@ public class AnimalChangePaddockValidatorTest {
     }
     
        @Test
-    public void shouldReturnFalseWhenThePAddockDoesNotExist() {
+    public void shouldReturnFalseWhenThePaddockDoesNotExist() {
         // Given
         Position entry = givenPosition();
         Paddock convertedPaddock = null;
