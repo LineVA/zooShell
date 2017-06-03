@@ -1,6 +1,5 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.AnimalChangeNameContext;
 import doyenm.zooshell.context.PaddockChangeNameContext;
 import doyenm.zooshell.validator.context.FindingPaddockContext;
 import doyenm.zooshell.validator.function.FindingPaddockByNameFunction;
@@ -23,7 +22,7 @@ public class PaddockChangeNameValidator
     @Override
     public boolean test(PaddockChangeNameContext t) {
         boolean result;
-        result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(t.getCurrentName(), 50);
+        result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(t.getNewName(), 50);
         result &= this.uniquenessNamesBiPredicates.test(t.getNewName(), t.getPaddocks().keySet());
         FindingPaddockContext findingContext = new FindingPaddockContext(t.getZoo().getPaddocks(), t.getCurrentName());
         t.setConvertedPaddock(Stream.of(findingContext)
@@ -31,6 +30,9 @@ public class PaddockChangeNameValidator
                 .findFirst()
                 .get()
                 .getPaddock());
-        return result & t.getConvertedPaddock()!= null;
+        if(result & t.getConvertedPaddock()!= null){
+            return t.getConvertedPaddock().getEntry() != null;
+        }
+        return false;
     }
 }
