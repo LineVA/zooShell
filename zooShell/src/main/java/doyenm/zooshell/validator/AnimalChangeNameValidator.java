@@ -1,12 +1,9 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalChangeNameContext;
-import doyenm.zooshell.validator.context.FindingAnimalContext;
-import doyenm.zooshell.validator.function.FindingAnimalFunction;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 /**
  *
@@ -14,21 +11,16 @@ import java.util.stream.Stream;
  */
 public class AnimalChangeNameValidator implements Predicate<AnimalChangeNameContext> {
 
-    FindingAnimalFunction findingAnimalFunction = new FindingAnimalFunction();
+    FindAnimal findAnimal = new FindAnimal();
     StringLengthPredicates stringLengthPredicates = new StringLengthPredicates();
     UniquenessNamesBiPredicates uniquenessNamesBiPredicates = new UniquenessNamesBiPredicates();
 
     @Override
     public boolean test(AnimalChangeNameContext t) {
         boolean result;
-        result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(t.getCurrentName(), 50);
+        result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(t.getNewName(), 50);
         result &= this.uniquenessNamesBiPredicates.test(t.getNewName(), t.getAnimals().keySet());
-        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getZoo().getAnimals(), t.getCurrentName());
-        t.setConvertedAnimal(Stream.of(findingAnimalContext)
-                .map(findingAnimalFunction)
-                .findFirst()
-                .get()
-                .getAnimal());
+        t.setConvertedAnimal(findAnimal.find(t.getZoo(), t.getCurrentName()));
         if (result & t.getConvertedAnimal() != null) {
             return t.getConvertedAnimal().getPaddock().getEntry() != null;
         }
