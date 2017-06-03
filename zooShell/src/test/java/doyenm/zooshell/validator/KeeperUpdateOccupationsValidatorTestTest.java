@@ -74,7 +74,7 @@ public class KeeperUpdateOccupationsValidatorTestTest {
 
     /**
      * Should return true: - the keeper exists - the paddock exists and has an
-     * entry - the task exists - the time is a Double - the time is greater or
+     * entry - the task exists - the task is not UNKNOWN - the time is a Double - the time is greater or
      * equals than 0.0 - the sum of the occupations of the keeper is lower or
      * equals than 100.0
      */
@@ -163,6 +163,26 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         Position entry = givenPosition();
         Paddock pad = givenPaddockWithEntry(entry);
         TaskType task = null;
+        double time = 10.0;
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 50.0, TaskType.ENRICHMENT);
+        List<TimedOccupation> list = new ArrayList<>();
+        list.add(occupation);
+        AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
+        Zoo zoo = givenZoo();
+        KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
+        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result).isFalse();
+    }
+    
+     @Test
+    public void shouldReturnFalseWhenTheTaskIsUnknown() {
+        // Given
+        Position entry = givenPosition();
+        Paddock pad = givenPaddockWithEntry(entry);
+        TaskType task = TaskType.UNKNOWN;
         double time = 10.0;
         TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 50.0, TaskType.ENRICHMENT);
         List<TimedOccupation> list = new ArrayList<>();

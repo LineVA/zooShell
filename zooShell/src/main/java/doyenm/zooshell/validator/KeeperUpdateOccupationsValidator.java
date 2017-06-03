@@ -1,6 +1,7 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.KeeperUpdateOccupationsContext;
+import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.TimedOccupation;
 import doyenm.zooshell.validator.context.FindingTaskContext;
 import doyenm.zooshell.validator.function.FindingTaskFunction;
@@ -32,7 +33,7 @@ public class KeeperUpdateOccupationsValidator
                 .get()
                 .getConvertedTask());
         if (t.getConvertedKeeper() != null & t.getConvertedPaddock() != null & t.getConvertedTask() != null) {
-            return testTime(t) & t.getConvertedPaddock().getEntry() != null;
+            return testTime(t) & t.getConvertedPaddock().getEntry() != null & t.getConvertedTask() != TaskType.UNKNOWN;
         }
         return false;
     }
