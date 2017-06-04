@@ -27,6 +27,7 @@ public class Animal {
     private int daysOfDrowning = 0;
     private int daysOfFast = 0;
     private ContraceptionMethod contraceptionMethod;
+    private int monthsOfGestation;
     private final SocialAttributes socialAttributes;
     private final TerritoryAttributes territoryAttributes;
     private final SizeAttributes sizeAttributes;
