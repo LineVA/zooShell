@@ -31,6 +31,22 @@ public class AnimalEvaluationContext {
         this.zoo = zoo;
         this.animal = animal;
     }
+    
+    public int getGestationDuration(){
+        return getAnimal().getReproductionAttributes().getGestationDuration();
+    }
+    
+    public int getMonthsPerTurn(){
+        return getZoo().getMonthsPerEvaluation();
+    }
+    
+    public int getCurrentGestationDuration(){
+        return getAnimal().getMonthsOfGestation();
+    }
+    
+    public void setCurrentGestationDuration(int i){
+         getAnimal().setMonthsOfGestation(i);
+    }
 
     public List<Animal> getAnimalsOfTheZoo(){
         return new ArrayList(getZoo().getAnimals().values());
