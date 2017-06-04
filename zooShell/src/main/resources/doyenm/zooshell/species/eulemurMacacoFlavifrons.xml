@@ -11,12 +11,13 @@
     <reproductionAttributes>
         <femaleMaturityAge>24</femaleMaturityAge>
         <maleMaturityAge>24</maleMaturityAge>
+        <frequency>1.0</frequency>
+        <litterSize>1</litterSize>
+        <gestationDuration>4</gestationDuration>
     </reproductionAttributes>
     <lifespanAttributes>
         <femaleLifespan>220</femaleLifespan>
         <maleLifespan>220</maleLifespan>
-        <frequency>1.0</frequency>
-        <litterSize>1</litterSize>
     </lifespanAttributes>
     <biomes>
         <biome>DRY_BROADLEAF</biome>
