@@ -16,14 +16,16 @@ public class ReproductionAttributes {
     private double frequency;
     private int litterSize;
     private int gestationDuration;
-
+    private int weaningAge;
+    
     public ReproductionAttributes(int femaleMaturityAge, int maleMaturityAge, double frequency,
-            int litter, int duration) {
+            int litter, int duration, int weaningAge) {
         this.femaleMaturityAge = femaleMaturityAge;
         this.maleMaturityAge = maleMaturityAge;
         this.frequency = frequency;
         this.litterSize = litter;
         this.gestationDuration = duration;
+        this.weaningAge = weaningAge;
     }
 
     public ReproductionAttributes() {
