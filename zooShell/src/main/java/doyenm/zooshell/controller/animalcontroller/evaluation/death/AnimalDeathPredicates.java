@@ -1,4 +1,4 @@
-package doyenm.zooshell.controller.animalcontroller.evaluation;
+package doyenm.zooshell.controller.animalcontroller.evaluation.death;
 
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Sex;
@@ -21,8 +21,8 @@ public class AnimalDeathPredicates {
         return animal.getDaysOfDrowning() >= NUMBER_FOR_DYING;
     }
     
-    public boolean isDeadByFast(Animal animal){
-        return animal.getDaysOfFast()>= NUMBER_FOR_DYING;
+    public boolean isDeadByHunger(Animal animal){
+        return animal.getDaysOfHunger()>= NUMBER_FOR_DYING;
     }
     
 }
