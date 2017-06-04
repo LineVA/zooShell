@@ -1,12 +1,12 @@
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
+zooShell/target/
+zooShell/pom.xml.tag
+zooShell/pom.xml.releaseBackup
+zooShell/pom.xml.versionsBackup
+zooShell/pom.xml.next
+zooShell/release.properties
+zooShell/dependency-reduced-pom.xml
+zooShell/buildNumber.properties
+zooShell/.mvn/timing.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
