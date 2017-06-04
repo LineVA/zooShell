@@ -27,4 +27,9 @@ public class SizeAttributes {
                 getFemaleWeight(): getMaleWeight();
     }
 
+    @Override
+    public String toString() {
+        return "SizeAttributes{" + "femaleWeight=" + femaleWeight + ", maleWeight=" + maleWeight + '}';
+    }
+
 }
