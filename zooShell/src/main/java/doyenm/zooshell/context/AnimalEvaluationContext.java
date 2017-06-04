@@ -6,7 +6,6 @@ import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +30,22 @@ public class AnimalEvaluationContext {
     public AnimalEvaluationContext(Zoo zoo, Animal animal) {
         this.zoo = zoo;
         this.animal = animal;
+    }
+    
+    public int getGestationDuration(){
+        return getAnimal().getReproductionAttributes().getGestationDuration();
+    }
+    
+    public int getMonthsPerTurn(){
+        return getZoo().getMonthsPerEvaluation();
+    }
+    
+    public int getCurrentGestationDuration(){
+        return getAnimal().getMonthsOfGestation();
+    }
+    
+    public void setCurrentGestationDuration(int i){
+         getAnimal().setMonthsOfGestation(i);
     }
 
     public List<Animal> getAnimalsOfTheZoo(){
