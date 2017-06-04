@@ -23,6 +23,7 @@ public class FemaleReproductionPredicate implements Predicate<AnimalEvaluationCo
                 .filter((Animal t2) -> Sex.FEMALE == t2.getSex())
                 .filter((Animal t2) -> ContraceptionMethod.NONE == t2.getContraceptionMethod())
                 .filter((Animal t2) -> t2.getReproductionAttributes().getFemaleMaturityAge() <= t2.getAge())
+                // Well-being
                 .filter((Animal t2) -> true)
                 .filter((Animal t2) -> uniformStatistics.uniform()
                         <= t2.getReproductionAttributes().getFrequency() * t.getZoo().getMonthsPerEvaluation() / 12)
