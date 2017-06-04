@@ -11,7 +11,7 @@ public class AnimalDeathPredicates {
     
     private final int NUMBER_FOR_DYING = 3;
     
-    public boolean isDeadByAge(Animal animal) {
+    public boolean isDeadByOldAge(Animal animal) {
         int lifespan = Sex.FEMALE == animal.getSex()
                 ? animal.getLifespanAttributes().getFemaleLifespan() : animal.getLifespanAttributes().getMaleLifespan();
         return animal.getAge() >= lifespan;

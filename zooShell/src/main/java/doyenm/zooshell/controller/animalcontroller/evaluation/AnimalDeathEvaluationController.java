@@ -24,7 +24,7 @@ public class AnimalDeathEvaluationController
         Animal animal = this.updateIsDyingByDrowning(context.getAnimal());
         animal = this.updateIsDyingByHunger(animal, context.getKeepers());
         context.setAnimal(animal);
-        boolean isDead = deathPredicates.isDeadByAge(animal)
+        boolean isDead = deathPredicates.isDeadByOldAge(animal)
                 || deathPredicates.isDeadByDrowning(animal)
                 || deathPredicates.isDeadByHunger(animal);
         context.setDead(isDead);
