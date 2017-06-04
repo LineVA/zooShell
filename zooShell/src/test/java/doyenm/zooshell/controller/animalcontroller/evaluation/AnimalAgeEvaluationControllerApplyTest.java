@@ -49,4 +49,16 @@ public class AnimalAgeEvaluationControllerApplyTest {
         // Then
         Assertions.assertThat(actualContext.getAnimal().getAge()).isEqualTo(age + speed);
     }
+    
+    /**
+     * The animal did not need to be nursing by humans during the current turn
+     */
+    @Test
+    public void shouldLetTheNecessityOfNursingByHumansToFalseWhenTheAnimalDidNotNeedIt(){
+        // Given
+        
+        // When
+        // Then
+        
+    }
 }
