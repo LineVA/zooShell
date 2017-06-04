@@ -1,7 +1,6 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.death;
 
 import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.Sex;
 
 /**
  *
@@ -12,8 +11,7 @@ public class AnimalDeathPredicates {
     private final int NUMBER_FOR_DYING = 3;
     
     public boolean isDeadByOldAge(Animal animal) {
-        int lifespan = Sex.FEMALE == animal.getSex()
-                ? animal.getLifespanAttributes().getFemaleLifespan() : animal.getLifespanAttributes().getMaleLifespan();
+        int lifespan = animal.getReproductionAttributes().getMaturityGivenSex(animal.getSex());
         return animal.getAge() >= lifespan;
     }
     

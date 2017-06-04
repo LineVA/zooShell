@@ -22,6 +22,11 @@ public class LifespanAttributes {
         this.maleLifespan = maleLifespan;
     }
 
+     public int getLifespanGivenSex(Sex sex) {
+        return Sex.FEMALE == sex
+                ? getFemaleLifespan(): getMaleLifespan();
+    }
+    
     @Override
     public String toString() {
         return "LifespanAttributes{" + "femaleLifespan=" + femaleLifespan + ", maleLifespan=" + maleLifespan + '}';
