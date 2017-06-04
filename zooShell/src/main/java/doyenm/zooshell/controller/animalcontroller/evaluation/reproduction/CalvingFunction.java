@@ -34,12 +34,17 @@ public class CalvingFunction implements Function<AnimalEvaluationContext, Animal
                     .map(new Function<AnimalCreationContext, Animal>() {
                         @Override
                         public Animal apply(AnimalCreationContext t) {
-                           return t.createNewborn();
+                            return t.createNewborn();
                         }
                     })
+                    .map((Animal t1) -> {
+                t1.setNeedWeaningByHumans(needWeaningByHumans());
+                return t1;
+            })
                     .findFirst()
                     .get()
-            );
+        
+        );
         }
         female.setNumberOfChildren(female.getNumberOfChildren() + litterSize);
         return context;
@@ -59,6 +64,10 @@ public class CalvingFunction implements Function<AnimalEvaluationContext, Animal
             return Sex.MALE.toString();
         }
         return Sex.FEMALE.toString();
+    }
+
+    private boolean needWeaningByHumans() {
+        return uniformStatistics.uniform() >= 0.9;
     }
 
 }
