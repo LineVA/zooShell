@@ -32,4 +32,5 @@ public class Animal {
     private final TerritoryAttributes territoryAttributes;
     private final SizeAttributes sizeAttributes;
     private final CharacterAttributes characterAttributes;
+    private boolean needWeaningByHumans;
 }
