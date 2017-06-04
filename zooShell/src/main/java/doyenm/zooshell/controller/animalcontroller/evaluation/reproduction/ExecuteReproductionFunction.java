@@ -27,8 +27,13 @@ public class ExecuteReproductionFunction
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
-        int gestationDurngThisTurn = statistics.getRandomLowerOrEqualsThan(t.getMonthsPerTurn());
-        int currentGestationDuration = gestationDurngThisTurn + t.getCurrentGestationDuration();
+        int currentGestationDuration;
+        if (t.getCurrentGestationDuration() == 0) {
+            int gestationDurngThisTurn = statistics.getRandomLowerOrEqualsThan(t.getMonthsPerTurn());
+            currentGestationDuration = gestationDurngThisTurn + t.getCurrentGestationDuration();
+        } else {
+            currentGestationDuration = t.getMonthsPerTurn() + t.getCurrentGestationDuration();
+        }
         if (currentGestationDuration >= t.getGestationDuration()) {
             t.setCurrentGestationDuration(0);
             return Stream.of(t)

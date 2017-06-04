@@ -123,6 +123,6 @@ public class ExecuteReproductionFunctionApplyTest {
         // When
         AnimalEvaluationContext actualContext = function.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getCurrentGestationDuration()).isEqualTo(9);
+        Assertions.assertThat(actualContext.getCurrentGestationDuration()).isEqualTo(12);
     }
 }
