@@ -22,7 +22,7 @@ public class ReproductionAttributesConstructor {
         int litterSize = specie.getReproductionAttributes().getLitterSize();
         int tmpLitterSize = gaussianStatistics.gaussianInt(litterSize, litterSize / 2.0);
         return new ReproductionAttributes(tmpFemaleMaturityAge, tmpMaleMaturityAge, tmpFrequency,
-                tmpLitterSize);
+                tmpLitterSize, specie.getReproductionAttributes().getGestationDuration());
 
     }
 }
