@@ -3,6 +3,7 @@ package doyenm.zooshell.controller.animalcontroller.evaluation.reproduction;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.utils.UniformStatistics;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -30,6 +31,12 @@ public class ExecuteReproductionFunctionApplyTest {
         return function;
     }
 
+    private UniformStatistics givenStatisticsWithNextInt(int next) {
+        UniformStatistics stat = Mockito.mock(UniformStatistics.class);
+        Mockito.when(stat.getRandomLowerOrEqualsThan(Mockito.anyInt())).thenReturn(next);
+        return stat;
+    }
+
     private AnimalEvaluationContext givenContextWithZooSpeedAnimalGestationDurationAndCurrentDuration(
             Zoo zoo, int speed, Animal animal, int optimal, int current) {
         AnimalEvaluationContext context = Mockito.mock(AnimalEvaluationContext.class);
@@ -47,20 +54,21 @@ public class ExecuteReproductionFunctionApplyTest {
     public void shouldSeTheCurrentGestationDurationToZeroWhenItIsOverAndItHasBegunDuringThisTurn() {
         // Given
         int currentGestationDuration = 0;
-        int gestationDuration = 6;
+        int gestationDuration = 1;
         Animal animal = givenAnimal();
         int speed = 6;
         Zoo zoo = givenZoo();
         AnimalEvaluationContext context = givenContextWithZooSpeedAnimalGestationDurationAndCurrentDuration(
                 zoo, speed, animal, gestationDuration, currentGestationDuration);
         CalvingFunction calvingFunction = givenCalvingFunctionWithContext(context);
-        ExecuteReproductionFunction function = new ExecuteReproductionFunction(calvingFunction);
+        UniformStatistics statistics = givenStatisticsWithNextInt(3);
+        ExecuteReproductionFunction function = new ExecuteReproductionFunction(calvingFunction, statistics);
         // When
         AnimalEvaluationContext actualContext = function.apply(context);
         // Then
         Assertions.assertThat(actualContext.getCurrentGestationDuration()).isEqualTo(0);
     }
-    
+
     @Test
     public void shouldSeTheCurrentGestationDurationToZeroWhenItIsOverAndItHasBegunBeforeThisTurn() {
         // Given
@@ -72,13 +80,14 @@ public class ExecuteReproductionFunctionApplyTest {
         AnimalEvaluationContext context = givenContextWithZooSpeedAnimalGestationDurationAndCurrentDuration(
                 zoo, speed, animal, gestationDuration, currentGestationDuration);
         CalvingFunction calvingFunction = givenCalvingFunctionWithContext(context);
-        ExecuteReproductionFunction function = new ExecuteReproductionFunction(calvingFunction);
+        UniformStatistics statistics = givenStatisticsWithNextInt(3);
+        ExecuteReproductionFunction function = new ExecuteReproductionFunction(calvingFunction, statistics);
         // When
         AnimalEvaluationContext actualContext = function.apply(context);
         // Then
         Assertions.assertThat(actualContext.getCurrentGestationDuration()).isEqualTo(0);
     }
-    
+
     @Test
     public void shouldSeTheCurrentGestationDurationWhenItIsNotOverAndItHasBegunDuringThisTurn() {
         // Given
@@ -90,13 +99,14 @@ public class ExecuteReproductionFunctionApplyTest {
         AnimalEvaluationContext context = givenContextWithZooSpeedAnimalGestationDurationAndCurrentDuration(
                 zoo, speed, animal, gestationDuration, currentGestationDuration);
         CalvingFunction calvingFunction = givenCalvingFunctionWithContext(context);
-        ExecuteReproductionFunction function = new ExecuteReproductionFunction(calvingFunction);
+        UniformStatistics statistics = givenStatisticsWithNextInt(3);
+        ExecuteReproductionFunction function = new ExecuteReproductionFunction(calvingFunction, statistics);
         // When
         AnimalEvaluationContext actualContext = function.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getCurrentGestationDuration()).isEqualTo(6);
+        Assertions.assertThat(actualContext.getCurrentGestationDuration()).isEqualTo(3);
     }
-    
+
     @Test
     public void shouldSeTheCurrentGestationDurationToZeroWhenItIsNotOverAndItHasBegunBeforeThisTurn() {
         // Given
@@ -108,10 +118,11 @@ public class ExecuteReproductionFunctionApplyTest {
         AnimalEvaluationContext context = givenContextWithZooSpeedAnimalGestationDurationAndCurrentDuration(
                 zoo, speed, animal, gestationDuration, currentGestationDuration);
         CalvingFunction calvingFunction = givenCalvingFunctionWithContext(context);
-        ExecuteReproductionFunction function = new ExecuteReproductionFunction(calvingFunction);
+        UniformStatistics statistics = givenStatisticsWithNextInt(3);
+        ExecuteReproductionFunction function = new ExecuteReproductionFunction(calvingFunction, statistics);
         // When
         AnimalEvaluationContext actualContext = function.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getCurrentGestationDuration()).isEqualTo(12);
+        Assertions.assertThat(actualContext.getCurrentGestationDuration()).isEqualTo(9);
     }
 }
