@@ -26,13 +26,14 @@ public class FemaleReproductionPredicateTestTest {
         return attributes;
     }
 
-    private Animal givenAnimalWithAgeSexContraceptionAndReproductionAttributes(
-            int age, Sex sex, ContraceptionMethod method, ReproductionAttributes attributes) {
+    private Animal givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
+            int age, Sex sex, ContraceptionMethod method, int months, ReproductionAttributes attributes) {
         Animal animal = Mockito.mock(Animal.class);
         Mockito.when(animal.getAge()).thenReturn(age);
         Mockito.when(animal.getReproductionAttributes()).thenReturn(attributes);
         Mockito.when(animal.getSex()).thenReturn(sex);
         Mockito.when(animal.getContraceptionMethod()).thenReturn(method);
+        Mockito.when(animal.getMonthsOfGestation()).thenReturn(months);
         return animal;
     }
 
@@ -50,12 +51,12 @@ public class FemaleReproductionPredicateTestTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenIsFemaleIsOldAndHappyEnoughAndCanReproducte() {
+    public void shouldReturnTrueWhenIsFemaleIsOldAndHappyEnoughAndCanReproducteAndNotAlreadyGestating() {
         // Given
         int age = TestUtils.generateInteger();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 1.0);
-        Animal animal = givenAnimalWithAgeSexContraceptionAndReproductionAttributes(
-                age, Sex.FEMALE, ContraceptionMethod.NONE, attributes);
+        Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
+                age, Sex.FEMALE, ContraceptionMethod.NONE, 0, attributes);
         Zoo zoo = givenZooWithSpeed(12);
         AnimalEvaluationContext context = givenContextWithZooAndAnimal(zoo, animal);
         FemaleReproductionPredicate predicate = new FemaleReproductionPredicate();
@@ -66,12 +67,28 @@ public class FemaleReproductionPredicateTestTest {
     }
 
     @Test
+    public void shouldReturnFalseWhenIsAlreadyGestating() {
+        // Given
+        int age = TestUtils.generateInteger();
+        ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 1.0);
+        Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
+                age, Sex.FEMALE, ContraceptionMethod.NONE, 4, attributes);
+        Zoo zoo = givenZooWithSpeed(12);
+        AnimalEvaluationContext context = givenContextWithZooAndAnimal(zoo, animal);
+        FemaleReproductionPredicate predicate = new FemaleReproductionPredicate();
+        // When
+        boolean result = predicate.test(context);
+        // Then
+        Assertions.assertThat(result).isFalse();
+    }
+
+    @Test
     public void shouldReturnFalseWhenIsNotFemale() {
         // Given
         int age = TestUtils.generateInteger();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 1.0);
-        Animal animal = givenAnimalWithAgeSexContraceptionAndReproductionAttributes(
-                age, Sex.MALE, ContraceptionMethod.NONE, attributes);
+        Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
+                age, Sex.MALE, ContraceptionMethod.NONE, 0, attributes);
         Zoo zoo = givenZooWithSpeed(12);
         AnimalEvaluationContext context = givenContextWithZooAndAnimal(zoo, animal);
         FemaleReproductionPredicate predicate = new FemaleReproductionPredicate();
@@ -86,8 +103,8 @@ public class FemaleReproductionPredicateTestTest {
         // Given
         int age = TestUtils.generateInteger();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age + 1, 1.0);
-        Animal animal = givenAnimalWithAgeSexContraceptionAndReproductionAttributes(
-                age, Sex.FEMALE, ContraceptionMethod.NONE, attributes);
+        Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
+                age, Sex.FEMALE, ContraceptionMethod.NONE, 0, attributes);
         Zoo zoo = givenZooWithSpeed(12);
         AnimalEvaluationContext context = givenContextWithZooAndAnimal(zoo, animal);
         FemaleReproductionPredicate predicate = new FemaleReproductionPredicate();
@@ -102,8 +119,8 @@ public class FemaleReproductionPredicateTestTest {
         // Given
         int age = TestUtils.generateInteger();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 0.0);
-        Animal animal = givenAnimalWithAgeSexContraceptionAndReproductionAttributes(age, Sex.FEMALE, 
-                ContraceptionMethod.NONE, attributes);
+        Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
+                age, Sex.FEMALE, ContraceptionMethod.NONE, 0, attributes);
         Zoo zoo = givenZooWithSpeed(12);
         AnimalEvaluationContext context = givenContextWithZooAndAnimal(zoo, animal);
         FemaleReproductionPredicate predicate = new FemaleReproductionPredicate();
@@ -118,8 +135,8 @@ public class FemaleReproductionPredicateTestTest {
         // Given
         int age = TestUtils.generateInteger();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 0.0);
-        Animal animal = givenAnimalWithAgeSexContraceptionAndReproductionAttributes(
-                age, Sex.FEMALE, ContraceptionMethod.FEMALE_IMPLANT, attributes);
+        Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
+                age, Sex.FEMALE, ContraceptionMethod.NONE, 0, attributes);
         Zoo zoo = givenZooWithSpeed(12);
         AnimalEvaluationContext context = givenContextWithZooAndAnimal(zoo, animal);
         FemaleReproductionPredicate predicate = new FemaleReproductionPredicate();
@@ -128,14 +145,14 @@ public class FemaleReproductionPredicateTestTest {
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
+
     @Test
     public void shouldReturnFalseWhenIsUnderFemalePill() {
         // Given
         int age = TestUtils.generateInteger();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 0.0);
-        Animal animal = givenAnimalWithAgeSexContraceptionAndReproductionAttributes(
-                age, Sex.FEMALE, ContraceptionMethod.FEMALE_PILL, attributes);
+        Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
+                age, Sex.FEMALE, ContraceptionMethod.NONE, 0, attributes);
         Zoo zoo = givenZooWithSpeed(12);
         AnimalEvaluationContext context = givenContextWithZooAndAnimal(zoo, animal);
         FemaleReproductionPredicate predicate = new FemaleReproductionPredicate();
@@ -144,14 +161,14 @@ public class FemaleReproductionPredicateTestTest {
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
+
     @Test
     public void shouldReturnFalseWhenIsSterilized() {
         // Given
         int age = TestUtils.generateInteger();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 0.0);
-        Animal animal = givenAnimalWithAgeSexContraceptionAndReproductionAttributes(
-                age, Sex.FEMALE, ContraceptionMethod.STERILIZATION, attributes);
+        Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
+                age, Sex.FEMALE, ContraceptionMethod.NONE, 0, attributes);
         Zoo zoo = givenZooWithSpeed(12);
         AnimalEvaluationContext context = givenContextWithZooAndAnimal(zoo, animal);
         FemaleReproductionPredicate predicate = new FemaleReproductionPredicate();
