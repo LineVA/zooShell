@@ -21,12 +21,20 @@ public class AnimalReproductionEvaluationController
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
-        return Stream.of(context)
-                .filter(femaleReproductionController)
-                .filter(maleReproductionController)
-                .map(executeReproductionFunction)
-                .findFirst()
-                .get();
-        
+        if (context.getAnimal().getMonthsOfGestation() == 0) {
+            return Stream.of(context)
+                    .filter(femaleReproductionController)
+                    .filter(maleReproductionController)
+                    .map(executeReproductionFunction)
+                    .findFirst()
+                    .get();
+        } else {
+            return Stream.of(context)
+                    .filter(maleReproductionController)
+                    .map(executeReproductionFunction)
+                    .findFirst()
+                    .get();
+        }
+
     }
 }
