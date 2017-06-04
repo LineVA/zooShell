@@ -19,7 +19,6 @@
         <litterSize>1</litterSize>
     </lifespanAttributes>
     <biomes>
-        <biome>TAIGA</biome>
         <biome>DRY_BROADLEAF</biome>
     </biomes>
     <diets>
