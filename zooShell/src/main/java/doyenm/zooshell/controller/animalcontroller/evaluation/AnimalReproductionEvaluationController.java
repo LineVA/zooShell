@@ -4,8 +4,6 @@ import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.ExecuteReproductionFunction;
 import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.FemaleReproductionPredicate;
 import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.MaleReproductionPredicate;
-import doyenm.zooshell.model.Animal;
-import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -23,11 +21,6 @@ public class AnimalReproductionEvaluationController
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
-        // est une femelle
-        // est sexuellement mature
-        // a le ben etre necessaire
-        // se reproduit
-
         return Stream.of(context)
                 .filter(femaleReproductionController)
                 .filter(maleReproductionController)
