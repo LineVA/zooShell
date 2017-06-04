@@ -10,10 +10,11 @@ import lombok.Getter;
 public enum TaskType {
 
     UNKNOWN(0),
-    CLEANING(1),
-    ENRICHMENT(2),
-    FEEDING(3),
-    MEDICAL_TRAINING(4);
+    BREEDING(1),
+    CLEANING(2),
+    ENRICHMENT(3),
+    FEEDING(4),
+    MEDICAL_TRAINING(5);
     
     int id;
 
