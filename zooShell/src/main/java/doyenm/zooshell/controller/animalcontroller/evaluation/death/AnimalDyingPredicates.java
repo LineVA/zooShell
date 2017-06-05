@@ -23,15 +23,18 @@ public class AnimalDyingPredicates {
     }
 
     public boolean isDyingByFast(Animal animal) {
-        return animal.getCurrentFoodAttributes().getFastDays() == NUMBER_OF_DAYS_PER_WEEK;
+        return animal.getCurrentFoodAttributes().getFastDays() >= NUMBER_OF_DAYS_PER_WEEK;
     }
 
      public boolean isDyingByFoodQuantityToZero(Animal animal) {
-        return animal.getCurrentFoodAttributes().getQuantity() == 0.0;
+        return animal.getCurrentFoodAttributes().getQuantity() <= 0.0;
     }
      
      public boolean isDyingByBadDiets(Animal animal){
          List<Diet> specieDiets = animal.getSpecie().getDiets().getDiets();
+         if(specieDiets.isEmpty()){
+             return false;
+         }
          for(Diet diet : animal.getDiets()){
              if(specieDiets.contains(diet)){
                  return false;
