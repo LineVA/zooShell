@@ -1,10 +1,12 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Animal;
+import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +32,10 @@ public class AnimalEvaluationContext {
     public AnimalEvaluationContext(Zoo zoo, Animal animal) {
         this.zoo = zoo;
         this.animal = animal;
+    }
+    
+    public Collection<AnimalKeeper> getKeepers(){
+        return getZoo().getKeepers().values();
     }
     
     public int getGestationDuration(){
