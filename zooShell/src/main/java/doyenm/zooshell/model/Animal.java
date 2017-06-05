@@ -25,7 +25,7 @@ public class Animal {
     private final FoodAttributes optimalFoodAttributes;
     private FoodAttributes currentFoodAttributes;
     private int daysOfDrowning = 0;
-    private int daysOfFast = 0;
+    private int daysOfHunger = 0;
     private ContraceptionMethod contraceptionMethod;
     private int monthsOfGestation;
     private final SocialAttributes socialAttributes;

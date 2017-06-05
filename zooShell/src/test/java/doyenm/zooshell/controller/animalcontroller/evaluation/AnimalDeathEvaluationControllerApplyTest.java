@@ -1,6 +1,5 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation;
 
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalDeathEvaluationController;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.LifespanAttributes;

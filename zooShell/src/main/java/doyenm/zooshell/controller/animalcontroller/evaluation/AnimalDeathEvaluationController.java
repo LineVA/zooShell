@@ -1,6 +1,8 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
+import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalDeathPredicates;
+import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalUpdateDyingMeasures;
 import doyenm.zooshell.model.Animal;
 import java.util.function.Function;
 
@@ -11,37 +13,20 @@ import java.util.function.Function;
 public class AnimalDeathEvaluationController
         implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
 
+    AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures();
     AnimalDeathPredicates deathPredicates = new AnimalDeathPredicates();
-    AnimalDyingPredicates dyingPredicates = new AnimalDyingPredicates();
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
-        Animal animal = this.updateIsDyingByDrowning(context.getAnimal());
-        animal = this.updateIsDyingByFast(animal);
+        Animal animal = measures.updateIsDyingByDrowning(context.getAnimal());
+        animal = measures.updateIsDyingByHunger(animal, context.getKeepers());
         context.setAnimal(animal);
-        boolean isDead = deathPredicates.isDeadByAge(animal)
+        boolean isDead = deathPredicates.isDeadByOldAge(animal)
                 || deathPredicates.isDeadByDrowning(animal)
-                || deathPredicates.isDeadByFast(animal);
+                || deathPredicates.isDeadByHunger(animal);
         context.setDead(isDead);
         return context;
     }
 
-    private Animal updateIsDyingByDrowning(Animal animal) {
-        if (dyingPredicates.isDyingByDrowning(animal)) {
-            animal.setDaysOfDrowning(animal.getDaysOfDrowning() + 1);
-        } else {
-            animal.setDaysOfDrowning(0);
-        }
-        return animal;
-    }
-
-    private Animal updateIsDyingByFast(Animal animal) {
-        if (dyingPredicates.isDyingByFast(animal)) {
-            animal.setDaysOfFast(animal.getDaysOfFast() + 1);
-        } else {
-            animal.setDaysOfFast(0);
-        }
-        return animal;
-    }
 }
