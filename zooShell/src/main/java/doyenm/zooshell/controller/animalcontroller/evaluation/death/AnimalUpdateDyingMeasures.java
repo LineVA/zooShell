@@ -10,12 +10,12 @@ import java.util.Collection;
  */
 public class AnimalUpdateDyingMeasures {
 
-   private AnimalDyingPredicates dyingPredicates;
+    private AnimalDyingPredicates dyingPredicates;
 
     public AnimalUpdateDyingMeasures() {
-         this.dyingPredicates = new AnimalDyingPredicates();
+        this.dyingPredicates = new AnimalDyingPredicates();
     }
-    
+
     public AnimalUpdateDyingMeasures(AnimalDyingPredicates predicates) {
         this.dyingPredicates = predicates;
     }
@@ -33,7 +33,8 @@ public class AnimalUpdateDyingMeasures {
         if (dyingPredicates.isDyingByFast(animal)
                 | dyingPredicates.isDyingByBadDiets(animal)
                 | dyingPredicates.isDyingByFoodQuantityToZero(animal)
-                | dyingPredicates.isDyingByLackOfKeeper(animal, keepers)) {
+                | dyingPredicates.isDyingByLackOfKeeper(animal, keepers)
+                | dyingPredicates.isDyingByLackOfNursing(animal, keepers)) {
             animal.setDaysOfHunger(animal.getDaysOfHunger() + 1);
         } else {
             animal.setDaysOfHunger(0);

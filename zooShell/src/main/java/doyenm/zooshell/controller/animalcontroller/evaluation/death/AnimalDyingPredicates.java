@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.death;
 
 import doyenm.zooshell.controller.animalcontroller.evaluation.FeedingKeeperPredicate;
+import doyenm.zooshell.controller.animalcontroller.evaluation.NursingKeeperPredicate;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Diet;
@@ -13,8 +14,9 @@ import java.util.List;
  * @author doyenm
  */
 public class AnimalDyingPredicates {
-    
+
     FeedingKeeperPredicate feedingKeeperPredicate = new FeedingKeeperPredicate();
+    NursingKeeperPredicate nursingKeeperPredicate = new NursingKeeperPredicate();
 
     private final int NUMBER_OF_DAYS_PER_WEEK = 7;
 
@@ -26,29 +28,42 @@ public class AnimalDyingPredicates {
         return animal.getCurrentFoodAttributes().getFastDays() >= NUMBER_OF_DAYS_PER_WEEK;
     }
 
-     public boolean isDyingByFoodQuantityToZero(Animal animal) {
+    public boolean isDyingByFoodQuantityToZero(Animal animal) {
         return animal.getCurrentFoodAttributes().getQuantity() <= 0.0;
     }
-     
-     public boolean isDyingByBadDiets(Animal animal){
-         List<Diet> specieDiets = animal.getSpecie().getDiets().getDiets();
-         if(specieDiets.isEmpty()){
-             return false;
-         }
-         for(Diet diet : animal.getDiets()){
-             if(specieDiets.contains(diet)){
-                 return false;
-             }
-         }
-         return true;
-     }
-     
-     public boolean isDyingByLackOfKeeper(Animal animal, Collection<AnimalKeeper> keepers){
-         for(AnimalKeeper keeper : keepers){
-             if(feedingKeeperPredicate.test(keeper, animal.getPaddock())){
-                 return false;
-             }
-         }
-         return true;
-     }
+
+    public boolean isDyingByBadDiets(Animal animal) {
+        List<Diet> specieDiets = animal.getSpecie().getDiets().getDiets();
+        if (specieDiets.isEmpty()) {
+            return false;
+        }
+        for (Diet diet : animal.getDiets()) {
+            if (specieDiets.contains(diet)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isDyingByLackOfKeeper(Animal animal, Collection<AnimalKeeper> keepers) {
+        for (AnimalKeeper keeper : keepers) {
+            if (feedingKeeperPredicate.test(keeper, animal.getPaddock())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isDyingByLackOfNursing(Animal animal, Collection<AnimalKeeper> keepers) {
+        if (animal.isNeedWeaningByHumans()) {
+            for (AnimalKeeper keeper : keepers) {
+                if (nursingKeeperPredicate.test(keeper, animal.getPaddock())) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
 }
