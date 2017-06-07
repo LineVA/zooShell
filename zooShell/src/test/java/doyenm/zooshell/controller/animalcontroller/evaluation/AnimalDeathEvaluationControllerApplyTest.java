@@ -3,6 +3,8 @@ package doyenm.zooshell.controller.animalcontroller.evaluation;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.LifespanAttributes;
+import doyenm.zooshell.model.Paddock;
+import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
@@ -15,6 +17,12 @@ import org.mockito.Mockito;
  */
 public class AnimalDeathEvaluationControllerApplyTest {
 
+    private Paddock givenPadWithType(PaddockType type) {
+        Paddock pad = Mockito.mock(Paddock.class);
+        Mockito.when(pad.getType()).thenReturn(type);
+        return pad;
+    }
+
     private LifespanAttributes givenLifespanAttributesWithValues(int female, int male) {
         LifespanAttributes attributes = Mockito.mock(LifespanAttributes.class);
         Mockito.when(attributes.getFemaleLifespan()).thenReturn(female);
@@ -22,15 +30,17 @@ public class AnimalDeathEvaluationControllerApplyTest {
         return attributes;
     }
 
-    private Animal givenAnimalWithSexLifespanAndAge(Sex sex, LifespanAttributes attributes, int age) {
+    private Animal givenAnimalWithPaddockSexLifespanAndAge(Paddock pad,
+            Sex sex, LifespanAttributes attributes, int age) {
         Animal animal = Mockito.mock(Animal.class);
         Mockito.when(animal.getAge()).thenReturn(age);
         Mockito.when(animal.getSex()).thenReturn(sex);
+        Mockito.when(animal.getPaddock()).thenReturn(pad);
         Mockito.when(animal.getLifespanAttributes()).thenReturn(attributes);
         return animal;
     }
-    
-     private AnimalEvaluationContext givenContextWithAnimal(Animal animal) {
+
+    private AnimalEvaluationContext givenContextWithAnimal(Animal animal) {
         AnimalEvaluationContext context = Mockito.mock(AnimalEvaluationContext.class);
         Mockito.when(context.getAnimal()).thenReturn(animal);
         Mockito.when(context.isDead()).thenCallRealMethod();
@@ -38,97 +48,5 @@ public class AnimalDeathEvaluationControllerApplyTest {
         return context;
     }
 
-    @Test
-    public void shouldSetDeathToTrueWhenTheAnimalIsOlderThanItsLifespanAndItIsAFemale() {
-        // Given
-        int female = TestUtils.generateInteger();
-        int male = TestUtils.generateInteger();
-        LifespanAttributes lifespanAttributes = givenLifespanAttributesWithValues(female, male);
-        Animal animal = givenAnimalWithSexLifespanAndAge(Sex.FEMALE, lifespanAttributes, female + 1);
-        AnimalEvaluationContext context = givenContextWithAnimal(animal);
-        AnimalDeathEvaluationController controller = new AnimalDeathEvaluationController();
-        // When
-        AnimalEvaluationContext actualContext = controller.apply(context);
-        // Then
-        Assertions.assertThat(actualContext.isDead()).isTrue();
-    }
     
-    
-    @Test
-    public void shouldSetDeathToTrueWhenTheAnimalHasTheSameAgeThanItsLifespanAndItIsAFemale() {
-        // Given
-        int female = TestUtils.generateInteger();
-        int male = TestUtils.generateInteger();
-        LifespanAttributes lifespanAttributes = givenLifespanAttributesWithValues(female, male);
-        Animal animal = givenAnimalWithSexLifespanAndAge(Sex.FEMALE, lifespanAttributes, female);
-        AnimalEvaluationContext context = givenContextWithAnimal(animal);
-        AnimalDeathEvaluationController controller = new AnimalDeathEvaluationController();
-        // When
-        AnimalEvaluationContext actualContext = controller.apply(context);
-        // Then
-        Assertions.assertThat(actualContext.isDead()).isTrue();
-    }
-    
-    
-    @Test
-    public void shouldSetDeathToFalseWhenTheAnimalIsYoungerThanItsLifespanAndItIsAFemale() {
-        // Given
-        int female = TestUtils.generateInteger();
-        int male = TestUtils.generateInteger();
-        LifespanAttributes lifespanAttributes = givenLifespanAttributesWithValues(female, male);
-        Animal animal = givenAnimalWithSexLifespanAndAge(Sex.FEMALE, lifespanAttributes, female - 1);
-        AnimalEvaluationContext context = givenContextWithAnimal(animal);
-        AnimalDeathEvaluationController controller = new AnimalDeathEvaluationController();
-        // When
-        AnimalEvaluationContext actualContext = controller.apply(context);
-        // Then
-        Assertions.assertThat(actualContext.isDead()).isFalse();
-    }
-    
-        @Test
-    public void shouldSetDeathToTrueWhenTheAnimalIsOlderThanItsLifespanAndItIsAMale() {
-        // Given
-        int female = TestUtils.generateInteger();
-        int male = TestUtils.generateInteger();
-        LifespanAttributes lifespanAttributes = givenLifespanAttributesWithValues(female, male);
-        Animal animal = givenAnimalWithSexLifespanAndAge(Sex.MALE, lifespanAttributes, male + 1);
-        AnimalEvaluationContext context = givenContextWithAnimal(animal);
-        AnimalDeathEvaluationController controller = new AnimalDeathEvaluationController();
-        // When
-        AnimalEvaluationContext actualContext = controller.apply(context);
-        // Then
-        Assertions.assertThat(actualContext.isDead()).isTrue();
-    }
-    
-    
-    @Test
-    public void shouldSetDeathToTrueWhenTheAnimalHasTheSameAgeThanItsLifespanAndItIsAMale() {
-        // Given
-        int female = TestUtils.generateInteger();
-        int male = TestUtils.generateInteger();
-        LifespanAttributes lifespanAttributes = givenLifespanAttributesWithValues(female, male);
-        Animal animal = givenAnimalWithSexLifespanAndAge(Sex.MALE, lifespanAttributes, male);
-        AnimalEvaluationContext context = givenContextWithAnimal(animal);
-        AnimalDeathEvaluationController controller = new AnimalDeathEvaluationController();
-        // When
-        AnimalEvaluationContext actualContext = controller.apply(context);
-        // Then
-        Assertions.assertThat(actualContext.isDead()).isTrue();
-    }
-    
-    
-    @Test
-    public void shouldSetDeathToFalseWhenTheAnimalIsYoungerThanItsLifespanAndItIsAMale() {
-        // Given
-        int female = TestUtils.generateInteger();
-        int male = TestUtils.generateInteger();
-        LifespanAttributes lifespanAttributes = givenLifespanAttributesWithValues(female, male);
-        Animal animal = givenAnimalWithSexLifespanAndAge(Sex.MALE, lifespanAttributes, male - 1);
-        AnimalEvaluationContext context = givenContextWithAnimal(animal);
-        AnimalDeathEvaluationController controller = new AnimalDeathEvaluationController();
-        // When
-        AnimalEvaluationContext actualContext = controller.apply(context);
-        // Then
-        Assertions.assertThat(actualContext.isDead()).isFalse();
-    }
 }
