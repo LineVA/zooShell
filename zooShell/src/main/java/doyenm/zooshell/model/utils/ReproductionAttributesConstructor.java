@@ -21,8 +21,11 @@ public class ReproductionAttributesConstructor {
         double tmpFrequency = gaussianStatistics.gaussianDouble(frequency, frequency / 10.0);
         int litterSize = specie.getReproductionAttributes().getLitterSize();
         int tmpLitterSize = gaussianStatistics.gaussianInt(litterSize, litterSize / 2.0);
+        int weaning = specie.getReproductionAttributes().getWeaningAge();
+        int tmpWeaning = gaussianStatistics.gaussianInt(weaning, weaning / 10.0);
         return new ReproductionAttributes(tmpFemaleMaturityAge, tmpMaleMaturityAge, tmpFrequency,
-                tmpLitterSize, specie.getReproductionAttributes().getGestationDuration());
+                tmpLitterSize, specie.getReproductionAttributes().getGestationDuration(),
+                tmpWeaning);
 
     }
 }

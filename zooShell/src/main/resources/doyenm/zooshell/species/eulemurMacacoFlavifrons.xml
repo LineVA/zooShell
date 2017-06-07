@@ -14,6 +14,7 @@
         <frequency>1.0</frequency>
         <litterSize>1</litterSize>
         <gestationDuration>4</gestationDuration>
+        <weaningAge>6</weaningAge>
     </reproductionAttributes>
     <lifespanAttributes>
         <femaleLifespan>220</femaleLifespan>
