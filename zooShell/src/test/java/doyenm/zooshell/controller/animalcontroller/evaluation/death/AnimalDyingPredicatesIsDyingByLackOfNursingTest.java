@@ -26,7 +26,7 @@ public class AnimalDyingPredicatesIsDyingByLackOfNursingTest {
     private Animal givenAnimalWithPaddockAndNursing(Paddock pad, boolean nursing) {
         Animal animal = Mockito.mock(Animal.class);
         Mockito.when(animal.getPaddock()).thenReturn(pad);
-        Mockito.when(animal.isNeedWeaningByHumans()).thenReturn(nursing);
+        Mockito.when(animal.isNotNursingByMother()).thenReturn(nursing);
         return animal;
     }
 

@@ -1,10 +1,8 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation;
 
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalAgeEvaluationController;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ReproductionAttributes;
-import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
@@ -31,7 +29,7 @@ public class AnimalAgeEvaluationControllerApplyTest {
         ReproductionAttributes attributes = Mockito.mock(ReproductionAttributes.class);
         Mockito.when(attributes.getWeaningAge()).thenReturn(maturity);
         Mockito.when(animal.getReproductionAttributes()).thenReturn(attributes);
-        Mockito.when(animal.isNeedWeaningByHumans()).thenReturn(nursing);
+        Mockito.when(animal.isNotNursingByMother()).thenReturn(nursing);
         return animal;
     }
 
@@ -84,7 +82,7 @@ public class AnimalAgeEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getAnimal().isNeedWeaningByHumans()).isFalse();
+        Assertions.assertThat(actualContext.getAnimal().isNotNursingByMother()).isFalse();
     }
     
        /**
@@ -102,7 +100,7 @@ public class AnimalAgeEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getAnimal().isNeedWeaningByHumans()).isTrue();
+        Assertions.assertThat(actualContext.getAnimal().isNotNursingByMother()).isTrue();
     }
     
        /**
@@ -120,7 +118,7 @@ public class AnimalAgeEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getAnimal().isNeedWeaningByHumans()).isFalse();
+        Assertions.assertThat(actualContext.getAnimal().isNotNursingByMother()).isFalse();
     }
     
        /**
@@ -138,6 +136,6 @@ public class AnimalAgeEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getAnimal().isNeedWeaningByHumans()).isTrue();
+        Assertions.assertThat(actualContext.getAnimal().isNotNursingByMother()).isTrue();
     }
 }

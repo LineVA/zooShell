@@ -21,7 +21,7 @@ public class AnimalAgeEvaluationController
     
     private Animal updateNecessityOfNursing(Animal animal){
         if(animal.getAge() >= animal.getReproductionAttributes().getWeaningAge()){
-            animal.setNeedWeaningByHumans(false);
+            animal.setNotNursingByMother(false);
         }
         return animal;
     }

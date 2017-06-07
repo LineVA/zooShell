@@ -37,29 +37,23 @@ public class AnimalDyingPredicates {
         if (specieDiets.isEmpty()) {
             return false;
         }
-        for (Diet diet : animal.getDiets()) {
-            if (specieDiets.contains(diet)) {
-                return false;
-            }
+        if (!animal.getDiets().stream().noneMatch((diet) -> (specieDiets.contains(diet)))) {
+            return false;
         }
         return true;
     }
 
     public boolean isDyingByLackOfKeeper(Animal animal, Collection<AnimalKeeper> keepers) {
-        for (AnimalKeeper keeper : keepers) {
-            if (feedingKeeperPredicate.test(keeper, animal.getPaddock())) {
-                return false;
-            }
+        if (!keepers.stream().noneMatch((keeper) -> (feedingKeeperPredicate.test(keeper, animal.getPaddock())))) {
+            return false;
         }
         return true;
     }
 
     public boolean isDyingByLackOfNursing(Animal animal, Collection<AnimalKeeper> keepers) {
-        if (animal.isNeedWeaningByHumans()) {
-            for (AnimalKeeper keeper : keepers) {
-                if (nursingKeeperPredicate.test(keeper, animal.getPaddock())) {
-                    return false;
-                }
+        if (animal.isNotNursingByMother()) {
+            if (!keepers.stream().noneMatch((keeper) -> (nursingKeeperPredicate.test(keeper, animal.getPaddock())))) {
+                return false;
             }
             return true;
         }

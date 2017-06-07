@@ -31,14 +31,9 @@ public class CalvingFunction implements Function<AnimalEvaluationContext, Animal
                                     determineName(female, j), female.getSpecie().getNames().getName(),
                                     determineSex(), female.getPaddock().getName()))
                     .filter(animalCreationValidator)
-                    .map(new Function<AnimalCreationContext, Animal>() {
-                        @Override
-                        public Animal apply(AnimalCreationContext t) {
-                            return t.createNewborn();
-                        }
-                    })
+                    .map((AnimalCreationContext t1) -> t1.createNewborn())
                     .map((Animal t1) -> {
-                t1.setNeedWeaningByHumans(needWeaningByHumans());
+                t1.setNotNursingByMother(needWeaningByHumans());
                 return t1;
             })
                     .findFirst()

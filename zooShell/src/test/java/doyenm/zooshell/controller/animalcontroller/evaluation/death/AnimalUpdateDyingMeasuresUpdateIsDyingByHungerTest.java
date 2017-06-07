@@ -27,7 +27,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         Animal animal = Mockito.mock(Animal.class);
         Mockito.doCallRealMethod().when(animal).setDaysOfHunger(Mockito.anyInt());
         Mockito.when(animal.getDaysOfHunger()).thenCallRealMethod();
-        Mockito.when(animal.isNeedWeaningByHumans()).thenReturn(nursing);
+        Mockito.when(animal.isNotNursingByMother()).thenReturn(nursing);
         animal.setDaysOfHunger(days);
         return animal;
     }
