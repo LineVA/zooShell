@@ -33,4 +33,5 @@ public class Animal {
     private final SizeAttributes sizeAttributes;
     private final CharacterAttributes characterAttributes;
     private boolean notNursingByMother;
+    private double wellBeing;
 }
