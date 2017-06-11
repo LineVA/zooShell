@@ -1,7 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalBiomeWBEvaluationController;
+import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalBiomeEvaluationController;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 public class AnimalWellBeingController
         implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
 
-    AnimalBiomeWBEvaluationController animalBiomeWBEvaluationController
-            = new AnimalBiomeWBEvaluationController();
+    AnimalBiomeEvaluationController animalBiomeWBEvaluationController
+            = new AnimalBiomeEvaluationController();
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
