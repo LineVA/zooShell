@@ -44,6 +44,7 @@ public class AnimalBiomeEvaluationControllerApplyTest {
         Mockito.when(context.getAnimal()).thenReturn(animal);
         Mockito.doCallRealMethod().when(context).setBiomeWellBeing(Mockito.anyDouble());
         Mockito.when(context.getBiomeWellBeing()).thenCallRealMethod();
+        Mockito.when(context.getBase()).thenCallRealMethod();
         return context;
     }
 
@@ -104,7 +105,7 @@ public class AnimalBiomeEvaluationControllerApplyTest {
     }
     
      @Test
-    public void shouldSetBiomeWellBeingToFiveWhenTheBiomesOfTheSpecieInterceptTheBiomeOfThePAddock() {
+    public void shouldSetBiomeWellBeingToFiveWhenTheBiomesOfTheSpecieInterceptTheBiomeOfThePaddock() {
         // Given
         Specie specie = givenSpecieWithBiomesList(Arrays.asList(Biome.DESERT, Biome.DRY_BROADLEAF));
         Paddock paddock = givenPaddockWithBiome(Biome.DESERT);
@@ -114,6 +115,6 @@ public class AnimalBiomeEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getBiomeWellBeing()).isEqualTo(0.0);
+        Assertions.assertThat(actualContext.getBiomeWellBeing()).isEqualTo(5.0);
     }
 }
