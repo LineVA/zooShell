@@ -28,7 +28,8 @@ public class AnimalEvaluationContext {
     private List<Animal> children = new ArrayList<>();
     
     private double biomeWellBeing = 0.0;
-    private double dietsWellBeing = 0.0;
+    private double dietsWellBeing = 0.0; 
+    private double foodQuantityWellBeing = 0.0;
 
     public AnimalEvaluationContext(Zoo zoo, Animal animal) {
         this.zoo = zoo;
