@@ -21,6 +21,7 @@ public class EvaluationController implements Function<EvaluationContext, Evaluat
                 .map(zooEvaluationController)
                 //                .map(paddocksEvaluationController)
                 .map(animalEvaluationController)
+//                .map(keeperEvaluationController)
                 .map((EvaluationContext t1) -> {
                     t1.setTotalEvaluation(t1.getZooEvaluation() + t1.getPaddocksEvaluation() + t1.getAnimalsEvaluation());
                     return t1;
