@@ -7,16 +7,17 @@ import java.util.function.Function;
  *
  * @author doyenm
  */
-public class AnimalBiomeWBEvaluationController
+public class AnimalFastDaysEvaluationController
         implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
-        if (context.getAnimal().getSpecie().getBiomes().getBiomes().contains(context.getAnimal().getPaddock().getBiome())) {
-            context.setBiomeWellBeing(context.getBase());
+        if (context.getAnimal().getCurrentFoodAttributes().getFastDays() ==
+                context.getAnimal().getOptimalFoodAttributes().getFastDays()) {
+            context.setFastDaysWellBeing(context.getBase());
         } else {
-            context.setBiomeWellBeing(context.getZero());
+            context.setFastDaysWellBeing(context.getZero());
         }
         return context;
     }

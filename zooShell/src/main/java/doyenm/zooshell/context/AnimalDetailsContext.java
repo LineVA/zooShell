@@ -34,6 +34,10 @@ public class AnimalDetailsContext {
     public void addCouple(String key, int value) {
         couples.add(new Couple(key, String.valueOf(value)));
     }
+    
+     public void addCouple(String key, double value) {
+        couples.add(new Couple(key, String.valueOf(value)));
+    }
 
     public String getSpecieName() {
         return this.getConvertedAnimal().getSpecie().getNames().getName();
@@ -49,6 +53,10 @@ public class AnimalDetailsContext {
 
     public int getAge() {
         return this.getConvertedAnimal().getAge();
+    }
+    
+    public double getWellBeing() {
+        return this.getConvertedAnimal().getWellBeing();
     }
 
     public List<Diet> getDiet() {

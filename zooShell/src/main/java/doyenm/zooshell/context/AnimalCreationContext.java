@@ -88,6 +88,7 @@ public class AnimalCreationContext {
                 .age(age)
                 .characterAttributes(characterAttributes)
                 .notNursingByMother(false)
+                .wellBeing(0.0)
                 .build();
         this.getZoo().getAnimals().put(this.getName(), animal);
     }
@@ -121,6 +122,7 @@ public class AnimalCreationContext {
                 .characterAttributes(characterAttributes)
                 .age(0)
                 .notNursingByMother(false)
+                .wellBeing(0.0)
                 .build();
     }
 
