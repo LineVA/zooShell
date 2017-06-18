@@ -1,27 +1,28 @@
 package doyenm.zooshell.commandLine.commandImpl.zoo;
 
-import doyenm.zooshell.commandLine.general.AbstractChangeZooCommand;
+import doyenm.zooshell.commandLine.general.CommandBis;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.controller.zoocontroller.ZooCreationController;
-import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.context.ZooCreationContext;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.ZooCreationValidator;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author doyenm
  */
-public class CreateZoo extends AbstractChangeZooCommand {
+@RequiredArgsConstructor
+public class CreateZoo implements CommandBis {
 
-    private final ZooCreationValidator validator = new ZooCreationValidator();
-    private final ZooCreationController controller = new ZooCreationController();
-
-    public CreateZoo(Play play) {
-        super(play);
-    }
+    @Autowired
+    private final ZooCreationValidator validator;
+    @Autowired
+    private final ZooCreationController controller;
 
     private ZooCreationContext createContext(String[] cmd) {
         if (cmd.length == 3) {
@@ -32,39 +33,13 @@ public class CreateZoo extends AbstractChangeZooCommand {
         return new ZooCreationContext(cmd[2], cmd[3], cmd[4], cmd[5], cmd[6]);
     }
 
-    @Override
-    public ReturnExec executeChanging(String[] cmd) {
-        try {
-            ZooCreationContext context = createContext(cmd);
-            context = Stream.of(context)
-                    .filter(validator)
-                    .map(controller)
-                    .findFirst()
-                    .get();
-            getPlay().setZooModel(context.getZoo());
-            setChangingZoo(false);
-            setInitiate(true);
-            setSuccess(true);
-//                            return new ReturnExec(getPlay().getOption().getGeneralCmdBundle()
-//                                    .getString("ZOO_CREATION_SUCESS"), TypeReturn.SUCCESS);
-            return new ReturnExec("ZOO_CREATION_SUCESS", TypeReturn.SUCCESS);
-
-        } catch (java.lang.NumberFormatException ex) {
-            return new ReturnExec(
-                    super.getPlay().getOption().getGeneralCmdBundle()
-                    .getString("NUMBER_FORMAT_EXCEPTION"), TypeReturn.ERROR);
-        } catch (java.util.NoSuchElementException ex){
-            return new ReturnExec("ERROR", TypeReturn.ERROR);
-        }
-    }
-
     /**
      * zoo create
      *
      * @param cmd
      * @return
      */
-    @Override
+//    @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3 || cmd.length == 5 || cmd.length == 7) {
             if (Constants.ZOO.equalsIgnoreCase(cmd[0]) && Constants.CREATE.equalsIgnoreCase(cmd[1])) {
@@ -72,6 +47,24 @@ public class CreateZoo extends AbstractChangeZooCommand {
             }
         }
         return false;
+    }
+
+    public ReturnExec execute(String[] cmd, Zoo zoo) {
+        try {
+            ZooCreationContext context = createContext(cmd);
+            context = Stream.of(context)
+                    .filter(validator)
+                    .map(controller)
+                    .findFirst()
+                    .get();
+            return new ReturnExec("ZOO_CREATION_SUCESS", TypeReturn.SUCCESS, context.getZoo());
+
+        } catch (java.lang.NumberFormatException ex) {
+            return new ReturnExec("Exception",
+                    TypeReturn.ERROR, null);
+        } catch (java.util.NoSuchElementException ex) {
+            return new ReturnExec("ERROR", TypeReturn.ERROR, null);
+        }
     }
 
 }

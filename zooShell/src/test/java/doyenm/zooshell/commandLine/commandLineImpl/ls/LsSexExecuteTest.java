@@ -3,7 +3,7 @@ package doyenm.zooshell.commandLine.commandLineImpl.ls;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsSex;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
-import doyenm.zooshell.launch.play.Play;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -15,9 +15,8 @@ import org.mockito.Mockito;
  */
 public class LsSexExecuteTest {
 
-     private Play givenPlay() {
-        Play play = Mockito.mock(Play.class);
-        return play;
+    private Zoo givenZoo() {
+        return Mockito.mock(Zoo.class);
     }
      
      private String[] givenCmd(){
@@ -29,9 +28,9 @@ public class LsSexExecuteTest {
     public void shouldReturnAReturnExecWithSuccessAndANotEmptyString(){
         // Given
         String[] cmd = givenCmd();
-        LsSex cmdImpl = new LsSex(givenPlay());
+        LsSex cmdImpl = new LsSex();
         // When
-        ReturnExec returnExec = cmdImpl.execute(cmd);
+        ReturnExec returnExec = cmdImpl.execute(cmd, givenZoo());
         // Then
         Assertions.assertThat(returnExec).isNotNull();
         Assertions.assertThat(returnExec.getTypeReturn()).isEqualTo(TypeReturn.SUCCESS);

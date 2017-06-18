@@ -1,11 +1,9 @@
 package doyenm.zooshell.commandLine.commandLineImpl.zoo;
 
 import doyenm.zooshell.commandLine.commandImpl.zoo.CreateZoo;
-import doyenm.zooshell.launch.play.Play;
 import java.util.Random;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  *
@@ -15,11 +13,6 @@ public class CreateZooCanExecuteTest {
 
     private final String ZOO = "zoo";
     private final String CREATE = "create";
-
-    private Play givenPlay() {
-        Play play = Mockito.mock(Play.class);
-        return play;
-    }
 
     private String generateString() {
         char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890&é(-è__çà".toCharArray();
@@ -55,8 +48,7 @@ public class CreateZooCanExecuteTest {
     @Test
     public void shouldReturnTrueWhenThereIsThreeElementsInTheCommandAndWhenItBeginsCorrectly() {
         // Given
-        Play play = givenPlay();
-        CreateZoo createZoo = new CreateZoo(play);
+        CreateZoo createZoo = new CreateZoo(null, null);
         String[] cmd = this.givenCorrectCmdWithXElements(1);
         // When
         boolean actualResult = createZoo.canExecute(cmd);
@@ -67,8 +59,7 @@ public class CreateZooCanExecuteTest {
     @Test
     public void shouldReturnTrueWhenThereIsFiveElementsInTheCommandAndWhenItBeginsCorrectly() {
         // Given
-        Play play = givenPlay();
-        CreateZoo createZoo = new CreateZoo(play);
+        CreateZoo createZoo = new CreateZoo(null, null);
         String[] cmd = this.givenCorrectCmdWithXElements(3);
         // When
         boolean actualResult = createZoo.canExecute(cmd);
@@ -79,8 +70,7 @@ public class CreateZooCanExecuteTest {
     @Test
     public void shouldReturnTrueWhenThereIsSevenElementsInTheCommandAndWhenItBeginsCorrectly() {
         // Given
-        Play play = givenPlay();
-        CreateZoo createZoo = new CreateZoo(play);
+        CreateZoo createZoo = new CreateZoo(null, null);
         String[] cmd = this.givenCorrectCmdWithXElements(5);
         // When
         boolean actualResult = createZoo.canExecute(cmd);
@@ -91,8 +81,7 @@ public class CreateZooCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanSevenElements() {
         // Given
-        Play play = givenPlay();
-        CreateZoo createZoo = new CreateZoo(play);
+        CreateZoo createZoo = new CreateZoo(null, null);
         String[] cmd = this.givenCorrectCmdWithXElements(6);
         // When
         boolean actualResult = createZoo.canExecute(cmd);
@@ -103,8 +92,7 @@ public class CreateZooCanExecuteTest {
      @Test
     public void shouldReturnFalseWhenThereIsSixElements() {
         // Given
-        Play play = givenPlay();
-        CreateZoo createZoo = new CreateZoo(play);
+        CreateZoo createZoo = new CreateZoo(null, null);
         String[] cmd = this.givenCorrectCmdWithXElements(4);
         // When
         boolean actualResult = createZoo.canExecute(cmd);
@@ -115,8 +103,7 @@ public class CreateZooCanExecuteTest {
      @Test
     public void shouldReturnFalseWhenThereIsFourElements() {
         // Given
-        Play play = givenPlay();
-        CreateZoo createZoo = new CreateZoo(play);
+        CreateZoo createZoo = new CreateZoo(null, null);
         String[] cmd = this.givenCorrectCmdWithXElements(2);
         // When
         boolean actualResult = createZoo.canExecute(cmd);
@@ -127,8 +114,7 @@ public class CreateZooCanExecuteTest {
      @Test
     public void shouldReturnFalseWhenTheFirstElementIsNotZoo() {
         // Given
-        Play play = givenPlay();
-        CreateZoo createZoo = new CreateZoo(play);
+        CreateZoo createZoo = new CreateZoo(null, null);
         String[] cmd = this.givenIncorrectCmdWithXElements(this.generateString(), this.CREATE, 6);
         // When
         boolean actualResult = createZoo.canExecute(cmd);
@@ -139,8 +125,7 @@ public class CreateZooCanExecuteTest {
         @Test
     public void shouldReturnFalseWhenTheSecondElementIsNotCreate() {
         // Given
-        Play play = givenPlay();
-        CreateZoo createZoo = new CreateZoo(play);
+        CreateZoo createZoo = new CreateZoo(null, null);
         String[] cmd = this.givenIncorrectCmdWithXElements(this.ZOO, this.generateString(), 6);
         // When
         boolean actualResult = createZoo.canExecute(cmd);

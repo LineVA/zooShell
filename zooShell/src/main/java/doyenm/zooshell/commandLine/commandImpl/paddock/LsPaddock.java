@@ -1,42 +1,29 @@
 package doyenm.zooshell.commandLine.commandImpl.paddock;
 
-import doyenm.zooshell.commandLine.general.AbstractCommand;
+import doyenm.zooshell.commandLine.general.CommandBis;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.commandLine.utils.FormattingInList;
 import doyenm.zooshell.context.LsContext;
-import doyenm.zooshell.context.UpdatePaddockTypeContext;
-import doyenm.zooshell.context.ZooDetailsContext;
-import doyenm.zooshell.launch.play.Play;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import java.util.Arrays;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
  *
  * @author doyenm
  */
-public class LsPaddock extends AbstractCommand {
+public class LsPaddock implements CommandBis {
     
-    public LsPaddock(Play play) {
-        super(play);
-    }
-
     @Override
-    public ReturnExec execute(String[] cmd) {
-        super.setSuccess(true);
-        LsContext context = new LsContext(getPlay().getZooModel());
+    public ReturnExec execute(String[] cmd, Zoo zoo) {
+        LsContext context = new LsContext(zoo);
         return Stream.of(context)
-                .map(new Function<LsContext, ReturnExec>() {
-                    @Override
-                    public ReturnExec apply(LsContext t) {
-                        setSuccess(true);
-                        FormattingInList formatting = new FormattingInList();
-                        return new ReturnExec(formatting.formatList(context.getPaddockNames()), TypeReturn.SUCCESS);
-                    }
-
-                })
+                .map(   (LsContext t) -> {
+                    FormattingInList formatting = new FormattingInList();
+                    return new ReturnExec(formatting.formatList(context.getPaddockNames()), TypeReturn.SUCCESS);
+        })
                 .findFirst()
                 .get();
     }

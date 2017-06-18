@@ -1,56 +1,40 @@
 package doyenm.zooshell.commandLine.commandImpl.paddock;
 
-import doyenm.zooshell.commandLine.general.AbstractCommand;
+import doyenm.zooshell.commandLine.general.CommandBis;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.PaddockEntryCreationContext;
 import doyenm.zooshell.controller.paddockcontroller.PaddockEntryCreationController;
-import doyenm.zooshell.launch.play.Play;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.PaddockEntryCreationValidator;
 import java.util.Arrays;
-import java.util.function.Function;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
-public class CreatePaddockEntry extends AbstractCommand {
+@RequiredArgsConstructor
+public class CreatePaddockEntry implements CommandBis {
 
-    private PaddockEntryCreationValidator validator = new PaddockEntryCreationValidator();
-    private PaddockEntryCreationController controller = new PaddockEntryCreationController();
-
-    public CreatePaddockEntry(Play play) {
-        super(play);
-    }
+    private final PaddockEntryCreationValidator validator;
+    private final PaddockEntryCreationController controller;
 
     @Override
-    public ReturnExec execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd, Zoo zoo) {
         try {
-            PaddockEntryCreationContext context = new PaddockEntryCreationContext(this.getPlay().getZooModel(),
+            PaddockEntryCreationContext context = new PaddockEntryCreationContext(zoo,
                     cmd[2], cmd[3], cmd[4]);
             return Stream.of(context)
                     .map(validator)
                     .map(controller)
-                    .map(new Function<PaddockEntryCreationContext, PaddockEntryCreationContext>() {
-                        @Override
-                        public PaddockEntryCreationContext apply(PaddockEntryCreationContext t) {
-                            getPlay().setZooModel(t.getZoo());
-                            return t;
-                        }
-                    })
-                    .map(new Function<PaddockEntryCreationContext, ReturnExec>() {
-                        @Override
-                        public ReturnExec apply(PaddockEntryCreationContext t) {
-                            setSuccess(true);
-                            return new ReturnExec("PADDOCK_ENTRY_CREATION_SUCCESS", TypeReturn.SUCCESS);
-                        }
-                    })
+                    .map((PaddockEntryCreationContext t) -> t)
+                    .map((PaddockEntryCreationContext t)
+                            -> new ReturnExec("PADDOCK_ENTRY_CREATION_SUCCESS", TypeReturn.SUCCESS, t.getZoo()))
                     .findFirst()
                     .get();
-//        } catch (NameException | IncorrectDimensionsException ex) {
-//            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         } catch (java.lang.NumberFormatException ex) {
             return new ReturnExec("NUMBER_FORMAT_EXCEPTION", TypeReturn.ERROR);
         }

@@ -1,35 +1,33 @@
 package doyenm.zooshell.commandLine.commandImpl.paddock;
 
-import doyenm.zooshell.commandLine.general.AbstractCommand;
+import doyenm.zooshell.commandLine.general.CommandBis;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.PaddockCreationContext;
 import doyenm.zooshell.controller.paddockcontroller.PaddockCreationController;
-import doyenm.zooshell.launch.play.Play;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.PaddockCreationValidator;
 import doyenm.zooshell.validator.PaddockLocationValidator;
 import java.util.Arrays;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
-public class CreatePaddock extends AbstractCommand {
+@RequiredArgsConstructor
+public class CreatePaddock implements CommandBis{
 
-    private PaddockCreationValidator valueValidator = new PaddockCreationValidator();
-    private PaddockLocationValidator locationValidator = new PaddockLocationValidator();
-    private PaddockCreationController controller = new PaddockCreationController();
-
-    public CreatePaddock(Play play) {
-        super(play);
-    }
+    private final PaddockCreationValidator valueValidator;
+    private final PaddockLocationValidator locationValidator;
+    private final PaddockCreationController controller;
 
     @Override
-    public ReturnExec execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd, Zoo zoo) {
         try {
-            PaddockCreationContext context = new PaddockCreationContext(this.getPlay().getZooModel(),
+            PaddockCreationContext context = new PaddockCreationContext(zoo,
                     cmd[2], cmd[3], cmd[4], cmd[5], cmd[6]);
             context = Stream.of(context)
                     .filter(valueValidator)
@@ -37,9 +35,7 @@ public class CreatePaddock extends AbstractCommand {
                     .map(controller)
                     .findFirst()
                     .get();
-            getPlay().setZooModel(context.getZoo());
-            setSuccess(true);
-            return new ReturnExec("PADDOCK_CREATION_SUCCESS", TypeReturn.SUCCESS);
+            return new ReturnExec("PADDOCK_CREATION_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
 
 //        } catch (NameException | IncorrectDimensionsException ex) {
 //            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);

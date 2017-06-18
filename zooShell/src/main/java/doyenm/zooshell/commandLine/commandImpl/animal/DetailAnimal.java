@@ -1,43 +1,39 @@
 package doyenm.zooshell.commandLine.commandImpl.animal;
 
-import doyenm.zooshell.commandLine.general.AbstractCommand;
+import doyenm.zooshell.commandLine.general.CommandBis;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.commandLine.utils.FormattingInList;
 import doyenm.zooshell.context.AnimalDetailsContext;
 import doyenm.zooshell.controller.animalcontroller.AnimalDetailsController;
-import doyenm.zooshell.launch.play.Play;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalDetailsValidator;
 import java.util.Arrays;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
-public class DetailAnimal extends AbstractCommand{
+@RequiredArgsConstructor
+public class DetailAnimal implements CommandBis {
 
-    AnimalDetailsController controller = new AnimalDetailsController();
-    AnimalDetailsValidator validator = new AnimalDetailsValidator();
-
-    public DetailAnimal(Play play) {
-        super(play);
-    }
+    private final AnimalDetailsValidator validator;
+    private final AnimalDetailsController controller;
 
     @Override
-    public ReturnExec execute(String[] cmd) {
-        super.setSuccess(true);
-        AnimalDetailsContext context = new AnimalDetailsContext(getPlay().getZooModel(), cmd[1]);
+    public ReturnExec execute(String[] cmd, Zoo zoo) {
+        AnimalDetailsContext context = new AnimalDetailsContext(zoo, cmd[1]);
         context = Stream.of(context)
                 .filter(validator)
                 .map(controller)
                 .findFirst()
                 .get();
 
-        setSuccess(true);
         FormattingInList formatting = new FormattingInList();
-        return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS);
+        return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS, context.getZoo());
     }
 
     @Override

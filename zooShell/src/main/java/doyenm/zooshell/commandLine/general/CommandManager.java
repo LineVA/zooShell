@@ -1,66 +1,38 @@
 package doyenm.zooshell.commandLine.general;
 
-import doyenm.zooshell.commandLine.commandImpl.DetailSpecie;
-import doyenm.zooshell.commandLine.commandImpl.LsSpecie;
-import doyenm.zooshell.commandLine.commandImpl.animal.*;
-import doyenm.zooshell.commandLine.commandImpl.ls.*;
-import doyenm.zooshell.commandLine.commandImpl.paddock.*;
-import doyenm.zooshell.commandLine.commandImpl.zoo.*;
-import doyenm.zooshell.commandLine.commandImpl.keeper.*;
-import static java.util.Arrays.asList;
-import doyenm.zooshell.launch.options.Option;
-import doyenm.zooshell.launch.play.Play;
-import lombok.Getter;
-import lombok.Setter;
+import doyenm.zooshell.model.Zoo;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 /**
- * The abstract command manager : determine how the command lines are checked
  *
  * @author doyenm
  */
-public abstract class CommandManager {
+@RequiredArgsConstructor
+public class CommandManager {
 
-    Play play;
-    @Getter
-    Iterable<AbstractCommand> playCommands;
-    @Getter
-    @Setter
-    private String firstLine;
-    @Getter
-    private Option option;
-    @Getter
-    private CreateZoo createZoo;
-
-    public CommandManager(Play play, Option option) {
-        this.option = option;
-        this.play = play;
-        this.createZoo = new CreateZoo(play);
-            // For Paddock, Animal, Specie and Animal Keeper : Ls must be before Detail
-        // and Create & remove before Ls
-        playCommands = asList(this.createZoo, new DetailZoo(play),
-                new LsPaddock(play), new LsSpecie(play), new LsAnimal(play),
-                new CreatePaddock(play),
-                new DetailPad(play), new CreatePaddockEntry(play),
-                new CreatePaddockExtension(play), new ChangePaddockName(play),
-                new UpdateBiome(play), new UpdatePaddockType(play),
-                new RemovePaddock(play),
-                new CreateAnimal(play), new DetailAnimal(play),
-                new UpdateFoodQuantity(play), new UpdateDiet(play), new UpdateFastDays(play), new ResetDiet(play),
-                new ChangePaddock(play), new ChangeAnimalName(play),
-                new RemoveAnimal(play),
-                new DetailSpecie(play),
-                new LsSex(play), new LsBiome(play), new LsContraceptionMethod(play),
-                new LsDiet(play), new LsPaddockType(play), new LsKeeperTask(play), 
-                new CreateKeeper(play), new ChangeKeeperName(play), new DetailKeeper(play),
-                new LsKeeper(play), new RemoveKeeper(play),
-                new UpdateOccupations(play), new ResetOccupations(play)
-        );
+    private final List<CommandBis> commands;
+    
+    private Zoo zoo;
+    
+    public ReturnExec run(String cmd){
+        String[] cmdArray = SplitDoubleQuotes.split(cmd);
+        for(CommandBis command : commands){
+            if(command.canExecute(cmdArray)){
+                return save(command.execute(cmdArray, zoo));
+            }
+        }
+        return new ReturnExec("UNKNOWN CMD", TypeReturn.ERROR, null);
     }
-
-    public abstract ReturnExec run(String cmd);
-
-    private void CreateAnimal(Play play) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public String getFirstLine(){
+        return "Welcome";
     }
-
+    
+    private ReturnExec save(ReturnExec returnExec){
+        if(TypeReturn.SUCCESS == returnExec.getTypeReturn() && returnExec.getZoo() != null){
+            this.zoo = returnExec.getZoo();
+        }
+        return returnExec;
+    }
 }

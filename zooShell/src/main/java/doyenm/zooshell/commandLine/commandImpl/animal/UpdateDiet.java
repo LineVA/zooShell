@@ -1,44 +1,40 @@
 package doyenm.zooshell.commandLine.commandImpl.animal;
 
-import doyenm.zooshell.commandLine.general.AbstractCommand;
+import doyenm.zooshell.commandLine.general.CommandBis;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.AnimalUpdateDietContext;
 import doyenm.zooshell.controller.animalcontroller.AnimalUpdateDietController;
-import doyenm.zooshell.launch.play.Play;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalUpdateDietValidator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
-public class UpdateDiet extends AbstractCommand{
+@RequiredArgsConstructor
+public class UpdateDiet implements CommandBis{
 
-    private final AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator();
-    private final AnimalUpdateDietController controller = new AnimalUpdateDietController();
-
-    public UpdateDiet(Play play) {
-        super(play);
-    }
+    private final AnimalUpdateDietValidator validator;
+    private final AnimalUpdateDietController controller;
 
     @Override
-    public ReturnExec execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd, Zoo zoo) {
         try {
-            AnimalUpdateDietContext context = new AnimalUpdateDietContext(this.getPlay().getZooModel(),
+            AnimalUpdateDietContext context = new AnimalUpdateDietContext(zoo,
                     cmd[2], generateDietsList(cmd));
             context = Stream.of(context)
                     .filter(validator)
                     .map(controller)
                     .findFirst()
                     .get();
-            getPlay().setZooModel(context.getZoo());
-            setSuccess(true);
-            return new ReturnExec("UPDATE_Diet_SUCCESS", TypeReturn.SUCCESS);
+            return new ReturnExec("UPDATE_Diet_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } catch (java.util.NoSuchElementException ex) {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }

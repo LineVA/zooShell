@@ -1,42 +1,38 @@
 package doyenm.zooshell.commandLine.commandImpl.keeper;
 
-import doyenm.zooshell.commandLine.general.AbstractCommand;
+import doyenm.zooshell.commandLine.general.CommandBis;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.KeeperCreationContext;
 import doyenm.zooshell.controller.keepercontroller.KeeperCreationController;
-import doyenm.zooshell.launch.play.Play;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.KeeperCreationValidator;
 import java.util.Arrays;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
-public class CreateKeeper extends AbstractCommand{
+@RequiredArgsConstructor
+public class CreateKeeper implements CommandBis {
 
-    private final KeeperCreationController controller = new KeeperCreationController();
-    private final KeeperCreationValidator validator = new KeeperCreationValidator();
-
-    public CreateKeeper(Play play) {
-        super(play);
-    }
+    private final KeeperCreationValidator validator;
+    private final KeeperCreationController controller;
 
     @Override
-    public ReturnExec execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd, Zoo zoo) {
         try {
-            KeeperCreationContext context = new KeeperCreationContext(this.getPlay().getZooModel(),
+            KeeperCreationContext context = new KeeperCreationContext(zoo,
                     cmd[2]);
             context = Stream.of(context)
                     .filter(validator)
                     .map(controller)
                     .findFirst()
                     .get();
-            getPlay().setZooModel(context.getZoo());
-            setSuccess(true);
-            return new ReturnExec("KEEPERL_CREATION_SUCCESS", TypeReturn.SUCCESS);
+            return new ReturnExec("KEEPERL_CREATION_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } catch (java.util.NoSuchElementException ex) {
             ex.printStackTrace();
             return new ReturnExec("ERROR", TypeReturn.ERROR);
