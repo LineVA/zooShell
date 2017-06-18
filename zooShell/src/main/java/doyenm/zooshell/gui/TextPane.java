@@ -16,7 +16,6 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
-import doyenm.zooshell.launch.play.Play;
 
 /**
  *
@@ -29,13 +28,13 @@ public class TextPane extends JTextPane {
     StyleContext sc;
     private final String cmdInvite = "> ";
 
-    public TextPane(Play play, int columns, int line) {
+     public TextPane(CommandManager play, int columns, int line) {
         super();
         this.setPreferredSize(new Dimension(line, columns));
         this.setBackground(Color.BLACK);
         this.setForeground(EditorColors.CMD.getColor());
 //        manager = new FreeCommandManager(play);
-        this.manager = play.getManager();
+        this.manager = play;
         this.keyEventListener();
         this.mouseEventListener();
         sc = StyleContext.getDefaultStyleContext();

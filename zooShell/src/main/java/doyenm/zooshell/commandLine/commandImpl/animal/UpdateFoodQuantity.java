@@ -1,42 +1,38 @@
 package doyenm.zooshell.commandLine.commandImpl.animal;
 
-import doyenm.zooshell.commandLine.general.AbstractCommand;
+import doyenm.zooshell.commandLine.general.CommandBis;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.AnimalUpdateFoodQuantityContext;
 import doyenm.zooshell.controller.animalcontroller.AnimalUpdateFoodQuantityController;
-import doyenm.zooshell.launch.play.Play;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalUpdateFoodQuantityValidator;
 import java.util.Arrays;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
-public class UpdateFoodQuantity extends AbstractCommand{
+@RequiredArgsConstructor
+public class UpdateFoodQuantity implements CommandBis{
 
-    private final AnimalUpdateFoodQuantityValidator validator = new AnimalUpdateFoodQuantityValidator();
-    private final AnimalUpdateFoodQuantityController controller = new AnimalUpdateFoodQuantityController();
-
-    public UpdateFoodQuantity(Play play) {
-        super(play);
-    }
+    private final AnimalUpdateFoodQuantityValidator validator; 
+    private final AnimalUpdateFoodQuantityController controller;
 
     @Override
-    public ReturnExec execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd, Zoo zoo) {
         try {
-            AnimalUpdateFoodQuantityContext context = new AnimalUpdateFoodQuantityContext(this.getPlay().getZooModel(),
+            AnimalUpdateFoodQuantityContext context = new AnimalUpdateFoodQuantityContext(zoo,
                     cmd[2], cmd[3]);
             context = Stream.of(context)
                     .filter(validator)
                     .map(controller)
                     .findFirst()
                     .get();
-            getPlay().setZooModel(context.getZoo());
-            setSuccess(true);
-            return new ReturnExec("UPDATE_FOOD_QUANTITY_SUCCESS", TypeReturn.SUCCESS);
+            return new ReturnExec("UPDATE_FOOD_QUANTITY_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } catch (java.util.NoSuchElementException ex) {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }

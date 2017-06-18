@@ -1,11 +1,11 @@
 package doyenm.zooshell.commandLine.commandImpl.ls;
 
-import doyenm.zooshell.commandLine.general.AbstractCommand;
+import doyenm.zooshell.commandLine.general.CommandBis;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.commandLine.utils.FormattingInList;
 import doyenm.zooshell.context.LsContext;
-import doyenm.zooshell.launch.play.Play;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import java.util.Arrays;
 import java.util.function.Function;
@@ -15,21 +15,15 @@ import java.util.stream.Stream;
  *
  * @author doyenm
  */
-public class LsKeeperTask extends AbstractCommand{
-
-    public LsKeeperTask(Play play) {
-        super(play);
-    }
+public class LsKeeperTask implements CommandBis{
 
     @Override
-    public ReturnExec execute(String[] cmd) {
-        super.setSuccess(true);
-        LsContext context = new LsContext(getPlay().getZooModel());
+    public ReturnExec execute(String[] cmd, Zoo zoo) {
+        LsContext context = new LsContext(zoo);
         return Stream.of(context)
                 .map(new Function<LsContext, ReturnExec>() {
                     @Override
                     public ReturnExec apply(LsContext t) {
-                        setSuccess(true);
                         FormattingInList formatting = new FormattingInList();
                         return new ReturnExec(formatting.formatList(context.getTasks()), TypeReturn.SUCCESS);
                     }

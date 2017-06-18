@@ -1,11 +1,9 @@
 package doyenm.zooshell.commandLine.commandLineImpl.zoo;
 
 import doyenm.zooshell.commandLine.commandImpl.zoo.DetailZoo;
-import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  *
@@ -15,16 +13,10 @@ public class DetailZooCanExecuteTest {
 
     private final String ZOO = "zoo";
 
-    private Play givenPlay() {
-        Play play = Mockito.mock(Play.class);
-        return play;
-    }
-
     @Test
     public void shouldReturnTrueWhenTheCommandIsZoo() {
         // Given
-        Play play = givenPlay();
-        DetailZoo detailZoo = new DetailZoo(play);
+        DetailZoo detailZoo = new DetailZoo(null);
         String[] cmd = {this.ZOO};
         // When
         boolean actualResult = detailZoo.canExecute(cmd);
@@ -35,8 +27,7 @@ public class DetailZooCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheFrstElementIsNotZoo() {
         // Given
-        Play play = givenPlay();
-        DetailZoo detailZoo = new DetailZoo(play);
+        DetailZoo detailZoo = new DetailZoo(null);
         String[] cmd = {TestUtils.generateString()};
         // When
         boolean actualResult = detailZoo.canExecute(cmd);
@@ -47,8 +38,7 @@ public class DetailZooCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanOneElement() {
         // Given
-        Play play = givenPlay();
-        DetailZoo detailZoo = new DetailZoo(play);
+        DetailZoo detailZoo = new DetailZoo(null);
         String[] cmd = {this.ZOO, TestUtils.generateString()};
         // When
         boolean actualResult = detailZoo.canExecute(cmd);

@@ -1,42 +1,38 @@
 package doyenm.zooshell.commandLine.commandImpl.animal;
 
-import doyenm.zooshell.commandLine.general.AbstractCommand;
+import doyenm.zooshell.commandLine.general.CommandBis;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.AnimalUpdateFastDaysContext;
 import doyenm.zooshell.controller.animalcontroller.AnimalUpdateFastDaysController;
-import doyenm.zooshell.launch.play.Play;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalUpdateFastDaysValidator;
 import java.util.Arrays;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
-public class UpdateFastDays extends AbstractCommand{
+@RequiredArgsConstructor
+public class UpdateFastDays implements CommandBis{
 
-    private final AnimalUpdateFastDaysValidator validator = new AnimalUpdateFastDaysValidator();
-    private final AnimalUpdateFastDaysController controller = new AnimalUpdateFastDaysController();
-
-    public UpdateFastDays(Play play) {
-        super(play);
-    }
+    private final AnimalUpdateFastDaysValidator validator;
+    private final AnimalUpdateFastDaysController controller;
 
     @Override
-    public ReturnExec execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd, Zoo zoo) {
         try {
-            AnimalUpdateFastDaysContext context = new AnimalUpdateFastDaysContext(this.getPlay().getZooModel(),
+            AnimalUpdateFastDaysContext context = new AnimalUpdateFastDaysContext(zoo,
                     cmd[2], cmd[3]);
             context = Stream.of(context)
                     .filter(validator)
                     .map(controller)
                     .findFirst()
                     .get();
-            getPlay().setZooModel(context.getZoo());
-            setSuccess(true);
-            return new ReturnExec("UPDATE_FAST_DAYS_SUCCESS", TypeReturn.SUCCESS);
+            return new ReturnExec("UPDATE_FAST_DAYS_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } catch (java.util.NoSuchElementException ex) {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }

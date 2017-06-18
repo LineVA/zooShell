@@ -1,11 +1,9 @@
 package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
 import doyenm.zooshell.commandLine.commandImpl.paddock.CreatePaddock;
-import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  *
@@ -17,16 +15,10 @@ public class CreatePaddockCanExecuteTest {
     private final String PAD = "pad";
     private final String CREATE = "create";
 
-    private Play givenPlay() {
-        Play play = Mockito.mock(Play.class);
-        return play;
-    }
-
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrectAndeginsWithPaddock() {
         // Given
-        Play play = givenPlay();
-        CreatePaddock createPaddock = new CreatePaddock(play);
+        CreatePaddock createPaddock = new CreatePaddock(null, null, null);
         String[] cmd = {this.PADDOCK, this.CREATE, TestUtils.generateString(),
             TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString(),
             TestUtils.generateString()};
@@ -39,8 +31,7 @@ public class CreatePaddockCanExecuteTest {
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrectAndeginsWithPad() {
         // Given
-        Play play = givenPlay();
-        CreatePaddock createPaddock = new CreatePaddock(play);
+        CreatePaddock createPaddock = new CreatePaddock(null, null, null);
         String[] cmd = {this.PAD, this.CREATE, TestUtils.generateString(),
             TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString(),
             TestUtils.generateString()};
@@ -53,8 +44,7 @@ public class CreatePaddockCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheTheFirstElementIsNotPadOrPaddock() {
         // Given
-        Play play = givenPlay();
-        CreatePaddock createPaddock = new CreatePaddock(play);
+        CreatePaddock createPaddock = new CreatePaddock(null, null, null);
         String falseAnimal = TestUtils.generateString();
         String[] cmd = {TestUtils.generateString(), this.CREATE, TestUtils.generateString(),
             TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString(),
@@ -69,8 +59,7 @@ public class CreatePaddockCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheTheSecondElementIsNotCreate() {
         // Given
-        Play play = givenPlay();
-        CreatePaddock createPaddock = new CreatePaddock(play);
+        CreatePaddock createPaddock = new CreatePaddock(null, null, null);
         String falseCreate = TestUtils.generateString();
         String[] cmd = {this.PADDOCK, falseCreate, TestUtils.generateString(), TestUtils.generateString(),
             TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
@@ -84,8 +73,7 @@ public class CreatePaddockCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsLessThanSevenElements() {
         // Given
-        Play play = givenPlay();
-        CreatePaddock CreatePaddock = new CreatePaddock(play);
+        CreatePaddock CreatePaddock = new CreatePaddock(null, null, null);
         String[] cmd = {this.PADDOCK, this.CREATE, TestUtils.generateString(), TestUtils.generateString(),
             TestUtils.generateString(), TestUtils.generateString()};
         // When
@@ -97,8 +85,7 @@ public class CreatePaddockCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanSevenElements() {
         // Given
-        Play play = givenPlay();
-        CreatePaddock createPaddock = new CreatePaddock(play);
+        CreatePaddock createPaddock = new CreatePaddock(null, null, null);
         String[] cmd = {this.PADDOCK, this.CREATE, TestUtils.generateString(), TestUtils.generateString(),
             TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString(),
             TestUtils.generateString()};

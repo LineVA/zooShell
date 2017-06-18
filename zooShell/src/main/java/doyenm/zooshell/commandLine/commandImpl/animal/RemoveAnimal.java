@@ -1,42 +1,38 @@
 package doyenm.zooshell.commandLine.commandImpl.animal;
 
-import doyenm.zooshell.commandLine.general.AbstractCommand;
+import doyenm.zooshell.commandLine.general.CommandBis;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.AnimalContext;
 import doyenm.zooshell.controller.animalcontroller.AnimalRemoveController;
-import doyenm.zooshell.launch.play.Play;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalValidator;
 import java.util.Arrays;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
-public class RemoveAnimal extends AbstractCommand{
+@RequiredArgsConstructor
+public class RemoveAnimal implements CommandBis{
 
-    private final AnimalRemoveController  controller = new AnimalRemoveController();
-    private final AnimalValidator validator = new AnimalValidator();
-
-    public RemoveAnimal(Play play) {
-        super(play);
-    }
+    private final AnimalValidator validator;  
+    private final AnimalRemoveController  controller;
 
     @Override
-    public ReturnExec execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd, Zoo zoo) {
         try {
-            AnimalContext context = new AnimalContext(this.getPlay().getZooModel(),
+            AnimalContext context = new AnimalContext(zoo,
                     cmd[2]);
             context = Stream.of(context)
                     .filter(validator)
                     .map(controller)
                     .findFirst()
                     .get();
-            getPlay().setZooModel(context.getZoo());
-            setSuccess(true);
-            return new ReturnExec("ANIMAL_REMOVE_SUCCESS", TypeReturn.SUCCESS);
+            return new ReturnExec("ANIMAL_REMOVE_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } catch (java.util.NoSuchElementException ex) {
             ex.printStackTrace();
             return new ReturnExec("ERROR", TypeReturn.ERROR);

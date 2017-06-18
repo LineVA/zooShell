@@ -1,42 +1,38 @@
 package doyenm.zooshell.commandLine.commandImpl.paddock;
 
-import doyenm.zooshell.commandLine.general.AbstractCommand;
+import doyenm.zooshell.commandLine.general.CommandBis;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.PaddockContext;
 import doyenm.zooshell.controller.paddockcontroller.PaddockRemoveController;
-import doyenm.zooshell.launch.play.Play;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.PaddockRemoveValidator;
 import java.util.Arrays;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
-public class RemovePaddock extends AbstractCommand{
+@RequiredArgsConstructor
+public class RemovePaddock implements CommandBis {
 
-    private final PaddockRemoveController  controller = new PaddockRemoveController();
-    private final PaddockRemoveValidator validator = new PaddockRemoveValidator();
-
-    public RemovePaddock(Play play) {
-        super(play);
-    }
+    private final PaddockRemoveValidator validator;
+    private final PaddockRemoveController controller;
 
     @Override
-    public ReturnExec execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd, Zoo zoo) {
         try {
-            PaddockContext context = new PaddockContext(this.getPlay().getZooModel(),
+            PaddockContext context = new PaddockContext(zoo,
                     cmd[2]);
             context = Stream.of(context)
                     .filter(validator)
                     .map(controller)
                     .findFirst()
                     .get();
-            getPlay().setZooModel(context.getZoo());
-            setSuccess(true);
-            return new ReturnExec("PADDOCK_REMOVE_SUCCESS", TypeReturn.SUCCESS);
+            return new ReturnExec("PADDOCK_REMOVE_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } catch (java.util.NoSuchElementException ex) {
             ex.printStackTrace();
             return new ReturnExec("ERROR", TypeReturn.ERROR);

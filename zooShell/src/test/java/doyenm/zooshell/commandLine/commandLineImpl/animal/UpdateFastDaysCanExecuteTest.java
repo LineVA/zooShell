@@ -1,11 +1,9 @@
 package doyenm.zooshell.commandLine.commandLineImpl.animal;
 
 import doyenm.zooshell.commandLine.commandImpl.animal.UpdateFastDays;
-import doyenm.zooshell.launch.play.Play;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  *
@@ -17,16 +15,10 @@ public class UpdateFastDaysCanExecuteTest {
     private final String animalFastDays = "animal-fastDays";
     private final String update = "update";
 
-    private Play givenPlay() {
-        Play play = Mockito.mock(Play.class);
-        return play;
-    }
-
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByAnimalFastDays() {
         // Given
-        Play play = givenPlay();
-        UpdateFastDays updateFastDays = new UpdateFastDays(play);
+        UpdateFastDays updateFastDays = new UpdateFastDays(null, null);
         String[] cmd = {this.animalFastDays, this.update, TestUtils.generateString(), TestUtils.generateString()};
         // When
         boolean actualResult = updateFastDays.canExecute(cmd);
@@ -37,8 +29,7 @@ public class UpdateFastDaysCanExecuteTest {
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByAnimalFD() {
         // Given
-        Play play = givenPlay();
-        UpdateFastDays updateFastDays = new UpdateFastDays(play);
+        UpdateFastDays updateFastDays = new UpdateFastDays(null, null);
         String[] cmd = {this.animalFD, this.update, TestUtils.generateString(), TestUtils.generateString()};
         // When
         boolean actualResult = updateFastDays.canExecute(cmd);
@@ -49,8 +40,7 @@ public class UpdateFastDaysCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
         // Given
-        Play play = givenPlay();
-        UpdateFastDays updateFastDays = new UpdateFastDays(play);
+        UpdateFastDays updateFastDays = new UpdateFastDays(null, null);
         String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(), TestUtils.generateString()};
         // When
         boolean actualResult = updateFastDays.canExecute(cmd);
@@ -61,8 +51,7 @@ public class UpdateFastDaysCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheSecondElementIsIncorrect() {
         // Given
-        Play play = givenPlay();
-        UpdateFastDays updateFastDays = new UpdateFastDays(play);
+        UpdateFastDays updateFastDays = new UpdateFastDays(null, null);
         String[] cmd = {this.animalFD, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
         // When
         boolean actualResult = updateFastDays.canExecute(cmd);
@@ -73,8 +62,7 @@ public class UpdateFastDaysCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsLessThanFourElements() {
         // Give
-        Play play = givenPlay();
-        UpdateFastDays updateFastDays = new UpdateFastDays(play);
+        UpdateFastDays updateFastDays = new UpdateFastDays(null, null);
         String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(),};
         // When
         boolean actualResult = updateFastDays.canExecute(cmd);
@@ -85,8 +73,7 @@ public class UpdateFastDaysCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanFourElements() {
         // Given
-        Play play = givenPlay();
-        UpdateFastDays updateFastDays = new UpdateFastDays(play);
+        UpdateFastDays updateFastDays = new UpdateFastDays(null, null);
         String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
         // When
         boolean actualResult = updateFastDays.canExecute(cmd);
