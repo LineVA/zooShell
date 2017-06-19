@@ -13,7 +13,8 @@ public class AnimalUpdateContraceptionController
     @Override
     public AnimalUpdateContraceptionContext apply(AnimalUpdateContraceptionContext t) {
         AnimalUpdateContraceptionContext context = t;
-        context.build();
+        context.getConvertedAnimal().setContraceptionMethod(context.getConvertedContraceptionMethod());
+        context.getZoo().getAnimals().replace(context.getAnimal(), context.getConvertedAnimal());
         return context;
     }
 

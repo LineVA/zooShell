@@ -1,31 +1,15 @@
 package doyenm.zooshell;
 
-import doyenm.zooshell.commandLine.commandImpl.animal.ChangeAnimalName;
-import doyenm.zooshell.commandLine.commandImpl.animal.ChangePaddock;
-import doyenm.zooshell.commandLine.commandImpl.animal.CreateAnimal;
-import doyenm.zooshell.commandLine.commandImpl.animal.DetailAnimal;
-import doyenm.zooshell.commandLine.commandImpl.animal.LsAnimal;
-import doyenm.zooshell.commandLine.commandImpl.animal.RemoveAnimal;
-import doyenm.zooshell.commandLine.commandImpl.animal.ResetDiet;
-import doyenm.zooshell.commandLine.commandImpl.animal.UpdateDiet;
-import doyenm.zooshell.commandLine.commandImpl.animal.UpdateFastDays;
-import doyenm.zooshell.commandLine.commandImpl.animal.UpdateFoodQuantity;
+import doyenm.zooshell.commandLine.commandImpl.animal.*;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsContraceptionMethod;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsDiet;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsSex;
-import doyenm.zooshell.controller.animalcontroller.AnimalChangeNameController;
-import doyenm.zooshell.controller.animalcontroller.AnimalChangePaddockController;
-import doyenm.zooshell.controller.animalcontroller.AnimalCreationController;
-import doyenm.zooshell.controller.animalcontroller.AnimalDetailsController;
-import doyenm.zooshell.controller.animalcontroller.AnimalRemoveController;
-import doyenm.zooshell.controller.animalcontroller.AnimalResetDietController;
-import doyenm.zooshell.controller.animalcontroller.AnimalUpdateDietController;
-import doyenm.zooshell.controller.animalcontroller.AnimalUpdateFastDaysController;
-import doyenm.zooshell.controller.animalcontroller.AnimalUpdateFoodQuantityController;
+import doyenm.zooshell.controller.animalcontroller.*;
 import doyenm.zooshell.validator.AnimalChangeNameValidator;
 import doyenm.zooshell.validator.AnimalChangePaddockValidator;
 import doyenm.zooshell.validator.AnimalCreationValidator;
 import doyenm.zooshell.validator.AnimalDetailsValidator;
+import doyenm.zooshell.validator.AnimalUpdateContraceptionValidator;
 import doyenm.zooshell.validator.AnimalUpdateDietValidator;
 import doyenm.zooshell.validator.AnimalUpdateFastDaysValidator;
 import doyenm.zooshell.validator.AnimalUpdateFoodQuantityValidator;
@@ -75,6 +59,11 @@ public class ZooShellAnimalConfig {
     }
     
     @Bean
+    AnimalUpdateContraceptionController animalUpateContraceptionController(){
+        return new AnimalUpdateContraceptionController();
+    }
+    
+    @Bean
     AnimalUpdateFastDaysController animalUpdateFastDaysController(){
         return new AnimalUpdateFastDaysController();
     }
@@ -103,6 +92,11 @@ public class ZooShellAnimalConfig {
     @Bean 
     AnimalDetailsValidator animalDetailsValidator(){
         return new AnimalDetailsValidator();
+    }
+    
+    @Bean
+    AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator(){
+        return new AnimalUpdateContraceptionValidator();
     }
     
     @Bean
@@ -159,6 +153,11 @@ public class ZooShellAnimalConfig {
     @Bean
     ResetDiet resetDiet(){
         return new ResetDiet(animalValidator(), animalResetDietController());
+    }
+    
+    @Bean
+    UpdateContraceptionMethod  updateContraceptionMethod(){
+        return new UpdateContraceptionMethod(animalUpdateContraceptionValidator(), animalUpateContraceptionController());
     }
     
     @Bean
