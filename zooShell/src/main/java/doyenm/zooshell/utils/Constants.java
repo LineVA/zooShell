@@ -31,6 +31,8 @@ public class Constants {
     public static final String ANIMALS = "animals";
     // animalDiversity
     public static final String ANIMALDIVERSITY = "animalDiversity";
+    // animal-contraceptionMethod
+    public static final String ANIMAL_CONTRACEPTION = "animal-contraceptionMethod";
     // animal-diet
     public static final String ANIMAL_DIET = "animal-diet";
     // animal-fastDays || animal-fd

@@ -108,6 +108,9 @@ public class ZooShellConfig {
 
     @Autowired
     ResetDiet resetDiet;
+    
+    @Autowired
+    UpdateContraceptionMethod updateCotnraceptionMethod;
 
     @Autowired
     UpdateDiet updateDiet;
@@ -147,6 +150,7 @@ public class ZooShellConfig {
                 lsPaddock, detailPad, RemovePaddock, updateBiome, updatePaddocktype,
                 changeAnimalName, changePaddock, createAnimal, lsAnimal, detailAnimal,
                 removeAnimal, resetDiet, updateDiet, updateFastDays, updateFoodQuantity,
+                updateCotnraceptionMethod,
                 changeKeeperName, createKeeper, lsKeeper, detailKeeper, removeKeeper,
                 resetOccupations, updateOccupations,
                 lsBiome, lsContraceptionMethod, lsDiet, lsKeeperTask, lsPaddockType, lsSex);
