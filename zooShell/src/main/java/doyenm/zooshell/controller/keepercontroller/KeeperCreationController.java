@@ -2,6 +2,7 @@ package doyenm.zooshell.controller.keepercontroller;
 
 import doyenm.zooshell.context.KeeperCreationContext;
 import doyenm.zooshell.model.AnimalKeeper;
+import doyenm.zooshell.model.Family;
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.TimedOccupation;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class KeeperCreationController
                 .name(context.getKeeper())
                 .occupations(new ArrayList<TimedOccupation>())
                 .taskEvaluations(new HashMap<TaskType, Double>())
+                .familyEvaluations(new HashMap<Family, Double>())
                 .build();
         context.getZoo().getKeepers().put(context.getKeeper(), keeper);
         return context;

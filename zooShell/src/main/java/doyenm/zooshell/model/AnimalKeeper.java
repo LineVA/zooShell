@@ -18,4 +18,5 @@ public class AnimalKeeper {
     private String name;
     private List<TimedOccupation> occupations;
     private Map<TaskType, Double> taskEvaluations;
+    private Map<Family, Double> familyEvaluations;
 }
