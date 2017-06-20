@@ -1,6 +1,5 @@
 package doyenm.zooshell.controller.keepercontroller;
 
-import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.context.KeeperEvaluationContext;
 import doyenm.zooshell.model.AnimalKeeper;

@@ -28,7 +28,7 @@ public class KeeperContext {
         couples.add(new Couple(key, value));
     }
 
-    public void addCouple(String key, int value) {
+    public void addCouple(String key, double value) {
         couples.add(new Couple(key, String.valueOf(value)));
     }
 }
