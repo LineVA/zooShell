@@ -2,6 +2,7 @@ package doyenm.zooshell.controller.keepercontroller;
 
 import doyenm.zooshell.context.KeeperContext;
 import doyenm.zooshell.model.AnimalKeeper;
+import doyenm.zooshell.model.Family;
 import doyenm.zooshell.model.TaskType;
 import java.util.Map;
 import java.util.function.Function;
@@ -21,10 +22,19 @@ public class KeeperDetailsController implements Function<KeeperContext, KeeperCo
         context.addCouple("Occupations", keeper.getOccupations().toString());
         context.addCouple("Average task evaluation", computeAverageTaskEvaluation(
                 context.getConvertedKeeper().getTaskEvaluations()));
+        context.addCouple("Average family evaluation", computeAverageFamilyEvaluation(
+                context.getConvertedKeeper().getFamilyEvaluations()));
         return context;
     }
 
     private double computeAverageTaskEvaluation(Map<TaskType, Double> map) {
+        return map
+                .values()
+                .parallelStream()
+                .collect(Collectors.summingDouble(d -> d));
+    }
+    
+      private double computeAverageFamilyEvaluation(Map<Family, Double> map) {
         return map
                 .values()
                 .parallelStream()
