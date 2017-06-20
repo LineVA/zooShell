@@ -25,6 +25,7 @@ public class Specie {
 
     private Names names;
     private Uicn uicn;
+    private Family family;
     private ReproductionAttributes reproductionAttributes;
     private LifespanAttributes lifespanAttributes;
     private BiomesSpecie biomes;

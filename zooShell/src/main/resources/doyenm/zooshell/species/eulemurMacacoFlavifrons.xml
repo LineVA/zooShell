@@ -8,6 +8,7 @@
         <scientificName>Eulemur macaco flavifrons</scientificName>
     </names>
     <uicn>CRITICALLY_ENDANGERED</uicn>
+    <family>LEMURIDAE</family>
     <reproductionAttributes>
         <femaleMaturityAge>24</femaleMaturityAge>
         <maleMaturityAge>24</maleMaturityAge>
