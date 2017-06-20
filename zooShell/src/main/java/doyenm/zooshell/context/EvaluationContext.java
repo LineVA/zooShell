@@ -1,13 +1,13 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Animal;
+import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +28,7 @@ public class EvaluationContext {
     private int animalsEvaluation;
     private int totalEvaluation;
     private List<Animal> evaluatedAnimalsList = new ArrayList<>();
+    private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
     
     public void build() {
         Map<String, Animal> evaluatedAnimalsMap = convertAnimalsListToMap();
@@ -49,6 +50,10 @@ public class EvaluationContext {
 
     public Map<String, Animal> getAnimals(){
         return getZoo().getAnimals();
+    }
+    
+    public Map<String, AnimalKeeper> getKeepers(){
+        return getZoo().getKeepers();
     }
     
     private Map<String, Animal> convertAnimalsListToMap() {
