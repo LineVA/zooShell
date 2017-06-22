@@ -4,9 +4,8 @@ import doyenm.zooshell.context.KeeperCreationContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Family;
 import doyenm.zooshell.model.TaskType;
-import doyenm.zooshell.model.TimedOccupation;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.function.Function;
 
 /**
@@ -21,9 +20,9 @@ public class KeeperCreationController
         KeeperCreationContext context = t;
         AnimalKeeper keeper = AnimalKeeper.builder()
                 .name(context.getKeeper())
-                .occupations(new ArrayList<TimedOccupation>())
-                .taskEvaluations(new HashMap<TaskType, Double>())
-                .familyEvaluations(new HashMap<Family, Double>())
+                .occupations(new ArrayList<>())
+                .taskEvaluations(new EnumMap<>(TaskType.class))
+                .familyEvaluations(new EnumMap<>(Family.class))
                 .build();
         context.getZoo().getKeepers().put(context.getKeeper(), keeper);
         return context;
