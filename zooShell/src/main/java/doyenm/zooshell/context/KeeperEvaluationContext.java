@@ -1,6 +1,7 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.AnimalKeeper;
+import doyenm.zooshell.model.Family;
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.TimedOccupation;
 import doyenm.zooshell.model.Zoo;
@@ -21,12 +22,16 @@ public class KeeperEvaluationContext {
 
     private final Zoo zoo;
     private final AnimalKeeper keeper;
-    
-    public List<TimedOccupation> getOccupations(){
+
+    public List<TimedOccupation> getOccupations() {
         return getKeeper().getOccupations();
     }
-    
-    public Map<TaskType, Double> getTaskEvaluationMap(){
+
+    public Map<TaskType, Double> getTaskEvaluationMap() {
         return getKeeper().getTaskEvaluations();
+    }
+
+    public Map<Family, Double> getFamilyEvaluationMap() {
+        return getKeeper().getFamilyEvaluations();
     }
 }

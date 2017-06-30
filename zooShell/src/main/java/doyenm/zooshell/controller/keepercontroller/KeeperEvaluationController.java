@@ -13,7 +13,8 @@ import java.util.stream.Collectors;
 public class KeeperEvaluationController implements Function<EvaluationContext, EvaluationContext> {
 
     KeeperEvaluationTaskController taskController = new KeeperEvaluationTaskController();
-    
+    KeeperEvaluationFamilyController familyController = new KeeperEvaluationFamilyController();
+
     @Override
     public EvaluationContext apply(EvaluationContext t) {
         EvaluationContext context = t;
@@ -21,6 +22,7 @@ public class KeeperEvaluationController implements Function<EvaluationContext, E
                 .stream()
                 .map((AnimalKeeper t1) -> new KeeperEvaluationContext(context.getZoo(), t1))
                 .map(taskController)
+                .map(familyController)
                 .map((KeeperEvaluationContext t1) -> t1.getKeeper())
                 .collect(Collectors.toList())
         );
