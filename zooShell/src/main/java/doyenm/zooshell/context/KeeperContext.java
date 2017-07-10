@@ -20,6 +20,7 @@ public class KeeperContext {
 
     private final Zoo zoo;
     private final String keeper;
+    private final boolean detailed;
     private List<Couple> couples = new ArrayList<>();
 
     private AnimalKeeper convertedKeeper;
@@ -30,5 +31,13 @@ public class KeeperContext {
 
     public void addCouple(String key, double value) {
         couples.add(new Couple(key, String.valueOf(value)));
+    }
+
+    public void addCouplesList(List<String> keys, List<Double> values) {
+        if (keys.size() == values.size()) {
+            for (int i = 0; i < keys.size(); i++) {
+                couples.add(new Couple("    " + keys.get(i), String.valueOf(values.get(i))));
+            }
+        }
     }
 }
