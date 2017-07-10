@@ -1,10 +1,16 @@
 package doyenm.zooshell.controller.keepercontroller;
 
 import doyenm.zooshell.context.KeeperEvaluationContext;
+import doyenm.zooshell.model.Animal;
+import doyenm.zooshell.model.Family;
 import doyenm.zooshell.model.Paddock;
+import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.model.TimedOccupation;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -18,13 +24,20 @@ public class KeeperEvaluationFamilyController
     @Override
     public KeeperEvaluationContext apply(KeeperEvaluationContext t) {
         KeeperEvaluationContext context = t;
-//        Map<Family, Double> familiesMap = context.getFamilyEvaluationMap();
-//        Map<Paddock, Double> paddocksMap = this.generateTimedPaddockMap(context.getOccupations());
-//        Map<Paddock, Integer> animalsPerPaddockMap = generateAnimalsPerPaddockMap(paddocksMap.entrySet().);
+        Map<Paddock, Double> paddocksMap = this.generateTimedPaddockMap(context.getOccupations());
+        Map<Paddock, Set<Family>> familiesPerPaddockMap = generateFamiliesPerPaddockMap(context.getOccupations(), context.getAnimals());
+        familiesPerPaddockMap.entrySet().stream().forEach((entry) -> {
+            entry.getValue().stream().forEach((family) -> {
+                if (context.getFamilyEvaluationMap().containsKey(family)) {
+                    double currentValue = context.getFamilyEvaluationMap().get(family);
+                    context.getFamilyEvaluationMap().replace(family, paddocksMap.get(entry.getKey()) + currentValue);
+                } else {
+                    context.getFamilyEvaluationMap().put(family, paddocksMap.get(entry.getValue()));
+                }
+            });
+        });
         return context;
     }
-
-  
 
     private Map<Paddock, Double> generateTimedPaddockMap(List<TimedOccupation> occupations) {
         return occupations
@@ -32,6 +45,21 @@ public class KeeperEvaluationFamilyController
                 .collect(
                         Collectors.groupingBy(TimedOccupation::getPaddock,
                                 Collectors.summingDouble(TimedOccupation::getTime)));
+    }
+
+    private Map<Paddock, Set<Family>> generateFamiliesPerPaddockMap(List<TimedOccupation> occupations, List<Animal> animals) {
+        Map<Paddock, Set<Family>> paddocksMap = new HashMap<>();
+        for (TimedOccupation occupation : occupations) {
+            paddocksMap.put(occupation.getPaddock(), new HashSet<>());
+        }
+        for (Animal animal : animals) {
+            if (paddocksMap.containsKey(animal.getPaddock())) {
+                Set<Family> families = paddocksMap.get(animal.getPaddock());
+                families.add(animal.getSpecie().getFamily());
+                paddocksMap.replace(animal.getPaddock(), families);
+            }
+        }
+        return paddocksMap;
     }
 
 }
