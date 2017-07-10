@@ -18,19 +18,23 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class DetailKeeper implements CommandBis{
+public class DetailKeeper implements CommandBis {
 
     private final KeeperValidator validator;
     private final KeeperDetailsController controller;
 
-
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        KeeperContext context = new KeeperContext(zoo, cmd[1]);
+        KeeperContext context;
+        if (cmd.length == 3) {
+            context = new KeeperContext(zoo, cmd[1], Boolean.parseBoolean(cmd[2]));
+        } else {
+            context = new KeeperContext(zoo, cmd[1], false);
+        }
         context = Stream.of(context)
                 .filter(validator)
                 .map(controller)
-                .findFirst() 
+                .findFirst()
                 .get();
         FormattingInList formatting = new FormattingInList();
         return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS);
@@ -38,8 +42,11 @@ public class DetailKeeper implements CommandBis{
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2) {
+        if (cmd.length == 2 | cmd.length == 3) {
             if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])) {
+                if (cmd.length == 3) {
+                    return Constants.DETAILED.equals(cmd[2]);
+                }
                 return true;
             }
         }

@@ -26,7 +26,7 @@ public class RemoveKeeper implements CommandBis{
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         try {
             KeeperContext context = new KeeperContext(zoo,
-                    cmd[2]);
+                    cmd[2], false);
             context = Stream.of(context)
                     .filter(validator)
                     .map(controller)
