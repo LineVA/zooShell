@@ -1,20 +1,18 @@
 package doyenm.zooshell.commandLine.general;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
-@Getter
 @NoArgsConstructor
 public class ActionPointsHandler {
     
     private int actionPointsNumber;
     
     public void initialize(){
-       this.actionPointsNumber = 25;
+       this.actionPointsNumber = 7;
     }
     
     public boolean hasEnoughPoints(int desired){
