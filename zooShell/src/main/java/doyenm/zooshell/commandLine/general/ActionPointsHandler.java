@@ -11,8 +11,8 @@ public class ActionPointsHandler {
     
     private int actionPointsNumber;
     
-    public void initialize(){
-       this.actionPointsNumber = 7;
+    public void initialize(int init){
+       this.actionPointsNumber = init;
     }
     
     public boolean hasEnoughPoints(int desired){
