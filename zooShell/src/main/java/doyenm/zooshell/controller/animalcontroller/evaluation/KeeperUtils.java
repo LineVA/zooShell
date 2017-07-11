@@ -4,17 +4,15 @@ import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.TimedOccupation;
-import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
 /**
  *
  * @author doyenm
  */
-public class FeedingKeeperPredicate implements BiPredicate<AnimalKeeper, Paddock> {
+public class KeeperUtils {
 
-    @Override
-    public boolean test(AnimalKeeper keeper, Paddock paddock) {
+    public boolean isKeeperFeedingInGivenPaddock(AnimalKeeper keeper, Paddock paddock) {
         return !keeper.getOccupations()
                 .stream()
                 .filter((TimedOccupation t) -> TaskType.FEEDING == t.getTaskType())

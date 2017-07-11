@@ -1,6 +1,6 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.death;
 
-import doyenm.zooshell.controller.animalcontroller.evaluation.FeedingKeeperPredicate;
+import doyenm.zooshell.controller.animalcontroller.evaluation.KeeperUtils;
 import doyenm.zooshell.controller.animalcontroller.evaluation.NursingKeeperPredicate;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class AnimalDyingPredicates {
 
-    FeedingKeeperPredicate feedingKeeperPredicate = new FeedingKeeperPredicate();
+    KeeperUtils feedingKeeperPredicate = new KeeperUtils();
     NursingKeeperPredicate nursingKeeperPredicate = new NursingKeeperPredicate();
 
     private final int NUMBER_OF_DAYS_PER_WEEK = 7;
