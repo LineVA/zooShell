@@ -11,15 +11,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CommandManager {
 
-    private final List<Command> commands;
+    private final List<ActionPointCommand> commands;
     
     private Zoo zoo;
     
     public ReturnExec run(String cmd){
         String[] cmdArray = SplitDoubleQuotes.split(cmd);
-        for(Command command : commands){
-            if(command.canExecute(cmdArray)){
-                return save(command.execute(cmdArray, zoo));
+        for(ActionPointCommand actionPointCommand : commands){
+            if(actionPointCommand.getCommand().canExecute(cmdArray)){
+                return save(actionPointCommand.getCommand().execute(cmdArray, zoo));
             }
         }
         return new ReturnExec("UNKNOWN CMD", TypeReturn.ERROR, null);

@@ -6,6 +6,7 @@ import doyenm.zooshell.commandLine.commandImpl.ls.*;
 import doyenm.zooshell.commandLine.commandImpl.paddock.*;
 import doyenm.zooshell.commandLine.commandImpl.animal.*;
 import doyenm.zooshell.commandLine.commandImpl.keeper.*;
+import doyenm.zooshell.commandLine.general.ActionPointCommand;
 import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
@@ -108,7 +109,7 @@ public class ZooShellConfig {
 
     @Autowired
     ResetDiet resetDiet;
-    
+
     @Autowired
     UpdateContraceptionMethod updateCotnraceptionMethod;
 
@@ -144,16 +145,44 @@ public class ZooShellConfig {
 
     @Bean
     CommandManager commandManager() {
-        List<Command> commands = Arrays.asList(createZoo, detailZoo,
-                lsSpecie, detailSpecie,
-                changePaddockName, createPaddock, createPaddockEntry, createPaddockExtension,
-                lsPaddock, detailPad, removePaddock, updateBiome, updatePaddocktype,
-                changeAnimalName, changePaddock, createAnimal, lsAnimal, detailAnimal,
-                removeAnimal, resetDiet, updateDiet, updateFastDays, updateFoodQuantity,
-                updateCotnraceptionMethod,
-                changeKeeperName, createKeeper, lsKeeper, detailKeeper, removeKeeper,
-                resetOccupations, updateOccupations,
-                lsBiome, lsContraceptionMethod, lsDiet, lsKeeperTask, lsPaddockType, lsSex);
+        List<ActionPointCommand> commands = Arrays.asList(
+                new ActionPointCommand(createZoo, 0),
+                new ActionPointCommand(detailZoo, 0),
+                new ActionPointCommand(lsSpecie, 0),
+                new ActionPointCommand(detailSpecie, 0),
+                new ActionPointCommand(changePaddockName, 1),
+                new ActionPointCommand(createPaddock, 3),
+                new ActionPointCommand(createPaddockEntry, 1),
+                new ActionPointCommand(createPaddockExtension, 3),
+                new ActionPointCommand(lsPaddock, 0),
+                new ActionPointCommand(detailPad, 0),
+                new ActionPointCommand(removePaddock, 1),
+                new ActionPointCommand(updateBiome, 1),
+                new ActionPointCommand(updatePaddocktype, 1),
+                new ActionPointCommand(changeAnimalName, 1),
+                new ActionPointCommand(changePaddock, 1),
+                new ActionPointCommand(createAnimal, 3),
+                new ActionPointCommand(lsAnimal, 0),
+                new ActionPointCommand(detailAnimal, 0),
+                new ActionPointCommand(removeAnimal, 1),
+                new ActionPointCommand(resetDiet, 0),
+                new ActionPointCommand(updateDiet, 1),
+                new ActionPointCommand(updateFastDays, 1),
+                new ActionPointCommand(updateFoodQuantity, 1),
+                new ActionPointCommand(updateCotnraceptionMethod, 1),
+                new ActionPointCommand(changeKeeperName, 1),
+                new ActionPointCommand(createKeeper, 3),
+                new ActionPointCommand(lsKeeper, 0),
+                new ActionPointCommand(detailKeeper, 0),
+                new ActionPointCommand(removeKeeper, 1),
+                new ActionPointCommand(resetOccupations, 0),
+                new ActionPointCommand(updateOccupations, 1),
+                new ActionPointCommand(lsBiome, 0),
+                new ActionPointCommand(lsContraceptionMethod, 0),
+                new ActionPointCommand(lsDiet, 0),
+                new ActionPointCommand(lsKeeperTask, 0),
+                new ActionPointCommand(lsPaddockType, 0),
+                new ActionPointCommand(lsSex, 0));
         return new CommandManager(commands);
     }
 
