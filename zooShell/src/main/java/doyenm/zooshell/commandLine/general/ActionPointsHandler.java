@@ -22,5 +22,9 @@ public class ActionPointsHandler {
     public void update(int consumed){
         this.actionPointsNumber -= consumed;
     }
+    
+    public String updateMessage(){
+        return "Remaining action points : " + this.actionPointsNumber;
+    }
 
 }
