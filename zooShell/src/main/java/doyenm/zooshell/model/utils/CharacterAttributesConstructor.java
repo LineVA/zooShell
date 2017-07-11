@@ -6,7 +6,6 @@ import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.SizeAttributes;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.utils.GaussianStatistics;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
