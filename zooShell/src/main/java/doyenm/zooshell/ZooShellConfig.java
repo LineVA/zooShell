@@ -144,6 +144,7 @@ public class ZooShellConfig {
     @Autowired
     UpdateOccupations updateOccupations;
     
+    
     @Bean
     ActionPointsHandler actionPointsHandler(){
         ActionPointsHandler actionPointsHandler = new ActionPointsHandler();
@@ -155,6 +156,11 @@ public class ZooShellConfig {
     GetActionPoints getActionPoints(){
         return new GetActionPoints();
     } 
+    
+    @Bean
+    Evaluate evaluate(){
+        return new Evaluate();
+    }
 
     @Bean
     CommandManager commandManager() {
@@ -196,7 +202,7 @@ public class ZooShellConfig {
                 new ActionPointCommand(lsKeeperTask, 0),
                 new ActionPointCommand(lsPaddockType, 0),
                 new ActionPointCommand(lsSex, 0));
-        return new CommandManager(commands, actionPointsHandler(), getActionPoints());
+        return new CommandManager(commands, actionPointsHandler(), getActionPoints(), evaluate());
     }
 
     @Bean

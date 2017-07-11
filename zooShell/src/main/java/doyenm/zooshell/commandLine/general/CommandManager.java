@@ -1,6 +1,7 @@
 package doyenm.zooshell.commandLine.general;
 
 import doyenm.zooshell.commandLine.commandImpl.GetActionPoints;
+import doyenm.zooshell.commandLine.commandImpl.zoo.Evaluate;
 import doyenm.zooshell.model.Zoo;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -15,24 +16,26 @@ public class CommandManager {
     private final List<ActionPointCommand> commands;
     private final ActionPointsHandler actionPointsHandler;
     private final GetActionPoints getActionPoints;
+    private final Evaluate evaluate;
 
     private Zoo zoo;
 
     public ReturnExec run(String cmd) {
         String[] cmdArray = SplitDoubleQuotes.split(cmd);
         ReturnExec result;
-        if(getActionPoints.canExecute(cmdArray)){
-            ReturnExec aPResult =  getActionPoints.execute(cmdArray, null);
-            aPResult.concat(actionPointsHandler.updateMessage());
-            return aPResult;
+        if (getActionPoints.canExecute(cmdArray)) {
+            return executeGetActionPoints(cmdArray);
+        }
+        if (evaluate.canExecute(cmdArray)) {
+            return executeEvaluate(cmdArray);
         }
         for (ActionPointCommand actionPointCommand : commands) {
             if (actionPointCommand.getCommand().canExecute(cmdArray)) {
                 if (actionPointsHandler.hasEnoughPoints(actionPointCommand.getActionPointsNumber())) {
                     result = save(actionPointCommand.getCommand().execute(cmdArray, zoo));
-                    if(result.getTypeReturn() == TypeReturn.SUCCESS){
+                    if (result.getTypeReturn() == TypeReturn.SUCCESS) {
                         actionPointsHandler.update(actionPointCommand.getActionPointsNumber());
-                        if(actionPointCommand.getActionPointsNumber() != 0){
+                        if (actionPointCommand.getActionPointsNumber() != 0) {
                             result.concat(actionPointsHandler.updateMessage());
                         }
                     }
@@ -54,5 +57,17 @@ public class CommandManager {
             this.zoo = returnExec.getZoo();
         }
         return returnExec;
+    }
+
+    private ReturnExec executeGetActionPoints(String[] cmdArray) {
+        ReturnExec aPResult = getActionPoints.execute(cmdArray, null);
+        aPResult.concat(actionPointsHandler.updateMessage());
+        return aPResult;
+    }
+
+    private ReturnExec executeEvaluate(String[] cmdArray) {
+        ReturnExec result = evaluate.execute(cmdArray, zoo);
+        actionPointsHandler.recompute(zoo);
+        return result;
     }
 }
