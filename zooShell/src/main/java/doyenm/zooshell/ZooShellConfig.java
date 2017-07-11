@@ -150,6 +150,11 @@ public class ZooShellConfig {
         actionPointsHandler.initialize(7);
         return actionPointsHandler;
     }
+    
+    @Bean
+    GetActionPoints getActionPoints(){
+        return new GetActionPoints();
+    } 
 
     @Bean
     CommandManager commandManager() {
@@ -191,7 +196,7 @@ public class ZooShellConfig {
                 new ActionPointCommand(lsKeeperTask, 0),
                 new ActionPointCommand(lsPaddockType, 0),
                 new ActionPointCommand(lsSex, 0));
-        return new CommandManager(commands, actionPointsHandler());
+        return new CommandManager(commands, actionPointsHandler(), getActionPoints());
     }
 
     @Bean

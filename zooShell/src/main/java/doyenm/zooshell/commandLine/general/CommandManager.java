@@ -1,5 +1,6 @@
 package doyenm.zooshell.commandLine.general;
 
+import doyenm.zooshell.commandLine.commandImpl.GetActionPoints;
 import doyenm.zooshell.model.Zoo;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -13,12 +14,18 @@ public class CommandManager {
 
     private final List<ActionPointCommand> commands;
     private final ActionPointsHandler actionPointsHandler;
+    private final GetActionPoints getActionPoints;
 
     private Zoo zoo;
 
     public ReturnExec run(String cmd) {
         String[] cmdArray = SplitDoubleQuotes.split(cmd);
         ReturnExec result;
+        if(getActionPoints.canExecute(cmdArray)){
+            ReturnExec aPResult =  getActionPoints.execute(cmdArray, null);
+            aPResult.concat(actionPointsHandler.updateMessage());
+            return aPResult;
+        }
         for (ActionPointCommand actionPointCommand : commands) {
             if (actionPointCommand.getCommand().canExecute(cmdArray)) {
                 if (actionPointsHandler.hasEnoughPoints(actionPointCommand.getActionPointsNumber())) {
