@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl.animal;
 
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.AnimalUpdateFoodQuantityContext;
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class UpdateFoodQuantity implements CommandBis{
+public class UpdateFoodQuantity implements Command{
 
     private final AnimalUpdateFoodQuantityValidator validator; 
     private final AnimalUpdateFoodQuantityController controller;

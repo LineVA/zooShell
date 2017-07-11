@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl.keeper;
 
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.KeeperRenameContext;
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class ChangeKeeperName implements CommandBis {
+public class ChangeKeeperName implements Command {
 
     private final KeeperRenameValidator validator;
     private final KeeperRenameController controller;

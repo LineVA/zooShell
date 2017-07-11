@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl.keeper;
 
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.commandLine.utils.FormattingInList;
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class DetailKeeper implements CommandBis {
+public class DetailKeeper implements Command {
 
     private final KeeperValidator validator;
     private final KeeperDetailsController controller;

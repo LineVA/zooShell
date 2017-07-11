@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl.animal;
 
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class UpdateContraceptionMethod implements CommandBis{
+public class UpdateContraceptionMethod implements Command{
 
     private final AnimalUpdateContraceptionValidator validator;
     private final AnimalUpdateContraceptionController controller;

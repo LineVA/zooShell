@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl.animal;
 
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.AnimalUpdateFastDaysContext;
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class UpdateFastDays implements CommandBis{
+public class UpdateFastDays implements Command{
 
     private final AnimalUpdateFastDaysValidator validator;
     private final AnimalUpdateFastDaysController controller;

@@ -13,6 +13,8 @@ public class Constants {
     // Max number of turns befrore starving
     public static final int MAX_STARVING = 3;
 
+    // action_points
+    public static final String ACTION_POINTS = "action_points";
     // actualFeedingAttributes
     public static final String ACTUALFEEDING_ATT = "actualFeedingAttributes";
     // actualLifeSpanAttributes

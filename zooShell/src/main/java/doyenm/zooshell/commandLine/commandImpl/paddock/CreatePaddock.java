@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl.paddock;
 
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.PaddockCreationContext;
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class CreatePaddock implements CommandBis{
+public class CreatePaddock implements Command{
 
     private final PaddockCreationValidator valueValidator;
     private final PaddockLocationValidator locationValidator;

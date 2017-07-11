@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl.keeper;
 
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.KeeperContext;
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class ResetOccupations implements CommandBis{
+public class ResetOccupations implements Command{
 
     private final KeeperValidator validator;
     private final KeeperResetOccupationsController controller;

@@ -2,10 +2,7 @@ package doyenm.zooshell;
 
 import doyenm.zooshell.commandLine.commandImpl.DetailSpecie;
 import doyenm.zooshell.commandLine.commandImpl.LsSpecie;
-import doyenm.zooshell.commandLine.commandImpl.ls.LsContraceptionMethod;
-import doyenm.zooshell.commandLine.commandImpl.ls.LsDiet;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsKeeperTask;
-import doyenm.zooshell.commandLine.commandImpl.ls.LsSex;
 import doyenm.zooshell.commandLine.commandImpl.zoo.CreateZoo;
 import doyenm.zooshell.commandLine.commandImpl.zoo.DetailZoo;
 import doyenm.zooshell.controller.speciecontroller.SpecieDetailsController;

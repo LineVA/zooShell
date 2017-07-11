@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl.zoo;
 
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.controller.zoocontroller.ZooCreationController;
@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class CreateZoo implements CommandBis {
+public class CreateZoo implements Command {
 
     @Autowired
     private final ZooCreationValidator validator;

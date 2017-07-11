@@ -1,25 +1,26 @@
 package doyenm.zooshell.commandLine.general;
 
 import doyenm.zooshell.model.Zoo;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
- */
-@RequiredArgsConstructor
+ */   
+@Getter
+@AllArgsConstructor
 public class ReturnExec {
-    @Getter
-    private final String message;
-    @Getter
+    private String message;
     private final TypeReturn typeReturn;
-    @Getter
     private Zoo zoo;
 
-    public ReturnExec(String message, TypeReturn typeReturn, Zoo zoo) {
+    public ReturnExec(String message, TypeReturn typeReturn) {
         this.message = message;
         this.typeReturn = typeReturn;
-        this.zoo = zoo;
+    }
+    
+    public void concat(String msg_2){
+         this.message += " \n" + msg_2; 
     }
 }
