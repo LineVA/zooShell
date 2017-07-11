@@ -1,5 +1,6 @@
 package doyenm.zooshell.commandLine.general;
 
+import doyenm.zooshell.model.Zoo;
 import lombok.NoArgsConstructor;
 
 /**
@@ -25,6 +26,10 @@ public class ActionPointsHandler {
     
     public String updateMessage(){
         return "Remaining action points : " + this.actionPointsNumber;
+    }
+    
+    public void recompute(Zoo zoo){
+        this.actionPointsNumber = zoo.getPaddocks().size() + zoo.getAnimals().size() + zoo.getKeepers().size();
     }
 
 }
