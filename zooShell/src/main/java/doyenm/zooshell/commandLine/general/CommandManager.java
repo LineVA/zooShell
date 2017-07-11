@@ -25,6 +25,9 @@ public class CommandManager {
                     result = save(actionPointCommand.getCommand().execute(cmdArray, zoo));
                     if(result.getTypeReturn() == TypeReturn.SUCCESS){
                         actionPointsHandler.update(actionPointCommand.getActionPointsNumber());
+                        if(actionPointCommand.getActionPointsNumber() != 0){
+                            result.concat(actionPointsHandler.updateMessage());
+                        }
                     }
                     return result;
                 } else {
