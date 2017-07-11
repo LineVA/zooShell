@@ -7,6 +7,7 @@ import doyenm.zooshell.commandLine.commandImpl.paddock.*;
 import doyenm.zooshell.commandLine.commandImpl.animal.*;
 import doyenm.zooshell.commandLine.commandImpl.keeper.*;
 import doyenm.zooshell.commandLine.general.ActionPointCommand;
+import doyenm.zooshell.commandLine.general.ActionPointsHandler;
 import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
@@ -142,6 +143,13 @@ public class ZooShellConfig {
 
     @Autowired
     UpdateOccupations updateOccupations;
+    
+    @Bean
+    ActionPointsHandler actionPointsHandler(){
+        ActionPointsHandler actionPointsHandler = new ActionPointsHandler();
+        actionPointsHandler.initialize(7);
+        return actionPointsHandler;
+    }
 
     @Bean
     CommandManager commandManager() {
@@ -183,7 +191,7 @@ public class ZooShellConfig {
                 new ActionPointCommand(lsKeeperTask, 0),
                 new ActionPointCommand(lsPaddockType, 0),
                 new ActionPointCommand(lsSex, 0));
-        return new CommandManager(commands);
+        return new CommandManager(commands, actionPointsHandler());
     }
 
     @Bean
