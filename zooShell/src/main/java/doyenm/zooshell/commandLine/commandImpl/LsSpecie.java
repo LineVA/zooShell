@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl;
 
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.commandLine.utils.FormattingInList;
@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  *
  * @author doyenm
  */
-public class LsSpecie implements CommandBis {
+public class LsSpecie implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {

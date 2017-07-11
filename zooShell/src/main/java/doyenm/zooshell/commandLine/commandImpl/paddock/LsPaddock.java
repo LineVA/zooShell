@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl.paddock;
 
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.commandLine.utils.FormattingInList;
@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  *
  * @author doyenm
  */
-public class LsPaddock implements CommandBis {
+public class LsPaddock implements Command {
     
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {

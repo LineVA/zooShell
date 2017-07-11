@@ -6,7 +6,7 @@ import doyenm.zooshell.commandLine.commandImpl.ls.*;
 import doyenm.zooshell.commandLine.commandImpl.paddock.*;
 import doyenm.zooshell.commandLine.commandImpl.animal.*;
 import doyenm.zooshell.commandLine.commandImpl.keeper.*;
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
 import doyenm.zooshell.main.Main;
@@ -80,7 +80,7 @@ public class ZooShellConfig {
     LsSpecie lsSpecie;
 
     @Autowired
-    RemovePaddock RemovePaddock;
+    RemovePaddock removePaddock;
 
     @Autowired
     UpdateBiome updateBiome;
@@ -144,10 +144,10 @@ public class ZooShellConfig {
 
     @Bean
     CommandManager commandManager() {
-        List<CommandBis> commands = Arrays.asList(createZoo, detailZoo,
+        List<Command> commands = Arrays.asList(createZoo, detailZoo,
                 lsSpecie, detailSpecie,
                 changePaddockName, createPaddock, createPaddockEntry, createPaddockExtension,
-                lsPaddock, detailPad, RemovePaddock, updateBiome, updatePaddocktype,
+                lsPaddock, detailPad, removePaddock, updateBiome, updatePaddocktype,
                 changeAnimalName, changePaddock, createAnimal, lsAnimal, detailAnimal,
                 removeAnimal, resetDiet, updateDiet, updateFastDays, updateFoodQuantity,
                 updateCotnraceptionMethod,

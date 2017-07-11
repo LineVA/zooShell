@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl.paddock;
 
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.PaddockChangeNameContext;
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class ChangePaddockName implements CommandBis {
+public class ChangePaddockName implements Command {
 
     private final PaddockChangeNameValidator validator;
     private final PaddockChangeNameController controller;

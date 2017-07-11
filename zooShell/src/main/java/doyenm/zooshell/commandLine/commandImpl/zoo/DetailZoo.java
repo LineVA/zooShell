@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl.zoo;
 
-import doyenm.zooshell.commandLine.general.CommandBis;
+import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.commandLine.utils.FormattingInList;
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class DetailZoo implements CommandBis {
+public class DetailZoo implements Command {
 
     private final ZooDetailsController controller;
 

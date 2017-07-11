@@ -11,13 +11,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CommandManager {
 
-    private final List<CommandBis> commands;
+    private final List<Command> commands;
     
     private Zoo zoo;
     
     public ReturnExec run(String cmd){
         String[] cmdArray = SplitDoubleQuotes.split(cmd);
-        for(CommandBis command : commands){
+        for(Command command : commands){
             if(command.canExecute(cmdArray)){
                 return save(command.execute(cmdArray, zoo));
             }

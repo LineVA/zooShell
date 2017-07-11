@@ -6,7 +6,7 @@ import doyenm.zooshell.model.Zoo;
  *
  * @author doyenm
  */
-public interface CommandBis {
+public interface Command {
   /**
      * Method used to execute the command line
      * @param cmd the command line,
