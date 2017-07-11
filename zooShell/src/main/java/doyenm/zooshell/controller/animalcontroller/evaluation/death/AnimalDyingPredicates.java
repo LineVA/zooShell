@@ -44,7 +44,7 @@ public class AnimalDyingPredicates {
     }
 
     public boolean isDyingByLackOfKeeper(Animal animal, Collection<AnimalKeeper> keepers) {
-        if (!keepers.stream().noneMatch((keeper) -> (feedingKeeperPredicate.test(keeper, animal.getPaddock())))) {
+        if (!keepers.stream().noneMatch((keeper) -> (feedingKeeperPredicate.isKeeperFeedingInGivenPaddock(keeper, animal.getPaddock())))) {
             return false;
         }
         return true;
