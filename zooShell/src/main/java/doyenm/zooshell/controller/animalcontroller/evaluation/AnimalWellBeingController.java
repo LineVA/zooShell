@@ -9,26 +9,22 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalGr
 import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalTerritorySizeEvaluationController;
 import java.util.function.Function;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class AnimalWellBeingController
         implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
 
-    AnimalBiomeEvaluationController animalBiomeEvaluationController
-            = new AnimalBiomeEvaluationController();
-    AnimalDietsEvaluationController animalDietsEvaluationController
-            = new AnimalDietsEvaluationController();
-    AnimalFoodQuantityEvaluationController animalFoodQuantityEvaluationController
-            = new AnimalFoodQuantityEvaluationController();
-    AnimalFastDaysEvaluationController animalFastDaysEvaluationController
-            = new AnimalFastDaysEvaluationController();
-    AnimalTerritorySizeEvaluationController animalTerritorySizeEvaluationController
-            = new AnimalTerritorySizeEvaluationController();
-    AnimalGroupSizeEvaluationController animalGroupSizeEvaluationController
-            = new AnimalGroupSizeEvaluationController();
+    private final AnimalBiomeEvaluationController animalBiomeEvaluationController;
+    private final AnimalDietsEvaluationController animalDietsEvaluationController;
+    private final AnimalFoodQuantityEvaluationController animalFoodQuantityEvaluationController;
+    private final AnimalFastDaysEvaluationController animalFastDaysEvaluationController;
+    private final AnimalTerritorySizeEvaluationController animalTerritorySizeEvaluationController;
+    private final AnimalGroupSizeEvaluationController animalGroupSizeEvaluationController;
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
