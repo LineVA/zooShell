@@ -22,7 +22,7 @@ public class AnimalFoodQuantityEvaluationController
                 uicn.getStandardDeviation())){
             context.setFoodQuantityWellBeing(context.getBase() * uicn.getCoefficient());
         } else {
-            context.setFoodQuantityWellBeing(0.0);
+            context.setFoodQuantityWellBeing(context.getZero());
         }
         return context;
     }
