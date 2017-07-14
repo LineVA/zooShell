@@ -6,6 +6,7 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalDi
 import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalFastDaysEvaluationController;
 import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalFoodQuantityEvaluationController;
 import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalGroupSizeEvaluationController;
+import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalTasksInfluenceEvaluationController;
 import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalTerritorySizeEvaluationController;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -25,6 +26,7 @@ public class AnimalWellBeingController
     private final AnimalFastDaysEvaluationController animalFastDaysEvaluationController;
     private final AnimalTerritorySizeEvaluationController animalTerritorySizeEvaluationController;
     private final AnimalGroupSizeEvaluationController animalGroupSizeEvaluationController;
+    private final AnimalTasksInfluenceEvaluationController animalTasksInfluenceEvaluationController;
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
@@ -36,14 +38,16 @@ public class AnimalWellBeingController
                 .map(animalFoodQuantityEvaluationController)
                 .map(animalGroupSizeEvaluationController)
                 .map(animalTerritorySizeEvaluationController)
+                .map(animalTasksInfluenceEvaluationController)
                 .map((AnimalEvaluationContext t1) -> {
                     t1.setWellBeing((t1.getBiomeWellBeing()
                             + t1.getDietsWellBeing()
                             + t1.getFastDaysWellBeing()
                             + t1.getFoodQuantityWellBeing()
                             + t1.getGroupSizeWellBeing()
-                            + t1.getTerritorySizeWellBeing())
-                            / 6.0);
+                            + t1.getTerritorySizeWellBeing()
+                            + t1.getTaskInfluenceWellBeing())
+                            / 7.0);
                     return t1;
                 })
                 .findFirst()

@@ -35,6 +35,8 @@ public class AnimalEvaluationContext {
     private double territorySizeWellBeing = 0.0;
     private double groupSizeWellBeing = 0.0;
     private double keeperInfluenceWellBeing = 0.0;
+    private double taskInfluenceWellBeing = 0.0;
+
     private double wellBeing = 0.0;
 
     public AnimalEvaluationContext(Zoo zoo, Animal animal) {
