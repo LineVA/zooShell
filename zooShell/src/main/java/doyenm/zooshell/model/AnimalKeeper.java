@@ -16,6 +16,7 @@ import lombok.Setter;
 public class AnimalKeeper {
 
     private String name;
+    private int age;
     private List<TimedOccupation> occupations;
     private Map<TaskType, Double> taskEvaluations;
     private Map<Family, Double> familyEvaluations;
