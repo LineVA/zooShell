@@ -4,7 +4,6 @@ import doyenm.zooshell.context.KeeperEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Family;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.model.TimedOccupation;
 import java.util.HashMap;
 import java.util.HashSet;
