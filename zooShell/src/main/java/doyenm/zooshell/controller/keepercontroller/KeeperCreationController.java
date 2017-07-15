@@ -14,12 +14,15 @@ import java.util.function.Function;
  */
 public class KeeperCreationController
         implements Function<KeeperCreationContext, KeeperCreationContext> {
+    
+    private final int INIT_AGE = 0;
 
     @Override
     public KeeperCreationContext apply(KeeperCreationContext t) {
         KeeperCreationContext context = t;
         AnimalKeeper keeper = AnimalKeeper.builder()
                 .name(context.getKeeper())
+                .age(this.INIT_AGE)
                 .occupations(new ArrayList<>())
                 .taskEvaluations(new EnumMap<>(TaskType.class))
                 .familyEvaluations(new EnumMap<>(Family.class))
