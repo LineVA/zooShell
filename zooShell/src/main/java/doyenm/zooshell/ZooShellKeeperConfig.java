@@ -8,6 +8,7 @@ import doyenm.zooshell.commandLine.commandImpl.keeper.RemoveKeeper;
 import doyenm.zooshell.commandLine.commandImpl.keeper.ResetOccupations;
 import doyenm.zooshell.commandLine.commandImpl.keeper.UpdateOccupations;
 import doyenm.zooshell.controller.keepercontroller.*;
+import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.validator.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,11 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ZooShellKeeperConfig {
+    
+    @Bean
+    Utils utils(){
+        return new Utils();
+    }
 
 // Controllers
     @Bean
@@ -32,7 +38,7 @@ public class ZooShellKeeperConfig {
 
     @Bean
     KeeperDetailsController keeperDetailsController() {
-        return new KeeperDetailsController();
+        return new KeeperDetailsController(utils());
     }
 
     @Bean
