@@ -3,13 +3,18 @@ package doyenm.zooshell.controller.animalcontroller;
 import doyenm.zooshell.context.AnimalDetailsContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Sex;
+import doyenm.zooshell.utils.Utils;
 import java.util.function.Function;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class AnimalDetailsController implements Function<AnimalDetailsContext, AnimalDetailsContext> {
+    
+    private final Utils utils;
 
     @Override
     public AnimalDetailsContext apply(AnimalDetailsContext t) {
@@ -22,7 +27,8 @@ public class AnimalDetailsController implements Function<AnimalDetailsContext, A
         } else {
             context.addCouple("Sex", Sex.UNKNOWN.toString());
         }
-        context.addCouple("Age", context.getAge());
+        int age = context.getAge();
+        context.addCouple("Age", utils.getNumbersOfYearsFromAge(age) + " year(s), " + utils.getNumbersOfMonthsFromAge(age) +" month(s)");
         context.addCouple("Paddock", context.getPaddockName());
         context.addCouple("Diet", context.getDiet().toString());
         context.addCouple("Food attributes", context.getCurrentFoodAttributes().toString());

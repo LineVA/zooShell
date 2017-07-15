@@ -5,6 +5,7 @@ import doyenm.zooshell.commandLine.commandImpl.ls.LsContraceptionMethod;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsDiet;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsSex;
 import doyenm.zooshell.controller.animalcontroller.*;
+import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.validator.AnimalChangeNameValidator;
 import doyenm.zooshell.validator.AnimalChangePaddockValidator;
 import doyenm.zooshell.validator.AnimalCreationValidator;
@@ -21,6 +22,11 @@ import org.springframework.context.annotation.Bean;
  * @author doyenm
  */
 public class ZooShellAnimalConfig {
+    
+    @Bean
+    Utils utils(){
+        return new Utils();
+    }
 
     // Controller
     @Bean
@@ -40,7 +46,7 @@ public class ZooShellAnimalConfig {
             
     @Bean 
     AnimalDetailsController animalDetailsController(){
-        return new AnimalDetailsController();
+        return new AnimalDetailsController(utils());
     }
     
     @Bean
