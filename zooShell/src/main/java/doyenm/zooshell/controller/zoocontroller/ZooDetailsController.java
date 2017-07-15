@@ -1,19 +1,25 @@
 package doyenm.zooshell.controller.zoocontroller;
 
 import doyenm.zooshell.context.ZooDetailsContext;
+import doyenm.zooshell.utils.Utils;
 import java.util.function.Function;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class ZooDetailsController implements Function<ZooDetailsContext, ZooDetailsContext> {
 
+    private final Utils utils;
+    
     @Override
     public ZooDetailsContext apply(ZooDetailsContext t) {
         ZooDetailsContext context = t;
         context.addCouple("Name", t.getZoo().getName());
-        context.addCouple("Age", t.getZoo().getAge());
+        int age = context.getZoo().getAge();
+        context.addCouple("Age", utils.getNumbersOfYearsFromAge(age) + " year(s), " + utils.getNumbersOfMonthsFromAge(age) + " month(s)");
         context.addCouple("Width", t.getZoo().getWidth());
         context.addCouple("Height", t.getZoo().getHeight());
         context.addCouple("Horizon", t.getZoo().getHorizon());
