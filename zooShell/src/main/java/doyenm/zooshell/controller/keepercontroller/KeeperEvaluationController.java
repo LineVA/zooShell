@@ -5,15 +5,17 @@ import doyenm.zooshell.context.KeeperEvaluationContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class KeeperEvaluationController implements Function<EvaluationContext, EvaluationContext> {
 
-    KeeperEvaluationTaskController taskController = new KeeperEvaluationTaskController();
-    KeeperEvaluationFamilyController familyController = new KeeperEvaluationFamilyController();
+    private final KeeperEvaluationTaskController taskController;
+    private final KeeperEvaluationFamilyController familyController;
 
     @Override
     public EvaluationContext apply(EvaluationContext t) {
