@@ -6,4 +6,13 @@ package doyenm.zooshell.utils;
  */
 public class Utils {
     
+    private final int NUMBER_OF_MONTHS_PER_YEAR = 12;
+    
+    public int getNumbersOfYearsFromAge(int age){
+        return age / this.NUMBER_OF_MONTHS_PER_YEAR;
+    }
+    
+      public int getNumbersOfMonthsFromAge(int age){
+        return age % this.NUMBER_OF_MONTHS_PER_YEAR;
+    }
 }
