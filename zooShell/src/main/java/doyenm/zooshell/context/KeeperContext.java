@@ -32,6 +32,10 @@ public class KeeperContext {
     public void addCouple(String key, double value) {
         couples.add(new Couple(key, String.valueOf(value)));
     }
+    
+    public void addCouple(String key, int value) {
+        couples.add(new Couple(key, String.valueOf(value)));
+    }
 
     public void addCouplesList(List<String> keys, List<Double> values) {
         if (keys.size() == values.size()) {
