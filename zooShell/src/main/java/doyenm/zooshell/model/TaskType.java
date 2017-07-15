@@ -14,7 +14,7 @@ public enum TaskType {
     ENRICHMENT(2),
     FEEDING(3),
     MEDICAL_TRAINING(4),
-    NURSING(6);
+    NURSING(5);
 
     int id;
 

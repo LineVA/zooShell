@@ -23,7 +23,7 @@ public class AnimalGroupSizeEvaluationController
                 uicn.getStandardDeviation())) {
             context.setGroupSizeWellBeing(context.getBase() * uicn.getCoefficient());
         } else {
-            context.setGroupSizeWellBeing(0.0);
+            context.setGroupSizeWellBeing(context.getZero());
         }
         return context;
     }

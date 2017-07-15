@@ -6,7 +6,6 @@ import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.SizeAttributes;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.utils.GaussianStatistics;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -19,8 +18,14 @@ public class CharacterAttributesConstructor {
 
     public CharacterAttributes build(Specie specie, SizeAttributes sizeAttributes, Sex sex) {
         double tmpAgressivity = gaussianStatistics.nextDouble();
+        double tmpBravery = gaussianStatistics.nextDouble();
+        double tmpGourmandise = gaussianStatistics.nextDouble();
+        double tmpIntelligence = gaussianStatistics.nextDouble();
+        double tmpCuriosity = gaussianStatistics.nextDouble();
+        double tmpMeticulousness = gaussianStatistics.nextDouble();
         double cohabitationFactor = determineCohabitationFactor(tmpAgressivity, specie, sizeAttributes, sex);
-        return new CharacterAttributes(tmpAgressivity, cohabitationFactor);
+        return new CharacterAttributes(tmpAgressivity, tmpBravery, cohabitationFactor,
+                tmpCuriosity, tmpGourmandise, tmpIntelligence, tmpMeticulousness);
     }
 
     public double determineCohabitationFactor(double agressivity, Specie specie, SizeAttributes sizeAttributes, Sex sex) {
@@ -33,9 +38,9 @@ public class CharacterAttributesConstructor {
         //    + agressivity
         //        + specie_agresivity)
         //    / 4
-       return Stream.of(cohabitation)
+        return Stream.of(cohabitation)
                 .map((Double t) -> {
-                    t+= weight >= 1000.0 ? 1.0 : weight / 1000.0; 
+                    t += weight >= 1000.0 ? 1.0 : weight / 1000.0;
                     return t;
                 })
                 .map((Double t) -> {
@@ -45,7 +50,7 @@ public class CharacterAttributesConstructor {
                     return t;
                 })
                 .map((Double t) -> t += agressivity)
-               .map((Double t) -> t+= specie.getCharacterAttributes().getAgressivity())
+                .map((Double t) -> t += specie.getCharacterAttributes().getAgressivity())
                 .map((Double t) -> t / 4.0)
                 .findFirst()
                 .get();

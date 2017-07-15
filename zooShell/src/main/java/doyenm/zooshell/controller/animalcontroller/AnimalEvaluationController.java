@@ -6,22 +6,26 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalDeathEvaluat
 import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalAgeEvaluationController;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.context.EvaluationContext;
+import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalTasksInfluenceEvaluationController;
 import doyenm.zooshell.model.Animal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class AnimalEvaluationController implements Function<EvaluationContext, EvaluationContext> {
 
-    AnimalAgeEvaluationController animalAgeEvaluationController = new AnimalAgeEvaluationController();
-    AnimalDeathEvaluationController animalDeathEvaluationController = new AnimalDeathEvaluationController();
-    AnimalReproductionEvaluationController animalReproductionEvaluationController = new AnimalReproductionEvaluationController();
-    AnimalWellBeingController animalWellBeingController = new AnimalWellBeingController();
+    private final AnimalAgeEvaluationController animalAgeEvaluationController;
+    private final AnimalDeathEvaluationController animalDeathEvaluationController;
+    private final AnimalReproductionEvaluationController animalReproductionEvaluationController;
+    private final AnimalWellBeingController animalWellBeingController;
+    
 
     @Override
     public EvaluationContext apply(EvaluationContext t) {
