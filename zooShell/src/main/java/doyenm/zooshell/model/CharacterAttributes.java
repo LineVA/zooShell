@@ -18,7 +18,7 @@ import lombok.ToString;
 public class CharacterAttributes {
 
     private double agressivity;
-    private double baravery;
+    private double bravery;
     private double cohabitationFactor;
     private double curiosity;
     private double gourmandise;
