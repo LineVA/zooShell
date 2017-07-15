@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class KeeperEvaluationController implements Function<EvaluationContext, EvaluationContext> {
 
+    private final KeeperEvaluationAgeingController ageingController;
     private final KeeperEvaluationTaskController taskController;
     private final KeeperEvaluationFamilyController familyController;
 
@@ -23,6 +24,7 @@ public class KeeperEvaluationController implements Function<EvaluationContext, E
         context.setEvaluatedKeepersList(context.getKeepers().values()
                 .stream()
                 .map((AnimalKeeper t1) -> new KeeperEvaluationContext(context.getZoo(), t1))
+                .map(ageingController)
                 .map(taskController)
                 .map(familyController)
                 .map((KeeperEvaluationContext t1) -> t1.getKeeper())
