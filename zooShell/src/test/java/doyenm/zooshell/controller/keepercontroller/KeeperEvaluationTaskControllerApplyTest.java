@@ -206,7 +206,7 @@ public class KeeperEvaluationTaskControllerApplyTest {
         double result = init + time1 + time2;
         Assertions.assertThat(actualContext.getKeeper().getTaskEvaluations().get(TaskType.CLEANING)).isEqualTo(result, offset(0.01));
     }
-
+    
     @Test
     public void shoulSetTheCompetenceInCleaningAndFeedingToXAndYWhenTheKeeperPractices() {
         // Given
