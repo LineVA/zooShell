@@ -21,7 +21,7 @@ public class EvaluationController implements Function<EvaluationContext, Evaluat
     @Override
     public EvaluationContext apply(EvaluationContext t) {
         EvaluationContext context = t;
-        return Stream.of(context)
+        context = Stream.of(context)
                 .map(zooEvaluationController)
                 //                .map(paddocksEvaluationController)
                 .map(animalEvaluationController)
@@ -32,6 +32,8 @@ public class EvaluationController implements Function<EvaluationContext, Evaluat
                 })
                 .findFirst()
                 .get();
+        context.buildAnimals();
+        return context;
     }
 
 }
