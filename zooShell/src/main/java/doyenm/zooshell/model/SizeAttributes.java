@@ -2,6 +2,7 @@ package doyenm.zooshell.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -9,6 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class SizeAttributes {
 
     private double femaleWeight;
@@ -26,10 +28,4 @@ public class SizeAttributes {
         return Sex.FEMALE == sex ?
                 getFemaleWeight(): getMaleWeight();
     }
-
-    @Override
-    public String toString() {
-        return "SizeAttributes{" + "femaleWeight=" + femaleWeight + ", maleWeight=" + maleWeight + '}';
-    }
-
 }

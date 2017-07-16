@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -13,14 +14,8 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 @Builder
+@ToString
 public class Position {
-
     private final int x;
     private final int y;
-
-    @Override
-    public String toString() {
-        return "Position{" + "x=" + x + ", y=" + y + '}';
-    }
-    
 }

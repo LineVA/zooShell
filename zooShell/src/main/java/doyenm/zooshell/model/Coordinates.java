@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -13,15 +14,10 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 @Builder
+@ToString
 public class Coordinates {
 
     private final Position position;
     private final int width;
     private final int height;
-
-    @Override
-    public String toString() {
-        return "Coordinates{" + "position=" + position + ", width=" + width + ", height=" + height + '}';
-    }
-
 }

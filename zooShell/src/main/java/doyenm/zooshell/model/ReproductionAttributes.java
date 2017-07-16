@@ -2,6 +2,7 @@ package doyenm.zooshell.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -9,6 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class ReproductionAttributes {
 
     private int femaleMaturityAge;
@@ -35,14 +37,4 @@ public class ReproductionAttributes {
         return Sex.FEMALE == sex
                 ? getFemaleMaturityAge() : getMaleMaturityAge();
     }
-
-    @Override
-    public String toString() {
-        return "ReproductionAttributes{" + "femaleMaturityAge=" + femaleMaturityAge +
-                ", maleMaturityAge=" + maleMaturityAge +
-                ", frequency=" + frequency + 
-                ", litterSize=" + litterSize + 
-                ", gestationDuration=" + gestationDuration + '}';
-    }
-
 }

@@ -2,6 +2,7 @@ package doyenm.zooshell.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -9,6 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class FoodAttributes {
 
     private double quantity;
@@ -21,10 +23,4 @@ public class FoodAttributes {
         this.quantity = quantity;
         this.fastDays = fastDays;
     }
-
-    @Override
-    public String toString() {
-        return "FoodAttributes{" + "quantity=" + quantity + ", fastDays=" + fastDays + '}';
-    }
-    
 }

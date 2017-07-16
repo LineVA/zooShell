@@ -2,6 +2,7 @@ package doyenm.zooshell.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -9,6 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class TerritoryAttributes {
 
     private int territorySizeForOneGroup;
@@ -19,10 +21,4 @@ public class TerritoryAttributes {
     
      public TerritoryAttributes() {
     }
-
-    @Override
-    public String toString() {
-        return "TerritoryAttributes{" + "territorySizeForOneGroup=" + territorySizeForOneGroup + '}';
-    }
-     
 }
