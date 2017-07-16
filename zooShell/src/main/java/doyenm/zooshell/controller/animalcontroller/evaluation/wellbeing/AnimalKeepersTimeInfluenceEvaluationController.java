@@ -32,7 +32,7 @@ public class AnimalKeepersTimeInfluenceEvaluationController
         Paddock paddock = context.getPaddock();
         double sum = 0.0;
         for (AnimalKeeper keeper : context.getKeepers()) {
-            sum += keeperUtils.listOfTimedOccupationInGivenPaddock(keeper, paddock)
+            sum += keeperUtils.listOfTimedOccupationsInGivenPaddock(keeper, paddock)
                     .stream()
                     .collect(Collectors.summingDouble(TimedOccupation::getTime));
         }
