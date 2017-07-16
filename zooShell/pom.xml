@@ -11,6 +11,19 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     
+    <profiles>
+        <profile>
+        <id>test</id>
+        <properties>
+            <env>test</env>
+            <gebEnv>test</gebEnv>
+            <jacoco.skip>false</jacoco.skip>
+            <maven.test.skip>false</maven.test.skip>
+            <skip.unit.tests>false</skip.unit.tests>
+        </properties>
+    </profile>
+    </profiles>
+    
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin -->
         <dependency>
@@ -68,5 +81,65 @@
         </dependency>
     </dependencies>
     
-    
+    <build>
+        <plugins>
+              <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.7.9</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        </plugins>
+    </build>
+  
+    <reporting>
+<!--        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                             select non-aggregate reports 
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+      
+   
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
+
+            
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.10-SNAPSHOT</version>
+            </plugin>
+        </plugins>-->
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.9</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
