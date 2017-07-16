@@ -22,9 +22,9 @@ public class KeeperEvaluationTaskController
         for (Map.Entry<TaskType, Double> entry : map.entrySet()) {
             if (context.getTaskEvaluationMap().containsKey(entry.getKey())) {
                 double currentValue = context.getTaskEvaluationMap().get(entry.getKey());
-                context.getTaskEvaluationMap().replace(entry.getKey(), entry.getValue() + currentValue);
+                context.getKeeper().getTaskEvaluations().replace(entry.getKey(), entry.getValue() + currentValue);
             } else {
-                context.getTaskEvaluationMap().put(entry.getKey(), entry.getValue());
+                context.getKeeper().getTaskEvaluations().put(entry.getKey(), entry.getValue());
             }
         }
         return context;
