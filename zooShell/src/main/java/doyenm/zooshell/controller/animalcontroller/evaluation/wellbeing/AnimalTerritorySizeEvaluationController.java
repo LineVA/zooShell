@@ -1,7 +1,6 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
-import doyenm.zooshell.model.Uicn;
 import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
 
@@ -23,13 +22,12 @@ public class AnimalTerritorySizeEvaluationController
                 / (double) context.getAnimal().getSocialAttributes().getIndividualsPerGroup();
         double currentDeviation = utils.computeDeviationBetweenCurrentAndOptimal(
               territorySize,
-               groupsNumber * context.getSpecie().getTerritoryAttributes().getTerritorySizeForOneGroup());
-        Uicn uicn = context.getAnimal().getSpecie().getUicn();
+               groupsNumber * context.getAnimal().getTerritoryAttributes().getTerritorySizeForOneGroup());
         if (utils.isBetweenAuthorizedValues(currentDeviation,
-                uicn.getStandardDeviation())) {
-            context.setFoodQuantityWellBeing(context.getBase() * uicn.getCoefficient());
+                context.getUicnStandardDeviation())) {
+            context.setTerritorySizeWellBeing(context.getBase() * context.getUicnCoefficient());
         } else {
-            context.setFoodQuantityWellBeing(context.getZero());
+            context.setTerritorySizeWellBeing(context.getZero());
         }
         return context;
     }

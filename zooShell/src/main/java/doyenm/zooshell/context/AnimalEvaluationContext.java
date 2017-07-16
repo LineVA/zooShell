@@ -72,6 +72,14 @@ public class AnimalEvaluationContext {
     public void setCurrentGestationDuration(int i) {
         getAnimal().setMonthsOfGestation(i);
     }
+    
+    public double getUicnCoefficient(){
+        return getAnimal().getSpecie().getUicn().getCoefficient();
+    }
+    
+    public double getUicnStandardDeviation(){
+        return getAnimal().getSpecie().getUicn().getStandardDeviation();
+    }
 
     public List<Animal> getAnimalsOfTheZoo() {
         return new ArrayList(getZoo().getAnimals().values());

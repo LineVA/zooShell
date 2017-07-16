@@ -1,7 +1,6 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
-import doyenm.zooshell.model.Uicn;
 import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
 
@@ -21,10 +20,9 @@ public class AnimalFoodQuantityEvaluationController
         double currentDeviation = utils.computeDeviationBetweenCurrentAndOptimal(
                 context.getAnimal().getCurrentFoodAttributes().getQuantity(),
                 context.getAnimal().getOptimalFoodAttributes().getQuantity());
-        Uicn uicn = context.getAnimal().getSpecie().getUicn();
         if (utils.isBetweenAuthorizedValues(currentDeviation,
-                uicn.getStandardDeviation())) {
-            context.setFoodQuantityWellBeing(context.getBase() * uicn.getCoefficient());
+                context.getUicnStandardDeviation())) {
+            context.setFoodQuantityWellBeing(context.getBase() * context.getUicnCoefficient());
         } else {
             context.setFoodQuantityWellBeing(context.getZero());
         }
