@@ -2,6 +2,7 @@ package doyenm.zooshell.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -9,8 +10,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class SocialAttributes {
-
     private int individualsPerGroup;
 
     public SocialAttributes(int individualsPerGroup) {
@@ -19,10 +20,4 @@ public class SocialAttributes {
 
     public SocialAttributes() {
     }
-
-    @Override
-    public String toString() {
-        return "SocialAttributes{" + "individualsPerGroup=" + individualsPerGroup + '}';
-    }
-    
 }

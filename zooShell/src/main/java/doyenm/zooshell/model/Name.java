@@ -2,6 +2,7 @@ package doyenm.zooshell.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -9,6 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class Name {
 
     String name;
@@ -19,11 +21,4 @@ public class Name {
     Name(String name) {
         this.name = name;
     }
-
-    @Override
-    public String toString() {
-        return name;
-    }
-    
-    
 }
