@@ -30,7 +30,7 @@ public class EvaluationContext {
     private List<Animal> evaluatedAnimalsList = new ArrayList<>();
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
     
-    public void build() {
+    public void buildAnimals() {
         Map<String, Animal> evaluatedAnimalsMap = convertAnimalsListToMap();
         List<String> removeAnimalsList = new ArrayList<>();
         this.getAnimals().keySet()
