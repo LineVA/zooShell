@@ -71,7 +71,7 @@ public class ZooShellPaddockConfig {
    FindPaddock findPaddock(){
        return  new FindPaddock();
    } 
-
+   
     // Validators
     @Bean
     PaddockChangeNameValidator paddockChangeNameValidator() {
@@ -110,7 +110,7 @@ public class ZooShellPaddockConfig {
 
     @Bean
     PaddockValidator paddockValidator() {
-        return new PaddockValidator();
+        return new PaddockValidator(findPaddock());
     }
 
     @Bean
