@@ -35,17 +35,6 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         return animal;
     }
 
-    private AnimalEvaluationContext givenContextWithAnimalUicnCoefficientAndStandard(Animal animal, double coef, double deviation) {
-        AnimalEvaluationContext context = Mockito.mock(AnimalEvaluationContext.class);
-        Mockito.when(context.getAnimal()).thenReturn(animal);
-        Mockito.when(context.getUicnCoefficient()).thenReturn(coef);
-        Mockito.when(context.getUicnStandardDeviation()).thenReturn(deviation);
-        Mockito.when(context.getGroupSizeWellBeing()).thenCallRealMethod();
-        Mockito.when(context.getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock()).thenReturn(TestUtils.generateInteger());
-        Mockito.doCallRealMethod().when(context).setGroupSizeWellBeing(Mockito.anyDouble());
-        return context;
-    }
-
     private KeeperUtils givenKeeperUtilsWithOccupations(TimedOccupation occ1, AnimalKeeper keeper1, Paddock pad1,
             TimedOccupation occ2, AnimalKeeper keeper2, Paddock pad2) {
         KeeperUtils utils = Mockito.mock(KeeperUtils.class);
