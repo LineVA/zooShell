@@ -4,7 +4,7 @@ import doyenm.zooshell.context.AnimalChangePaddockContext;
 import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
 import doyenm.zooshell.validator.context.FindingAnimalContext;
 import doyenm.zooshell.validator.context.FindingPaddockContext;
-import doyenm.zooshell.validator.function.FindingAnimalFunction;
+import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingPaddockByNameFunction;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 public class AnimalChangePaddockValidator implements Predicate<AnimalChangePaddockContext> {
 
     FindingPaddockByNameFunction findingPaddockByNameFunction = new FindingPaddockByNameFunction();
-    FindingAnimalFunction findingAnimalFunction = new FindingAnimalFunction();
+    FindingAnimalWithEntryCheckFunction findingAnimalFunction = new FindingAnimalWithEntryCheckFunction();
 
     @Override
     public boolean test(AnimalChangePaddockContext t) {

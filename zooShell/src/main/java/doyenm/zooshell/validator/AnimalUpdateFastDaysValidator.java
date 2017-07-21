@@ -2,7 +2,7 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalUpdateFastDaysContext;
 import doyenm.zooshell.validator.context.FindingAnimalContext;
-import doyenm.zooshell.validator.function.FindingAnimalFunction;
+import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
 import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
 import java.util.function.Predicate;
@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 public class AnimalUpdateFastDaysValidator
         implements Predicate<AnimalUpdateFastDaysContext> {
 
-    FindingAnimalFunction findingAnimalFunction = new FindingAnimalFunction();
+    FindingAnimalWithEntryCheckFunction findingAnimalFunction = new FindingAnimalWithEntryCheckFunction();
     DoubleValuesPredicates doubleValuePredicates = new DoubleValuesPredicates();
     IntegerValuePredicates integerValuePredicates = new IntegerValuePredicates();
 

@@ -3,6 +3,7 @@ package doyenm.zooshell.context;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Zoo;
+import java.util.Map;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -24,6 +25,10 @@ public class AnimalUpdateContraceptionContext {
     private ContraceptionMethod convertedContraceptionMethod;
 
     public void convert() {
+    }
+    
+    public Map<String, Animal> getAnimals(){
+        return getZoo().getAnimals();
     }
 
 }

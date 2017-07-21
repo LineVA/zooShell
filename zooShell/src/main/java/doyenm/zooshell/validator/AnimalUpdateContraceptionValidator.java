@@ -1,11 +1,9 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
-import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.validator.context.FindingAnimalContext;
 import doyenm.zooshell.validator.context.FindingContraceptionContext;
-import doyenm.zooshell.validator.function.FindingAnimalFunction;
+import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
 import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
@@ -14,25 +12,23 @@ import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithSexPred
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class AnimalUpdateContraceptionValidator
         implements Predicate<AnimalUpdateContraceptionContext> {
 
-    FindingContraceptionFunction findingContraceptionMethodFunction = new FindingContraceptionFunction();
-    FindingAnimalFunction findingAnimalFunction = new FindingAnimalFunction();
+    private final FindingContraceptionFunction findingContraceptionMethodFunction;
+    private final FindingAnimalWithEntryCheckFunction findingAnimalFunction;
 
-    CanHaveAHormonalContraceptionPredicate hormonalContraceptionPredicate
-            = new CanHaveAHormonalContraceptionPredicate();
-    CanHaveAChirurgicalContraceptionPredicate chirurgicalContraceptionPredicate
-            = new CanHaveAChirurgicalContraceptionPredicate();
-    IsContraceptionCompatibleWithPreviousPredicate compatibleWithPreviousPredicate
-            = new IsContraceptionCompatibleWithPreviousPredicate();
-    IsContraceptionCompatibleWithSexPredicate compatibleWithSexPredicate
-            = new IsContraceptionCompatibleWithSexPredicate();
+    private final CanHaveAHormonalContraceptionPredicate hormonalContraceptionPredicate;
+    private final CanHaveAChirurgicalContraceptionPredicate chirurgicalContraceptionPredicate;
+    private final IsContraceptionCompatibleWithPreviousPredicate compatibleWithPreviousPredicate;
+    private final IsContraceptionCompatibleWithSexPredicate compatibleWithSexPredicate;
 
     @Override
     public boolean test(AnimalUpdateContraceptionContext t) {
@@ -40,10 +36,7 @@ public class AnimalUpdateContraceptionValidator
         context = retrieveContraceptionMethod(context);
         return !Stream.of(context)
                 .filter((AnimalUpdateContraceptionContext t1) -> {
-                    if (t1.getConvertedAnimal() != null && t1.getConvertedContraceptionMethod() != null) {
-                        return t1.getConvertedAnimal().getPaddock().getEntry() != null;
-                    }
-                    return false;
+                    return t1.getConvertedAnimal() != null && t1.getConvertedContraceptionMethod() != null;
                 })
                 .filter(compatibleWithSexPredicate)
                 .filter(hormonalContraceptionPredicate)
@@ -54,7 +47,7 @@ public class AnimalUpdateContraceptionValidator
     }
 
     private AnimalUpdateContraceptionContext retrieveAnimal(AnimalUpdateContraceptionContext t) {
-        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getZoo().getAnimals(), t.getAnimal());
+        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getAnimals(), t.getAnimal());
         t.setConvertedAnimal(Stream.of(findingAnimalContext)
                 .map(findingAnimalFunction)
                 .findFirst()

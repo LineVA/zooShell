@@ -3,7 +3,7 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.AnimalUpdateDietContext;
 import doyenm.zooshell.validator.context.FindingAnimalContext;
 import doyenm.zooshell.validator.context.FindingDietContext;
-import doyenm.zooshell.validator.function.FindingAnimalFunction;
+import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingDietFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 public class AnimalUpdateDietValidator implements Predicate<AnimalUpdateDietContext> {
 
     FindingDietFunction findingDietFunction = new FindingDietFunction();
-    FindingAnimalFunction findingAnimalFunction = new FindingAnimalFunction();
+    FindingAnimalWithEntryCheckFunction findingAnimalFunction = new FindingAnimalWithEntryCheckFunction();
 
     @Override
     public boolean test(AnimalUpdateDietContext t) {

@@ -2,7 +2,7 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalUpdateFoodQuantityContext;
 import doyenm.zooshell.validator.context.FindingAnimalContext;
-import doyenm.zooshell.validator.function.FindingAnimalFunction;
+import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 public class AnimalUpdateFoodQuantityValidator
         implements Predicate<AnimalUpdateFoodQuantityContext> {
 
-    FindingAnimalFunction findingAnimalFunction = new FindingAnimalFunction();
+    FindingAnimalWithEntryCheckFunction findingAnimalFunction = new FindingAnimalWithEntryCheckFunction();
     DoubleValuesPredicates doubleValuePredicates = new DoubleValuesPredicates();
 
     

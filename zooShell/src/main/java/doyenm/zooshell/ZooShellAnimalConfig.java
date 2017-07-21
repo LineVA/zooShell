@@ -15,6 +15,12 @@ import doyenm.zooshell.validator.AnimalUpdateDietValidator;
 import doyenm.zooshell.validator.AnimalUpdateFastDaysValidator;
 import doyenm.zooshell.validator.AnimalUpdateFoodQuantityValidator;
 import doyenm.zooshell.validator.AnimalValidator;
+import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
+import doyenm.zooshell.validator.function.FindingContraceptionFunction;
+import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;
+import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
+import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithPreviousPredicate;
+import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithSexPredicate;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -79,6 +85,37 @@ public class ZooShellAnimalConfig {
         return new AnimalUpdateFoodQuantityController();
     }
     
+    // Predicates
+    @Bean
+    FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction(){
+        return new FindingAnimalWithEntryCheckFunction();
+    }
+    
+     @Bean
+    FindingContraceptionFunction findingContraceptionFunction(){
+        return new FindingContraceptionFunction();
+    }
+    
+     @Bean
+    CanHaveAChirurgicalContraceptionPredicate canHaveAChirurgicalContraceptionPredicate(){
+        return new CanHaveAChirurgicalContraceptionPredicate();
+    }
+    
+     @Bean
+    CanHaveAHormonalContraceptionPredicate canHaveAHormonalContraceptionPredicate(){
+        return new CanHaveAHormonalContraceptionPredicate();
+    }
+    
+     @Bean
+    IsContraceptionCompatibleWithPreviousPredicate isContraceptionCompatibleWithPreviousPredicate(){
+        return new IsContraceptionCompatibleWithPreviousPredicate();
+    }
+    
+     @Bean
+    IsContraceptionCompatibleWithSexPredicate isContraceptionCompatibleWithSexPredicate(){
+        return new IsContraceptionCompatibleWithSexPredicate();
+    }
+    
     // Validator
     @Bean
     AnimalChangeNameValidator animalChangeNameValidator(){
@@ -102,7 +139,12 @@ public class ZooShellAnimalConfig {
     
     @Bean
     AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator(){
-        return new AnimalUpdateContraceptionValidator();
+        return new AnimalUpdateContraceptionValidator(findingContraceptionFunction(),
+        findingAnimalWithEntryCheckFunction(), 
+        canHaveAHormonalContraceptionPredicate(),
+        canHaveAChirurgicalContraceptionPredicate(),
+        isContraceptionCompatibleWithPreviousPredicate(),
+        isContraceptionCompatibleWithSexPredicate());
     }
     
     @Bean
@@ -124,6 +166,7 @@ public class ZooShellAnimalConfig {
     AnimalValidator animalValidator(){
         return new AnimalValidator();
     }
+    
     
     // Commands
     @Bean
