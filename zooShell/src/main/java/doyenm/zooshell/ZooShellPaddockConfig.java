@@ -16,6 +16,7 @@ import doyenm.zooshell.validator.PaddockValidator;
 import doyenm.zooshell.validator.UpdateBiomeValidator;
 import doyenm.zooshell.validator.UpdatePaddockTypeValidator;
 import doyenm.zooshell.validator.function.FindingBiomeFunction;
+import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -77,6 +78,11 @@ public class ZooShellPaddockConfig {
     FindingBiomeFunction findingBiomeFunction() {
         return new FindingBiomeFunction();
     }
+    
+      @Bean
+    FindingPaddockTypeFunction findingPaddockTypeFunction() {
+        return new FindingPaddockTypeFunction();
+    }
 
     // Validators
     @Bean
@@ -126,7 +132,7 @@ public class ZooShellPaddockConfig {
 
     @Bean
     UpdatePaddockTypeValidator updatePaddockTypeValidator() {
-        return new UpdatePaddockTypeValidator();
+        return new UpdatePaddockTypeValidator(findPaddock(), findingPaddockTypeFunction());
     }
 
     // Commands

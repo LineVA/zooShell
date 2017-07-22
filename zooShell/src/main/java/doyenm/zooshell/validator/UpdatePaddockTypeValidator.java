@@ -1,39 +1,36 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.UpdatePaddockTypeContext;
-import doyenm.zooshell.validator.context.FindingPaddockContext;
+import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.validator.context.FindingPaddockTypeContext;
-import doyenm.zooshell.validator.function.FindingPaddockByNameFunction;
 import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class UpdatePaddockTypeValidator implements Predicate<UpdatePaddockTypeContext> {
 
-    FindingPaddockByNameFunction findingPaddockByNameFunction = new FindingPaddockByNameFunction();
-    FindingPaddockTypeFunction findingPaddockTypeFunction = new FindingPaddockTypeFunction();
+    private final FindPaddock findPaddock;
+    private final FindingPaddockTypeFunction findingPaddockTypeFunction;
 
     @Override
     public boolean test(UpdatePaddockTypeContext t) {
-        FindingPaddockContext findingPaddockContext = new FindingPaddockContext(t.getZoo().getPaddocks(), t.getPaddock());
+        UpdatePaddockTypeContext context = t;
         FindingPaddockTypeContext findingPaddockTypeContext = new FindingPaddockTypeContext(t.getType());
-        t.setConvertedPaddock(Stream.of(findingPaddockContext)
-                .map(findingPaddockByNameFunction)
-                .findFirst()
-                .get()
-                .getPaddock());
+        Paddock pad = findPaddock.find(context.getZoo(), context.getPaddock());
+        if (pad == null) {
+            return false;
+        }
         t.setConvertedType(Stream.of(findingPaddockTypeContext)
                 .map(findingPaddockTypeFunction)
                 .findFirst()
                 .get()
                 .getConvertedType());
-        if (t.getConvertedPaddock() != null && t.getConvertedType()!= null) {
-            return t.getConvertedPaddock().getEntry() != null;
-        }
-        return false;
+       return t.getConvertedType()!= null;
     }
 }
