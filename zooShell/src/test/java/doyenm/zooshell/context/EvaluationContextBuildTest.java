@@ -51,7 +51,7 @@ public class EvaluationContextBuildTest {
 
     private EvaluationContext givenContextWithZooAndEvaluatedList(Zoo zoo, List<Animal> evaluatedList) {
         EvaluationContext context = Mockito.mock(EvaluationContext.class);
-        Mockito.doCallRealMethod().when(context).build();
+        Mockito.doCallRealMethod().when(context).buildAnimals();
         Mockito.when(context.getAnimals()).thenCallRealMethod();
         Mockito.when(context.getZoo()).thenReturn(zoo);
         Mockito.when(context.getEvaluatedAnimalsList()).thenReturn(evaluatedList);
@@ -68,7 +68,7 @@ public class EvaluationContextBuildTest {
         Zoo zoo = givenZooWithAnimals(animals);
         EvaluationContext context = givenContextWithZooAndEvaluatedList(zoo, evaluatedList);
         // When
-        context.build();
+        context.buildAnimals();
         // Then
         Assertions.assertThat(context.getAnimals()).isNotNull();
         Assertions.assertThat(context.getAnimals().size()).isEqualTo(0);
@@ -86,7 +86,7 @@ public class EvaluationContextBuildTest {
         Zoo zoo = givenZooWithAnimals(animals);
         EvaluationContext context = givenContextWithZooAndEvaluatedList(zoo, evaluatedList);
         // When
-        context.build();
+        context.buildAnimals();
         // Then
         Assertions.assertThat(context.getAnimals()).isNotNull();
         Assertions.assertThat(context.getAnimals().size()).isEqualTo(0);

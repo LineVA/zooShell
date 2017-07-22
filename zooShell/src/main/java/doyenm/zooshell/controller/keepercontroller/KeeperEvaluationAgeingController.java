@@ -13,7 +13,7 @@ public class KeeperEvaluationAgeingController
     @Override
     public KeeperEvaluationContext apply(KeeperEvaluationContext t) {
         KeeperEvaluationContext context = t;
-        context.getKeeper().setAge(context.getKeeper().getAge() + context.getZoo().getMonthsPerEvaluation());
+        context.getKeeper().setAge(context.getKeeperAge() + context.getMonthsPerTurn());
         return context;
     }
 }

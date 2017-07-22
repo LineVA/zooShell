@@ -3,7 +3,7 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.context.FindingAnimalContext;
-import doyenm.zooshell.validator.function.FindingAnimalFunction;
+import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import java.util.stream.Stream;
 
 /**
@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  */
 public class FindAnimal {
 
-    FindingAnimalFunction findingAnimalFunction = new FindingAnimalFunction();
+    FindingAnimalWithEntryCheckFunction findingAnimalFunction = new FindingAnimalWithEntryCheckFunction();
 
     public Animal find(Zoo zoo, String padName) {
         FindingAnimalContext findingAnimalContext = new FindingAnimalContext(zoo.getAnimals(), padName);

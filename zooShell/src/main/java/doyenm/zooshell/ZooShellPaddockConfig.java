@@ -2,23 +2,9 @@ package doyenm.zooshell;
 
 import doyenm.zooshell.commandLine.commandImpl.ls.LsBiome;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsPaddockType;
-import doyenm.zooshell.commandLine.commandImpl.paddock.ChangePaddockName;
-import doyenm.zooshell.commandLine.commandImpl.paddock.CreatePaddock;
-import doyenm.zooshell.commandLine.commandImpl.paddock.CreatePaddockEntry;
-import doyenm.zooshell.commandLine.commandImpl.paddock.CreatePaddockExtension;
-import doyenm.zooshell.commandLine.commandImpl.paddock.DetailPad;
-import doyenm.zooshell.commandLine.commandImpl.paddock.LsPaddock;
-import doyenm.zooshell.commandLine.commandImpl.paddock.RemovePaddock;
-import doyenm.zooshell.commandLine.commandImpl.paddock.UpdateBiome;
-import doyenm.zooshell.commandLine.commandImpl.paddock.UpdatePaddockType;
-import doyenm.zooshell.controller.paddockcontroller.PaddockChangeNameController;
-import doyenm.zooshell.controller.paddockcontroller.PaddockCreationController;
-import doyenm.zooshell.controller.paddockcontroller.PaddockDetailsController;
-import doyenm.zooshell.controller.paddockcontroller.PaddockEntryCreationController;
-import doyenm.zooshell.controller.paddockcontroller.PaddockExtensionCreationController;
-import doyenm.zooshell.controller.paddockcontroller.PaddockRemoveController;
-import doyenm.zooshell.controller.paddockcontroller.UpdateBiomeController;
-import doyenm.zooshell.controller.paddockcontroller.UpdatePaddockTypeController;
+import doyenm.zooshell.commandLine.commandImpl.paddock.*;
+import doyenm.zooshell.controller.paddockcontroller.*;
+import doyenm.zooshell.validator.FindPaddock;
 import doyenm.zooshell.validator.PaddockChangeNameValidator;
 import doyenm.zooshell.validator.PaddockCreationValidator;
 import doyenm.zooshell.validator.PaddockEntryCreationValidator;
@@ -29,6 +15,8 @@ import doyenm.zooshell.validator.PaddockRemoveValidator;
 import doyenm.zooshell.validator.PaddockValidator;
 import doyenm.zooshell.validator.UpdateBiomeValidator;
 import doyenm.zooshell.validator.UpdatePaddockTypeValidator;
+import doyenm.zooshell.validator.function.FindingBiomeFunction;
+import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -80,6 +68,22 @@ public class ZooShellPaddockConfig {
         return new UpdatePaddockTypeController();
     }
 
+    // Predicates
+    @Bean
+    FindPaddock findPaddock() {
+        return new FindPaddock();
+    }
+
+    @Bean
+    FindingBiomeFunction findingBiomeFunction() {
+        return new FindingBiomeFunction();
+    }
+    
+      @Bean
+    FindingPaddockTypeFunction findingPaddockTypeFunction() {
+        return new FindingPaddockTypeFunction();
+    }
+
     // Validators
     @Bean
     PaddockChangeNameValidator paddockChangeNameValidator() {
@@ -113,58 +117,58 @@ public class ZooShellPaddockConfig {
 
     @Bean
     PaddockRemoveValidator paddockRemoveValidator() {
-        return new PaddockRemoveValidator();
+        return new PaddockRemoveValidator(findPaddock());
     }
 
     @Bean
     PaddockValidator paddockValidator() {
-        return new PaddockValidator();
+        return new PaddockValidator(findPaddock());
     }
 
     @Bean
     UpdateBiomeValidator updateBiomeValidator() {
-        return new UpdateBiomeValidator();
+        return new UpdateBiomeValidator(findPaddock(), findingBiomeFunction());
     }
 
     @Bean
     UpdatePaddockTypeValidator updatePaddockTypeValidator() {
-        return new UpdatePaddockTypeValidator();
+        return new UpdatePaddockTypeValidator(findPaddock(), findingPaddockTypeFunction());
     }
 
     // Commands
     @Bean
-    ChangePaddockName changePaddockName(){
+    ChangePaddockName changePaddockName() {
         return new ChangePaddockName(paddockChangeNameValidator(), paddockChangeNameController());
     }
-    
+
     @Bean
     CreatePaddock createPaddock() {
         return new CreatePaddock(paddockCreationValidator(), paddockLocationValidator(), paddockCreationController());
     }
-    
-     @Bean
+
+    @Bean
     CreatePaddockEntry createPaddockEntry() {
         return new CreatePaddockEntry(paddockEntryCreationValidator(), paddockEntryCreationController());
     }
-    
-     @Bean
+
+    @Bean
     CreatePaddockExtension createPaddockExtension() {
-        return new CreatePaddockExtension(paddockExtensionCreationValidator(), 
+        return new CreatePaddockExtension(paddockExtensionCreationValidator(),
                 paddockExtensionLocationValidator(), paddockExtensionCreationController());
     }
-    
-    @Bean 
-    DetailPad detailPad(){
+
+    @Bean
+    DetailPad detailPad() {
         return new DetailPad(paddockValidator(), paddockDetailsController());
     }
-    
+
     @Bean
     LsBiome lsBiome() {
         return new LsBiome();
     }
-    
+
     @Bean
-    LsPaddock lsPaddock(){
+    LsPaddock lsPaddock() {
         return new LsPaddock();
     }
 
@@ -174,18 +178,18 @@ public class ZooShellPaddockConfig {
     }
 
     @Bean
-    RemovePaddock removePaddock(){
+    RemovePaddock removePaddock() {
         return new RemovePaddock(paddockRemoveValidator(), paddockRemoveController());
     }
-    
+
     @Bean
-    UpdateBiome updateBiome(){
+    UpdateBiome updateBiome() {
         return new UpdateBiome(updateBiomeValidator(), updateBiomeController());
     }
-    
+
     @Bean
-    UpdatePaddockType updatePaddockType(){
+    UpdatePaddockType updatePaddockType() {
         return new UpdatePaddockType(updatePaddockTypeValidator(), updatePaddockTypeController());
     }
-    
+
 }

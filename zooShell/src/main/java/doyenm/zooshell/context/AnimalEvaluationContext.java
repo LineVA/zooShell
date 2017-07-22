@@ -2,6 +2,7 @@ package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
+import doyenm.zooshell.model.Family;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.model.Zoo;
@@ -72,6 +73,14 @@ public class AnimalEvaluationContext {
     public void setCurrentGestationDuration(int i) {
         getAnimal().setMonthsOfGestation(i);
     }
+    
+    public double getUicnCoefficient(){
+        return getAnimal().getSpecie().getUicn().getCoefficient();
+    }
+    
+    public double getUicnStandardDeviation(){
+        return getAnimal().getSpecie().getUicn().getStandardDeviation();
+    }
 
     public List<Animal> getAnimalsOfTheZoo() {
         return new ArrayList(getZoo().getAnimals().values());
@@ -83,6 +92,10 @@ public class AnimalEvaluationContext {
 
     public Paddock getPaddock() {
         return getAnimal().getPaddock();
+    }
+    
+    public Family getFamily(){
+        return getAnimal().getSpecie().getFamily();
     }
 
 }

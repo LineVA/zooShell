@@ -29,9 +29,11 @@ public class KeeperEvaluationFamilyController
             entry.getValue().stream().forEach((family) -> {
                 if (context.getFamilyEvaluationMap().containsKey(family)) {
                     double currentValue = context.getFamilyEvaluationMap().get(family);
-                    context.getFamilyEvaluationMap().replace(family, paddocksMap.get(entry.getKey()) + currentValue);
+                    context.getKeeper().getFamilyEvaluations().replace(family, paddocksMap.get(entry.getKey()) + currentValue);
                 } else {
-                    context.getFamilyEvaluationMap().put(family, paddocksMap.get(entry.getValue()));
+                    System.out.println(entry);
+                    System.out.println(paddocksMap.get(entry.getValue()));
+                    context.getKeeper().getFamilyEvaluations().put(family, paddocksMap.get(entry.getKey()));
                 }
             });
         });

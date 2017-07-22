@@ -5,19 +5,21 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class PaddockRemoveValidator implements Predicate<PaddockContext> {
 
-    private final FindPaddock findPaddock = new FindPaddock();
+    private final FindPaddock findPaddock;
 
     @Override
     public boolean test(PaddockContext t) {
         PaddockContext context = t;
-        Paddock pad = findPaddock.find(context.getZoo(), t.getPaddock());
+        Paddock pad = findPaddock.find(context.getZoo(), context.getPaddock());
         if (pad == null) {
             return false;
         }

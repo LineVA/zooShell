@@ -4,6 +4,7 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class EvaluationContext {
     private List<Animal> evaluatedAnimalsList = new ArrayList<>();
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
     
-    public void build() {
+    public void buildAnimals() {
         Map<String, Animal> evaluatedAnimalsMap = convertAnimalsListToMap();
         List<String> removeAnimalsList = new ArrayList<>();
         this.getAnimals().keySet()
@@ -52,8 +53,8 @@ public class EvaluationContext {
         return getZoo().getAnimals();
     }
     
-    public Map<String, AnimalKeeper> getKeepers(){
-        return getZoo().getKeepers();
+    public Collection<AnimalKeeper> getKeepers(){
+        return getZoo().getKeepers().values();
     }
     
     private Map<String, Animal> convertAnimalsListToMap() {
