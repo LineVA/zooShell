@@ -15,6 +15,7 @@ import doyenm.zooshell.validator.PaddockRemoveValidator;
 import doyenm.zooshell.validator.PaddockValidator;
 import doyenm.zooshell.validator.UpdateBiomeValidator;
 import doyenm.zooshell.validator.UpdatePaddockTypeValidator;
+import doyenm.zooshell.validator.function.FindingBiomeFunction;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -65,13 +66,18 @@ public class ZooShellPaddockConfig {
     UpdatePaddockTypeController updatePaddockTypeController() {
         return new UpdatePaddockTypeController();
     }
-    
+
     // Predicates
     @Bean
-   FindPaddock findPaddock(){
-       return  new FindPaddock();
-   } 
-   
+    FindPaddock findPaddock() {
+        return new FindPaddock();
+    }
+
+    @Bean
+    FindingBiomeFunction findingBiomeFunction() {
+        return new FindingBiomeFunction();
+    }
+
     // Validators
     @Bean
     PaddockChangeNameValidator paddockChangeNameValidator() {
@@ -115,7 +121,7 @@ public class ZooShellPaddockConfig {
 
     @Bean
     UpdateBiomeValidator updateBiomeValidator() {
-        return new UpdateBiomeValidator();
+        return new UpdateBiomeValidator(findPaddock(), findingBiomeFunction());
     }
 
     @Bean
@@ -125,38 +131,38 @@ public class ZooShellPaddockConfig {
 
     // Commands
     @Bean
-    ChangePaddockName changePaddockName(){
+    ChangePaddockName changePaddockName() {
         return new ChangePaddockName(paddockChangeNameValidator(), paddockChangeNameController());
     }
-    
+
     @Bean
     CreatePaddock createPaddock() {
         return new CreatePaddock(paddockCreationValidator(), paddockLocationValidator(), paddockCreationController());
     }
-    
-     @Bean
+
+    @Bean
     CreatePaddockEntry createPaddockEntry() {
         return new CreatePaddockEntry(paddockEntryCreationValidator(), paddockEntryCreationController());
     }
-    
-     @Bean
+
+    @Bean
     CreatePaddockExtension createPaddockExtension() {
-        return new CreatePaddockExtension(paddockExtensionCreationValidator(), 
+        return new CreatePaddockExtension(paddockExtensionCreationValidator(),
                 paddockExtensionLocationValidator(), paddockExtensionCreationController());
     }
-    
-    @Bean 
-    DetailPad detailPad(){
+
+    @Bean
+    DetailPad detailPad() {
         return new DetailPad(paddockValidator(), paddockDetailsController());
     }
-    
+
     @Bean
     LsBiome lsBiome() {
         return new LsBiome();
     }
-    
+
     @Bean
-    LsPaddock lsPaddock(){
+    LsPaddock lsPaddock() {
         return new LsPaddock();
     }
 
@@ -166,18 +172,18 @@ public class ZooShellPaddockConfig {
     }
 
     @Bean
-    RemovePaddock removePaddock(){
+    RemovePaddock removePaddock() {
         return new RemovePaddock(paddockRemoveValidator(), paddockRemoveController());
     }
-    
+
     @Bean
-    UpdateBiome updateBiome(){
+    UpdateBiome updateBiome() {
         return new UpdateBiome(updateBiomeValidator(), updateBiomeController());
     }
-    
+
     @Bean
-    UpdatePaddockType updatePaddockType(){
+    UpdatePaddockType updatePaddockType() {
         return new UpdatePaddockType(updatePaddockTypeValidator(), updatePaddockTypeController());
     }
-    
+
 }
