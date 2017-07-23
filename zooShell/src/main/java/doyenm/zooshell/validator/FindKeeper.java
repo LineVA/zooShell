@@ -15,7 +15,7 @@ public class FindKeeper {
     FindingKeeperFunction findingKeeperFunction = new FindingKeeperFunction();
 
     public AnimalKeeper find(Zoo zoo, String keeperName) {
-        FindingKeeperContext findingKeeperContext = new FindingKeeperContext(zoo.getKeepers(), keeperName);
+        FindingKeeperContext findingKeeperContext = new FindingKeeperContext(zoo.getKeepers(), keeperName.toUpperCase());
         return Stream.of(findingKeeperContext)
                 .map(findingKeeperFunction)
                 .findFirst()
