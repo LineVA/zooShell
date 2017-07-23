@@ -1,11 +1,8 @@
 package doyenm.zooshell;
 
 import doyenm.zooshell.validator.FindPaddock;
-import doyenm.zooshell.validator.function.FindingBiomeFunction;
-import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
-import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
+import doyenm.zooshell.validator.function.*;
+import doyenm.zooshell.validator.predicates.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,10 +17,20 @@ public class ZooShellPredicatesConfig {
     FindPaddock findPaddock() {
         return new FindPaddock();
     }
+    
+    @Bean
+    FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction(){
+        return new FindingAnimalWithEntryCheckFunction();
+    }
 
     @Bean
     FindingBiomeFunction findingBiomeFunction() {
         return new FindingBiomeFunction();
+    }
+    
+     @Bean
+    FindingDietFunction findingDietFunction() {
+        return new FindingDietFunction();
     }
 
     @Bean
