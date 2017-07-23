@@ -8,15 +8,17 @@ import doyenm.zooshell.validator.function.FindingDietFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class AnimalUpdateDietValidator implements Predicate<AnimalUpdateDietContext> {
 
-    FindingDietFunction findingDietFunction = new FindingDietFunction();
-    FindingAnimalWithEntryCheckFunction findingAnimalFunction = new FindingAnimalWithEntryCheckFunction();
+    private final FindingDietFunction findingDietFunction;
+    private final FindingAnimalWithEntryCheckFunction findingAnimalFunction; 
 
     @Override
     public boolean test(AnimalUpdateDietContext t) {
