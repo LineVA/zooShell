@@ -9,6 +9,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.UpdatePaddockTypeValidator;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
@@ -24,16 +25,15 @@ public class UpdatePaddockType implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        try {
-            UpdatePaddockTypeContext context = new UpdatePaddockTypeContext(zoo,
-                    cmd[2], cmd[3]);
-            context = Stream.of(context)
-                    .filter(validator)
-                    .map(controller)
-                    .findFirst()
-                    .get();
+        UpdatePaddockTypeContext context = new UpdatePaddockTypeContext(zoo,
+                cmd[2], cmd[3]);
+        Optional<UpdatePaddockTypeContext> optional = Stream.of(context)
+                .filter(validator)
+                .map(controller)
+                .findFirst();
+        if (optional.isPresent()) {
             return new ReturnExec("UPDATE_PADDOCK_TYPE_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
-        } catch (java.util.NoSuchElementException ex) {
+        } else {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }
     }
