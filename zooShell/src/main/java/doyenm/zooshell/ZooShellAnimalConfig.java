@@ -165,7 +165,7 @@ public class ZooShellAnimalConfig {
     @Bean
     AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator(){
         return new AnimalUpdateContraceptionValidator(findingContraceptionFunction(),
-        findingAnimalWithEntryCheckFunction, 
+        findAnimal, 
         canHaveAHormonalContraceptionPredicate(),
         canHaveAChirurgicalContraceptionPredicate(),
         isContraceptionCompatibleWithPreviousPredicate(),

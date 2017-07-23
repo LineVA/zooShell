@@ -1,9 +1,9 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
+import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.validator.context.FindingAnimalContext;
 import doyenm.zooshell.validator.context.FindingContraceptionContext;
-import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
 import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
@@ -23,7 +23,7 @@ public class AnimalUpdateContraceptionValidator
         implements Predicate<AnimalUpdateContraceptionContext> {
 
     private final FindingContraceptionFunction findingContraceptionMethodFunction;
-    private final FindingAnimalWithEntryCheckFunction findingAnimalFunction;
+    private final FindAnimal findAnimal;
 
     private final CanHaveAHormonalContraceptionPredicate hormonalContraceptionPredicate;
     private final CanHaveAChirurgicalContraceptionPredicate chirurgicalContraceptionPredicate;
@@ -47,12 +47,7 @@ public class AnimalUpdateContraceptionValidator
     }
 
     private AnimalUpdateContraceptionContext retrieveAnimal(AnimalUpdateContraceptionContext t) {
-        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getAnimals(), t.getAnimal());
-        t.setConvertedAnimal(Stream.of(findingAnimalContext)
-                .map(findingAnimalFunction)
-                .findFirst()
-                .get()
-                .getAnimal());
+        t.setConvertedAnimal(findAnimal.find(t.getZoo(), t.getAnimal()));
         return t;
     }
 

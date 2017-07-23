@@ -22,7 +22,7 @@ public class AnimalUpdateDietValidator implements Predicate<AnimalUpdateDietCont
 
     @Override
     public boolean test(AnimalUpdateDietContext t) {
-        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getZoo().getAnimals(), t.getAnimal());
+        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getZoo().getAnimals(), t.getAnimal().toUpperCase());
         t.setConvertedAnimal(Stream.of(findingAnimalContext)
                 .map(findingAnimalFunction)
                 .findFirst()
