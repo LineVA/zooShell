@@ -12,11 +12,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ZooShellPredicatesConfig {
-
-    @Bean
-    FindPaddock findPaddock() {
-        return new FindPaddock();
-    }
     
     @Bean
     FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction(){
@@ -36,6 +31,12 @@ public class ZooShellPredicatesConfig {
     @Bean
     FindingPaddockTypeFunction findingPaddockTypeFunction() {
         return new FindingPaddockTypeFunction();
+    }
+    
+    
+    @Bean
+    FindPaddock findPaddock() {
+        return new FindPaddock();
     }
 
     @Bean
