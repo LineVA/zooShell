@@ -70,7 +70,7 @@ public class AnimalUpdateDietValidatorTestTest {
         List<Diet> diets = new ArrayList<>();
         diets.add(diet);
         AnimalUpdateDietContext context = givenContextWithZooAnimalAndDiets(zoo, animal, diets);
-        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator();
+        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(null, null);
         // When
         boolean result = validator.test(context);
         // Then
@@ -89,7 +89,7 @@ public class AnimalUpdateDietValidatorTestTest {
         List<Diet> diets = new ArrayList<>();
         diets.add(diet);
         AnimalUpdateDietContext context = givenContextWithZooAnimalAndDiets(zoo, animal, diets);
-        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator();
+        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(null, null);
         // When
         boolean result = validator.test(context);
         // Then
@@ -108,7 +108,7 @@ public class AnimalUpdateDietValidatorTestTest {
         List<Diet> diets = new ArrayList<>();
         diets.add(diet);
         AnimalUpdateDietContext context = givenContextWithZooAnimalAndDiets(zoo, animal, diets);
-        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator();
+        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(null, null);
         // When
         boolean result = validator.test(context);
         // Then
@@ -125,7 +125,7 @@ public class AnimalUpdateDietValidatorTestTest {
         List<Diet> diets = new ArrayList<>();
         diets.add(diet);
         AnimalUpdateDietContext context = givenContextWithZooAnimalAndDiets(zoo, animal, diets);
-        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator();
+        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(null, null);
         // When
         boolean result = validator.test(context);
         // Then
