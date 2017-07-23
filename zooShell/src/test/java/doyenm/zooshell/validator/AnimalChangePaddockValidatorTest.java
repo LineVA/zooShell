@@ -3,11 +3,10 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.AnimalChangePaddockContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.Position;
-import doyenm.zooshell.testUtils.TestUtils;
-import java.util.HashMap;
+import doyenm.zooshell.model.Zoo;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+import static org.mockito.Matchers.anyString;
 import org.mockito.Mockito;
 
 /**
@@ -16,67 +15,60 @@ import org.mockito.Mockito;
  */
 public class AnimalChangePaddockValidatorTest {
 
-    private Position givenPosition() {
-        return Mockito.mock(Position.class);
+    private FindAnimal givenFindAnimal(Animal animal) {
+        FindAnimal mock = Mockito.mock(FindAnimal.class);
+        Mockito.when(mock.find(Mockito.any(Zoo.class), anyString())).thenReturn(animal);
+        return mock;
     }
 
-    private Paddock givenPaddockWithEntry(Position entry) {
-        Paddock pad = Mockito.mock(Paddock.class);
-        Mockito.when(pad.getEntry()).thenReturn(entry);
-        return pad;
+    private FindPaddock givenFindPaddock(Paddock pad) {
+        FindPaddock mock = Mockito.mock(FindPaddock.class);
+        Mockito.when(mock.find(Mockito.any(Zoo.class), anyString())).thenReturn(pad);
+        return mock;
     }
 
-    private Animal givenAnimalWithPaddock(Paddock pad) {
-        Animal animal = Mockito.mock(Animal.class);
-        Mockito.when(animal.getPaddock()).thenReturn(pad);
-        return animal;
-    }
-
-    private AnimalChangePaddockContext givenContextWithConvertedPaddockAnimal(
-            Paddock pad, Animal animal) {
+    private AnimalChangePaddockContext givenContext() {
         AnimalChangePaddockContext context = Mockito.mock(AnimalChangePaddockContext.class);
-        Mockito.when(context.getConvertedPaddock()).thenReturn(pad);
-        Mockito.doCallRealMethod().when(context).setConvertedPaddock(Mockito.any(Paddock.class));
-        Mockito.when(context.getConvertedAnimal()).thenReturn(animal);
-        Mockito.doCallRealMethod().when(context).setConvertedAnimal(Mockito.any(Animal.class));
-        Mockito.when(context.getPaddock()).thenReturn(TestUtils.generateString());
-        Mockito.when(context.getAnimalsMap()).thenReturn(new HashMap<>());
-        Mockito.when(context.getPaddocksMap()).thenReturn(new HashMap<>());
+        Mockito.when(context.getZoo()).thenReturn(Mockito.mock(Zoo.class));
+        Mockito.when(context.getConvertedPaddock()).thenReturn(Mockito.mock(Paddock.class));
+        Mockito.doNothing().when(context).setConvertedPaddock(Mockito.any(Paddock.class));
+        Mockito.when(context.getConvertedAnimal()).thenReturn(Mockito.mock(Animal.class));
+        Mockito.doNothing().when(context).setConvertedAnimal(Mockito.any(Animal.class));
         return context;
     }
 
     /**
-     * An animal can change its paddock if : - the new paddock exists - the new
-     * paddock has an entry - the animal exists
+     * An animal can change its paddock if : - the new paddock exists - the
+     * animal exists
      */
     @Test
-    public void shouldReturnTrueWhenTheAnimalCanMoved() {
+    public void shouldReturnTrueWhenTheAnimalCanBeMoved() {
         // Given
-        Position entry = givenPosition();
-        Paddock convertedPaddock = givenPaddockWithEntry(entry);
-        Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
-        AnimalChangePaddockContext context = givenContextWithConvertedPaddockAnimal(
-                convertedPaddock,
-                convertedAnimal
-        );
-        AnimalChangePaddockValidator validator = new AnimalChangePaddockValidator();
+        Animal convertedAnimal = Mockito.mock(Animal.class);
+        Paddock convertedPad = Mockito.mock(Paddock.class);
+        FindAnimal findAnimal = givenFindAnimal(convertedAnimal);
+        FindPaddock findPaddock = givenFindPaddock(convertedPad);
+        AnimalChangePaddockContext context = givenContext();
+        AnimalChangePaddockValidator validator = new AnimalChangePaddockValidator(
+                findAnimal,
+                findPaddock);
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isTrue();
     }
-    
+
     @Test
     public void shouldReturnFalseWhenTheAnimalDoesNotExist() {
         // Given
-        Position entry = givenPosition();
-        Paddock convertedPaddock = givenPaddockWithEntry(entry);
         Animal convertedAnimal = null;
-        AnimalChangePaddockContext context = givenContextWithConvertedPaddockAnimal(
-                convertedPaddock,
-                convertedAnimal
-        );
-        AnimalChangePaddockValidator validator = new AnimalChangePaddockValidator();
+        Paddock convertedPad = Mockito.mock(Paddock.class);
+        FindAnimal findAnimal = givenFindAnimal(convertedAnimal);
+        FindPaddock findPaddock = givenFindPaddock(convertedPad);
+        AnimalChangePaddockContext context = givenContext();
+        AnimalChangePaddockValidator validator = new AnimalChangePaddockValidator(
+                findAnimal,
+                findPaddock);
         // When
         boolean result = validator.test(context);
         // Then
@@ -85,32 +77,15 @@ public class AnimalChangePaddockValidatorTest {
     
        @Test
     public void shouldReturnFalseWhenThePaddockDoesNotExist() {
-        // Given
-        Position entry = givenPosition();
-        Paddock convertedPaddock = null;
-        Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
-        AnimalChangePaddockContext context = givenContextWithConvertedPaddockAnimal(
-                convertedPaddock,
-                convertedAnimal
-        );
-        AnimalChangePaddockValidator validator = new AnimalChangePaddockValidator();
-        // When
-        boolean result = validator.test(context);
-        // Then
-        Assertions.assertThat(result).isFalse();
-    }
-    
-       @Test
-    public void shouldReturnFalseWhenThePaddockDoesNotHaveAnEntry() {
-        // Given
-        Position entry = null;
-        Paddock convertedPaddock = givenPaddockWithEntry(entry);
-        Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
-        AnimalChangePaddockContext context = givenContextWithConvertedPaddockAnimal(
-                convertedPaddock,
-                convertedAnimal
-        );
-        AnimalChangePaddockValidator validator = new AnimalChangePaddockValidator();
+           // Given
+        Animal convertedAnimal = Mockito.mock(Animal.class);
+        Paddock convertedPad = null;
+        FindAnimal findAnimal = givenFindAnimal(convertedAnimal);
+        FindPaddock findPaddock = givenFindPaddock(convertedPad);
+        AnimalChangePaddockContext context = givenContext();
+        AnimalChangePaddockValidator validator = new AnimalChangePaddockValidator(
+                findAnimal,
+                findPaddock);
         // When
         boolean result = validator.test(context);
         // Then

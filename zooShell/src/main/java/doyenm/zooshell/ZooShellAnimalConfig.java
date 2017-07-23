@@ -16,6 +16,7 @@ import doyenm.zooshell.validator.AnimalUpdateFastDaysValidator;
 import doyenm.zooshell.validator.AnimalUpdateFoodQuantityValidator;
 import doyenm.zooshell.validator.AnimalValidator;
 import doyenm.zooshell.validator.FindAnimal;
+import doyenm.zooshell.validator.FindPaddock;
 import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
 import doyenm.zooshell.validator.function.FindingDietFunction;
@@ -105,6 +106,9 @@ public class ZooShellAnimalConfig {
     FindingDietFunction findingDietFunction;
     
     @Autowired
+    FindPaddock findPaddock;
+    
+    @Autowired
     StringLengthPredicates stringLenghtPredicates;
     
     @Autowired
@@ -145,7 +149,7 @@ public class ZooShellAnimalConfig {
     
       @Bean
     AnimalChangePaddockValidator animalChangePaddockValidator(){
-        return new AnimalChangePaddockValidator();
+        return new AnimalChangePaddockValidator(findAnimal, findPaddock);
     }
     
     @Bean
