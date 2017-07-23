@@ -12,7 +12,7 @@ public class FindingSpecieFunction implements Function<FindingSpecieContext, Fin
     @Override
     public FindingSpecieContext apply(FindingSpecieContext t) {
         FindingSpecieContext context = t;
-        context.setSpecie(context.getSpecies().get(context.getSpecieName()));
+        context.setSpecie(context.getSpecies().get(context.getSpecieName().toUpperCase()));
         return context;
     }
 

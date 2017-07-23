@@ -25,7 +25,7 @@ public class SpecieGenerator {
             Specie specie;
             for (File file : folder.listFiles()) {
                 specie = (Specie) jaxbUnmarshaller.unmarshal(file);
-                species.put(specie.getNames().getName(), specie);
+                species.put(specie.getNames().getName().toUpperCase(), specie);
             }
             return species;
         } catch (JAXBException ex) {
