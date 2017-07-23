@@ -32,7 +32,7 @@ public class KeeperCreationValidatorTestTest {
         KeeperCreationContext context = Mockito.mock(KeeperCreationContext.class);
         Mockito.when(context.getKeeper()).thenReturn(name);
         Map<String, AnimalKeeper> keepers = new HashMap<>();
-        keepers.put(name, keeper);
+        keepers.put(name.toUpperCase(), keeper);
         Mockito.when(context.getKeepers()).thenReturn(keepers);
         return context;
     }
