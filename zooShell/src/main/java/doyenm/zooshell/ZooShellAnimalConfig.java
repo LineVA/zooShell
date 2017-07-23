@@ -15,6 +15,7 @@ import doyenm.zooshell.validator.AnimalUpdateDietValidator;
 import doyenm.zooshell.validator.AnimalUpdateFastDaysValidator;
 import doyenm.zooshell.validator.AnimalUpdateFoodQuantityValidator;
 import doyenm.zooshell.validator.AnimalValidator;
+import doyenm.zooshell.validator.FindAnimal;
 import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
 import doyenm.zooshell.validator.function.FindingDietFunction;
@@ -22,6 +23,8 @@ import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPred
 import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithPreviousPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithSexPredicate;
+import doyenm.zooshell.validator.predicates.StringLengthPredicates;
+import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -93,10 +96,19 @@ public class ZooShellAnimalConfig {
     
     // Predicates
     @Autowired
+    FindAnimal findAnimal;
+    
+    @Autowired
     FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction;
     
     @Autowired
     FindingDietFunction findingDietFunction;
+    
+    @Autowired
+    StringLengthPredicates stringLenghtPredicates;
+    
+    @Autowired
+    UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
     
      @Bean
     FindingContraceptionFunction findingContraceptionFunction(){
@@ -126,7 +138,9 @@ public class ZooShellAnimalConfig {
     // Validator
     @Bean
     AnimalChangeNameValidator animalChangeNameValidator(){
-        return new AnimalChangeNameValidator();
+        return new AnimalChangeNameValidator(findAnimal, 
+                stringLenghtPredicates, 
+                uniquenessNamesBiPredicates);
     }
     
       @Bean

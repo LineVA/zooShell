@@ -1,29 +1,32 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalChangeNameContext;
+import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.function.Predicate;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class AnimalChangeNameValidator implements Predicate<AnimalChangeNameContext> {
 
-    FindAnimal findAnimal = new FindAnimal();
-    StringLengthPredicates stringLengthPredicates = new StringLengthPredicates();
-    UniquenessNamesBiPredicates uniquenessNamesBiPredicates = new UniquenessNamesBiPredicates();
+    private final FindAnimal findAnimal;
+    private final StringLengthPredicates stringLengthPredicates;
+    private final UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
 
     @Override
     public boolean test(AnimalChangeNameContext t) {
-        boolean result;
-        result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(t.getNewName(), 50);
-        result &= this.uniquenessNamesBiPredicates.test(t.getNewName(), t.getAnimals().keySet());
-        t.setConvertedAnimal(findAnimal.find(t.getZoo(), t.getCurrentName()));
-        if (result & t.getConvertedAnimal() != null) {
-            return t.getConvertedAnimal().getPaddock().getEntry() != null;
+        AnimalChangeNameContext context = t;
+        Animal animal = findAnimal.find(context.getZoo(), context.getCurrentName());
+        if (animal == null) {
+            return false;
         }
-        return false;
+        context.setConvertedAnimal(animal);
+        return this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getNewName(), 50)
+                & this.uniquenessNamesBiPredicates.test(context.getNewName().toUpperCase(), context.getAnimals());
     }
 }
