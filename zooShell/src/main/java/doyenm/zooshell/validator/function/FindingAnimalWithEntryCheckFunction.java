@@ -13,7 +13,7 @@ public class FindingAnimalWithEntryCheckFunction implements Function<FindingAnim
     @Override
     public FindingAnimalContext apply(FindingAnimalContext t) {
         FindingAnimalContext context = t;
-        Animal animal = context.getAnimals().get(context.getAnimalName());
+        Animal animal = context.getAnimals().get(context.getAnimalName().toUpperCase());
         if(animal != null){
             context.setAnimal(animal);
         }
