@@ -9,6 +9,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.PaddockEntryCreationValidator;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
@@ -24,18 +25,15 @@ public class CreatePaddockEntry implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        try {
-            PaddockEntryCreationContext context = new PaddockEntryCreationContext(zoo,
-                    cmd[2], cmd[3], cmd[4]);
-            return Stream.of(context)
-                    .map(validator)
-                    .map(controller)
-                    .map((PaddockEntryCreationContext t) -> t)
-                    .map((PaddockEntryCreationContext t)
-                            -> new ReturnExec("PADDOCK_ENTRY_CREATION_SUCCESS", TypeReturn.SUCCESS, t.getZoo()))
-                    .findFirst()
-                    .get();
-        } catch (java.lang.NumberFormatException ex) {
+        PaddockEntryCreationContext context = new PaddockEntryCreationContext(zoo,
+                cmd[2], cmd[3], cmd[4]);
+        Optional<PaddockEntryCreationContext> optional = Stream.of(context)
+                .filter(validator)
+                .map(controller)
+                .findFirst();
+        if (optional.isPresent()) {
+            return new ReturnExec("PADDOCK_ENTRY_CREATION_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
+        } else {
             return new ReturnExec("NUMBER_FORMAT_EXCEPTION", TypeReturn.ERROR);
         }
     }
