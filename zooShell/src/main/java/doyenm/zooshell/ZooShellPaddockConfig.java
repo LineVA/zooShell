@@ -158,8 +158,8 @@ public class ZooShellPaddockConfig {
 
     // Commands
     @Bean
-    ChangePaddockName changePaddockName() {
-        return new ChangePaddockName(paddockChangeNameValidator(), paddockChangeNameController());
+    RenamePaddock changePaddockName() {
+        return new RenamePaddock(paddockChangeNameValidator(), paddockChangeNameController());
     }
 
     @Bean

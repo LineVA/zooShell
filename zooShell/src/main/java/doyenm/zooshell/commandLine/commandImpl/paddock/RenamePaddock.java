@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class ChangePaddockName implements Command {
+public class RenamePaddock implements Command {
 
     private final PaddockChangeNameValidator validator;
     private final PaddockChangeNameController controller;
