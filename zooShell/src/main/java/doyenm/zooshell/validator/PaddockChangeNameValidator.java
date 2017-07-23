@@ -1,38 +1,33 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.PaddockChangeNameContext;
-import doyenm.zooshell.validator.context.FindingPaddockContext;
-import doyenm.zooshell.validator.function.FindingPaddockByNameFunction;
+import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class PaddockChangeNameValidator
         implements Predicate<PaddockChangeNameContext> {
 
-    FindingPaddockByNameFunction findingPaddockFunction = new FindingPaddockByNameFunction();
-    StringLengthPredicates stringLengthPredicates = new StringLengthPredicates();
-    UniquenessNamesBiPredicates uniquenessNamesBiPredicates = new UniquenessNamesBiPredicates();
+    private final FindPaddock findPaddock;
+    private final StringLengthPredicates stringLengthPredicates;
+    private final UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
 
     @Override
     public boolean test(PaddockChangeNameContext t) {
-        boolean result;
-        result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(t.getNewName(), 50);
-        result &= this.uniquenessNamesBiPredicates.test(t.getNewName(), t.getPaddocks().keySet());
-        FindingPaddockContext findingContext = new FindingPaddockContext(t.getZoo().getPaddocks(), t.getCurrentName().toUpperCase());
-        t.setConvertedPaddock(Stream.of(findingContext)
-                .map(findingPaddockFunction)
-                .findFirst()
-                .get()
-                .getPaddock());
-        if(result & t.getConvertedPaddock()!= null){
-            return t.getConvertedPaddock().getEntry() != null;
+        PaddockChangeNameContext context = t;
+        Paddock pad = findPaddock.find(context.getZoo(), context.getCurrentName());
+        if (pad == null) {
+            return false;
         }
-        return false;
+        context.setConvertedPaddock(pad);
+        return this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getNewName(), 50)
+                & this.uniquenessNamesBiPredicates.test(context.getNewName(), context.getPaddocks());
     }
 }
