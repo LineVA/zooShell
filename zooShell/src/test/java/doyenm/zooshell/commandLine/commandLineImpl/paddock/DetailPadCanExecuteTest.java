@@ -1,5 +1,6 @@
 package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
+import doyenm.zooshell.commandLine.commandImpl.paddock.DetailPad;
 import doyenm.zooshell.commandLine.commandImpl.paddock.UpdatePaddockType;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
@@ -9,20 +10,19 @@ import org.junit.Test;
  *
  * @author doyenm
  */
-public class UpdatePaddockTypeCanExecuteTest {
+public class DetailPadCanExecuteTest {
 
-    private final String padType = "pad-type";
-    private final String paddockType = "paddock-type";
-    private final String update = "update";
+    private final String padType = "pad";
+    private final String paddockType = "paddock";
 
 
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPaddock() {
         // Given
-        UpdatePaddockType updatePaddockType = new UpdatePaddockType(null, null);
-        String[] cmd = {this.paddockType, this.update, TestUtils.generateString(), TestUtils.generateString()};
+        DetailPad cmdLine = new DetailPad(null, null);
+        String[] cmd = {this.paddockType, TestUtils.generateString()};
         // When
-        boolean actualResult = updatePaddockType.canExecute(cmd);
+        boolean actualResult = cmdLine.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isTrue();
     }
@@ -30,10 +30,10 @@ public class UpdatePaddockTypeCanExecuteTest {
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPad() {
         // Given
-        UpdatePaddockType updatePaddockType = new UpdatePaddockType(null, null);
-        String[] cmd = {this.padType, this.update, TestUtils.generateString(), TestUtils.generateString()};
+        DetailPad cmdLine = new DetailPad(null, null);
+        String[] cmd = {this.padType, TestUtils.generateString()};
         // When
-        boolean actualResult = updatePaddockType.canExecute(cmd);
+        boolean actualResult = cmdLine.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isTrue();
     }
@@ -41,43 +41,32 @@ public class UpdatePaddockTypeCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
         // Given
-        UpdatePaddockType updatePaddockType = new UpdatePaddockType(null, null);
-        String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(), TestUtils.generateString()};
+        DetailPad cmdLine = new DetailPad(null, null);
+        String[] cmd = {TestUtils.generateString(), TestUtils.generateString()};
         // When
-        boolean actualResult = updatePaddockType.canExecute(cmd);
+        boolean actualResult = cmdLine.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
     
     @Test
-    public void shouldReturnFalseWhenTheSecondElementIsIncorrect() {
-        // Given
-        UpdatePaddockType updatePaddockType = new UpdatePaddockType(null, null);
-        String[] cmd = {this.padType, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
-        // When
-        boolean actualResult = updatePaddockType.canExecute(cmd);
-        // Then
-        Assertions.assertThat(actualResult).isFalse();
-    }
-    
-    @Test
-    public void shouldReturnFalseWhenThereIsLessThanFourElements() {
+    public void shouldReturnFalseWhenThereIsLessThanTwoElements() {
         // Give
-        UpdatePaddockType updatePaddockType = new UpdatePaddockType(null, null);
-        String[] cmd = {this.padType, this.update, TestUtils.generateString(),};
+        DetailPad cmdLine = new DetailPad(null, null);
+        String[] cmd = {TestUtils.generateString()};
         // When
-        boolean actualResult = updatePaddockType.canExecute(cmd);
+        boolean actualResult = cmdLine.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
     
     @Test
-    public void shouldReturnFalseWhenThereIsMoreThanFourElements() {
+    public void shouldReturnFalseWhenThereIsMoreThanTwoElements() {
         // Given
-        UpdatePaddockType updatePaddockType = new UpdatePaddockType(null, null);
-        String[] cmd = {this.padType, this.update, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        DetailPad cmdLine = new DetailPad(null, null);
+        String[] cmd = {this.padType, TestUtils.generateString(), TestUtils.generateString()};
         // When
-        boolean actualResult = updatePaddockType.canExecute(cmd);
+        boolean actualResult = cmdLine.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
