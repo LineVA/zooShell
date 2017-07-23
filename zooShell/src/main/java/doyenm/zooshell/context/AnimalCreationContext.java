@@ -90,7 +90,7 @@ public class AnimalCreationContext {
                 .notNursingByMother(false)
                 .wellBeing(0.0)
                 .build();
-        this.getZoo().getAnimals().put(this.getName(), animal);
+        this.getZoo().getAnimals().put(this.getName().toUpperCase(), animal);
     }
 
     public Animal createNewborn() {

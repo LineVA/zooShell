@@ -26,7 +26,7 @@ public class AnimalUpdateFastDaysValidator
                 || !integerValuePredicates.mustBeLowerOrEqualsThan(t.getConvertedFastDays(), 7)) {
             return false;
         }
-        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getZoo().getAnimals(), t.getAnimal());
+        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getZoo().getAnimals(), t.getAnimal().toUpperCase());
         t.setConvertedAnimal(Stream.of(findingAnimalContext)
                 .map(findingAnimalFunction)
                 .findFirst()

@@ -14,8 +14,8 @@ public class FindAnimal {
 
     FindingAnimalWithEntryCheckFunction findingAnimalFunction = new FindingAnimalWithEntryCheckFunction();
 
-    public Animal find(Zoo zoo, String padName) {
-        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(zoo.getAnimals(), padName);
+    public Animal find(Zoo zoo, String name) {
+        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(zoo.getAnimals(), name.toUpperCase());
         return Stream.of(findingAnimalContext)
                 .map(findingAnimalFunction)
                 .findFirst()

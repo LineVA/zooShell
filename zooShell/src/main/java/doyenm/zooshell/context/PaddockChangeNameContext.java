@@ -2,7 +2,7 @@ package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
-import java.util.Map;
+import java.util.Set;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -22,7 +22,7 @@ public class PaddockChangeNameContext {
 
     private Paddock convertedPaddock;
 
-    public Map<String, Paddock> getPaddocks() {
-        return getZoo().getPaddocks();
+    public Set<String> getPaddocks() {
+        return getZoo().getPaddocks().keySet();
     }
 }

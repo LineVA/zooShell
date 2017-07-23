@@ -2,7 +2,7 @@ package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Zoo;
-import java.util.Map;
+import java.util.Set;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -22,7 +22,7 @@ public class AnimalChangeNameContext {
 
     private Animal convertedAnimal;
 
-    public Map<String, Animal> getAnimals() {
-        return getZoo().getAnimals();
+    public Set<String> getAnimals() {
+        return getZoo().getAnimals().keySet();
     }
 }

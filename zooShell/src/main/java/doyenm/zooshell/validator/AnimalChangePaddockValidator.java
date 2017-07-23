@@ -1,37 +1,30 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalChangePaddockContext;
-import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
-import doyenm.zooshell.validator.context.FindingAnimalContext;
-import doyenm.zooshell.validator.context.FindingPaddockContext;
-import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
-import doyenm.zooshell.validator.function.FindingPaddockByNameFunction;
+import doyenm.zooshell.model.Animal;
+import doyenm.zooshell.model.Paddock;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class AnimalChangePaddockValidator implements Predicate<AnimalChangePaddockContext> {
 
-    FindingPaddockByNameFunction findingPaddockByNameFunction = new FindingPaddockByNameFunction();
-    FindingAnimalWithEntryCheckFunction findingAnimalFunction = new FindingAnimalWithEntryCheckFunction();
+    private final FindAnimal findAnimal;
+    private final FindPaddock findPaddock;
 
     @Override
     public boolean test(AnimalChangePaddockContext t) {
-        t.setConvertedPaddock(Stream.of(new FindingPaddockContext(t.getPaddocksMap(), t.getPaddock()))
-                .map(findingPaddockByNameFunction)
-                .findFirst()
-                .get()
-                .getPaddock());
-        t.setConvertedAnimal(Stream.of(new FindingAnimalContext(t.getAnimalsMap(), t.getAnimal()))
-                .map(findingAnimalFunction)
-                .findFirst()
-                .get()
-                .getAnimal());
-        if (t.getConvertedAnimal() != null && t.getConvertedPaddock()!= null) {
-            return t.getConvertedAnimal().getPaddock().getEntry() != null;
+        AnimalChangePaddockContext context = t;
+        Paddock pad = findPaddock.find(context.getZoo(), context.getPaddock());
+        Animal animal = findAnimal.find(context.getZoo(), context.getAnimal());
+        if(pad != null && animal != null){
+            context.setConvertedAnimal(animal);
+            context.setConvertedPaddock(pad);
+            return true;
         }
         return false;
     }

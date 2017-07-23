@@ -17,9 +17,8 @@ public class KeeperCreationValidator implements Predicate<KeeperCreationContext>
     @Override
     public boolean test(KeeperCreationContext t) {
         KeeperCreationContext context = t;
-        boolean result;
         return this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getKeeper(), 50)
-                & this.uniquenessNamesBiPredicates.test(context.getKeeper(), context.getKeepers().keySet());
+                & this.uniquenessNamesBiPredicates.test(context.getKeeper().toUpperCase(), context.getKeepers().keySet());
     }
 
 }

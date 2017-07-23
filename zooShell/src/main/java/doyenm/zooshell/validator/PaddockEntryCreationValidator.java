@@ -24,7 +24,8 @@ public class PaddockEntryCreationValidator
     @Override
     public boolean test(PaddockEntryCreationContext t) {
         PaddockEntryCreationContext context = t;
-        FindingPaddockContext findingContext = new FindingPaddockContext(context.getPaddocksMap(), context.getPaddock());
+        context.convert();
+        FindingPaddockContext findingContext = new FindingPaddockContext(context.getPaddocksMap(), context.getPaddock().toUpperCase());
         context.setConvertedPaddock(Stream.of(findingContext)
                 .map(findingPaddockByNameFunction)
                 .findFirst()

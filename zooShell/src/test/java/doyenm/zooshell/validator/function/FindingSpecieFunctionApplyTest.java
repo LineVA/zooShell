@@ -1,10 +1,8 @@
 package doyenm.zooshell.validator.function;
 
 import doyenm.zooshell.model.Names;
-import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.testUtils.TestUtils;
-import doyenm.zooshell.validator.context.FindingPaddockContext;
 import doyenm.zooshell.validator.context.FindingSpecieContext;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +23,7 @@ public class FindingSpecieFunctionApplyTest {
         Names names = new Names();
         names.setName(key);
         spec.setNames(names);
-        species.put(key, spec);
+        species.put(key.toUpperCase(), spec);
         Mockito.when(context.getSpecie()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(context).setSpecie(Mockito.any(Specie.class));
         Mockito.when(context.getSpecieName()).thenReturn(input);

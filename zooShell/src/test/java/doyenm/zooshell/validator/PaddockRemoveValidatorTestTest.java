@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -32,6 +33,7 @@ public class PaddockRemoveValidatorTestTest {
     private PaddockContext givenContextWithZooAnimalsAndPad(
             Zoo zoo, Collection<Animal> animals, Paddock pad) {
         PaddockContext context = Mockito.mock(PaddockContext.class);
+        Mockito.when(context.getPaddock()).thenReturn(RandomStringUtils.random(10));
         Mockito.when(context.getConvertedPaddock()).thenReturn(pad);
         Mockito.when(context.getAnimals()).thenReturn(animals);
         Mockito.when(context.getZoo()).thenReturn(zoo);
@@ -81,7 +83,7 @@ public class PaddockRemoveValidatorTestTest {
 
     @Test
     public void shouldReturnFalseIfThePaddockExistsButIsNotEmpty() {
-      // Given
+        // Given
         Paddock pad = givenPaddock();
         Zoo zoo = givenZoo();
         FindPaddock find = givenFindWithPad(pad);

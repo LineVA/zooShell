@@ -27,7 +27,7 @@ public class KeeperCreationController
                 .taskEvaluations(new EnumMap<>(TaskType.class))
                 .familyEvaluations(new EnumMap<>(Family.class))
                 .build();
-        context.getZoo().getKeepers().put(context.getKeeper(), keeper);
+        context.getZoo().getKeepers().put(context.getKeeper().toUpperCase(), keeper);
         return context;
     }
 

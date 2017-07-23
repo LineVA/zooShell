@@ -15,7 +15,7 @@ FindingAnimalWithEntryCheckFunction findingAnimalFunction = new FindingAnimalWit
 
     @Override
     public boolean test(AnimalDetailsContext t) {
-        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getZoo().getAnimals(), t.getAnimal());
+        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getZoo().getAnimals(), t.getAnimal().toUpperCase());
 
         t.setConvertedAnimal(Stream.of(findingAnimalContext)
                 .map(findingAnimalFunction)

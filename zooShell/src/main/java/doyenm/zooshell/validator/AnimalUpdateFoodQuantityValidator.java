@@ -24,7 +24,7 @@ public class AnimalUpdateFoodQuantityValidator
         if(!doubleValuePredicates.mustBeGreaterOrEqualsThan(t.getConvertedFoodQuantity(), 0.0)){
             return false;
         }
-        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getZoo().getAnimals(), t.getAnimal());
+        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getZoo().getAnimals(), t.getAnimal().toUpperCase());
         t.setConvertedAnimal(Stream.of(findingAnimalContext)
                 .map(findingAnimalFunction)
                 .findFirst()

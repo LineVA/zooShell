@@ -102,7 +102,7 @@ public class ZooShellPaddockConfig {
     // Validators
     @Bean
     PaddockChangeNameValidator paddockChangeNameValidator() {
-        return new PaddockChangeNameValidator();
+        return new PaddockChangeNameValidator(findPaddock, stringLengthPredicates, uniquenessNamesBiPredicates);
     }
 
     @Bean

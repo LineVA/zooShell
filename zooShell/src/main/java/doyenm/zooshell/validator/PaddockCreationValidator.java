@@ -29,7 +29,7 @@ public class PaddockCreationValidator
         context.convert();
         boolean result;
         result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getName(), maxLengthName);
-        result &= this.uniquenessNamesBiPredicates.test(context.getName(), context.getPaddocksNameSet());
+        result &= this.uniquenessNamesBiPredicates.test(context.getName().toUpperCase(), context.getPaddocksNameSet());
         result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedHeight(), minHeight);
         result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedWidth(), minWidth);
         return result;

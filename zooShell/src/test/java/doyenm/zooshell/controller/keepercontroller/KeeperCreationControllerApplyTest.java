@@ -24,7 +24,7 @@ public class KeeperCreationControllerApplyTest {
 
     private Map<String, AnimalKeeper> givenMapWithKeeper(AnimalKeeper keeper) {
         Map<String, AnimalKeeper> map = new HashMap<>();
-        map.put(keeper.getName(), keeper);
+        map.put(keeper.getName().toUpperCase(), keeper);
         return map;
     }
 
@@ -55,7 +55,7 @@ public class KeeperCreationControllerApplyTest {
         // Then
         Assertions.assertThat(actualContext.getZoo().getKeepers()).isNotNull();
         Assertions.assertThat(actualContext.getZoo().getKeepers().size()).isEqualTo(1);
-        Assertions.assertThat(actualContext.getZoo().getKeepers().get(name).getName()).isEqualTo(name);
+        Assertions.assertThat(actualContext.getZoo().getKeepers().get(name.toUpperCase()).getName()).isEqualTo(name);
 
     }
 }

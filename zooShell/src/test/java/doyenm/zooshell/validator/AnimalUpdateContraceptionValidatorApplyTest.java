@@ -3,7 +3,7 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.validator.context.FindingAnimalContext;
+import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.context.FindingContraceptionContext;
 import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
@@ -31,13 +31,9 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
         return mock;
     }
 
-    private FindingAnimalWithEntryCheckFunction givenFindingAnimal(Animal value) {
-        FindingAnimalWithEntryCheckFunction mock = Mockito.mock(FindingAnimalWithEntryCheckFunction.class);
-        FindingAnimalContext context = Mockito.mock(FindingAnimalContext.class);
-        Animal animal = value;
-        Mockito.doNothing().when(context).setAnimal(Mockito.any(Animal.class));
-        Mockito.when(context.getAnimal()).thenReturn(animal);
-        Mockito.when(mock.apply(Mockito.any(FindingAnimalContext.class))).thenReturn(context);
+    private FindAnimal givenFindAnimal(Animal value) {
+        FindAnimal mock = Mockito.mock(FindAnimal.class);
+        Mockito.when(mock.find(Mockito.any(Zoo.class), Mockito.anyString())).thenReturn(value);
         return mock;
     }
 
@@ -89,7 +85,7 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     public void shouldRetrunTrueIfAllTheConditionsAreTrue() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(ContraceptionMethod.NONE);
-        FindingAnimalWithEntryCheckFunction findingAnimal = givenFindingAnimal(Mockito.mock(Animal.class));
+        FindAnimal findAnimal = givenFindAnimal(Mockito.mock(Animal.class));
 
         CanHaveAHormonalContraceptionPredicate hormonalCompatibility = givenHormonal(true);
         CanHaveAChirurgicalContraceptionPredicate chirurgicalContraceptionPredicate = givenChirurgical(true);
@@ -97,7 +93,7 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
         IsContraceptionCompatibleWithSexPredicate compatibleWithSexPredicate = givenSex(true);
         AnimalUpdateContraceptionValidator validator = new AnimalUpdateContraceptionValidator(
                 findingContraception,
-                findingAnimal,
+                findAnimal,
                 hormonalCompatibility,
                 chirurgicalContraceptionPredicate,
                 compatibleWithPreviousPredicate,
@@ -113,15 +109,14 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     public void shouldRetrunFalseIfTheAnimalDoesNotExist() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(ContraceptionMethod.NONE);
-        FindingAnimalWithEntryCheckFunction findingAnimal = givenFindingAnimal(null);
-
+             FindAnimal findAnimal = givenFindAnimal(null);
         CanHaveAHormonalContraceptionPredicate hormonalCompatibility = givenHormonal(true);
         CanHaveAChirurgicalContraceptionPredicate chirurgicalContraceptionPredicate = givenChirurgical(true);
         IsContraceptionCompatibleWithPreviousPredicate compatibleWithPreviousPredicate = givenPrevious(true);
         IsContraceptionCompatibleWithSexPredicate compatibleWithSexPredicate = givenSex(true);
         AnimalUpdateContraceptionValidator validator = new AnimalUpdateContraceptionValidator(
                 findingContraception,
-                findingAnimal,
+                findAnimal,
                 hormonalCompatibility,
                 chirurgicalContraceptionPredicate,
                 compatibleWithPreviousPredicate,
@@ -137,15 +132,14 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     public void shouldRetrunFalseIfTheMethodDoesNotExist() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(null);
-        FindingAnimalWithEntryCheckFunction findingAnimal = givenFindingAnimal(Mockito.mock(Animal.class));
-
+        FindAnimal findAnimal = givenFindAnimal(Mockito.mock(Animal.class));
         CanHaveAHormonalContraceptionPredicate hormonalCompatibility = givenHormonal(true);
         CanHaveAChirurgicalContraceptionPredicate chirurgicalContraceptionPredicate = givenChirurgical(true);
         IsContraceptionCompatibleWithPreviousPredicate compatibleWithPreviousPredicate = givenPrevious(true);
         IsContraceptionCompatibleWithSexPredicate compatibleWithSexPredicate = givenSex(true);
         AnimalUpdateContraceptionValidator validator = new AnimalUpdateContraceptionValidator(
                 findingContraception,
-                findingAnimal,
+                findAnimal,
                 hormonalCompatibility,
                 chirurgicalContraceptionPredicate,
                 compatibleWithPreviousPredicate,
@@ -161,15 +155,14 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     public void shouldRetrunFalseIfThereIsIncompatibilityWithTheHormonalContraception() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(ContraceptionMethod.NONE);
-        FindingAnimalWithEntryCheckFunction findingAnimal = givenFindingAnimal(Mockito.mock(Animal.class));
-
+        FindAnimal findAnimal = givenFindAnimal(Mockito.mock(Animal.class));
         CanHaveAHormonalContraceptionPredicate hormonalCompatibility = givenHormonal(false);
         CanHaveAChirurgicalContraceptionPredicate chirurgicalContraceptionPredicate = givenChirurgical(true);
         IsContraceptionCompatibleWithPreviousPredicate compatibleWithPreviousPredicate = givenPrevious(true);
         IsContraceptionCompatibleWithSexPredicate compatibleWithSexPredicate = givenSex(true);
         AnimalUpdateContraceptionValidator validator = new AnimalUpdateContraceptionValidator(
                 findingContraception,
-                findingAnimal,
+                findAnimal,
                 hormonalCompatibility,
                 chirurgicalContraceptionPredicate,
                 compatibleWithPreviousPredicate,
@@ -185,15 +178,14 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     public void shouldRetrunFalseIfThereIsIncompatibilityWithTheChirurgicalContraception() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(ContraceptionMethod.NONE);
-        FindingAnimalWithEntryCheckFunction findingAnimal = givenFindingAnimal(Mockito.mock(Animal.class));
-
+        FindAnimal findAnimal = givenFindAnimal(Mockito.mock(Animal.class));
         CanHaveAHormonalContraceptionPredicate hormonalCompatibility = givenHormonal(true);
         CanHaveAChirurgicalContraceptionPredicate chirurgicalContraceptionPredicate = givenChirurgical(false);
         IsContraceptionCompatibleWithPreviousPredicate compatibleWithPreviousPredicate = givenPrevious(true);
         IsContraceptionCompatibleWithSexPredicate compatibleWithSexPredicate = givenSex(true);
         AnimalUpdateContraceptionValidator validator = new AnimalUpdateContraceptionValidator(
                 findingContraception,
-                findingAnimal,
+                findAnimal,
                 hormonalCompatibility,
                 chirurgicalContraceptionPredicate,
                 compatibleWithPreviousPredicate,
@@ -209,15 +201,14 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     public void shouldRetrunFalseIfThereIsIncompatibilityWithThePreviousMethod() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(ContraceptionMethod.NONE);
-        FindingAnimalWithEntryCheckFunction findingAnimal = givenFindingAnimal(Mockito.mock(Animal.class));
-
+        FindAnimal findAnimal = givenFindAnimal(Mockito.mock(Animal.class));
         CanHaveAHormonalContraceptionPredicate hormonalCompatibility = givenHormonal(true);
         CanHaveAChirurgicalContraceptionPredicate chirurgicalContraceptionPredicate = givenChirurgical(true);
         IsContraceptionCompatibleWithPreviousPredicate compatibleWithPreviousPredicate = givenPrevious(false);
         IsContraceptionCompatibleWithSexPredicate compatibleWithSexPredicate = givenSex(true);
         AnimalUpdateContraceptionValidator validator = new AnimalUpdateContraceptionValidator(
                 findingContraception,
-                findingAnimal,
+                findAnimal,
                 hormonalCompatibility,
                 chirurgicalContraceptionPredicate,
                 compatibleWithPreviousPredicate,
@@ -233,15 +224,14 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     public void shouldRetrunFalseIfThereIsIncompatibilityWithTheSex() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(ContraceptionMethod.NONE);
-        FindingAnimalWithEntryCheckFunction findingAnimal = givenFindingAnimal(Mockito.mock(Animal.class));
-
+        FindAnimal findAnimal = givenFindAnimal(Mockito.mock(Animal.class));
         CanHaveAHormonalContraceptionPredicate hormonalCompatibility = givenHormonal(true);
         CanHaveAChirurgicalContraceptionPredicate chirurgicalContraceptionPredicate = givenChirurgical(true);
         IsContraceptionCompatibleWithPreviousPredicate compatibleWithPreviousPredicate = givenPrevious(true);
         IsContraceptionCompatibleWithSexPredicate compatibleWithSexPredicate = givenSex(false);
         AnimalUpdateContraceptionValidator validator = new AnimalUpdateContraceptionValidator(
                 findingContraception,
-                findingAnimal,
+                findAnimal,
                 hormonalCompatibility,
                 chirurgicalContraceptionPredicate,
                 compatibleWithPreviousPredicate,
