@@ -9,6 +9,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.PaddockRemoveValidator;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
@@ -24,17 +25,15 @@ public class RemovePaddock implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        try {
-            PaddockContext context = new PaddockContext(zoo,
-                    cmd[2]);
-            context = Stream.of(context)
-                    .filter(validator)
-                    .map(controller)
-                    .findFirst()
-                    .get();
+        PaddockContext context = new PaddockContext(zoo,
+                cmd[2]);
+        Optional<PaddockContext> optional = Stream.of(context)
+                .filter(validator)
+                .map(controller)
+                .findFirst();
+        if (optional.isPresent()) {
             return new ReturnExec("PADDOCK_REMOVE_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
-        } catch (java.util.NoSuchElementException ex) {
-            ex.printStackTrace();
+        } else {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }
     }
