@@ -34,7 +34,7 @@ public class ZooShellConfig {
     }
 
     @Autowired
-    ChangePaddockName changePaddockName;
+    RenamePaddock changePaddockName;
 
     @Autowired
     CreatePaddock createPaddock;

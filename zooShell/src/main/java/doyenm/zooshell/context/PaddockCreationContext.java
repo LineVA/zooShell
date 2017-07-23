@@ -8,6 +8,7 @@ import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.model.Position;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -72,6 +73,10 @@ public class PaddockCreationContext {
 
     public List<Paddock> getPaddocksList() {
         return new ArrayList<>(this.getZoo().getPaddocks().values());
+    }
+    
+    public Set<String> getPaddocksNameSet(){
+        return getZoo().getPaddocks().keySet();
     }
 
 }

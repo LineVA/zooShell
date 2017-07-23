@@ -1,4 +1,4 @@
- package doyenm.zooshell.commandLine.commandImpl.paddock;
+package doyenm.zooshell.commandLine.commandImpl.paddock;
 
 import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
@@ -10,6 +10,7 @@ import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.PaddockExtensionCreationValidator;
 import doyenm.zooshell.validator.PaddockExtensionLocationValidator;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
@@ -26,21 +27,17 @@ public class CreatePaddockExtension implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        try {
-            PaddockExtensionCreationContext context = new PaddockExtensionCreationContext(zoo,
-                    cmd[2], cmd[3], cmd[4], cmd[5], cmd[6]);
-            context = Stream.of(context)
-                    .filter(creationValidator)
-                    .filter(locationValidator)
-                    .map(controller)
-                    .findFirst()
-                    .get();
+        PaddockExtensionCreationContext context = new PaddockExtensionCreationContext(zoo,
+                cmd[2], cmd[3], cmd[4], cmd[5], cmd[6]);
+        Optional<PaddockExtensionCreationContext> optional = Stream.of(context)
+                .filter(creationValidator)
+                .filter(locationValidator)
+                .map(controller)
+                .findFirst();
+        if (optional.isPresent()) {
             return new ReturnExec("PADDOCK_EXTENSION_CREATION_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
-        } catch (java.lang.NumberFormatException ex) {
-            return new ReturnExec(
-                    "NUMBER_FORMAT_EXCEPTION", TypeReturn.ERROR);
-        } catch (java.util.NoSuchElementException ex) {
-            return new ReturnExec("ERROR", TypeReturn.ERROR);
+        } else {
+            return new ReturnExec("ERROR", TypeReturn.ERROR, context.getZoo());
         }
     }
 
