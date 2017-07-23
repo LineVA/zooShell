@@ -16,12 +16,12 @@ public class PaddockValidator implements Predicate<PaddockContext> {
 
     @Override
     public boolean test(PaddockContext t) {
-        Paddock pad = findPaddock.find(t.getZoo(), t.getPaddock().toUpperCase());
-       if(pad == null){
-           return false;
-       } 
-       t.setConvertedPaddock(pad);
-       return true;
+        Paddock pad = findPaddock.find(t.getZoo(), t.getPaddock());
+        if (pad == null) {
+            return false;
+        }
+        t.setConvertedPaddock(pad);
+        return true;
     }
 
 }
