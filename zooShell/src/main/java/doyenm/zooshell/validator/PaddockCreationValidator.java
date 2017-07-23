@@ -5,17 +5,19 @@ import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.function.Predicate;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class PaddockCreationValidator
         implements Predicate<PaddockCreationContext> {
 
-    StringLengthPredicates stringLengthPredicates = new StringLengthPredicates();
-    UniquenessNamesBiPredicates uniquenessNamesBiPredicates = new UniquenessNamesBiPredicates();
-    IntegerValuePredicates integerValuePredicates = new IntegerValuePredicates();
+    private final StringLengthPredicates stringLengthPredicates;
+    private final UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
+    private final IntegerValuePredicates integerValuePredicates;
 
     @Override
     public boolean test(PaddockCreationContext t) {

@@ -17,14 +17,20 @@ import doyenm.zooshell.validator.UpdateBiomeValidator;
 import doyenm.zooshell.validator.UpdatePaddockTypeValidator;
 import doyenm.zooshell.validator.function.FindingBiomeFunction;
 import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
+import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
+import doyenm.zooshell.validator.predicates.StringLengthPredicates;
+import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  *
  * @author doyenm
  */
 @Configuration
+@Import(ZooShellPredicatesConfig.class)
 public class ZooShellPaddockConfig {
 
     // Controller
@@ -69,21 +75,24 @@ public class ZooShellPaddockConfig {
     }
 
     // Predicates
-    @Bean
-    FindPaddock findPaddock() {
-        return new FindPaddock();
-    }
+    @Autowired
+    FindPaddock findPaddock;
 
-    @Bean
-    FindingBiomeFunction findingBiomeFunction() {
-        return new FindingBiomeFunction();
-    }
+    @Autowired
+    FindingBiomeFunction findingBiomeFunction;
+
+    @Autowired
+    FindingPaddockTypeFunction findingPaddockTypeFunction;
+
+    @Autowired
+    StringLengthPredicates stringLengthPredicates;
     
-      @Bean
-    FindingPaddockTypeFunction findingPaddockTypeFunction() {
-        return new FindingPaddockTypeFunction();
-    }
+    @Autowired
+    UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
 
+    @Autowired
+    IntegerValuePredicates integerValuePredicates;
+    
     // Validators
     @Bean
     PaddockChangeNameValidator paddockChangeNameValidator() {
@@ -92,7 +101,10 @@ public class ZooShellPaddockConfig {
 
     @Bean
     PaddockCreationValidator paddockCreationValidator() {
-        return new PaddockCreationValidator();
+        return new PaddockCreationValidator(stringLengthPredicates, 
+                uniquenessNamesBiPredicates,
+                integerValuePredicates
+        );
     }
 
     @Bean
@@ -117,22 +129,22 @@ public class ZooShellPaddockConfig {
 
     @Bean
     PaddockRemoveValidator paddockRemoveValidator() {
-        return new PaddockRemoveValidator(findPaddock());
+        return new PaddockRemoveValidator(findPaddock);
     }
 
     @Bean
     PaddockValidator paddockValidator() {
-        return new PaddockValidator(findPaddock());
+        return new PaddockValidator(findPaddock);
     }
 
     @Bean
     UpdateBiomeValidator updateBiomeValidator() {
-        return new UpdateBiomeValidator(findPaddock(), findingBiomeFunction());
+        return new UpdateBiomeValidator(findPaddock, findingBiomeFunction);
     }
 
     @Bean
     UpdatePaddockTypeValidator updatePaddockTypeValidator() {
-        return new UpdatePaddockTypeValidator(findPaddock(), findingPaddockTypeFunction());
+        return new UpdatePaddockTypeValidator(findPaddock, findingPaddockTypeFunction);
     }
 
     // Commands
