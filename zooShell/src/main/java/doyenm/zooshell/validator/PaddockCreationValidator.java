@@ -18,20 +18,20 @@ public class PaddockCreationValidator
     private final StringLengthPredicates stringLengthPredicates;
     private final UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
     private final IntegerValuePredicates integerValuePredicates;
+    
+    private final  int maxLengthName;
+    private final int minHeight;
+    private final int minWidth;
 
     @Override
     public boolean test(PaddockCreationContext t) {
         PaddockCreationContext context = t;
         context.convert();
         boolean result;
-        result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getName(), 50);
+        result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getName(), maxLengthName);
         result &= this.uniquenessNamesBiPredicates.test(context.getName(), context.getZoo().getPaddocks().keySet());
-        result &= this.integerValuePredicates.mustBeLowerOrEqualsThan(context.getConvertedWidth(),
-                context.getWidthZoo() / 2);
-        result &= this.integerValuePredicates.mustBeLowerOrEqualsThan(context.getConvertedHeight(),
-                context.getHeightZoo() / 2);
-        result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedWidth(), 1);
-        result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedHeight(), 1);
+        result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedWidth(), minWidth);
+        result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedHeight(), minHeight);
         return result;
     }
 }

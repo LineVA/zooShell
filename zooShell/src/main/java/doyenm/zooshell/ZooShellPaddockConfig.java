@@ -24,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
 /**
  *
@@ -31,7 +33,11 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @Import(ZooShellPredicatesConfig.class)
+@PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
 public class ZooShellPaddockConfig {
+
+    @Autowired
+    Environment environment;
 
     // Controller
     @Bean
@@ -86,13 +92,13 @@ public class ZooShellPaddockConfig {
 
     @Autowired
     StringLengthPredicates stringLengthPredicates;
-    
+
     @Autowired
     UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
 
     @Autowired
     IntegerValuePredicates integerValuePredicates;
-    
+
     // Validators
     @Bean
     PaddockChangeNameValidator paddockChangeNameValidator() {
@@ -101,9 +107,12 @@ public class ZooShellPaddockConfig {
 
     @Bean
     PaddockCreationValidator paddockCreationValidator() {
-        return new PaddockCreationValidator(stringLengthPredicates, 
+        return new PaddockCreationValidator(stringLengthPredicates,
                 uniquenessNamesBiPredicates,
-                integerValuePredicates
+                integerValuePredicates,
+                Integer.parseInt(environment.getProperty("paddock.name.max_length")),
+                Integer.parseInt(environment.getProperty("paddock.height.min")),
+                Integer.parseInt(environment.getProperty("paddock.width.min"))
         );
     }
 
