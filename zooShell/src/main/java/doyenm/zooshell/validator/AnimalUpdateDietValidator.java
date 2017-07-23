@@ -32,6 +32,7 @@ public class AnimalUpdateDietValidator implements Predicate<AnimalUpdateDietCont
                 .map((String t1) -> new FindingDietContext(t1))
                 .map(findingDietFunction)
                 .map((FindingDietContext t1) -> t1.getConvertedDiet())
+                .filter(e -> e != null)
                 .collect(Collectors.toList())
         );
         if (t.getConvertedAnimal() != null && t.getConvertedDiets() != null) {
