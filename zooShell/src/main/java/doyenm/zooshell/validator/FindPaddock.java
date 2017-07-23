@@ -15,7 +15,7 @@ public class FindPaddock {
     FindingPaddockByNameFunction findingPaddockFunction = new FindingPaddockByNameFunction();
 
     public Paddock find(Zoo zoo, String padName) {
-        FindingPaddockContext findingPaddockContext = new FindingPaddockContext(zoo.getPaddocks(), padName);
+        FindingPaddockContext findingPaddockContext = new FindingPaddockContext(zoo.getPaddocks(), padName.toUpperCase());
         return Stream.of(findingPaddockContext)
                 .map(findingPaddockFunction)
                 .findFirst()

@@ -60,7 +60,7 @@ public class PaddockCreationContext {
                 .biome(biome)
                 .type(type)
                 .build();
-        this.getZoo().getPaddocks().put(this.getName(), paddock);
+        this.getZoo().getPaddocks().put(this.getName().toUpperCase(), paddock);
     }
 
     public Integer getWidthZoo() {

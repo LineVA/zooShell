@@ -18,7 +18,7 @@ public class PaddockExtensionCreationValidator
     @Override
     public boolean test(PaddockExtensionCreationContext t) {
         t.convert();
-        FindingPaddockContext findingPaddockContext = new FindingPaddockContext(t.getZoo().getPaddocks(), t.getPaddock());
+        FindingPaddockContext findingPaddockContext = new FindingPaddockContext(t.getZoo().getPaddocks(), t.getPaddock().toUpperCase());
         t.setConvertedPaddock(Stream.of(findingPaddockContext)
                 .map(findingPaddockByNameFunction)
                 .findFirst()

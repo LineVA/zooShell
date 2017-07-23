@@ -24,7 +24,7 @@ public class PaddockChangeNameValidator
         boolean result;
         result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(t.getNewName(), 50);
         result &= this.uniquenessNamesBiPredicates.test(t.getNewName(), t.getPaddocks().keySet());
-        FindingPaddockContext findingContext = new FindingPaddockContext(t.getZoo().getPaddocks(), t.getCurrentName());
+        FindingPaddockContext findingContext = new FindingPaddockContext(t.getZoo().getPaddocks(), t.getCurrentName().toUpperCase());
         t.setConvertedPaddock(Stream.of(findingContext)
                 .map(findingPaddockFunction)
                 .findFirst()

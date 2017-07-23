@@ -16,7 +16,7 @@ public class PaddockValidator implements Predicate<PaddockContext> {
 
     @Override
     public boolean test(PaddockContext t) {
-        Paddock pad = findPaddock.find(t.getZoo(), t.getPaddock());
+        Paddock pad = findPaddock.find(t.getZoo(), t.getPaddock().toUpperCase());
        if(pad == null){
            return false;
        } 

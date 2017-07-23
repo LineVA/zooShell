@@ -19,7 +19,7 @@ public class PaddockRemoveValidator implements Predicate<PaddockContext> {
     @Override
     public boolean test(PaddockContext t) {
         PaddockContext context = t;
-        Paddock pad = findPaddock.find(context.getZoo(), context.getPaddock());
+        Paddock pad = findPaddock.find(context.getZoo(), context.getPaddock().toUpperCase());
         if (pad == null) {
             return false;
         }
