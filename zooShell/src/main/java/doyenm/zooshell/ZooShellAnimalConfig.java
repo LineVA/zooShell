@@ -17,16 +17,22 @@ import doyenm.zooshell.validator.AnimalUpdateFoodQuantityValidator;
 import doyenm.zooshell.validator.AnimalValidator;
 import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
+import doyenm.zooshell.validator.function.FindingDietFunction;
 import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithPreviousPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithSexPredicate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  *
  * @author doyenm
  */
+@Configuration
+@Import(ZooShellPredicatesConfig.class)
 public class ZooShellAnimalConfig {
     
     @Bean
@@ -86,10 +92,11 @@ public class ZooShellAnimalConfig {
     }
     
     // Predicates
-    @Bean
-    FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction(){
-        return new FindingAnimalWithEntryCheckFunction();
-    }
+    @Autowired
+    FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction;
+    
+    @Autowired
+    FindingDietFunction findingDietFunction;
     
      @Bean
     FindingContraceptionFunction findingContraceptionFunction(){
@@ -140,7 +147,7 @@ public class ZooShellAnimalConfig {
     @Bean
     AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator(){
         return new AnimalUpdateContraceptionValidator(findingContraceptionFunction(),
-        findingAnimalWithEntryCheckFunction(), 
+        findingAnimalWithEntryCheckFunction, 
         canHaveAHormonalContraceptionPredicate(),
         canHaveAChirurgicalContraceptionPredicate(),
         isContraceptionCompatibleWithPreviousPredicate(),
@@ -149,7 +156,7 @@ public class ZooShellAnimalConfig {
     
     @Bean
     AnimalUpdateDietValidator animalUpdateDietValidator(){
-        return new AnimalUpdateDietValidator();
+        return new AnimalUpdateDietValidator(findingDietFunction, findingAnimalWithEntryCheckFunction);
     }
     
      @Bean

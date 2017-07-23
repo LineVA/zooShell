@@ -34,7 +34,7 @@ public class UpdateDiet implements Command{
                     .map(controller)
                     .findFirst()
                     .get();
-            return new ReturnExec("UPDATE_Diet_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
+            return new ReturnExec("UPDATE_DIET_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } catch (java.util.NoSuchElementException ex) {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }

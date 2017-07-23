@@ -1,11 +1,8 @@
 package doyenm.zooshell;
 
 import doyenm.zooshell.validator.FindPaddock;
-import doyenm.zooshell.validator.function.FindingBiomeFunction;
-import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
-import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
+import doyenm.zooshell.validator.function.*;
+import doyenm.zooshell.validator.predicates.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,15 +12,20 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ZooShellPredicatesConfig {
-
+    
     @Bean
-    FindPaddock findPaddock() {
-        return new FindPaddock();
+    FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction(){
+        return new FindingAnimalWithEntryCheckFunction();
     }
 
     @Bean
     FindingBiomeFunction findingBiomeFunction() {
         return new FindingBiomeFunction();
+    }
+    
+     @Bean
+    FindingDietFunction findingDietFunction() {
+        return new FindingDietFunction();
     }
 
     @Bean
@@ -31,18 +33,25 @@ public class ZooShellPredicatesConfig {
         return new FindingPaddockTypeFunction();
     }
     
-    @Bean
-    StringLengthPredicates stringLengthPredicates(){
-        return new StringLengthPredicates();
-    }
     
     @Bean
-    UniquenessNamesBiPredicates uniquenessNamesBiPredicates(){
-        return new UniquenessNamesBiPredicates();
+    FindPaddock findPaddock() {
+        return new FindPaddock();
     }
 
     @Bean
-    IntegerValuePredicates integerValuePredicates(){
+    IntegerValuePredicates integerValuePredicates() {
         return new IntegerValuePredicates();
     }
+
+    @Bean
+    StringLengthPredicates stringLengthPredicates() {
+        return new StringLengthPredicates();
+    }
+
+    @Bean
+    UniquenessNamesBiPredicates uniquenessNamesBiPredicates() {
+        return new UniquenessNamesBiPredicates();
+    }
+
 }

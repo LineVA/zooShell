@@ -148,7 +148,7 @@ public class ZooShellConfig {
     @Bean
     ActionPointsHandler actionPointsHandler(){
         ActionPointsHandler actionPointsHandler = new ActionPointsHandler();
-        actionPointsHandler.initialize(7);
+        actionPointsHandler.initialize(25);
         return actionPointsHandler;
     }
     
