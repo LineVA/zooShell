@@ -30,19 +30,20 @@ public class ZooShellPredicatesConfig {
     FindingPaddockTypeFunction findingPaddockTypeFunction() {
         return new FindingPaddockTypeFunction();
     }
-    
+
     @Bean
-    StringLengthPredicates stringLengthPredicates(){
-        return new StringLengthPredicates();
-    }
-    
-    @Bean
-    UniquenessNamesBiPredicates uniquenessNamesBiPredicates(){
-        return new UniquenessNamesBiPredicates();
+    IntegerValuePredicates integerValuePredicates() {
+        return new IntegerValuePredicates();
     }
 
     @Bean
-    IntegerValuePredicates integerValuePredicates(){
-        return new IntegerValuePredicates();
+    StringLengthPredicates stringLengthPredicates() {
+        return new StringLengthPredicates();
     }
+
+    @Bean
+    UniquenessNamesBiPredicates uniquenessNamesBiPredicates() {
+        return new UniquenessNamesBiPredicates();
+    }
+
 }
