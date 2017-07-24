@@ -1,6 +1,7 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.AnimalKeeper;
+import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import java.util.Map;
 import lombok.Getter;
@@ -19,6 +20,10 @@ public class KeeperCreationContext {
     
     public Map<String, AnimalKeeper> getKeepers(){
         return getZoo().getKeepers();
+    }
+    
+     public Map<String, Paddock> getPaddocks(){
+        return getZoo().getPaddocks();
     }
 
 }
