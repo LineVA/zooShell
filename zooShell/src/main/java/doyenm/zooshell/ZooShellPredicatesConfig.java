@@ -44,6 +44,11 @@ public class ZooShellPredicatesConfig {
     FindPaddock findPaddock() {
         return new FindPaddock();
     }
+    
+    @Bean
+    KeepersNumberPredicate keeperNumbersPredicate(){
+        return new KeepersNumberPredicate();
+    }
 
     @Bean
     IntegerValuePredicates integerValuePredicates() {

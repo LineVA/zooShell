@@ -10,6 +10,10 @@ import doyenm.zooshell.commandLine.commandImpl.keeper.UpdateOccupations;
 import doyenm.zooshell.controller.keepercontroller.*;
 import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.validator.*;
+import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
+import doyenm.zooshell.validator.predicates.StringLengthPredicates;
+import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,13 +23,23 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ZooShellKeeperConfig {
-    
+
     @Bean
-    Utils utils(){
+    Utils utils() {
         return new Utils();
     }
 
-// Controllers
+    // Predicates
+    @Autowired
+    KeepersNumberPredicate keeperNumbersPredicate;
+
+    @Autowired
+    StringLengthPredicates stringLengthPredicates;
+
+    @Autowired
+    UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
+    
+    // Controllers
     @Bean
     KeeperRenameController keeperRenameController() {
         return new KeeperRenameController();
@@ -50,9 +64,9 @@ public class ZooShellKeeperConfig {
     KeeperResetOccupationsController keeperResetOccupationsController() {
         return new KeeperResetOccupationsController();
     }
-    
+
     @Bean
-    KeeperUpdateOccupationsController keeperUpdateOccupationsController(){
+    KeeperUpdateOccupationsController keeperUpdateOccupationsController() {
         return new KeeperUpdateOccupationsController();
     }
 
@@ -64,7 +78,8 @@ public class ZooShellKeeperConfig {
 
     @Bean
     KeeperCreationValidator keeperCreationValidator() {
-        return new KeeperCreationValidator();
+        return new KeeperCreationValidator(
+                stringLengthPredicates, uniquenessNamesBiPredicates, keeperNumbersPredicate);
     }
 
     @Bean
@@ -73,74 +88,43 @@ public class ZooShellKeeperConfig {
     }
 
     @Bean
-    KeeperUpdateOccupationsValidator keeperUpdateOccupationsValidator(){
+    KeeperUpdateOccupationsValidator keeperUpdateOccupationsValidator() {
         return new KeeperUpdateOccupationsValidator();
     }
-    
+
     // Commands
-    @Bean 
-    ChangeKeeperName changeKeeperName(){
+    @Bean
+    ChangeKeeperName changeKeeperName() {
         return new ChangeKeeperName(keeperRenameValidator(), keeperRenameController());
     }
 
     @Bean
-    CreateKeeper createKeeper(){
+    CreateKeeper createKeeper() {
         return new CreateKeeper(keeperCreationValidator(), keeperCreationController());
     }
-    
+
     @Bean
-    DetailKeeper detailKeeper(){
+    DetailKeeper detailKeeper() {
         return new DetailKeeper(keeperValidator(), keeperDetailsController());
     }
-    
+
     @Bean
-    LsKeeper lsKeeper(){
+    LsKeeper lsKeeper() {
         return new LsKeeper();
     }
-    
+
     @Bean
-    RemoveKeeper removeKeeper(){
+    RemoveKeeper removeKeeper() {
         return new RemoveKeeper(keeperValidator(), keeperDeletionController());
     }
-    
+
     @Bean
-    ResetOccupations resetOccupations(){
+    ResetOccupations resetOccupations() {
         return new ResetOccupations(keeperValidator(), keeperResetOccupationsController());
     }
-    
+
     @Bean
-    UpdateOccupations updateOccupations(){
+    UpdateOccupations updateOccupations() {
         return new UpdateOccupations(keeperUpdateOccupationsValidator(), keeperUpdateOccupationsController());
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
