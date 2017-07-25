@@ -1,7 +1,6 @@
 package doyenm.zooshell.model;
 
 import doyenm.zooshell.launch.options.Option;
-import java.util.ArrayList;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,6 +20,8 @@ public class Paddock {
      * The name of the paddock
      */
     private String name;
+    private int age;
+    
     /**
      * Its coordinates
      */
