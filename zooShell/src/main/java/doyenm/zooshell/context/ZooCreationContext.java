@@ -73,14 +73,4 @@ public class ZooCreationContext {
         this.setConvertedSpeed(Integer.parseInt(this.getInitSpeed()));
     }
 
-    public void build() {
-        zoo.setWidth(getConvertedWidth());
-        zoo.setHeight(this.getConvertedHeight());
-        zoo.setName(this.getName());
-        zoo.setHorizon(this.getConvertedHorizon());
-        zoo.setMonthsPerEvaluation(this.getConvertedSpeed());
-        zoo.setAge(this.getAge());
-        zoo.setSpecies(this.getSpecies());
-    }
-
 }

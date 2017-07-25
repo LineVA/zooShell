@@ -2,6 +2,7 @@ package doyenm.zooshell.commandLine.commandLineImpl.zoo;
 
 import doyenm.zooshell.commandLine.commandImpl.zoo.CreateZoo;
 import java.util.Random;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -14,23 +15,12 @@ public class CreateZooCanExecuteTest {
     private final String ZOO = "zoo";
     private final String CREATE = "create";
 
-    private String generateString() {
-        char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890&é(-è__çà".toCharArray();
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < 20; i++) {
-            char c = chars[random.nextInt(chars.length)];
-            sb.append(c);
-        }
-        return sb.toString();
-    }
-
     private String[] givenCorrectCmdWithXElements(int x) {
         String[] cmd = new String[x + 2];
         cmd[0] = this.ZOO;
         cmd[1] = this.CREATE;
         for (int i = 0; i < x; i++) {
-            cmd[i+2] = this.generateString();
+            cmd[i+2] = RandomStringUtils.random(10);
         }
         return cmd;
     }
@@ -40,16 +30,16 @@ public class CreateZooCanExecuteTest {
         cmd[0] = first;
         cmd[1] = second;
         for (int i = 0; i < x; i++) {
-            cmd[i] = this.generateString();
+            cmd[i] = RandomStringUtils.random(10);
         }
         return cmd;
     }
 
     @Test
-    public void shouldReturnTrueWhenThereIsThreeElementsInTheCommandAndWhenItBeginsCorrectly() {
+    public void shouldReturnTrueWhenThereIsSevenElementsInTheCommandAndWhenItBeginsCorrectly() {
         // Given
         CreateZoo createZoo = new CreateZoo(null, null);
-        String[] cmd = this.givenCorrectCmdWithXElements(1);
+        String[] cmd = this.givenCorrectCmdWithXElements(5);
         // When
         boolean actualResult = createZoo.canExecute(cmd);
         // Then
@@ -68,16 +58,17 @@ public class CreateZooCanExecuteTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenThereIsSevenElementsInTheCommandAndWhenItBeginsCorrectly() {
+    public void shouldReturnTrueWhenThereIsThreeElementsInTheCommandAndWhenItBeginsCorrectly() {
         // Given
         CreateZoo createZoo = new CreateZoo(null, null);
-        String[] cmd = this.givenCorrectCmdWithXElements(5);
+        String[] cmd = this.givenCorrectCmdWithXElements(1);
         // When
         boolean actualResult = createZoo.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isTrue();
     }
 
+    
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanSevenElements() {
         // Given
@@ -115,7 +106,7 @@ public class CreateZooCanExecuteTest {
     public void shouldReturnFalseWhenTheFirstElementIsNotZoo() {
         // Given
         CreateZoo createZoo = new CreateZoo(null, null);
-        String[] cmd = this.givenIncorrectCmdWithXElements(this.generateString(), this.CREATE, 6);
+        String[] cmd = this.givenIncorrectCmdWithXElements(RandomStringUtils.random(10), this.CREATE, 6);
         // When
         boolean actualResult = createZoo.canExecute(cmd);
         // Then
@@ -126,7 +117,7 @@ public class CreateZooCanExecuteTest {
     public void shouldReturnFalseWhenTheSecondElementIsNotCreate() {
         // Given
         CreateZoo createZoo = new CreateZoo(null, null);
-        String[] cmd = this.givenIncorrectCmdWithXElements(this.ZOO, this.generateString(), 6);
+        String[] cmd = this.givenIncorrectCmdWithXElements(this.ZOO, RandomStringUtils.random(10), 6);
         // When
         boolean actualResult = createZoo.canExecute(cmd);
         // Then
