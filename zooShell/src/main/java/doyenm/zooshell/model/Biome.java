@@ -2,13 +2,18 @@ package doyenm.zooshell.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
 @Getter
+@NoArgsConstructor
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public enum Biome {
     /*
@@ -45,7 +50,7 @@ public enum Biome {
     DESERT(13),
     MANGROVE(14);
 
-    private final int id;
+    private int id;
 
     Biome(int id) {
         this.id = id;

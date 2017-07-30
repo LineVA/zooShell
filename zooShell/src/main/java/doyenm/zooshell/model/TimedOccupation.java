@@ -1,7 +1,12 @@
 package doyenm.zooshell.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -13,9 +18,13 @@ import lombok.ToString;
 @Setter
 @Builder
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class TimedOccupation {
 
-    private final Paddock paddock;
-    private final TaskType taskType;
-    private final double time;
+    private Paddock paddock;
+    private TaskType taskType;
+    private double time;
 }

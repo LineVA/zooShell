@@ -1,8 +1,12 @@
 package doyenm.zooshell.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -12,10 +16,13 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@RequiredArgsConstructor
 @Builder
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Position {
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
 }

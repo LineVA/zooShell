@@ -1,6 +1,12 @@
 package doyenm.zooshell.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -11,6 +17,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ReproductionAttributes {
 
     private int femaleMaturityAge;
@@ -20,19 +31,6 @@ public class ReproductionAttributes {
     private int gestationDuration;
     private int weaningAge;
     
-    public ReproductionAttributes(int femaleMaturityAge, int maleMaturityAge, double frequency,
-            int litter, int duration, int weaningAge) {
-        this.femaleMaturityAge = femaleMaturityAge;
-        this.maleMaturityAge = maleMaturityAge;
-        this.frequency = frequency;
-        this.litterSize = litter;
-        this.gestationDuration = duration;
-        this.weaningAge = weaningAge;
-    }
-
-    public ReproductionAttributes() {
-    }
-
     public int getMaturityGivenSex(Sex sex) {
         return Sex.FEMALE == sex
                 ? getFemaleMaturityAge() : getMaleMaturityAge();
