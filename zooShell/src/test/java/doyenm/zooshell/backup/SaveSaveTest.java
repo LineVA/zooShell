@@ -5,6 +5,7 @@ import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.Zoo;
 import java.io.FileNotFoundException;
 import javax.xml.bind.JAXBException;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 /**
@@ -22,5 +23,8 @@ public class SaveSaveTest {
         zoo.getAnimals().put("toto", animal);
         Save save = new Save();
         save.save(zoo);
+        Load load = new Load();
+        Zoo actualZoo = load.load();
+        Assertions.assertThat(actualZoo.getName()).isEqualTo("oo");
     }
 }
