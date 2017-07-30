@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public class ZooDetailsContext {
+public class ZooContext {
 
     private final Zoo zoo;
     private List<Couple> couples = new ArrayList<>();

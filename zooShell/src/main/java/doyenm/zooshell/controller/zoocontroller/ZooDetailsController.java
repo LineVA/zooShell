@@ -1,6 +1,6 @@
 package doyenm.zooshell.controller.zoocontroller;
 
-import doyenm.zooshell.context.ZooDetailsContext;
+import doyenm.zooshell.context.ZooContext;
 import doyenm.zooshell.utils.Utils;
 import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
@@ -10,13 +10,13 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class ZooDetailsController implements Function<ZooDetailsContext, ZooDetailsContext> {
+public class ZooDetailsController implements Function<ZooContext, ZooContext> {
 
     private final Utils utils;
     
     @Override
-    public ZooDetailsContext apply(ZooDetailsContext t) {
-        ZooDetailsContext context = t;
+    public ZooContext apply(ZooContext t) {
+        ZooContext context = t;
         context.addCouple("Name", t.getZoo().getName());
         int age = context.getZoo().getAge();
         context.addCouple("Age", utils.getNumbersOfYearsFromAge(age) + " year(s), " + utils.getNumbersOfMonthsFromAge(age) + " month(s)");
