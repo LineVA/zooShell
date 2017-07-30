@@ -12,7 +12,6 @@ import java.util.Map;
 import javax.xml.bind.JAXBException;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
-import org.assertj.core.api.Assertions.*;
 import org.junit.Test;
 
 /**
@@ -42,14 +41,14 @@ public class SaveAndLoadIT {
     @Test
     public void shouldLoadTheZoo() throws JAXBException, FileNotFoundException {
         // Given
-        Save save = new Save();
-        Load load = new Load();
+        SaveFunction save = new SaveFunction();
+        LoadFunction load = new LoadFunction();
         String file = RandomStringUtils.random(10);
         ZooContext saveContext = givenSaveContext(file);
         ZooContext loadContext = givenLoadContext(file);
         // When
-        save.accept(saveContext);
-        load.accept(loadContext);
+        save.apply(saveContext);
+        load.apply(loadContext);
         //  Then
         Assertions.assertThat(saveContext.getZoo()).isEqualToComparingFieldByFieldRecursively(loadContext.getZoo());
     }
