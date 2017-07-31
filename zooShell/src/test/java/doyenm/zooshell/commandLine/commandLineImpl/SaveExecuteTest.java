@@ -64,6 +64,6 @@ public class SaveExecuteTest {
         Assertions.assertThat(result).isNotNull();
         Assertions.assertThat(result.getTypeReturn()).isEqualTo(TypeReturn.ERROR);
         Assertions.assertThat(result.getMessage()).isNotEmpty();
-        Assertions.assertThat(result.getZoo()).isNull();
+        Assertions.assertThat(result.getZoo()).isNotNull();
     }
 }

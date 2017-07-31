@@ -18,7 +18,7 @@ import org.junit.Test;
  *
  * @author doyenm
  */
-public class SaveAndLoadIT {
+public class SaveAndLoadTest {
 
     private ZooContext givenSaveContext(String file) {
         Zoo zoo = GenerateZoo.generateZooWithNoPadAnimalOrKeeper();
