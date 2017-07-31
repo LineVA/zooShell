@@ -56,6 +56,12 @@ public class ZooShellConfig {
 
     @Autowired
     DetailZoo detailZoo;
+    
+    @Autowired
+    Load load;
+    
+    @Autowired
+    Save save;
 
     @Autowired
     LsBiome lsBiome;
@@ -201,7 +207,9 @@ public class ZooShellConfig {
                 new ActionPointCommand(lsDiet, 0),
                 new ActionPointCommand(lsKeeperTask, 0),
                 new ActionPointCommand(lsPaddockType, 0),
-                new ActionPointCommand(lsSex, 0));
+                new ActionPointCommand(lsSex, 0),
+                new ActionPointCommand(load, 0),
+                new ActionPointCommand(save, 0));
         return new CommandManager(commands, actionPointsHandler(), getActionPoints(), evaluate());
     }
 
