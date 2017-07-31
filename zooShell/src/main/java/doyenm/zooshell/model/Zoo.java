@@ -1,9 +1,15 @@
 package doyenm.zooshell.model;
 
 import java.util.Map;
-import doyenm.zooshell.launch.options.Option;
 import java.util.HashMap;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -12,12 +18,16 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Zoo {
-    private Option option;
-
     /**
      * The name of the zoo
      */
+    @XmlElement
     private String name;
     /**
      * Its width

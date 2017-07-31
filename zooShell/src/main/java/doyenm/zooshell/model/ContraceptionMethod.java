@@ -2,13 +2,20 @@ package doyenm.zooshell.model;
 
 import java.util.Arrays;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
 @Getter
+@NoArgsConstructor
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public enum ContraceptionMethod {
 
     NONE(0),
@@ -18,7 +25,7 @@ public enum ContraceptionMethod {
     MALE_IMPLANT(4),
     STERILIZATION(5);
 
-    private final int id;
+    private int id;
 
     ContraceptionMethod(int id) {
         this.id = id;

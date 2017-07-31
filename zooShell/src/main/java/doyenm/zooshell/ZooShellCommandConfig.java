@@ -1,7 +1,11 @@
 package doyenm.zooshell;
 
+import doyenm.zooshell.backup.LoadFunction;
+import doyenm.zooshell.backup.SaveFunction;
 import doyenm.zooshell.commandLine.commandImpl.DetailSpecie;
+import doyenm.zooshell.commandLine.commandImpl.Load;
 import doyenm.zooshell.commandLine.commandImpl.LsSpecie;
+import doyenm.zooshell.commandLine.commandImpl.Save;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsKeeperTask;
 import doyenm.zooshell.commandLine.commandImpl.zoo.CreateZoo;
 import doyenm.zooshell.commandLine.commandImpl.zoo.DetailZoo;
@@ -35,6 +39,12 @@ public class ZooShellCommandConfig {
 
     @Autowired
     ZooDetailsController zooDetailsController;
+    
+    @Autowired
+    SaveFunction saveFunction;
+    
+    @Autowired
+    LoadFunction loadFunction;
 
     @Bean
     CreateZoo createZoo() {
@@ -59,5 +69,15 @@ public class ZooShellCommandConfig {
     @Bean
     LsSpecie lsSpecie() {
         return new LsSpecie();
+    }
+    
+    @Bean
+    Save save(){
+        return new Save(saveFunction);
+    }
+    
+    @Bean
+    Load load(){
+        return new Load(loadFunction);
     }
 }
