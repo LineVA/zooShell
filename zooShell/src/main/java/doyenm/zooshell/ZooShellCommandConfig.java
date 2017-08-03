@@ -9,18 +9,22 @@ import doyenm.zooshell.commandLine.commandImpl.Save;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsKeeperTask;
 import doyenm.zooshell.commandLine.commandImpl.zoo.CreateZoo;
 import doyenm.zooshell.commandLine.commandImpl.zoo.DetailZoo;
+import doyenm.zooshell.commandLine.commandImpl.zoo.Evaluate;
 import doyenm.zooshell.controller.speciecontroller.SpecieDetailsController;
+import doyenm.zooshell.controller.zoocontroller.EvaluationController;
 import doyenm.zooshell.controller.zoocontroller.ZooCreationController;
 import doyenm.zooshell.controller.zoocontroller.ZooDetailsController;
 import doyenm.zooshell.validator.SpecieDetailsValidator;
 import doyenm.zooshell.validator.ZooCreationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 
 /**
  *
  * @author doyenm
  */
+@Import(ZooShellZooConfig.class)
 public class ZooShellCommandConfig {
 
     // Validators    
@@ -31,6 +35,9 @@ public class ZooShellCommandConfig {
     ZooCreationValidator zooCreationValidator;
 
     // Controllers
+    @Autowired
+    EvaluationController evaluationController;
+    
     @Autowired
     SpecieDetailsController specieDetailsController;
 
@@ -59,6 +66,11 @@ public class ZooShellCommandConfig {
     @Bean
     DetailSpecie detailSpecie() {
         return new DetailSpecie(specieDetailsValidator, specieDetailsController);
+    }
+    
+    @Bean
+    Evaluate evaluate(){
+        return new Evaluate(evaluationController);
     }
 
     @Bean
