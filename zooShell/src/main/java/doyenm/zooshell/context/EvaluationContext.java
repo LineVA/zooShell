@@ -33,6 +33,20 @@ public class EvaluationContext {
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
     private List<Animal> newBornsList;
     
+    public void updateZoo(){
+    }
+
+    public void updateKeepers(){
+         Map<String, Animal> evaluatedAnimalsMap = convertAnimalsListToMap();
+        Optional optional = this.getKeepers().values()
+                .stream()
+                .map((AnimalKeeper keeper) -> {
+                    getKeepers().replace(keeper.getName(), keeper);
+                    return keeper;
+                })
+                .findFirst();
+    }
+    
     public void updateAnimals() {
         Map<String, Animal> evaluatedAnimalsMap = convertAnimalsListToMap();
         List<String> removeAnimalsList = new ArrayList<>();
@@ -55,8 +69,8 @@ public class EvaluationContext {
         return getZoo().getAnimals();
     }
 
-    public Collection<AnimalKeeper> getKeepers() {
-        return getZoo().getKeepers().values();
+    public Map<String, AnimalKeeper> getKeepers() {
+        return getZoo().getKeepers();
     }
 
     private Map<String, Animal> convertAnimalsListToMap() {
