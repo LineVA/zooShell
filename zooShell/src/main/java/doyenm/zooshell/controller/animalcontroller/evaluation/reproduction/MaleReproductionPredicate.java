@@ -4,8 +4,8 @@ import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Sex;
+import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -20,7 +20,7 @@ public class MaleReproductionPredicate implements Predicate<AnimalEvaluationCont
         // est un male
         // sexuellement mature
         Animal female = t.getAnimal();
-        return !t.getAnimalsOfTheZoo()
+        Optional optional = t.getAnimalsOfTheZoo()
                 .stream()
                 .filter((Animal t1) -> female.getPaddock().equals(t1.getPaddock()))
                 .filter((Animal t1) -> female.getSpecie().equals(t1.getSpecie()))
@@ -28,7 +28,8 @@ public class MaleReproductionPredicate implements Predicate<AnimalEvaluationCont
                 .filter((Animal t2) -> ContraceptionMethod.NONE == t2.getContraceptionMethod())
                 .filter((Animal t1) -> true)
                 .filter((Animal t1) -> t1.getReproductionAttributes().getMaleMaturityAge() <= t1.getAge())
-                .collect(Collectors.toList()).isEmpty();
+                .findFirst();
+        return optional.isPresent();
     }
 
 }

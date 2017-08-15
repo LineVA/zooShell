@@ -31,14 +31,14 @@ public class EvaluationContext {
     private int totalEvaluation;
     private List<Animal> evaluatedAnimalsList = new ArrayList<>();
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
-
+    
     public void buildAnimals() {
         Map<String, Animal> evaluatedAnimalsMap = convertAnimalsListToMap();
         List<String> removeAnimalsList = new ArrayList<>();
         Optional optional = this.getAnimals().keySet()
                 .stream()
                 .map((String t) -> {
-                    if (evaluatedAnimalsMap.get(t) != null) {
+                    if (evaluatedAnimalsMap.get(t.toUpperCase()) != null) {
                         getAnimals().replace(t, evaluatedAnimalsMap.get(t));
                     } else {
                         removeAnimalsList.add(t);
@@ -58,13 +58,13 @@ public class EvaluationContext {
     }
 
     private Map<String, Animal> convertAnimalsListToMap() {
-        Map<String, Animal> map = new HashMap<String, Animal>();
+        Map<String, Animal> map = new HashMap<>();
         this.getEvaluatedAnimalsList()
                 .stream()
                 .map(new Function<Animal, Animal>() {
                     @Override
                     public Animal apply(Animal t) {
-                        map.put(t.getName(), t);
+                        map.put(t.getName().toUpperCase(), t);
                         return t;
                     }
                 })
