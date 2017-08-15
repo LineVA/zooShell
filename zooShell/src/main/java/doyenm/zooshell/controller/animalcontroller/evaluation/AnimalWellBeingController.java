@@ -53,7 +53,9 @@ public class AnimalWellBeingController
                             + t1.getKeeperInfluenceWellBeing())
                             / 8.0);
                     return t1;
+                    
                 })
+                
                 .findFirst()
                 .get();
     }
