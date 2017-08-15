@@ -19,7 +19,9 @@ public class MaleReproductionPredicate implements Predicate<AnimalEvaluationCont
         // Animaux de la même espèce
         // est un male
         // sexuellement mature
-        Animal female = t.getAnimal();
+        final Animal female = t.getAnimal();
+        boolean a =female.getPaddock().equals(t.getAnimalsOfTheZoo().get(1).getPaddock());
+        boolean b = female.getSpecie().equals(t.getAnimalsOfTheZoo().get(1).getSpecie());
         Optional optional = t.getAnimalsOfTheZoo()
                 .stream()
                 .filter((Animal t1) -> female.getPaddock().equals(t1.getPaddock()))

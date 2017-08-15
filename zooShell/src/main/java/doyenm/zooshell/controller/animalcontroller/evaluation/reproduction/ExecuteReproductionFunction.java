@@ -29,8 +29,8 @@ public class ExecuteReproductionFunction
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         int currentGestationDuration;
         if (t.getCurrentGestationDuration() == 0) {
-            int gestationDurngThisTurn = statistics.getRandomLowerOrEqualsThan(t.getMonthsPerTurn());
-            currentGestationDuration = gestationDurngThisTurn + t.getCurrentGestationDuration();
+            int gestationDuringThisTurn = statistics.getRandomLowerOrEqualsThan(t.getMonthsPerTurn());
+            currentGestationDuration = gestationDuringThisTurn + t.getCurrentGestationDuration();
         } else {
             currentGestationDuration = t.getMonthsPerTurn() + t.getCurrentGestationDuration();
         }

@@ -29,7 +29,9 @@ public class AnimalReproductionEvaluationController
                     .map(executeReproductionFunction)
                     .findFirst();
             if(result.isPresent()){
-                return (AnimalEvaluationContext) result.get();
+                AnimalEvaluationContext actualContext = (AnimalEvaluationContext) result.get();
+                actualContext.getAnimal().setMonthsOfGestation(actualContext.getCurrentGestationDuration());
+                return actualContext;
             }
             return context;
         } else {

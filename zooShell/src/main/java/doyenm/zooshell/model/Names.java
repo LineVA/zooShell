@@ -1,11 +1,13 @@
 package doyenm.zooshell.model;
 
 import java.util.List;
+import lombok.EqualsAndHashCode;
 
 /**
  *
  * @author doyenm
  */
+@EqualsAndHashCode(of={"name"})
 public class Names {
     private String name;
     private List<Name> additionalNames;
