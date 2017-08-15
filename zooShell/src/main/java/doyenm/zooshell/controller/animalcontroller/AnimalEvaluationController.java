@@ -54,6 +54,7 @@ public class AnimalEvaluationController implements Function<EvaluationContext, E
                 .map((AnimalEvaluationContext t1) -> t1.getAnimal())
                 .collect(Collectors.toList())
         );
+        context.setNewBornsList(newborns);
         return context;
     }
 

@@ -33,13 +33,12 @@ public class CalvingFunction implements Function<AnimalEvaluationContext, Animal
                     .filter(animalCreationValidator)
                     .map((AnimalCreationContext t1) -> t1.createNewborn())
                     .map((Animal t1) -> {
-                t1.setNotNursingByMother(needWeaningByHumans());
-                return t1;
-            })
+                        t1.setNotNursingByMother(needWeaningByHumans());
+                        return t1;
+                    })
                     .findFirst()
                     .get()
-        
-        );
+            );
         }
         female.setNumberOfChildren(female.getNumberOfChildren() + litterSize);
         return context;

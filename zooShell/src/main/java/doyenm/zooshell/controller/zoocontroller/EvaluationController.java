@@ -32,7 +32,7 @@ public class EvaluationController implements Function<EvaluationContext, Evaluat
                 })
                 .findFirst()
                 .get();
-        context.buildAnimals();
+        context.updateAnimals();
         return context;
     }
 

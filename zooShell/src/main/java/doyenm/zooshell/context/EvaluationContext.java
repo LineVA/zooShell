@@ -31,8 +31,9 @@ public class EvaluationContext {
     private int totalEvaluation;
     private List<Animal> evaluatedAnimalsList = new ArrayList<>();
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
+    private List<Animal> newBornsList;
     
-    public void buildAnimals() {
+    public void updateAnimals() {
         Map<String, Animal> evaluatedAnimalsMap = convertAnimalsListToMap();
         List<String> removeAnimalsList = new ArrayList<>();
         Optional optional = this.getAnimals().keySet()
@@ -47,6 +48,7 @@ public class EvaluationContext {
                 })
                 .findFirst();
         removeAnimals(removeAnimalsList);
+        addAnimals(newBornsList);
     }
 
     public Map<String, Animal> getAnimals() {
@@ -75,6 +77,12 @@ public class EvaluationContext {
     private void removeAnimals(List<String> animalsToRemoveList) {
         for (String name : animalsToRemoveList) {
             getAnimals().remove(name);
+        }
+    }
+    
+    private void addAnimals(List<Animal> animalsToAdd) {
+        for (Animal animal : animalsToAdd) {
+            getAnimals().put(animal.getName().toUpperCase(), animal);
         }
     }
 }
