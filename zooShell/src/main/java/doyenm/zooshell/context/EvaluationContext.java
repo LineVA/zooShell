@@ -5,12 +5,10 @@ import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +37,7 @@ public class EvaluationContext {
     }
 
      public void updatePaddocks(){
-        Optional optional = this.getPaddocks().values()
+        this.getPaddocks().values()
                 .stream()
                 .map((Paddock pad) -> {
                     getPaddocks().replace(pad.getName(), pad);
@@ -49,8 +47,7 @@ public class EvaluationContext {
     }
     
     public void updateKeepers(){
-         Map<String, Animal> evaluatedAnimalsMap = convertAnimalsListToMap();
-        Optional optional = this.getKeepers().values()
+        this.getKeepers().values()
                 .stream()
                 .map((AnimalKeeper keeper) -> {
                     getKeepers().replace(keeper.getName(), keeper);
@@ -93,26 +90,23 @@ public class EvaluationContext {
         Map<String, Animal> map = new HashMap<>();
         this.getEvaluatedAnimalsList()
                 .stream()
-                .map(new Function<Animal, Animal>() {
-                    @Override
-                    public Animal apply(Animal t) {
-                        map.put(t.getName().toUpperCase(), t);
-                        return t;
-                    }
-                })
+                .map((Animal t) -> {
+                    map.put(t.getName().toUpperCase(), t);
+                    return t;
+        })
                 .collect(Collectors.toList());
         return map;
     }
 
     private void removeAnimals(List<String> animalsToRemoveList) {
-        for (String name : animalsToRemoveList) {
+        animalsToRemoveList.stream().forEach((name) -> {
             getAnimals().remove(name);
-        }
+        });
     }
     
     private void addAnimals(List<Animal> animalsToAdd) {
-        for (Animal animal : animalsToAdd) {
+        animalsToAdd.stream().forEach((animal) -> {
             getAnimals().put(animal.getName().toUpperCase(), animal);
-        }
+        });
     }
 }
