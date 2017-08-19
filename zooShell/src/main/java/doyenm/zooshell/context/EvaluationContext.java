@@ -2,6 +2,7 @@ package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
+import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,6 +32,7 @@ public class EvaluationContext {
     private int totalEvaluation;
     private List<Animal> evaluatedAnimalsList = new ArrayList<>();
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
+    private List<Paddock> evaluatedPaddocksList = new ArrayList<>();
     private List<Animal> newBornsList;
     
     public void updateZoo(){
