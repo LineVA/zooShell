@@ -19,6 +19,8 @@ import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationAgeingControl
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationFamilyController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationTaskController;
+import doyenm.zooshell.controller.paddockcontroller.PaddockAgeEvaluationController;
+import doyenm.zooshell.controller.paddockcontroller.PaddockEvaluationController;
 import doyenm.zooshell.controller.zoocontroller.EvaluationController;
 import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
 import org.springframework.context.annotation.Bean;
@@ -127,12 +129,25 @@ public class ZooShellZooConfig {
     }
     
     @Bean
+    PaddockAgeEvaluationController paddockAgeEvaluationController(){
+        return new PaddockAgeEvaluationController();
+    }
+    
+    @Bean
+    PaddockEvaluationController paddockEvaluationController(){
+        return new PaddockEvaluationController(paddockAgeEvaluationController());
+    }
+    
+    @Bean
     ZooEvaluationController zooEvaluationController(){
         return new ZooEvaluationController();
     } 
 
     @Bean
     EvaluationController evaluationController() {
-        return new EvaluationController(animalEvaluationController(), keeperEvaluationController(), zooEvaluationController());
+        return new EvaluationController(animalEvaluationController(), 
+                keeperEvaluationController(), 
+                paddockEvaluationController(), 
+                zooEvaluationController());
     }
 }
