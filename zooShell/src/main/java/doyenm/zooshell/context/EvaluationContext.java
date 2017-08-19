@@ -38,6 +38,16 @@ public class EvaluationContext {
     public void updateZoo(){
     }
 
+     public void updatePaddocks(){
+        Optional optional = this.getPaddocks().values()
+                .stream()
+                .map((Paddock pad) -> {
+                    getPaddocks().replace(pad.getName(), pad);
+                    return pad;
+                })
+                .findFirst();
+    }
+    
     public void updateKeepers(){
          Map<String, Animal> evaluatedAnimalsMap = convertAnimalsListToMap();
         Optional optional = this.getKeepers().values()
@@ -73,6 +83,10 @@ public class EvaluationContext {
 
     public Map<String, AnimalKeeper> getKeepers() {
         return getZoo().getKeepers();
+    }
+    
+    public Map<String, Paddock> getPaddocks() {
+        return getZoo().getPaddocks();
     }
 
     private Map<String, Animal> convertAnimalsListToMap() {
