@@ -5,6 +5,7 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.KeeperUtils;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TimedOccupation;
+import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -31,10 +32,14 @@ public class AnimalKeepersTimeInfluenceEvaluationController
         Paddock paddock = context.getPaddock();
         double sum = 0.0;
         for (AnimalKeeper keeper : context.getKeepers()) {
-            sum += keeperUtils.listOfTimedOccupationsInGivenPaddock(keeper, paddock)
-                    .stream()
-                    .collect(Collectors.summingDouble(TimedOccupation::getTime))
-                    * keeper.getFamilyEvaluations().get(context.getFamily()) ;
+            List<TimedOccupation> timedOccupations = keeperUtils.listOfTimedOccupationsInGivenPaddock(keeper, paddock);
+            if (timedOccupations != null && !timedOccupations.isEmpty()) {
+                sum += timedOccupations
+                        .stream()
+                        .filter((TimedOccupation k) -> keeper.getFamilyEvaluations().get(context.getFamily()) != null)
+                        .collect(Collectors.summingDouble(TimedOccupation::getTime))
+                        * keeper.getFamilyEvaluations().get(context.getFamily());
+            }
         }
         if (trait >= 0.5) {
             return sum * context.getBase();

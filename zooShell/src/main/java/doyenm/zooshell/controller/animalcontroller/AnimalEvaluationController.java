@@ -6,7 +6,6 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalDeathEvaluat
 import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalAgeEvaluationController;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.context.EvaluationContext;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalTasksInfluenceEvaluationController;
 import doyenm.zooshell.model.Animal;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +46,14 @@ public class AnimalEvaluationController implements Function<EvaluationContext, E
                 // Death
                 .map(animalDeathEvaluationController)
                 .filter((AnimalEvaluationContext t1) -> !t1.isDead())
+                .map((AnimalEvaluationContext t1) ->{
+                    t1.getAnimal().setWellBeing(t1.getWellBeing());
+                    return t1;
+                })
                 .map((AnimalEvaluationContext t1) -> t1.getAnimal())
                 .collect(Collectors.toList())
         );
+        context.setNewBornsList(newborns);
         return context;
     }
 

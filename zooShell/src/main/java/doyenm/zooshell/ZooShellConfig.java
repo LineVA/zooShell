@@ -58,6 +58,9 @@ public class ZooShellConfig {
     DetailZoo detailZoo;
     
     @Autowired
+    Evaluate evaluate;
+    
+    @Autowired
     Load load;
     
     @Autowired
@@ -164,11 +167,6 @@ public class ZooShellConfig {
     } 
     
     @Bean
-    Evaluate evaluate(){
-        return new Evaluate();
-    }
-
-    @Bean
     CommandManager commandManager() {
         List<ActionPointCommand> commands = Arrays.asList(
                 new ActionPointCommand(createZoo, 0),
@@ -210,7 +208,7 @@ public class ZooShellConfig {
                 new ActionPointCommand(lsSex, 0),
                 new ActionPointCommand(load, 0),
                 new ActionPointCommand(save, 0));
-        return new CommandManager(commands, actionPointsHandler(), getActionPoints(), evaluate());
+        return new CommandManager(commands, actionPointsHandler(), getActionPoints(), evaluate);
     }
 
     @Bean

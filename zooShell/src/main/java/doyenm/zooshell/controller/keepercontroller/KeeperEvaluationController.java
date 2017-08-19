@@ -21,7 +21,7 @@ public class KeeperEvaluationController implements Function<EvaluationContext, E
     @Override
     public EvaluationContext apply(EvaluationContext t) {
         EvaluationContext context = t;
-        context.setEvaluatedKeepersList(context.getKeepers()
+        context.setEvaluatedKeepersList(context.getKeepers().values()
                 .stream()
                 .map((AnimalKeeper t1) -> new KeeperEvaluationContext(context.getZoo(), t1))
                 .map(ageingController)

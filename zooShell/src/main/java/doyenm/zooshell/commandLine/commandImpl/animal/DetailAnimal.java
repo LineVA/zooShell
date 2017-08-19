@@ -10,6 +10,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalDetailsValidator;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
@@ -26,6 +27,7 @@ public class DetailAnimal implements Command {
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         AnimalDetailsContext context = new AnimalDetailsContext(zoo, cmd[1]);
+        try {
         context = Stream.of(context)
                 .filter(validator)
                 .map(controller)
@@ -34,6 +36,9 @@ public class DetailAnimal implements Command {
 
         FormattingInList formatting = new FormattingInList();
         return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS, context.getZoo());
+        } catch(NoSuchElementException ex){
+            return new ReturnExec("ERROR", TypeReturn.ERROR, context.getZoo());
+        }
     }
 
     @Override

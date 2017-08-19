@@ -2,13 +2,13 @@ package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
+import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -30,51 +30,83 @@ public class EvaluationContext {
     private int totalEvaluation;
     private List<Animal> evaluatedAnimalsList = new ArrayList<>();
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
+    private List<Paddock> evaluatedPaddocksList = new ArrayList<>();
+    private List<Animal> newBornsList;
     
-    public void buildAnimals() {
+    public void updateZoo(){
+    }
+
+     public void updatePaddocks(){
+        this.getPaddocks().values()
+                .stream()
+                .map((Paddock pad) -> {
+                    getPaddocks().replace(pad.getName(), pad);
+                    return pad;
+                })
+                .findFirst();
+    }
+    
+    public void updateKeepers(){
+        this.getKeepers().values()
+                .stream()
+                .map((AnimalKeeper keeper) -> {
+                    getKeepers().replace(keeper.getName(), keeper);
+                    return keeper;
+                })
+                .findFirst();
+    }
+    
+    public void updateAnimals() {
         Map<String, Animal> evaluatedAnimalsMap = convertAnimalsListToMap();
         List<String> removeAnimalsList = new ArrayList<>();
-        this.getAnimals().keySet()
+        Optional optional = this.getAnimals().keySet()
                 .stream()
                 .map((String t) -> {
-                    if(evaluatedAnimalsMap.get(t) != null){
+                    if (evaluatedAnimalsMap.get(t.toUpperCase()) != null) {
                         getAnimals().replace(t, evaluatedAnimalsMap.get(t));
                     } else {
                         removeAnimalsList.add(t);
                     }
                     return t;
-        })
-                .findFirst()
-                .get();
+                })
+                .findFirst();
         removeAnimals(removeAnimalsList);
+        addAnimals(newBornsList);
     }
 
-    public Map<String, Animal> getAnimals(){
+    public Map<String, Animal> getAnimals() {
         return getZoo().getAnimals();
     }
-    
-    public Collection<AnimalKeeper> getKeepers(){
-        return getZoo().getKeepers().values();
+
+    public Map<String, AnimalKeeper> getKeepers() {
+        return getZoo().getKeepers();
     }
     
+    public Map<String, Paddock> getPaddocks() {
+        return getZoo().getPaddocks();
+    }
+
     private Map<String, Animal> convertAnimalsListToMap() {
-        Map<String, Animal> map = new HashMap<String, Animal>();
+        Map<String, Animal> map = new HashMap<>();
         this.getEvaluatedAnimalsList()
                 .stream()
-                .map(new Function<Animal, Animal>() {
-                    @Override
-                    public Animal apply(Animal t) {
-                        map.put(t.getName(), t);
-                        return t;
-                    }
-                })
+                .map((Animal t) -> {
+                    map.put(t.getName().toUpperCase(), t);
+                    return t;
+        })
                 .collect(Collectors.toList());
         return map;
     }
-    
-    private void removeAnimals(List<String> animalsToRemoveList){
-        for(String name : animalsToRemoveList){
+
+    private void removeAnimals(List<String> animalsToRemoveList) {
+        animalsToRemoveList.stream().forEach((name) -> {
             getAnimals().remove(name);
-        }
+        });
+    }
+    
+    private void addAnimals(List<Animal> animalsToAdd) {
+        animalsToAdd.stream().forEach((animal) -> {
+            getAnimals().put(animal.getName().toUpperCase(), animal);
+        });
     }
 }

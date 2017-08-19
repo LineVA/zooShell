@@ -13,7 +13,7 @@ public class FindingPaddockByNameFunction
     @Override
     public FindingPaddockContext apply(FindingPaddockContext t) {
         FindingPaddockContext context = t;
-        context.setPaddock(context.getPaddocks().get(context.getPaddockName()));
+        context.setPaddock(context.getPaddocks().get(context.getPaddockName().toUpperCase()));
         return context;
     }
 

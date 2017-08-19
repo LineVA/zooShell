@@ -2,7 +2,9 @@ package doyenm.zooshell;
 
 import doyenm.zooshell.backup.LoadFunction;
 import doyenm.zooshell.backup.SaveFunction;
+import doyenm.zooshell.controller.animalcontroller.AnimalEvaluationController;
 import doyenm.zooshell.controller.speciecontroller.SpecieDetailsController;
+import doyenm.zooshell.controller.zoocontroller.EvaluationController;
 import doyenm.zooshell.controller.zoocontroller.ZooCreationController;
 import doyenm.zooshell.controller.zoocontroller.ZooDetailsController;
 import doyenm.zooshell.utils.Utils;
@@ -18,6 +20,8 @@ public class ZooShellControllerConfig {
     Utils utils() {
         return new Utils();
     }
+    
+   
 
     @Bean
     SpecieDetailsController specieDetailsController() {
