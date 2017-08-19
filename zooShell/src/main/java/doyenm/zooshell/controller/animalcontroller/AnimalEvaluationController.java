@@ -6,7 +6,6 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalDeathEvaluat
 import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalAgeEvaluationController;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.context.EvaluationContext;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalTasksInfluenceEvaluationController;
 import doyenm.zooshell.model.Animal;
 import java.util.ArrayList;
 import java.util.List;
