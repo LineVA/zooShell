@@ -24,10 +24,10 @@ import lombok.Setter;
 public class EvaluationContext {
 
     private final Zoo zoo;
-    private int zooEvaluation;
-    private int paddocksEvaluation;
-    private int animalsEvaluation;
-    private int totalEvaluation;
+    private double zooEvaluation = 0;
+    private double paddocksEvaluation = 0;
+    private double animalsEvaluation = 0;
+    private double totalEvaluation = 0;
     private List<Animal> evaluatedAnimalsList = new ArrayList<>();
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
     private List<Paddock> evaluatedPaddocksList = new ArrayList<>();
