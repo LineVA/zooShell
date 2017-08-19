@@ -27,6 +27,7 @@ public class ZooDetailsController implements Function<ZooContext, ZooContext> {
         context.addCouple("Number of paddocks", t.getZoo().getPaddocks().size());
         context.addCouple("Number of animals", t.getZoo().getAnimals().size());
         context.addCouple("Number of animal keepers", t.getZoo().getKeepers().size());
+        context.addCouple("Grade of the zoo", t.getZoo().getGrade());
         return context;
     }
 }
