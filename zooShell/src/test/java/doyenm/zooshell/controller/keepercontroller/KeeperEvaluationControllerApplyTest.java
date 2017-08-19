@@ -5,7 +5,10 @@ import doyenm.zooshell.context.KeeperEvaluationContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -51,7 +54,7 @@ public class KeeperEvaluationControllerApplyTest {
         return ctrl;
     }
 
-    private EvaluationContext givenContextWithKeepers(List<AnimalKeeper> keepers) {
+    private EvaluationContext givenContextWithKeepers(Map<String, AnimalKeeper> keepers) {
         EvaluationContext context = Mockito.mock(EvaluationContext.class);
         Mockito.when(context.getEvaluatedKeepersList()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(context).setEvaluatedKeepersList(Mockito.anyList());
@@ -66,7 +69,10 @@ public class KeeperEvaluationControllerApplyTest {
         KeeperEvaluationAgeingController ageingController = givenAgeingController();
         KeeperEvaluationTaskController taskController = givenTaskController();
         KeeperEvaluationFamilyController familyController = givenFamilyController();
-        EvaluationContext context = givenContextWithKeepers(Arrays.asList(Mockito.mock(AnimalKeeper.class), Mockito.mock(AnimalKeeper.class)));
+        Map<String, AnimalKeeper> keepers = new HashMap<>();
+        keepers.put(RandomStringUtils.random(10), Mockito.mock(AnimalKeeper.class));
+        keepers.put(RandomStringUtils.random(10), Mockito.mock(AnimalKeeper.class));
+        EvaluationContext context = givenContextWithKeepers(keepers);
         KeeperEvaluationController controller = new KeeperEvaluationController(ageingController, taskController, familyController);
         // When
         EvaluationContext actualContext = controller.apply(context);
