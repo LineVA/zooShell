@@ -32,7 +32,7 @@ public class EvaluationContext {
     private List<Animal> evaluatedAnimalsList = new ArrayList<>();
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
     private List<Paddock> evaluatedPaddocksList = new ArrayList<>();
-    private List<Animal> newBornsList;
+    private List<Animal> newBornsList = new ArrayList<>();
     private List<Event> events = new ArrayList(); 
     
     public void updateZoo(){
@@ -73,7 +73,7 @@ public class EvaluationContext {
                 })
                 .findFirst();
         removeAnimals(removeAnimalsList);
-        addAnimals(newBornsList);
+        addAnimals(getNewBornsList());
     }
 
     public Map<String, Animal> getAnimals() {

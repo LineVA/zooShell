@@ -55,6 +55,7 @@ public class EvaluationContextBuildTest {
         Mockito.when(context.getAnimals()).thenCallRealMethod();
         Mockito.when(context.getZoo()).thenReturn(zoo);
         Mockito.when(context.getEvaluatedAnimalsList()).thenReturn(evaluatedList);
+        Mockito.when(context.getNewBornsList()).thenReturn(new ArrayList<>());
         return context;
     }
 
