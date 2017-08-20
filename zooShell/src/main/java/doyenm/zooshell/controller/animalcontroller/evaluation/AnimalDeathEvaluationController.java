@@ -44,7 +44,7 @@ public class AnimalDeathEvaluationController
         Map<EventType, Boolean> deathCauses = new HashMap<>();
         deathCauses.put(EventType.DEATH_OF_AGE, deathPredicates.isDeadByOldAge(animal));
         deathCauses.put(EventType.DEATH_OF_DROWN, deathPredicates.isDeadByDrowning(animal));
-        deathCauses.put(EventType.DEAT_OF_HUNGER, deathPredicates.isDeadByHunger(animal));
+        deathCauses.put(EventType.DEATH_OF_HUNGER, deathPredicates.isDeadByHunger(animal));
         return deathCauses;
     }
 
