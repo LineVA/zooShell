@@ -3,6 +3,8 @@ package doyenm.zooshell.controller.animalcontroller.evaluation;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalDeathPredicates;
 import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalUpdateDyingMeasures;
+import doyenm.zooshell.controller.eventhandling.Event;
+import doyenm.zooshell.controller.eventhandling.EventType;
 import doyenm.zooshell.model.Animal;
 import java.util.function.Function;
 
@@ -22,8 +24,12 @@ public class AnimalDeathEvaluationController
         Animal animal = measures.updateIsDyingByDrowning(context.getAnimal());
         animal = measures.updateIsDyingByHunger(animal, context.getKeepers());
         context.setAnimal(animal);
-        boolean isDead = deathPredicates.isDeadByOldAge(animal)
-                || deathPredicates.isDeadByDrowning(animal)
+        boolean isDead = false;
+        if (deathPredicates.isDeadByOldAge(animal)) {
+            isDead = true;
+            context.getEvents().add(new Event(EventType.DEATH_BY_AGE, context.getAnimal()));
+        }
+        isDead |=  deathPredicates.isDeadByDrowning(animal)
                 || deathPredicates.isDeadByHunger(animal);
         context.setDead(isDead);
         return context;
