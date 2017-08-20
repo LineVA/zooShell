@@ -35,6 +35,7 @@ public class Event {
         if (subjectAndMother.contains(eventType.getCategory())) {
             this.eventType = eventType;
             this.subject = subject;
+            this.mother = mother;
         } else {
             this.eventType = null;
             this.subject = null;
