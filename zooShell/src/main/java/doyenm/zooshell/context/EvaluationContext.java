@@ -1,5 +1,6 @@
 package doyenm.zooshell.context;
 
+import doyenm.zooshell.controller.eventhandling.Event;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
@@ -32,6 +33,7 @@ public class EvaluationContext {
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
     private List<Paddock> evaluatedPaddocksList = new ArrayList<>();
     private List<Animal> newBornsList;
+    private List<Event> events = new ArrayList(); 
     
     public void updateZoo(){
     }

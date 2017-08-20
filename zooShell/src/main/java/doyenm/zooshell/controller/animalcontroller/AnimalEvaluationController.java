@@ -24,7 +24,6 @@ public class AnimalEvaluationController implements Function<EvaluationContext, E
     private final AnimalDeathEvaluationController animalDeathEvaluationController;
     private final AnimalReproductionEvaluationController animalReproductionEvaluationController;
     private final AnimalWellBeingController animalWellBeingController;
-    
 
     @Override
     public EvaluationContext apply(EvaluationContext t) {
@@ -45,8 +44,12 @@ public class AnimalEvaluationController implements Function<EvaluationContext, E
                 .map(animalWellBeingController)
                 // Death
                 .map(animalDeathEvaluationController)
+                 .map((AnimalEvaluationContext t1) -> {
+                    context.getEvents().addAll(t1.getEvents());
+                    return t1;
+                })
                 .filter((AnimalEvaluationContext t1) -> !t1.isDead())
-                .map((AnimalEvaluationContext t1) ->{
+                .map((AnimalEvaluationContext t1) -> {
                     t1.getAnimal().setWellBeing(t1.getWellBeing());
                     return t1;
                 })
