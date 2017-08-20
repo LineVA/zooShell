@@ -53,8 +53,8 @@ public class ExecuteReproductionFunction
             return t;
         }
     }
-    
-    private List<Event> generateBirthEvents(AnimalEvaluationContext context){
+
+    private List<Event> generateBirthEvents(AnimalEvaluationContext context) {
         List<Event> events = new ArrayList<>();
         context.getChildren()
                 .stream()
@@ -64,10 +64,14 @@ public class ExecuteReproductionFunction
         return events;
     }
 
-      private List<Event> generatePregnancyEvents(AnimalEvaluationContext context){
+    private List<Event> generatePregnancyEvents(AnimalEvaluationContext context) {
         List<Event> events = new ArrayList<>();
-        events.add(new Event(EventType.NEW_PREGNANCY, context.getAnimal()));
+        if (context.getCurrentGestationDuration()> context.getMonthsPerTurn()) {
+            events.add(new Event(EventType.PREGNANCY_PURSUIT, context.getAnimal()));
+        } else {
+            events.add(new Event(EventType.NEW_PREGNANCY, context.getAnimal()));
+        }
         return events;
     }
-    
+
 }
