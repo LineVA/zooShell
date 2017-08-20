@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import static org.assertj.core.api.Assertions.offset;
 import org.junit.Test;
@@ -99,8 +100,8 @@ public class KeeperEvaluationFamilyControllerApplyTest {
     @Test
     public void shoulSetTheCompetenceInLemuridaeToXWhenItIsInitiallyZeroAndTheKeeperPracticeXTimeInTwoPaddocks() {
         // Given
-        Paddock pad1 = Paddock.builder().build();
-        Paddock pad2 = Paddock.builder().build();
+        Paddock pad1 = Paddock.builder().name(RandomStringUtils.random(10)).build();
+        Paddock pad2 = Paddock.builder().name(RandomStringUtils.random(10)).build();
         Specie specie = new Specie();
         specie.setFamily(Family.LEMURIDAE);
         Animal animal1 = Animal.builder().specie(specie).paddock(pad1).build();
@@ -137,7 +138,7 @@ public class KeeperEvaluationFamilyControllerApplyTest {
     @Test
     public void shoulSetTheCompetenceInLemuridaeToXWhenItIsInitiallyXAndTheKeeperDoesNotPractice() {
         // Given
-        Paddock pad1 = Paddock.builder().build();
+        Paddock pad1 = Paddock.builder().name(RandomStringUtils.random(10)).build();
         Specie specie = new Specie();
         specie.setFamily(Family.LEMURIDAE);
         Animal animal1 = Animal.builder().specie(specie).paddock(pad1).build();
@@ -166,7 +167,7 @@ public class KeeperEvaluationFamilyControllerApplyTest {
     @Test
     public void shoulSetTheCompetenceInLemuridaeToZWhenItIsInitiallyXAndTheKeeperPracticeYTime() {
         // Given
-        Paddock pad1 = Paddock.builder().build();
+        Paddock pad1 = Paddock.builder().name(RandomStringUtils.random(10)).build();
         Specie specie = new Specie();
         specie.setFamily(Family.LEMURIDAE);
         Animal animal1 = Animal.builder().specie(specie).paddock(pad1).build();
@@ -195,11 +196,11 @@ public class KeeperEvaluationFamilyControllerApplyTest {
     @Test
     public void shoulSetTheCompetenceInLemuridaeToZWhenItIsInitiallyXAndTheKeeperPracticeYTimeInTwoPaddocks() {
         // Given
-        Paddock pad1 = Paddock.builder().build();
+        Paddock pad1 = Paddock.builder().name(RandomStringUtils.random(10)).build();
         Specie specie = new Specie();
         specie.setFamily(Family.LEMURIDAE);
         Animal animal1 = Animal.builder().specie(specie).paddock(pad1).build();
-        Paddock pad2 = Paddock.builder().build();
+        Paddock pad2 = Paddock.builder().name(RandomStringUtils.random(10)).build();
         Animal animal2 = Animal.builder().specie(specie).paddock(pad2).build();
         double time1 = 0.50;
         TimedOccupation occ1 = TimedOccupation.builder()
@@ -234,11 +235,11 @@ public class KeeperEvaluationFamilyControllerApplyTest {
     @Test
     public void shoulSetTheCompetenceInLemuridaeAndUnknownToXAndYWhenTheKeeperPractices() {
         // Given
-        Paddock pad1 = Paddock.builder().build();
+        Paddock pad1 = Paddock.builder().name(RandomStringUtils.random(10)).build();
         Specie specie = new Specie();
         specie.setFamily(Family.LEMURIDAE);
         Animal animal1 = Animal.builder().specie(specie).paddock(pad1).build();
-        Paddock pad2 = Paddock.builder().build();
+        Paddock pad2 = Paddock.builder().name(RandomStringUtils.random(10)).build();
         Specie specie2 = new Specie();
         specie2.setFamily(Family.UNKNOWN);
         Animal animal2 = Animal.builder().specie(specie2).paddock(pad2).build();
@@ -277,11 +278,11 @@ public class KeeperEvaluationFamilyControllerApplyTest {
     @Test
     public void shoulSetTheCompetenceInLemuridaeToZeroWhenTheKeeperHasNeverPracticedWithThisFamilyButInOtherPaddocks() {
         // Given
-        Paddock pad1 = Paddock.builder().build();
+        Paddock pad1 = Paddock.builder().name(RandomStringUtils.random(10)).build();
         Specie specie = new Specie();
         specie.setFamily(Family.LEMURIDAE);
         Animal animal1 = Animal.builder().specie(specie).paddock(pad1).build();
-        Paddock pad2 = Paddock.builder().build();
+        Paddock pad2 = Paddock.builder().name(RandomStringUtils.random(10)).build();
         double time2 = 0.30;
         TimedOccupation occ2 = TimedOccupation.builder()
                 .paddock(pad2)
