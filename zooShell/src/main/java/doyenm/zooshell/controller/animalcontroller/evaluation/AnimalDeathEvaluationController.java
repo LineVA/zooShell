@@ -6,6 +6,8 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalUpdate
 import doyenm.zooshell.controller.eventhandling.Event;
 import doyenm.zooshell.controller.eventhandling.EventType;
 import doyenm.zooshell.model.Animal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 /**
@@ -24,15 +26,26 @@ public class AnimalDeathEvaluationController
         Animal animal = measures.updateIsDyingByDrowning(context.getAnimal());
         animal = measures.updateIsDyingByHunger(animal, context.getKeepers());
         context.setAnimal(animal);
-        boolean isDead = false;
-        if (deathPredicates.isDeadByOldAge(animal)) {
-            isDead = true;
-            context.getEvents().add(new Event(EventType.DEATH_OF_AGE, context.getAnimal()));
-        }
-        isDead |=  deathPredicates.isDeadByDrowning(animal)
-                || deathPredicates.isDeadByHunger(animal);
-        context.setDead(isDead);
+        Map<EventType, Boolean> deathCauses = generateDeathCauses(context.getAnimal());
+
+        deathCauses.keySet()
+                .stream()
+                .forEach((EventType eventType) -> {
+                    if (deathCauses.get(eventType)) {
+                        context.getEvents().add(new Event(eventType, context.getAnimal()));
+                    }
+                });
+
+        context.setDead(deathCauses.containsValue(true));
         return context;
+    }
+
+    private Map<EventType, Boolean> generateDeathCauses(Animal animal) {
+        Map<EventType, Boolean> deathCauses = new HashMap<>();
+        deathCauses.put(EventType.DEATH_OF_AGE, deathPredicates.isDeadByOldAge(animal));
+        deathCauses.put(EventType.DEATH_OF_DROWN, deathPredicates.isDeadByDrowning(animal));
+        deathCauses.put(EventType.DEAT_OF_HUNGER, deathPredicates.isDeadByHunger(animal));
+        return deathCauses;
     }
 
 }
