@@ -27,7 +27,7 @@ public class AnimalDeathEvaluationController
         boolean isDead = false;
         if (deathPredicates.isDeadByOldAge(animal)) {
             isDead = true;
-            context.getEvents().add(new Event(EventType.DEATH_BY_AGE, context.getAnimal()));
+            context.getEvents().add(new Event(EventType.DEATH_OF_AGE, context.getAnimal()));
         }
         isDead |=  deathPredicates.isDeadByDrowning(animal)
                 || deathPredicates.isDeadByHunger(animal);
