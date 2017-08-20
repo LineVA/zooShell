@@ -6,6 +6,7 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.utils.UniformStatistics;
 import doyenm.zooshell.validator.AnimalCreationValidator;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -25,8 +26,7 @@ public class CalvingFunction implements Function<AnimalEvaluationContext, Animal
         int litterSize = determineLitterSize(context.getAnimal());
         for (int i = 0; i < litterSize; i++) {
             final int j = i + 1;
-            context.getChildren().add(
-                    Stream.of(context)
+            Optional optional = Stream.of(context)
                     .map((AnimalEvaluationContext t1) -> new AnimalCreationContext(t1.getZoo(),
                                     determineName(female, j), female.getSpecie().getNames().getName(),
                                     determineSex(), female.getPaddock().getName()))
@@ -36,9 +36,10 @@ public class CalvingFunction implements Function<AnimalEvaluationContext, Animal
                         t1.setNotNursingByMother(needWeaningByHumans());
                         return t1;
                     })
-                    .findFirst()
-                    .get()
-            );
+                    .findFirst();
+            if (optional.isPresent()) {
+                context.getChildren().add((Animal) optional.get());
+            }
         }
         female.setNumberOfChildren(female.getNumberOfChildren() + litterSize);
         return context;
