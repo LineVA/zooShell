@@ -12,7 +12,8 @@ public class DisplayingSimpleEvents implements DisplayingEvents{
 
     @Override
     public boolean canFormat(Event event) {
-        return EventCategory.DEATH == event.getEventType().getCategory();
+        return EventCategory.DEATH == event.getEventType().getCategory() 
+                || EventCategory.PREGNANCY == event.getEventType().getCategory();
     }
 
     @Override
