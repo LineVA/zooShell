@@ -45,6 +45,8 @@ public class AnimalDeathEvaluationController
         events.put(EventType.DEATH_OF_AGE, deathPredicates.isDeadByOldAge(animal));
         events.put(EventType.DEATH_OF_DROWN, deathPredicates.isDeadByDrowning(animal));
         events.put(EventType.DEATH_OF_HUNGER, deathPredicates.isDeadByHunger(animal));
+        events.put(EventType.DIYING_OF_DROWN, animal.getDaysOfDrowning() != 0);
+        events.put(EventType.DIYING_OF_UNGER, animal.getDaysOfHunger()!= 0);
         return events;
     }
 
