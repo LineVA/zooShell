@@ -8,7 +8,7 @@ import java.text.MessageFormat;
  *
  * @author doyenm
  */
-public class DisplayingDeathEvents implements DisplayingEvents{
+public class DisplayingSimpleEvents implements DisplayingEvents{
 
     @Override
     public boolean canFormat(Event event) {

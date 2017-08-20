@@ -3,7 +3,7 @@ package doyenm.zooshell.commandLine.commandImpl.zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.DisplayingBirthEvents;
-import doyenm.zooshell.commandLine.general.DisplayingDeathEvents;
+import doyenm.zooshell.commandLine.general.DisplayingSimpleEvents;
 import doyenm.zooshell.commandLine.general.DisplayingEvents;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
@@ -27,8 +27,7 @@ public class Evaluate implements Command {
 
     private final EvaluationController controller;
     
-    private final List<DisplayingEvents> displayingEventsList = Arrays.asList(
-            new DisplayingDeathEvents(),
+    private final List<DisplayingEvents> displayingEventsList = Arrays.asList(new DisplayingSimpleEvents(),
             new DisplayingBirthEvents()); 
 
     @Override
