@@ -66,7 +66,7 @@ public class ExecuteReproductionFunction
 
       private List<Event> generatePregnancyEvents(AnimalEvaluationContext context){
         List<Event> events = new ArrayList<>();
-        events.add(new Event(EventType.PREGNANCY, context.getAnimal()));
+        events.add(new Event(EventType.NEW_PREGNANCY, context.getAnimal()));
         return events;
     }
     
