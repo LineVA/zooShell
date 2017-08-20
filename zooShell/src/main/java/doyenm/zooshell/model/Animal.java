@@ -43,4 +43,5 @@ public class Animal {
     private CharacterAttributes characterAttributes;
     private boolean notNursingByMother;
     private double wellBeing;
+    private WellBeing wellBeingObj;
 }
