@@ -36,7 +36,7 @@ public class AnimalDeathEvaluationController
                     }
                 });
 
-        context.setDead(events.containsValue(true));
+        context.setDead(isDead(animal));
         return context;
     }
 
@@ -48,6 +48,12 @@ public class AnimalDeathEvaluationController
         events.put(EventType.DIYING_OF_DROWN, animal.getDaysOfDrowning() != 0);
         events.put(EventType.DIYING_OF_UNGER, animal.getDaysOfHunger()!= 0);
         return events;
+    }
+    
+    private boolean isDead(Animal animal){
+        return deathPredicates.isDeadByDrowning(animal)
+                || deathPredicates.isDeadByHunger(animal)
+                || deathPredicates.isDeadByOldAge(animal);
     }
 
 }
