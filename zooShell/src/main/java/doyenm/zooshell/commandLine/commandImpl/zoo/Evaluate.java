@@ -38,6 +38,7 @@ public class Evaluate implements Command {
                 .findFirst();
         if (optional.isPresent()) {
             String events = formatEvents((EvaluationContext) optional.get());
+            events += "The grade of the zoo is : " + ((EvaluationContext) optional.get()).getZoo().getGrade();
             return new ReturnExec(events, TypeReturn.SUCCESS, context.getZoo());
         } else {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
