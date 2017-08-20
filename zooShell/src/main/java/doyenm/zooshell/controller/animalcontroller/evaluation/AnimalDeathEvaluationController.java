@@ -26,26 +26,26 @@ public class AnimalDeathEvaluationController
         Animal animal = measures.updateIsDyingByDrowning(context.getAnimal());
         animal = measures.updateIsDyingByHunger(animal, context.getKeepers());
         context.setAnimal(animal);
-        Map<EventType, Boolean> deathCauses = generateDeathCauses(context.getAnimal());
+        Map<EventType, Boolean> events = generateEvents(context.getAnimal());
 
-        deathCauses.keySet()
+        events.keySet()
                 .stream()
                 .forEach((EventType eventType) -> {
-                    if (deathCauses.get(eventType)) {
+                    if (events.get(eventType)) {
                         context.getEvents().add(new Event(eventType, context.getAnimal()));
                     }
                 });
 
-        context.setDead(deathCauses.containsValue(true));
+        context.setDead(events.containsValue(true));
         return context;
     }
 
-    private Map<EventType, Boolean> generateDeathCauses(Animal animal) {
-        Map<EventType, Boolean> deathCauses = new HashMap<>();
-        deathCauses.put(EventType.DEATH_OF_AGE, deathPredicates.isDeadByOldAge(animal));
-        deathCauses.put(EventType.DEATH_OF_DROWN, deathPredicates.isDeadByDrowning(animal));
-        deathCauses.put(EventType.DEATH_OF_HUNGER, deathPredicates.isDeadByHunger(animal));
-        return deathCauses;
+    private Map<EventType, Boolean> generateEvents(Animal animal) {
+        Map<EventType, Boolean> events = new HashMap<>();
+        events.put(EventType.DEATH_OF_AGE, deathPredicates.isDeadByOldAge(animal));
+        events.put(EventType.DEATH_OF_DROWN, deathPredicates.isDeadByDrowning(animal));
+        events.put(EventType.DEATH_OF_HUNGER, deathPredicates.isDeadByHunger(animal));
+        return events;
     }
 
 }
