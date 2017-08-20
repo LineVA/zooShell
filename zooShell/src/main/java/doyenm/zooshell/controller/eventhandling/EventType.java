@@ -12,7 +12,8 @@ public enum EventType {
     DEATH_OF_DROWN("The animal {0} is dead of drown"),
     DEATH_OF_HUNGER("The animal {0} is dead of starvation"),
     DIYING_OF_UNGER("The animal {0} is dying of starvation"),
-    DIYING_OF_DROWN("The animal {0} is diying of drowning");
+    DIYING_OF_DROWN("The animal {0} is diying of drowning"),
+    BIRTH("The animal {0} is born ; its mother is {1}");
     
     @Getter
     private final String message;
