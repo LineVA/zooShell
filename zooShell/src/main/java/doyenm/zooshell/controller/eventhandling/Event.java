@@ -18,7 +18,7 @@ public class Event {
     @Getter
     private Animal mother;
 
-    private final List<EventCategory> justSubject = Arrays.asList(EventCategory.DEATH);
+    private final List<EventCategory> justSubject = Arrays.asList(EventCategory.DEATH, EventCategory.PREGNANCY);
     private final List<EventCategory> subjectAndMother = Arrays.asList(EventCategory.BIRTH);
 
     public Event(EventType eventType, Animal subject) {
