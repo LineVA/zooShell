@@ -9,11 +9,13 @@ import lombok.Getter;
  *
  * @author doyenm
  */
-@Getter
 public class Event {
 
+    @Getter
     private final EventType eventType;
+    @Getter
     private final Animal subject;
+    @Getter
     private Animal mother;
 
     private final List<EventCategory> justSubject = Arrays.asList(EventCategory.DEATH);
@@ -28,8 +30,8 @@ public class Event {
             this.subject = null;
         }
     }
-    
-      public Event(EventType eventType, Animal subject, Animal mother) {
+
+    public Event(EventType eventType, Animal subject, Animal mother) {
         if (subjectAndMother.contains(eventType.getCategory())) {
             this.eventType = eventType;
             this.subject = subject;
