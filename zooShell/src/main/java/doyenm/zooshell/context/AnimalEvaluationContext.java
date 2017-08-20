@@ -1,5 +1,6 @@
 package doyenm.zooshell.context;
 
+import doyenm.zooshell.controller.eventhandling.Event;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Family;
@@ -39,6 +40,8 @@ public class AnimalEvaluationContext {
     private double taskInfluenceWellBeing = 0.0;
 
     private double wellBeing = 0.0;
+    
+    private List<Event> events = new ArrayList<>();
 
     public AnimalEvaluationContext(Zoo zoo, Animal animal) {
         this.zoo = zoo;
