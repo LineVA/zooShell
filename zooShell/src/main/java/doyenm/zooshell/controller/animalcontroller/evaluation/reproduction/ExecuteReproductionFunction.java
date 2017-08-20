@@ -49,6 +49,7 @@ public class ExecuteReproductionFunction
             return afterCalvingContext;
         } else {
             t.setCurrentGestationDuration(currentGestationDuration);
+            t.getEvents().addAll(generatePregnancyEvents(t));
             return t;
         }
     }
@@ -63,4 +64,10 @@ public class ExecuteReproductionFunction
         return events;
     }
 
+      private List<Event> generatePregnancyEvents(AnimalEvaluationContext context){
+        List<Event> events = new ArrayList<>();
+        events.add(new Event(EventType.PREGNANCY, context.getAnimal()));
+        return events;
+    }
+    
 }
