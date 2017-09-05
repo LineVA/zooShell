@@ -3,6 +3,7 @@ package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.SocialAttributes;
+import doyenm.zooshell.model.WellBeing;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -33,7 +34,10 @@ public class AnimalGroupSizeEvaluationControllerApplyTest {
         Mockito.when(context.getUicnStandardDeviation()).thenReturn(deviation);
         Mockito.when(context.getGroupSizeWellBeing()).thenCallRealMethod();
         Mockito.when(context.getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock()).thenReturn(TestUtils.generateInteger());
-        Mockito.doCallRealMethod().when(context).setGroupSizeWellBeing(Mockito.anyDouble());
+        WellBeing wb = Mockito.mock(WellBeing.class);
+        Mockito.when(wb.getSocialWellBeing()).thenCallRealMethod();
+        Mockito.doCallRealMethod().when(wb).setSocialWellBeing(Mockito.anyDouble());
+        Mockito.when(context.getWellBeingObj()).thenReturn(wb);
         return context;
     }
 
@@ -58,16 +62,16 @@ public class AnimalGroupSizeEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getFoodQuantityWellBeing()).isEqualTo(context.getBase()*coef);
+        Assertions.assertThat(actualContext.getWellBeingObj().getSocialWellBeing()).isEqualTo(context.getBase() * coef);
     }
 
     @Test
-   public void shouldSetTheWBLinkedToGroupSizeToZeroWhenCurrentGroupSizeIsNotInTheAuthorizedValuesOfTheAnimal() {
+    public void shouldSetTheWBLinkedToGroupSizeToZeroWhenCurrentGroupSizeIsNotInTheAuthorizedValuesOfTheAnimal() {
         // Given
         int quantity = TestUtils.generateInteger();
         SocialAttributes attributes = givenSocialAttributesWithGroupSize(quantity);
         Animal animal = givenAnimalWithOptimalSocialAttributes(attributes);
-        AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal, 
+        AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal,
                 TestUtils.generateDouble(), TestUtils.generateDouble());
         Utils utils = givenUtilsWithIsBetweenAuthorizedValues(false);
         AnimalGroupSizeEvaluationController controller = new AnimalGroupSizeEvaluationController(utils);
@@ -75,6 +79,6 @@ public class AnimalGroupSizeEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getFoodQuantityWellBeing()).isEqualTo(context.getZero());
+        Assertions.assertThat(actualContext.getWellBeingObj().getSocialWellBeing()).isEqualTo(context.getZero());
     }
 }

@@ -7,6 +7,7 @@ import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.CharacterAttributes;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TaskType;
+import doyenm.zooshell.model.WellBeing;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +43,7 @@ public class AnimalTasksInfluenceEvaluationControllerApplyTest {
     private KeeperUtils givenKeeperUtilsWithOccupations(double time1, AnimalKeeper keeper1, Paddock pad1,
             double time2, AnimalKeeper keeper2, Paddock pad2, TaskType task) {
         KeeperUtils utils = Mockito.mock(KeeperUtils.class);
-        Mockito.when(utils.timeSpentDoingTheTaskInThePaddock(keeper1, task, pad1)).thenReturn(time1);        
+        Mockito.when(utils.timeSpentDoingTheTaskInThePaddock(keeper1, task, pad1)).thenReturn(time1);
         Mockito.when(utils.timeSpentDoingTheTaskInThePaddock(keeper2, task, pad2)).thenReturn(time2);
         return utils;
     }
@@ -61,13 +62,15 @@ public class AnimalTasksInfluenceEvaluationControllerApplyTest {
 
     private AnimalEvaluationContext givenContext(List<AnimalKeeper> keepers, Animal animal, Paddock pad) {
         AnimalEvaluationContext context = Mockito.mock(AnimalEvaluationContext.class);
-//        Mockito.when(context.getFamily()).thenReturn(Family.LEMURIDAE);
         Mockito.when(context.getKeepers()).thenReturn(keepers);
         Mockito.when(context.getAnimal()).thenReturn(animal);
         Mockito.when(context.getPaddock()).thenReturn(pad);
         Mockito.when(context.getBase()).thenCallRealMethod();
         Mockito.when(context.getTaskInfluenceWellBeing()).thenCallRealMethod();
-        Mockito.doCallRealMethod().when(context).setTaskInfluenceWellBeing(Mockito.anyDouble());
+        WellBeing wb = Mockito.mock(WellBeing.class);
+        Mockito.when(wb.getKeepersTaskWellBeing()).thenCallRealMethod();
+        Mockito.doCallRealMethod().when(wb).setKeepersTaskWellBeing(Mockito.anyDouble());
+        Mockito.when(context.getWellBeingObj()).thenReturn(wb);
         return context;
     }
 
@@ -89,10 +92,10 @@ public class AnimalTasksInfluenceEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getTaskInfluenceWellBeing()).isEqualTo(0.3 * 5 * 0.5);
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTaskWellBeing()).isEqualTo(0.3 * 5 * 0.5);
     }
-    
-      @Test
+
+    @Test
     public void shouldSetTheTasksWBToBaseTimesTimeWhenTheAnimalHasACuriosityEqualsToOneHalfAndOnlyOneKeeperInThePaddockDoingEnrichment() {
         // Given
         CharacterAttributes characterAttributes = givenCharacterAttributesWithTrait(0.5, 1.0, 1.0, 1.0);
@@ -110,10 +113,10 @@ public class AnimalTasksInfluenceEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getTaskInfluenceWellBeing()).isEqualTo(0.3 * 5 * 0.5);
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTaskWellBeing()).isEqualTo(0.3 * 5 * 0.5);
     }
-    
-      @Test
+
+    @Test
     public void shouldSetTheTasksWBToBaseTimesTimeWhenTheAnimalHasACuriosityLowerThanOneHalfAndOnlyOneKeeperInThePaddockDoingEnrichment() {
         // Given
         CharacterAttributes characterAttributes = givenCharacterAttributesWithTrait(0.3, 1.0, 1.0, 1.0);
@@ -131,9 +134,9 @@ public class AnimalTasksInfluenceEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getTaskInfluenceWellBeing()).isEqualTo(- 0.3 * 5 * 0.5);
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTaskWellBeing()).isEqualTo(-0.3 * 5 * 0.5);
     }
-    
+
     @Test
     @Ignore
     public void shouldSetTheTasksWBToBaseTimesTimeWhenTheAnimalHasAIntelligenceThanOneHalfAndOnlyOneKeeperInThePaddockDoingTraining() {
@@ -153,6 +156,6 @@ public class AnimalTasksInfluenceEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getTaskInfluenceWellBeing()).isEqualTo(0.3 * 5 * 0.5);
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTaskWellBeing()).isEqualTo(0.3 * 5 * 0.5);
     }
 }

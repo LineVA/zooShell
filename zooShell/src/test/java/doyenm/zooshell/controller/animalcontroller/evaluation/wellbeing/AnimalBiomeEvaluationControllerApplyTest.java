@@ -6,6 +6,7 @@ import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.BiomesSpecie;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Specie;
+import doyenm.zooshell.model.WellBeing;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,12 +39,15 @@ public class AnimalBiomeEvaluationControllerApplyTest {
         Mockito.when(animal.getSpecie()).thenReturn(specie);
         return animal;
     }
-    
+
     private AnimalEvaluationContext givenContextWithAnimal(Animal animal) {
         AnimalEvaluationContext context = Mockito.mock(AnimalEvaluationContext.class);
         Mockito.when(context.getAnimal()).thenReturn(animal);
         Mockito.doCallRealMethod().when(context).setBiomeWellBeing(Mockito.anyDouble());
-        Mockito.when(context.getBiomeWellBeing()).thenCallRealMethod();
+        WellBeing wb = Mockito.mock(WellBeing.class);
+        Mockito.when(wb.getBiomeWellBeing()).thenCallRealMethod();
+        Mockito.doCallRealMethod().when(wb).setBiomeWellBeing(Mockito.anyDouble());
+        Mockito.when(context.getWellBeingObj()).thenReturn(wb);
         Mockito.when(context.getBase()).thenCallRealMethod();
         return context;
     }
@@ -59,9 +63,9 @@ public class AnimalBiomeEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getBiomeWellBeing()).isEqualTo(0.0);
+        Assertions.assertThat(actualContext.getWellBeingObj().getBiomeWellBeing()).isEqualTo(0.0);
     }
-    
+
     @Test
     public void shouldSetBiomeWellBeingToZeroWhenThePaddockHasNoBiome() {
         // Given
@@ -73,9 +77,9 @@ public class AnimalBiomeEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getBiomeWellBeing()).isEqualTo(0.0);
+        Assertions.assertThat(actualContext.getWellBeingObj().getBiomeWellBeing()).isEqualTo(0.0);
     }
-    
+
     @Test
     public void shouldSetBiomeWellBeingToZeroWhenTheSpecieHasNoBiome() {
         // Given
@@ -87,9 +91,9 @@ public class AnimalBiomeEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getBiomeWellBeing()).isEqualTo(0.0);
+        Assertions.assertThat(actualContext.getWellBeingObj().getBiomeWellBeing()).isEqualTo(0.0);
     }
-    
+
     @Test
     public void shouldSetBiomeWellBeingToZeroWhenTheBiomeOfTheSpecieIsNull() {
         // Given
@@ -101,10 +105,10 @@ public class AnimalBiomeEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getBiomeWellBeing()).isEqualTo(0.0);
+        Assertions.assertThat(actualContext.getWellBeingObj().getBiomeWellBeing()).isEqualTo(0.0);
     }
-    
-     @Test
+
+    @Test
     public void shouldSetBiomeWellBeingToFiveWhenTheBiomesOfTheSpecieInterceptTheBiomeOfThePaddock() {
         // Given
         Specie specie = givenSpecieWithBiomesList(Arrays.asList(Biome.DESERT, Biome.DRY_BROADLEAF));
@@ -115,6 +119,6 @@ public class AnimalBiomeEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getBiomeWellBeing()).isEqualTo(5.0);
+        Assertions.assertThat(actualContext.getWellBeingObj().getBiomeWellBeing()).isEqualTo(5.0);
     }
 }

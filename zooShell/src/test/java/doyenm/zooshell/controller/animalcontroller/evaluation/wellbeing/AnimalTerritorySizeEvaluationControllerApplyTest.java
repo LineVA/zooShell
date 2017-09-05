@@ -5,6 +5,7 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.SocialAttributes;
 import doyenm.zooshell.model.TerritoryAttributes;
+import doyenm.zooshell.model.WellBeing;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -43,7 +44,10 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
         Mockito.when(context.getUicnStandardDeviation()).thenReturn(deviation);
         Mockito.when(context.getGroupSizeWellBeing()).thenCallRealMethod();
         Mockito.when(context.getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock()).thenReturn(TestUtils.generateInteger());
-        Mockito.doCallRealMethod().when(context).setGroupSizeWellBeing(Mockito.anyDouble());
+        WellBeing wb = Mockito.mock(WellBeing.class);
+        Mockito.when(wb.getTerritoryWellBeing()).thenCallRealMethod();
+        Mockito.doCallRealMethod().when(wb).setTerritoryWellBeing(Mockito.anyDouble());
+        Mockito.when(context.getWellBeingObj()).thenReturn(wb);
         Paddock pad = Mockito.mock(Paddock.class);
         Mockito.when(pad.getHeight()).thenReturn(TestUtils.generateInteger());
         Mockito.when(pad.getWidth()).thenReturn(TestUtils.generateInteger());
@@ -72,7 +76,7 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getFoodQuantityWellBeing()).isEqualTo(context.getBase() * coef);
+        Assertions.assertThat(actualContext.getWellBeingObj().getTerritoryWellBeing()).isEqualTo(context.getBase() * coef);
     }
 
     @Test
@@ -89,6 +93,6 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getFoodQuantityWellBeing()).isEqualTo(context.getZero());
+        Assertions.assertThat(actualContext.getWellBeingObj().getTerritoryWellBeing()).isEqualTo(context.getZero());
     }
 }
