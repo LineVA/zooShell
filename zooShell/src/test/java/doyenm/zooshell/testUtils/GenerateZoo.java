@@ -45,12 +45,12 @@ public class GenerateZoo {
                 .build();
     }
 
-    public static Animal generateAnimal() {
+    public static Animal generateAnimalWithPaddock(Paddock pad) {
         return Animal.builder()
                 .specie(new Specie())
                 .name(RandomStringUtils.random(10))
                 .sex(Sex.FEMALE)
-                .paddock(new Paddock())
+                .paddock(pad)
                 .reproductionAttributes(generateReproductionAttributes())
                 .lifespanAttributes(generateLifespanAttributes())
                 .age(RandomUtils.nextInt())

@@ -22,12 +22,15 @@ public class SaveAndLoadTest {
 
     private ZooContext givenSaveContext(String file) {
         Zoo zoo = GenerateZoo.generateZooWithNoPadAnimalOrKeeper();
-        Map<String, Animal> animals = new HashMap<>();
-        animals.put(RandomStringUtils.random(10), GenerateZoo.generateAnimal());
+        
         Map<String, Paddock> pads = new HashMap<>();
-        pads.put(RandomStringUtils.random(10), GenerateZoo.generatePaddock());
+        Paddock pad = GenerateZoo.generatePaddock();
+        pads.put(pad.getName(), pad );
+        Map<String, Animal> animals = new HashMap<>();
+        animals.put(RandomStringUtils.random(10), GenerateZoo.generateAnimalWithPaddock(pad));
         Map<String, AnimalKeeper> keepers = new HashMap<>();
         keepers.put(RandomStringUtils.random(10), GenerateZoo.generateKeeper());
+        
         zoo.setAnimals(animals);
         zoo.setKeepers(keepers);
         zoo.setPaddocks(pads);
