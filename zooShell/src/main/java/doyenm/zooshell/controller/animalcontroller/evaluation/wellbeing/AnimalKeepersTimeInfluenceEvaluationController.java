@@ -23,8 +23,10 @@ public class AnimalKeepersTimeInfluenceEvaluationController
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
-        context.setKeeperInfluenceWellBeing((computeWellBeing(context,
-                context.getAnimal().getCharacterAttributes().getBravery())));
+//        context.setKeeperInfluenceWellBeing((computeWellBeing(context,
+//                context.getAnimal().getCharacterAttributes().getBravery())));
+        context.getWellBeingObj().setKeepersTimeWellBeing((
+                computeWellBeing(context, context.getAnimal().getCharacterAttributes().getBravery())));
         return context;
     }
 

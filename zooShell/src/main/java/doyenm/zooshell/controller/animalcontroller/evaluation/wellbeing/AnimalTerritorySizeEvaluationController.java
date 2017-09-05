@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AnimalTerritorySizeEvaluationController
         implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
-    
+
     private final Utils utils;
 
     @Override
@@ -21,13 +21,15 @@ public class AnimalTerritorySizeEvaluationController
         double groupsNumber = (double) context.getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock()
                 / (double) context.getAnimal().getSocialAttributes().getIndividualsPerGroup();
         double currentDeviation = utils.computeDeviationBetweenCurrentAndOptimal(
-              territorySize,
-               groupsNumber * context.getAnimal().getTerritoryAttributes().getTerritorySizeForOneGroup());
+                territorySize,
+                groupsNumber * context.getAnimal().getTerritoryAttributes().getTerritorySizeForOneGroup());
         if (utils.isBetweenAuthorizedValues(currentDeviation,
                 context.getUicnStandardDeviation())) {
-            context.setTerritorySizeWellBeing(context.getBase() * context.getUicnCoefficient());
+//            context.setTerritorySizeWellBeing(context.getBase() * context.getUicnCoefficient());
+            context.getWellBeingObj().setTerritoryWellBeing(context.getBase() * context.getUicnCoefficient());
         } else {
-            context.setTerritorySizeWellBeing(context.getZero());
+//            context.setTerritorySizeWellBeing(context.getZero());
+            context.getWellBeingObj().setTerritoryWellBeing(context.getZero());
         }
         return context;
     }

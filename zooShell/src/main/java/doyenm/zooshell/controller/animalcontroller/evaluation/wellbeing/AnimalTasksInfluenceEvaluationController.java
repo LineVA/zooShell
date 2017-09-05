@@ -21,7 +21,7 @@ public class AnimalTasksInfluenceEvaluationController
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
-        context.setTaskInfluenceWellBeing((computeWellBeingForTask(context, TaskType.CLEANING,
+        context.getWellBeingObj().setKeepersTaskWellBeing((computeWellBeingForTask(context, TaskType.CLEANING,
                 context.getAnimal().getCharacterAttributes().getMeticulousness())
                 + computeWellBeingForTask(context, TaskType.ENRICHMENT,
                         context.getAnimal().getCharacterAttributes().getCuriosity())

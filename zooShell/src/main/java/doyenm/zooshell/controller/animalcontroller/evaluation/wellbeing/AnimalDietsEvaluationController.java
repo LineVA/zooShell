@@ -31,7 +31,8 @@ public class AnimalDietsEvaluationController
                     sum += 1;
                 }
             }
-            context.setDietsWellBeing(context.getBase() * (double) sum / ((double) diets.size()));
+            context.getWellBeingObj().setDietsWellBeing(context.getBase() * (double) sum / ((double) diets.size()));
+//            context.setDietsWellBeing(context.getBase() * (double) sum / ((double) diets.size()));
         }
         return context;
     }
