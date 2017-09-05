@@ -35,11 +35,9 @@ public class LsAnimal implements Command{
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2) {
-            if (Arrays.asList(Constants.LS).contains(cmd[0])) {
-                if (Arrays.asList(Constants.ANIMAL).contains(cmd[1])) {
+        if (cmd.length == 1) {
+                if (Arrays.asList(Constants.ANIMALS).contains(cmd[0])) {
                     return true;
-                }
             }
         }
         return false;
