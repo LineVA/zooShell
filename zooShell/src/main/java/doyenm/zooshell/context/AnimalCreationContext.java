@@ -13,6 +13,7 @@ import doyenm.zooshell.model.SizeAttributes;
 import doyenm.zooshell.model.SocialAttributes;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.model.TerritoryAttributes;
+import doyenm.zooshell.model.WellBeing;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.model.utils.CharacterAttributesConstructor;
 import doyenm.zooshell.model.utils.FoodAttributesConstructor;
@@ -89,6 +90,7 @@ public class AnimalCreationContext {
                 .characterAttributes(characterAttributes)
                 .notNursingByMother(false)
                 .wellBeing(0.0)
+                .wellBeingObj(new WellBeing())
                 .build();
         this.getZoo().getAnimals().put(this.getName().toUpperCase(), animal);
     }
@@ -123,6 +125,7 @@ public class AnimalCreationContext {
                 .age(0)
                 .notNursingByMother(false)
                 .wellBeing(0.0)
+                .wellBeingObj(new WellBeing())
                 .build();
     }
 

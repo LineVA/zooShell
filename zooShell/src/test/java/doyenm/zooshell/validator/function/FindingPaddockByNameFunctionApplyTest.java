@@ -19,7 +19,7 @@ public class FindingPaddockByNameFunctionApplyTest {
         FindingPaddockContext context = Mockito.mock(FindingPaddockContext.class);
         Map<String, Paddock> paddocks = new HashMap<>();
         Paddock pad = Paddock.builder().name(key).build();
-        paddocks.put(key, pad);
+        paddocks.put(key.toUpperCase(), pad);
         Mockito.when(context.getPaddock()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(context).setPaddock(Mockito.any(Paddock.class));
         Mockito.when(context.getPaddockName()).thenReturn(input);

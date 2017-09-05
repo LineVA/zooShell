@@ -8,7 +8,7 @@ import doyenm.zooshell.model.CharacterAttributes;
 import doyenm.zooshell.model.Family;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TimedOccupation;
-import doyenm.zooshell.testUtils.TestUtils;
+import doyenm.zooshell.model.WellBeing;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -58,8 +58,10 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         Mockito.when(context.getAnimal()).thenReturn(animal);
         Mockito.when(context.getPaddock()).thenReturn(pad);
         Mockito.when(context.getBase()).thenCallRealMethod();
-        Mockito.when(context.getKeeperInfluenceWellBeing()).thenCallRealMethod();
-        Mockito.doCallRealMethod().when(context).setKeeperInfluenceWellBeing(Mockito.anyDouble());
+        WellBeing wb = Mockito.mock(WellBeing.class);
+        Mockito.when(wb.getKeepersTimeWellBeing()).thenCallRealMethod();
+        Mockito.doCallRealMethod().when(wb).setKeepersTimeWellBeing(Mockito.anyDouble());
+        Mockito.when(context.getWellBeingObj()).thenReturn(wb);
         return context;
     }
 
@@ -89,7 +91,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getKeeperInfluenceWellBeing()).isEqualTo(0.3 * 5 * 0.5);
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTimeWellBeing()).isEqualTo(0.3 * 5 * 0.5);
     }
     
      @Test
@@ -118,7 +120,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getKeeperInfluenceWellBeing()).isEqualTo(0.3 * 5 * 0.5);
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTimeWellBeing()).isEqualTo(0.3 * 5 * 0.5);
     }
     
      @Test
@@ -147,7 +149,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getKeeperInfluenceWellBeing()).isEqualTo(- 0.3 * 5 * 0.5);
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTimeWellBeing()).isEqualTo(- 0.3 * 5 * 0.5);
     }
     
      @Test
@@ -175,7 +177,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getKeeperInfluenceWellBeing()).isEqualTo((0.3 * 0.5 + 0.4 * 0.4) * 5 );
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTimeWellBeing()).isEqualTo((0.3 * 0.5 + 0.4 * 0.4) * 5 );
     }
     
     @Test
@@ -203,7 +205,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getKeeperInfluenceWellBeing()).isEqualTo((0.3 * 0.5 + 0.4 * 0.4) * 5 );
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTimeWellBeing()).isEqualTo((0.3 * 0.5 + 0.4 * 0.4) * 5 );
     }
     
     @Test
@@ -231,7 +233,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getKeeperInfluenceWellBeing()).isEqualTo(- (0.3 * 0.5 + 0.4 * 0.4) * 5 );
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTimeWellBeing()).isEqualTo(- (0.3 * 0.5 + 0.4 * 0.4) * 5 );
 
     }
 }

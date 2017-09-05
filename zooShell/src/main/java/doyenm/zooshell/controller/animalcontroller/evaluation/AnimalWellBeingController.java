@@ -1,14 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalBiomeEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalDietsEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalFastDaysEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalFoodQuantityEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalGroupSizeEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalKeepersTimeInfluenceEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalTasksInfluenceEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalTerritorySizeEvaluationController;
+import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.*;
 import java.util.function.Function;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
@@ -42,20 +35,19 @@ public class AnimalWellBeingController
                 .map(animalTerritorySizeEvaluationController)
                 .map(animalTasksInfluenceEvaluationController)
                 .map(animalKeepersTimeInfluenceEvaluationController)
-                .map((AnimalEvaluationContext t1) -> {
-                    t1.setWellBeing((t1.getBiomeWellBeing()
-                            + t1.getDietsWellBeing()
-                            + t1.getFastDaysWellBeing()
-                            + t1.getFoodQuantityWellBeing()
-                            + t1.getGroupSizeWellBeing()
-                            + t1.getTerritorySizeWellBeing()
-                            + t1.getTaskInfluenceWellBeing()
-                            + t1.getKeeperInfluenceWellBeing())
-                            / 8.0);
-                    return t1;
-                    
-                })
-                
+//                .map((AnimalEvaluationContext t1) -> {
+//                    t1.setWellBeing((t1.getBiomeWellBeing()
+//                            + t1.getDietsWellBeing()
+//                            + t1.getFastDaysWellBeing()
+//                            + t1.getFoodQuantityWellBeing()
+//                            + t1.getGroupSizeWellBeing()
+//                            + t1.getTerritorySizeWellBeing()
+//                            + t1.getTaskInfluenceWellBeing()
+//                            + t1.getKeeperInfluenceWellBeing())
+//                            / 8.0);
+//                    return t1;
+//                    
+//                })
                 .findFirst()
                 .get();
     }

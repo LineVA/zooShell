@@ -6,6 +6,7 @@ import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Family;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Specie;
+import doyenm.zooshell.model.WellBeing;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,7 +40,9 @@ public class AnimalEvaluationContext {
     private double keeperInfluenceWellBeing = 0.0;
     private double taskInfluenceWellBeing = 0.0;
 
-    private double wellBeing = 0.0;
+//    private double wellBeing = 0.0;
+    
+    private WellBeing wellBeingObj = new WellBeing();
     
     private List<Event> events = new ArrayList<>();
 

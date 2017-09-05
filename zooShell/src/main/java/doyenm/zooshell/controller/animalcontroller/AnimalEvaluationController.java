@@ -50,7 +50,8 @@ public class AnimalEvaluationController implements Function<EvaluationContext, E
                 })
                 .filter((AnimalEvaluationContext t1) -> !t1.isDead())
                 .map((AnimalEvaluationContext t1) -> {
-                    t1.getAnimal().setWellBeing(t1.getWellBeing());
+                    t1.getAnimal().setWellBeingObj(t1.getWellBeingObj());
+                    t1.getAnimal().setWellBeing(t1.getAnimal().getWellBeingObj().computeWellBeing());
                     return t1;
                 })
                 .map((AnimalEvaluationContext t1) -> t1.getAnimal())

@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.death;
 
 import doyenm.zooshell.model.Animal;
+import doyenm.zooshell.model.LifespanAttributes;
 import doyenm.zooshell.model.ReproductionAttributes;
 import doyenm.zooshell.model.Sex;
 import org.assertj.core.api.Assertions;
@@ -16,9 +17,9 @@ public class AnimalDeathPredicatesIsDeadByOldAgeTest {
     private Animal givenAnimalWithAgeAndLifespan(int age, int lifespan) {
         Animal animal = Mockito.mock(Animal.class);
         Mockito.when(animal.getAge()).thenReturn(age);
-        ReproductionAttributes attributes = Mockito.mock(ReproductionAttributes.class);
-        Mockito.when(attributes.getMaturityGivenSex(Mockito.any(Sex.class))).thenReturn(lifespan);
-        Mockito.when(animal.getReproductionAttributes()).thenReturn(attributes);
+        LifespanAttributes attributes = Mockito.mock(LifespanAttributes.class);
+        Mockito.when(attributes.getLifespanGivenSex(Mockito.any(Sex.class))).thenReturn(lifespan);
+        Mockito.when(animal.getLifespanAttributes()).thenReturn(attributes);
         return animal;
     }
 

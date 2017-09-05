@@ -3,6 +3,7 @@ package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.FoodAttributes;
+import doyenm.zooshell.model.WellBeing;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -32,8 +33,10 @@ public class AnimalFoodQuantityEvaluationControllerApplyTest {
         Mockito.when(context.getAnimal()).thenReturn(animal);
         Mockito.when(context.getUicnCoefficient()).thenReturn(coef);
         Mockito.when(context.getUicnStandardDeviation()).thenReturn(deviation);
-        Mockito.when(context.getFoodQuantityWellBeing()).thenCallRealMethod();
-        Mockito.doCallRealMethod().when(context).setFoodQuantityWellBeing(Mockito.anyDouble());
+       WellBeing wb = Mockito.mock(WellBeing.class);
+        Mockito.when(wb.getFoodQuantityWellBeing()).thenCallRealMethod();
+        Mockito.doCallRealMethod().when(wb).setFoodQuantityWellBeing(Mockito.anyDouble());
+        Mockito.when(context.getWellBeingObj()).thenReturn(wb);
         return context;
     }
 
@@ -58,7 +61,7 @@ public class AnimalFoodQuantityEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getFoodQuantityWellBeing()).isEqualTo(context.getBase()*coef);
+        Assertions.assertThat(actualContext.getWellBeingObj().getFoodQuantityWellBeing()).isEqualTo(context.getBase()*coef);
     }
 
     @Test
@@ -75,6 +78,6 @@ public class AnimalFoodQuantityEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getFoodQuantityWellBeing()).isEqualTo(context.getZero());
+        Assertions.assertThat(actualContext.getWellBeingObj().getFoodQuantityWellBeing()).isEqualTo(context.getZero());
     }
 }

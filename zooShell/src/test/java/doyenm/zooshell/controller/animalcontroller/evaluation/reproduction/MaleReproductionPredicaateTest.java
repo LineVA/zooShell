@@ -10,6 +10,7 @@ import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.testUtils.TestUtils;
 import java.util.Arrays;
 import java.util.List;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -35,7 +36,9 @@ public class MaleReproductionPredicaateTest {
     }
 
     private Paddock givenPaddock() {
-        return Mockito.mock(Paddock.class);
+        Paddock pad = Mockito.mock(Paddock.class);
+        Mockito.when(pad.getName()).thenReturn(RandomStringUtils.random(10));
+        return pad;
     }
 
     private Specie givenSpecie() {

@@ -3,6 +3,7 @@ package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.FoodAttributes;
+import doyenm.zooshell.model.WellBeing;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -30,8 +31,10 @@ public class AnimalFastDaysEvaluationControllerApplyTest {
     private AnimalEvaluationContext givenContextWithAnimal(Animal animal) {
         AnimalEvaluationContext context = Mockito.mock(AnimalEvaluationContext.class);
         Mockito.when(context.getAnimal()).thenReturn(animal);
-        Mockito.when(context.getFastDaysWellBeing()).thenCallRealMethod();
-        Mockito.doCallRealMethod().when(context).setFastDaysWellBeing(Mockito.anyDouble());
+        WellBeing wb = Mockito.mock(WellBeing.class);
+        Mockito.when(wb.getFastDaysWellBeing()).thenCallRealMethod();
+        Mockito.doCallRealMethod().when(wb).setFastDaysWellBeing(Mockito.anyDouble());
+        Mockito.when(context.getWellBeingObj()).thenReturn(wb);
         return context;
     }
 
@@ -47,7 +50,7 @@ public class AnimalFastDaysEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getFastDaysWellBeing()).isEqualTo(context.getBase());
+        Assertions.assertThat(actualContext.getWellBeingObj().getFastDaysWellBeing()).isEqualTo(context.getBase());
     }
 
     @Test
@@ -65,6 +68,6 @@ public class AnimalFastDaysEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getFastDaysWellBeing()).isEqualTo(context.getZero());
+        Assertions.assertThat(actualContext.getWellBeingObj().getFastDaysWellBeing()).isEqualTo(context.getZero());
     }
 }

@@ -5,6 +5,7 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.DietsSpecie;
 import doyenm.zooshell.model.Specie;
+import doyenm.zooshell.model.WellBeing;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +36,10 @@ public class AnimalDietsEvaluationControllerApplyTest {
     private AnimalEvaluationContext givenContextWithAnimal(Animal animal) {
         AnimalEvaluationContext context = Mockito.mock(AnimalEvaluationContext.class);
         Mockito.when(context.getAnimal()).thenReturn(animal);
-        Mockito.doCallRealMethod().when(context).setDietsWellBeing(Mockito.anyDouble());
+        WellBeing wb = Mockito.mock(WellBeing.class);
+        Mockito.when(wb.getDietsWellBeing()).thenCallRealMethod();
+        Mockito.doCallRealMethod().when(wb).setDietsWellBeing(Mockito.anyDouble());
+        Mockito.when(context.getWellBeingObj()).thenReturn(wb);
         Mockito.when(context.getDietsWellBeing()).thenCallRealMethod();
         Mockito.when(context.getBase()).thenCallRealMethod();
         return context;
@@ -51,7 +55,7 @@ public class AnimalDietsEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getDietsWellBeing()).isEqualTo(0.0);
+        Assertions.assertThat(actualContext.getWellBeingObj().getDietsWellBeing()).isEqualTo(0.0);
     }
 
     @Test
@@ -64,7 +68,7 @@ public class AnimalDietsEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getDietsWellBeing()).isEqualTo(0.0);
+        Assertions.assertThat(actualContext.getWellBeingObj().getDietsWellBeing()).isEqualTo(0.0);
     }
 
     @Test
@@ -77,7 +81,7 @@ public class AnimalDietsEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getDietsWellBeing()).isEqualTo(0.0);
+        Assertions.assertThat(actualContext.getWellBeingObj().getDietsWellBeing()).isEqualTo(0.0);
     }
 
     @Test
@@ -90,7 +94,7 @@ public class AnimalDietsEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getDietsWellBeing()).isEqualTo(0.0);
+        Assertions.assertThat(actualContext.getWellBeingObj().getDietsWellBeing()).isEqualTo(0.0);
     }
 
     @Test
@@ -103,7 +107,7 @@ public class AnimalDietsEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getDietsWellBeing()).isEqualTo(0.0);
+        Assertions.assertThat(actualContext.getWellBeingObj().getDietsWellBeing()).isEqualTo(0.0);
     }
 
     @Test
@@ -116,7 +120,7 @@ public class AnimalDietsEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getDietsWellBeing()).isEqualTo(2.5);
+        Assertions.assertThat(actualContext.getWellBeingObj().getDietsWellBeing()).isEqualTo(2.5);
     }
 
     @Test
@@ -129,6 +133,6 @@ public class AnimalDietsEvaluationControllerApplyTest {
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
-        Assertions.assertThat(actualContext.getDietsWellBeing()).isEqualTo(5.0);
+        Assertions.assertThat(actualContext.getWellBeingObj().getDietsWellBeing()).isEqualTo(5.0);
     }
 }

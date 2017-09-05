@@ -31,8 +31,6 @@ public class KeeperEvaluationFamilyController
                     double currentValue = context.getFamilyEvaluationMap().get(family);
                     context.getKeeper().getFamilyEvaluations().replace(family, paddocksMap.get(entry.getKey()) + currentValue);
                 } else {
-                    System.out.println(entry);
-                    System.out.println(paddocksMap.get(entry.getValue()));
                     context.getKeeper().getFamilyEvaluations().put(family, paddocksMap.get(entry.getKey()));
                 }
             });
