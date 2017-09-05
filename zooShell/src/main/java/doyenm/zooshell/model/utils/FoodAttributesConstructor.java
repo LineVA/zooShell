@@ -15,8 +15,7 @@ public class FoodAttributesConstructor {
         double foodQuantity = specie.getFoodAttributes().getQuantity();
         double tmpQuantity = gaussianStatistics.gaussianDouble(foodQuantity, foodQuantity / 10.0);
         int fastDays = specie.getFoodAttributes().getFastDays();
-        int tmpFastDays = gaussianStatistics.gaussianInt(fastDays, fastDays / 10.0);
-        return new FoodAttributes(tmpQuantity, tmpFastDays);
+        return new FoodAttributes(tmpQuantity, fastDays);
 
     }
 }
