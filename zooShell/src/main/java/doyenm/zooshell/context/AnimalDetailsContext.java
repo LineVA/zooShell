@@ -22,6 +22,7 @@ public class AnimalDetailsContext {
 
     private final Zoo zoo;
     private final String animal;
+    private final boolean detailed;
 
     private Animal convertedAnimal;
 

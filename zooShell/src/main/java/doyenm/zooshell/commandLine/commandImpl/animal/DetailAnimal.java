@@ -26,28 +26,35 @@ public class DetailAnimal implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        AnimalDetailsContext context = new AnimalDetailsContext(zoo, cmd[1]);
+      AnimalDetailsContext context = generateContext(cmd, zoo);
         try {
-        context = Stream.of(context)
-                .filter(validator)
-                .map(controller)
-                .findFirst()
-                .get();
+            context = Stream.of(context)
+                    .filter(validator)
+                    .map(controller)
+                    .findFirst()
+                    .get();
 
-        FormattingInList formatting = new FormattingInList();
-        return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS, context.getZoo());
-        } catch(NoSuchElementException ex){
+            FormattingInList formatting = new FormattingInList();
+            return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS, context.getZoo());
+        } catch (NoSuchElementException ex) {
             return new ReturnExec("ERROR", TypeReturn.ERROR, context.getZoo());
+        }
+    }
+    
+    private AnimalDetailsContext generateContext(String[] cmd, Zoo zoo){
+         if (cmd.length == 3) {
+           return new AnimalDetailsContext(zoo, cmd[1], true);
+        } else {
+           return new AnimalDetailsContext(zoo, cmd[1], false);
         }
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2) {
-            if (Arrays.asList(Constants.ANIMAL).contains(cmd[0])) {
-                return true;
-            }
-        }
-        return false;
+        boolean noDetails = cmd.length == 2 && Arrays.asList(Constants.ANIMAL).contains(cmd[0]);
+        boolean details = cmd.length == 3
+                && Arrays.asList(Constants.ANIMAL).contains(cmd[0])
+                && Arrays.asList(Constants.DETAILED).contains(cmd[2]);
+        return noDetails || details;
     }
 }
