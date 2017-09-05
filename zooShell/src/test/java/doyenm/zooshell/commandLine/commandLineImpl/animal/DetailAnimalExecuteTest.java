@@ -39,12 +39,12 @@ public class DetailAnimalExecuteTest {
     }
 
     @Test
-    public void shouldReturnAReturnExecWithTypeReturnToSuccessWhenTheCommandIsInSuccess() {
+    public void shouldReturnAReturnExecWithTypeReturnToSuccessWhenTheCommandIsInSuccessAndTheLineContainsTwoElements() {
         // Given
         AnimalDetailsValidator validator = givenValidator(true);
         AnimalDetailsController controller = givenController();
         DetailAnimal command = new DetailAnimal(validator, controller);
-        String[] cmd = new String[4];
+        String[] cmd = new String[2];
         // When
         ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));
         // Then
@@ -55,12 +55,44 @@ public class DetailAnimalExecuteTest {
     }
 
     @Test
-    public void shouldReturnAReturnExecWithTypeReturnToFailedWhenTheCommandIsFailed() {
+    public void shouldReturnAReturnExecWithTypeReturnToFailedWhenTheCommandIsFailedAndTheLineContainsTwoElements() {
         // Given
         AnimalDetailsValidator validator = givenValidator(false);
         AnimalDetailsController controller = givenController();
         DetailAnimal command = new DetailAnimal(validator, controller);
-        String[] cmd = new String[4];
+        String[] cmd = new String[2];
+        // When
+        ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));
+        // Then
+        Assertions.assertThat(result).isNotNull();
+        Assertions.assertThat(result.getTypeReturn()).isEqualTo(TypeReturn.ERROR);
+        Assertions.assertThat(result.getMessage()).isNotNull();
+        Assertions.assertThat(result.getZoo()).isNotNull();
+    }
+    
+     @Test
+    public void shouldReturnAReturnExecWithTypeReturnToSuccessWhenTheCommandIsInSuccessAndTheLineContainsThreeElements() {
+        // Given
+        AnimalDetailsValidator validator = givenValidator(true);
+        AnimalDetailsController controller = givenController();
+        DetailAnimal command = new DetailAnimal(validator, controller);
+        String[] cmd = new String[3];
+        // When
+        ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));
+        // Then
+        Assertions.assertThat(result).isNotNull();
+        Assertions.assertThat(result.getTypeReturn()).isEqualTo(TypeReturn.SUCCESS);
+        Assertions.assertThat(result.getMessage()).isNotNull();
+        Assertions.assertThat(result.getZoo()).isNotNull();
+    }
+
+    @Test
+    public void shouldReturnAReturnExecWithTypeReturnToFailedWhenTheCommandIsFailedAndTheLineContainsThreeElements() {
+        // Given
+        AnimalDetailsValidator validator = givenValidator(false);
+        AnimalDetailsController controller = givenController();
+        DetailAnimal command = new DetailAnimal(validator, controller);
+        String[] cmd = new String[3];
         // When
         ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));
         // Then
