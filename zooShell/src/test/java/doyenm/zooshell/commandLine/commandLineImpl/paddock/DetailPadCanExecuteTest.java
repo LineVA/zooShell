@@ -1,7 +1,6 @@
 package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
 import doyenm.zooshell.commandLine.commandImpl.paddock.DetailPad;
-import doyenm.zooshell.commandLine.commandImpl.paddock.UpdatePaddockType;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
