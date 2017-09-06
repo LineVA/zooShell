@@ -18,4 +18,9 @@ public class Grade {
         return getAnimalsGrade()
                 + getPaddocksGrade();
     }
+
+    @Override
+    public String toString() {
+        return "Grade{" + "animalsGrade=" + animalsGrade + ", paddocksGrade=" + paddocksGrade + '}';
+    }
 }
