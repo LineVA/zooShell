@@ -3,12 +3,11 @@ package doyenm.zooshell.commandLine.commandImpl.zoo;
 import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
-import doyenm.zooshell.commandLine.utils.FormattingInList;
 import doyenm.zooshell.context.ZooContext;
-import doyenm.zooshell.controller.zoocontroller.ZooDetailsController;
+import doyenm.zooshell.controller.zoocontroller.RenameZooController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
-import java.util.function.Function;
+import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
@@ -17,40 +16,28 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class DetailZoo implements Command {
+public class RenameZoo implements Command {
 
-    private final ZooDetailsController controller;
+    private final RenameZooController controller;
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         ZooContext context;
-        if(cmd.length == 1){
-            context = new ZooContext(zoo, false);
-        } else {
-            context = new ZooContext(zoo, true);
-        }
-        return Stream.of(context)
+        context = new ZooContext(zoo, cmd[2]);
+        Optional<ZooContext> optional = Stream.of(context)
                 .map(controller)
-                .map(new Function<ZooContext, ReturnExec>() {
-                    @Override
-                    public ReturnExec apply(ZooContext t) {
-                        FormattingInList formatting = new FormattingInList();
-                        return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS);
-                    }
-                })
-                .findFirst()
-                .get();
+                .findFirst();
+        if (optional.isPresent()) {
+            return new ReturnExec("ZOO_CHANGE_NAME_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
+        } else {
+            return new ReturnExec("ERROR", TypeReturn.ERROR);
+        }
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 1) {
-            if (Constants.ZOO.equalsIgnoreCase(cmd[0])) {
-                return true;
-            }
-        } 
-        return cmd.length == 2 
+        return cmd.length == 3 
                 && Constants.ZOO.equalsIgnoreCase(cmd[0])
-                && Constants.DETAILED.equalsIgnoreCase(cmd[1]);
+                    && Constants.RENAME.equalsIgnoreCase(cmd[1]);
     }
 }
