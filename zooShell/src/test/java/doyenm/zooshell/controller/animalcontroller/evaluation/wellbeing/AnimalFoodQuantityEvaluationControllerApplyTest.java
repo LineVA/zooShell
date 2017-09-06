@@ -5,6 +5,7 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.FoodAttributes;
 import doyenm.zooshell.model.WellBeing;
 import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -50,7 +51,7 @@ public class AnimalFoodQuantityEvaluationControllerApplyTest {
     @Test
     public void shouldSetTheWBLinkedToTheFoodQuantityToBaseTimesUICNCoefWhenCurrentFoodQuantityIsInTheAuthorizedValuesOfTheAnimal() {
         // Given
-        double quantity = TestUtils.generateInteger();
+        double quantity = RandomUtils.nextInt();
         FoodAttributes foodAttributes = givenFoodAttributesWithFoodQuantity(quantity);
         Animal animal = givenAnimalWithCurrentAndOptimalFooodAttrbutes(foodAttributes, foodAttributes);
         double coef = TestUtils.generateDouble();
@@ -67,7 +68,7 @@ public class AnimalFoodQuantityEvaluationControllerApplyTest {
     @Test
     public void shouldSetTheWBLinkedToTheFoodQuantityToZeroWhenCurrentFoodQuantityIsNotInTheAuthorizedValuesOfTheAnimal() {
         // Given
-        double quantity = TestUtils.generateInteger();
+        double quantity = RandomUtils.nextInt();
         FoodAttributes foodAttributes = givenFoodAttributesWithFoodQuantity(quantity);
         Animal animal = givenAnimalWithCurrentAndOptimalFooodAttrbutes(foodAttributes, foodAttributes);
         AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal, 

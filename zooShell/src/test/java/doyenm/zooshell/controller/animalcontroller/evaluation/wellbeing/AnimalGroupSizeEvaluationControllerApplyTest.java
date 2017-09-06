@@ -5,6 +5,7 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.SocialAttributes;
 import doyenm.zooshell.model.WellBeing;
 import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -33,7 +34,7 @@ public class AnimalGroupSizeEvaluationControllerApplyTest {
         Mockito.when(context.getUicnCoefficient()).thenReturn(coef);
         Mockito.when(context.getUicnStandardDeviation()).thenReturn(deviation);
         Mockito.when(context.getGroupSizeWellBeing()).thenCallRealMethod();
-        Mockito.when(context.getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock()).thenReturn(TestUtils.generateInteger());
+        Mockito.when(context.getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock()).thenReturn(RandomUtils.nextInt());
         WellBeing wb = Mockito.mock(WellBeing.class);
         Mockito.when(wb.getSocialWellBeing()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(wb).setSocialWellBeing(Mockito.anyDouble());
@@ -51,7 +52,7 @@ public class AnimalGroupSizeEvaluationControllerApplyTest {
     @Test
     public void shouldSetTheWBLinkedToGroupSizeToBaseTimesUICNCoefWhenCurrentGroupSizeIsInTheAuthorizedValuesOfTheAnimal() {
         // Given
-        int quantity = TestUtils.generateInteger();
+        int quantity = RandomUtils.nextInt();
         SocialAttributes attributes = givenSocialAttributesWithGroupSize(quantity);
         Animal animal = givenAnimalWithOptimalSocialAttributes(attributes);
         double coef = TestUtils.generateDouble();
@@ -68,7 +69,7 @@ public class AnimalGroupSizeEvaluationControllerApplyTest {
     @Test
     public void shouldSetTheWBLinkedToGroupSizeToZeroWhenCurrentGroupSizeIsNotInTheAuthorizedValuesOfTheAnimal() {
         // Given
-        int quantity = TestUtils.generateInteger();
+        int quantity = RandomUtils.nextInt();
         SocialAttributes attributes = givenSocialAttributesWithGroupSize(quantity);
         Animal animal = givenAnimalWithOptimalSocialAttributes(attributes);
         AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal,

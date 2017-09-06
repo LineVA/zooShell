@@ -35,10 +35,10 @@
 //    public void shouldAddAPaddockToTheZoo() {
 //        // Given
 //        String name = RandomStringUtils.randomAlphabetic(10);
-//        int x = TestUtils.generateInteger();
-//        int y = TestUtils.generateInteger();
-//        int width = TestUtils.generateInteger();
-//        int height = TestUtils.generateInteger();
+//        int x = RandomUtils.nextInt();
+//        int y = RandomUtils.nextInt();
+//        int width = RandomUtils.nextInt();
+//        int height = RandomUtils.nextInt();
 //
 //        Paddock otherPaddock = givenPaddock();
 //        PaddockCreationContext context = givenPaddockCreationContextWithCoordinatesNameAndPaddocksList(

@@ -2,7 +2,7 @@ package doyenm.zooshell.controller.keepercontroller;
 
 import doyenm.zooshell.context.KeeperEvaluationContext;
 import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -33,8 +33,8 @@ public class KeeperEvaluationAgeingControllerApplyTest {
     @Test
     public void shouldTheKeeperWinTheSameNumberOfMonthsThanTheNupmberOfMonthsPerTurn() {
         // Given
-        int monthsPerTurn = TestUtils.generateInteger();
-        int age = TestUtils.generateInteger();
+        int monthsPerTurn = RandomUtils.nextInt();
+        int age = RandomUtils.nextInt();
         AnimalKeeper keeper = givenKeeper();
         KeeperEvaluationContext context = givenContextWithKeeperAgeAndMonthsPerTurn(keeper, age, monthsPerTurn);
         KeeperEvaluationAgeingController controller = new KeeperEvaluationAgeingController();
