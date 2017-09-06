@@ -2,6 +2,7 @@ package doyenm.zooshell.commandLine.commandLineImpl.ls;
 
 import doyenm.zooshell.commandLine.commandImpl.ls.LsBiome;
 import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -11,14 +12,13 @@ import org.junit.Test;
  */
 public class LsBiomeCanExecuteTest {
 
-    private final String LS = "ls";
-    private final String BIOME = "biome";
+    private static final String BIOMES = "biomes";
 
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
         LsBiome cmdImpl = new LsBiome();
-        String[] cmd = {this.LS, this.BIOME};
+        String[] cmd = {this.BIOMES};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -29,7 +29,7 @@ public class LsBiomeCanExecuteTest {
     public void shouldReturnFalseWhenTheCommandIsTooShort() {
         // Given
         LsBiome cmdImpl = new LsBiome();
-        String[] cmd = {this.LS};
+        String[] cmd = {};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -40,7 +40,7 @@ public class LsBiomeCanExecuteTest {
     public void shouldReturnFalseWhenTheCommandIsTooLong() {
         // Given
         LsBiome cmdImpl = new LsBiome();
-        String[] cmd = {this.LS, this.BIOME, TestUtils.generateString()};
+        String[] cmd = {this.BIOMES, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -48,25 +48,14 @@ public class LsBiomeCanExecuteTest {
     }
     
     @Test
-    public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotLs() {
+    public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotBiomes() {
         // Given
         LsBiome cmdImpl = new LsBiome();
-        String[] cmd = {TestUtils.generateString(), this.BIOME};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
     
-    @Test
-    public void shouldReturnFalseWhenTheSecondElementOfTheCommandIsNotBiome() {
-        // Given
-        LsBiome cmdImpl = new LsBiome();
-        String[] cmd = {this.LS, TestUtils.generateString()};
-        // When
-        boolean actualResult = cmdImpl.canExecute(cmd);
-        // Then
-        Assertions.assertThat(actualResult).isFalse();
-    }
-
 }
