@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandLine.commandLineImpl.zoo;
 
 import doyenm.zooshell.commandLine.commandImpl.zoo.DetailZoo;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -12,6 +12,7 @@ import org.junit.Test;
 public class DetailZooCanExecuteTest {
 
     private final String ZOO = "zoo";
+    private final static String DETAILED = "detailed";
 
     @Test
     public void shouldReturnTrueWhenTheCommandIsZoo() {
@@ -23,12 +24,56 @@ public class DetailZooCanExecuteTest {
         // Then
         Assertions.assertThat(actualResult).isTrue();
     }
-
-    @Test
-    public void shouldReturnFalseWhenTheFrstElementIsNotZoo() {
+    
+     @Test
+    public void shouldReturnTrueWhenTheCommandIsZooDetailed() {
         // Given
         DetailZoo detailZoo = new DetailZoo(null);
-        String[] cmd = {TestUtils.generateString()};
+        String[] cmd = {this.ZOO, DETAILED};
+        // When
+        boolean actualResult = detailZoo.canExecute(cmd);
+        // Then
+        Assertions.assertThat(actualResult).isTrue();
+    }
+    
+     @Test
+    public void shouldReturnFalseWhenTheCommandContainsLessThanOneElement() {
+        // Given
+        DetailZoo detailZoo = new DetailZoo(null);
+        String[] cmd = {};
+        // When
+        boolean actualResult = detailZoo.canExecute(cmd);
+        // Then
+        Assertions.assertThat(actualResult).isFalse();
+    }
+    
+    @Test
+    public void shouldReturnFalseWhenTheFirstElementIsNotZooAndTheCommandContainsOnlyOneElement() {
+        // Given
+        DetailZoo detailZoo = new DetailZoo(null);
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
+        // When
+        boolean actualResult = detailZoo.canExecute(cmd);
+        // Then
+        Assertions.assertThat(actualResult).isFalse();
+    }
+    
+     @Test
+    public void shouldReturnFalseWhenTheFirstElementIsNotZooAndTheCommandContainsTwoElements() {
+        // Given
+        DetailZoo detailZoo = new DetailZoo(null);
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), DETAILED};
+        // When
+        boolean actualResult = detailZoo.canExecute(cmd);
+        // Then
+        Assertions.assertThat(actualResult).isFalse();
+    }
+    
+      @Test
+    public void shouldReturnFalseWhenTheSecondElementIsNotDetailed() {
+        // Given
+        DetailZoo detailZoo = new DetailZoo(null);
+        String[] cmd = {this.ZOO, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = detailZoo.canExecute(cmd);
         // Then
@@ -36,10 +81,10 @@ public class DetailZooCanExecuteTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenThereIsMoreThanOneElement() {
+    public void shouldReturnFalseWhenThereIsMoreThanTwoElements() {
         // Given
         DetailZoo detailZoo = new DetailZoo(null);
-        String[] cmd = {this.ZOO, TestUtils.generateString()};
+        String[] cmd = {this.ZOO, DETAILED, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = detailZoo.canExecute(cmd);
         // Then
