@@ -3,7 +3,7 @@ package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.FoodAttributes;
-import doyenm.zooshell.model.AnimalWellBeing;
+import doyenm.zooshell.model.WellBeing;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -31,7 +31,7 @@ public class AnimalFastDaysEvaluationControllerApplyTest {
     private AnimalEvaluationContext givenContextWithAnimal(Animal animal) {
         AnimalEvaluationContext context = Mockito.mock(AnimalEvaluationContext.class);
         Mockito.when(context.getAnimal()).thenReturn(animal);
-        AnimalWellBeing wb = Mockito.mock(AnimalWellBeing.class);
+        WellBeing wb = Mockito.mock(WellBeing.class);
         Mockito.when(wb.getFastDaysWellBeing()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(wb).setFastDaysWellBeing(Mockito.anyDouble());
         Mockito.when(context.getWellBeingObj()).thenReturn(wb);

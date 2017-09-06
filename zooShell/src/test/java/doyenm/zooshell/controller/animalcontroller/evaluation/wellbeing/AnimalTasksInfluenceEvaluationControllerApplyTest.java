@@ -7,7 +7,7 @@ import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.CharacterAttributes;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TaskType;
-import doyenm.zooshell.model.AnimalWellBeing;
+import doyenm.zooshell.model.WellBeing;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -67,7 +67,7 @@ public class AnimalTasksInfluenceEvaluationControllerApplyTest {
         Mockito.when(context.getPaddock()).thenReturn(pad);
         Mockito.when(context.getBase()).thenCallRealMethod();
         Mockito.when(context.getTaskInfluenceWellBeing()).thenCallRealMethod();
-        AnimalWellBeing wb = Mockito.mock(AnimalWellBeing.class);
+        WellBeing wb = Mockito.mock(WellBeing.class);
         Mockito.when(wb.getKeepersTaskWellBeing()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(wb).setKeepersTaskWellBeing(Mockito.anyDouble());
         Mockito.when(context.getWellBeingObj()).thenReturn(wb);

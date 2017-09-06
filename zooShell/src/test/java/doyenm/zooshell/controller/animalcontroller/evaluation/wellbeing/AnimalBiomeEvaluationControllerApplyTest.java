@@ -6,7 +6,7 @@ import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.BiomesSpecie;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Specie;
-import doyenm.zooshell.model.AnimalWellBeing;
+import doyenm.zooshell.model.WellBeing;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +44,7 @@ public class AnimalBiomeEvaluationControllerApplyTest {
         AnimalEvaluationContext context = Mockito.mock(AnimalEvaluationContext.class);
         Mockito.when(context.getAnimal()).thenReturn(animal);
         Mockito.doCallRealMethod().when(context).setBiomeWellBeing(Mockito.anyDouble());
-        AnimalWellBeing wb = Mockito.mock(AnimalWellBeing.class);
+        WellBeing wb = Mockito.mock(WellBeing.class);
         Mockito.when(wb.getBiomeWellBeing()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(wb).setBiomeWellBeing(Mockito.anyDouble());
         Mockito.when(context.getWellBeingObj()).thenReturn(wb);

@@ -9,7 +9,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class AnimalWellBeing {
+public class WellBeing {
 
     private double biomeWellBeing = 0.0;
     private double dietsWellBeing = 0.0;
