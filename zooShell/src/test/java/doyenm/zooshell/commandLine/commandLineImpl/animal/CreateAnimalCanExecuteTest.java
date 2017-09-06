@@ -1,7 +1,6 @@
 package doyenm.zooshell.commandLine.commandLineImpl.animal;
 
 import doyenm.zooshell.commandLine.commandImpl.animal.CreateAnimal;
-import doyenm.zooshell.testUtils.TestUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -14,7 +13,6 @@ public class CreateAnimalCanExecuteTest {
 
     private final String ANIMAL = "animal";
     private final String CREATE = "create";
-    TestUtils testUtils = new TestUtils();
 
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {

@@ -3,7 +3,6 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.KeeperRenameContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
@@ -74,7 +73,7 @@ public class KeeperRenameValidatorTestTest {
     @Test
     public void shouldReturnFalseWhenTheNewNameIsTooLong() {
         // Given
-        String newName = TestUtils.generateStringWithLength(51);
+        String newName =  RandomStringUtils.randomAlphabetic(51);
         String currentName = RandomStringUtils.randomAlphabetic(10);
         Map<String, AnimalKeeper> map = givenMapWithName(currentName);
         Zoo zoo = givenZooWithMap(map);

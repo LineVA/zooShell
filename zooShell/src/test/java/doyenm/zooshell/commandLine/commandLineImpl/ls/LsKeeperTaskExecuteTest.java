@@ -1,11 +1,9 @@
 package doyenm.zooshell.commandLine.commandLineImpl.ls;
 
-import doyenm.zooshell.commandLine.commandImpl.ls.LsBiome;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsKeeperTask;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

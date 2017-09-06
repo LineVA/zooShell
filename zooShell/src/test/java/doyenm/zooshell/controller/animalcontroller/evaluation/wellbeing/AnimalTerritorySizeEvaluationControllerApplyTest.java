@@ -6,7 +6,6 @@ import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.SocialAttributes;
 import doyenm.zooshell.model.TerritoryAttributes;
 import doyenm.zooshell.model.WellBeing;
-import doyenm.zooshell.testUtils.TestUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -59,7 +58,7 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
     private Utils givenUtilsWithIsBetweenAuthorizedValues(boolean ok) {
         Utils utils = Mockito.mock(Utils.class);
         Mockito.when(utils.isBetweenAuthorizedValues(Mockito.anyDouble(), Mockito.anyDouble())).thenReturn(ok);
-        Mockito.when(utils.computeDeviationBetweenCurrentAndOptimal(Mockito.anyDouble(), Mockito.anyDouble())).thenReturn(TestUtils.generateDouble());
+        Mockito.when(utils.computeDeviationBetweenCurrentAndOptimal(Mockito.anyDouble(), Mockito.anyDouble())).thenReturn(RandomUtils.nextDouble());
         return utils;
     }
 
@@ -69,8 +68,8 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
         TerritoryAttributes territoryAttributes = givenTerritoryAttributesWithGroupSize(RandomUtils.nextInt());
         SocialAttributes socialAttributes = givenSocialAttributesWithGroupSize(RandomUtils.nextInt());
         Animal animal = givenAnimalWithOptimalTerritoryAndOptimalSocialAttributes(territoryAttributes, socialAttributes);
-        double coef = TestUtils.generateDouble();
-        AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal, coef, TestUtils.generateDouble());
+        double coef = RandomUtils.nextDouble();
+        AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal, coef, RandomUtils.nextDouble());
         Utils utils = givenUtilsWithIsBetweenAuthorizedValues(true);
         AnimalTerritorySizeEvaluationController controller = new AnimalTerritorySizeEvaluationController(utils);
         // When
@@ -87,7 +86,7 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
         SocialAttributes socialAttributes = givenSocialAttributesWithGroupSize(RandomUtils.nextInt());
         Animal animal = givenAnimalWithOptimalTerritoryAndOptimalSocialAttributes(territoryAttributes, socialAttributes);
         AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal,
-                TestUtils.generateDouble(), TestUtils.generateDouble());
+               RandomUtils.nextDouble(), RandomUtils.nextDouble());
         Utils utils = givenUtilsWithIsBetweenAuthorizedValues(false);
         AnimalTerritorySizeEvaluationController controller = new AnimalTerritorySizeEvaluationController(utils);
         // When

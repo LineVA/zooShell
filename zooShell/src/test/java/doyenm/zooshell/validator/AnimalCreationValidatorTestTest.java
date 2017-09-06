@@ -6,7 +6,6 @@ import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.Specie;
-import doyenm.zooshell.testUtils.TestUtils;
 import java.util.ArrayList;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
@@ -111,7 +110,7 @@ public class AnimalCreationValidatorTestTest {
         Specie convertedSpecie = givenSpecie();
         Position entry = givenPosition();
         Paddock convertedPaddock = givenPaddockWithEntry(entry);
-        String animalName = TestUtils.generateStringWithLength(51);
+        String animalName = RandomStringUtils.randomAlphabetic(51);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
                 Sex.FEMALE,
@@ -132,7 +131,7 @@ public class AnimalCreationValidatorTestTest {
         // Given
         Specie convertedSpecie = givenSpecie();
         Paddock convertedPaddock = null;
-        String animalName = TestUtils.generateStringWithLength(51);
+        String animalName = RandomStringUtils.randomAlphabetic(10);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
                 Sex.FEMALE,
@@ -149,12 +148,12 @@ public class AnimalCreationValidatorTestTest {
     }
     
      @Test
-    public void shouldReturnFalseWhenThePaddockDOesNotHaveAnEntry() {
+    public void shouldReturnFalseWhenThePaddockDoesNotHaveAnEntry() {
         // Given
         Specie convertedSpecie = givenSpecie();
         Position entry = null;
         Paddock convertedPaddock = givenPaddockWithEntry(entry);
-        String animalName = TestUtils.generateStringWithLength(51);
+        String animalName = RandomStringUtils.randomAlphabetic(10);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
                 Sex.FEMALE,
@@ -176,7 +175,7 @@ public class AnimalCreationValidatorTestTest {
         Specie convertedSpecie = null;
         Position entry = givenPosition();
         Paddock convertedPaddock = givenPaddockWithEntry(entry);
-        String animalName = TestUtils.generateStringWithLength(51);
+        String animalName = RandomStringUtils.randomAlphabetic(10);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
                 Sex.FEMALE,
@@ -198,7 +197,7 @@ public class AnimalCreationValidatorTestTest {
         Specie convertedSpecie = givenSpecie();
         Position entry = givenPosition();
         Paddock convertedPaddock = givenPaddockWithEntry(entry);
-        String animalName = TestUtils.generateStringWithLength(51);
+        String animalName =  RandomStringUtils.randomAlphabetic(10);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
                 null,
@@ -220,7 +219,7 @@ public class AnimalCreationValidatorTestTest {
         Specie convertedSpecie = givenSpecie();
         Position entry = givenPosition();
         Paddock convertedPaddock = givenPaddockWithEntry(entry);
-        String animalName = TestUtils.generateStringWithLength(51);
+        String animalName =  RandomStringUtils.randomAlphabetic(10);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
                 Sex.UNKNOWN,

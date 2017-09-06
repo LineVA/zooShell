@@ -5,8 +5,8 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -38,17 +38,6 @@ public class AnimalUpdateFoodQuantityValidatorTestTest {
     }
 
     private AnimalUpdateFoodQuantityContext givenContextWithZooAnimalAndFoodQuantity(Zoo zoo, Animal animal, double quantity) {
-        AnimalUpdateFoodQuantityContext context = Mockito.mock(AnimalUpdateFoodQuantityContext.class);
-        Mockito.when(context.getConvertedAnimal()).thenReturn(animal);
-        Mockito.when(context.getZoo()).thenReturn(zoo);
-        Mockito.when(context.getConvertedFoodQuantity()).thenReturn(quantity);
-        Mockito.when(context.getAnimal()).thenReturn(RandomStringUtils.randomAlphabetic(10));
-        Mockito.when(context.getFoodQuantity()).thenReturn(RandomStringUtils.randomAlphabetic(10));
-        return context;
-    }
-
-    private AnimalUpdateFoodQuantityContext givenContextWithZooAnimalAndBothFoodQuantity(
-            Zoo zoo, Animal animal, double quantity, String str) {
         AnimalUpdateFoodQuantityContext context = Mockito.mock(AnimalUpdateFoodQuantityContext.class);
         Mockito.when(context.getConvertedAnimal()).thenReturn(animal);
         Mockito.when(context.getZoo()).thenReturn(zoo);
@@ -97,7 +86,7 @@ public class AnimalUpdateFoodQuantityValidatorTestTest {
         Paddock paddock = givenPaddockWithEntry(position);
         Animal animal = givenAnimalWithPaddock(paddock);
         Zoo zoo = givenZoo();
-        double quantity = TestUtils.generateDouble();
+        double quantity = RandomUtils.nextDouble();
         AnimalUpdateFoodQuantityContext context = givenContextWithZooAnimalAndFoodQuantity(zoo, animal, quantity);
         AnimalUpdateFoodQuantityValidator validator = new AnimalUpdateFoodQuantityValidator();
         // When
@@ -127,7 +116,7 @@ public class AnimalUpdateFoodQuantityValidatorTestTest {
         // Given
         Animal animal = null;
         Zoo zoo = givenZoo();
-        double quantity = TestUtils.generateDouble();
+        double quantity = RandomUtils.nextDouble();
         AnimalUpdateFoodQuantityContext context = givenContextWithZooAnimalAndFoodQuantity(zoo, animal, quantity);
         AnimalUpdateFoodQuantityValidator validator = new AnimalUpdateFoodQuantityValidator();
         // When
