@@ -77,8 +77,10 @@ public class Constants {
     public static final String CONTINENT = "continent";
     // --continent || -ct as argument
     public static final String[] CONTINENT_ARG = {"--continent", "-ct"};
-    // contraception method
+       // contraception method
     public static final String CONTRACEPTIONMETHOD = "contraceptionMethod";
+    // contraception methods
+    public static final String CONTRACEPTIONMETHODS = "contraceptionMethods";
     // --contraceptionMethod || -cm  as argument
     public static final String[] CONTRACEPTIONMETHOD_ARG = {"--contraceptionMethod", "-cm"};
     // create
