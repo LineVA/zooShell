@@ -2,6 +2,7 @@ package doyenm.zooshell.commandLine.commandLineImpl.ls;
 
 import doyenm.zooshell.commandLine.commandImpl.ls.LsContraceptionMethod;
 import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -11,14 +12,13 @@ import org.junit.Test;
  */
 public class LsContraceptionMethodCanExecuteTest {
 
-    private final String LS = "ls";
-    private final String CONTRACEPTION = "contraceptionMethod";
+    private final String CONTRACEPTIONS = "contraceptionMethods";
 
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
         LsContraceptionMethod cmdImpl = new LsContraceptionMethod();
-        String[] cmd = {this.LS, this.CONTRACEPTION};
+        String[] cmd = {this.CONTRACEPTIONS};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -29,7 +29,7 @@ public class LsContraceptionMethodCanExecuteTest {
     public void shouldReturnFalseWhenTheCommandIsTooShort() {
         // Given
         LsContraceptionMethod cmdImpl = new LsContraceptionMethod();
-        String[] cmd = {this.LS};
+        String[] cmd = {};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -40,7 +40,7 @@ public class LsContraceptionMethodCanExecuteTest {
     public void shouldReturnFalseWhenTheCommandIsTooLong() {
         // Given
         LsContraceptionMethod cmdImpl = new LsContraceptionMethod();
-        String[] cmd = {this.LS, this.CONTRACEPTION, TestUtils.generateString()};
+        String[] cmd = {this.CONTRACEPTIONS, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -48,25 +48,14 @@ public class LsContraceptionMethodCanExecuteTest {
     }
     
     @Test
-    public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotLs() {
+    public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotContraceptionMethods() {
         // Given
         LsContraceptionMethod cmdImpl = new LsContraceptionMethod();
-        String[] cmd = {TestUtils.generateString(), this.CONTRACEPTION};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
     
-    @Test
-    public void shouldReturnFalseWhenTheSecondElementOfTheCommandIsNotContraceptionMethod() {
-        // Given
-        LsContraceptionMethod cmdImpl = new LsContraceptionMethod();
-        String[] cmd = {this.LS, TestUtils.generateString()};
-        // When
-        boolean actualResult = cmdImpl.canExecute(cmd);
-        // Then
-        Assertions.assertThat(actualResult).isFalse();
-    }
-
 }

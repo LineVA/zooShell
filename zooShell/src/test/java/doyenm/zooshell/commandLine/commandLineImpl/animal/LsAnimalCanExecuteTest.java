@@ -1,8 +1,7 @@
-package doyenm.zooshell.commandLine.commandLineImpl.ls;
+package doyenm.zooshell.commandLine.commandLineImpl.animal;
 
-import doyenm.zooshell.commandLine.commandImpl.ls.LsBiome;
+import doyenm.zooshell.commandLine.commandImpl.animal.LsAnimal;
 import doyenm.zooshell.testUtils.TestUtils;
-import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -10,15 +9,15 @@ import org.junit.Test;
  *
  * @author doyenm
  */
-public class LsBiomeCanExecuteTest {
+public class LsAnimalCanExecuteTest {
 
-    private static final String BIOMES = "biomes";
+    private final String ANIMALS = "animals";
 
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
-        LsBiome cmdImpl = new LsBiome();
-        String[] cmd = {this.BIOMES};
+        LsAnimal cmdImpl = new LsAnimal();
+        String[] cmd = {this.ANIMALS};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -28,7 +27,7 @@ public class LsBiomeCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheCommandIsTooShort() {
         // Given
-        LsBiome cmdImpl = new LsBiome();
+        LsAnimal cmdImpl = new LsAnimal();
         String[] cmd = {};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
@@ -39,8 +38,8 @@ public class LsBiomeCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheCommandIsTooLong() {
         // Given
-        LsBiome cmdImpl = new LsBiome();
-        String[] cmd = {this.BIOMES, RandomStringUtils.randomAlphabetic(10)};
+        LsAnimal cmdImpl = new LsAnimal();
+        String[] cmd = {this.ANIMALS, TestUtils.generateString()};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -48,14 +47,13 @@ public class LsBiomeCanExecuteTest {
     }
     
     @Test
-    public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotBiomes() {
+    public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotAnimals() {
         // Given
-        LsBiome cmdImpl = new LsBiome();
-        String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
+        LsAnimal cmdImpl = new LsAnimal();
+        String[] cmd = {TestUtils.generateString()};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
-    
 }

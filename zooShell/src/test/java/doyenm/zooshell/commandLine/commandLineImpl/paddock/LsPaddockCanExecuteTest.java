@@ -2,6 +2,7 @@ package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
 import doyenm.zooshell.commandLine.commandImpl.paddock.LsPaddock;
 import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -11,16 +12,15 @@ import org.junit.Test;
  */
 public class LsPaddockCanExecuteTest {
 
-    private final String pad = "pad";
-    private final String paddock = "paddock";
-    private final String ls = "ls";
+    private final String pads = "pads";
+    private final String paddocks = "paddocks";
 
 
     @Test
-    public void shouldReturnTrueWhenTheCommandIsCorrectAndFinishesByPaddock() {
+    public void shouldReturnTrueWhenTheCommandIsCorrectAndContainsPaddocks() {
         // Given
         LsPaddock cmdLine = new LsPaddock();
-        String[] cmd = {this.ls, this.paddock};
+        String[] cmd = {this.paddocks};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -28,10 +28,10 @@ public class LsPaddockCanExecuteTest {
     }
     
     @Test
-    public void shouldReturnTrueWhenTheCommandIsCorrectAndFinishesByPad() {
+    public void shouldReturnTrueWhenTheCommandIsCorrectAndContainsPads() {
         // Given
         LsPaddock cmdLine = new LsPaddock();
-        String[] cmd = {this.ls, this.pad};
+        String[] cmd = {this.pads};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -39,21 +39,10 @@ public class LsPaddockCanExecuteTest {
     }
     
     @Test
-    public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
+    public void shouldReturnFalseWhenTheElementIsIncorrect() {
         // Given
         LsPaddock cmdLine = new LsPaddock();
-        String[] cmd = {TestUtils.generateString(), this.pad};
-        // When
-        boolean actualResult = cmdLine.canExecute(cmd);
-        // Then
-        Assertions.assertThat(actualResult).isFalse();
-    }
-    
-     @Test
-    public void shouldReturnFalseWhenTheSecondElementIsIncorrect() {
-        // Given
-        LsPaddock cmdLine = new LsPaddock();
-        String[] cmd = {this.ls, TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -61,10 +50,10 @@ public class LsPaddockCanExecuteTest {
     }
     
     @Test
-    public void shouldReturnFalseWhenThereIsLessThanTwoElements() {
+    public void shouldReturnFalseWhenThereIsLessThanOneElement() {
         // Give
         LsPaddock cmdLine = new LsPaddock();
-        String[] cmd = {TestUtils.generateString()};
+        String[] cmd = {};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -72,10 +61,10 @@ public class LsPaddockCanExecuteTest {
     }
     
     @Test
-    public void shouldReturnFalseWhenThereIsMoreThanTwoElements() {
+    public void shouldReturnFalseWhenThereIsMoreThanOneElement() {
         // Given
         LsPaddock cmdLine = new LsPaddock();
-        String[] cmd = {this.ls, this.pad, TestUtils.generateString()};
+        String[] cmd = {this.pads, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then

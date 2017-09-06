@@ -49,6 +49,8 @@ public class Constants {
     public static final String ANIMALKEEPERS = "animalKeepers";
     // animalKeeper || ak
     public static final String[] AK_OR_ANIMALKEEPER = {"animalKeeper", "ak"};
+        // animalKeepers || keepers
+    public static final String[] KEEPERS_OR_ANIMALKEEPERS = {"animalKeepers", "keepers"};
     // animalKeeper-occ || ak-occ
     public static final String[] AK_OR_ANIMALKEEPER_OCCUPATIONS = {"animalKeeper-occupation",
         "ak-occupations", "animalKeeper-occ", "ak-occ"};
@@ -75,8 +77,10 @@ public class Constants {
     public static final String CONTINENT = "continent";
     // --continent || -ct as argument
     public static final String[] CONTINENT_ARG = {"--continent", "-ct"};
-    // contraception method
+       // contraception method
     public static final String CONTRACEPTIONMETHOD = "contraceptionMethod";
+    // contraception methods
+    public static final String CONTRACEPTIONMETHODS = "contraceptionMethods";
     // --contraceptionMethod || -cm  as argument
     public static final String[] CONTRACEPTIONMETHOD_ARG = {"--contraceptionMethod", "-cm"};
     // create
@@ -211,18 +215,22 @@ public class Constants {
     public static final String[] PADDOCK_ARG = {"--paddock", "-p"};
     // paddock || pad
     public static final String[] PAD_OR_PADDOCK = {"paddock", "pad"};
+      // paddocks || pads
+    public static final String[] PADS_OR_PADDOCKS = {"paddocks", "pads"};
     // paddock-biome || pad-biome
     public static final String[] PAD_OR_PADDOCK_BIOME = {"paddock-biome", "pad-biome"};
     // paddock-entry || pad-entry
     public static final String[] PAD_OR_PADDOCK_ENTRY = {"paddock-entry", "pad-entry"};
     // paddock-extension || pad-extension
     public static final String[] PAD_OR_PADDOCK_EXTENSION = {"paddock-extension", "pad-extension"};
-    // paddock-biome || pad-biome
+    // paddock-type || pad-type
     public static final String[] PAD_OR_PADDOCK_TYPE = {"paddock-type", "pad-type"};
     // paddockType
     public static final String PADDOCKTYPE = "paddockType";
     // paddockType || padType
     public static final String[] PADDOCKTYPE_OR_PADTYPE = {"paddockType", "padType"};
+      // paddockTypes || padTypes
+    public static final String[] PADDOCKTYPES_OR_PADTYPES = {"paddockTypes", "padTypes"};
     // --paddockType || --padType || -pT
     public static final String[] PADDOCKTYPE_ARG = {"--paddockType", "--padType", "-pT"};
     // personality
@@ -243,6 +251,8 @@ public class Constants {
     public static final String SCIENTIFIC = "scientific";
     // sex
     public static final String SEX = "sex";
+        // sexes
+    public static final String SEXES = "sexes";
     // --sex || -sx as argument
     public static final String[] SEX_ARG = {"--sex", "-sx"};
     // size
@@ -273,6 +283,8 @@ public class Constants {
     public static final String[] TAG_ARG = {"--tag", "-t"};
     // task
     public static final String TASK = "task";
+     // tasks
+    public static final String TASKS = "tasks";
     // territory
     public static final String TERRITORY = "territory";
     // territorySize

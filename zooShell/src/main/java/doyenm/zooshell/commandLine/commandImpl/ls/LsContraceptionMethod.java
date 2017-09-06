@@ -36,11 +36,9 @@ public class LsContraceptionMethod implements Command{
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2) {
-            if (Arrays.asList(Constants.LS).contains(cmd[0])) {
-                if (Arrays.asList(Constants.CONTRACEPTIONMETHOD).contains(cmd[1])) {
+        if (cmd.length == 1) {
+                if (Arrays.asList(Constants.CONTRACEPTIONMETHODS).contains(cmd[0])) {
                     return true;
-                }
             }
         }
         return false;
