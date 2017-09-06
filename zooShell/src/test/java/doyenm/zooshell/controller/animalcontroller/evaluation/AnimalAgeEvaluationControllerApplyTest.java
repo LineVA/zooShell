@@ -4,7 +4,7 @@ import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ReproductionAttributes;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -41,7 +41,7 @@ public class AnimalAgeEvaluationControllerApplyTest {
 
     private Zoo givenZoo() {
         Zoo zoo = Mockito.mock(Zoo.class);
-        Mockito.when(zoo.getMonthsPerEvaluation()).thenReturn(TestUtils.generateInteger());
+        Mockito.when(zoo.getMonthsPerEvaluation()).thenReturn(RandomUtils.nextInt());
         return zoo;
     }
 
@@ -55,9 +55,9 @@ public class AnimalAgeEvaluationControllerApplyTest {
     @Test
     public void shouldAddTheNumberOfMonthsPerTurnToTheAgeOfTheAnimal() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         Animal animal = givenAnimalWithAgeMaturityAndNursing(age, age - 1, false);
-        int speed = TestUtils.generateInteger();
+        int speed = RandomUtils.nextInt();
         Zoo zoo = givenZooWithSpeed(speed);
         AnimalEvaluationContext context = givenContextWithAnimalAndZoo(animal, zoo);
         AnimalAgeEvaluationController controller = new AnimalAgeEvaluationController();
@@ -74,7 +74,7 @@ public class AnimalAgeEvaluationControllerApplyTest {
     @Test
     public void shouldLetTheNecessityOfNursingByHumansToFalseWhenTheAnimalDidNotNeedItAndIsNotYetWeaned() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         Animal animal = givenAnimalWithAgeMaturityAndNursing(age, age - 1, false);
         Zoo zoo = givenZoo();
         AnimalEvaluationContext context = givenContextWithAnimalAndZoo(animal, zoo);
@@ -92,7 +92,7 @@ public class AnimalAgeEvaluationControllerApplyTest {
     @Test
     public void shouldSetTheNecessityOfNursingByHumansToTrueWhenTheAnimalIsWeaned() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         Animal animal = givenAnimalWithAgeMaturityAndNursing(age, age - 1, true);
         Zoo zoo = givenZoo();
         AnimalEvaluationContext context = givenContextWithAnimalAndZoo(animal, zoo);
@@ -110,7 +110,7 @@ public class AnimalAgeEvaluationControllerApplyTest {
     @Test
     public void shouldLetTheNecessityOfNursingByHumansToFalseWhenTheAnimalIsWeaned_2() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         Animal animal = givenAnimalWithAgeMaturityAndNursing(age, age + 1, false);
         Zoo zoo = givenZoo();
         AnimalEvaluationContext context = givenContextWithAnimalAndZoo(animal, zoo);
@@ -128,7 +128,7 @@ public class AnimalAgeEvaluationControllerApplyTest {
     @Test
     public void shouldSetTheNecessityOfNursingByHumansToTrueWhenTheAnimalIsWeaned_2() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         Animal animal = givenAnimalWithAgeMaturityAndNursing(age, age + 1, true);
         Zoo zoo = givenZoo();
         AnimalEvaluationContext context = givenContextWithAnimalAndZoo(animal, zoo);

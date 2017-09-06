@@ -2,10 +2,10 @@ package doyenm.zooshell.validator.function;
 
 import doyenm.zooshell.model.Names;
 import doyenm.zooshell.model.Specie;
-import doyenm.zooshell.testUtils.TestUtils;
 import doyenm.zooshell.validator.context.FindingSpecieContext;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -34,7 +34,7 @@ public class FindingSpecieFunctionApplyTest {
     @Test
     public void shouldSetTheConvertedSpeceWhenTheInputIsCorrespondingToAnExistingSpecie() {
         // Given
-        String input = TestUtils.generateString();
+        String input = RandomStringUtils.randomAlphabetic(10);
         FindingSpecieContext context = givenContextWithInput(input, input);
         FindingSpecieFunction function = new FindingSpecieFunction();
         // When
@@ -46,7 +46,7 @@ public class FindingSpecieFunctionApplyTest {
     @Test
     public void shouldSetTheConvertedSpecieToNullWhenTheInputIsNotCorrespondingToAnExistingSpecie() {
         // Given
-        FindingSpecieContext context = givenContextWithInput(TestUtils.generateString(), TestUtils.generateString());
+        FindingSpecieContext context = givenContextWithInput(RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10));
         FindingSpecieFunction function = new FindingSpecieFunction();
         // When
         FindingSpecieContext actualContext = function.apply(context);

@@ -6,7 +6,7 @@ import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.SocialAttributes;
 import doyenm.zooshell.model.TerritoryAttributes;
 import doyenm.zooshell.model.WellBeing;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -43,14 +43,14 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
         Mockito.when(context.getUicnCoefficient()).thenReturn(coef);
         Mockito.when(context.getUicnStandardDeviation()).thenReturn(deviation);
         Mockito.when(context.getGroupSizeWellBeing()).thenCallRealMethod();
-        Mockito.when(context.getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock()).thenReturn(TestUtils.generateInteger());
+        Mockito.when(context.getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock()).thenReturn(RandomUtils.nextInt());
         WellBeing wb = Mockito.mock(WellBeing.class);
         Mockito.when(wb.getTerritoryWellBeing()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(wb).setTerritoryWellBeing(Mockito.anyDouble());
         Mockito.when(context.getWellBeingObj()).thenReturn(wb);
         Paddock pad = Mockito.mock(Paddock.class);
-        Mockito.when(pad.getHeight()).thenReturn(TestUtils.generateInteger());
-        Mockito.when(pad.getWidth()).thenReturn(TestUtils.generateInteger());
+        Mockito.when(pad.getHeight()).thenReturn(RandomUtils.nextInt());
+        Mockito.when(pad.getWidth()).thenReturn(RandomUtils.nextInt());
         Mockito.when(context.getPaddock()).thenReturn(pad);
         return context;
     }
@@ -58,18 +58,18 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
     private Utils givenUtilsWithIsBetweenAuthorizedValues(boolean ok) {
         Utils utils = Mockito.mock(Utils.class);
         Mockito.when(utils.isBetweenAuthorizedValues(Mockito.anyDouble(), Mockito.anyDouble())).thenReturn(ok);
-        Mockito.when(utils.computeDeviationBetweenCurrentAndOptimal(Mockito.anyDouble(), Mockito.anyDouble())).thenReturn(TestUtils.generateDouble());
+        Mockito.when(utils.computeDeviationBetweenCurrentAndOptimal(Mockito.anyDouble(), Mockito.anyDouble())).thenReturn(RandomUtils.nextDouble());
         return utils;
     }
 
     @Test
     public void shouldSetTheWBLinkedToGroupSizeToBaseTimesUICNCoefWhenCurrentGroupSizeIsInTheAuthorizedValuesOfTheAnimal() {
         // Given
-        TerritoryAttributes territoryAttributes = givenTerritoryAttributesWithGroupSize(TestUtils.generateInteger());
-        SocialAttributes socialAttributes = givenSocialAttributesWithGroupSize(TestUtils.generateInteger());
+        TerritoryAttributes territoryAttributes = givenTerritoryAttributesWithGroupSize(RandomUtils.nextInt());
+        SocialAttributes socialAttributes = givenSocialAttributesWithGroupSize(RandomUtils.nextInt());
         Animal animal = givenAnimalWithOptimalTerritoryAndOptimalSocialAttributes(territoryAttributes, socialAttributes);
-        double coef = TestUtils.generateDouble();
-        AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal, coef, TestUtils.generateDouble());
+        double coef = RandomUtils.nextDouble();
+        AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal, coef, RandomUtils.nextDouble());
         Utils utils = givenUtilsWithIsBetweenAuthorizedValues(true);
         AnimalTerritorySizeEvaluationController controller = new AnimalTerritorySizeEvaluationController(utils);
         // When
@@ -82,11 +82,11 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
     @Test
     public void shouldSetTheWBLinkedToGroupSizeToZeroWhenCurrentGroupSizeIsNotInTheAuthorizedValuesOfTheAnimal() {
         // Given
-        TerritoryAttributes territoryAttributes = givenTerritoryAttributesWithGroupSize(TestUtils.generateInteger());
-        SocialAttributes socialAttributes = givenSocialAttributesWithGroupSize(TestUtils.generateInteger());
+        TerritoryAttributes territoryAttributes = givenTerritoryAttributesWithGroupSize(RandomUtils.nextInt());
+        SocialAttributes socialAttributes = givenSocialAttributesWithGroupSize(RandomUtils.nextInt());
         Animal animal = givenAnimalWithOptimalTerritoryAndOptimalSocialAttributes(territoryAttributes, socialAttributes);
         AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal,
-                TestUtils.generateDouble(), TestUtils.generateDouble());
+               RandomUtils.nextDouble(), RandomUtils.nextDouble());
         Utils utils = givenUtilsWithIsBetweenAuthorizedValues(false);
         AnimalTerritorySizeEvaluationController controller = new AnimalTerritorySizeEvaluationController(utils);
         // When

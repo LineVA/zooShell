@@ -1,13 +1,12 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.reproduction;
 
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.FemaleReproductionPredicate;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.ReproductionAttributes;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -53,7 +52,7 @@ public class FemaleReproductionPredicateTestTest {
     @Test
     public void shouldReturnTrueWhenIsFemaleIsOldAndHappyEnoughAndCanReproducteAndNotAlreadyGestating() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 1.0);
         Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
                 age, Sex.FEMALE, ContraceptionMethod.NONE, 0, attributes);
@@ -69,7 +68,7 @@ public class FemaleReproductionPredicateTestTest {
     @Test
     public void shouldReturnFalseWhenIsAlreadyGestating() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 1.0);
         Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
                 age, Sex.FEMALE, ContraceptionMethod.NONE, 4, attributes);
@@ -85,7 +84,7 @@ public class FemaleReproductionPredicateTestTest {
     @Test
     public void shouldReturnFalseWhenIsNotFemale() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 1.0);
         Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
                 age, Sex.MALE, ContraceptionMethod.NONE, 0, attributes);
@@ -101,7 +100,7 @@ public class FemaleReproductionPredicateTestTest {
     @Test
     public void shouldReturnFalseWhenIsNotMature() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age + 1, 1.0);
         Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
                 age, Sex.FEMALE, ContraceptionMethod.NONE, 0, attributes);
@@ -117,7 +116,7 @@ public class FemaleReproductionPredicateTestTest {
     @Test
     public void shouldReturnFalseWhenCanNotReproducte() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 0.0);
         Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
                 age, Sex.FEMALE, ContraceptionMethod.NONE, 0, attributes);
@@ -133,7 +132,7 @@ public class FemaleReproductionPredicateTestTest {
     @Test
     public void shouldReturnFalseWhenIsUnderFemaleImplant() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 0.0);
         Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
                 age, Sex.FEMALE, ContraceptionMethod.NONE, 0, attributes);
@@ -149,7 +148,7 @@ public class FemaleReproductionPredicateTestTest {
     @Test
     public void shouldReturnFalseWhenIsUnderFemalePill() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 0.0);
         Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
                 age, Sex.FEMALE, ContraceptionMethod.NONE, 0, attributes);
@@ -165,7 +164,7 @@ public class FemaleReproductionPredicateTestTest {
     @Test
     public void shouldReturnFalseWhenIsSterilized() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         ReproductionAttributes attributes = givenReproductionAttributesWithFemaleMaturityAndFrequency(age - 1, 0.0);
         Animal animal = givenAnimalWithAgeSexContraceptionGestationAndReproductionAttributes(
                 age, Sex.FEMALE, ContraceptionMethod.NONE, 0, attributes);

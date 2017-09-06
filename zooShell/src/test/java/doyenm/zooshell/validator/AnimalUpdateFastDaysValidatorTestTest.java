@@ -1,12 +1,11 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalUpdateFastDaysContext;
-import doyenm.zooshell.context.AnimalUpdateFoodQuantityContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -42,8 +41,8 @@ public class AnimalUpdateFastDaysValidatorTestTest {
         Mockito.when(context.getConvertedAnimal()).thenReturn(animal);
         Mockito.when(context.getZoo()).thenReturn(zoo);
         Mockito.when(context.getConvertedFastDays()).thenReturn(fast);
-        Mockito.when(context.getAnimal()).thenReturn(TestUtils.generateString());
-        Mockito.when(context.getFastDays()).thenReturn(TestUtils.generateString());
+        Mockito.when(context.getAnimal()).thenReturn(RandomStringUtils.randomAlphabetic(10));
+        Mockito.when(context.getFastDays()).thenReturn(RandomStringUtils.randomAlphabetic(10));
         return context;
     }
 

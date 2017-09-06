@@ -4,9 +4,9 @@ import doyenm.zooshell.context.AnimalChangePaddockContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -54,9 +54,9 @@ public class AnimalChangePaddockControllerApplyTest {
     @Test
     public void shouldReplaceThePaddockOfTheAnimalByTheOneSpecified() {
         // Given
-        String name = TestUtils.generateString();
+        String name = RandomStringUtils.randomAlphabetic(10);
         Animal animal = givenAnimalWithName(name);
-        String padName = TestUtils.generateString();
+        String padName = RandomStringUtils.randomAlphabetic(10);
         Paddock newPaddock = givenPaddockWithName(padName);
         Map<String, Animal> animals = givenMapWithAnimal(animal);
         Zoo zoo = givenZooWithAnimals(animals);

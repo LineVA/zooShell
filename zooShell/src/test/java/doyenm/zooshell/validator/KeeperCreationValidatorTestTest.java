@@ -2,12 +2,12 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.KeeperCreationContext;
 import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.testUtils.TestUtils;
 import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import static org.mockito.Matchers.anyInt;
@@ -71,7 +71,7 @@ public class KeeperCreationValidatorTestTest {
         UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(true);
         StringLengthPredicates stringPredicates = givenStringPredicates(true);
         KeepersNumberPredicate numberPredicates = givenKeepersPredicate(true);
-        String keeperName = TestUtils.generateString();
+        String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
                 keeperName, keeper
@@ -90,7 +90,7 @@ public class KeeperCreationValidatorTestTest {
         UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(true);
         StringLengthPredicates stringPredicates = givenStringPredicates(false);
         KeepersNumberPredicate numberPredicates = givenKeepersPredicate(true);
-        String keeperName = TestUtils.generateString();
+        String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
                 keeperName, keeper
@@ -109,7 +109,7 @@ public class KeeperCreationValidatorTestTest {
         UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(false);
         StringLengthPredicates stringPredicates = givenStringPredicates(true);
         KeepersNumberPredicate numberPredicates = givenKeepersPredicate(true);
-        String keeperName = TestUtils.generateString();
+        String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
                 keeperName, keeper
@@ -128,7 +128,7 @@ public class KeeperCreationValidatorTestTest {
         UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(false);
         StringLengthPredicates stringPredicates = givenStringPredicates(true);
         KeepersNumberPredicate numberPredicates = givenKeepersPredicate(false);
-        String keeperName = TestUtils.generateString();
+        String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
                 keeperName, keeper

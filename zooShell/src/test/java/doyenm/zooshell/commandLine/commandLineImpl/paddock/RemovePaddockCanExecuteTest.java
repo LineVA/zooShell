@@ -1,8 +1,7 @@
 package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
 import doyenm.zooshell.commandLine.commandImpl.paddock.RemovePaddock;
-import doyenm.zooshell.commandLine.commandImpl.paddock.UpdateBiome;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -20,7 +19,7 @@ public class RemovePaddockCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPaddock() {
         // Given
         RemovePaddock cmdLine = new RemovePaddock(null, null);
-        String[] cmd = {this.paddock, this.remove, TestUtils.generateString()};
+        String[] cmd = {this.paddock, this.remove, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -31,7 +30,7 @@ public class RemovePaddockCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPad() {
         // Given
         RemovePaddock cmdLine = new RemovePaddock(null, null);
-        String[] cmd = {this.pad, this.remove, TestUtils.generateString()};
+        String[] cmd = {this.pad, this.remove, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -42,7 +41,7 @@ public class RemovePaddockCanExecuteTest {
     public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
         // Given
         RemovePaddock cmdLine = new RemovePaddock(null, null);
-        String[] cmd = {TestUtils.generateString(), this.remove, TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.remove, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -53,7 +52,7 @@ public class RemovePaddockCanExecuteTest {
     public void shouldReturnFalseWhenTheSecondElementIsIncorrect() {
         // Given
         RemovePaddock cmdLine = new RemovePaddock(null, null);
-        String[] cmd = {this.pad, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.pad, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -64,7 +63,7 @@ public class RemovePaddockCanExecuteTest {
     public void shouldReturnFalseWhenThereIsLessThanThreeElements() {
         // Give
         RemovePaddock cmdLine = new RemovePaddock(null, null);
-        String[] cmd = {TestUtils.generateString(), this.remove};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.remove};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -75,7 +74,7 @@ public class RemovePaddockCanExecuteTest {
     public void shouldReturnFalseWhenThereIsMoreThanThreeElements() {
         // Given
         RemovePaddock cmdLine = new RemovePaddock(null, null);
-        String[] cmd = {TestUtils.generateString(), this.remove, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.remove, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then

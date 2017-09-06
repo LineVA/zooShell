@@ -4,7 +4,7 @@ import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.FoodAttributes;
 import doyenm.zooshell.model.WellBeing;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -41,7 +41,7 @@ public class AnimalFastDaysEvaluationControllerApplyTest {
     @Test
     public void shouldSetTheWBLinkedToTheFastDaysToBaseWhenTheNumberOfFastDaysIsTheSameAsRequiredByTheSpecie() {
         // Given
-        int days = TestUtils.generateInteger();
+        int days = RandomUtils.nextInt();
         FoodAttributes foodAttributes = givenFoodAttributesWithFastDays(days);
         Animal animal = givenAnimalWithCurrentAndOptimalFooodAttrbutes(foodAttributes, foodAttributes);
         AnimalEvaluationContext context = givenContextWithAnimal(animal);
@@ -56,8 +56,8 @@ public class AnimalFastDaysEvaluationControllerApplyTest {
     @Test
     public void shouldSetTheWBLinkedToTheFastDaysToZeroWhenTheNumberOfFastDaysIsNotTheSameThanRequiredByTheSpecie() {
         // Given
-        int currentDays = TestUtils.generateInteger();
-        int optimalDays = TestUtils.generateInteger();
+        int currentDays = RandomUtils.nextInt();
+        int optimalDays = RandomUtils.nextInt();
         Assertions.assertThat(currentDays).isNotEqualTo(optimalDays);
         FoodAttributes currentFoodAttributes = givenFoodAttributesWithFastDays(currentDays);
         FoodAttributes optimalFoodAttributes = givenFoodAttributesWithFastDays(optimalDays);

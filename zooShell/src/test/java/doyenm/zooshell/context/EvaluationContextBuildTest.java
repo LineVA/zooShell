@@ -3,11 +3,11 @@ package doyenm.zooshell.context;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -62,7 +62,7 @@ public class EvaluationContextBuildTest {
     @Test
     public void shouldDeleteTheAnimalOfTheZooWhenItIsNoMorePresentAfterEvaluation() {
         // Given
-        String name = TestUtils.generateString();
+        String name = RandomStringUtils.randomAlphabetic(10);
         Animal animal = givenAnimalWithName(name);
         Map<String, Animal> animals = givenMapWithAnimal(animal);
         List<Animal> evaluatedList = new ArrayList<>();
@@ -78,8 +78,8 @@ public class EvaluationContextBuildTest {
     @Test
     public void shouldUpdateTheAnimalOfTheZooWhenItIsStillPresentAfterEvaluation() {
         // Given
-        String animalName = TestUtils.generateString();
-        String padName = TestUtils.generateString();
+        String animalName = RandomStringUtils.randomAlphabetic(10);
+        String padName = RandomStringUtils.randomAlphabetic(10);
         Paddock paddock = givenPaddockWithName(padName);
         Animal animal = givenAnimalWithNameAndPaddock(animalName, paddock);
         Map<String, Animal> animals = givenMapWithAnimal(animal);

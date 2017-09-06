@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandLine.commandLineImpl.animal;
 
 import doyenm.zooshell.commandLine.commandImpl.animal.LsAnimal;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -39,7 +39,7 @@ public class LsAnimalCanExecuteTest {
     public void shouldReturnFalseWhenTheCommandIsTooLong() {
         // Given
         LsAnimal cmdImpl = new LsAnimal();
-        String[] cmd = {this.ANIMALS, TestUtils.generateString()};
+        String[] cmd = {this.ANIMALS, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -50,7 +50,7 @@ public class LsAnimalCanExecuteTest {
     public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotAnimals() {
         // Given
         LsAnimal cmdImpl = new LsAnimal();
-        String[] cmd = {TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then

@@ -3,9 +3,9 @@ package doyenm.zooshell.controller.paddockcontroller;
 import doyenm.zooshell.context.PaddockContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -37,8 +37,8 @@ public class PaddockRemoveControllerApplyTest {
     @Test
     public void shouldRemoveThePaddockOfTheMap() {
         // Given
-        String name1 = TestUtils.generateString();
-        String name2 = TestUtils.generateString();
+        String name1 = RandomStringUtils.randomAlphabetic(10);
+        String name2 = RandomStringUtils.randomAlphabetic(10);
         Zoo zoo = givenZooWithNames(name1, name2);
         PaddockContext context = givenContextWithZooAndName(zoo, name1);
         PaddockRemoveController controller = new PaddockRemoveController();

@@ -4,7 +4,7 @@ import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.FoodAttributes;
 import doyenm.zooshell.model.WellBeing;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -43,18 +43,18 @@ public class AnimalFoodQuantityEvaluationControllerApplyTest {
     private Utils givenUtilsWithIsBetweenAuthorizedValues(boolean ok) {
         Utils utils = Mockito.mock(Utils.class);
         Mockito.when(utils.isBetweenAuthorizedValues(Mockito.anyDouble(), Mockito.anyDouble())).thenReturn(ok);
-        Mockito.when(utils.computeDeviationBetweenCurrentAndOptimal(Mockito.anyDouble(), Mockito.anyDouble())).thenReturn(TestUtils.generateDouble());
+        Mockito.when(utils.computeDeviationBetweenCurrentAndOptimal(Mockito.anyDouble(), Mockito.anyDouble())).thenReturn(RandomUtils.nextDouble());
         return utils;
     }
 
     @Test
     public void shouldSetTheWBLinkedToTheFoodQuantityToBaseTimesUICNCoefWhenCurrentFoodQuantityIsInTheAuthorizedValuesOfTheAnimal() {
         // Given
-        double quantity = TestUtils.generateInteger();
+        double quantity = RandomUtils.nextInt();
         FoodAttributes foodAttributes = givenFoodAttributesWithFoodQuantity(quantity);
         Animal animal = givenAnimalWithCurrentAndOptimalFooodAttrbutes(foodAttributes, foodAttributes);
-        double coef = TestUtils.generateDouble();
-        AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal, coef, TestUtils.generateDouble());
+        double coef = RandomUtils.nextDouble();
+        AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal, coef, RandomUtils.nextDouble());
         Utils utils = givenUtilsWithIsBetweenAuthorizedValues(true);
         AnimalFoodQuantityEvaluationController controller = new AnimalFoodQuantityEvaluationController(utils);
         // When
@@ -67,11 +67,11 @@ public class AnimalFoodQuantityEvaluationControllerApplyTest {
     @Test
     public void shouldSetTheWBLinkedToTheFoodQuantityToZeroWhenCurrentFoodQuantityIsNotInTheAuthorizedValuesOfTheAnimal() {
         // Given
-        double quantity = TestUtils.generateInteger();
+        double quantity = RandomUtils.nextInt();
         FoodAttributes foodAttributes = givenFoodAttributesWithFoodQuantity(quantity);
         Animal animal = givenAnimalWithCurrentAndOptimalFooodAttrbutes(foodAttributes, foodAttributes);
         AnimalEvaluationContext context = givenContextWithAnimalUicnCoefficientAndStandard(animal, 
-                TestUtils.generateDouble(), TestUtils.generateDouble());
+                RandomUtils.nextDouble(), RandomUtils.nextDouble());
         Utils utils = givenUtilsWithIsBetweenAuthorizedValues(false);
         AnimalFoodQuantityEvaluationController controller = new AnimalFoodQuantityEvaluationController(utils);
         // When

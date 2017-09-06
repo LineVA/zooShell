@@ -1,8 +1,7 @@
 package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
-import doyenm.zooshell.commandLine.commandImpl.paddock.CreatePaddock;
 import doyenm.zooshell.commandLine.commandImpl.paddock.CreatePaddockExtension;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -20,9 +19,9 @@ public class CreatePaddockExtensionCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrectAndeginsWithPaddock() {
         // Given
         CreatePaddockExtension createPaddock = new CreatePaddockExtension(null, null, null);
-        String[] cmd = {this.PADDOCK, this.CREATE, TestUtils.generateString(),
-            TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString(),
-            TestUtils.generateString()};
+        String[] cmd = {this.PADDOCK, this.CREATE, RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = createPaddock.canExecute(cmd);
         // Then
@@ -33,9 +32,9 @@ public class CreatePaddockExtensionCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrectAndeginsWithPad() {
         // Given
         CreatePaddockExtension createPaddock = new CreatePaddockExtension(null, null, null);
-        String[] cmd = {this.PAD, this.CREATE, TestUtils.generateString(),
-            TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString(),
-            TestUtils.generateString()};
+        String[] cmd = {this.PAD, this.CREATE, RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = createPaddock.canExecute(cmd);
         // Then
@@ -46,10 +45,10 @@ public class CreatePaddockExtensionCanExecuteTest {
     public void shouldReturnFalseWhenTheTheFirstElementIsNotPadOrPaddockExtension() {
         // Given
         CreatePaddockExtension createPaddock = new CreatePaddockExtension(null, null, null);
-        String falseAnimal = TestUtils.generateString();
-        String[] cmd = {TestUtils.generateString(), this.CREATE, TestUtils.generateString(),
-            TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString(),
-            TestUtils.generateString()};
+        String falseAnimal = RandomStringUtils.randomAlphabetic(10);
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.CREATE, RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = createPaddock.canExecute(cmd);
         // Then
@@ -61,9 +60,9 @@ public class CreatePaddockExtensionCanExecuteTest {
     public void shouldReturnFalseWhenTheTheSecondElementIsNotCreate() {
         // Given
         CreatePaddockExtension createPaddock = new CreatePaddockExtension(null, null, null);
-        String falseCreate = TestUtils.generateString();
-        String[] cmd = {this.PADDOCK, falseCreate, TestUtils.generateString(), TestUtils.generateString(),
-            TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        String falseCreate = RandomStringUtils.randomAlphabetic(10);
+        String[] cmd = {this.PADDOCK, falseCreate, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = createPaddock.canExecute(cmd);
         // Then
@@ -75,8 +74,8 @@ public class CreatePaddockExtensionCanExecuteTest {
     public void shouldReturnFalseWhenThereIsLessThanSevenElements() {
         // Given
         CreatePaddockExtension createPaddock = new CreatePaddockExtension(null, null, null);
-        String[] cmd = {this.PADDOCK, this.CREATE, TestUtils.generateString(), TestUtils.generateString(),
-            TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.PADDOCK, this.CREATE, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = createPaddock.canExecute(cmd);
         // Then
@@ -87,9 +86,9 @@ public class CreatePaddockExtensionCanExecuteTest {
     public void shouldReturnFalseWhenThereIsMoreThanSevenElements() {
         // Given
         CreatePaddockExtension createPaddock = new CreatePaddockExtension(null, null, null);
-        String[] cmd = {this.PADDOCK, this.CREATE, TestUtils.generateString(), TestUtils.generateString(),
-            TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString(),
-            TestUtils.generateString()};
+        String[] cmd = {this.PADDOCK, this.CREATE, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = createPaddock.canExecute(cmd);
         // Then

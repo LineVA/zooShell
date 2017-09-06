@@ -3,12 +3,12 @@ package doyenm.zooshell.context;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -52,7 +52,7 @@ public class AnimalUpdateDietContextBuildTest {
     @Test
     public void shouldReplaceTheDietAnimalByTheOneSpecified() {
         // Given
-        String name = TestUtils.generateString();
+        String name = RandomStringUtils.randomAlphabetic(10);
         Animal animal = givenAnimalWithName(name);
         Diet newDiet = Diet.FOLIVOROUS;
         Map<String, Animal> animals = givenMapWithAnimal(animal);

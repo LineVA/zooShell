@@ -3,9 +3,9 @@ package doyenm.zooshell.controller.animalcontroller;
 import doyenm.zooshell.context.AnimalContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -37,8 +37,8 @@ public class AnimalRemoveControllerApplyTest {
     @Test
     public void shouldRemoveTheAnimalOfTheMap() {
         // Given
-        String name1 = TestUtils.generateString();
-        String name2 = TestUtils.generateString();
+        String name1 = RandomStringUtils.randomAlphabetic(10);
+        String name2 = RandomStringUtils.randomAlphabetic(10);
         Zoo zoo = givenZooWithNames(name1, name2);
         AnimalContext context = givenContextWithZooAndName(zoo, name1);
         AnimalRemoveController controller = new AnimalRemoveController();

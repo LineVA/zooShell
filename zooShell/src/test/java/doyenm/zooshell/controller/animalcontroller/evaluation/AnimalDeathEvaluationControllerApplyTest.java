@@ -6,9 +6,6 @@ import doyenm.zooshell.model.LifespanAttributes;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.model.Sex;
-import doyenm.zooshell.testUtils.TestUtils;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
 import org.mockito.Mockito;
 
 /**

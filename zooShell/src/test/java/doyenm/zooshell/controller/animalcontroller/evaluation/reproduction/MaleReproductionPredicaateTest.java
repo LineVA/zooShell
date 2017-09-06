@@ -7,10 +7,10 @@ import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.ReproductionAttributes;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.Specie;
-import doyenm.zooshell.testUtils.TestUtils;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -67,7 +67,7 @@ public class MaleReproductionPredicaateTest {
     @Test
     public void shouldReturnTrueWhenThereIsMaleOldAndHappyEnoughOfTheSameSpecieAndPaddock() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         Specie specie = givenSpecie();
         Paddock paddock = givenPaddock();
         Animal female = givenAnimalWithSpecieAndPaddock(specie, paddock);
@@ -85,7 +85,7 @@ public class MaleReproductionPredicaateTest {
     @Test
     public void shouldReturnFalseWhenThereIsNoMale() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         Specie specie = givenSpecie();
         Paddock paddock = givenPaddock();
         Animal female = givenAnimalWithSpecieAndPaddock(specie, paddock);
@@ -103,7 +103,7 @@ public class MaleReproductionPredicaateTest {
     @Test
     public void shouldReturnFalseWhenThereIsNoEnoughOldMale() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         Specie specie = givenSpecie();
         Paddock paddock = givenPaddock();
         Animal female = givenAnimalWithSpecieAndPaddock(specie, paddock);
@@ -121,7 +121,7 @@ public class MaleReproductionPredicaateTest {
     @Test
     public void shouldReturnFalseWhenThereIsNoMaleIsTheSamePaddock() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         Specie specie = givenSpecie();
         Paddock femalePaddock = givenPaddock();
         Paddock malePaddock = givenPaddock();
@@ -140,7 +140,7 @@ public class MaleReproductionPredicaateTest {
     @Test
     public void shouldReturnFalseWhenThereIsNoMaleOfTheSameSpecie() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         Specie femaleSpecie = givenSpecie();
         Specie maleSpecie = givenSpecie();
         Paddock paddock = givenPaddock();
@@ -159,7 +159,7 @@ public class MaleReproductionPredicaateTest {
     @Test
     public void shouldReturnFalseWhenTheMaleIsCastred() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         Specie femaleSpecie = givenSpecie();
         Specie maleSpecie = givenSpecie();
         Paddock paddock = givenPaddock();
@@ -178,7 +178,7 @@ public class MaleReproductionPredicaateTest {
     @Test
     public void shouldReturnFalseWhenTheMaleIsUnderImplant() {
         // Given
-        int age = TestUtils.generateInteger();
+        int age = RandomUtils.nextInt();
         Specie femaleSpecie = givenSpecie();
         Specie maleSpecie = givenSpecie();
         Paddock paddock = givenPaddock();

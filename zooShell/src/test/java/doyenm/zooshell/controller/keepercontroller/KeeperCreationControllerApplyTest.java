@@ -3,9 +3,9 @@ package doyenm.zooshell.controller.keepercontroller;
 import doyenm.zooshell.context.KeeperCreationContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -46,7 +46,7 @@ public class KeeperCreationControllerApplyTest {
     @Test
     public void shouldAddAKeeperWithTheGivenName() {
         // Given
-        String name = TestUtils.generateString();
+        String name = RandomStringUtils.randomAlphabetic(10);
         Zoo zoo = givenZoo();
         KeeperCreationContext context = givenContextWithZooAndKeeper(zoo, name);
         KeeperCreationController controller = new KeeperCreationController();

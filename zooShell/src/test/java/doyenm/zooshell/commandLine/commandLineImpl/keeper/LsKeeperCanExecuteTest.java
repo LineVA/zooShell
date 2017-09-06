@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandLine.commandLineImpl.keeper;
 
 import doyenm.zooshell.commandLine.commandImpl.keeper.LsKeeper;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -39,7 +39,7 @@ public class LsKeeperCanExecuteTest {
     public void shouldReturnFalseWhenTheCommandIsTooLong() {
         // Given
         LsKeeper cmdImpl = new LsKeeper();
-        String[] cmd = {this.KEEPERS, TestUtils.generateString()};
+        String[] cmd = {this.KEEPERS, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -50,7 +50,7 @@ public class LsKeeperCanExecuteTest {
     public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotKeepers() {
         // Given
         LsKeeper cmdImpl = new LsKeeper();
-        String[] cmd = {TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then

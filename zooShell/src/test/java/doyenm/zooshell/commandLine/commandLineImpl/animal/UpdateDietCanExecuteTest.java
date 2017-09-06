@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandLine.commandLineImpl.animal;
 
 import doyenm.zooshell.commandLine.commandImpl.animal.UpdateDiet;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class UpdateDietCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
         UpdateDiet updateDiet = new UpdateDiet(null, null);
-        String[] cmd = {this.animalDiet, this.update, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.animalDiet, this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateDiet.canExecute(cmd);
         // Then
@@ -29,7 +29,7 @@ public class UpdateDietCanExecuteTest {
     public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
         // Given
         UpdateDiet updateDiet = new UpdateDiet(null, null);
-        String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateDiet.canExecute(cmd);
         // Then
@@ -40,7 +40,7 @@ public class UpdateDietCanExecuteTest {
     public void shouldReturnFalseWhenTheSecondElementIsIncorrect() {
         // Given
         UpdateDiet updateDiet = new UpdateDiet(null, null);
-        String[] cmd = {this.animalDiet, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.animalDiet, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateDiet.canExecute(cmd);
         // Then
@@ -51,7 +51,7 @@ public class UpdateDietCanExecuteTest {
     public void shouldReturnFalseWhenThereIsLessThanFourElements() {
         // Give
         UpdateDiet updateDiet = new UpdateDiet(null, null);
-        String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(),};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10),};
         // When
         boolean actualResult = updateDiet.canExecute(cmd);
         // Then
@@ -62,7 +62,7 @@ public class UpdateDietCanExecuteTest {
     public void shouldReturnFalseWhenThereIsMoreThanFourElements() {
         // Given
         UpdateDiet updateDiet = new UpdateDiet(null, null);
-        String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateDiet.canExecute(cmd);
         // Then

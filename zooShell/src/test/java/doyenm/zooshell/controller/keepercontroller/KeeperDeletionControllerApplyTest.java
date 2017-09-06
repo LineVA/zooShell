@@ -3,9 +3,9 @@ package doyenm.zooshell.controller.keepercontroller;
 import doyenm.zooshell.context.KeeperContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -37,8 +37,8 @@ public class KeeperDeletionControllerApplyTest {
     @Test
     public void shouldDeleteTheKeeperOfTheMap() {
         // Given
-        String name1 = TestUtils.generateString();
-        String name2 = TestUtils.generateString();
+        String name1 = RandomStringUtils.randomAlphabetic(10);
+        String name2 = RandomStringUtils.randomAlphabetic(10);
         Zoo zoo = givenZooWithNames(name1, name2);
         KeeperContext context = givenContextWithZooAndName(zoo, name1);
         KeeperDeletionController controller = new KeeperDeletionController();

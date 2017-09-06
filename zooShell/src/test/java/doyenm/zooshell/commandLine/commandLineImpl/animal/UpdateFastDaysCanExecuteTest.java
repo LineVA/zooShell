@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandLine.commandLineImpl.animal;
 
 import doyenm.zooshell.commandLine.commandImpl.animal.UpdateFastDays;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -19,7 +19,7 @@ public class UpdateFastDaysCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByAnimalFastDays() {
         // Given
         UpdateFastDays updateFastDays = new UpdateFastDays(null, null);
-        String[] cmd = {this.animalFastDays, this.update, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.animalFastDays, this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateFastDays.canExecute(cmd);
         // Then
@@ -30,7 +30,7 @@ public class UpdateFastDaysCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByAnimalFD() {
         // Given
         UpdateFastDays updateFastDays = new UpdateFastDays(null, null);
-        String[] cmd = {this.animalFD, this.update, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.animalFD, this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateFastDays.canExecute(cmd);
         // Then
@@ -41,7 +41,7 @@ public class UpdateFastDaysCanExecuteTest {
     public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
         // Given
         UpdateFastDays updateFastDays = new UpdateFastDays(null, null);
-        String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateFastDays.canExecute(cmd);
         // Then
@@ -52,7 +52,7 @@ public class UpdateFastDaysCanExecuteTest {
     public void shouldReturnFalseWhenTheSecondElementIsIncorrect() {
         // Given
         UpdateFastDays updateFastDays = new UpdateFastDays(null, null);
-        String[] cmd = {this.animalFD, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.animalFD, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateFastDays.canExecute(cmd);
         // Then
@@ -63,7 +63,7 @@ public class UpdateFastDaysCanExecuteTest {
     public void shouldReturnFalseWhenThereIsLessThanFourElements() {
         // Give
         UpdateFastDays updateFastDays = new UpdateFastDays(null, null);
-        String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(),};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10),};
         // When
         boolean actualResult = updateFastDays.canExecute(cmd);
         // Then
@@ -74,7 +74,7 @@ public class UpdateFastDaysCanExecuteTest {
     public void shouldReturnFalseWhenThereIsMoreThanFourElements() {
         // Given
         UpdateFastDays updateFastDays = new UpdateFastDays(null, null);
-        String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateFastDays.canExecute(cmd);
         // Then

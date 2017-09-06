@@ -1,10 +1,9 @@
 package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
 import doyenm.zooshell.commandLine.commandImpl.paddock.UpdateBiome;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  *
@@ -20,7 +19,7 @@ public class UpdateBiomeCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPaddock() {
         // Given
         UpdateBiome updateBiome = new UpdateBiome(null, null);
-        String[] cmd = {this.paddockBiome, this.update, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.paddockBiome, this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateBiome.canExecute(cmd);
         // Then
@@ -31,7 +30,7 @@ public class UpdateBiomeCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPad() {
         // Given
         UpdateBiome updateBiome = new UpdateBiome(null, null);
-        String[] cmd = {this.padBiome, this.update, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.padBiome, this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateBiome.canExecute(cmd);
         // Then
@@ -42,7 +41,7 @@ public class UpdateBiomeCanExecuteTest {
     public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
         // Given
         UpdateBiome updateBiome = new UpdateBiome(null, null);
-        String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateBiome.canExecute(cmd);
         // Then
@@ -53,7 +52,7 @@ public class UpdateBiomeCanExecuteTest {
     public void shouldReturnFalseWhenTheSecondElementIsIncorrect() {
         // Given
         UpdateBiome updateBiome = new UpdateBiome(null, null);
-        String[] cmd = {this.padBiome, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.padBiome, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateBiome.canExecute(cmd);
         // Then
@@ -64,7 +63,7 @@ public class UpdateBiomeCanExecuteTest {
     public void shouldReturnFalseWhenThereIsLessThanFourElements() {
         // Give
         UpdateBiome updateBiome = new UpdateBiome(null, null);
-        String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(),};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10),};
         // When
         boolean actualResult = updateBiome.canExecute(cmd);
         // Then
@@ -75,7 +74,7 @@ public class UpdateBiomeCanExecuteTest {
     public void shouldReturnFalseWhenThereIsMoreThanFourElements() {
         // Given
         UpdateBiome updateBiome = new UpdateBiome(null, null);
-        String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updateBiome.canExecute(cmd);
         // Then

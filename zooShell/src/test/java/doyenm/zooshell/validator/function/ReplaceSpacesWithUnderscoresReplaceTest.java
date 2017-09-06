@@ -1,6 +1,6 @@
 package doyenm.zooshell.validator.function;
 
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -13,7 +13,7 @@ public class ReplaceSpacesWithUnderscoresReplaceTest {
     @Test
     public void shouldDoNothing() {
         // Given
-        String input = TestUtils.generateString();
+        String input = RandomStringUtils.randomAlphabetic(10);
         ReplaceSpacesWithUnderscores operator = new ReplaceSpacesWithUnderscores();
         // When
         String output = operator.replace(input);
@@ -24,8 +24,8 @@ public class ReplaceSpacesWithUnderscoresReplaceTest {
     @Test
     public void shouldReplaceOneSpaceByOneUnderscore() {
         // Given
-        String input_1 = TestUtils.generateString();
-        String input_2 = TestUtils.generateString();
+        String input_1 = RandomStringUtils.randomAlphabetic(10);
+        String input_2 = RandomStringUtils.randomAlphabetic(10);
         String input = input_1 + " " + input_2;
         ReplaceSpacesWithUnderscores operator = new ReplaceSpacesWithUnderscores();
         // When
@@ -37,9 +37,9 @@ public class ReplaceSpacesWithUnderscoresReplaceTest {
     @Test
     public void shouldReplaceTwoSpacesByTwoUnderscores() {
         // Given
-        String input_1 = TestUtils.generateString();
-        String input_2 = TestUtils.generateString();
-        String input_3 = TestUtils.generateString();
+        String input_1 = RandomStringUtils.randomAlphabetic(10);
+        String input_2 = RandomStringUtils.randomAlphabetic(10);
+        String input_3 = RandomStringUtils.randomAlphabetic(10);
         String input = input_1 + " " + input_2 + " " + input_3;
         ReplaceSpacesWithUnderscores operator = new ReplaceSpacesWithUnderscores();
         // When

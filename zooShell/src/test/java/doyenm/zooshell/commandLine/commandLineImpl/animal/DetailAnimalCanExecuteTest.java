@@ -1,7 +1,6 @@
 package doyenm.zooshell.commandLine.commandLineImpl.animal;
 
 import doyenm.zooshell.commandLine.commandImpl.animal.DetailAnimal;
-import doyenm.zooshell.testUtils.TestUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
 import doyenm.zooshell.commandLine.commandImpl.paddock.DetailPad;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -19,7 +19,7 @@ public class DetailPadCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPaddock() {
         // Given
         DetailPad cmdLine = new DetailPad(null, null);
-        String[] cmd = {this.paddockType, TestUtils.generateString()};
+        String[] cmd = {this.paddockType, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -30,7 +30,7 @@ public class DetailPadCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPad() {
         // Given
         DetailPad cmdLine = new DetailPad(null, null);
-        String[] cmd = {this.padType, TestUtils.generateString()};
+        String[] cmd = {this.padType, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -41,7 +41,7 @@ public class DetailPadCanExecuteTest {
     public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
         // Given
         DetailPad cmdLine = new DetailPad(null, null);
-        String[] cmd = {TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -52,7 +52,7 @@ public class DetailPadCanExecuteTest {
     public void shouldReturnFalseWhenThereIsLessThanTwoElements() {
         // Give
         DetailPad cmdLine = new DetailPad(null, null);
-        String[] cmd = {TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -63,7 +63,7 @@ public class DetailPadCanExecuteTest {
     public void shouldReturnFalseWhenThereIsMoreThanTwoElements() {
         // Given
         DetailPad cmdLine = new DetailPad(null, null);
-        String[] cmd = {this.padType, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.padType, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then

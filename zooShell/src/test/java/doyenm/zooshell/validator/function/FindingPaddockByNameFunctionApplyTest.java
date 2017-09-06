@@ -1,10 +1,10 @@
 package doyenm.zooshell.validator.function;
 
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.testUtils.TestUtils;
 import doyenm.zooshell.validator.context.FindingPaddockContext;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -30,7 +30,7 @@ public class FindingPaddockByNameFunctionApplyTest {
     @Test
     public void shouldSetTheConvertedPaddockWhenTheInputIsCorrespondingToAnExistingPaddock() {
         // Given
-        String input = TestUtils.generateString();
+        String input = RandomStringUtils.randomAlphabetic(10);
         FindingPaddockContext context = givenContextWithInput(input, input);
         FindingPaddockByNameFunction function = new FindingPaddockByNameFunction();
         // When
@@ -42,7 +42,7 @@ public class FindingPaddockByNameFunctionApplyTest {
     @Test
     public void shouldSetTheConvertedPaddockToNullWhenTheInputIsNotCorrespondingToAnExistingPaddock() {
         // Given
-        FindingPaddockContext context = givenContextWithInput(TestUtils.generateString(), TestUtils.generateString());
+        FindingPaddockContext context = givenContextWithInput(RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10));
         FindingPaddockByNameFunction function = new FindingPaddockByNameFunction();
         // When
         FindingPaddockContext actualContext = function.apply(context);
