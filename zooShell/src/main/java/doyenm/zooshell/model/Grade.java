@@ -13,14 +13,20 @@ public class Grade {
 
     private double animalsGrade = 0.0;
     private double paddocksGrade = 0.0;
+    private double zooGrade = 0.0;
 
     public double computeGrade() {
         return getAnimalsGrade()
-                + getPaddocksGrade();
+                + getPaddocksGrade()
+                + getZooGrade();
     }
 
     @Override
     public String toString() {
-        return "Grade{" + "animalsGrade=" + animalsGrade + ", paddocksGrade=" + paddocksGrade + '}';
+        return "Grade{" + "animalsGrade=" + animalsGrade 
+                + ", paddocksGrade=" + paddocksGrade 
+                + ", zooGrade=" + zooGrade + '}';
     }
+
+   
 }
