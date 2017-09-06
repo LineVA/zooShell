@@ -1,5 +1,6 @@
 package doyenm.zooshell.context;
 
+import doyenm.zooshell.model.Grade;
 import doyenm.zooshell.model.Specie;
 import lombok.Getter;
 import doyenm.zooshell.model.Zoo;
@@ -81,6 +82,7 @@ public class ZooCreationContext {
         zoo.setMonthsPerEvaluation(this.getConvertedSpeed());
         zoo.setAge(this.getAge());
         zoo.setSpecies(this.getSpecies());
+        zoo.setGradeObj(new Grade());
     }
 
 }

@@ -23,7 +23,12 @@ public class DetailZoo implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        ZooContext context = new ZooContext(zoo);
+        ZooContext context;
+        if(cmd.length == 1){
+            context = new ZooContext(zoo, false);
+        } else {
+            context = new ZooContext(zoo, true);
+        }
         return Stream.of(context)
                 .map(controller)
                 .map(new Function<ZooContext, ReturnExec>() {
@@ -43,7 +48,9 @@ public class DetailZoo implements Command {
             if (Constants.ZOO.equalsIgnoreCase(cmd[0])) {
                 return true;
             }
-        }
-        return false;
+        } 
+        return cmd.length == 2 
+                && Constants.ZOO.equalsIgnoreCase(cmd[0])
+                && Constants.DETAILED.equalsIgnoreCase(cmd[1]);
     }
 }

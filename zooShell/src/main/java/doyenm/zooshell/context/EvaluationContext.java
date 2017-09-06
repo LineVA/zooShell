@@ -3,6 +3,7 @@ package doyenm.zooshell.context;
 import doyenm.zooshell.controller.eventhandling.Event;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
+import doyenm.zooshell.model.Grade;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class EvaluationContext {
     private double zooEvaluation = 0;
     private double paddocksEvaluation = 0;
     private double animalsEvaluation = 0;
+    
+    private Grade gradeObj = new Grade();
+    
     private double totalEvaluation = 0;
     private List<Animal> evaluatedAnimalsList = new ArrayList<>();
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();

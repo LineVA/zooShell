@@ -44,7 +44,7 @@ public class AnimalDetailsController implements Function<AnimalDetailsContext, A
     private AnimalDetailsContext displayWellBeing(AnimalDetailsContext t) {
         AnimalDetailsContext context = t;
         if (context.isDetailed()) {
-            context.addCouple("WellBeign", context.getConvertedAnimal().getWellBeingObj().toString());
+            context.addCouple("WellBeing", context.getConvertedAnimal().getWellBeingObj().toString());
         } else {
             context.addCouple("WellBeing", context.getWellBeing());
         }
