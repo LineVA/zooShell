@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 public class ZooDetailsController implements Function<ZooContext, ZooContext> {
 
     private final Utils utils;
-    
+
     @Override
     public ZooContext apply(ZooContext t) {
         ZooContext context = t;
@@ -27,7 +27,17 @@ public class ZooDetailsController implements Function<ZooContext, ZooContext> {
         context.addCouple("Number of paddocks", t.getZoo().getPaddocks().size());
         context.addCouple("Number of animals", t.getZoo().getAnimals().size());
         context.addCouple("Number of animal keepers", t.getZoo().getKeepers().size());
-        context.addCouple("Grade of the zoo", t.getZoo().getGrade());
+        context = displayGrade(context);
+        return context;
+    }
+
+    private ZooContext displayGrade(ZooContext t) {
+        ZooContext context = t;
+        if (context.isDetailed()) {
+            context.addCouple("Grade", context.getZoo().getGradeObj().toString());
+        } else {
+            context.addCouple("Grade", context.getZoo().getGrade());
+        }
         return context;
     }
 }
