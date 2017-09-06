@@ -2,9 +2,9 @@ package doyenm.zooshell.commandLine.commandLineImpl.ls;
 
 import doyenm.zooshell.commandLine.commandImpl.ls.LsDiet;
 import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  *
@@ -12,14 +12,13 @@ import org.mockito.Mockito;
  */
 public class LsDietCanExecuteTest {
 
-    private final String LS = "ls";
-    private final String DIET = "diet";
+    private final String DIETS = "diets";
 
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
         LsDiet cmdImpl = new LsDiet();
-        String[] cmd = {this.LS, this.DIET};
+        String[] cmd = {this.DIETS};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -30,7 +29,7 @@ public class LsDietCanExecuteTest {
     public void shouldReturnFalseWhenTheCommandIsTooShort() {
         // Given
         LsDiet cmdImpl = new LsDiet();
-        String[] cmd = {this.LS};
+        String[] cmd = {};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -41,7 +40,7 @@ public class LsDietCanExecuteTest {
     public void shouldReturnFalseWhenTheCommandIsTooLong() {
         // Given
         LsDiet cmdImpl = new LsDiet();
-        String[] cmd = {this.LS, this.DIET, TestUtils.generateString()};
+        String[] cmd = {this.DIETS, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -49,25 +48,13 @@ public class LsDietCanExecuteTest {
     }
     
     @Test
-    public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotLs() {
+    public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotDiets() {
         // Given
         LsDiet cmdImpl = new LsDiet();
-        String[] cmd = {TestUtils.generateString(), this.DIET};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
-    
-    @Test
-    public void shouldReturnFalseWhenTheSecondElementOfTheCommandIsNotDiet() {
-        // Given
-        LsDiet cmdImpl = new LsDiet();
-        String[] cmd = {this.LS, TestUtils.generateString()};
-        // When
-        boolean actualResult = cmdImpl.canExecute(cmd);
-        // Then
-        Assertions.assertThat(actualResult).isFalse();
-    }
-
 }
