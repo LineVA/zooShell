@@ -6,6 +6,7 @@ import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -41,8 +42,8 @@ public class AnimalUpdateFoodQuantityValidatorTestTest {
         Mockito.when(context.getConvertedAnimal()).thenReturn(animal);
         Mockito.when(context.getZoo()).thenReturn(zoo);
         Mockito.when(context.getConvertedFoodQuantity()).thenReturn(quantity);
-        Mockito.when(context.getAnimal()).thenReturn(TestUtils.generateString());
-        Mockito.when(context.getFoodQuantity()).thenReturn(TestUtils.generateString());
+        Mockito.when(context.getAnimal()).thenReturn(RandomStringUtils.randomAlphabetic(10));
+        Mockito.when(context.getFoodQuantity()).thenReturn(RandomStringUtils.randomAlphabetic(10));
         return context;
     }
 
@@ -52,8 +53,8 @@ public class AnimalUpdateFoodQuantityValidatorTestTest {
         Mockito.when(context.getConvertedAnimal()).thenReturn(animal);
         Mockito.when(context.getZoo()).thenReturn(zoo);
         Mockito.when(context.getConvertedFoodQuantity()).thenReturn(quantity);
-        Mockito.when(context.getAnimal()).thenReturn(TestUtils.generateString());
-        Mockito.when(context.getFoodQuantity()).thenReturn(TestUtils.generateString());
+        Mockito.when(context.getAnimal()).thenReturn(RandomStringUtils.randomAlphabetic(10));
+        Mockito.when(context.getFoodQuantity()).thenReturn(RandomStringUtils.randomAlphabetic(10));
         return context;
     }
 

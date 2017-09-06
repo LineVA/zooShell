@@ -4,11 +4,9 @@ import doyenm.zooshell.context.KeeperContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.TimedOccupation;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -45,7 +43,7 @@ public class KeeperResetOccupationsControllerApplyTest {
     @Test
     public void shouldResetTheOccupations() {
         // Given
-        String name = TestUtils.generateString();
+        String name = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeperWithName(name);
         Map<String, AnimalKeeper> map = new HashMap<>();
         map.put(name, keeper);

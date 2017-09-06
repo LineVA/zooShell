@@ -1,12 +1,11 @@
 package doyenm.zooshell.controller.keepercontroller;
 
-import doyenm.zooshell.context.KeeperCreationContext;
 import doyenm.zooshell.context.KeeperRenameContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -52,8 +51,8 @@ public class KeeperRenameControllerApplyTest {
     @Test
     public void shouldRenameTheKeeperWithTheGivenName() {
         // Given
-        String name = TestUtils.generateString();
-        String newName = TestUtils.generateString();
+        String name = RandomStringUtils.randomAlphabetic(10);
+        String newName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeperWithName(name);
         Map<String, AnimalKeeper> map = givenMapWithKeeper(keeper);
         Zoo zoo = givenZooWithKeepers(map);

@@ -4,7 +4,7 @@ import doyenm.zooshell.commandLine.commandImpl.keeper.LsKeeper;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -16,7 +16,7 @@ import org.mockito.Mockito;
 public class LsKeeperExecuteTest {
 
        private String[] givenCmd(){
-         String[] cmd = {TestUtils.generateString()};
+         String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
          return cmd;
      }
        

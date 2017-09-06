@@ -6,6 +6,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -57,7 +58,7 @@ public class AnimalUpdateFoodQuantityContextBuildTest {
     @Test
     public void shouldReplaceTheFoodQuantityAnimalByTheOneSpecified() {
         // Given
-        String name = TestUtils.generateString();
+        String name = RandomStringUtils.randomAlphabetic(10);
         FoodAttributes attributes = givenFoodAttributes();
         Animal animal = givenAnimalWithNameAndFoodAttributes(name, attributes);
         Double newFoodQuantity = TestUtils.generateDouble();

@@ -8,6 +8,7 @@ import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.testUtils.TestUtils;
 import java.util.ArrayList;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -44,13 +45,13 @@ public class AnimalCreationValidatorTestTest {
         Mockito.when(context.getName()).thenReturn(name);
         Mockito.when(context.getSex()).thenReturn(sex);
         Mockito.doCallRealMethod().when(context).setSex(Mockito.any(Sex.class));
-        Mockito.when(context.getSexName()).thenReturn(TestUtils.generateString());
+        Mockito.when(context.getSexName()).thenReturn(RandomStringUtils.randomAlphabetic(10));
         Mockito.when(context.getPaddock()).thenReturn(pad);
         Mockito.doCallRealMethod().when(context).setPaddock(Mockito.any(Paddock.class));
-        Mockito.when(context.getPaddockName()).thenReturn(TestUtils.generateString());
+        Mockito.when(context.getPaddockName()).thenReturn(RandomStringUtils.randomAlphabetic(10));
         Mockito.when(context.getSpecie()).thenReturn(specie);
         Mockito.doCallRealMethod().when(context).setSpecie(Mockito.any(Specie.class));
-        Mockito.when(context.getSpecieName()).thenReturn(TestUtils.generateString());
+        Mockito.when(context.getSpecieName()).thenReturn(RandomStringUtils.randomAlphabetic(10));
         Mockito.when(context.getAnimalsList()).thenReturn(new ArrayList<>());
         return context;
     }
@@ -66,7 +67,7 @@ public class AnimalCreationValidatorTestTest {
         Specie convertedSpecie = givenSpecie();
         Position entry = givenPosition();
         Paddock convertedPaddock = givenPaddockWithEntry(entry);
-        String animalName = TestUtils.generateString();
+        String animalName = RandomStringUtils.randomAlphabetic(10);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
                 Sex.FEMALE,

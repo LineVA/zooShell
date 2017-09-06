@@ -1,8 +1,8 @@
 package doyenm.zooshell.validator.predicates;
 
-import doyenm.zooshell.testUtils.TestUtils;
 import java.util.HashSet;
 import java.util.Set;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -15,9 +15,9 @@ public class UniquenessNamesBiPredicatesTestTest {
     @Test
     public void shouldReturnTrueWhenTheStringDoesNotExistInTheSet() {
         // Given
-        String str_1 = TestUtils.generateString();
-        String str_2 = TestUtils.generateString();
-        String str_3 = TestUtils.generateString();
+        String str_1 = RandomStringUtils.randomAlphabetic(10);
+        String str_2 = RandomStringUtils.randomAlphabetic(10);
+        String str_3 = RandomStringUtils.randomAlphabetic(10);
         Assertions.assertThat(str_1).isNotEqualTo(str_2);
         Assertions.assertThat(str_1).isNotEqualTo(str_3);
         Set<String> set = new HashSet<>();
@@ -33,8 +33,8 @@ public class UniquenessNamesBiPredicatesTestTest {
      @Test
     public void shouldReturnFalseWhenTheStringAlreadyExistsInTheSet() {
         // Given
-        String str_1 = TestUtils.generateString();
-        String str_2 = TestUtils.generateString();
+        String str_1 = RandomStringUtils.randomAlphabetic(10);
+        String str_2 = RandomStringUtils.randomAlphabetic(10);
         Assertions.assertThat(str_1).isNotEqualTo(str_2);
         Set<String> set = new HashSet<>();
         set.add(str_2);

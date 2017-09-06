@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
 import doyenm.zooshell.commandLine.commandImpl.paddock.UpdatePaddockType;
-import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -20,7 +20,7 @@ public class UpdatePaddockTypeCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPaddock() {
         // Given
         UpdatePaddockType updatePaddockType = new UpdatePaddockType(null, null);
-        String[] cmd = {this.paddockType, this.update, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.paddockType, this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updatePaddockType.canExecute(cmd);
         // Then
@@ -31,7 +31,7 @@ public class UpdatePaddockTypeCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPad() {
         // Given
         UpdatePaddockType updatePaddockType = new UpdatePaddockType(null, null);
-        String[] cmd = {this.padType, this.update, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.padType, this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updatePaddockType.canExecute(cmd);
         // Then
@@ -42,7 +42,7 @@ public class UpdatePaddockTypeCanExecuteTest {
     public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
         // Given
         UpdatePaddockType updatePaddockType = new UpdatePaddockType(null, null);
-        String[] cmd = {TestUtils.generateString(), this.update, TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updatePaddockType.canExecute(cmd);
         // Then
@@ -53,7 +53,7 @@ public class UpdatePaddockTypeCanExecuteTest {
     public void shouldReturnFalseWhenTheSecondElementIsIncorrect() {
         // Given
         UpdatePaddockType updatePaddockType = new UpdatePaddockType(null, null);
-        String[] cmd = {this.padType, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.padType, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updatePaddockType.canExecute(cmd);
         // Then
@@ -64,7 +64,7 @@ public class UpdatePaddockTypeCanExecuteTest {
     public void shouldReturnFalseWhenThereIsLessThanFourElements() {
         // Give
         UpdatePaddockType updatePaddockType = new UpdatePaddockType(null, null);
-        String[] cmd = {this.padType, this.update, TestUtils.generateString(),};
+        String[] cmd = {this.padType, this.update, RandomStringUtils.randomAlphabetic(10),};
         // When
         boolean actualResult = updatePaddockType.canExecute(cmd);
         // Then
@@ -75,7 +75,7 @@ public class UpdatePaddockTypeCanExecuteTest {
     public void shouldReturnFalseWhenThereIsMoreThanFourElements() {
         // Given
         UpdatePaddockType updatePaddockType = new UpdatePaddockType(null, null);
-        String[] cmd = {this.padType, this.update, TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.padType, this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = updatePaddockType.canExecute(cmd);
         // Then

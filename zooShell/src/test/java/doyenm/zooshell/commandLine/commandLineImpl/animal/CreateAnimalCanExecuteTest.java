@@ -2,6 +2,7 @@ package doyenm.zooshell.commandLine.commandLineImpl.animal;
 
 import doyenm.zooshell.commandLine.commandImpl.animal.CreateAnimal;
 import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -19,8 +20,8 @@ public class CreateAnimalCanExecuteTest {
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
         CreateAnimal createAnimal = new CreateAnimal(null, null);
-        String[] cmd = {this.ANIMAL, this.CREATE, TestUtils.generateString(),
-            TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.ANIMAL, this.CREATE, RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = createAnimal.canExecute(cmd);
         // Then
@@ -31,9 +32,9 @@ public class CreateAnimalCanExecuteTest {
     public void shouldReturnFalseWhenTheTheFirstElementIsNotAnimal() {
         // Given
         CreateAnimal createAnimal = new CreateAnimal(null, null);
-        String falseAnimal = TestUtils.generateString();
-        String[] cmd = {falseAnimal, this.CREATE, TestUtils.generateString(), TestUtils.generateString(),
-            TestUtils.generateString(), TestUtils.generateString()};
+        String falseAnimal = RandomStringUtils.randomAlphabetic(10);
+        String[] cmd = {falseAnimal, this.CREATE, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = createAnimal.canExecute(cmd);
         // Then
@@ -45,9 +46,9 @@ public class CreateAnimalCanExecuteTest {
     public void shouldReturnFalseWhenTheTheSecondElementIsNotCreate() {
         // Given
         CreateAnimal createAnimal = new CreateAnimal(null, null);
-        String falseCreate = TestUtils.generateString();
-        String[] cmd = {this.ANIMAL, falseCreate, TestUtils.generateString(), TestUtils.generateString(),
-            TestUtils.generateString(), TestUtils.generateString()};
+        String falseCreate = RandomStringUtils.randomAlphabetic(10);
+        String[] cmd = {this.ANIMAL, falseCreate, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = createAnimal.canExecute(cmd);
         // Then
@@ -59,8 +60,8 @@ public class CreateAnimalCanExecuteTest {
     public void shouldReturnFalseWhenThereIsLessThanSixElements() {
         // Given
         CreateAnimal createAnimal = new CreateAnimal(null, null);
-        String[] cmd = {this.ANIMAL, this.CREATE, TestUtils.generateString(), TestUtils.generateString(),
-            TestUtils.generateString()};
+        String[] cmd = {this.ANIMAL, this.CREATE, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = createAnimal.canExecute(cmd);
         // Then
@@ -71,8 +72,8 @@ public class CreateAnimalCanExecuteTest {
     public void shouldReturnFalseWhenThereIsMoreThanSixElements() {
         // Given
         CreateAnimal createAnimal = new CreateAnimal(null, null);
-        String[] cmd = {this.ANIMAL, this.CREATE, TestUtils.generateString(), TestUtils.generateString(),
-            TestUtils.generateString(), TestUtils.generateString(), TestUtils.generateString()};
+        String[] cmd = {this.ANIMAL, this.CREATE, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
+            RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = createAnimal.canExecute(cmd);
         // Then

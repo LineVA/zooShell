@@ -6,6 +6,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -58,8 +59,8 @@ public class KeeperRenameValidatorTestTest {
     @Test
     public void shouldReturnTrueWhenTheNewNameIsCorrect() {
         // Given
-        String newName = TestUtils.generateString();
-        String currentName = TestUtils.generateString();
+        String newName = RandomStringUtils.randomAlphabetic(10);
+        String currentName = RandomStringUtils.randomAlphabetic(10);
         Map<String, AnimalKeeper> map = givenMapWithName(currentName);
         Zoo zoo = givenZooWithMap(map);
         KeeperRenameContext context = givenContextWithZooNewNameAndCurrentName(zoo, newName, currentName);
@@ -74,7 +75,7 @@ public class KeeperRenameValidatorTestTest {
     public void shouldReturnFalseWhenTheNewNameIsTooLong() {
         // Given
         String newName = TestUtils.generateStringWithLength(51);
-        String currentName = TestUtils.generateString();
+        String currentName = RandomStringUtils.randomAlphabetic(10);
         Map<String, AnimalKeeper> map = givenMapWithName(currentName);
         Zoo zoo = givenZooWithMap(map);
         KeeperRenameContext context = givenContextWithZooNewNameAndCurrentName(zoo, newName, currentName);
@@ -88,8 +89,8 @@ public class KeeperRenameValidatorTestTest {
     @Test
     public void shouldReturnFalseWhenTheNewNameIsAlreadyTheNameOfAnExistingKeeper() {
         // Given
-        String newName = TestUtils.generateString();
-        String currentName = TestUtils.generateString();
+        String newName = RandomStringUtils.randomAlphabetic(10);
+        String currentName = RandomStringUtils.randomAlphabetic(10);
         Map<String, AnimalKeeper> map = givenMapWithName(newName);
         Zoo zoo = givenZooWithMap(map);
         KeeperRenameContext context = givenContextWithZooNewNameAndCurrentName(zoo, newName, currentName);
@@ -104,9 +105,9 @@ public class KeeperRenameValidatorTestTest {
     @Test
     public void shouldReturnFalseWhenTheCurrentNameIsNotTheOneOfAnExistingKeeper() {
         // Given
-        String newName = TestUtils.generateString();
-        String currentName = TestUtils.generateString();
-        String existingName = TestUtils.generateString();
+        String newName = RandomStringUtils.randomAlphabetic(10);
+        String currentName = RandomStringUtils.randomAlphabetic(10);
+        String existingName = RandomStringUtils.randomAlphabetic(10);
         Map<String, AnimalKeeper> map = givenMapWithName(existingName);
         Zoo zoo = givenZooWithMap(map);
         KeeperRenameContext context = givenContextWithZooNewNameAndCurrentName_NoKeeper(zoo, newName, currentName);

@@ -1,12 +1,10 @@
 package doyenm.zooshell.validator.function;
 
 import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.testUtils.TestUtils;
 import doyenm.zooshell.validator.context.FindingKeeperContext;
-import doyenm.zooshell.validator.context.FindingPaddockContext;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -32,7 +30,7 @@ public class FindingKeeperFunctionApplyTest {
     @Test
     public void shouldSetTheConvertedPaddockWhenTheInputIsCorrespondingToAnExistingPaddock() {
         // Given
-        String input = TestUtils.generateString();
+        String input = RandomStringUtils.randomAlphabetic(10);
         FindingKeeperContext context = givenContextWithInput(input, input);
         FindingKeeperFunction function = new FindingKeeperFunction();
         // When
@@ -44,7 +42,7 @@ public class FindingKeeperFunctionApplyTest {
     @Test
     public void shouldSetTheConvertedPaddockToNullWhenTheInputIsNotCorrespondingToAnExistingPaddock() {
         // Given
-        FindingKeeperContext context = givenContextWithInput(TestUtils.generateString(), TestUtils.generateString());
+        FindingKeeperContext context = givenContextWithInput(RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10));
         FindingKeeperFunction function = new FindingKeeperFunction();
         // When
         FindingKeeperContext actualContext = function.apply(context);

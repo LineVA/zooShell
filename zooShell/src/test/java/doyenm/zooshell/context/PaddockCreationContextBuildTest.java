@@ -34,7 +34,7 @@
 //    @Test
 //    public void shouldAddAPaddockToTheZoo() {
 //        // Given
-//        String name = TestUtils.generateString();
+//        String name = RandomStringUtils.randomAlphabetic(10);
 //        int x = TestUtils.generateInteger();
 //        int y = TestUtils.generateInteger();
 //        int width = TestUtils.generateInteger();
