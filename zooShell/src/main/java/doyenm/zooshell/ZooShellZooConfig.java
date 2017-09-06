@@ -1,5 +1,7 @@
 package doyenm.zooshell;
 
+import com.sun.imageio.spi.RAFImageInputStreamSpi;
+import doyenm.zooshell.commandLine.commandImpl.zoo.RenameZoo;
 import doyenm.zooshell.controller.animalcontroller.AnimalEvaluationController;
 import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalAgeEvaluationController;
 import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalDeathEvaluationController;
@@ -22,6 +24,7 @@ import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationTaskControlle
 import doyenm.zooshell.controller.paddockcontroller.PaddockAgeEvaluationController;
 import doyenm.zooshell.controller.paddockcontroller.PaddockEvaluationController;
 import doyenm.zooshell.controller.zoocontroller.EvaluationController;
+import doyenm.zooshell.controller.zoocontroller.RenameZooController;
 import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -150,4 +153,14 @@ public class ZooShellZooConfig {
                 paddockEvaluationController(), 
                 zooEvaluationController());
     }
+    
+    @Bean
+    static RenameZooController renameZooController(){
+        return new RenameZooController();
+    } 
+    
+    @Bean
+    public static RenameZoo renameZoo(){
+        return new RenameZoo(renameZooController());
+    } 
 }
