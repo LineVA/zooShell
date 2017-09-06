@@ -13,7 +13,7 @@ public class ZooEvaluationController  implements Function<EvaluationContext, Eva
     public EvaluationContext apply(EvaluationContext t) {
         EvaluationContext context = t;
         context.getZoo().setAge(context.getZoo().getAge() + context.getZoo().getMonthsPerEvaluation());
-        context.setZooEvaluation(0);
+        context.getGradeObj().setZooGrade(0.0);
         return context;
     }
 

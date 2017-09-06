@@ -29,7 +29,8 @@ public class EvaluationController implements Function<EvaluationContext, Evaluat
                 .map(animalEvaluationController)
                 .map(keeperEvaluationController)
                 .map((EvaluationContext t1) -> {
-                    t1.getZoo().setGrade(t1.getZooEvaluation() + t1.getAnimalsEvaluation());
+                    t1.getZoo().setGradeObj(t1.getGradeObj());
+                    t1.getZoo().setGrade(t1.getZoo().getGradeObj().computeGrade());
                     return t1;
                 })
                 .findFirst()

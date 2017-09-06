@@ -60,7 +60,7 @@ public class AnimalEvaluationController implements Function<EvaluationContext, E
         context.getEvaluatedAnimalsList()
                 .stream()
                 .forEach((Animal animal) -> {
-                    context.setAnimalsEvaluation(context.getAnimalsEvaluation() + animal.getWellBeing());
+                    context.getGradeObj().setAnimalsGrade(context.getGradeObj().getAnimalsGrade()+ animal.getWellBeing());
                 });
         context.setNewBornsList(newborns);
         return context;
