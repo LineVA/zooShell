@@ -66,5 +66,6 @@ public class Zoo {
      * time we need it
      */
     private double grade;
+    private Grade gradeObj;
     private int horizon;
 }
