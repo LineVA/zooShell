@@ -4,11 +4,13 @@ import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.commandLine.utils.FormattingInList;
+import doyenm.zooshell.context.AnimalContext;
 import doyenm.zooshell.context.AnimalDetailsContext;
 import doyenm.zooshell.controller.animalcontroller.AnimalDetailsController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalDetailsValidator;
+import doyenm.zooshell.validator.AnimalValidator;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
@@ -21,12 +23,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DetailAnimal implements Command {
 
-    private final AnimalDetailsValidator validator;
+    private final AnimalValidator validator;
     private final AnimalDetailsController controller;
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-      AnimalDetailsContext context = generateContext(cmd, zoo);
+      AnimalContext context = generateContext(cmd, zoo);
         try {
             context = Stream.of(context)
                     .filter(validator)
@@ -41,11 +43,11 @@ public class DetailAnimal implements Command {
         }
     }
     
-    private AnimalDetailsContext generateContext(String[] cmd, Zoo zoo){
+    private AnimalContext generateContext(String[] cmd, Zoo zoo){
          if (cmd.length == 3) {
-           return new AnimalDetailsContext(zoo, cmd[1], true);
+           return new AnimalContext(zoo, cmd[1], true);
         } else {
-           return new AnimalDetailsContext(zoo, cmd[1], false);
+           return new AnimalContext(zoo, cmd[1], false);
         }
     }
 

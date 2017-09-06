@@ -211,7 +211,7 @@ public class ZooShellAnimalConfig {
     
     @Bean
     DetailAnimal detailAnimal(){
-        return new DetailAnimal(animalDetailsValidator(), animalDetailsController());
+        return new DetailAnimal(animalValidator(), animalDetailsController());
     }
     
     @Bean

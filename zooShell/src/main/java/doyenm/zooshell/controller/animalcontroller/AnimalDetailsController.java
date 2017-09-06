@@ -1,5 +1,6 @@
 package doyenm.zooshell.controller.animalcontroller;
 
+import doyenm.zooshell.context.AnimalContext;
 import doyenm.zooshell.context.AnimalDetailsContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Sex;
@@ -12,13 +13,13 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class AnimalDetailsController implements Function<AnimalDetailsContext, AnimalDetailsContext> {
+public class AnimalDetailsController implements Function<AnimalContext, AnimalContext> {
 
     private final Utils utils;
 
     @Override
-    public AnimalDetailsContext apply(AnimalDetailsContext t) {
-        AnimalDetailsContext context = t;
+    public AnimalContext apply(AnimalContext t) {
+        AnimalContext context = t;
         Animal animal = context.getConvertedAnimal();
         context.addCouple("Name", context.getAnimal());
         context.addCouple("Specie", context.getSpecieName());
@@ -33,7 +34,7 @@ public class AnimalDetailsController implements Function<AnimalDetailsContext, A
         return context;
     }
 
-    private String displaySex(Animal animal, AnimalDetailsContext context) {
+    private String displaySex(Animal animal, AnimalContext context) {
         if (animal.getAge() >= animal.getReproductionAttributes().getMaturityGivenSex(animal.getSex())) {
             return context.getSexName();
         } else {
@@ -41,8 +42,8 @@ public class AnimalDetailsController implements Function<AnimalDetailsContext, A
         }
     }
 
-    private AnimalDetailsContext displayWellBeing(AnimalDetailsContext t) {
-        AnimalDetailsContext context = t;
+    private AnimalContext displayWellBeing(AnimalContext t) {
+        AnimalContext context = t;
         if (context.isDetailed()) {
             context.addCouple("WellBeing", context.getConvertedAnimal().getWellBeingObj().toString());
         } else {
