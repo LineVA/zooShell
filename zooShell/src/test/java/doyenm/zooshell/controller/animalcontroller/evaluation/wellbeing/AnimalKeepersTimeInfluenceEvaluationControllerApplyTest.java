@@ -8,7 +8,7 @@ import doyenm.zooshell.model.CharacterAttributes;
 import doyenm.zooshell.model.Family;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TimedOccupation;
-import doyenm.zooshell.model.WellBeing;
+import doyenm.zooshell.model.AnimalWellBeing;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -58,7 +58,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         Mockito.when(context.getAnimal()).thenReturn(animal);
         Mockito.when(context.getPaddock()).thenReturn(pad);
         Mockito.when(context.getBase()).thenCallRealMethod();
-        WellBeing wb = Mockito.mock(WellBeing.class);
+        AnimalWellBeing wb = Mockito.mock(AnimalWellBeing.class);
         Mockito.when(wb.getKeepersTimeWellBeing()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(wb).setKeepersTimeWellBeing(Mockito.anyDouble());
         Mockito.when(context.getWellBeingObj()).thenReturn(wb);

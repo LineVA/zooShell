@@ -5,7 +5,7 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.SocialAttributes;
 import doyenm.zooshell.model.TerritoryAttributes;
-import doyenm.zooshell.model.WellBeing;
+import doyenm.zooshell.model.AnimalWellBeing;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -44,7 +44,7 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
         Mockito.when(context.getUicnStandardDeviation()).thenReturn(deviation);
         Mockito.when(context.getGroupSizeWellBeing()).thenCallRealMethod();
         Mockito.when(context.getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock()).thenReturn(TestUtils.generateInteger());
-        WellBeing wb = Mockito.mock(WellBeing.class);
+        AnimalWellBeing wb = Mockito.mock(AnimalWellBeing.class);
         Mockito.when(wb.getTerritoryWellBeing()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(wb).setTerritoryWellBeing(Mockito.anyDouble());
         Mockito.when(context.getWellBeingObj()).thenReturn(wb);

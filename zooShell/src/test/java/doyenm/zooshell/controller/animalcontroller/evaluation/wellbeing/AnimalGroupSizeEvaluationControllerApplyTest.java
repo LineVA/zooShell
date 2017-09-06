@@ -3,7 +3,7 @@ package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.SocialAttributes;
-import doyenm.zooshell.model.WellBeing;
+import doyenm.zooshell.model.AnimalWellBeing;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class AnimalGroupSizeEvaluationControllerApplyTest {
         Mockito.when(context.getUicnStandardDeviation()).thenReturn(deviation);
         Mockito.when(context.getGroupSizeWellBeing()).thenCallRealMethod();
         Mockito.when(context.getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock()).thenReturn(TestUtils.generateInteger());
-        WellBeing wb = Mockito.mock(WellBeing.class);
+        AnimalWellBeing wb = Mockito.mock(AnimalWellBeing.class);
         Mockito.when(wb.getSocialWellBeing()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(wb).setSocialWellBeing(Mockito.anyDouble());
         Mockito.when(context.getWellBeingObj()).thenReturn(wb);

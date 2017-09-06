@@ -5,7 +5,7 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.DietsSpecie;
 import doyenm.zooshell.model.Specie;
-import doyenm.zooshell.model.WellBeing;
+import doyenm.zooshell.model.AnimalWellBeing;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +36,7 @@ public class AnimalDietsEvaluationControllerApplyTest {
     private AnimalEvaluationContext givenContextWithAnimal(Animal animal) {
         AnimalEvaluationContext context = Mockito.mock(AnimalEvaluationContext.class);
         Mockito.when(context.getAnimal()).thenReturn(animal);
-        WellBeing wb = Mockito.mock(WellBeing.class);
+        AnimalWellBeing wb = Mockito.mock(AnimalWellBeing.class);
         Mockito.when(wb.getDietsWellBeing()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(wb).setDietsWellBeing(Mockito.anyDouble());
         Mockito.when(context.getWellBeingObj()).thenReturn(wb);
