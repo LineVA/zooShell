@@ -2,6 +2,7 @@ package doyenm.zooshell.commandLine.commandLineImpl.ls;
 
 import doyenm.zooshell.commandLine.commandImpl.ls.LsSex;
 import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -11,14 +12,13 @@ import org.junit.Test;
  */
 public class LsSexCanExecuteTest {
 
-    private final String LS = "ls";
-    private final String SEX = "sex";
+    private final String SEXES = "sexes";
 
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
         LsSex cmdImpl = new LsSex();
-        String[] cmd = {this.LS, this.SEX};
+        String[] cmd = {this.SEXES};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -29,7 +29,7 @@ public class LsSexCanExecuteTest {
     public void shouldReturnFalseWhenTheCommandIsTooShort() {
         // Given
         LsSex cmdImpl = new LsSex();
-        String[] cmd = {this.LS};
+        String[] cmd = {};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -40,7 +40,7 @@ public class LsSexCanExecuteTest {
     public void shouldReturnFalseWhenTheCommandIsTooLong() {
         // Given
         LsSex cmdImpl = new LsSex();
-        String[] cmd = {this.LS, this.SEX, TestUtils.generateString()};
+        String[] cmd = {this.SEXES, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -48,25 +48,13 @@ public class LsSexCanExecuteTest {
     }
     
     @Test
-    public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotLs() {
+    public void shouldReturnFalseWhenTheCommandIsIncorrect() {
         // Given
         LsSex cmdImpl = new LsSex();
-        String[] cmd = {TestUtils.generateString(), this.SEX};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
-    
-    @Test
-    public void shouldReturnFalseWhenTheSecondElementOfTheCommandIsNotSex() {
-        // Given
-        LsSex cmdImpl = new LsSex();
-        String[] cmd = {this.LS, TestUtils.generateString()};
-        // When
-        boolean actualResult = cmdImpl.canExecute(cmd);
-        // Then
-        Assertions.assertThat(actualResult).isFalse();
-    }
-
 }
