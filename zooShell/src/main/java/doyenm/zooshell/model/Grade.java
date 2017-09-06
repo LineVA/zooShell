@@ -11,8 +11,8 @@ import lombok.Setter;
 @Setter
 public class Grade {
 
-    private double animalsGrade;
-    private double paddocksGrade;
+    private double animalsGrade = 0.0;
+    private double paddocksGrade = 0.0;
 
     public double computeGrade() {
         return getAnimalsGrade()
