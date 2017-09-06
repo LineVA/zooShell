@@ -29,6 +29,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
 /**
  *
@@ -36,8 +38,12 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @Import(ZooShellPredicatesConfig.class)
+@PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
 public class ZooShellAnimalConfig {
     
+    @Autowired
+    Environment environment;
+
     @Bean
     Utils utils(){
         return new Utils();
@@ -153,7 +159,7 @@ public class ZooShellAnimalConfig {
     
     @Bean
     AnimalCreationValidator animalCreationValidator(){
-        return new AnimalCreationValidator();
+        return new AnimalCreationValidator(Integer.parseInt(environment.getProperty("animal.name.max_length")));
     }
     
 //    @Bean 

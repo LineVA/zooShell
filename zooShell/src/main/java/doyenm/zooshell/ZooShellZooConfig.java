@@ -8,6 +8,10 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalDeathEvaluat
 import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalReproductionEvaluationController;
 import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalWellBeingController;
 import doyenm.zooshell.controller.animalcontroller.evaluation.KeeperUtils;
+import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.CalvingFunction;
+import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.ExecuteReproductionFunction;
+import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.FemaleReproductionPredicate;
+import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.MaleReproductionPredicate;
 import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalBiomeEvaluationController;
 import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalDietsEvaluationController;
 import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalFastDaysEvaluationController;
@@ -26,15 +30,25 @@ import doyenm.zooshell.controller.paddockcontroller.PaddockEvaluationController;
 import doyenm.zooshell.controller.zoocontroller.EvaluationController;
 import doyenm.zooshell.controller.zoocontroller.RenameZooController;
 import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
+import doyenm.zooshell.utils.UniformStatistics;
+import doyenm.zooshell.validator.AnimalCreationValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
 /**
  *
  * @author doyenm
  */
 @Configuration
+@PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
 public class ZooShellZooConfig {
+    
+    @Autowired
+    Environment environment;
+
 
     @Bean
     AnimalAgeEvaluationController animalAgeEvaluationController() {
@@ -45,10 +59,44 @@ public class ZooShellZooConfig {
     AnimalDeathEvaluationController animalDeathEvaluationController() {
         return new AnimalDeathEvaluationController();
     }
+    
+    @Bean
+    FemaleReproductionPredicate femaleReproductionPredicate(){
+        return new FemaleReproductionPredicate();
+    }
+    
+      @Bean
+    MaleReproductionPredicate maleReproductionPredicate(){
+        return new MaleReproductionPredicate();
+    }
+    
+    @Bean
+    UniformStatistics uniformStatistics(){
+        return new UniformStatistics();
+    }
+    
+    @Bean
+    AnimalCreationValidator animalCreationValidator(){
+        return new AnimalCreationValidator(Integer.parseInt(environment.getProperty("animal.name.max_length")));
+    }
+    
+    @Bean
+    CalvingFunction calvingFunction(){
+        return new CalvingFunction(uniformStatistics(), animalCreationValidator());
+    }
+    
+    @Bean
+    ExecuteReproductionFunction executeReproductionFunction(){
+        return new ExecuteReproductionFunction(calvingFunction(), uniformStatistics());
+    }
 
     @Bean
     AnimalReproductionEvaluationController animalReproductionEvaluationController() {
-        return new AnimalReproductionEvaluationController();
+        return new AnimalReproductionEvaluationController(
+                femaleReproductionPredicate(),
+                maleReproductionPredicate(),
+                executeReproductionFunction()
+        );
     }
 
     @Bean

@@ -8,6 +8,7 @@ import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.Specie;
 import java.util.ArrayList;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -75,7 +76,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator();
+        AnimalCreationValidator validator = new AnimalCreationValidator(11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -97,7 +98,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator();
+        AnimalCreationValidator validator = new AnimalCreationValidator(11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -105,7 +106,7 @@ public class AnimalCreationValidatorTestTest {
     }
     
      @Test
-    public void shouldReturnFalseWhenTheNameIsLongerThan50Characters() {
+    public void shouldReturnFalseWhenTheNameIsTooLong() {
         // Given
         Specie convertedSpecie = givenSpecie();
         Position entry = givenPosition();
@@ -119,7 +120,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator();
+        AnimalCreationValidator validator = new AnimalCreationValidator(50);
         // When
         boolean result = validator.test(context);
         // Then
@@ -140,7 +141,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator();
+        AnimalCreationValidator validator = new AnimalCreationValidator(11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -162,7 +163,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator();
+        AnimalCreationValidator validator = new AnimalCreationValidator(11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -184,7 +185,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator();
+        AnimalCreationValidator validator = new AnimalCreationValidator(11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -206,7 +207,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator();
+        AnimalCreationValidator validator = new AnimalCreationValidator(11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -228,7 +229,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator();
+        AnimalCreationValidator validator = new AnimalCreationValidator(11);
         // When
         boolean result = validator.test(context);
         // Then

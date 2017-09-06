@@ -12,11 +12,13 @@ import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class AnimalCreationValidator implements Predicate<AnimalCreationContext> {
 
     StringLengthPredicates stringLengthPredicates = new StringLengthPredicates();
@@ -24,13 +26,15 @@ public class AnimalCreationValidator implements Predicate<AnimalCreationContext>
     FindingSpecieFunction findingSpecieFunction = new FindingSpecieFunction();
     FindingPaddockByNameFunction findingPaddockByNameFunction = new FindingPaddockByNameFunction();
     FindingSexFunction findingSexFunction = new FindingSexFunction();
+    
+    private final int maxLengthName;
 
     @Override
     public boolean test(AnimalCreationContext t) {
         AnimalCreationContext context = t;
         context.convert();
         boolean result;
-        result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getName(), 50);
+        result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getName(), maxLengthName);
         result &= this.uniquenessNamesBiPredicates.test(context.getName().toUpperCase(), context.getAnimals().keySet());
         FindingSpecieContext findingSpecieContext = new FindingSpecieContext(context.getSpecies(), context.getSpecieName());
         FindingPaddockContext findingPaddockContext = new FindingPaddockContext(context.getPaddocks(), context.getPaddockName());

@@ -7,17 +7,19 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.MaleR
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class AnimalReproductionEvaluationController
         implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
 
-    FemaleReproductionPredicate femaleReproductionController = new FemaleReproductionPredicate();
-    MaleReproductionPredicate maleReproductionController = new MaleReproductionPredicate();
-    ExecuteReproductionFunction executeReproductionFunction = new ExecuteReproductionFunction();
+    private final FemaleReproductionPredicate femaleReproductionController; 
+    private final MaleReproductionPredicate maleReproductionController; 
+    private final ExecuteReproductionFunction executeReproductionFunction; 
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
