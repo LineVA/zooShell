@@ -8,7 +8,6 @@ import doyenm.zooshell.commandLine.commandImpl.animal.*;
 import doyenm.zooshell.commandLine.commandImpl.keeper.*;
 import doyenm.zooshell.commandLine.general.ActionPointCommand;
 import doyenm.zooshell.commandLine.general.ActionPointsHandler;
-import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
 import doyenm.zooshell.main.Main;
@@ -25,7 +24,8 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @Import({ZooShellValidatorConfig.class, ZooShellControllerConfig.class, ZooShellCommandConfig.class,
-    ZooShellPaddockConfig.class, ZooShellAnimalConfig.class, ZooShellKeeperConfig.class})
+    ZooShellPaddockConfig.class, ZooShellAnimalConfig.class, ZooShellKeeperConfig.class,
+    ZooShellZooConfig.class})
 public class ZooShellConfig {
 
     @Bean
@@ -56,13 +56,13 @@ public class ZooShellConfig {
 
     @Autowired
     DetailZoo detailZoo;
-    
+
     @Autowired
     Evaluate evaluate;
-    
+
     @Autowired
     Load load;
-    
+
     @Autowired
     Save save;
 
@@ -152,24 +152,24 @@ public class ZooShellConfig {
 
     @Autowired
     UpdateOccupations updateOccupations;
-    
-    
+
     @Bean
-    ActionPointsHandler actionPointsHandler(){
+    ActionPointsHandler actionPointsHandler() {
         ActionPointsHandler actionPointsHandler = new ActionPointsHandler();
         actionPointsHandler.initialize(25);
         return actionPointsHandler;
     }
-    
+
     @Bean
-    GetActionPoints getActionPoints(){
+    GetActionPoints getActionPoints() {
         return new GetActionPoints();
-    } 
-    
+    }
+
     @Bean
     CommandManager commandManager() {
         List<ActionPointCommand> commands = Arrays.asList(
                 new ActionPointCommand(createZoo, 0),
+                new ActionPointCommand(ZooShellZooConfig.renameZoo(), 0),
                 new ActionPointCommand(detailZoo, 0),
                 new ActionPointCommand(lsSpecie, 0),
                 new ActionPointCommand(detailSpecie, 0),
