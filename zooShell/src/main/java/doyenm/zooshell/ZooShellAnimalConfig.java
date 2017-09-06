@@ -9,7 +9,6 @@ import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.validator.AnimalChangeNameValidator;
 import doyenm.zooshell.validator.AnimalChangePaddockValidator;
 import doyenm.zooshell.validator.AnimalCreationValidator;
-import doyenm.zooshell.validator.AnimalDetailsValidator;
 import doyenm.zooshell.validator.AnimalUpdateContraceptionValidator;
 import doyenm.zooshell.validator.AnimalUpdateDietValidator;
 import doyenm.zooshell.validator.AnimalUpdateFastDaysValidator;
@@ -157,10 +156,10 @@ public class ZooShellAnimalConfig {
         return new AnimalCreationValidator();
     }
     
-    @Bean 
-    AnimalDetailsValidator animalDetailsValidator(){
-        return new AnimalDetailsValidator();
-    }
+//    @Bean 
+//    AnimalDetailsValidator animalDetailsValidator(){
+//        return new AnimalDetailsValidator();
+//    }
     
     @Bean
     AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator(){

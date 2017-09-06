@@ -1,7 +1,6 @@
 package doyenm.zooshell.controller.animalcontroller;
 
 import doyenm.zooshell.context.AnimalContext;
-import doyenm.zooshell.context.AnimalDetailsContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.utils.Utils;
