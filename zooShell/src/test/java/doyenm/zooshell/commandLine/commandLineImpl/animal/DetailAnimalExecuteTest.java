@@ -3,10 +3,10 @@ package doyenm.zooshell.commandLine.commandLineImpl.animal;
 import doyenm.zooshell.commandLine.commandImpl.animal.DetailAnimal;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
-import doyenm.zooshell.context.AnimalDetailsContext;
+import doyenm.zooshell.context.AnimalContext;
 import doyenm.zooshell.controller.animalcontroller.AnimalDetailsController;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.AnimalDetailsValidator;
+import doyenm.zooshell.validator.AnimalValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import static org.mockito.Matchers.any;
@@ -20,19 +20,19 @@ import org.mockito.stubbing.Answer;
  */
 public class DetailAnimalExecuteTest {
 
-    private AnimalDetailsValidator givenValidator(boolean value) {
-        AnimalDetailsValidator validator = Mockito.mock(AnimalDetailsValidator.class);
-        Mockito.doReturn(value).when(validator).test(any(AnimalDetailsContext.class));
+    private AnimalValidator givenValidator(boolean value) {
+        AnimalValidator validator = Mockito.mock(AnimalValidator.class);
+        Mockito.doReturn(value).when(validator).test(any(AnimalContext.class));
         return validator;
     }
 
     private AnimalDetailsController givenController() {
         AnimalDetailsController controller = Mockito.mock(AnimalDetailsController.class);
-        Mockito.when(controller.apply(any(AnimalDetailsContext.class))).thenAnswer(new Answer<AnimalDetailsContext>() {
+        Mockito.when(controller.apply(any(AnimalContext.class))).thenAnswer(new Answer<AnimalContext>() {
             @Override
-            public AnimalDetailsContext answer(InvocationOnMock invocation) throws Throwable {
+            public AnimalContext answer(InvocationOnMock invocation) throws Throwable {
                 Object[] args = invocation.getArguments();
-                return (AnimalDetailsContext) args[0];
+                return (AnimalContext) args[0];
             }
         });
         return controller;
@@ -41,7 +41,7 @@ public class DetailAnimalExecuteTest {
     @Test
     public void shouldReturnAReturnExecWithTypeReturnToSuccessWhenTheCommandIsInSuccessAndTheLineContainsTwoElements() {
         // Given
-        AnimalDetailsValidator validator = givenValidator(true);
+        AnimalValidator validator = givenValidator(true);
         AnimalDetailsController controller = givenController();
         DetailAnimal command = new DetailAnimal(validator, controller);
         String[] cmd = new String[2];
@@ -57,7 +57,7 @@ public class DetailAnimalExecuteTest {
     @Test
     public void shouldReturnAReturnExecWithTypeReturnToFailedWhenTheCommandIsFailedAndTheLineContainsTwoElements() {
         // Given
-        AnimalDetailsValidator validator = givenValidator(false);
+        AnimalValidator validator = givenValidator(false);
         AnimalDetailsController controller = givenController();
         DetailAnimal command = new DetailAnimal(validator, controller);
         String[] cmd = new String[2];
@@ -73,7 +73,7 @@ public class DetailAnimalExecuteTest {
      @Test
     public void shouldReturnAReturnExecWithTypeReturnToSuccessWhenTheCommandIsInSuccessAndTheLineContainsThreeElements() {
         // Given
-        AnimalDetailsValidator validator = givenValidator(true);
+        AnimalValidator validator = givenValidator(true);
         AnimalDetailsController controller = givenController();
         DetailAnimal command = new DetailAnimal(validator, controller);
         String[] cmd = new String[3];
@@ -89,7 +89,7 @@ public class DetailAnimalExecuteTest {
     @Test
     public void shouldReturnAReturnExecWithTypeReturnToFailedWhenTheCommandIsFailedAndTheLineContainsThreeElements() {
         // Given
-        AnimalDetailsValidator validator = givenValidator(false);
+        AnimalValidator validator = givenValidator(false);
         AnimalDetailsController controller = givenController();
         DetailAnimal command = new DetailAnimal(validator, controller);
         String[] cmd = new String[3];
