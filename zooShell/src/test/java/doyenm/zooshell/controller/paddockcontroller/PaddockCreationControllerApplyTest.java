@@ -42,7 +42,7 @@ public class PaddockCreationControllerApplyTest {
     @Test
     public void shouldAddToTheZooAPaddockWithTheExpectedValues() {
         // Given
-        String name = RandomStringUtils.random(10);
+        String name = RandomStringUtils.randomAlphabetic(10);
         int x = RandomUtils.nextInt();
         int y = RandomUtils.nextInt();
         int width = RandomUtils.nextInt();
@@ -56,8 +56,8 @@ public class PaddockCreationControllerApplyTest {
         Assertions.assertThat(actual.getZoo()).isNotNull();
         Assertions.assertThat(actual.getZoo().getPaddocks()).isNotNull();
         Assertions.assertThat(actual.getZoo().getPaddocks().size()).isEqualTo(1);
-        Assertions.assertThat(actual.getZoo().getPaddocks().containsKey(name)).isTrue();
-        Paddock pad = actual.getZoo().getPaddocks().get(name);
+        Assertions.assertThat(actual.getZoo().getPaddocks().containsKey(name.toUpperCase())).isTrue();
+        Paddock pad = actual.getZoo().getPaddocks().get(name.toUpperCase());
         Assertions.assertThat(pad.getAge()).isEqualTo(0);
         Assertions.assertThat(pad.getX()).isEqualTo(x);
         Assertions.assertThat(pad.getY()).isEqualTo(y);
