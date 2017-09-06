@@ -1,7 +1,6 @@
 package doyenm.zooshell.commandLine.commandLineImpl.ls;
 
-import doyenm.zooshell.commandLine.commandImpl.ls.LsBiome;
-import doyenm.zooshell.testUtils.TestUtils;
+import doyenm.zooshell.commandLine.commandImpl.ls.LsKeeperTask;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -10,15 +9,15 @@ import org.junit.Test;
  *
  * @author doyenm
  */
-public class LsBiomeCanExecuteTest {
+public class LsKeeperTaskCanExecuteTest {
 
-    private static final String BIOMES = "biomes";
+    private static final String TASKS = "tasks";
 
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
-        LsBiome cmdImpl = new LsBiome();
-        String[] cmd = {this.BIOMES};
+        LsKeeperTask cmdImpl = new LsKeeperTask();
+        String[] cmd = {this.TASKS};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -28,7 +27,7 @@ public class LsBiomeCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheCommandIsTooShort() {
         // Given
-        LsBiome cmdImpl = new LsBiome();
+        LsKeeperTask cmdImpl = new LsKeeperTask();
         String[] cmd = {};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
@@ -39,8 +38,8 @@ public class LsBiomeCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheCommandIsTooLong() {
         // Given
-        LsBiome cmdImpl = new LsBiome();
-        String[] cmd = {this.BIOMES, RandomStringUtils.randomAlphabetic(10)};
+        LsKeeperTask cmdImpl = new LsKeeperTask();
+        String[] cmd = {this.TASKS, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
         // Then
@@ -48,9 +47,9 @@ public class LsBiomeCanExecuteTest {
     }
     
     @Test
-    public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotBiomes() {
+    public void shouldReturnFalseWhenTheFirstElementOfTheCommandIsNotTasks() {
         // Given
-        LsBiome cmdImpl = new LsBiome();
+        LsKeeperTask cmdImpl = new LsKeeperTask();
         String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdImpl.canExecute(cmd);
