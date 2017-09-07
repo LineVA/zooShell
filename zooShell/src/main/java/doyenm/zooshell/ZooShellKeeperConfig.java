@@ -26,7 +26,7 @@ import org.springframework.core.env.Environment;
 @Configuration
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
 public class ZooShellKeeperConfig {
-    
+
     @Autowired
     Environment environment;
 
@@ -44,7 +44,7 @@ public class ZooShellKeeperConfig {
 
     @Autowired
     UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
-    
+
     // Controllers
     @Bean
     KeeperRenameController keeperRenameController() {
@@ -78,8 +78,17 @@ public class ZooShellKeeperConfig {
 
     // Validators
     @Bean
+    FindKeeper findKeeper(){
+        return new FindKeeper();
+    }
+    
+    @Bean
     KeeperRenameValidator keeperRenameValidator() {
-        return new KeeperRenameValidator();
+        return new KeeperRenameValidator(
+                stringLengthPredicates,
+                uniquenessNamesBiPredicates,
+                findKeeper(),
+                Integer.parseInt(environment.getProperty("keeper.name.max_length")));
     }
 
     @Bean
@@ -88,7 +97,7 @@ public class ZooShellKeeperConfig {
                 stringLengthPredicates,
                 uniquenessNamesBiPredicates,
                 keeperNumbersPredicate,
-        Integer.parseInt(environment.getProperty("keeper.name.max_length")));
+                Integer.parseInt(environment.getProperty("keeper.name.max_length")));
     }
 
     @Bean
