@@ -13,8 +13,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ZooCreationValidator implements Predicate<ZooCreationContext> {
 
-    IntegerValuePredicates integerValuePredicates = new IntegerValuePredicates();
-    StringLengthPredicates stringLengthPredicates = new StringLengthPredicates();
+    private final IntegerValuePredicates integerValuePredicates;
+    private final StringLengthPredicates stringLengthPredicates;
 
     private final int minWidth;
     private final int minHeight;
