@@ -16,13 +16,19 @@ import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
 /**
  *
  * @author doyenm
  */
 @Configuration
+@PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
 public class ZooShellKeeperConfig {
+    
+    @Autowired
+    Environment environment;
 
     @Bean
     Utils utils() {
@@ -79,7 +85,10 @@ public class ZooShellKeeperConfig {
     @Bean
     KeeperCreationValidator keeperCreationValidator() {
         return new KeeperCreationValidator(
-                stringLengthPredicates, uniquenessNamesBiPredicates, keeperNumbersPredicate);
+                stringLengthPredicates,
+                uniquenessNamesBiPredicates,
+                keeperNumbersPredicate,
+        Integer.parseInt(environment.getProperty("keeper.name.max_length")));
     }
 
     @Bean

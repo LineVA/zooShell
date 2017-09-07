@@ -8,6 +8,7 @@ import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import static org.mockito.Matchers.anyInt;
@@ -43,13 +44,6 @@ public class KeeperCreationValidatorTestTest {
         return Mockito.mock(AnimalKeeper.class);
     }
 
-//    private KeeperCreationContext givenContextWithKeeperName(
-//            String name) {
-//        KeeperCreationContext context = Mockito.mock(KeeperCreationContext.class);
-//        Mockito.when(context.getKeeper()).thenReturn(name);
-//        Mockito.when(context.getKeepers()).thenReturn(new HashMap<>());
-//        return context;
-//    }
     private KeeperCreationContext givenContextWithKeeperNameAndKeepers(
             String name, AnimalKeeper keeper) {
         KeeperCreationContext context = Mockito.mock(KeeperCreationContext.class);
@@ -77,7 +71,8 @@ public class KeeperCreationValidatorTestTest {
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                stringPredicates, namePredicates, numberPredicates);
+                stringPredicates, namePredicates, numberPredicates,
+                RandomUtils.nextInt());
         // When
         boolean result = validator.test(context);
         // Then
@@ -86,7 +81,7 @@ public class KeeperCreationValidatorTestTest {
 
     @Test
     public void shouldReturnFalseWhenTheNameIsIncorrect() {
-    // Given
+        // Given
         UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(true);
         StringLengthPredicates stringPredicates = givenStringPredicates(false);
         KeepersNumberPredicate numberPredicates = givenKeepersPredicate(true);
@@ -96,7 +91,8 @@ public class KeeperCreationValidatorTestTest {
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                stringPredicates, namePredicates, numberPredicates);
+                stringPredicates, namePredicates, numberPredicates,
+                RandomUtils.nextInt());
         // When
         boolean result = validator.test(context);
         // Then
@@ -105,7 +101,7 @@ public class KeeperCreationValidatorTestTest {
 
     @Test
     public void shouldReturnFalseWhenThereIsAlreadyAKeeperWithThisName() {
-       // Given
+        // Given
         UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(false);
         StringLengthPredicates stringPredicates = givenStringPredicates(true);
         KeepersNumberPredicate numberPredicates = givenKeepersPredicate(true);
@@ -115,16 +111,17 @@ public class KeeperCreationValidatorTestTest {
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                stringPredicates, namePredicates, numberPredicates);
+                stringPredicates, namePredicates, numberPredicates,
+                RandomUtils.nextInt());
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
+
     @Test
     public void shouldReturnFalseWhenThereIsFreePlaceForANewKeeper() {
-       // Given
+        // Given
         UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(false);
         StringLengthPredicates stringPredicates = givenStringPredicates(true);
         KeepersNumberPredicate numberPredicates = givenKeepersPredicate(false);
@@ -134,12 +131,12 @@ public class KeeperCreationValidatorTestTest {
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                stringPredicates, namePredicates, numberPredicates);
+                stringPredicates, namePredicates, numberPredicates,
+                RandomUtils.nextInt());
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-    
+
 }
