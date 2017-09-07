@@ -180,7 +180,7 @@ public class ZooShellAnimalConfig {
 
     @Bean
     AnimalUpdateDietValidator animalUpdateDietValidator() {
-        return new AnimalUpdateDietValidator(findingDietFunction, findingAnimalWithEntryCheckFunction);
+        return new AnimalUpdateDietValidator(findingDietFunction, findAnimal);
     }
 
     @Bean

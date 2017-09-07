@@ -1,7 +1,9 @@
 package doyenm.zooshell.validator;
 
+import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
 import doyenm.zooshell.context.AnimalUpdateDietContext;
 import doyenm.zooshell.validator.context.FindingAnimalContext;
+import doyenm.zooshell.validator.context.FindingContraceptionContext;
 import doyenm.zooshell.validator.context.FindingDietContext;
 import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingDietFunction;
@@ -18,16 +20,25 @@ import lombok.RequiredArgsConstructor;
 public class AnimalUpdateDietValidator implements Predicate<AnimalUpdateDietContext> {
 
     private final FindingDietFunction findingDietFunction;
-    private final FindingAnimalWithEntryCheckFunction findingAnimalFunction; 
+    private final FindAnimal findAnimal;
 
     @Override
     public boolean test(AnimalUpdateDietContext t) {
-        FindingAnimalContext findingAnimalContext = new FindingAnimalContext(t.getZoo().getAnimals(), t.getAnimal().toUpperCase());
-        t.setConvertedAnimal(Stream.of(findingAnimalContext)
-                .map(findingAnimalFunction)
-                .findFirst()
-                .get()
-                .getAnimal());
+        AnimalUpdateDietContext context = t;
+        context = retrieveAnimal(context);
+       context = retrieveDiet(context);
+        if (t.getConvertedAnimal() != null && t.getConvertedDiets() != null) {
+            return t.getConvertedDiets().size() == t.getDiets().size() && t.getConvertedAnimal().getPaddock().getEntry() != null;
+        }
+        return false;
+    }
+
+    private AnimalUpdateDietContext retrieveAnimal(AnimalUpdateDietContext t) {
+        t.setConvertedAnimal(findAnimal.find(t.getZoo(), t.getAnimal()));
+        return t;
+    }
+
+    private AnimalUpdateDietContext retrieveDiet(AnimalUpdateDietContext t) {
         t.getConvertedDiets().addAll(
                 t.getDiets()
                 .stream()
@@ -37,9 +48,6 @@ public class AnimalUpdateDietValidator implements Predicate<AnimalUpdateDietCont
                 .filter(e -> e != null)
                 .collect(Collectors.toList())
         );
-        if (t.getConvertedAnimal() != null && t.getConvertedDiets() != null) {
-            return t.getConvertedDiets().size() == t.getDiets().size() && t.getConvertedAnimal().getPaddock().getEntry() != null;
-        }
-        return false;
+        return t;
     }
 }
