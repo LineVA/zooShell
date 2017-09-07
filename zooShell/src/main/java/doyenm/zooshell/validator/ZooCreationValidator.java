@@ -39,25 +39,3 @@ public class ZooCreationValidator implements Predicate<ZooCreationContext> {
         return result;
     }
 }
-
-//public class ZooCreationValidator implements Function<ZooCreationContext, ZooCreationContext> {
-//
-//    IntegerValuePredicates integerValuePredicates = new IntegerValuePredicates();
-//    StringLengthPredicates stringLengthPredicates = new StringLengthPredicates();
-//
-//    @Override
-//    public ZooCreationContext apply(ZooCreationContext t) {
-//        ZooCreationContext context = t;
-//        context.convert();
-//        boolean result
-//                = this.integerValuePredicates.isCorrect(context.getConvertedWidth(), IntegerValuePredicates.mustBeGreaterOrEqualsThan(10));
-//        result &= this.integerValuePredicates.isCorrect(context.getConvertedHeight(), IntegerValuePredicates.mustBeGreaterOrEqualsThan(10));
-//        int min = Math.min(context.getConvertedHeight(), context.getConvertedWidth());
-//        result &= this.integerValuePredicates.isCorrect(context.getConvertedHorizon(), IntegerValuePredicates.mustBeGreaterOrEqualsThan(2));
-//        result &= this.integerValuePredicates.isCorrect(context.getConvertedHorizon(), IntegerValuePredicates.mustBeLowerThan(min));
-//        result &= this.integerValuePredicates.isCorrect(context.getConvertedSpeed(), IntegerValuePredicates.mustBeGreaterOrEqualsThan(2));
-//        result &= this.integerValuePredicates.isCorrect(context.getConvertedSpeed(), IntegerValuePredicates.mustBeLowerThan(13));
-//        result &= this.stringLengthPredicates.isCorrect(context.getName(), StringLengthPredicates.mustBeLowerThan(50));
-//        return context;
-//    }
-//}
