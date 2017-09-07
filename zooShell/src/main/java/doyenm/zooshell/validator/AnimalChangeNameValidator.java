@@ -17,6 +17,7 @@ public class AnimalChangeNameValidator implements Predicate<AnimalChangeNameCont
     private final FindAnimal findAnimal;
     private final StringLengthPredicates stringLengthPredicates;
     private final UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
+    private final int maxLengthName;
 
     @Override
     public boolean test(AnimalChangeNameContext t) {
@@ -26,7 +27,7 @@ public class AnimalChangeNameValidator implements Predicate<AnimalChangeNameCont
             return false;
         }
         context.setConvertedAnimal(animal);
-        return this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getNewName(), 50)
+        return this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getNewName(), maxLengthName)
                 & this.uniquenessNamesBiPredicates.test(context.getNewName().toUpperCase(), context.getAnimals());
     }
 }

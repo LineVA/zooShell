@@ -29,6 +29,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
 /**
  *
@@ -36,10 +38,14 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @Import(ZooShellPredicatesConfig.class)
+@PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
 public class ZooShellAnimalConfig {
-    
+
+    @Autowired
+    Environment environment;
+
     @Bean
-    Utils utils(){
+    Utils utils() {
         return new Utils();
     }
 
@@ -48,207 +54,207 @@ public class ZooShellAnimalConfig {
     AnimalChangeNameController animalChangeNameController() {
         return new AnimalChangeNameController();
     }
-    
+
     @Bean
-    AnimalChangePaddockController animalChangePaddockController(){
+    AnimalChangePaddockController animalChangePaddockController() {
         return new AnimalChangePaddockController();
     }
-    
+
     @Bean
-    AnimalCreationController animalCreationController(){
+    AnimalCreationController animalCreationController() {
         return new AnimalCreationController();
     }
-            
-    @Bean 
-    AnimalDetailsController animalDetailsController(){
+
+    @Bean
+    AnimalDetailsController animalDetailsController() {
         return new AnimalDetailsController(utils());
     }
-    
+
     @Bean
-    AnimalRemoveController animalRemoveController(){
+    AnimalRemoveController animalRemoveController() {
         return new AnimalRemoveController();
     }
-    
+
     @Bean
-    AnimalResetDietController animalResetDietController(){
+    AnimalResetDietController animalResetDietController() {
         return new AnimalResetDietController();
     }
-    
+
     @Bean
-    AnimalUpdateDietController animalUpdateDietController(){
+    AnimalUpdateDietController animalUpdateDietController() {
         return new AnimalUpdateDietController();
     }
-    
+
     @Bean
-    AnimalUpdateContraceptionController animalUpateContraceptionController(){
+    AnimalUpdateContraceptionController animalUpateContraceptionController() {
         return new AnimalUpdateContraceptionController();
     }
-    
+
     @Bean
-    AnimalUpdateFastDaysController animalUpdateFastDaysController(){
+    AnimalUpdateFastDaysController animalUpdateFastDaysController() {
         return new AnimalUpdateFastDaysController();
     }
-    
+
     @Bean
-    AnimalUpdateFoodQuantityController animalUpdateFoodQuantityController(){
+    AnimalUpdateFoodQuantityController animalUpdateFoodQuantityController() {
         return new AnimalUpdateFoodQuantityController();
     }
-    
+
     // Predicates
     @Autowired
     FindAnimal findAnimal;
-    
+
     @Autowired
     FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction;
-    
+
     @Autowired
     FindingDietFunction findingDietFunction;
-    
+
     @Autowired
     FindPaddock findPaddock;
-    
+
     @Autowired
     StringLengthPredicates stringLenghtPredicates;
-    
+
     @Autowired
     UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
-    
-     @Bean
-    FindingContraceptionFunction findingContraceptionFunction(){
+
+    @Bean
+    FindingContraceptionFunction findingContraceptionFunction() {
         return new FindingContraceptionFunction();
     }
-    
-     @Bean
-    CanHaveAChirurgicalContraceptionPredicate canHaveAChirurgicalContraceptionPredicate(){
+
+    @Bean
+    CanHaveAChirurgicalContraceptionPredicate canHaveAChirurgicalContraceptionPredicate() {
         return new CanHaveAChirurgicalContraceptionPredicate();
     }
-    
-     @Bean
-    CanHaveAHormonalContraceptionPredicate canHaveAHormonalContraceptionPredicate(){
+
+    @Bean
+    CanHaveAHormonalContraceptionPredicate canHaveAHormonalContraceptionPredicate() {
         return new CanHaveAHormonalContraceptionPredicate();
     }
-    
-     @Bean
-    IsContraceptionCompatibleWithPreviousPredicate isContraceptionCompatibleWithPreviousPredicate(){
+
+    @Bean
+    IsContraceptionCompatibleWithPreviousPredicate isContraceptionCompatibleWithPreviousPredicate() {
         return new IsContraceptionCompatibleWithPreviousPredicate();
     }
-    
-     @Bean
-    IsContraceptionCompatibleWithSexPredicate isContraceptionCompatibleWithSexPredicate(){
+
+    @Bean
+    IsContraceptionCompatibleWithSexPredicate isContraceptionCompatibleWithSexPredicate() {
         return new IsContraceptionCompatibleWithSexPredicate();
     }
-    
+
     // Validator
     @Bean
-    AnimalChangeNameValidator animalChangeNameValidator(){
-        return new AnimalChangeNameValidator(findAnimal, 
-                stringLenghtPredicates, 
-                uniquenessNamesBiPredicates);
+    AnimalChangeNameValidator animalChangeNameValidator() {
+        return new AnimalChangeNameValidator(findAnimal,
+                stringLenghtPredicates,
+                uniquenessNamesBiPredicates,
+                Integer.parseInt(environment.getProperty("animal.name.max_length"))
+        );
     }
-    
-      @Bean
-    AnimalChangePaddockValidator animalChangePaddockValidator(){
+
+    @Bean
+    AnimalChangePaddockValidator animalChangePaddockValidator() {
         return new AnimalChangePaddockValidator(findAnimal, findPaddock);
     }
-    
+
     @Bean
-    AnimalCreationValidator animalCreationValidator(){
-        return new AnimalCreationValidator();
+    AnimalCreationValidator animalCreationValidator() {
+        return new AnimalCreationValidator(Integer.parseInt(environment.getProperty("animal.name.max_length")));
     }
-    
+
 //    @Bean 
 //    AnimalDetailsValidator animalDetailsValidator(){
 //        return new AnimalDetailsValidator();
 //    }
-    
     @Bean
-    AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator(){
+    AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator() {
         return new AnimalUpdateContraceptionValidator(findingContraceptionFunction(),
-        findAnimal, 
-        canHaveAHormonalContraceptionPredicate(),
-        canHaveAChirurgicalContraceptionPredicate(),
-        isContraceptionCompatibleWithPreviousPredicate(),
-        isContraceptionCompatibleWithSexPredicate());
+                findAnimal,
+                canHaveAHormonalContraceptionPredicate(),
+                canHaveAChirurgicalContraceptionPredicate(),
+                isContraceptionCompatibleWithPreviousPredicate(),
+                isContraceptionCompatibleWithSexPredicate());
     }
-    
+
     @Bean
-    AnimalUpdateDietValidator animalUpdateDietValidator(){
+    AnimalUpdateDietValidator animalUpdateDietValidator() {
         return new AnimalUpdateDietValidator(findingDietFunction, findingAnimalWithEntryCheckFunction);
     }
-    
-     @Bean
-    AnimalUpdateFastDaysValidator animalUpdateFastDaysValidator(){
+
+    @Bean
+    AnimalUpdateFastDaysValidator animalUpdateFastDaysValidator() {
         return new AnimalUpdateFastDaysValidator();
     }
-    
-     @Bean
-    AnimalUpdateFoodQuantityValidator animalUpdateFoodQuantityValidator(){
+
+    @Bean
+    AnimalUpdateFoodQuantityValidator animalUpdateFoodQuantityValidator() {
         return new AnimalUpdateFoodQuantityValidator();
     }
-    
+
     @Bean
-    AnimalValidator animalValidator(){
+    AnimalValidator animalValidator() {
         return new AnimalValidator();
     }
-    
-    
+
     // Commands
     @Bean
-    ChangeAnimalName changeAnimalName(){
+    ChangeAnimalName changeAnimalName() {
         return new ChangeAnimalName(animalChangeNameValidator(), animalChangeNameController());
     }
 
     @Bean
-    ChangePaddock changePaddock(){
+    ChangePaddock changePaddock() {
         return new ChangePaddock(animalChangePaddockValidator(), animalChangePaddockController());
     }
-    
+
     @Bean
-    CreateAnimal createAnimal(){
+    CreateAnimal createAnimal() {
         return new CreateAnimal(animalCreationValidator(), animalCreationController());
     }
-    
+
     @Bean
-    DetailAnimal detailAnimal(){
+    DetailAnimal detailAnimal() {
         return new DetailAnimal(animalValidator(), animalDetailsController());
     }
-    
+
     @Bean
-    LsAnimal lsAnimal(){
+    LsAnimal lsAnimal() {
         return new LsAnimal();
     }
-    
+
     @Bean
-    RemoveAnimal removeAnimal(){
+    RemoveAnimal removeAnimal() {
         return new RemoveAnimal(animalValidator(), animalRemoveController());
     }
-    
+
     @Bean
-    ResetDiet resetDiet(){
+    ResetDiet resetDiet() {
         return new ResetDiet(animalValidator(), animalResetDietController());
     }
-    
+
     @Bean
-    UpdateContraceptionMethod  updateContraceptionMethod(){
+    UpdateContraceptionMethod updateContraceptionMethod() {
         return new UpdateContraceptionMethod(animalUpdateContraceptionValidator(), animalUpateContraceptionController());
     }
-    
+
     @Bean
-    UpdateDiet updateDiet(){
+    UpdateDiet updateDiet() {
         return new UpdateDiet(animalUpdateDietValidator(), animalUpdateDietController());
     }
-    
+
     @Bean
-    UpdateFastDays updateFastDays(){
+    UpdateFastDays updateFastDays() {
         return new UpdateFastDays(animalUpdateFastDaysValidator(), animalUpdateFastDaysController());
     }
-    
+
     @Bean
-    UpdateFoodQuantity updateFoodQuantity(){
+    UpdateFoodQuantity updateFoodQuantity() {
         return new UpdateFoodQuantity(animalUpdateFoodQuantityValidator(), animalUpdateFoodQuantityController());
     }
-    
-     @Bean
+
+    @Bean
     LsContraceptionMethod lscontraceptionMethod() {
         return new LsContraceptionMethod();
     }
@@ -257,24 +263,9 @@ public class ZooShellAnimalConfig {
     LsDiet lsDiet() {
         return new LsDiet();
     }
-    
-      @Bean
+
+    @Bean
     LsSex lsSex() {
         return new LsSex();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

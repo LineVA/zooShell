@@ -9,15 +9,17 @@ import doyenm.zooshell.validator.AnimalCreationValidator;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class CalvingFunction implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
 
-    UniformStatistics uniformStatistics = new UniformStatistics();
-    AnimalCreationValidator animalCreationValidator = new AnimalCreationValidator();
+    private final UniformStatistics uniformStatistics; 
+    private final AnimalCreationValidator animalCreationValidator;
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {

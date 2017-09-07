@@ -9,26 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class ExecuteReproductionFunction
         implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
 
-    private CalvingFunction calvingFunction;
-    private UniformStatistics statistics;
-
-    public ExecuteReproductionFunction() {
-        this.calvingFunction = new CalvingFunction();
-        this.statistics = new UniformStatistics();
-    }
-
-    public ExecuteReproductionFunction(CalvingFunction calvingFunction, UniformStatistics stat) {
-        this.calvingFunction = calvingFunction;
-        this.statistics = stat;
-    }
+    private final CalvingFunction calvingFunction;
+    private final UniformStatistics statistics;
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {

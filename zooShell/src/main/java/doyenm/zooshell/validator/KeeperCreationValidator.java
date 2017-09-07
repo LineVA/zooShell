@@ -18,13 +18,15 @@ public class KeeperCreationValidator implements Predicate<KeeperCreationContext>
     private final UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
     private final KeepersNumberPredicate keepersNumberPredicate;
     
+    private final int maxLengthName;
+    
     @Override
     public boolean test(KeeperCreationContext t) {
         KeeperCreationContext context = t;
         
         return 
                 this.keepersNumberPredicate.test(context)
-                & this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getKeeper(), 50)
+                & this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getKeeper(), maxLengthName)
                 & this.uniquenessNamesBiPredicates.test(context.getKeeper().toUpperCase(), context.getKeepers().keySet());
     }
 
