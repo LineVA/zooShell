@@ -7,6 +7,7 @@ import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.HashSet;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import static org.mockito.Matchers.anyInt;
@@ -68,7 +69,8 @@ public class PaddockChangeNameValidatorTestTest {
         PaddockChangeNameValidator validator = new PaddockChangeNameValidator(
                 findPaddock,
                 lengthPredicates,
-                uniquenessPredicates
+                uniquenessPredicates,
+                RandomUtils.nextInt()
         );
         // When
         boolean result = validator.test(context);
@@ -78,7 +80,7 @@ public class PaddockChangeNameValidatorTestTest {
 
     @Test
     public void shouldReturnFalseWhenThePaddockDoesNotExist() {
-      // Given
+        // Given
         Paddock convertedPaddock = null;
         FindPaddock findPaddock = givenFindWithPad(convertedPaddock);
         UniquenessNamesBiPredicates uniquenessPredicates = givenUniquenessNames(true);
@@ -87,7 +89,8 @@ public class PaddockChangeNameValidatorTestTest {
         PaddockChangeNameValidator validator = new PaddockChangeNameValidator(
                 findPaddock,
                 lengthPredicates,
-                uniquenessPredicates
+                uniquenessPredicates,
+                RandomUtils.nextInt()
         );
         // When
         boolean result = validator.test(context);
@@ -106,14 +109,15 @@ public class PaddockChangeNameValidatorTestTest {
         PaddockChangeNameValidator validator = new PaddockChangeNameValidator(
                 findPaddock,
                 lengthPredicates,
-                uniquenessPredicates
+                uniquenessPredicates,
+                RandomUtils.nextInt()
         );
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
+
     @Test
     public void shouldReturnFalseWhenTheNewNameIsNotUnique() {
         // Given
@@ -125,7 +129,8 @@ public class PaddockChangeNameValidatorTestTest {
         PaddockChangeNameValidator validator = new PaddockChangeNameValidator(
                 findPaddock,
                 lengthPredicates,
-                uniquenessPredicates
+                uniquenessPredicates,
+                RandomUtils.nextInt()
         );
         // When
         boolean result = validator.test(context);

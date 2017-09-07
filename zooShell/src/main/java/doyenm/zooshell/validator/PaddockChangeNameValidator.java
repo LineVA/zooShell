@@ -18,6 +18,7 @@ public class PaddockChangeNameValidator
     private final FindPaddock findPaddock;
     private final StringLengthPredicates stringLengthPredicates;
     private final UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
+    private final int maxLengthName;
 
     @Override
     public boolean test(PaddockChangeNameContext t) {
@@ -27,7 +28,7 @@ public class PaddockChangeNameValidator
             return false;
         }
         context.setConvertedPaddock(pad);
-        return this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getNewName(), 50)
+        return this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getNewName(), maxLengthName)
                 & this.uniquenessNamesBiPredicates.test(context.getNewName(), context.getPaddocks());
     }
 }
