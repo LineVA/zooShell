@@ -21,6 +21,7 @@ import doyenm.zooshell.validator.function.FindingContraceptionFunction;
 import doyenm.zooshell.validator.function.FindingDietFunction;
 import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
+import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithPreviousPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithSexPredicate;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
@@ -118,6 +119,9 @@ public class ZooShellAnimalConfig {
 
     @Autowired
     UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
+    
+    @Autowired
+    IntegerValuePredicates integerValuePredicates;
 
     @Bean
     FindingContraceptionFunction findingContraceptionFunction() {
@@ -185,7 +189,7 @@ public class ZooShellAnimalConfig {
 
     @Bean
     AnimalUpdateFastDaysValidator animalUpdateFastDaysValidator() {
-        return new AnimalUpdateFastDaysValidator();
+        return new AnimalUpdateFastDaysValidator(findAnimal, integerValuePredicates);
     }
 
     @Bean

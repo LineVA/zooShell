@@ -1,6 +1,7 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Animal;
+import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,10 @@ public class AnimalUpdateFastDaysContext {
 
     public void convert() {
         setConvertedFastDays(Integer.parseInt(getFastDays()));
+    }
+    
+    public Position getEntry(){
+        return getConvertedAnimal().getPaddock().getEntry();
     }
 
     public void build() {
