@@ -9,16 +9,18 @@ import doyenm.zooshell.model.Animal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class AnimalDeathEvaluationController
         implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
 
-    AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures();
-    AnimalDeathPredicates deathPredicates = new AnimalDeathPredicates();
+    private final AnimalUpdateDyingMeasures measures; 
+    private final AnimalDeathPredicates deathPredicates; 
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
