@@ -1,14 +1,16 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.death;
 
 import doyenm.zooshell.model.Animal;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class AnimalDeathPredicates {
     
-    private final int NUMBER_FOR_DYING = 3;
+    private final int numberOfTurnsBeforeDying;
     
     public boolean isDeadByOldAge(Animal animal) {
         int lifespan = animal.getLifespanAttributes().getLifespanGivenSex(animal.getSex());
@@ -16,11 +18,11 @@ public class AnimalDeathPredicates {
     }
     
     public boolean isDeadByDrowning(Animal animal){
-        return animal.getDaysOfDrowning() >= NUMBER_FOR_DYING;
+        return animal.getDaysOfDrowning() >= numberOfTurnsBeforeDying;
     }
     
     public boolean isDeadByHunger(Animal animal){
-        return animal.getDaysOfHunger()>= NUMBER_FOR_DYING;
+        return animal.getDaysOfHunger()>= numberOfTurnsBeforeDying;
     }
     
 }

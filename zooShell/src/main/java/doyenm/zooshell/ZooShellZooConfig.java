@@ -1,26 +1,12 @@
 package doyenm.zooshell;
 
-import com.sun.imageio.spi.RAFImageInputStreamSpi;
 import doyenm.zooshell.commandLine.commandImpl.zoo.RenameZoo;
-import doyenm.zooshell.controller.animalcontroller.AnimalEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalAgeEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalDeathEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalReproductionEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalWellBeingController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.KeeperUtils;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.CalvingFunction;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.ExecuteReproductionFunction;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.FemaleReproductionPredicate;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.MaleReproductionPredicate;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalBiomeEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalDietsEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalFastDaysEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalFoodQuantityEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalGroupSizeEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalKeepersTimeInfluenceEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalTasksInfluenceEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalTerritorySizeEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.Utils;
+import doyenm.zooshell.controller.animalcontroller.*;
+import doyenm.zooshell.controller.animalcontroller.evaluation.*;
+import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.*;
+import doyenm.zooshell.controller.animalcontroller.evaluation.death.*;
+import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.*;
+
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationAgeingController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationFamilyController;
@@ -54,10 +40,20 @@ public class ZooShellZooConfig {
     AnimalAgeEvaluationController animalAgeEvaluationController() {
         return new AnimalAgeEvaluationController();
     }
+    
+    @Bean
+    AnimalUpdateDyingMeasures animalUpdateDyingMeasures(){
+        return new AnimalUpdateDyingMeasures();
+    }
 
     @Bean
+    AnimalDeathPredicates animalDeathPredicates(){
+        return new AnimalDeathPredicates(Integer.parseInt(environment.getProperty("animal.turns.agony")));
+    }
+    
+    @Bean
     AnimalDeathEvaluationController animalDeathEvaluationController() {
-        return new AnimalDeathEvaluationController();
+        return new AnimalDeathEvaluationController(animalUpdateDyingMeasures(), animalDeathPredicates());
     }
     
     @Bean
