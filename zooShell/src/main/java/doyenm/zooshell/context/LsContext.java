@@ -3,12 +3,14 @@ package doyenm.zooshell.context;
 import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Diet;
+import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +25,12 @@ public class LsContext {
     private final Zoo zoo;
 
     public List<String> getPaddockNames() {
-        return new ArrayList<>(this.getZoo().getPaddocks().keySet());
+        return new ArrayList<>(
+                getZoo().getPaddocks().values()
+                .stream()
+                .map(paddock -> paddock.getName())
+                .collect(Collectors.toList())
+        );
     }
 
     public List<String> getSpecieNames() {
