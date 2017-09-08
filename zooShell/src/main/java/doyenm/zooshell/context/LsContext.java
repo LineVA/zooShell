@@ -3,12 +3,14 @@ package doyenm.zooshell.context;
 import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Diet;
+import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -23,19 +25,39 @@ public class LsContext {
     private final Zoo zoo;
 
     public List<String> getPaddockNames() {
-        return new ArrayList<>(this.getZoo().getPaddocks().keySet());
+        return new ArrayList<>(
+                getZoo().getPaddocks().values()
+                .stream()
+                .map(paddock -> paddock.getName())
+                .collect(Collectors.toList())
+        );
     }
 
     public List<String> getSpecieNames() {
-        return new ArrayList<>(this.getZoo().getSpecies().keySet());
+        return new ArrayList<>(
+                getZoo().getSpecies().values()
+                .stream()
+                .map(specie -> specie.getNames().getName())
+                .collect(Collectors.toList())
+        );
     }
 
     public List<String> getAnimalNames() {
-        return new ArrayList<>(this.getZoo().getAnimals().keySet());
+        return new ArrayList<>(
+                getZoo().getAnimals().values()
+                .stream()
+                .map(animal -> animal.getName())
+                .collect(Collectors.toList())
+        );
     }
-    
+
     public List<String> getKeeperNames() {
-        return new ArrayList<>(this.getZoo().getKeepers().keySet());
+        return new ArrayList<>(
+                getZoo().getKeepers().values()
+                .stream()
+                .map(keeper -> keeper.getName())
+                .collect(Collectors.toList())
+        );
     }
 
     public List<String> getSexes() {
@@ -57,7 +79,7 @@ public class LsContext {
     public List<String> getBiomes() {
         List<String> list = new ArrayList<>();
         for (Biome biome : Biome.values()) {
-            list.add(biome.getId() + " - " +  biome.toString());
+            list.add(biome.getId() + " - " + biome.toString());
         }
         return list;
     }
@@ -77,8 +99,8 @@ public class LsContext {
         }
         return list;
     }
-    
-     public List<String> getTasks() {
+
+    public List<String> getTasks() {
         List<String> list = new ArrayList<>();
         for (TaskType task : TaskType.values()) {
             list.add(task.getId() + " - " + task.toString());
