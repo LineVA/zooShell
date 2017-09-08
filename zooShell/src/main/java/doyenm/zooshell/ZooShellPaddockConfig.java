@@ -122,7 +122,7 @@ public class ZooShellPaddockConfig {
 
     @Bean
     PaddockEntryCreationValidator paddockEntryCreationValidator() {
-        return new PaddockEntryCreationValidator();
+        return new PaddockEntryCreationValidator(findPaddock);
     }
 
     @Bean
