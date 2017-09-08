@@ -51,6 +51,11 @@ public class ZooShellPredicatesConfig {
     }
 
     @Bean
+     DoubleValuesPredicates doubleValuesPredicates(){
+         return new DoubleValuesPredicates();
+     }
+    
+    @Bean
     IntegerValuePredicates integerValuePredicates() {
         return new IntegerValuePredicates();
     }
