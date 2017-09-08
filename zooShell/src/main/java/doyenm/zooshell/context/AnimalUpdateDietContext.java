@@ -2,6 +2,7 @@ package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
+import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,6 +31,10 @@ public class AnimalUpdateDietContext {
     public void build() {
         this.getConvertedAnimal().setDiets(diffLists());
         this.getZoo().getAnimals().replace(this.getAnimal(), this.getConvertedAnimal());
+    }
+    
+    public Position getEntry(){
+        return getConvertedAnimal().getPaddock().getEntry();
     }
 
     private List<Diet> diffLists() {

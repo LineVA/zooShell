@@ -1,15 +1,10 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
 import doyenm.zooshell.context.AnimalUpdateDietContext;
-import doyenm.zooshell.validator.context.FindingAnimalContext;
-import doyenm.zooshell.validator.context.FindingContraceptionContext;
 import doyenm.zooshell.validator.context.FindingDietContext;
-import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingDietFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -26,9 +21,9 @@ public class AnimalUpdateDietValidator implements Predicate<AnimalUpdateDietCont
     public boolean test(AnimalUpdateDietContext t) {
         AnimalUpdateDietContext context = t;
         context = retrieveAnimal(context);
-       context = retrieveDiet(context);
+        context = retrieveDiet(context);
         if (t.getConvertedAnimal() != null && t.getConvertedDiets() != null) {
-            return t.getConvertedDiets().size() == t.getDiets().size() && t.getConvertedAnimal().getPaddock().getEntry() != null;
+            return t.getConvertedDiets().size() == t.getDiets().size() && t.getEntry() != null;
         }
         return false;
     }
@@ -39,15 +34,17 @@ public class AnimalUpdateDietValidator implements Predicate<AnimalUpdateDietCont
     }
 
     private AnimalUpdateDietContext retrieveDiet(AnimalUpdateDietContext t) {
-        t.getConvertedDiets().addAll(
-                t.getDiets()
-                .stream()
-                .map((String t1) -> new FindingDietContext(t1))
-                .map(findingDietFunction)
-                .map((FindingDietContext t1) -> t1.getConvertedDiet())
-                .filter(e -> e != null)
-                .collect(Collectors.toList())
-        );
+        if (t.getConvertedDiets() != null) {
+            t.getConvertedDiets().addAll(
+                    t.getDiets()
+                    .stream()
+                    .map((String t1) -> new FindingDietContext(t1))
+                    .map(findingDietFunction)
+                    .map((FindingDietContext t1) -> t1.getConvertedDiet())
+                    .filter(e -> e != null)
+                    .collect(Collectors.toList())
+            );
+        }
         return t;
     }
 }
