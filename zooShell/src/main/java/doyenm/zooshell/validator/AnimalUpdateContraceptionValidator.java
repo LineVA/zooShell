@@ -1,8 +1,6 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.validator.context.FindingAnimalContext;
 import doyenm.zooshell.validator.context.FindingContraceptionContext;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
 import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;

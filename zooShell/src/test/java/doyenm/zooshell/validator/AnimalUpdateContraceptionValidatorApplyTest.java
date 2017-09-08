@@ -5,7 +5,6 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.context.FindingContraceptionContext;
-import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
 import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;

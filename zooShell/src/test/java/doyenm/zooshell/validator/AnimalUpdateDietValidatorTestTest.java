@@ -3,17 +3,15 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.AnimalUpdateDietContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
-import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.validator.context.FindingDietContext;
+import doyenm.zooshell.validator.function.FindingDietFunction;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -23,112 +21,117 @@ import org.mockito.Mockito;
  */
 public class AnimalUpdateDietValidatorTestTest {
 
-    private Position givenPosition() {
-        return Mockito.mock(Position.class);
-    }
-
-    private Paddock givenPaddockWithEntry(Position entry) {
-        Paddock pad = Mockito.mock(Paddock.class);
-        Mockito.when(pad.getEntry()).thenReturn(entry);
-        return pad;
-    }
-
-    private Animal givenAnimalWithPaddock(Paddock pad) {
-        Animal animal = Mockito.mock(Animal.class);
-        Mockito.when(animal.getPaddock()).thenReturn(pad);
-        Mockito.when(animal.getName()).thenReturn(RandomStringUtils.randomAlphabetic(10));
-        return animal;
-    }
-
-    private Zoo givenZooWithAnimals(Animal animal) {
-        Zoo zoo = Mockito.mock(Zoo.class);
-        Map<String, Animal> animals = new HashMap<>();
-        animals.put(animal.getName(), animal);
-        Mockito.when(zoo.getAnimals()).thenReturn(animals);
-        return zoo;
-    }
-
-    private AnimalUpdateDietContext givenContextWithZooAnimalAndDiets(Zoo zoo, Animal animal, List<Diet> diet) {
+    private AnimalUpdateDietContext givenContext(Animal animal, Position position, List<Diet> diets, List<String> dietsStr) {
         AnimalUpdateDietContext context = Mockito.mock(AnimalUpdateDietContext.class);
         Mockito.when(context.getConvertedAnimal()).thenReturn(animal);
+        Mockito.when(context.getEntry()).thenReturn(position);
+        Zoo zoo = Mockito.mock(Zoo.class);
         Mockito.when(context.getZoo()).thenReturn(zoo);
-        Mockito.when(context.getConvertedDiets()).thenReturn(new ArrayList<>()).thenReturn(diet);
-        Mockito.when(context.getAnimal()).thenReturn(RandomStringUtils.randomAlphabetic(10));
-        Mockito.when(context.getDiets()).thenReturn(Arrays.asList(RandomStringUtils.randomAlphabetic(10)));
+        Mockito.when(context.getConvertedDiets()).thenReturn(diets);
+        Mockito.when(context.getDiets()).thenReturn(dietsStr);
         return context;
     }
 
-    @Test
-    @Ignore
-    public void shouldReturnTrueWhenTheAnimalAndTheDietExistAndTheCorrespondingPaddockHasAnEntry() {
-        // Given
-        Position position = givenPosition();
-        Paddock paddock = givenPaddockWithEntry(position);
-        Diet diet = Diet.NECTARIVOROUS;
-        Animal animal = givenAnimalWithPaddock(paddock);
-        Zoo zoo = givenZooWithAnimals(animal);
-        List<Diet> diets = new ArrayList<>();
-        diets.add(diet);
-        AnimalUpdateDietContext context = givenContextWithZooAnimalAndDiets(zoo, animal, diets);
-        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(null, null);
-        // When
-        boolean result = validator.test(context);
-        // Then
-        Assertions.assertThat(result).isTrue();
+    private FindingDietFunction givenFindingDiet() {
+        FindingDietFunction mock = Mockito.mock(FindingDietFunction.class);
+        FindingDietContext context = Mockito.mock(FindingDietContext.class);
+        Mockito.when(context.getConvertedDiet()).thenReturn(null);
+        Mockito.when(mock.apply(Mockito.anyObject())).thenReturn(context);
+        return mock;
     }
 
-    @Ignore
-    @Test
-    public void shouldReturnFalseWhenTheAnimalAndTheDietExistAndTheCorrepsondingPaddockHasNoEntry() {
-        // Given
-        Position position = null;
-        Paddock paddock = givenPaddockWithEntry(position);
-        Diet diet = Diet.NECTARIVOROUS;
-        Animal animal = givenAnimalWithPaddock(paddock);
-        Zoo zoo = givenZooWithAnimals(animal);
-        List<Diet> diets = new ArrayList<>();
-        diets.add(diet);
-        AnimalUpdateDietContext context = givenContextWithZooAnimalAndDiets(zoo, animal, diets);
-        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(null, null);
-        // When
-        boolean result = validator.test(context);
-        // Then
-        Assertions.assertThat(result).isFalse();
+    private FindAnimal givenFindAnimal() {
+        FindAnimal mock = Mockito.mock(FindAnimal.class);
+        return mock;
     }
 
     @Test
-    @Ignore
-    public void shouldReturnFalseWhenTheAnimalExistsButNotTheDiet() {
+    public void shouldReturnTrueWhenTheAnimalTheDietAndTheCorrespondingPaddockExist() {
         // Given
-        Position position = givenPosition();
-        Paddock paddock = givenPaddockWithEntry(position);
-        Diet diet = null;
-        Animal animal = givenAnimalWithPaddock(paddock);
-        Zoo zoo = givenZooWithAnimals(animal);
-        List<Diet> diets = new ArrayList<>();
-        diets.add(diet);
-        AnimalUpdateDietContext context = givenContextWithZooAnimalAndDiets(zoo, animal, diets);
-        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(null, null);
+        FindingDietFunction findingDietFunction = givenFindingDiet();
+        FindAnimal findAnimal = givenFindAnimal();
+        AnimalUpdateDietContext context = givenContext(
+                Mockito.mock(Animal.class), 
+                Mockito.mock(Position.class),
+                new ArrayList<Diet>(),
+                new ArrayList<String>());
+        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(findingDietFunction, findAnimal);
         // When
         boolean result = validator.test(context);
         // Then
-        Assertions.assertThat(result).isFalse();
+        Assertions.assertThat(result)
+                .isTrue();
     }
 
-    @Test
-    @Ignore
-    public void shouldReturnFalseWhenTheDietExistsButNotTheAnimal() {
+ @Test
+    public void shouldReturnFalseWhenTheAnimalDoesNotExist() {
         // Given
-        Diet diet = Diet.NECTARIVOROUS;
-        Animal animal = null;
-        Zoo zoo = givenZooWithAnimals(animal);
-        List<Diet> diets = new ArrayList<>();
-        diets.add(diet);
-        AnimalUpdateDietContext context = givenContextWithZooAnimalAndDiets(zoo, animal, diets);
-        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(null, null);
+        FindingDietFunction findingDietFunction = givenFindingDiet();
+        FindAnimal findAnimal = givenFindAnimal();
+        AnimalUpdateDietContext context = givenContext(
+                null, 
+                Mockito.mock(Position.class),
+                new ArrayList<Diet>(),
+                new ArrayList<String>());
+        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(findingDietFunction, findAnimal);
         // When
         boolean result = validator.test(context);
         // Then
-        Assertions.assertThat(result).isFalse();
+        Assertions.assertThat(result)
+                .isFalse();
+    }
+    
+    @Test
+    public void shouldReturnFalseWhenThereIsNoEntryInThePaddockOfTheAnimal() {
+        // Given
+        FindingDietFunction findingDietFunction = givenFindingDiet();
+        FindAnimal findAnimal = givenFindAnimal();
+        AnimalUpdateDietContext context = givenContext(
+                Mockito.mock(Animal.class), 
+               null,
+                new ArrayList<Diet>(),
+                new ArrayList<String>());
+        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(findingDietFunction, findAnimal);
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result)
+                .isFalse();
+    }
+    
+     @Test
+    public void shouldReturnFalseWhenTheConvertedDietsAreNull() {
+        // Given
+        FindingDietFunction findingDietFunction = givenFindingDiet();
+        FindAnimal findAnimal = givenFindAnimal();
+        AnimalUpdateDietContext context = givenContext(
+                Mockito.mock(Animal.class), 
+                Mockito.mock(Position.class),
+                null, 
+                new ArrayList<String>());
+        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(findingDietFunction, findAnimal);
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result)
+                .isFalse();
+    }
+    
+     @Test
+    public void shouldReturnFalseWhenSomeOfTheRequestedDietsDoNotExist() {
+        // Given
+        FindingDietFunction findingDietFunction = givenFindingDiet();
+        FindAnimal findAnimal = givenFindAnimal();
+        AnimalUpdateDietContext context = givenContext(
+                Mockito.mock(Animal.class), 
+                Mockito.mock(Position.class),
+                new ArrayList<Diet>(),
+                Arrays.asList(RandomStringUtils.randomAlphabetic(10)));
+        AnimalUpdateDietValidator validator = new AnimalUpdateDietValidator(findingDietFunction, findAnimal);
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result)
+                .isFalse();
     }
 }

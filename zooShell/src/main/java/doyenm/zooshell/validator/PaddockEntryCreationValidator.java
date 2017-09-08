@@ -1,37 +1,29 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.validator.context.FindingPaddockContext;
 import doyenm.zooshell.context.PaddockEntryCreationContext;
-import doyenm.zooshell.validator.function.FindingPaddockByNameFunction;
-import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class PaddockEntryCreationValidator
         implements Predicate<PaddockEntryCreationContext> {
 
-    StringLengthPredicates stringLengthPredicates = new StringLengthPredicates();
-    UniquenessNamesBiPredicates uniquenessNamesBiPredicates = new UniquenessNamesBiPredicates();
-    IntegerValuePredicates integerValuePredicates = new IntegerValuePredicates();
-    FindingPaddockByNameFunction findingPaddockByNameFunction = new FindingPaddockByNameFunction();
+    private final FindPaddock findPaddock;
 
     @Override
     public boolean test(PaddockEntryCreationContext t) {
         PaddockEntryCreationContext context = t;
         context.convert();
-        FindingPaddockContext findingContext = new FindingPaddockContext(context.getPaddocksMap(), context.getPaddock().toUpperCase());
-        context.setConvertedPaddock(Stream.of(findingContext)
-                .map(findingPaddockByNameFunction)
-                .findFirst()
-                .get()
-                .getPaddock());
+       t = retrievePaddock(t);
         return context.getConvertedPaddock() != null;
     }
 
+      private PaddockEntryCreationContext retrievePaddock(PaddockEntryCreationContext t) {
+        t.setConvertedPaddock(findPaddock.find(t.getZoo(), t.getPaddock()));
+        return t;
+    }
 }
