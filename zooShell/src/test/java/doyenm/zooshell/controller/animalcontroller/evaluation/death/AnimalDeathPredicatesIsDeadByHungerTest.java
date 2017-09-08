@@ -21,7 +21,7 @@ public class AnimalDeathPredicatesIsDeadByHungerTest {
     public void shouldReturnTrueWhenTheAnimalIsStarvingForThreeTurns() {
         // Given
         Animal animal = givenAnimalWithHungerDays(3);
-        AnimalDeathPredicates predicate = new AnimalDeathPredicates();
+        AnimalDeathPredicates predicate = new AnimalDeathPredicates(3);
         // When
         boolean result = predicate.isDeadByHunger(animal);
         // Then
@@ -32,7 +32,7 @@ public class AnimalDeathPredicatesIsDeadByHungerTest {
     public void shouldReturnTrueWhenTheAnimalIsStarvingForFourTurns() {
         // Given
         Animal animal = givenAnimalWithHungerDays(4);
-        AnimalDeathPredicates predicate = new AnimalDeathPredicates();
+        AnimalDeathPredicates predicate = new AnimalDeathPredicates(3);
         // When
         boolean result = predicate.isDeadByHunger(animal);
         // Then
@@ -43,7 +43,7 @@ public class AnimalDeathPredicatesIsDeadByHungerTest {
     public void shouldReturnFalseWhenTheAnimalIsStarvingForTwoTurns() {
         // Given
         Animal animal = givenAnimalWithHungerDays(2);
-        AnimalDeathPredicates predicate = new AnimalDeathPredicates();
+        AnimalDeathPredicates predicate = new AnimalDeathPredicates(3);
         // When
         boolean result = predicate.isDeadByHunger(animal);
         // Then

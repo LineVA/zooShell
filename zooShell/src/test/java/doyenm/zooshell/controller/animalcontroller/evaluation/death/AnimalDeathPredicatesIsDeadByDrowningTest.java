@@ -21,7 +21,7 @@ public class AnimalDeathPredicatesIsDeadByDrowningTest {
     public void shouldReturnTrueWhenTheAnimalIsDrowningForThreeTurns() {
         // Given
         Animal animal = givenAnimalWithDrowningDays(3);
-        AnimalDeathPredicates predicate = new AnimalDeathPredicates();
+        AnimalDeathPredicates predicate = new AnimalDeathPredicates(3);
         // When
         boolean result = predicate.isDeadByDrowning(animal);
         // Then
@@ -32,7 +32,7 @@ public class AnimalDeathPredicatesIsDeadByDrowningTest {
     public void shouldReturnTrueWhenTheAnimalIsDrowningForFourTurns() {
         // Given
         Animal animal = givenAnimalWithDrowningDays(4);
-        AnimalDeathPredicates predicate = new AnimalDeathPredicates();
+        AnimalDeathPredicates predicate = new AnimalDeathPredicates(3);
         // When
         boolean result = predicate.isDeadByDrowning(animal);
         // Then
@@ -43,7 +43,7 @@ public class AnimalDeathPredicatesIsDeadByDrowningTest {
     public void shouldReturnFalseWhenTheAnimalIsDrowningForTwoTurns() {
         // Given
         Animal animal = givenAnimalWithDrowningDays(2);
-        AnimalDeathPredicates predicate = new AnimalDeathPredicates();
+        AnimalDeathPredicates predicate = new AnimalDeathPredicates(3);
         // When
         boolean result = predicate.isDeadByDrowning(animal);
         // Then

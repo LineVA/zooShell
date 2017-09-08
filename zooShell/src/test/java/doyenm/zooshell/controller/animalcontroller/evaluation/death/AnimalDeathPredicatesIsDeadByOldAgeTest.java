@@ -2,8 +2,8 @@ package doyenm.zooshell.controller.animalcontroller.evaluation.death;
 
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.LifespanAttributes;
-import doyenm.zooshell.model.ReproductionAttributes;
 import doyenm.zooshell.model.Sex;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -27,7 +27,7 @@ public class AnimalDeathPredicatesIsDeadByOldAgeTest {
     public void shouldReturnTrueWhenTheAnimalIsOlderThanItsLifespan() {
         // Given
         Animal animal = givenAnimalWithAgeAndLifespan(10, 5);
-        AnimalDeathPredicates predicate = new AnimalDeathPredicates();
+        AnimalDeathPredicates predicate = new AnimalDeathPredicates(RandomUtils.nextInt());
         // When
         boolean result = predicate.isDeadByOldAge(animal);
         // Then
@@ -38,7 +38,7 @@ public class AnimalDeathPredicatesIsDeadByOldAgeTest {
     public void shouldReturnTrueWhenTheANimalIsTheSameAgeAsItsLifespan() {
         // Given
         Animal animal = givenAnimalWithAgeAndLifespan(5, 5);
-        AnimalDeathPredicates predicate = new AnimalDeathPredicates();
+        AnimalDeathPredicates predicate = new AnimalDeathPredicates(RandomUtils.nextInt());
         // When
         boolean result = predicate.isDeadByOldAge(animal);
         // Then
@@ -49,7 +49,7 @@ public class AnimalDeathPredicatesIsDeadByOldAgeTest {
     public void shouldReturnFalseWhenTheANimalIsYoungerThanItsLifespan() {
         // Given
         Animal animal = givenAnimalWithAgeAndLifespan(10, 15);
-        AnimalDeathPredicates predicate = new AnimalDeathPredicates();
+        AnimalDeathPredicates predicate = new AnimalDeathPredicates(RandomUtils.nextInt());
         // When
         boolean result = predicate.isDeadByOldAge(animal);
         // Then
