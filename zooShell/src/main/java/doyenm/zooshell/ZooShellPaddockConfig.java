@@ -127,7 +127,7 @@ public class ZooShellPaddockConfig {
 
     @Bean
     PaddockExtensionCreationValidator paddockExtensionCreationValidator() {
-        return new PaddockExtensionCreationValidator();
+        return new PaddockExtensionCreationValidator(findPaddock);
     }
 
     @Bean

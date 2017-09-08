@@ -1,33 +1,32 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.PaddockExtensionCreationContext;
-import doyenm.zooshell.validator.context.FindingPaddockContext;
-import doyenm.zooshell.validator.function.FindingPaddockByNameFunction;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class PaddockExtensionCreationValidator
         implements Predicate<PaddockExtensionCreationContext> {
 
-    FindingPaddockByNameFunction findingPaddockByNameFunction = new FindingPaddockByNameFunction();
-    
+    private final FindPaddock findPaddock;
+
     @Override
     public boolean test(PaddockExtensionCreationContext t) {
         t.convert();
-        FindingPaddockContext findingPaddockContext = new FindingPaddockContext(t.getZoo().getPaddocks(), t.getPaddock().toUpperCase());
-        t.setConvertedPaddock(Stream.of(findingPaddockContext)
-                .map(findingPaddockByNameFunction)
-                .findFirst()
-                .get()
-                .getPaddock());
+        t = retrievePaddock(t);
         if (t.getConvertedPaddock() != null) {
             return t.getConvertedPaddock().getEntry() != null;
         }
         return false;
+    }
+
+    private PaddockExtensionCreationContext retrievePaddock(PaddockExtensionCreationContext t) {
+        t.setConvertedPaddock(findPaddock.find(t.getZoo(), t.getPaddock()));
+        return t;
     }
 
 }
