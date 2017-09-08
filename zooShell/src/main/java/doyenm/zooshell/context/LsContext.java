@@ -43,7 +43,7 @@ public class LsContext {
     }
 
     public List<String> getAnimalNames() {
-         return new ArrayList<>(
+        return new ArrayList<>(
                 getZoo().getAnimals().values()
                 .stream()
                 .map(animal -> animal.getName())
@@ -52,7 +52,12 @@ public class LsContext {
     }
 
     public List<String> getKeeperNames() {
-        return new ArrayList<>(this.getZoo().getKeepers().keySet());
+        return new ArrayList<>(
+                getZoo().getKeepers().values()
+                .stream()
+                .map(keeper -> keeper.getName())
+                .collect(Collectors.toList())
+        );
     }
 
     public List<String> getSexes() {
