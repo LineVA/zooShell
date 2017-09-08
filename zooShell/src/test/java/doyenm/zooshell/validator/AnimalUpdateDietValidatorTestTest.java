@@ -3,16 +3,13 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.AnimalUpdateDietContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
-import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.context.FindingDietContext;
 import doyenm.zooshell.validator.function.FindingDietFunction;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -32,8 +29,6 @@ public class AnimalUpdateDietValidatorTestTest {
         Mockito.when(context.getZoo()).thenReturn(zoo);
         Mockito.when(context.getConvertedDiets()).thenReturn(diets);
         Mockito.when(context.getDiets()).thenReturn(dietsStr);
-//        Mockito.when(context.getAnimal()).thenReturn(RandomStringUtils.randomAlphabetic(10));
-//        Mockito.when(context.getDiets()).thenReturn(Arrays.asList(RandomStringUtils.randomAlphabetic(10)));
         return context;
     }
 
