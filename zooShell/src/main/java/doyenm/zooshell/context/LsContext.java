@@ -34,13 +34,18 @@ public class LsContext {
     }
 
     public List<String> getSpecieNames() {
-        return new ArrayList<>(this.getZoo().getSpecies().keySet());
+        return new ArrayList<>(
+                getZoo().getSpecies().values()
+                .stream()
+                .map(specie -> specie.getNames().getName())
+                .collect(Collectors.toList())
+        );
     }
 
     public List<String> getAnimalNames() {
         return new ArrayList<>(this.getZoo().getAnimals().keySet());
     }
-    
+
     public List<String> getKeeperNames() {
         return new ArrayList<>(this.getZoo().getKeepers().keySet());
     }
@@ -64,7 +69,7 @@ public class LsContext {
     public List<String> getBiomes() {
         List<String> list = new ArrayList<>();
         for (Biome biome : Biome.values()) {
-            list.add(biome.getId() + " - " +  biome.toString());
+            list.add(biome.getId() + " - " + biome.toString());
         }
         return list;
     }
@@ -84,8 +89,8 @@ public class LsContext {
         }
         return list;
     }
-    
-     public List<String> getTasks() {
+
+    public List<String> getTasks() {
         List<String> list = new ArrayList<>();
         for (TaskType task : TaskType.values()) {
             list.add(task.getId() + " - " + task.toString());
