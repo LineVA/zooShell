@@ -20,10 +20,15 @@ import lombok.Setter;
 public class LsWithCriteriaContext {
 
     private final Zoo zoo;
-    private final List<String> dietsExpression;
+    private List<String> dietsExpression;
     
     private List<String> diets = new ArrayList<>();
     private Map<String, Diet> convertedDiets = new HashMap<>();
     
     private List<String> animalsList = new ArrayList<>(); 
+
+    public LsWithCriteriaContext(Zoo zoo, List<String> expression) {
+        this.zoo = zoo;
+        this.dietsExpression = expression;
+    }
 }
