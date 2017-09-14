@@ -21,11 +21,23 @@ public class LsWithCriteriaParser {
             }
         }
         context.setDietsExpression(replaceNot(context.getDietsExpression()));
+        context.setDietsExpression(replaceOr(context.getDietsExpression()));
+        context.setDietsExpression(replaceAnd(context.getDietsExpression()));
         return context;
     }
 
     private static List<String> replaceNot(List<String> expression) {
         Collections.replaceAll(expression, "not", "!");
+        return expression;
+    }
+
+    private static List<String> replaceOr(List<String> expression) {
+        Collections.replaceAll(expression, "or", "||");
+        return expression;
+    }
+
+    private static List<String> replaceAnd(List<String> expression) {
+        Collections.replaceAll(expression, "and", "&&");
         return expression;
     }
 }
