@@ -9,7 +9,7 @@ import doyenm.zooshell.context.LsWithCriteriaContext;
 import doyenm.zooshell.controller.animalcontroller.LsAnimalsWithCriteriaController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
-import doyenm.zooshell.validator.AnimalsListWithCriteriaValidator;
+import doyenm.zooshell.validator.criteria.AnimalsListWithDietCriteriaValidator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LsAnimalsWithCriteria implements Command {
 
-    private final AnimalsListWithCriteriaValidator validator;
+    private final AnimalsListWithDietCriteriaValidator validator;
     private final LsAnimalsWithCriteriaController controller;
 
     @Override

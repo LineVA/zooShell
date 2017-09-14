@@ -14,7 +14,7 @@ import doyenm.zooshell.validator.AnimalUpdateDietValidator;
 import doyenm.zooshell.validator.AnimalUpdateFastDaysValidator;
 import doyenm.zooshell.validator.AnimalUpdateFoodQuantityValidator;
 import doyenm.zooshell.validator.AnimalValidator;
-import doyenm.zooshell.validator.AnimalsListWithCriteriaValidator;
+import doyenm.zooshell.validator.criteria.AnimalsListWithDietCriteriaValidator;
 import doyenm.zooshell.validator.FindAnimal;
 import doyenm.zooshell.validator.FindPaddock;
 import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
@@ -213,8 +213,8 @@ public class ZooShellAnimalConfig {
     }
 
     @Bean 
-    AnimalsListWithCriteriaValidator animalsListWithCriteriaValidator(){
-        return new AnimalsListWithCriteriaValidator(findingDietFunction);
+    AnimalsListWithDietCriteriaValidator animalsListWithCriteriaValidator(){
+        return new AnimalsListWithDietCriteriaValidator(findingDietFunction);
     }
     
     // Commands
