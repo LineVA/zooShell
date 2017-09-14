@@ -1,4 +1,4 @@
-package doyenm.zooshell.validator;
+package doyenm.zooshell.validator.parser;
 
 import doyenm.zooshell.context.LsWithCriteriaContext;
 import java.util.Arrays;

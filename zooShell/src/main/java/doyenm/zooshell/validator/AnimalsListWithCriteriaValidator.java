@@ -1,5 +1,6 @@
 package doyenm.zooshell.validator;
 
+import doyenm.zooshell.validator.parser.LsWithCriteriaParser;
 import doyenm.zooshell.context.LsWithCriteriaContext;
 import doyenm.zooshell.validator.context.FindingDietContext;
 import doyenm.zooshell.validator.function.FindingDietFunction;
