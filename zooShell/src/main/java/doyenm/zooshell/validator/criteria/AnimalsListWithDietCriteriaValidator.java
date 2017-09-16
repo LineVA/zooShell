@@ -18,7 +18,7 @@ public class AnimalsListWithDietCriteriaValidator implements Predicate<LsWithCri
 
     private final FindingDietFunction findingDietFunction;
 
-    private final List<String> excluded = Arrays.asList("and", "or", "not", "(", ")");
+    private final List<String> excluded = Arrays.asList("AND", "OR", "NOT", "(", ")");
 
     @Override
     public boolean test(LsWithCriteriaContext t) {

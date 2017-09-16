@@ -1,6 +1,5 @@
 package doyenm.zooshell.validator.criteria;
 
-import doyenm.zooshell.context.LsWithCriteriaContext;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +13,7 @@ public class LsWithCriteriaParser {
     public static List<String> parse(List<String> init, List<String> excluded) {
         List<String> result = new ArrayList<>();
         for (String str : init) {
-            if (!excluded.contains(str)) {
+            if (!excluded.contains(str.toUpperCase())) {
                 result.add(str);
             }
         }
@@ -22,6 +21,7 @@ public class LsWithCriteriaParser {
     }
     
     public static List<String> replaceGrammaticalExpression(List<String> init){
+       init.replaceAll(String::toUpperCase);
         replaceAnd(init);
         replaceNot(init);
         replaceOr(init);
@@ -29,17 +29,17 @@ public class LsWithCriteriaParser {
     }
 
     private static List<String> replaceNot(List<String> expression) {
-        Collections.replaceAll(expression, "not", "!");
+        Collections.replaceAll(expression, "NOT", "!" );
         return expression;
     }
 
     private static List<String> replaceOr(List<String> expression) {
-        Collections.replaceAll(expression, "or", "||");
+        Collections.replaceAll(expression, "OR", "||");
         return expression;
     }
 
     private static List<String> replaceAnd(List<String> expression) {
-        Collections.replaceAll(expression, "and", "&&");
+        Collections.replaceAll(expression, "AND", "&&");
         return expression;
     }
 }
