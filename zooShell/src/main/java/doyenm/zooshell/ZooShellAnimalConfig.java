@@ -5,6 +5,7 @@ import doyenm.zooshell.commandLine.commandImpl.ls.LsContraceptionMethod;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsDiet;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsSex;
 import doyenm.zooshell.controller.animalcontroller.*;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithDietCriteriaController;
 import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.validator.AnimalChangeNameValidator;
 import doyenm.zooshell.validator.AnimalChangePaddockValidator;
@@ -105,8 +106,13 @@ public class ZooShellAnimalConfig {
     }
     
     @Bean
+    AnimalsWithDietCriteriaController animalsWithDietCriteriaController(){
+        return new AnimalsWithDietCriteriaController();
+    }
+    
+    @Bean
     LsAnimalsWithCriteriaController lsAnimalsWithCriteriaController(){
-        return new LsAnimalsWithCriteriaController();
+        return new LsAnimalsWithCriteriaController(animalsWithDietCriteriaController());
     }
 
     // Predicates
