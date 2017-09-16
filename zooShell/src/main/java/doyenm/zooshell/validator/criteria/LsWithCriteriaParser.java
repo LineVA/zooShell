@@ -1,7 +1,7 @@
 package doyenm.zooshell.validator.criteria;
 
 import doyenm.zooshell.context.LsWithCriteriaContext;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,19 +11,21 @@ import java.util.List;
  */
 public class LsWithCriteriaParser {
 
-    private final static List<String> excluded = Arrays.asList("and", "or", "not", "(", ")");
-
-    public static LsWithCriteriaContext parse(LsWithCriteriaContext t) {
-        LsWithCriteriaContext context = t;
-        for (String str : context.getDietsExpression()) {
+    public static List<String> parse(List<String> init, List<String> excluded) {
+        List<String> result = new ArrayList<>();
+        for (String str : init) {
             if (!excluded.contains(str)) {
-                context.getDiets().add(str);
+                result.add(str);
             }
         }
-        context.setDietsExpression(replaceNot(context.getDietsExpression()));
-        context.setDietsExpression(replaceOr(context.getDietsExpression()));
-        context.setDietsExpression(replaceAnd(context.getDietsExpression()));
-        return context;
+        return result;
+    }
+    
+    public static List<String> replaceGrammaticalExpression(List<String> init){
+        replaceAnd(init);
+        replaceNot(init);
+        replaceOr(init);
+        return init;
     }
 
     private static List<String> replaceNot(List<String> expression) {

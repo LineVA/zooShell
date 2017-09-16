@@ -4,6 +4,8 @@ import doyenm.zooshell.validator.criteria.LsWithCriteriaParser;
 import doyenm.zooshell.context.LsWithCriteriaContext;
 import doyenm.zooshell.validator.context.FindingDietContext;
 import doyenm.zooshell.validator.function.FindingDietFunction;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
 
@@ -15,21 +17,24 @@ import lombok.RequiredArgsConstructor;
 public class AnimalsListWithDietCriteriaValidator implements Predicate<LsWithCriteriaContext> {
 
     private final FindingDietFunction findingDietFunction;
-    
+
+    private final List<String> excluded = Arrays.asList("and", "or", "not", "(", ")");
+
     @Override
     public boolean test(LsWithCriteriaContext t) {
         LsWithCriteriaContext context = t;
-        context = LsWithCriteriaParser.parse(context);
+        context.getDiets().addAll(LsWithCriteriaParser.parse(context.getDietsExpression(), excluded));
+        context.setDietsExpression(LsWithCriteriaParser.replaceGrammaticalExpression(context.getDietsExpression()));
         context = retrieveDiet(context);
-        if (context.getConvertedDiets()!= null) {
+        if (context.getConvertedDiets() != null) {
             return context.getDiets().size() == context.getConvertedDiets().size();
         }
         return false;
     }
 
     private LsWithCriteriaContext retrieveDiet(LsWithCriteriaContext t) {
-        if (t.getDiets()!= null) {
-                    t.getDiets()
+        if (t.getDiets() != null) {
+            t.getDiets()
                     .stream()
                     .map((String t1) -> new FindingDietContext(t1))
                     .map(findingDietFunction)
