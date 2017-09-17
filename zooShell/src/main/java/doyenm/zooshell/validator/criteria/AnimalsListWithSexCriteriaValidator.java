@@ -27,7 +27,7 @@ public class AnimalsListWithDietCriteriaValidator implements Predicate<LsWithCri
             context.getDiets().addAll(parser.parse(context.getDietsExpression(), excluded));
             context.setDietsExpression(parser.replaceGrammaticalExpression(context.getDietsExpression()));
             context = retrieveDiet(context);
-            if (context.getConvertedDiets() != null) {
+            if (context.getConvertedDiets() != null && context.getDiets() != null) {
                 return context.getDiets().size() == context.getConvertedDiets().size();
             }
             return false;
