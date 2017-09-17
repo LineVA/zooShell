@@ -19,6 +19,7 @@ import doyenm.zooshell.validator.AnimalsWithCriteria;
 import doyenm.zooshell.validator.criteria.AnimalsListWithDietCriteriaValidator;
 import doyenm.zooshell.validator.FindAnimal;
 import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.validator.criteria.LsWithCriteriaParser;
 import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
 import doyenm.zooshell.validator.function.FindingDietFunction;
@@ -218,10 +219,15 @@ public class ZooShellAnimalConfig {
     AnimalValidator animalValidator() {
         return new AnimalValidator();
     }
+    
+    @Bean
+    LsWithCriteriaParser lsWithCriteriaParser(){
+        return new LsWithCriteriaParser();
+    }
 
     @Bean 
     AnimalsListWithDietCriteriaValidator animalsListWithCriteriaValidator(){
-        return new AnimalsListWithDietCriteriaValidator(findingDietFunction);
+        return new AnimalsListWithDietCriteriaValidator(lsWithCriteriaParser(), findingDietFunction);
     }
     
     @Bean

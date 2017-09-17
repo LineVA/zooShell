@@ -14,9 +14,10 @@ public class LsWithCriteriaParserReplaceGrammaticalExpressionTest {
     @Test
     public void shouldReturnTheSameListWithTheAndOrNotReplaced() {
         // Given
+        LsWithCriteriaParser parser = new LsWithCriteriaParser();
         List<String> init = Arrays.asList("NOT", "not", "OR", "or", "AND", "And", ")");
         // When
-        List<String> result = LsWithCriteriaParser.replaceGrammaticalExpression(init);
+        List<String> result = parser.replaceGrammaticalExpression(init);
         // Then
         Assertions.assertThat(result).isNotNull();
         Assertions.assertThat(result).containsExactly("!", "!", "||", "||", "&&", "&&", ")");

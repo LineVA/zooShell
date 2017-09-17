@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AnimalsListWithDietCriteriaValidator implements Predicate<LsWithCriteriaContext> {
 
+    private final LsWithCriteriaParser parser;
     private final FindingDietFunction findingDietFunction;
 
     private final List<String> excluded = Arrays.asList("AND", "OR", "NOT", "(", ")");
@@ -22,26 +23,27 @@ public class AnimalsListWithDietCriteriaValidator implements Predicate<LsWithCri
     @Override
     public boolean test(LsWithCriteriaContext t) {
         LsWithCriteriaContext context = t;
-        context.getDiets().addAll(LsWithCriteriaParser.parse(context.getDietsExpression(), excluded));
-        context.setDietsExpression(LsWithCriteriaParser.replaceGrammaticalExpression(context.getDietsExpression()));
-        context = retrieveDiet(context);
-        if (context.getConvertedDiets() != null) {
-            return context.getDiets().size() == context.getConvertedDiets().size();
+        if (context.getDietsExpression() != null && !context.getDietsExpression().isEmpty() && context.getDiets() != null) {
+            context.getDiets().addAll(parser.parse(context.getDietsExpression(), excluded));
+            context.setDietsExpression(parser.replaceGrammaticalExpression(context.getDietsExpression()));
+            context = retrieveDiet(context);
+            if (context.getConvertedDiets() != null && context.getDiets() != null) {
+                return context.getDiets().size() == context.getConvertedDiets().size();
+            }
+            return false;
         }
-        return false;
+        return true;
     }
 
     private LsWithCriteriaContext retrieveDiet(LsWithCriteriaContext t) {
-        if (t.getDiets() != null) {
-            t.getDiets()
-                    .stream()
-                    .map((String t1) -> new FindingDietContext(t1))
-                    .map(findingDietFunction)
-                    .filter(e -> e.getConvertedDiet() != null)
-                    .forEach(e -> {
-                        t.getConvertedDiets().put(e.getDiet(), e.getConvertedDiet());
-                    });
-        }
+        t.getDiets()
+                .stream()
+                .map((String t1) -> new FindingDietContext(t1))
+                .map(findingDietFunction)
+                .filter(e -> e.getConvertedDiet() != null)
+                .forEach(e -> {
+                    t.getConvertedDiets().put(e.getDiet(), e.getConvertedDiet());
+                });
         return t;
     }
 }
