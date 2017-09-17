@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class LsWithCriteriaParser {
 
-    public static List<String> parse(List<String> init, List<String> excluded) {
+    public List<String> parse(List<String> init, List<String> excluded) {
         List<String> result = new ArrayList<>();
         for (String str : init) {
             if (!excluded.contains(str.toUpperCase())) {
@@ -20,7 +20,7 @@ public class LsWithCriteriaParser {
         return result;
     }
     
-    public static List<String> replaceGrammaticalExpression(List<String> init){
+    public List<String> replaceGrammaticalExpression(List<String> init){
        init.replaceAll(String::toUpperCase);
         replaceAnd(init);
         replaceNot(init);
@@ -28,17 +28,17 @@ public class LsWithCriteriaParser {
         return init;
     }
 
-    private static List<String> replaceNot(List<String> expression) {
+    private List<String> replaceNot(List<String> expression) {
         Collections.replaceAll(expression, "NOT", "!" );
         return expression;
     }
 
-    private static List<String> replaceOr(List<String> expression) {
+    private List<String> replaceOr(List<String> expression) {
         Collections.replaceAll(expression, "OR", "||");
         return expression;
     }
 
-    private static List<String> replaceAnd(List<String> expression) {
+    private List<String> replaceAnd(List<String> expression) {
         Collections.replaceAll(expression, "AND", "&&");
         return expression;
     }
