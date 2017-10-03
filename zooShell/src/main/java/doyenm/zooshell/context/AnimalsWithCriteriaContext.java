@@ -2,6 +2,7 @@ package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
+import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Sex;
 import java.util.List;
 import java.util.Map;
@@ -29,4 +30,9 @@ public class AnimalsWithCriteriaContext {
     private Sex currentSex;
     private List<String> sexExpressionList;
     private String sexExpression;
+
+    private final Map<String, Paddock> convertedPaddocks;
+    private Paddock currentPaddock;
+    private List<String> paddockExpressionList;
+    private String paddockExpression;
 }

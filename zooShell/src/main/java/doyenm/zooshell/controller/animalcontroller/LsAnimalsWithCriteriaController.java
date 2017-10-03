@@ -3,6 +3,7 @@ package doyenm.zooshell.controller.animalcontroller;
 import doyenm.zooshell.context.AnimalsWithCriteriaContext;
 import doyenm.zooshell.context.LsWithCriteriaContext;
 import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithDietCriteriaController;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithPaddockCriteriaController;
 import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSexCriteriaController;
 import doyenm.zooshell.model.Animal;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class LsAnimalsWithCriteriaController
 
     private final AnimalsWithDietCriteriaController animalsWithDietCriteriaController;
     private final AnimalsWithSexCriteriaController animalsWithSexCriteriaController;
+    private final AnimalsWithPaddockCriteriaController animalsWithPaddockCriteriaController;
 
     @Override
     public LsWithCriteriaContext apply(LsWithCriteriaContext t) {
@@ -35,14 +37,18 @@ public class LsAnimalsWithCriteriaController
                 .map(animal -> AnimalsWithCriteriaContext.builder()
                         .animal(animal)
                         .convertedDiets(context.getConvertedDiets())
-                        .dietExpressionList(context.getDietsExpression().isEmpty()?Arrays.asList("true"):context.getDietsExpression())
+                        .dietExpressionList(context.getDietsExpression().isEmpty() ? Arrays.asList("true") : context.getDietsExpression())
                         .convertedSexes(context.getConvertedSexes())
-                        .sexExpressionList(context.getSexesExpression().isEmpty()?Arrays.asList("true"):context.getSexesExpression())
+                        .sexExpressionList(context.getSexesExpression().isEmpty() ? Arrays.asList("true") : context.getSexesExpression())
+                        .convertedPaddocks(context.getConvertedPaddocks())
+                        .paddockExpressionList(context.getPaddocksExpression().isEmpty() ? Arrays.asList("true") : context.getPaddocksExpression())
                         .build())
                 .map(animalsWithDietCriteriaController)
                 .filter(t1 -> (Boolean) MVEL.eval(t1.getDietExpression()))
                 .map(animalsWithSexCriteriaController)
                 .filter(t1 -> (Boolean) MVEL.eval(t1.getSexExpression()))
+                .map(animalsWithPaddockCriteriaController)
+                .filter(t1 -> (Boolean) MVEL.eval(t1.getPaddockExpression()))
                 .map(t1 -> t1.getAnimal().getName())
                 .collect(Collectors.toList())
         );
