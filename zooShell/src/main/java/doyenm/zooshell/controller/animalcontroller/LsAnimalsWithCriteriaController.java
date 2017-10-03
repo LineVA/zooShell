@@ -3,8 +3,10 @@ package doyenm.zooshell.controller.animalcontroller;
 import doyenm.zooshell.context.AnimalsWithCriteriaContext;
 import doyenm.zooshell.context.LsWithCriteriaContext;
 import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithDietCriteriaController;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSexCriteriaController;
 import doyenm.zooshell.model.Animal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -20,6 +22,7 @@ public class LsAnimalsWithCriteriaController
         implements Function<LsWithCriteriaContext, LsWithCriteriaContext> {
 
     private final AnimalsWithDietCriteriaController animalsWithDietCriteriaController;
+    private final AnimalsWithSexCriteriaController animalsWithSexCriteriaController;
 
     @Override
     public LsWithCriteriaContext apply(LsWithCriteriaContext t) {
@@ -32,10 +35,14 @@ public class LsAnimalsWithCriteriaController
                 .map(animal -> AnimalsWithCriteriaContext.builder()
                         .animal(animal)
                         .convertedDiets(context.getConvertedDiets())
-                        .dietExpressionList(context.getDietsExpression())
+                        .dietExpressionList(context.getDietsExpression().isEmpty()?Arrays.asList("true"):context.getDietsExpression())
+                        .convertedSexes(context.getConvertedSexes())
+                        .sexExpressionList(context.getSexesExpression().isEmpty()?Arrays.asList("true"):context.getSexesExpression())
                         .build())
                 .map(animalsWithDietCriteriaController)
                 .filter(t1 -> (Boolean) MVEL.eval(t1.getDietExpression()))
+                .map(animalsWithSexCriteriaController)
+                .filter(t1 -> (Boolean) MVEL.eval(t1.getSexExpression()))
                 .map(t1 -> t1.getAnimal().getName())
                 .collect(Collectors.toList())
         );

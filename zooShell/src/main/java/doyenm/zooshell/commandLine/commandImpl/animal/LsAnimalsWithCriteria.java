@@ -28,7 +28,9 @@ public class LsAnimalsWithCriteria implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        LsWithCriteriaContext context = new LsWithCriteriaContext(zoo, retrieveDietsExpression(cmd));
+        LsWithCriteriaContext context = new LsWithCriteriaContext(zoo,
+                retrieveDietsExpression(cmd),
+                retrieveSexesExpression(cmd));
         Optional<LsWithCriteriaContext> optionnal = Stream.of(context)
                 .filter(validator)
                 .map(controller)
@@ -53,5 +55,9 @@ public class LsAnimalsWithCriteria implements Command {
 
     private List<String> retrieveDietsExpression(String[] cmd) {
         return ExtractingExpression.extractExpression("eating", cmd);
+    }
+    
+     private List<String> retrieveSexesExpression(String[] cmd) {
+        return ExtractingExpression.extractExpression("sex", cmd);
     }
 }

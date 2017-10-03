@@ -6,6 +6,7 @@ import doyenm.zooshell.commandLine.commandImpl.ls.LsDiet;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsSex;
 import doyenm.zooshell.controller.animalcontroller.*;
 import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithDietCriteriaController;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSexCriteriaController;
 import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.validator.AnimalChangeNameValidator;
 import doyenm.zooshell.validator.AnimalChangePaddockValidator;
@@ -19,10 +20,12 @@ import doyenm.zooshell.validator.AnimalsWithCriteria;
 import doyenm.zooshell.validator.criteria.AnimalsListWithDietCriteriaValidator;
 import doyenm.zooshell.validator.FindAnimal;
 import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.validator.criteria.AnimalsListWithSexCriteriaValidator;
 import doyenm.zooshell.validator.criteria.LsWithCriteriaParser;
 import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
 import doyenm.zooshell.validator.function.FindingDietFunction;
+import doyenm.zooshell.validator.function.FindingSexFunction;
 import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
@@ -105,15 +108,22 @@ public class ZooShellAnimalConfig {
     AnimalUpdateFoodQuantityController animalUpdateFoodQuantityController() {
         return new AnimalUpdateFoodQuantityController();
     }
-    
+
     @Bean
-    AnimalsWithDietCriteriaController animalsWithDietCriteriaController(){
+    AnimalsWithDietCriteriaController animalsWithDietCriteriaController() {
         return new AnimalsWithDietCriteriaController();
+    }
+
+    @Bean
+    AnimalsWithSexCriteriaController animalsWithSexCriteriaController() {
+        return new AnimalsWithSexCriteriaController();
     }
     
     @Bean
-    LsAnimalsWithCriteriaController lsAnimalsWithCriteriaController(){
-        return new LsAnimalsWithCriteriaController(animalsWithDietCriteriaController());
+    LsAnimalsWithCriteriaController lsAnimalsWithCriteriaController() {
+        return new LsAnimalsWithCriteriaController(
+                animalsWithDietCriteriaController(), 
+                animalsWithSexCriteriaController());
     }
 
     // Predicates
@@ -125,6 +135,9 @@ public class ZooShellAnimalConfig {
 
     @Autowired
     FindingDietFunction findingDietFunction;
+    
+    @Autowired
+    FindingSexFunction findingSexFunction;
 
     @Autowired
     FindPaddock findPaddock;
@@ -219,22 +232,30 @@ public class ZooShellAnimalConfig {
     AnimalValidator animalValidator() {
         return new AnimalValidator();
     }
-    
+
     @Bean
-    LsWithCriteriaParser lsWithCriteriaParser(){
+    LsWithCriteriaParser lsWithCriteriaParser() {
         return new LsWithCriteriaParser();
     }
 
-    @Bean 
-    AnimalsListWithDietCriteriaValidator animalsListWithCriteriaValidator(){
+    @Bean
+    AnimalsListWithDietCriteriaValidator animalsListWithDietCriteriaValidator() {
         return new AnimalsListWithDietCriteriaValidator(lsWithCriteriaParser(), findingDietFunction);
     }
-    
+
     @Bean
-    AnimalsWithCriteria animalsWithCriteria(){
-        return new AnimalsWithCriteria(animalsListWithCriteriaValidator());
+    AnimalsListWithSexCriteriaValidator animalsListWithSexCriteriaValidator() {
+        return new AnimalsListWithSexCriteriaValidator(lsWithCriteriaParser(), findingSexFunction);
     }
-    
+
+    @Bean
+    AnimalsWithCriteria animalsWithCriteria() {
+        return new AnimalsWithCriteria(
+                animalsListWithDietCriteriaValidator(),
+                animalsListWithSexCriteriaValidator()
+        );
+    }
+
     // Commands
     @Bean
     ChangeAnimalName changeAnimalName() {
@@ -305,9 +326,9 @@ public class ZooShellAnimalConfig {
     LsSex lsSex() {
         return new LsSex();
     }
-    
+
     @Bean
-    LsAnimalsWithCriteria lsAnimalsWithCriteria(){
+    LsAnimalsWithCriteria lsAnimalsWithCriteria() {
         return new LsAnimalsWithCriteria(animalsWithCriteria(), lsAnimalsWithCriteriaController());
     }
 }

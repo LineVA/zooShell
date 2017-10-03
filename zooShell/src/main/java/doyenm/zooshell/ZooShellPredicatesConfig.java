@@ -33,6 +33,11 @@ public class ZooShellPredicatesConfig {
     FindingDietFunction findingDietFunction() {
         return new FindingDietFunction();
     }
+    
+    @Bean
+    FindingSexFunction findingSexFunction(){
+        return new FindingSexFunction();
+    }
 
     @Bean
     FindingPaddockTypeFunction findingPaddockTypeFunction() {

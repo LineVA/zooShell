@@ -1,6 +1,7 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Diet;
+import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,15 +21,22 @@ import lombok.Setter;
 public class LsWithCriteriaContext {
 
     private final Zoo zoo;
+
     private List<String> dietsExpression;
-    
     private List<String> diets = new ArrayList<>();
     private Map<String, Diet> convertedDiets = new HashMap<>();
     
+     private List<String> sexesExpression;
+    private List<String> sexes = new ArrayList<>();
+    private Map<String, Sex> convertedSexes = new HashMap<>();
+    
     private List<String> animalsList = new ArrayList<>(); 
 
-    public LsWithCriteriaContext(Zoo zoo, List<String> expression) {
+    public LsWithCriteriaContext(Zoo zoo, 
+            List<String> dietExpression, 
+            List<String> sexExpression) {
         this.zoo = zoo;
-        this.dietsExpression = expression;
+        this.dietsExpression = dietExpression;
+        this.sexesExpression = sexExpression;
     }
 }
