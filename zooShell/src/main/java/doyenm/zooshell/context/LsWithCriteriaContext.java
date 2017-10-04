@@ -3,6 +3,7 @@ package doyenm.zooshell.context;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Sex;
+import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,15 +36,21 @@ public class LsWithCriteriaContext {
     private List<String> paddocks = new ArrayList<>();
     private Map<String, Paddock> convertedPaddocks = new HashMap<>();
 
+    private List<String> speciesExpression;
+    private List<String> species = new ArrayList<>();
+    private Map<String, Specie> convertedSpecies = new HashMap<>();
+
     private List<String> animalsList = new ArrayList<>();
 
     public LsWithCriteriaContext(Zoo zoo,
             List<String> dietExpression,
             List<String> sexExpression,
-            List<String> paddockExpression) {
+            List<String> paddockExpression,
+            List<String> specieExpression) {
         this.zoo = zoo;
         this.dietsExpression = dietExpression;
         this.sexesExpression = sexExpression;
         this.paddocksExpression = paddockExpression;
+        this.speciesExpression = specieExpression;
     }
 }

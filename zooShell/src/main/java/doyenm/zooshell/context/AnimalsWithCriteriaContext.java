@@ -4,6 +4,7 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Sex;
+import doyenm.zooshell.model.Specie;
 import java.util.List;
 import java.util.Map;
 import lombok.Builder;
@@ -35,4 +36,9 @@ public class AnimalsWithCriteriaContext {
     private Paddock currentPaddock;
     private List<String> paddockExpressionList;
     private String paddockExpression;
+    
+    private final Map<String, Specie> convertedSpecies;
+    private Specie currentSpecie;
+    private List<String> specieExpressionList;
+    private String specieExpression;
 }

@@ -5,6 +5,7 @@ import doyenm.zooshell.context.LsWithCriteriaContext;
 import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithDietCriteriaController;
 import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithPaddockCriteriaController;
 import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSexCriteriaController;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSpecieCriteriaController;
 import doyenm.zooshell.model.Animal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +26,7 @@ public class LsAnimalsWithCriteriaController
     private final AnimalsWithDietCriteriaController animalsWithDietCriteriaController;
     private final AnimalsWithSexCriteriaController animalsWithSexCriteriaController;
     private final AnimalsWithPaddockCriteriaController animalsWithPaddockCriteriaController;
+    private final AnimalsWithSpecieCriteriaController animalsWithSpecieCriteriaController;
 
     @Override
     public LsWithCriteriaContext apply(LsWithCriteriaContext t) {
@@ -42,6 +44,8 @@ public class LsAnimalsWithCriteriaController
                         .sexExpressionList(context.getSexesExpression().isEmpty() ? Arrays.asList("true") : context.getSexesExpression())
                         .convertedPaddocks(context.getConvertedPaddocks())
                         .paddockExpressionList(context.getPaddocksExpression().isEmpty() ? Arrays.asList("true") : context.getPaddocksExpression())
+                        .convertedSpecies(context.getConvertedSpecies())
+                        .specieExpressionList(context.getSpeciesExpression().isEmpty() ? Arrays.asList("true") : context.getSpeciesExpression())
                         .build())
                 .map(animalsWithDietCriteriaController)
                 .filter(t1 -> (Boolean) MVEL.eval(t1.getDietExpression()))
@@ -49,6 +53,8 @@ public class LsAnimalsWithCriteriaController
                 .filter(t1 -> (Boolean) MVEL.eval(t1.getSexExpression()))
                 .map(animalsWithPaddockCriteriaController)
                 .filter(t1 -> (Boolean) MVEL.eval(t1.getPaddockExpression()))
+                 .map(animalsWithSpecieCriteriaController)
+                .filter(t1 -> (Boolean) MVEL.eval(t1.getSpecieExpression()))
                 .map(t1 -> t1.getAnimal().getName())
                 .collect(Collectors.toList())
         );
