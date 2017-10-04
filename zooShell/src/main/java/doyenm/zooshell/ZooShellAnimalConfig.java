@@ -5,6 +5,10 @@ import doyenm.zooshell.commandLine.commandImpl.ls.LsContraceptionMethod;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsDiet;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsSex;
 import doyenm.zooshell.controller.animalcontroller.*;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithDietCriteriaController;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithPaddockCriteriaController;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSexCriteriaController;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSpecieCriteriaController;
 import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.validator.AnimalChangeNameValidator;
 import doyenm.zooshell.validator.AnimalChangePaddockValidator;
@@ -14,11 +18,19 @@ import doyenm.zooshell.validator.AnimalUpdateDietValidator;
 import doyenm.zooshell.validator.AnimalUpdateFastDaysValidator;
 import doyenm.zooshell.validator.AnimalUpdateFoodQuantityValidator;
 import doyenm.zooshell.validator.AnimalValidator;
+import doyenm.zooshell.validator.AnimalsWithCriteria;
+import doyenm.zooshell.validator.criteria.AnimalsListWithDietCriteriaValidator;
 import doyenm.zooshell.validator.FindAnimal;
 import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.validator.criteria.AnimalsListWithPaddockCriteriaValidator;
+import doyenm.zooshell.validator.criteria.AnimalsListWithSexCriteriaValidator;
+import doyenm.zooshell.validator.criteria.AnimalsListWithSpecieCriteriaValidator;
+import doyenm.zooshell.validator.criteria.LsWithCriteriaParser;
 import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
 import doyenm.zooshell.validator.function.FindingDietFunction;
+import doyenm.zooshell.validator.function.FindingSexFunction;
+import doyenm.zooshell.validator.function.FindingSpecieFunction;
 import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
@@ -102,6 +114,36 @@ public class ZooShellAnimalConfig {
         return new AnimalUpdateFoodQuantityController();
     }
 
+    @Bean
+    AnimalsWithDietCriteriaController animalsWithDietCriteriaController() {
+        return new AnimalsWithDietCriteriaController();
+    }
+
+    @Bean
+    AnimalsWithSexCriteriaController animalsWithSexCriteriaController() {
+        return new AnimalsWithSexCriteriaController();
+    }
+    
+    @Bean
+    AnimalsWithPaddockCriteriaController animalsWithPaddockCriteriaController() {
+        return new AnimalsWithPaddockCriteriaController();
+    }
+    
+    @Bean
+    AnimalsWithSpecieCriteriaController animalsWithSpecieCriteriaController() {
+        return new AnimalsWithSpecieCriteriaController();
+    }
+    
+    @Bean
+    LsAnimalsWithCriteriaController lsAnimalsWithCriteriaController() {
+        return new LsAnimalsWithCriteriaController(
+                animalsWithDietCriteriaController(), 
+                animalsWithSexCriteriaController(),
+                animalsWithPaddockCriteriaController(),
+                animalsWithSpecieCriteriaController()
+        );
+    }
+
     // Predicates
     @Autowired
     FindAnimal findAnimal;
@@ -111,11 +153,17 @@ public class ZooShellAnimalConfig {
 
     @Autowired
     FindingDietFunction findingDietFunction;
+    
+    @Autowired
+    FindingSexFunction findingSexFunction;
+    
+    @Autowired
+    FindingSpecieFunction findingSpecieFunction; 
 
     @Autowired
     FindPaddock findPaddock;
-    
-    @Autowired 
+
+    @Autowired
     DoubleValuesPredicates doubleValuesPredicates;
 
     @Autowired
@@ -123,7 +171,7 @@ public class ZooShellAnimalConfig {
 
     @Autowired
     UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
-    
+
     @Autowired
     IntegerValuePredicates integerValuePredicates;
 
@@ -206,6 +254,41 @@ public class ZooShellAnimalConfig {
         return new AnimalValidator();
     }
 
+    @Bean
+    LsWithCriteriaParser lsWithCriteriaParser() {
+        return new LsWithCriteriaParser();
+    }
+
+    @Bean
+    AnimalsListWithDietCriteriaValidator animalsListWithDietCriteriaValidator() {
+        return new AnimalsListWithDietCriteriaValidator(lsWithCriteriaParser(), findingDietFunction);
+    }
+
+    @Bean
+    AnimalsListWithSexCriteriaValidator animalsListWithSexCriteriaValidator() {
+        return new AnimalsListWithSexCriteriaValidator(lsWithCriteriaParser(), findingSexFunction);
+    }
+    
+     @Bean
+    AnimalsListWithPaddockCriteriaValidator animalsListWithPaddockCriteriaValidator() {
+        return new AnimalsListWithPaddockCriteriaValidator(lsWithCriteriaParser(), findPaddock);
+    }
+    
+    @Bean
+    AnimalsListWithSpecieCriteriaValidator animalsListWithSpecieCriteriaValidator() {
+        return new AnimalsListWithSpecieCriteriaValidator(lsWithCriteriaParser(), findingSpecieFunction);
+    }
+
+    @Bean
+    AnimalsWithCriteria animalsWithCriteria() {
+        return new AnimalsWithCriteria(
+                animalsListWithDietCriteriaValidator(),
+                animalsListWithSexCriteriaValidator(),
+                animalsListWithPaddockCriteriaValidator(),
+                animalsListWithSpecieCriteriaValidator()
+        );
+    }
+
     // Commands
     @Bean
     ChangeAnimalName changeAnimalName() {
@@ -275,5 +358,10 @@ public class ZooShellAnimalConfig {
     @Bean
     LsSex lsSex() {
         return new LsSex();
+    }
+
+    @Bean
+    LsAnimalsWithCriteria lsAnimalsWithCriteria() {
+        return new LsAnimalsWithCriteria(animalsWithCriteria(), lsAnimalsWithCriteriaController());
     }
 }

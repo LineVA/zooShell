@@ -115,6 +115,9 @@ public class ZooShellConfig {
     LsAnimal lsAnimal;
 
     @Autowired
+    LsAnimalsWithCriteria lsAnimalsWithCriteria;
+
+    @Autowired
     RemoveAnimal removeAnimal;
 
     @Autowired
@@ -186,6 +189,7 @@ public class ZooShellConfig {
                 new ActionPointCommand(changePaddock, 1),
                 new ActionPointCommand(createAnimal, 3),
                 new ActionPointCommand(lsAnimal, 0),
+                new ActionPointCommand(lsAnimalsWithCriteria, 0),
                 new ActionPointCommand(detailAnimal, 0),
                 new ActionPointCommand(removeAnimal, 1),
                 new ActionPointCommand(resetDiet, 0),

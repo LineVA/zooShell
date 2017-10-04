@@ -30,8 +30,18 @@ public class ZooShellPredicatesConfig {
     }
     
      @Bean
+    FindingSpecieFunction findingSpecieFunction() {
+        return new FindingSpecieFunction();
+    }
+    
+     @Bean
     FindingDietFunction findingDietFunction() {
         return new FindingDietFunction();
+    }
+    
+    @Bean
+    FindingSexFunction findingSexFunction(){
+        return new FindingSexFunction();
     }
 
     @Bean
