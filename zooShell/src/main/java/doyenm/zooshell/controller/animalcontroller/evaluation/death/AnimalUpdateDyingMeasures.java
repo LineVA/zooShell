@@ -54,7 +54,8 @@ public class AnimalUpdateDyingMeasures {
         double cohabitationFactor = animal.getCharacterAttributes().getCohabitationFactor();
         Optional optional = otherAnimals
                 .stream()
-                .filter(other ->  Math.abs(cohabitationFactor - other.getCharacterAttributes().getCohabitationFactor()) >= 0.4)
+                .filter(cohabitationFactor < other.getCharacterAttributes().getCohabitationFactor())
+                .filter(other -> Math.abs(cohabitationFactor - other.getCharacterAttributes().getCohabitationFactor()) >= 0.4)
                 .findFirst();
         if (optional.isPresent()) {
             animal.setKiller((Animal) optional.get());
