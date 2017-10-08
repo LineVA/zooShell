@@ -1,5 +1,6 @@
 package doyenm.zooshell.model.utils;
 
+import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.SizeAttributes;
@@ -11,7 +12,8 @@ import java.util.stream.Stream;
  * @author doyenm
  */
 public class CohabitationFactorHandler {
-  public double compute(double agressivity, Specie specie, SizeAttributes sizeAttributes, Sex sex) {
+
+    public double compute(double agressivity, Specie specie, SizeAttributes sizeAttributes, Sex sex) {
         double cohabitation = 0.0;
         double weight = sizeAttributes.getWeigthGivenSex(sex);
 
@@ -37,5 +39,13 @@ public class CohabitationFactorHandler {
                 .map((Double t) -> t / 4.0)
                 .findFirst()
                 .get();
+    }
+
+    public double compute(Animal animal) {
+        return compute(
+                animal.getCharacterAttributes().getAgressivity(),
+                animal.getSpecie(),
+                animal.getSizeAttributes(),
+                animal.getSex());
     }
 }
