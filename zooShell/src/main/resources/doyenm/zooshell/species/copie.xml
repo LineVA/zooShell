@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specie xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <names>
+        <name>Blue-eyed black lemur</name>
+        <additionalNames>
+            <name>Sclater's lemur</name>
+        </additionalNames>
+        <scientificName>Eulemur macaco flavifrons</scientificName>
+    </names>
+    <uicn>CRITICALLY_ENDANGERED</uicn>
+    <family>LEMURIDAE</family>
+    <reproductionAttributes>
+        <femaleMaturityAge>24</femaleMaturityAge>
+        <maleMaturityAge>24</maleMaturityAge>
+        <frequency>1.0</frequency>
+        <litterSize>1</litterSize>
+        <gestationDuration>4</gestationDuration>
+        <weaningAge>6</weaningAge>
+    </reproductionAttributes>
+    <lifespanAttributes>
+        <femaleLifespan>220</femaleLifespan>
+        <maleLifespan>220</maleLifespan>
+    </lifespanAttributes>
+    <biomes>
+        <biome>DRY_BROADLEAF</biome>
+    </biomes>
+    <diets>
+        <diet>FOLIVOROUS</diet>
+        <diet>NECTARIVOROUS</diet>
+    </diets>
+    <foodAttributes>
+        <quantity>0.205</quantity>
+        <fastDays>0</fastDays>
+    </foodAttributes>
+    <territoryAttributes>
+        <territorySizeForOneGroup>64</territorySizeForOneGroup>
+    </territoryAttributes>
+    <socialAttributes>
+        <individualsPerGroup>8</individualsPerGroup>
+    </socialAttributes>
+    <sizeAttributes>
+        <femaleWeight>2.5</femaleWeight>
+        <femaleWeight>2.5</femaleWeight>
+    </sizeAttributes>
+    <characterAttributes>
+        <agressvity>0.0</agressvity>
+        <cohabitationFactor>0.0</cohabitationFactor>
+    </characterAttributes>
+</specie>

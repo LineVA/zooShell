@@ -35,7 +35,7 @@ public class AnimalDeathEvaluationController
                 .stream()
                 .forEach((EventType eventType) -> {
                     if (events.get(eventType)) {
-                        context.getEvents().add(new Event(eventType, context.getAnimal()));
+                        context.getEvents().add(new Event(eventType, context.getAnimal(), context.getAnimal().getKiller()));
                     }
                 });
 
