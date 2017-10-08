@@ -16,10 +16,10 @@ public class Event {
     @Getter
     private final Animal subject;
     @Getter
-    private Animal mother;
+    private Animal actor;
 
     private final List<EventCategory> justSubject = Arrays.asList(EventCategory.DEATH, EventCategory.PREGNANCY);
-    private final List<EventCategory> subjectAndMother = Arrays.asList(EventCategory.BIRTH);
+    private final List<EventCategory> subjectAndActor = Arrays.asList(EventCategory.BIRTH, EventCategory.DEATH);
 
     public Event(EventType eventType, Animal subject) {
         if (justSubject.contains(eventType.getCategory())) {
@@ -31,11 +31,11 @@ public class Event {
         }
     }
 
-    public Event(EventType eventType, Animal subject, Animal mother) {
-        if (subjectAndMother.contains(eventType.getCategory())) {
+    public Event(EventType eventType, Animal subject, Animal actor) {
+        if (subjectAndActor.contains(eventType.getCategory())) {
             this.eventType = eventType;
             this.subject = subject;
-            this.mother = mother;
+            this.actor = actor;
         } else {
             this.eventType = null;
             this.subject = null;

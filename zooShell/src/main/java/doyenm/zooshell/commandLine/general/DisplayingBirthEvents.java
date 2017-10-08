@@ -19,6 +19,6 @@ public class DisplayingBirthEvents implements DisplayingEvents{
     public String format(Event event) {
         return MessageFormat.format(event.getEventType().getMessage(), 
                 event.getSubject().getName(),
-                event.getMother().getName());
+                event.getActor().getName());
     }
 }
