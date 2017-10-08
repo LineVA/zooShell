@@ -6,6 +6,7 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalDeathEvaluat
 import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalAgeEvaluationController;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.context.EvaluationContext;
+import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalCohabitationEvaluationController;
 import doyenm.zooshell.model.Animal;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class AnimalEvaluationController implements Function<EvaluationContext, EvaluationContext> {
 
     private final AnimalAgeEvaluationController animalAgeEvaluationController;
+    private final AnimalCohabitationEvaluationController animalCohabitationEvaluationController; 
     private final AnimalDeathEvaluationController animalDeathEvaluationController;
     private final AnimalReproductionEvaluationController animalReproductionEvaluationController;
     private final AnimalWellBeingController animalWellBeingController;
@@ -42,6 +44,8 @@ public class AnimalEvaluationController implements Function<EvaluationContext, E
                 .map(animalAgeEvaluationController)
                 // Well-being
                 .map(animalWellBeingController)
+                // Cohabitation
+                .map(animalCohabitationEvaluationController)
                 // Death
                 .map(animalDeathEvaluationController)
                  .map((AnimalEvaluationContext t1) -> {
