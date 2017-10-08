@@ -27,7 +27,7 @@ public class AnimalsWithCriteriaTestTest {
         // Given
         AnimalsListWithDietCriteriaValidator dietValidator = givenDietValidator(true);
         LsWithCriteriaContext context = givenContext();
-        AnimalsWithCriteria animalsWithCriteria = new AnimalsWithCriteria(dietValidator);
+        AnimalsWithCriteria animalsWithCriteria = new AnimalsWithCriteria(dietValidator, null, null, null);
         // When
         boolean result = animalsWithCriteria.test(context);
         // Then
@@ -39,7 +39,7 @@ public class AnimalsWithCriteriaTestTest {
         // Given
         AnimalsListWithDietCriteriaValidator dietValidator = givenDietValidator(false);
         LsWithCriteriaContext context = givenContext();
-        AnimalsWithCriteria animalsWithCriteria = new AnimalsWithCriteria(dietValidator);
+        AnimalsWithCriteria animalsWithCriteria = new AnimalsWithCriteria(dietValidator, null, null, null);
         // When
         boolean result = animalsWithCriteria.test(context);
         // Then
