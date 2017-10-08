@@ -16,6 +16,7 @@ import doyenm.zooshell.controller.paddockcontroller.PaddockEvaluationController;
 import doyenm.zooshell.controller.zoocontroller.EvaluationController;
 import doyenm.zooshell.controller.zoocontroller.RenameZooController;
 import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
+import doyenm.zooshell.model.utils.CohabitationFactorHandler;
 import doyenm.zooshell.utils.UniformStatistics;
 import doyenm.zooshell.validator.AnimalCreationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,7 +150,9 @@ public class ZooShellZooConfig {
 
     @Bean
     AnimalEvaluationController animalEvaluationController() {
-        return new AnimalEvaluationController(animalAgeEvaluationController(),
+        return new AnimalEvaluationController(
+                animalAgeEvaluationController(),
+                new AnimalCohabitationEvaluationController(new CohabitationFactorHandler()),
                 animalDeathEvaluationController(),
                 animalReproductionEvaluationController(),
                 animalWellBeingController());
