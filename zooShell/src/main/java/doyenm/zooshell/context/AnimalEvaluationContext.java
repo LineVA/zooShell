@@ -104,4 +104,10 @@ public class AnimalEvaluationContext {
         return getAnimal().getSpecie().getFamily();
     }
 
+    public List<Animal> getAnimalsOfThePaddock(){
+        return getZoo().getAnimals().values()
+                .stream()
+                .filter(other -> other.getPaddock().equals(getAnimal().getPaddock()))
+                .collect(Collectors.toList());
+    }
 }
