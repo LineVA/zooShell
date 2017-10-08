@@ -30,7 +30,7 @@ public class CharacterAttributesConstructor {
 
     public double determineCohabitationFactor(double agressivity, Specie specie, SizeAttributes sizeAttributes, Sex sex) {
         double cohabitation = 0.0;
-        double weight = sizeAttributes.getWigthGivenSex(sex);
+        double weight = sizeAttributes.getWeigthGivenSex(sex);
 
         // Cohabitation = (
         //    weight/ 1 tonne
