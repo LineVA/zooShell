@@ -2,7 +2,7 @@ package doyenm.zooshell.commandLine.commandImpl.zoo;
 
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.commandLine.general.Command;
-import doyenm.zooshell.commandLine.general.DisplayingBirthEvents;
+import doyenm.zooshell.commandLine.general.DisplayingComplexEvents;
 import doyenm.zooshell.commandLine.general.DisplayingSimpleEvents;
 import doyenm.zooshell.commandLine.general.DisplayingEvents;
 import doyenm.zooshell.commandLine.general.ReturnExec;
@@ -28,7 +28,7 @@ public class Evaluate implements Command {
     private final EvaluationController controller;
     
     private final List<DisplayingEvents> displayingEventsList = Arrays.asList(new DisplayingSimpleEvents(),
-            new DisplayingBirthEvents()); 
+            new DisplayingComplexEvents()); 
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {

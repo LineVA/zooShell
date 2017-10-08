@@ -25,4 +25,8 @@ public class AnimalDeathPredicates {
         return animal.getDaysOfHunger()>= numberOfTurnsBeforeDying;
     }
     
+    public boolean isDeadByPredation(Animal animal){
+        return animal.getKiller() != null;
+    }
+    
 }

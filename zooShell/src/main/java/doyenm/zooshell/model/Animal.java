@@ -44,4 +44,5 @@ public class Animal {
     private boolean notNursingByMother;
     private double wellBeing;
     private WellBeing wellBeingObj;
+    private Animal killer;
 }

@@ -44,14 +44,14 @@ public class AnimalEvaluationController implements Function<EvaluationContext, E
                 .map(animalAgeEvaluationController)
                 // Well-being
                 .map(animalWellBeingController)
-                // Cohabitation
-                .map(animalCohabitationEvaluationController)
                 // Death
                 .map(animalDeathEvaluationController)
                  .map((AnimalEvaluationContext t1) -> {
                     context.getEvents().addAll(t1.getEvents());
                     return t1;
                 })
+                 // Cohabitation
+                .map(animalCohabitationEvaluationController)
                 .filter((AnimalEvaluationContext t1) -> !t1.isDead())
                 .map((AnimalEvaluationContext t1) -> {
                     t1.getAnimal().setWellBeingObj(t1.getWellBeingObj());

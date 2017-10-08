@@ -27,6 +27,7 @@ public class AnimalDeathEvaluationController
         AnimalEvaluationContext context = t;
         Animal animal = measures.updateIsDyingByDrowning(context.getAnimal());
         animal = measures.updateIsDyingByHunger(animal, context.getKeepers());
+        animal = measures.updateIsDeadByPredation(animal, context.getAnimalsOfThePaddock());
         context.setAnimal(animal);
         Map<EventType, Boolean> events = generateEvents(context.getAnimal());
 
@@ -34,7 +35,7 @@ public class AnimalDeathEvaluationController
                 .stream()
                 .forEach((EventType eventType) -> {
                     if (events.get(eventType)) {
-                        context.getEvents().add(new Event(eventType, context.getAnimal()));
+                        context.getEvents().add(new Event(eventType, context.getAnimal(), context.getAnimal().getKiller()));
                     }
                 });
 
@@ -47,6 +48,7 @@ public class AnimalDeathEvaluationController
         events.put(EventType.DEATH_OF_AGE, deathPredicates.isDeadByOldAge(animal));
         events.put(EventType.DEATH_OF_DROWN, deathPredicates.isDeadByDrowning(animal));
         events.put(EventType.DEATH_OF_HUNGER, deathPredicates.isDeadByHunger(animal));
+        events.put(EventType.DEATH_OF_PREDATION, deathPredicates.isDeadByPredation(animal));
         events.put(EventType.DIYING_OF_DROWN, animal.getDaysOfDrowning() != 0);
         events.put(EventType.DIYING_OF_UNGER, animal.getDaysOfHunger()!= 0);
         return events;
@@ -55,7 +57,8 @@ public class AnimalDeathEvaluationController
     private boolean isDead(Animal animal){
         return deathPredicates.isDeadByDrowning(animal)
                 || deathPredicates.isDeadByHunger(animal)
-                || deathPredicates.isDeadByOldAge(animal);
+                || deathPredicates.isDeadByOldAge(animal)
+                || deathPredicates.isDeadByPredation(animal);
     }
 
 }
