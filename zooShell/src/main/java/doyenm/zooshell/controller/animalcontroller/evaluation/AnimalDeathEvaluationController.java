@@ -50,7 +50,7 @@ public class AnimalDeathEvaluationController
         events.put(EventType.DEATH_OF_HUNGER, deathPredicates.isDeadByHunger(animal));
         events.put(EventType.DEATH_OF_PREDATION, deathPredicates.isDeadByPredation(animal));
         events.put(EventType.DIYING_OF_DROWN, animal.getDaysOfDrowning() != 0);
-        events.put(EventType.DIYING_OF_UNGER, animal.getDaysOfHunger()!= 0);
+        events.put(EventType.DIYING_OF_HUNGER, animal.getDaysOfHunger()!= 0);
         return events;
     }
     
