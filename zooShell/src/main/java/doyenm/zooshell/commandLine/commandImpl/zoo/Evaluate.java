@@ -8,7 +8,7 @@ import doyenm.zooshell.commandLine.general.DisplayingEvents;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.EvaluationContext;
-import doyenm.zooshell.controller.eventhandling.Event;
+import doyenm.zooshell.controller.eventhandling.AnimalEvent;
 import doyenm.zooshell.controller.zoocontroller.EvaluationController;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class Evaluate implements Command {
         List<String> resultsList = new ArrayList<>();
         context.getEvents()
                 .stream()
-                .forEach((Event event) -> {
+                .forEach((AnimalEvent event) -> {
                     for(DisplayingEvents displayingEvents : displayingEventsList){
                         if(displayingEvents.canFormat(event)){
                             resultsList.add(displayingEvents.format(event));

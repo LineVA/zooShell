@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.general;
 
-import doyenm.zooshell.controller.eventhandling.Event;
+import doyenm.zooshell.controller.eventhandling.AnimalEvent;
 
 /**
  *
@@ -8,7 +8,7 @@ import doyenm.zooshell.controller.eventhandling.Event;
  */
 public interface DisplayingEvents {
 
-    boolean canFormat(Event event);
+    boolean canFormat(AnimalEvent event);
 
-    String format(Event event);
+    String format(AnimalEvent event);
 }

@@ -1,7 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.reproduction;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
-import doyenm.zooshell.controller.eventhandling.Event;
+import doyenm.zooshell.controller.eventhandling.AnimalEvent;
 import doyenm.zooshell.controller.eventhandling.EventType;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.utils.UniformStatistics;
@@ -46,22 +46,22 @@ public class ExecuteReproductionFunction
         }
     }
 
-    private List<Event> generateBirthEvents(AnimalEvaluationContext context) {
-        List<Event> events = new ArrayList<>();
+    private List<AnimalEvent> generateBirthEvents(AnimalEvaluationContext context) {
+        List<AnimalEvent> events = new ArrayList<>();
         context.getChildren()
                 .stream()
                 .forEach((Animal animal) -> {
-                    events.add(new Event(EventType.BIRTH, animal, context.getAnimal()));
+                    events.add(new AnimalEvent(EventType.BIRTH, animal, context.getAnimal()));
                 });
         return events;
     }
 
-    private List<Event> generatePregnancyEvents(AnimalEvaluationContext context) {
-        List<Event> events = new ArrayList<>();
+    private List<AnimalEvent> generatePregnancyEvents(AnimalEvaluationContext context) {
+        List<AnimalEvent> events = new ArrayList<>();
         if (context.getCurrentGestationDuration()> context.getMonthsPerTurn()) {
-            events.add(new Event(EventType.PREGNANCY_PURSUIT, context.getAnimal()));
+            events.add(new AnimalEvent(EventType.PREGNANCY_PURSUIT, context.getAnimal()));
         } else {
-            events.add(new Event(EventType.NEW_PREGNANCY, context.getAnimal()));
+            events.add(new AnimalEvent(EventType.NEW_PREGNANCY, context.getAnimal()));
         }
         return events;
     }

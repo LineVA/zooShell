@@ -3,7 +3,7 @@ package doyenm.zooshell.controller.animalcontroller.evaluation;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalDeathPredicates;
 import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalUpdateDyingMeasures;
-import doyenm.zooshell.controller.eventhandling.Event;
+import doyenm.zooshell.controller.eventhandling.AnimalEvent;
 import doyenm.zooshell.controller.eventhandling.EventType;
 import doyenm.zooshell.model.Animal;
 import java.util.HashMap;
@@ -35,7 +35,7 @@ public class AnimalDeathEvaluationController
                 .stream()
                 .forEach((EventType eventType) -> {
                     if (events.get(eventType)) {
-                        context.getEvents().add(new Event(eventType, context.getAnimal(), context.getAnimal().getKiller()));
+                        context.getEvents().add(new AnimalEvent(eventType, context.getAnimal(), context.getAnimal().getKiller()));
                     }
                 });
 
