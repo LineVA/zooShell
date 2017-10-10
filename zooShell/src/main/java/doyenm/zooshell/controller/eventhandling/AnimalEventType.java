@@ -6,7 +6,7 @@ import lombok.Getter;
  *
  * @author doyenm
  */
-public enum EventType {
+public enum AnimalEventType {
 
     DEATH_OF_AGE(EventCategory.DEATH, "The animal {0} is dead of old age"),
     DEATH_OF_DROWN(EventCategory.DEATH, "The animal {0} is dead of drown"),
@@ -24,7 +24,7 @@ public enum EventType {
     @Getter
     private final String message;
 
-    private EventType(EventCategory category, String message) {
+    private AnimalEventType(EventCategory category, String message) {
         this.category = category;
         this.message = message;
     }

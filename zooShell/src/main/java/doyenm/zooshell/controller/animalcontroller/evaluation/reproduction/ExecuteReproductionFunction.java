@@ -2,7 +2,7 @@ package doyenm.zooshell.controller.animalcontroller.evaluation.reproduction;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.controller.eventhandling.AnimalEvent;
-import doyenm.zooshell.controller.eventhandling.EventType;
+import doyenm.zooshell.controller.eventhandling.AnimalEventType;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.utils.UniformStatistics;
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class ExecuteReproductionFunction
         context.getChildren()
                 .stream()
                 .forEach((Animal animal) -> {
-                    events.add(new AnimalEvent(EventType.BIRTH, animal, context.getAnimal()));
+                    events.add(new AnimalEvent(AnimalEventType.BIRTH, animal, context.getAnimal()));
                 });
         return events;
     }
@@ -59,9 +59,9 @@ public class ExecuteReproductionFunction
     private List<AnimalEvent> generatePregnancyEvents(AnimalEvaluationContext context) {
         List<AnimalEvent> events = new ArrayList<>();
         if (context.getCurrentGestationDuration()> context.getMonthsPerTurn()) {
-            events.add(new AnimalEvent(EventType.PREGNANCY_PURSUIT, context.getAnimal()));
+            events.add(new AnimalEvent(AnimalEventType.PREGNANCY_PURSUIT, context.getAnimal()));
         } else {
-            events.add(new AnimalEvent(EventType.NEW_PREGNANCY, context.getAnimal()));
+            events.add(new AnimalEvent(AnimalEventType.NEW_PREGNANCY, context.getAnimal()));
         }
         return events;
     }
