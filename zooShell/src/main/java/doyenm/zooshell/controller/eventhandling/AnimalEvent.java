@@ -1,8 +1,6 @@
 package doyenm.zooshell.controller.eventhandling;
 
 import doyenm.zooshell.model.Animal;
-import java.util.Arrays;
-import java.util.List;
 import lombok.Getter;
 
 /**
@@ -18,11 +16,8 @@ public class AnimalEvent {
     @Getter
     private Animal actor;
 
-    private final List<EventCategory> justSubject = Arrays.asList(EventCategory.DEATH, EventCategory.PREGNANCY);
-    private final List<EventCategory> subjectAndActor = Arrays.asList(EventCategory.BIRTH, EventCategory.DEATH);
-
     public AnimalEvent(AnimalEventType eventType, Animal subject) {
-        if (justSubject.contains(eventType.getCategory())) {
+        if (EventCategory.UNARY == eventType.getCategory()) {
             this.eventType = eventType;
             this.subject = subject;
         } else {
@@ -32,7 +27,7 @@ public class AnimalEvent {
     }
 
     public AnimalEvent(AnimalEventType eventType, Animal subject, Animal actor) {
-        if (subjectAndActor.contains(eventType.getCategory())) {
+        if (EventCategory.BINARY == eventType.getCategory()) {
             this.eventType = eventType;
             this.subject = subject;
             this.actor = actor;
