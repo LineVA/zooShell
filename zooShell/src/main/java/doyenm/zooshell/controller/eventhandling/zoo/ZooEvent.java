@@ -15,13 +15,13 @@ import lombok.Getter;
 @Builder
 @Getter
 public class ZooEvent implements Event{
-    private final ZooEventType type;
+    private final ZooEventType eventType;
     private final AnimalKeeper keeper;
     private final Family family;
 
     @Override
     public EventCategory getEventCategory() {
-        return type.getCategory();
+        return eventType.getCategory();
     }
 
     @Override
