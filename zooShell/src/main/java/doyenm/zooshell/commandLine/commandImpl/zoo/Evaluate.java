@@ -8,6 +8,7 @@ import doyenm.zooshell.commandLine.general.displayingevent.DisplayingEvents;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.commandLine.general.displayingevent.DisplayingBinaryZooEvents;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingNoneZooEvents;
 import doyenm.zooshell.commandLine.general.displayingevent.DisplayingUnaryZooEvents;
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
@@ -33,6 +34,7 @@ public class Evaluate implements Command {
     private final List<DisplayingEvents> displayingEventsList = Arrays.asList(
             new DisplayingBinaryAnimalEvents(),
             new DisplayingBinaryZooEvents(),
+            new DisplayingNoneZooEvents(),
             new DisplayingUnaryAnimalEvents(),
             new DisplayingUnaryZooEvents()
     );
