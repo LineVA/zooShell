@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandLine.general;
+package doyenm.zooshell.commandLine.general.displayingevent;
 
 import doyenm.zooshell.controller.eventhandling.Event;
 

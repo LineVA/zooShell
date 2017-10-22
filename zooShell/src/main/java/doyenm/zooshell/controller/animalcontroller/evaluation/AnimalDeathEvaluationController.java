@@ -3,8 +3,8 @@ package doyenm.zooshell.controller.animalcontroller.evaluation;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalDeathPredicates;
 import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalUpdateDyingMeasures;
-import doyenm.zooshell.controller.eventhandling.Event;
-import doyenm.zooshell.controller.eventhandling.EventType;
+import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
+import doyenm.zooshell.controller.eventhandling.animal.AnimalEventType;
 import doyenm.zooshell.model.Animal;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,13 +29,13 @@ public class AnimalDeathEvaluationController
         animal = measures.updateIsDyingByHunger(animal, context.getKeepers());
         animal = measures.updateIsDeadByPredation(animal, context.getAnimalsOfThePaddock());
         context.setAnimal(animal);
-        Map<EventType, Boolean> events = generateEvents(context.getAnimal());
+        Map<AnimalEventType, Boolean> events = generateEvents(context.getAnimal());
 
         events.keySet()
                 .stream()
-                .forEach((EventType eventType) -> {
+                .forEach((AnimalEventType eventType) -> {
                     if (events.get(eventType)) {
-                        context.getEvents().add(new Event(eventType, context.getAnimal(), context.getAnimal().getKiller()));
+                        context.getEvents().add(new AnimalEvent(eventType, context.getAnimal(), context.getAnimal().getKiller()));
                     }
                 });
 
@@ -43,14 +43,14 @@ public class AnimalDeathEvaluationController
         return context;
     }
 
-    private Map<EventType, Boolean> generateEvents(Animal animal) {
-        Map<EventType, Boolean> events = new HashMap<>();
-        events.put(EventType.DEATH_OF_AGE, deathPredicates.isDeadByOldAge(animal));
-        events.put(EventType.DEATH_OF_DROWN, deathPredicates.isDeadByDrowning(animal));
-        events.put(EventType.DEATH_OF_HUNGER, deathPredicates.isDeadByHunger(animal));
-        events.put(EventType.DEATH_OF_PREDATION, deathPredicates.isDeadByPredation(animal));
-        events.put(EventType.DIYING_OF_DROWN, animal.getDaysOfDrowning() != 0);
-        events.put(EventType.DIYING_OF_HUNGER, animal.getDaysOfHunger()!= 0);
+    private Map<AnimalEventType, Boolean> generateEvents(Animal animal) {
+        Map<AnimalEventType, Boolean> events = new HashMap<>();
+        events.put(AnimalEventType.DEATH_OF_AGE, deathPredicates.isDeadByOldAge(animal));
+        events.put(AnimalEventType.DEATH_OF_DROWN, deathPredicates.isDeadByDrowning(animal));
+        events.put(AnimalEventType.DEATH_OF_HUNGER, deathPredicates.isDeadByHunger(animal));
+        events.put(AnimalEventType.DEATH_OF_PREDATION, deathPredicates.isDeadByPredation(animal));
+        events.put(AnimalEventType.DIYING_OF_DROWN, animal.getDaysOfDrowning() != 0);
+        events.put(AnimalEventType.DIYING_OF_HUNGER, animal.getDaysOfHunger()!= 0);
         return events;
     }
     

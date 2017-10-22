@@ -1,6 +1,7 @@
 package doyenm.zooshell.context;
 
-import doyenm.zooshell.controller.eventhandling.Event;
+import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
+import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Grade;
@@ -29,20 +30,21 @@ public class EvaluationContext {
     private double zooEvaluation = 0;
     private double paddocksEvaluation = 0;
     private double animalsEvaluation = 0;
-    
+
     private Grade gradeObj = new Grade();
-    
+
     private double totalEvaluation = 0;
     private List<Animal> evaluatedAnimalsList = new ArrayList<>();
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
     private List<Paddock> evaluatedPaddocksList = new ArrayList<>();
     private List<Animal> newBornsList = new ArrayList<>();
-    private List<Event> events = new ArrayList(); 
-    
-    public void updateZoo(){
+    private List<AnimalEvent> animalEvents = new ArrayList();
+    private List<ZooEvent> zooEvents;
+
+    public void updateZoo() {
     }
 
-     public void updatePaddocks(){
+    public void updatePaddocks() {
         this.getPaddocks().values()
                 .stream()
                 .map((Paddock pad) -> {
@@ -51,8 +53,8 @@ public class EvaluationContext {
                 })
                 .findFirst();
     }
-    
-    public void updateKeepers(){
+
+    public void updateKeepers() {
         this.getKeepers().values()
                 .stream()
                 .map((AnimalKeeper keeper) -> {
@@ -61,7 +63,7 @@ public class EvaluationContext {
                 })
                 .findFirst();
     }
-    
+
     public void updateAnimals() {
         Map<String, Animal> evaluatedAnimalsMap = convertAnimalsListToMap();
         List<String> removeAnimalsList = new ArrayList<>();
@@ -87,7 +89,7 @@ public class EvaluationContext {
     public Map<String, AnimalKeeper> getKeepers() {
         return getZoo().getKeepers();
     }
-    
+
     public Map<String, Paddock> getPaddocks() {
         return getZoo().getPaddocks();
     }
@@ -99,7 +101,7 @@ public class EvaluationContext {
                 .map((Animal t) -> {
                     map.put(t.getName().toUpperCase(), t);
                     return t;
-        })
+                })
                 .collect(Collectors.toList());
         return map;
     }
@@ -109,7 +111,7 @@ public class EvaluationContext {
             getAnimals().remove(name);
         });
     }
-    
+
     private void addAnimals(List<Animal> animalsToAdd) {
         animalsToAdd.stream().forEach((animal) -> {
             getAnimals().put(animal.getName().toUpperCase(), animal);

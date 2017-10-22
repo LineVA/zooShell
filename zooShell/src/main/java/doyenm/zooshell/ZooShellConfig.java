@@ -9,6 +9,7 @@ import doyenm.zooshell.commandLine.commandImpl.keeper.*;
 import doyenm.zooshell.commandLine.general.ActionPointCommand;
 import doyenm.zooshell.commandLine.general.ActionPointsHandler;
 import doyenm.zooshell.commandLine.general.CommandManager;
+import doyenm.zooshell.controller.eventhandling.zoo.ZooEventsConfig;
 import doyenm.zooshell.gui.MainGUI;
 import doyenm.zooshell.main.Main;
 import java.util.Arrays;
@@ -25,7 +26,7 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import({ZooShellValidatorConfig.class, ZooShellControllerConfig.class, ZooShellCommandConfig.class,
     ZooShellPaddockConfig.class, ZooShellAnimalConfig.class, ZooShellKeeperConfig.class,
-    ZooShellZooConfig.class})
+    ZooShellZooConfig.class, ZooEventsConfig.class})
 public class ZooShellConfig {
 
     @Bean

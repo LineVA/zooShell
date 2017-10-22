@@ -47,7 +47,7 @@ public class AnimalEvaluationController implements Function<EvaluationContext, E
                 // Death
                 .map(animalDeathEvaluationController)
                  .map((AnimalEvaluationContext t1) -> {
-                    context.getEvents().addAll(t1.getEvents());
+                    context.getAnimalEvents().addAll(t1.getEvents());
                     return t1;
                 })
                  // Cohabitation

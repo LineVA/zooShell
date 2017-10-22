@@ -5,6 +5,7 @@ import doyenm.zooshell.model.Specie;
 import lombok.Getter;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.xml.specie.SpecieGenerator;
+import java.util.ArrayList;
 import java.util.Map;
 import lombok.Setter;
 
@@ -83,6 +84,7 @@ public class ZooCreationContext {
         zoo.setAge(this.getAge());
         zoo.setSpecies(this.getSpecies());
         zoo.setGradeObj(new Grade());
+        zoo.setZooEvents(new ArrayList<>());
     }
 
 }
