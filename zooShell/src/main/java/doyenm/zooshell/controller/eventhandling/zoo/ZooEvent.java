@@ -4,9 +4,9 @@ import doyenm.zooshell.controller.eventhandling.Event;
 import doyenm.zooshell.controller.eventhandling.EventCategory;
 import doyenm.zooshell.controller.eventhandling.EventSubject;
 import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.Family;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -16,8 +16,8 @@ import lombok.Getter;
 @Getter
 public class ZooEvent implements Event{
     private final ZooEventType eventType;
-    private final AnimalKeeper keeper;
-    private final Family family;
+    @Setter
+    private AnimalKeeper keeper;
 
     @Override
     public EventCategory getEventCategory() {
