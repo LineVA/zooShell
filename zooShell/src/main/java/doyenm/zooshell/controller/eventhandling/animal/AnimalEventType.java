@@ -1,5 +1,6 @@
-package doyenm.zooshell.controller.eventhandling;
+package doyenm.zooshell.controller.eventhandling.animal;
 
+import doyenm.zooshell.controller.eventhandling.EventCategory;
 import lombok.Getter;
 
 /**

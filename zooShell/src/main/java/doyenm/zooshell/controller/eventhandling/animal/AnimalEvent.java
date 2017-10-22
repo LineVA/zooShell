@@ -1,5 +1,8 @@
-package doyenm.zooshell.controller.eventhandling;
+package doyenm.zooshell.controller.eventhandling.animal;
 
+import doyenm.zooshell.controller.eventhandling.Event;
+import doyenm.zooshell.controller.eventhandling.EventCategory;
+import doyenm.zooshell.controller.eventhandling.EventSubject;
 import doyenm.zooshell.model.Animal;
 import lombok.Getter;
 
@@ -7,13 +10,11 @@ import lombok.Getter;
  *
  * @author doyenm
  */
-public class AnimalEvent {
+@Getter
+public class AnimalEvent implements Event{
 
-    @Getter
     private final AnimalEventType eventType;
-    @Getter
     private final Animal subject;
-    @Getter
     private Animal actor;
 
     public AnimalEvent(AnimalEventType eventType, Animal subject) {
@@ -35,6 +36,18 @@ public class AnimalEvent {
             this.eventType = null;
             this.subject = null;
         }
+    }
+
+    @Override
+    public EventCategory getEventCategory() {
+        return eventType.getCategory();
+    }
+    
+    
+
+    @Override
+    public EventSubject getEventSubject() {
+        return EventSubject.ANIMAL_EVENT;
     }
 
 }

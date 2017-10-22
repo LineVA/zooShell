@@ -1,6 +1,6 @@
 package doyenm.zooshell.context;
 
-import doyenm.zooshell.controller.eventhandling.AnimalEvent;
+import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Family;

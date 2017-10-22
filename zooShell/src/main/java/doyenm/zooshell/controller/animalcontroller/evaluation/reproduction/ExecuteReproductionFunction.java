@@ -1,8 +1,8 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.reproduction;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
-import doyenm.zooshell.controller.eventhandling.AnimalEvent;
-import doyenm.zooshell.controller.eventhandling.AnimalEventType;
+import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
+import doyenm.zooshell.controller.eventhandling.animal.AnimalEventType;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.utils.UniformStatistics;
 import java.util.ArrayList;

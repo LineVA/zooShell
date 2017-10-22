@@ -2,13 +2,16 @@ package doyenm.zooshell.commandLine.commandImpl.zoo;
 
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.commandLine.general.Command;
-import doyenm.zooshell.commandLine.general.DisplayingComplexEvents;
-import doyenm.zooshell.commandLine.general.DisplayingSimpleEvents;
-import doyenm.zooshell.commandLine.general.DisplayingEvents;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingBinaryAnimalEvents;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingUnaryAnimalEvents;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingEvents;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingBinaryZooEvents;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingUnaryZooEvents;
 import doyenm.zooshell.context.EvaluationContext;
-import doyenm.zooshell.controller.eventhandling.AnimalEvent;
+import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
+import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
 import doyenm.zooshell.controller.zoocontroller.EvaluationController;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
@@ -26,9 +29,13 @@ import lombok.RequiredArgsConstructor;
 public class Evaluate implements Command {
 
     private final EvaluationController controller;
-    
-    private final List<DisplayingEvents> displayingEventsList = Arrays.asList(new DisplayingSimpleEvents(),
-            new DisplayingComplexEvents()); 
+
+    private final List<DisplayingEvents> displayingEventsList = Arrays.asList(
+            new DisplayingBinaryAnimalEvents(),
+            new DisplayingBinaryZooEvents(),
+            new DisplayingUnaryAnimalEvents(),
+            new DisplayingUnaryZooEvents()
+    );
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
@@ -56,11 +63,20 @@ public class Evaluate implements Command {
     private String formatEvents(EvaluationContext context) {
         String result = "";
         List<String> resultsList = new ArrayList<>();
-        context.getEvents()
+        context.getAnimalEvents()
                 .stream()
                 .forEach((AnimalEvent event) -> {
-                    for(DisplayingEvents displayingEvents : displayingEventsList){
-                        if(displayingEvents.canFormat(event)){
+                    for (DisplayingEvents displayingEvents : displayingEventsList) {
+                        if (displayingEvents.canFormat(event)) {
+                            resultsList.add(displayingEvents.format(event));
+                        }
+                    }
+                });
+        context.getZooEvents()
+                .stream()
+                .forEach((ZooEvent event) -> {
+                    for (DisplayingEvents displayingEvents : displayingEventsList) {
+                        if (displayingEvents.canFormat(event)) {
                             resultsList.add(displayingEvents.format(event));
                         }
                     }
