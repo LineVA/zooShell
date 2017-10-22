@@ -31,4 +31,5 @@ public class AnimalKeeper {
     private List<TimedOccupation> occupations;
     private Map<TaskType, Double> taskEvaluations;
     private Map<Family, Double> familyEvaluations;
+    private Training training;
 }
