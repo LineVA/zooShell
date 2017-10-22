@@ -6,12 +6,14 @@ import doyenm.zooshell.controller.eventhandling.EventSubject;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Family;
 import lombok.Builder;
+import lombok.Getter;
 
 /**
  *
  * @author doyenm
  */
 @Builder
+@Getter
 public class ZooEvent implements Event{
     private final ZooEventType type;
     private final AnimalKeeper keeper;
