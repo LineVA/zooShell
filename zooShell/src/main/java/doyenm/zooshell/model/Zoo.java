@@ -1,7 +1,9 @@
 package doyenm.zooshell.model;
 
+import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -66,6 +68,19 @@ public class Zoo {
      * time we need it
      */
     private double grade;
+    
+    /**
+     * The object that save all the details of the grade of the zoo
+     */
     private Grade gradeObj;
+    
+    /**
+     * The horizon of the zoo
+     */
     private int horizon;
+    
+    /**
+     * The list of the zoo that currently affects it
+     */
+    List<ZooEvent> zooEvents;
 }
