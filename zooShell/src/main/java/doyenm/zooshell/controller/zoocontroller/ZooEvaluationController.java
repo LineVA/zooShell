@@ -23,7 +23,10 @@ public class ZooEvaluationController  implements Function<EvaluationContext, Eva
         context.getZoo().setAge(context.getZoo().getAge() + context.getZoo().getMonthsPerEvaluation());
         context.getGradeObj().setZooGrade(0.0);
         
-        context.setZooEvents(generateZooEvents(context));
+        // Generate and save the events related to the zoo itself
+        List<ZooEvent> zooEvents = generateZooEvents(context);
+        context.setZooEvents(zooEvents);
+        context.getZoo().getZooEvents().addAll(zooEvents);
         
         return context;
     }
@@ -34,5 +37,5 @@ public class ZooEvaluationController  implements Function<EvaluationContext, Eva
                 .map(handler -> handler.apply(context))
                 .collect(Collectors.toList());
     }
-
+    
 }
