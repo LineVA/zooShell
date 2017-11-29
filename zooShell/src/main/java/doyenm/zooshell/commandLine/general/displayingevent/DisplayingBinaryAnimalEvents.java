@@ -14,8 +14,8 @@ public class DisplayingBinaryAnimalEvents implements DisplayingEvents {
 
     @Override
     public boolean canFormat(Event event) {
-        return EventCategory.BINARY == event.getEventCategory() 
-                && EventSubject.ANIMAL_EVENT == event.getEventSubject();
+        return EventSubject.ANIMAL_EVENT == event.getEventSubject()
+                && EventCategory.BINARY == event.getEventCategory();
     }
 
     @Override

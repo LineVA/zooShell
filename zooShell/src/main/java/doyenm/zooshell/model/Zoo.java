@@ -82,5 +82,5 @@ public class Zoo {
     /**
      * The list of the zoo that currently affects it
      */
-    List<ZooEvent> zooEvents;
+    private List<ZooEvent> zooEvents;
 }

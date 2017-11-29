@@ -303,6 +303,8 @@ public class Constants {
     public static final String TIMEDTASKS = "timedTasksPerPaddock";
     // --timedTaskPerPaddock, -tT, -tTP as arguments
     public static final String[] TIMEDTASK_ARG = {"--timedTaskPerPaddock", "-tT", "-tTP"};
+      // time
+    public static final String TRAINING = "training";
     // uicn
     public static final String UICN = "uicn";
     // update

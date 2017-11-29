@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<zoo>
+    <name>oo</name>
+    <width>0</width>
+    <height>0</height>
+    <paddocks/>
+    <animals>
+        <entry>
+            <key>toto</key>
+            <value>
+                <sex>FEMALE</sex>
+                <age>3</age>
+                <numberOfChildren>0</numberOfChildren>
+                <daysOfDrowning>5</daysOfDrowning>
+                <daysOfHunger>0</daysOfHunger>
+                <monthsOfGestation>0</monthsOfGestation>
+                <notNursingByMother>false</notNursingByMother>
+                <wellBeing>0.0</wellBeing>
+            </value>
+        </entry>
+    </animals>
+    <keepers/>
+    <monthsPerEvaluation>0</monthsPerEvaluation>
+    <age>10</age>
+    <grade>0.0</grade>
+    <horizon>0</horizon>
+</zoo>

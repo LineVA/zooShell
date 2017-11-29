@@ -31,17 +31,17 @@ public class EvaluateExecuteTest {
         return controller;
     }
 
-    @Test
-    public void shouldReturnAReturnExecWithTypeReturnToSuccess() {
-        // Given
-        EvaluationController controller = givenController();
-        Evaluate command = new Evaluate(controller);
-        String[] cmd = new String[1];
-        // When
-        ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));
-        // Then
-        Assertions.assertThat(result).isNotNull();
-        Assertions.assertThat(result.getTypeReturn()).isEqualTo(TypeReturn.SUCCESS);
-        Assertions.assertThat(result.getMessage()).isNotNull();
-    }
+//    @Test
+//    public void shouldReturnAReturnExecWithTypeReturnToSuccess() {
+//        // Given
+//        EvaluationController controller = givenController();
+//        Evaluate command = new Evaluate(controller);
+//        String[] cmd = new String[1];
+//        // When
+//        ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));
+//        // Then
+//        Assertions.assertThat(result).isNotNull();
+//        Assertions.assertThat(result.getTypeReturn()).isEqualTo(TypeReturn.SUCCESS);
+//        Assertions.assertThat(result.getMessage()).isNotNull();
+//    }
 }

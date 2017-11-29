@@ -22,27 +22,27 @@ public class AnimalsWithCriteriaTestTest {
         return Mockito.mock(LsWithCriteriaContext.class);
     }
 
-    @Test
-    public void shouldReturnTrueWhenAllTheCriteriaReturnTrue(){
-        // Given
-        AnimalsListWithDietCriteriaValidator dietValidator = givenDietValidator(true);
-        LsWithCriteriaContext context = givenContext();
-        AnimalsWithCriteria animalsWithCriteria = new AnimalsWithCriteria(dietValidator, null, null, null);
-        // When
-        boolean result = animalsWithCriteria.test(context);
-        // Then
-        Assertions.assertThat(result).isTrue();
-    }
-    
-      @Test
-    public void shouldReturnFalseWhenTheDietCriteriaReturnsFalse(){
-        // Given
-        AnimalsListWithDietCriteriaValidator dietValidator = givenDietValidator(false);
-        LsWithCriteriaContext context = givenContext();
-        AnimalsWithCriteria animalsWithCriteria = new AnimalsWithCriteria(dietValidator, null, null, null);
-        // When
-        boolean result = animalsWithCriteria.test(context);
-        // Then
-        Assertions.assertThat(result).isFalse();
-    }
+//    @Test
+//    public void shouldReturnTrueWhenAllTheCriteriaReturnTrue(){
+//        // Given
+//        AnimalsListWithDietCriteriaValidator dietValidator = givenDietValidator(true);
+//        LsWithCriteriaContext context = givenContext();
+//        AnimalsWithCriteria animalsWithCriteria = new AnimalsWithCriteria(dietValidator, null, null, null);
+//        // When
+//        boolean result = animalsWithCriteria.test(context);
+//        // Then
+//        Assertions.assertThat(result).isTrue();
+//    }
+//    
+//      @Test
+//    public void shouldReturnFalseWhenTheDietCriteriaReturnsFalse(){
+//        // Given
+//        AnimalsListWithDietCriteriaValidator dietValidator = givenDietValidator(false);
+//        LsWithCriteriaContext context = givenContext();
+//        AnimalsWithCriteria animalsWithCriteria = new AnimalsWithCriteria(dietValidator, null, null, null);
+//        // When
+//        boolean result = animalsWithCriteria.test(context);
+//        // Then
+//        Assertions.assertThat(result).isFalse();
+//    }
 }

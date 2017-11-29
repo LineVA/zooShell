@@ -141,6 +141,9 @@ public class ZooShellConfig {
 
     @Autowired
     CreateKeeper createKeeper;
+    
+    @Autowired
+    AddTraining addTraining;
 
     @Autowired
     DetailKeeper detailKeeper;
@@ -205,6 +208,7 @@ public class ZooShellConfig {
                 new ActionPointCommand(removeKeeper, 1),
                 new ActionPointCommand(resetOccupations, 0),
                 new ActionPointCommand(updateOccupations, 1),
+                new ActionPointCommand(addTraining, 1),
                 new ActionPointCommand(lsBiome, 0),
                 new ActionPointCommand(lsContraceptionMethod, 0),
                 new ActionPointCommand(lsDiet, 0),

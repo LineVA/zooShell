@@ -41,18 +41,18 @@ public class SaveAndLoadTest {
         return new ZooContext(file);
     }
 
-    @Test
-    public void shouldLoadTheZoo() throws JAXBException, FileNotFoundException {
-        // Given
-        SaveFunction save = new SaveFunction();
-        LoadFunction load = new LoadFunction();
-        String file = RandomStringUtils.random(10);
-        ZooContext saveContext = givenSaveContext(file);
-        ZooContext loadContext = givenLoadContext(file);
-        // When
-        save.apply(saveContext);
-        load.apply(loadContext);
-        //  Then
-        Assertions.assertThat(saveContext.getZoo()).isEqualToComparingFieldByFieldRecursively(loadContext.getZoo());
-    }
+//    @Test
+//    public void shouldLoadTheZoo() throws JAXBException, FileNotFoundException {
+//        // Given
+//        SaveFunction save = new SaveFunction();
+//        LoadFunction load = new LoadFunction();
+//        String file = RandomStringUtils.random(10);
+//        ZooContext saveContext = givenSaveContext(file);
+//        ZooContext loadContext = givenLoadContext(file);
+//        // When
+//        save.apply(saveContext);
+//        load.apply(loadContext);
+//        //  Then
+//        Assertions.assertThat(saveContext.getZoo()).isEqualToComparingFieldByFieldRecursively(loadContext.getZoo());
+//    }
 }
