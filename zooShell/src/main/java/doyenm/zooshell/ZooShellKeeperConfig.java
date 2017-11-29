@@ -1,6 +1,6 @@
 package doyenm.zooshell;
 
-import doyenm.zooshell.commandLine.commandImpl.keeper.AddTraining;
+//import doyenm.zooshell.commandLine.commandImpl.keeper.AddTraining;
 import doyenm.zooshell.commandLine.commandImpl.keeper.ChangeKeeperName;
 import doyenm.zooshell.commandLine.commandImpl.keeper.CreateKeeper;
 import doyenm.zooshell.commandLine.commandImpl.keeper.DetailKeeper;
@@ -11,7 +11,7 @@ import doyenm.zooshell.commandLine.commandImpl.keeper.UpdateOccupations;
 import doyenm.zooshell.controller.keepercontroller.*;
 import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.validator.*;
-import doyenm.zooshell.validator.function.FindingFamilyFunction;
+//import doyenm.zooshell.validator.function.FindingFamilyFunction;
 import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
@@ -48,10 +48,10 @@ public class ZooShellKeeperConfig {
     UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
 
     // Controllers
-    @Bean
-    KeeperAddTrainingController keeperAddTrainingController(){
-        return new KeeperAddTrainingController();
-    }
+//    @Bean
+//    KeeperAddTrainingController keeperAddTrainingController(){
+//        return new KeeperAddTrainingController();
+//    }
     
     @Bean
     KeeperRenameController keeperRenameController() {
@@ -89,15 +89,15 @@ public class ZooShellKeeperConfig {
         return new FindKeeper();
     }
     
-    @Bean
-    FindingFamilyFunction findingFamilyFunction(){
-        return new FindingFamilyFunction();
-    }
-    
-    @Bean
-    KeeperAddTrainingValidator keeperAddTrainingValidator(){
-        return new KeeperAddTrainingValidator(findKeeper(), findingFamilyFunction());
-    }
+//    @Bean
+//    FindingFamilyFunction findingFamilyFunction(){
+//        return new FindingFamilyFunction();
+//    }
+//    
+//    @Bean
+//    KeeperAddTrainingValidator keeperAddTrainingValidator(){
+//        return new KeeperAddTrainingValidator(findKeeper(), findingFamilyFunction());
+//    }
     
     @Bean
     KeeperRenameValidator keeperRenameValidator() {
@@ -128,10 +128,10 @@ public class ZooShellKeeperConfig {
     }
 
     // Commands
-    @Bean
-    AddTraining addTraining(){
-        return new AddTraining(keeperAddTrainingValidator(), keeperAddTrainingController());
-    }
+//    @Bean
+//    AddTraining addTraining(){
+//        return new AddTraining(keeperAddTrainingValidator(), keeperAddTrainingController());
+//    }
     
     @Bean
     ChangeKeeperName changeKeeperName() {
