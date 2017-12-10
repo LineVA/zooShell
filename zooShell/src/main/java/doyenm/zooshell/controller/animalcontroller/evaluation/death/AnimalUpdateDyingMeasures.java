@@ -49,11 +49,13 @@ public class AnimalUpdateDyingMeasures {
      * - must be in the same paddock
      * - must be of different species
      * - must have a diff of cohabitationFactor >= 0.4
+     * - the killer cannot be still nursing
      */
     public Animal updateIsDeadByPredation(Animal animal, List<Animal> otherAnimals) {
         double cohabitationFactor = animal.getCharacterAttributes().getCohabitationFactor();
         Optional optional = otherAnimals
                 .stream()
+                .filter(other -> other.getReproductionAttributes().getWeaningAge() < other.getAge() )
                 .filter(other -> cohabitationFactor < other.getCharacterAttributes().getCohabitationFactor())
                 .filter(other -> Math.abs(cohabitationFactor - other.getCharacterAttributes().getCohabitationFactor()) >= 0.4)
                 .findFirst();
