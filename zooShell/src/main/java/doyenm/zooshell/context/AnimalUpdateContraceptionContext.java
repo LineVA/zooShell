@@ -24,9 +24,6 @@ public class AnimalUpdateContraceptionContext {
     private Animal convertedAnimal;
     private ContraceptionMethod convertedContraceptionMethod;
 
-    public void convert() {
-    }
-    
     public Map<String, Animal> getAnimals(){
         return getZoo().getAnimals();
     }
