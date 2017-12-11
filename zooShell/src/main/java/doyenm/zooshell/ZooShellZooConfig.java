@@ -19,6 +19,7 @@ import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
 import doyenm.zooshell.model.utils.CohabitationFactorHandler;
 import doyenm.zooshell.utils.UniformStatistics;
 import doyenm.zooshell.validator.AnimalCreationValidator;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,7 +45,8 @@ public class ZooShellZooConfig {
     
     @Bean
     AnimalUpdateDyingMeasures animalUpdateDyingMeasures(){
-        return new AnimalUpdateDyingMeasures();
+        return new AnimalUpdateDyingMeasures(new AnimalDyingPredicates(),
+        Arrays.asList(0.4, 0.3, 0.3, 0.1));
     }
 
     @Bean
