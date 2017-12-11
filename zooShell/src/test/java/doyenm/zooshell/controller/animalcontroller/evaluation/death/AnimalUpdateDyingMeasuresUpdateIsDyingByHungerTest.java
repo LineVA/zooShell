@@ -41,7 +41,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(false, false, false, false, false);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 0);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then
@@ -57,7 +57,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(false, false, false, false, false);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 1);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then
@@ -73,7 +73,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(true, false, false, false, false);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 0);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then
@@ -89,7 +89,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(false, true, false, false, false);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 0);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then
@@ -105,7 +105,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(false, false, true, false, false);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 0);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then
@@ -121,7 +121,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(false, false, false, true, false);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 0);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then
@@ -137,7 +137,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(false, false, false, true, false);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 0);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then
@@ -153,7 +153,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(false, false, false, false, true);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 0);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then
@@ -169,7 +169,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(true, false, false, false, false);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 1);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then
@@ -185,7 +185,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(false, true, false, false, false);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 1);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then
@@ -201,7 +201,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(false, false, true, false, false);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 1);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then
@@ -217,7 +217,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(false, false, false, true, false);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 1);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then
@@ -233,7 +233,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByHungerTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithHunger(false, false, false, false, true);
         Animal animal = givenAnimalWithNursingAndHungerDays(false, 1);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByHunger(animal, new ArrayList<>());
         // Then

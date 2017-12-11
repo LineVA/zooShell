@@ -5,6 +5,7 @@ import doyenm.zooshell.model.CharacterAttributes;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.ReproductionAttributes;
 import java.util.Arrays;
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -17,6 +18,8 @@ import static org.mockito.Mockito.when;
  */
 public class AnimalUpdateDyingMeasuresUpdateIsDeadByPredationTest {
 
+    List<Double> deltas = Arrays.asList(0.4, 0.3, 0.2, 0.1);
+
     private Animal givenAnimal(double factor) {
         Animal animal = Mockito.mock(Animal.class);
         Mockito.doCallRealMethod().when(animal).setKiller(Mockito.any(Animal.class));
@@ -27,7 +30,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDeadByPredationTest {
         return animal;
     }
 
-    private Animal givenKiller(double factor, int age, int weaningAge) {
+    private Animal givenKiller(double factor, int age, int weaningAge, int hungerDays) {
         Animal animal = Mockito.mock(Animal.class);
         CharacterAttributes att = mock(CharacterAttributes.class);
         when(att.getCohabitationFactor()).thenReturn(factor);
@@ -36,55 +39,65 @@ public class AnimalUpdateDyingMeasuresUpdateIsDeadByPredationTest {
         when(reproAtt.getWeaningAge()).thenReturn(weaningAge);
         when(animal.getReproductionAttributes()).thenReturn(reproAtt);
         when(animal.getAge()).thenReturn(age);
+        when(animal.getDaysOfHunger()).thenReturn(hungerDays);
         return animal;
     }
 
-    /**
-     * The animal was not drowning : so it was drowningDays = 0 It is not
-     * drowning for this turn So, we still have drowningDays = 0
-     */
+    
     @Test
     public void shouldReturnTheAnimalWithAKillerWhenAllTheConditionsAreOK() {
         // Given
         Animal animal = givenAnimal(0.0);
-        Animal killer = givenKiller(0.9, 20, 10);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(mock(AnimalDyingPredicates.class));
+        Animal killer = givenKiller(0.9, 20, 10, 0);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(mock(AnimalDyingPredicates.class), deltas);
         // When
         Animal actualAnimal = measures.updateIsDeadByPredation(animal, Arrays.asList(killer));
         // Then
         Assertions.assertThat(actualAnimal.getKiller()).isEqualTo(killer);
     }
 
- @Test
+    @Test
+    public void shouldReturnTheAnimalWithAKillerWhenTheDeltaIsOnly3AndTheKillerIsHungry() {
+        // Given
+        Animal animal = givenAnimal(0.4);
+        Animal killer = givenKiller(0.75, 20, 10, 1);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(mock(AnimalDyingPredicates.class), deltas);
+        // When
+        Animal actualAnimal = measures.updateIsDeadByPredation(animal, Arrays.asList(killer));
+        // Then
+        Assertions.assertThat(actualAnimal.getKiller()).isEqualTo(killer);
+    }
+
+    @Test
     public void shouldReturnNoKillerWhenTheCohabitationFactorOfThePreyIsHigher() {
         // Given
         Animal animal = givenAnimal(0.9);
-        Animal killer = givenKiller(0.0, 20, 10);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(mock(AnimalDyingPredicates.class));
+        Animal killer = givenKiller(0.0, 20, 10, 0);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(mock(AnimalDyingPredicates.class), deltas);
         // When
         Animal actualAnimal = measures.updateIsDeadByPredation(animal, Arrays.asList(killer));
         // Then
         Assertions.assertThat(actualAnimal.getKiller()).isNull();
     }
-    
+
     @Test
     public void shouldReturnNoKillerWhenTheDifferenceOfCohabitationFactorsIsNotEnoughHigh() {
         // Given
         Animal animal = givenAnimal(0.9);
-        Animal killer = givenKiller(0.8, 20, 10);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(mock(AnimalDyingPredicates.class));
+        Animal killer = givenKiller(0.8, 20, 10, 0);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(mock(AnimalDyingPredicates.class), deltas);
         // When
         Animal actualAnimal = measures.updateIsDeadByPredation(animal, Arrays.asList(killer));
         // Then
         Assertions.assertThat(actualAnimal.getKiller()).isNull();
     }
-    
+
     @Test
     public void shouldReturnNoKillerWhenTheKillerIsNotYetWeaned() {
         // Given
         Animal animal = givenAnimal(0.9);
-        Animal killer = givenKiller(0.4, 10, 20);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(mock(AnimalDyingPredicates.class));
+        Animal killer = givenKiller(0.4, 10, 20, 0);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(mock(AnimalDyingPredicates.class), deltas);
         // When
         Animal actualAnimal = measures.updateIsDeadByPredation(animal, Arrays.asList(killer));
         // Then
