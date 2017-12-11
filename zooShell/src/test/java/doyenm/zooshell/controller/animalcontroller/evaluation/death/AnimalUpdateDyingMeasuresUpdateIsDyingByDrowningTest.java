@@ -35,7 +35,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByDrowningTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithDrowning(false);
         Animal animal = givenAnimalWithDrowningDays(0);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByDrowning(animal);
         // Then
@@ -52,7 +52,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByDrowningTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithDrowning(true);
         Animal animal = givenAnimalWithDrowningDays(0);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByDrowning(animal);
         // Then
@@ -69,7 +69,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByDrowningTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithDrowning(true);
         Animal animal = givenAnimalWithDrowningDays(1);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByDrowning(animal);
         // Then
@@ -86,7 +86,7 @@ public class AnimalUpdateDyingMeasuresUpdateIsDyingByDrowningTest {
         // Given
         AnimalDyingPredicates dyingPredicates = givenDyingPredicatesWithDrowning(false);
         Animal animal = givenAnimalWithDrowningDays(1);
-        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates);
+        AnimalUpdateDyingMeasures measures = new AnimalUpdateDyingMeasures(dyingPredicates, null);
         // When
         Animal actualAnimal = measures.updateIsDyingByDrowning(animal);
         // Then

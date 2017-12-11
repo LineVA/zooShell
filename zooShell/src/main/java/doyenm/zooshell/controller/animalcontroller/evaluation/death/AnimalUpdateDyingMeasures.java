@@ -5,22 +5,17 @@ import doyenm.zooshell.model.AnimalKeeper;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class AnimalUpdateDyingMeasures {
 
-    private AnimalDyingPredicates dyingPredicates;
-
-    public AnimalUpdateDyingMeasures() {
-        this.dyingPredicates = new AnimalDyingPredicates();
-    }
-
-    public AnimalUpdateDyingMeasures(AnimalDyingPredicates predicates) {
-        this.dyingPredicates = predicates;
-    }
+    private final AnimalDyingPredicates dyingPredicates;
+    private final List<Double> cohabitationFactorsAccordingToHungerDays;
 
     public Animal updateIsDyingByDrowning(Animal animal) {
         if (dyingPredicates.isDyingByDrowning(animal)) {
@@ -57,11 +52,16 @@ public class AnimalUpdateDyingMeasures {
                 .stream()
                 .filter(other -> other.getReproductionAttributes().getWeaningAge() < other.getAge() )
                 .filter(other -> cohabitationFactor < other.getCharacterAttributes().getCohabitationFactor())
-                .filter(other -> Math.abs(cohabitationFactor - other.getCharacterAttributes().getCohabitationFactor()) >= 0.4)
+                .filter(other -> Math.abs(cohabitationFactor - other.getCharacterAttributes().getCohabitationFactor())
+                        >= computeCohabitationFactorDelta(other))
                 .findFirst();
         if (optional.isPresent()) {
             animal.setKiller((Animal) optional.get());
         }
         return animal;
+    }
+    
+    private double computeCohabitationFactorDelta(Animal killer){
+        return cohabitationFactorsAccordingToHungerDays.get(killer.getDaysOfHunger());
     }
 }
