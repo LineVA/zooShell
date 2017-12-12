@@ -1,6 +1,5 @@
 package doyenm.zooshell.controller.paddockcontroller;
 
-import com.google.inject.internal.util.ImmutableMap;
 import doyenm.zooshell.model.PaddockState;
 import java.util.function.Function;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +22,7 @@ public class PaddockControllerConfig {
 
     @Bean
     public PaddockDetailsController paddockDetailsController() {
-        return new PaddockDetailsController();
+        return new PaddockDetailsController(obsolescenceToStateFunction());
     }
 
     @Bean
