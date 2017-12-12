@@ -1,5 +1,8 @@
 package doyenm.zooshell.controller.paddockcontroller;
 
+import com.google.inject.internal.util.ImmutableMap;
+import doyenm.zooshell.model.PaddockState;
+import java.util.function.Function;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -46,5 +49,26 @@ public class PaddockControllerConfig {
     @Bean
     public UpdatePaddockTypeController updatePaddockTypeController() {
         return new UpdatePaddockTypeController();
+    }
+
+    public Function<Double, PaddockState> obsolescenceToStateFunction() {
+        return new Function<Double, PaddockState>() {
+            @Override
+            public PaddockState apply(Double t) {
+                if(t<0.1){
+                    return PaddockState.NEW;
+                } else if(t<0.2){
+                    return PaddockState.EXCELLENT;
+                } else if(t<0.6){
+                    return PaddockState.GOOD;
+                } else if(t<0.8){
+                    return PaddockState.FAIR;
+                } else if(t<0.95) {
+                    return PaddockState.DAMAGED;
+                } else {
+                    return PaddockState.UNSUABLE;
+                }
+            }
+        };
     }
 }
