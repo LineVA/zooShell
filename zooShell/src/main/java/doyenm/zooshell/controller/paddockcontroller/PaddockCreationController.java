@@ -32,6 +32,7 @@ public class PaddockCreationController
                 .name(context.getName())
                 .coordinates(coordinates)
                 .extensions(new ArrayList<Coordinates>())
+                .obsolescence(0.0)
                 .biome(Biome.NONE)
                 .type(PaddockType.UNKNOWN)
                 .build();
