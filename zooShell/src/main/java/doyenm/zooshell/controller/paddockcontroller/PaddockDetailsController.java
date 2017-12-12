@@ -10,7 +10,8 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class PaddockDetailsController implements Function<PaddockContext, PaddockContext> {
+public class PaddockDetailsController
+        implements Function<PaddockContext, PaddockContext> {
 
     private final Utils utils = new Utils();
     private final Function paddockStateFunction;
