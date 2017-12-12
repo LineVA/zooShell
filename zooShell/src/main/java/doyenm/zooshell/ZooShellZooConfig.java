@@ -11,7 +11,7 @@ import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationAgeingControl
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationFamilyController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationTaskController;
-import doyenm.zooshell.controller.paddockcontroller.PaddockAgeEvaluationController;
+import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockAgeEvaluationController;
 import doyenm.zooshell.controller.paddockcontroller.PaddockEvaluationController;
 import doyenm.zooshell.controller.zoocontroller.EvaluationController;
 import doyenm.zooshell.controller.zoocontroller.RenameZooController;
