@@ -1,5 +1,6 @@
 package doyenm.zooshell.controller.paddockcontroller;
 
+import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockAgeEvaluationController;
 import doyenm.zooshell.model.PaddockState;
 import java.util.function.Function;
 import org.springframework.context.annotation.Bean;
@@ -48,6 +49,16 @@ public class PaddockControllerConfig {
     @Bean
     public UpdatePaddockTypeController updatePaddockTypeController() {
         return new UpdatePaddockTypeController();
+    }
+    
+     @Bean
+    PaddockAgeEvaluationController paddockAgeEvaluationController(){
+        return new PaddockAgeEvaluationController();
+    }
+    
+    @Bean
+    public PaddockEvaluationController paddockEvaluationController(){
+        return new PaddockEvaluationController(paddockAgeEvaluationController());
     }
 
     public Function<Double, PaddockState> obsolescenceToStateFunction() {

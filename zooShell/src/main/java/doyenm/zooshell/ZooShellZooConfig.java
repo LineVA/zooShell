@@ -11,8 +11,7 @@ import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationAgeingControl
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationFamilyController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationTaskController;
-import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockAgeEvaluationController;
-import doyenm.zooshell.controller.paddockcontroller.PaddockEvaluationController;
+import doyenm.zooshell.controller.paddockcontroller.PaddockControllerConfig;
 import doyenm.zooshell.controller.zoocontroller.EvaluationController;
 import doyenm.zooshell.controller.zoocontroller.RenameZooController;
 import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
@@ -23,6 +22,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
@@ -32,10 +32,14 @@ import org.springframework.core.env.Environment;
  */
 @Configuration
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
+@Import({PaddockControllerConfig.class})
 public class ZooShellZooConfig {
     
     @Autowired
     Environment environment;
+    
+    @Autowired
+    PaddockControllerConfig paddockControllerConfig;
 
 
     @Bean
@@ -181,16 +185,6 @@ public class ZooShellZooConfig {
     }
     
     @Bean
-    PaddockAgeEvaluationController paddockAgeEvaluationController(){
-        return new PaddockAgeEvaluationController();
-    }
-    
-    @Bean
-    PaddockEvaluationController paddockEvaluationController(){
-        return new PaddockEvaluationController(paddockAgeEvaluationController());
-    }
-    
-    @Bean
     ZooEvaluationController zooEvaluationController(){
         return new ZooEvaluationController();
     } 
@@ -199,7 +193,7 @@ public class ZooShellZooConfig {
     EvaluationController evaluationController() {
         return new EvaluationController(animalEvaluationController(), 
                 keeperEvaluationController(), 
-                paddockEvaluationController(), 
+                paddockControllerConfig.paddockEvaluationController(), 
                 zooEvaluationController());
     }
     
