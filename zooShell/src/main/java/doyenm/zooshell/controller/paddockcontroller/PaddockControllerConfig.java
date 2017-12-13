@@ -1,5 +1,7 @@
 package doyenm.zooshell.controller.paddockcontroller;
 
+import doyenm.zooshell.controller.paddockcontroller.evaluation.LightZooDto;
+import doyenm.zooshell.controller.paddockcontroller.evaluation.ObsolescenceEvaluationController;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockAgeEvaluationController;
 import doyenm.zooshell.model.PaddockState;
 import java.util.function.Function;
@@ -50,34 +52,51 @@ public class PaddockControllerConfig {
     public UpdatePaddockTypeController updatePaddockTypeController() {
         return new UpdatePaddockTypeController();
     }
-    
-     @Bean
-    PaddockAgeEvaluationController paddockAgeEvaluationController(){
+
+    // Evaluation
+    @Bean
+    PaddockAgeEvaluationController paddockAgeEvaluationController() {
         return new PaddockAgeEvaluationController();
     }
     
     @Bean
-    public PaddockEvaluationController paddockEvaluationController(){
-        return new PaddockEvaluationController(paddockAgeEvaluationController());
+    ObsolescenceEvaluationController obsolescenceEvaluationController() {
+        return new ObsolescenceEvaluationController(computeObsolescenceAddedByAge());
     }
 
-    public Function<Double, PaddockState> obsolescenceToStateFunction() {
+    @Bean
+    public PaddockEvaluationController paddockEvaluationController() {
+        return new PaddockEvaluationController(
+                paddockAgeEvaluationController(),
+                obsolescenceEvaluationController());
+    }
+
+    Function<Double, PaddockState> obsolescenceToStateFunction() {
         return new Function<Double, PaddockState>() {
             @Override
             public PaddockState apply(Double t) {
-                if(t<0.1){
+                if (t < 0.1) {
                     return PaddockState.NEW;
-                } else if(t<0.2){
+                } else if (t < 0.2) {
                     return PaddockState.EXCELLENT;
-                } else if(t<0.6){
+                } else if (t < 0.6) {
                     return PaddockState.GOOD;
-                } else if(t<0.8){
+                } else if (t < 0.8) {
                     return PaddockState.FAIR;
-                } else if(t<0.95) {
+                } else if (t < 0.95) {
                     return PaddockState.DAMAGED;
                 } else {
                     return PaddockState.UNSUABLE;
                 }
+            }
+        };
+    }
+
+    Function<LightZooDto, Double> computeObsolescenceAddedByAge() {
+        return new Function<LightZooDto, Double>() {
+            @Override
+            public Double apply(LightZooDto dto) {
+                return 0.001 * (1 + dto.getSpeed() * dto.getAnimalsOfThePaddock());
             }
         };
     }
