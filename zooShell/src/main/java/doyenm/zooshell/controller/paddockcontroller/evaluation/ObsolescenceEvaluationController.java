@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 public class ObsolescenceEvaluationController 
           implements Function<PaddockEvaluationContext, PaddockEvaluationContext> {
 
-    private final Function function;
+    private final Function osolescenceFunction;
     
     @Override
     public PaddockEvaluationContext apply(PaddockEvaluationContext t) {
@@ -25,7 +25,7 @@ public class ObsolescenceEvaluationController
                 context.getPaddock(), 
                 context.getZoo().getMonthsPerEvaluation(),
                 animals);
-        Double obsolescenceAddedDuringTheTurn = (Double)function.apply(dto);
+        Double obsolescenceAddedDuringTheTurn = (Double)osolescenceFunction.apply(dto);
         context.getPaddock().setObsolescence(obsolescenceAddedDuringTheTurn);
         return context;
     }
