@@ -19,9 +19,9 @@ public class ObsolescenceEvaluationController
         PaddockEvaluationContext context = t;
         LightZooDto dto = LightZooDto.makeLightZooDto(context);
         Double obsolescenceAddedDuringTheTurn = (Double)osolescenceFunction.apply(dto);
-        context.getPaddock().setObsolescence(
-                obsolescenceAddedDuringTheTurn 
-                        + context.getPaddock().getObsolescence());
+        double sum = obsolescenceAddedDuringTheTurn 
+                        + context.getPaddock().getObsolescence();
+        context.getPaddock().setObsolescence(sum > 1.0 ? 1.0 : sum);
         return context;
     }
     
