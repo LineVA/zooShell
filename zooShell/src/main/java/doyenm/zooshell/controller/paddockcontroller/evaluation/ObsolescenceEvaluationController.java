@@ -17,16 +17,11 @@ public class ObsolescenceEvaluationController
     @Override
     public PaddockEvaluationContext apply(PaddockEvaluationContext t) {
         PaddockEvaluationContext context = t;
-        int animals = (int) context.getZoo().getAnimals().values()
-                .stream()
-                .filter(animal -> animal.getPaddock().equals(context.getPaddock()))
-                .count();
-        LightZooDto dto = new LightZooDto(
-                context.getPaddock(), 
-                context.getZoo().getMonthsPerEvaluation(),
-                animals);
+        LightZooDto dto = LightZooDto.makeLightZooDto(context);
         Double obsolescenceAddedDuringTheTurn = (Double)osolescenceFunction.apply(dto);
-        context.getPaddock().setObsolescence(obsolescenceAddedDuringTheTurn);
+        context.getPaddock().setObsolescence(
+                obsolescenceAddedDuringTheTurn 
+                        + context.getPaddock().getObsolescence());
         return context;
     }
     
