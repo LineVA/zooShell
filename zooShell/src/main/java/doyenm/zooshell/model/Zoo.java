@@ -52,6 +52,10 @@ public class Zoo {
      */
     private Map<String, AnimalKeeper> keepers = new HashMap<>();
     /**
+     * The hashmap of the handymen it contains
+     */
+    private Map<String, Handyman> handymen = new HashMap<>();
+    /**
      * The HashMap of the existing species
      */
     private Map<String, Specie> species;
