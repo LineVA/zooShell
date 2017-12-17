@@ -12,6 +12,7 @@ import doyenm.zooshell.commandLine.general.displayingevent.DisplayingNoneZooEven
 import doyenm.zooshell.commandLine.general.displayingevent.DisplayingUnaryZooEvents;
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
+import doyenm.zooshell.controller.eventhandling.paddock.PaddockEvent;
 import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
 import doyenm.zooshell.controller.zoocontroller.EvaluationController;
 import doyenm.zooshell.model.Zoo;
@@ -68,6 +69,15 @@ public class Evaluate implements Command {
         context.getAnimalEvents()
                 .stream()
                 .forEach((AnimalEvent event) -> {
+                    for (DisplayingEvents displayingEvents : displayingEventsList) {
+                        if (displayingEvents.canFormat(event)) {
+                            resultsList.add(displayingEvents.format(event));
+                        }
+                    }
+                });
+         context.getPaddockEvents()
+                .stream()
+                .forEach((PaddockEvent event) -> {
                     for (DisplayingEvents displayingEvents : displayingEventsList) {
                         if (displayingEvents.canFormat(event)) {
                             resultsList.add(displayingEvents.format(event));
