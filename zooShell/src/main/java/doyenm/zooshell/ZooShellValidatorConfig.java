@@ -22,22 +22,22 @@ public class ZooShellValidatorConfig {
     Environment environment;
 
     @Bean
-    SpecieDetailsValidator specieDetailsValidator() {
+    public SpecieDetailsValidator specieDetailsValidator() {
         return new SpecieDetailsValidator();
     }
 
     @Bean
-    IntegerValuePredicates integerValuePredicates(){
+    public IntegerValuePredicates integerValuePredicates(){
         return new IntegerValuePredicates();
     }
     
     @Bean
-    StringLengthPredicates stringLengthPredicates(){
+    public StringLengthPredicates stringLengthPredicates(){
         return new StringLengthPredicates();
     }
     
     @Bean
-    ZooCreationValidator zooCreationValidator() {
+    public ZooCreationValidator zooCreationValidator() {
         return new ZooCreationValidator(
                 integerValuePredicates(),
                 stringLengthPredicates(),

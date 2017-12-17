@@ -20,31 +20,29 @@ public class ZooShellControllerConfig {
     Utils utils() {
         return new Utils();
     }
-    
-   
 
     @Bean
-    SpecieDetailsController specieDetailsController() {
+    public SpecieDetailsController specieDetailsController() {
         return new SpecieDetailsController();
     }
 
     @Bean
-    ZooCreationController zooCreationController() {
+    public ZooCreationController zooCreationController() {
         return new ZooCreationController();
     }
 
     @Bean
-    ZooDetailsController zooDetailsController() {
+    public ZooDetailsController zooDetailsController() {
         return new ZooDetailsController(utils());
     }
-    
+
     @Bean
-    SaveFunction saveFunction(){
+    SaveFunction saveFunction() {
         return new SaveFunction();
     }
-    
+
     @Bean
-    LoadFunction loadFunction(){
+    LoadFunction loadFunction() {
         return new LoadFunction();
     }
 

@@ -34,67 +34,66 @@ import org.springframework.core.env.Environment;
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
 @Import({PaddockControllerConfig.class})
 public class ZooShellZooConfig {
-    
+
     @Autowired
     Environment environment;
-    
+
     @Autowired
     PaddockControllerConfig paddockControllerConfig;
 
-
     @Bean
-    AnimalAgeEvaluationController animalAgeEvaluationController() {
+    public AnimalAgeEvaluationController animalAgeEvaluationController() {
         return new AnimalAgeEvaluationController();
     }
-    
+
     @Bean
-    AnimalUpdateDyingMeasures animalUpdateDyingMeasures(){
+    public AnimalUpdateDyingMeasures animalUpdateDyingMeasures() {
         return new AnimalUpdateDyingMeasures(new AnimalDyingPredicates(),
-        Arrays.asList(0.4, 0.3, 0.3, 0.1));
+                Arrays.asList(0.4, 0.3, 0.3, 0.1));
     }
 
     @Bean
-    AnimalDeathPredicates animalDeathPredicates(){
+    public AnimalDeathPredicates animalDeathPredicates() {
         return new AnimalDeathPredicates(Integer.parseInt(environment.getProperty("animal.turns.agony")));
     }
-    
+
     @Bean
-    AnimalDeathEvaluationController animalDeathEvaluationController() {
+    public AnimalDeathEvaluationController animalDeathEvaluationController() {
         return new AnimalDeathEvaluationController(animalUpdateDyingMeasures(), animalDeathPredicates());
     }
-    
+
     @Bean
-    FemaleReproductionPredicate femaleReproductionPredicate(){
+    public FemaleReproductionPredicate femaleReproductionPredicate() {
         return new FemaleReproductionPredicate();
     }
-    
-      @Bean
-    MaleReproductionPredicate maleReproductionPredicate(){
+
+    @Bean
+    public MaleReproductionPredicate maleReproductionPredicate() {
         return new MaleReproductionPredicate();
     }
-    
+
     @Bean
-    UniformStatistics uniformStatistics(){
+    public UniformStatistics uniformStatistics() {
         return new UniformStatistics();
     }
-    
+
     @Bean
-    AnimalCreationValidator animalCreationValidator(){
+    public AnimalCreationValidator animalCreationValidator() {
         return new AnimalCreationValidator(Integer.parseInt(environment.getProperty("animal.name.max_length")));
     }
-    
+
     @Bean
-    CalvingFunction calvingFunction(){
+    public CalvingFunction calvingFunction() {
         return new CalvingFunction(uniformStatistics(), animalCreationValidator());
     }
-    
+
     @Bean
-    ExecuteReproductionFunction executeReproductionFunction(){
+    public ExecuteReproductionFunction executeReproductionFunction() {
         return new ExecuteReproductionFunction(calvingFunction(), uniformStatistics());
     }
 
     @Bean
-    AnimalReproductionEvaluationController animalReproductionEvaluationController() {
+    public AnimalReproductionEvaluationController animalReproductionEvaluationController() {
         return new AnimalReproductionEvaluationController(
                 femaleReproductionPredicate(),
                 maleReproductionPredicate(),
@@ -103,47 +102,47 @@ public class ZooShellZooConfig {
     }
 
     @Bean
-    AnimalBiomeEvaluationController animalBiomeEvaluationController() {
+    public AnimalBiomeEvaluationController animalBiomeEvaluationController() {
         return new AnimalBiomeEvaluationController();
     }
 
     @Bean
-    AnimalDietsEvaluationController animalDietsEvaluationController() {
+    public AnimalDietsEvaluationController animalDietsEvaluationController() {
         return new AnimalDietsEvaluationController();
     }
 
     @Bean
-    AnimalFoodQuantityEvaluationController animalFoodQuantityEvaluationController() {
+    public AnimalFoodQuantityEvaluationController animalFoodQuantityEvaluationController() {
         return new AnimalFoodQuantityEvaluationController(new Utils());
     }
 
     @Bean
-    AnimalFastDaysEvaluationController animalFastDaysEvaluationController() {
+    public AnimalFastDaysEvaluationController animalFastDaysEvaluationController() {
         return new AnimalFastDaysEvaluationController();
     }
 
     @Bean
-    AnimalTerritorySizeEvaluationController animalTerritorySizeEvaluationController() {
+    public AnimalTerritorySizeEvaluationController animalTerritorySizeEvaluationController() {
         return new AnimalTerritorySizeEvaluationController(new Utils());
     }
 
     @Bean
-    AnimalGroupSizeEvaluationController animalGroupSizeEvaluationController() {
+    public AnimalGroupSizeEvaluationController animalGroupSizeEvaluationController() {
         return new AnimalGroupSizeEvaluationController(new Utils());
     }
 
     @Bean
-    AnimalTasksInfluenceEvaluationController animalTasksInfluenceEvaluationController() {
+    public AnimalTasksInfluenceEvaluationController animalTasksInfluenceEvaluationController() {
         return new AnimalTasksInfluenceEvaluationController(new KeeperUtils());
     }
 
     @Bean
-    AnimalKeepersTimeInfluenceEvaluationController animalKeepersTimeInfluenceEvaluationController() {
+    public AnimalKeepersTimeInfluenceEvaluationController animalKeepersTimeInfluenceEvaluationController() {
         return new AnimalKeepersTimeInfluenceEvaluationController(new KeeperUtils());
     }
 
     @Bean
-    AnimalWellBeingController animalWellBeingController() {
+    public AnimalWellBeingController animalWellBeingController() {
         return new AnimalWellBeingController(animalBiomeEvaluationController(),
                 animalDietsEvaluationController(),
                 animalFoodQuantityEvaluationController(),
@@ -155,7 +154,7 @@ public class ZooShellZooConfig {
     }
 
     @Bean
-    AnimalEvaluationController animalEvaluationController() {
+    public AnimalEvaluationController animalEvaluationController() {
         return new AnimalEvaluationController(
                 animalAgeEvaluationController(),
                 new AnimalCohabitationEvaluationController(new CohabitationFactorHandler()),
@@ -165,45 +164,43 @@ public class ZooShellZooConfig {
     }
 
     @Bean
-    KeeperEvaluationAgeingController keeperAgeingController(){
+    public KeeperEvaluationAgeingController keeperAgeingController() {
         return new KeeperEvaluationAgeingController();
     }
+
     @Bean
-    KeeperEvaluationTaskController taskController(){
+    public KeeperEvaluationTaskController taskController() {
         return new KeeperEvaluationTaskController();
     }
+
     @Bean
-    KeeperEvaluationFamilyController familyController(){
+    public KeeperEvaluationFamilyController familyController() {
         return new KeeperEvaluationFamilyController();
     }
 
     @Bean
-    KeeperEvaluationController keeperEvaluationController() {
+    public KeeperEvaluationController keeperEvaluationController() {
         return new KeeperEvaluationController(keeperAgeingController(),
-                taskController(), 
+                taskController(),
                 familyController());
     }
-    
-    @Bean
-    ZooEvaluationController zooEvaluationController(){
-        return new ZooEvaluationController();
-    } 
 
     @Bean
-    EvaluationController evaluationController() {
-        return new EvaluationController(animalEvaluationController(), 
-                keeperEvaluationController(), 
-                paddockControllerConfig.paddockEvaluationController(), 
+    public ZooEvaluationController zooEvaluationController() {
+        return new ZooEvaluationController();
+    }
+
+    @Bean
+    public EvaluationController evaluationController() {
+        return new EvaluationController(animalEvaluationController(),
+                keeperEvaluationController(),
+                paddockControllerConfig.paddockEvaluationController(),
                 zooEvaluationController());
     }
-    
+
     @Bean
-    static RenameZooController renameZooController(){
+    public RenameZooController renameZooController() {
         return new RenameZooController();
-    } 
-    
-    @Bean
-    public static RenameZoo renameZoo(){
-        return new RenameZoo(renameZooController());
-    } 
+    }
+
 }

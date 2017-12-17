@@ -82,9 +82,9 @@ public class ZooShellConfig {
     CommandManager commandManager() {
         List<ActionPointCommand> commands = Arrays.asList(
                 // Zoo
-                new ActionPointCommand(createZoo, 0),
-                new ActionPointCommand(ZooShellZooConfig.renameZoo(), 0),
-                new ActionPointCommand(detailZoo, 0),
+                new ActionPointCommand(commandsConfig.zooCommandsConfig.createZoo(), 0),
+                new ActionPointCommand(commandsConfig.zooCommandsConfig.renameZoo(), 0),
+                new ActionPointCommand(commandsConfig.zooCommandsConfig.detailZoo(), 0),
                 // Specie
                 new ActionPointCommand(lsSpecie, 0),
                 new ActionPointCommand(detailSpecie, 0),
@@ -130,7 +130,7 @@ public class ZooShellConfig {
                 // General
                 new ActionPointCommand(load, 0),
                 new ActionPointCommand(save, 0));
-        return new CommandManager(commands, actionPointsHandler(), getActionPoints(), evaluate);
+        return new CommandManager(commands, actionPointsHandler(), getActionPoints(), commandsConfig.zooCommandsConfig.evaluate());
     }
 
     @Bean

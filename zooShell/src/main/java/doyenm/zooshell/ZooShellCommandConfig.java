@@ -54,24 +54,10 @@ public class ZooShellCommandConfig {
     LoadFunction loadFunction;
 
     @Bean
-    CreateZoo createZoo() {
-        return new CreateZoo(zooCreationValidator, zooCreationController);
-    }
-
-    @Bean
-    DetailZoo detailZoo() {
-        return new DetailZoo(zooDetailsController);
-    }
-
-    @Bean
     DetailSpecie detailSpecie() {
         return new DetailSpecie(specieDetailsValidator, specieDetailsController);
     }
-    
-    @Bean
-    Evaluate evaluate(){
-        return new Evaluate(evaluationController);
-    }
+ 
 
     @Bean
     LsKeeperTask lsKeeperTask() {
