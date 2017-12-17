@@ -9,7 +9,7 @@ import lombok.Getter;
  */
 public enum PaddockEventType {
 
-   CHANGE_STATE(EventCategory.BINARY, "The state of the paddock {0} has changed : its state is now \' {1} \' ");
+   CHANGE_STATE(EventCategory.BINARY, "The state of the paddock {0} has changed : its state is now {1}.");
 
     @Getter
     private EventCategory category;
