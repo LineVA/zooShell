@@ -5,18 +5,12 @@ import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.validator.name.NameDto;
 import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anySet;
-import static org.mockito.Matchers.anyString;
 import org.mockito.Mockito;
 
 /**
