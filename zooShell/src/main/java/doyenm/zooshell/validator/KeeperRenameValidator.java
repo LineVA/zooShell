@@ -1,8 +1,8 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.KeeperRenameContext;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
+import doyenm.zooshell.validator.name.NameDto;
+import doyenm.zooshell.validator.name.NameValidator;
 import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
 
@@ -13,16 +13,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class KeeperRenameValidator implements Predicate<KeeperRenameContext> {
 
-    private final StringLengthPredicates stringLengthPredicates;
-    private final UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
+    private final NameValidator nameValidator;
     private final FindKeeper findKeeper;
-    private final int maxLengthName;
 
     @Override
     public boolean test(KeeperRenameContext t) {
         boolean result;
-        result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(t.getNewKeeperName(), maxLengthName);
-        result &= this.uniquenessNamesBiPredicates.test(t.getNewKeeperName(), t.getZoo().getKeepers().keySet());
+        result = nameValidator.test(NameDto.builder()
+                .testing(t.getKeeper())
+                .exitingNames(t.getKeepers().keySet())
+                .build());
         t.setConvertedKeeper(findKeeper.find(t.getZoo(), t.getKeeper()));
         return result & t.getConvertedKeeper() != null;
     }

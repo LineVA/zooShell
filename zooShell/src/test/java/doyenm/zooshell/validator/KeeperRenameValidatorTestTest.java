@@ -3,14 +3,12 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.KeeperRenameContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
-import java.util.HashMap;
-import java.util.Map;
+import doyenm.zooshell.validator.name.NameDto;
+import doyenm.zooshell.validator.name.NameValidator;
 import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+import static org.mockito.Matchers.any;
 import org.mockito.Mockito;
 
 /**
@@ -28,15 +26,9 @@ public class KeeperRenameValidatorTestTest {
         return context;
     }
 
-    private StringLengthPredicates givenStringPredicates(boolean bool) {
-        StringLengthPredicates mock = Mockito.mock(StringLengthPredicates.class);
-        Mockito.when(mock.mustBeLowerOrEqualsThan(Mockito.anyString(), Mockito.anyInt())).thenReturn(bool);
-        return mock;
-    }
-
-    private UniquenessNamesBiPredicates givenUniquenessPredicates(boolean bool) {
-        UniquenessNamesBiPredicates mock = Mockito.mock(UniquenessNamesBiPredicates.class);
-        Mockito.when(mock.test(Mockito.anyString(), Mockito.anySet())).thenReturn(bool);
+    private NameValidator givenNameTest(boolean value) {
+        NameValidator mock = Mockito.mock(NameValidator.class);
+        Mockito.when(mock.test(any(NameDto.class))).thenReturn(value);
         return mock;
     }
 
@@ -55,64 +47,40 @@ public class KeeperRenameValidatorTestTest {
     public void shouldReturnTrueWhenTheNewNameIsCorrect() {
         // Given
         KeeperRenameContext context = givenContext(Mockito.mock(AnimalKeeper.class));
-        StringLengthPredicates stringLengthPredicates = givenStringPredicates(true);
-        UniquenessNamesBiPredicates uniquenessNamesBiPredicates = givenUniquenessPredicates(true);
+        NameValidator nameValidator = givenNameTest(true);
         FindKeeper findKeeper = givenFindKeeper();
-        KeeperRenameValidator validator = new KeeperRenameValidator(stringLengthPredicates,
-                uniquenessNamesBiPredicates,
-                findKeeper,
-                RandomUtils.nextInt());
+        KeeperRenameValidator validator = new KeeperRenameValidator(nameValidator,
+                findKeeper);
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isTrue();
     }
 
- @Test
-    public void shouldReturnFalseWhenTheNewNameIstooLong() {
-        // Given
-        KeeperRenameContext context = givenContext(Mockito.mock(AnimalKeeper.class));
-        StringLengthPredicates stringLengthPredicates = givenStringPredicates(false);
-        UniquenessNamesBiPredicates uniquenessNamesBiPredicates = givenUniquenessPredicates(true);
-        FindKeeper findKeeper = givenFindKeeper();
-        KeeperRenameValidator validator = new KeeperRenameValidator(stringLengthPredicates,
-                uniquenessNamesBiPredicates,
-                findKeeper,
-                RandomUtils.nextInt());
-        // When
-        boolean result = validator.test(context);
-        // Then
-        Assertions.assertThat(result).isFalse();
-    }
-    
     @Test
-    public void shouldReturnFalseWhenTheNewNameIsAlreadyTheNameOfAKeeper() {
+    public void shouldReturnFalseWhenTheNewNameIsKO() {
         // Given
         KeeperRenameContext context = givenContext(Mockito.mock(AnimalKeeper.class));
-        StringLengthPredicates stringLengthPredicates = givenStringPredicates(true);
-        UniquenessNamesBiPredicates uniquenessNamesBiPredicates = givenUniquenessPredicates(false);
+        NameValidator nameValidator = givenNameTest(false);
         FindKeeper findKeeper = givenFindKeeper();
-        KeeperRenameValidator validator = new KeeperRenameValidator(stringLengthPredicates,
-                uniquenessNamesBiPredicates,
-                findKeeper,
-                RandomUtils.nextInt());
+        KeeperRenameValidator validator = new KeeperRenameValidator(
+                nameValidator,
+                findKeeper);
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
+
     @Test
     public void shouldReturnFalseWhenTheCurrentNameIsNotTheOneOfAKeeper() {
         // Given
         KeeperRenameContext context = givenContext(null);
-        StringLengthPredicates stringLengthPredicates = givenStringPredicates(true);
-        UniquenessNamesBiPredicates uniquenessNamesBiPredicates = givenUniquenessPredicates(true);
+              NameValidator nameValidator = givenNameTest(true);
         FindKeeper findKeeper = givenFindKeeper();
-        KeeperRenameValidator validator = new KeeperRenameValidator(stringLengthPredicates,
-                uniquenessNamesBiPredicates,
-                findKeeper,
-                RandomUtils.nextInt());
+        KeeperRenameValidator validator = new KeeperRenameValidator(
+                nameValidator,
+                findKeeper);
         // When
         boolean result = validator.test(context);
         // Then

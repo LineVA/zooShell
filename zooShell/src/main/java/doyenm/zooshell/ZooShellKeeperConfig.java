@@ -102,10 +102,8 @@ public class ZooShellKeeperConfig {
     @Bean
     KeeperRenameValidator keeperRenameValidator() {
         return new KeeperRenameValidator(
-                stringLengthPredicates,
-                uniquenessNamesBiPredicates,
-                findKeeper(),
-                Integer.parseInt(environment.getProperty("keeper.name.max_length")));
+                nameValidator,
+                findKeeper());
     }
 
     @Bean
