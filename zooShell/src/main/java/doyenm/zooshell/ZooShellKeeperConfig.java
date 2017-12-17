@@ -52,43 +52,42 @@ public class ZooShellKeeperConfig {
 //    KeeperAddTrainingController keeperAddTrainingController(){
 //        return new KeeperAddTrainingController();
 //    }
-    
     @Bean
-    KeeperRenameController keeperRenameController() {
+    public KeeperRenameController keeperRenameController() {
         return new KeeperRenameController();
     }
 
     @Bean
-    KeeperCreationController keeperCreationController() {
+    public KeeperCreationController keeperCreationController() {
         return new KeeperCreationController();
     }
 
     @Bean
-    KeeperDetailsController keeperDetailsController() {
+    public KeeperDetailsController keeperDetailsController() {
         return new KeeperDetailsController(utils());
     }
 
     @Bean
-    KeeperDeletionController keeperDeletionController() {
+    public KeeperDeletionController keeperDeletionController() {
         return new KeeperDeletionController();
     }
 
     @Bean
-    KeeperResetOccupationsController keeperResetOccupationsController() {
+    public KeeperResetOccupationsController keeperResetOccupationsController() {
         return new KeeperResetOccupationsController();
     }
 
     @Bean
-    KeeperUpdateOccupationsController keeperUpdateOccupationsController() {
+    public KeeperUpdateOccupationsController keeperUpdateOccupationsController() {
         return new KeeperUpdateOccupationsController();
     }
 
     // Validators
     @Bean
-    FindKeeper findKeeper(){
+    public FindKeeper findKeeper() {
         return new FindKeeper();
     }
-    
+
 //    @Bean
 //    FindingFamilyFunction findingFamilyFunction(){
 //        return new FindingFamilyFunction();
@@ -98,9 +97,8 @@ public class ZooShellKeeperConfig {
 //    KeeperAddTrainingValidator keeperAddTrainingValidator(){
 //        return new KeeperAddTrainingValidator(findKeeper(), findingFamilyFunction());
 //    }
-    
     @Bean
-    KeeperRenameValidator keeperRenameValidator() {
+    public KeeperRenameValidator keeperRenameValidator() {
         return new KeeperRenameValidator(
                 stringLengthPredicates,
                 uniquenessNamesBiPredicates,
@@ -109,7 +107,7 @@ public class ZooShellKeeperConfig {
     }
 
     @Bean
-    KeeperCreationValidator keeperCreationValidator() {
+    public KeeperCreationValidator keeperCreationValidator() {
         return new KeeperCreationValidator(
                 stringLengthPredicates,
                 uniquenessNamesBiPredicates,
@@ -118,12 +116,12 @@ public class ZooShellKeeperConfig {
     }
 
     @Bean
-    KeeperValidator keeperValidator() {
+    public KeeperValidator keeperValidator() {
         return new KeeperValidator();
     }
 
     @Bean
-    KeeperUpdateOccupationsValidator keeperUpdateOccupationsValidator() {
+    public KeeperUpdateOccupationsValidator keeperUpdateOccupationsValidator() {
         return new KeeperUpdateOccupationsValidator();
     }
 
@@ -132,39 +130,4 @@ public class ZooShellKeeperConfig {
 //    AddTraining addTraining(){
 //        return new AddTraining(keeperAddTrainingValidator(), keeperAddTrainingController());
 //    }
-    
-    @Bean
-    ChangeKeeperName changeKeeperName() {
-        return new ChangeKeeperName(keeperRenameValidator(), keeperRenameController());
-    }
-
-    @Bean
-    CreateKeeper createKeeper() {
-        return new CreateKeeper(keeperCreationValidator(), keeperCreationController());
-    }
-
-    @Bean
-    DetailKeeper detailKeeper() {
-        return new DetailKeeper(keeperValidator(), keeperDetailsController());
-    }
-
-    @Bean
-    LsKeeper lsKeeper() {
-        return new LsKeeper();
-    }
-
-    @Bean
-    RemoveKeeper removeKeeper() {
-        return new RemoveKeeper(keeperValidator(), keeperDeletionController());
-    }
-
-    @Bean
-    ResetOccupations resetOccupations() {
-        return new ResetOccupations(keeperValidator(), keeperResetOccupationsController());
-    }
-
-    @Bean
-    UpdateOccupations updateOccupations() {
-        return new UpdateOccupations(keeperUpdateOccupationsValidator(), keeperUpdateOccupationsController());
-    }
 }

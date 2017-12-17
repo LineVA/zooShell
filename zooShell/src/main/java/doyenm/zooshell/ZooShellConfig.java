@@ -99,30 +99,6 @@ public class ZooShellConfig {
     @Autowired
     LsAnimalsWithCriteria lsAnimalsWithCriteria;
 
-    
-    @Autowired
-    ChangeKeeperName changeKeeperName;
-
-    @Autowired
-    CreateKeeper createKeeper;
-
-//    @Autowired
-//    AddTraining addTraining;
-    @Autowired
-    DetailKeeper detailKeeper;
-
-    @Autowired
-    LsKeeper lsKeeper;
-
-    @Autowired
-    RemoveKeeper removeKeeper;
-
-    @Autowired
-    ResetOccupations resetOccupations;
-
-    @Autowired
-    UpdateOccupations updateOccupations;
-
     @Bean
     ActionPointsHandler actionPointsHandler() {
         ActionPointsHandler actionPointsHandler = new ActionPointsHandler();
@@ -169,13 +145,13 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.updateFoodQuantity(), 1),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.updateContraceptionMethod(), 1),
                 // Keeper
-                new ActionPointCommand(changeKeeperName, 1),
-                new ActionPointCommand(createKeeper, 3),
-                new ActionPointCommand(lsKeeper, 0),
-                new ActionPointCommand(detailKeeper, 0),
-                new ActionPointCommand(removeKeeper, 1),
-                new ActionPointCommand(resetOccupations, 0),
-                new ActionPointCommand(updateOccupations, 1),
+                new ActionPointCommand(commandsConfig.keeperCommandsConfig.changeKeeperName(), 1),
+                new ActionPointCommand(commandsConfig.keeperCommandsConfig.createKeeper(), 3),
+                new ActionPointCommand(commandsConfig.keeperCommandsConfig.lsKeeper(), 0),
+                new ActionPointCommand(commandsConfig.keeperCommandsConfig.detailKeeper(), 0),
+                new ActionPointCommand(commandsConfig.keeperCommandsConfig.removeKeeper(), 1),
+                new ActionPointCommand(commandsConfig.keeperCommandsConfig.resetOccupations(), 0),
+                new ActionPointCommand(commandsConfig.keeperCommandsConfig.updateOccupations(), 1),
                 //                new ActionPointCommand(addTraining, 1),
                 // Ls
                 new ActionPointCommand(lsBiome, 0),
