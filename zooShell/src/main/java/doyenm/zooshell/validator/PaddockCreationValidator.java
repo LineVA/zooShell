@@ -1,9 +1,10 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.PaddockCreationContext;
+import doyenm.zooshell.validator.name.NameDto;
+import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
+import java.util.Set;
 import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
 
@@ -15,11 +16,9 @@ import lombok.RequiredArgsConstructor;
 public class PaddockCreationValidator
         implements Predicate<PaddockCreationContext> {
 
-    private final StringLengthPredicates stringLengthPredicates;
-    private final UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
+    private final NameValidator nameValidator;
     private final IntegerValuePredicates integerValuePredicates;
 
-    private final int maxLengthName;
     private final int minHeight;
     private final int minWidth;
 
@@ -28,10 +27,17 @@ public class PaddockCreationValidator
         PaddockCreationContext context = t;
         context.convert();
         boolean result;
-        result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getName(), maxLengthName);
-        result &= this.uniquenessNamesBiPredicates.test(context.getName().toUpperCase(), context.getPaddocksNameSet());
+        result = testName(context.getName(), context.getPaddocks().keySet());
         result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedHeight(), minHeight);
         result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedWidth(), minWidth);
         return result;
+    }
+    
+    private boolean testName(String name, Set<String> otherNames){
+        NameDto dto = NameDto.builder()
+                .testing(name)
+                .existingNames(otherNames)
+                .build();
+        return nameValidator.test(dto);
     }
 }

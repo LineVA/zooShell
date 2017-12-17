@@ -1,12 +1,14 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.ZooCreationContext;
+import doyenm.zooshell.validator.name.NameDto;
+import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+import static org.mockito.Matchers.any;
 import org.mockito.Mockito;
 
 /**
@@ -25,9 +27,9 @@ public class ZooCreationValidatorTestTest {
         return mock;
     } 
      
-     private StringLengthPredicates givenStringLengthPredicates(boolean bool) {
-        StringLengthPredicates mock = Mockito.mock(StringLengthPredicates.class);
-        Mockito.when(mock.mustBeLowerOrEqualsThan(Mockito.anyString(), Mockito.anyInt()))
+     private NameValidator givenNameValidator(boolean bool) {
+        NameValidator mock = Mockito.mock(NameValidator.class);
+        Mockito.when(mock.test(any(NameDto.class)))
                 .thenReturn(bool);
         return mock;
     } 
@@ -47,13 +49,13 @@ public class ZooCreationValidatorTestTest {
     public void shouldReturnTrueWhenEverythingIsOk(){
         // Given
         IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, true, true, true, true, true);
-        StringLengthPredicates stringLengthPredicates = givenStringLengthPredicates(true);
+        NameValidator nameValidator = givenNameValidator(true);
         ZooCreationContext context = givenContext();
         ZooCreationValidator validator = new ZooCreationValidator(
-                integerValuePredicates, stringLengthPredicates, 
+                integerValuePredicates, nameValidator, 
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
-                RandomUtils.nextInt(), RandomUtils.nextInt());
+                RandomUtils.nextInt());
         // When
         boolean result = validator.test(context);
         // Then
@@ -64,13 +66,13 @@ public class ZooCreationValidatorTestTest {
     public void shouldReturnFalseWhenTheWidthIsTooLow(){
         // Given
         IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(false, true, true, true, true, true);
-        StringLengthPredicates stringLengthPredicates = givenStringLengthPredicates(true);
+        NameValidator stringLengthPredicates = givenNameValidator(true);
         ZooCreationContext context = givenContext();
         ZooCreationValidator validator = new ZooCreationValidator(
                 integerValuePredicates, stringLengthPredicates, 
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
-                RandomUtils.nextInt(), RandomUtils.nextInt());
+                RandomUtils.nextInt());
         // When
         boolean result = validator.test(context);
         // Then
@@ -81,13 +83,13 @@ public class ZooCreationValidatorTestTest {
     public void shouldReturnFalseWhenTheHeightIsTooLow(){
         // Given
         IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, false, true, true, true, true);
-        StringLengthPredicates stringLengthPredicates = givenStringLengthPredicates(true);
+        NameValidator stringLengthPredicates = givenNameValidator(true);
         ZooCreationContext context = givenContext();
         ZooCreationValidator validator = new ZooCreationValidator(
                 integerValuePredicates, stringLengthPredicates, 
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
-                RandomUtils.nextInt(), RandomUtils.nextInt());
+                RandomUtils.nextInt());
         // When
         boolean result = validator.test(context);
         // Then
@@ -98,13 +100,13 @@ public class ZooCreationValidatorTestTest {
     public void shouldReturnFalseWhenTheHorizonIsTooLowInAbsoluteValue(){
         // Given
         IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, true, false, true, true, true);
-        StringLengthPredicates stringLengthPredicates = givenStringLengthPredicates(true);
+        NameValidator stringLengthPredicates = givenNameValidator(true);
         ZooCreationContext context = givenContext();
         ZooCreationValidator validator = new ZooCreationValidator(
                 integerValuePredicates, stringLengthPredicates, 
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
-                RandomUtils.nextInt(), RandomUtils.nextInt());
+                RandomUtils.nextInt());
         // When
         boolean result = validator.test(context);
         // Then
@@ -115,13 +117,13 @@ public class ZooCreationValidatorTestTest {
     public void shouldReturnFalseWhenTheHorizonIsTooLowForThisZoo(){
         // Given
         IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, true, true, false, true, true);
-        StringLengthPredicates stringLengthPredicates = givenStringLengthPredicates(true);
+        NameValidator stringLengthPredicates = givenNameValidator(true);
         ZooCreationContext context = givenContext();
         ZooCreationValidator validator = new ZooCreationValidator(
                 integerValuePredicates, stringLengthPredicates, 
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
-                RandomUtils.nextInt(), RandomUtils.nextInt());
+                RandomUtils.nextInt());
         // When
         boolean result = validator.test(context);
         // Then
@@ -132,13 +134,13 @@ public class ZooCreationValidatorTestTest {
     public void shouldReturnFalseWhenTheSpeedIsTooLow(){
         // Given
         IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, true, true, true, false, true);
-        StringLengthPredicates stringLengthPredicates = givenStringLengthPredicates(true);
+        NameValidator stringLengthPredicates = givenNameValidator(true);
         ZooCreationContext context = givenContext();
         ZooCreationValidator validator = new ZooCreationValidator(
                 integerValuePredicates, stringLengthPredicates, 
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
-                RandomUtils.nextInt(), RandomUtils.nextInt());
+                RandomUtils.nextInt());
         // When
         boolean result = validator.test(context);
         // Then
@@ -149,13 +151,13 @@ public class ZooCreationValidatorTestTest {
     public void shouldReturnFalseWhenTheSpeedIsTooHight(){
         // Given
         IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, true, true, true, true, false);
-        StringLengthPredicates stringLengthPredicates = givenStringLengthPredicates(true);
+        NameValidator stringLengthPredicates = givenNameValidator(true);
         ZooCreationContext context = givenContext();
         ZooCreationValidator validator = new ZooCreationValidator(
                 integerValuePredicates, stringLengthPredicates, 
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
-                RandomUtils.nextInt(), RandomUtils.nextInt());
+                RandomUtils.nextInt());
         // When
         boolean result = validator.test(context);
         // Then
@@ -166,13 +168,13 @@ public class ZooCreationValidatorTestTest {
     public void shouldReturnFalseWhenTheNameIsTooLong(){
         // Given
         IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, true, true, true, true, true);
-        StringLengthPredicates stringLengthPredicates = givenStringLengthPredicates(false);
+        NameValidator stringLengthPredicates = givenNameValidator(false);
         ZooCreationContext context = givenContext();
         ZooCreationValidator validator = new ZooCreationValidator(
                 integerValuePredicates, stringLengthPredicates, 
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
                 RandomUtils.nextInt(), RandomUtils.nextInt(),
-                RandomUtils.nextInt(), RandomUtils.nextInt());
+                RandomUtils.nextInt());
         // When
         boolean result = validator.test(context);
         // Then

@@ -2,8 +2,8 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.PaddockChangeNameContext;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
+import doyenm.zooshell.validator.name.NameDto;
+import doyenm.zooshell.validator.name.NameValidator;
 import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
 
@@ -16,9 +16,7 @@ public class PaddockChangeNameValidator
         implements Predicate<PaddockChangeNameContext> {
 
     private final FindPaddock findPaddock;
-    private final StringLengthPredicates stringLengthPredicates;
-    private final UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
-    private final int maxLengthName;
+    private final NameValidator nameValidator;
 
     @Override
     public boolean test(PaddockChangeNameContext t) {
@@ -28,7 +26,9 @@ public class PaddockChangeNameValidator
             return false;
         }
         context.setConvertedPaddock(pad);
-        return this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getNewName(), maxLengthName)
-                & this.uniquenessNamesBiPredicates.test(context.getNewName(), context.getPaddocks());
+        return nameValidator.test(NameDto.builder()
+                .testing(context.getNewName())
+                .existingNames(context.getPaddocks())
+                .build());
     }
 }

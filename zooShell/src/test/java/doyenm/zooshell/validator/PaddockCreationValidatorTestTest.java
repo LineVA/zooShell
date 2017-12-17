@@ -1,17 +1,16 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.PaddockCreationContext;
+import doyenm.zooshell.validator.name.NameDto;
+import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.HashSet;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anySet;
-import static org.mockito.Matchers.anyString;
 import org.mockito.Mockito;
 
 /**
@@ -20,15 +19,9 @@ import org.mockito.Mockito;
  */
 public class PaddockCreationValidatorTestTest {
 
-    private StringLengthPredicates givenStringPredicates(boolean value) {
-        StringLengthPredicates mock = Mockito.mock(StringLengthPredicates.class);
-        Mockito.when(mock.mustBeLowerOrEqualsThan(anyString(), anyInt())).thenReturn(value);
-        return mock;
-    }
-
-    private UniquenessNamesBiPredicates givenUniquenessNames(boolean value) {
-        UniquenessNamesBiPredicates mock = Mockito.mock(UniquenessNamesBiPredicates.class);
-        Mockito.when(mock.test(anyString(), anySet())).thenReturn(value);
+    private NameValidator givenNameTest(boolean value) {
+        NameValidator mock = Mockito.mock(NameValidator.class);
+        Mockito.when(mock.test(any(NameDto.class))).thenReturn(value);
         return mock;
     }
 
@@ -56,14 +49,12 @@ public class PaddockCreationValidatorTestTest {
     @Test
     public void shouldReturnTrueIfAllConditionsAreTrue() {
         // GIven
-        StringLengthPredicates stringLengthPredicates = givenStringPredicates(true);
-        UniquenessNamesBiPredicates uniquenessNamesBiPredicates = givenUniquenessNames(true);
         IntegerValuePredicates integerValuePredicates = givenIntPredicates(true, true);
+        NameValidator nameValidator = givenNameTest(true);
         PaddockCreationContext context = givenContext();
-        PaddockCreationValidator validator = new PaddockCreationValidator(stringLengthPredicates,
-                uniquenessNamesBiPredicates,
+        PaddockCreationValidator validator = new PaddockCreationValidator(
+                nameValidator,
                 integerValuePredicates,
-                RandomUtils.nextInt(), 
                 RandomUtils.nextInt(),
                 RandomUtils.nextInt());
         // When
@@ -71,18 +62,16 @@ public class PaddockCreationValidatorTestTest {
         // Then
         Assertions.assertThat(result).isTrue();
     }
-    
-       @Test
-    public void shouldReturnFalseWhenTheNameLengthDoesNotRespectTheExpectations() {
+
+    @Test
+    public void shouldReturnFalseWhenTheNameDoesNotRespectTheExpectations() {
         // GIven
-        StringLengthPredicates stringLengthPredicates = givenStringPredicates(false);
-        UniquenessNamesBiPredicates uniquenessNamesBiPredicates = givenUniquenessNames(true);
+        NameValidator nameValidator = givenNameTest(false);
         IntegerValuePredicates integerValuePredicates = givenIntPredicates(true, true);
         PaddockCreationContext context = givenContext();
-        PaddockCreationValidator validator = new PaddockCreationValidator(stringLengthPredicates,
-                uniquenessNamesBiPredicates,
+        PaddockCreationValidator validator = new PaddockCreationValidator(
+                nameValidator,
                 integerValuePredicates,
-                RandomUtils.nextInt(), 
                 RandomUtils.nextInt(),
                 RandomUtils.nextInt());
         // When
@@ -90,37 +79,16 @@ public class PaddockCreationValidatorTestTest {
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-         @Test
-    public void shouldReturnFalseWhenTheNameIsNotUnique() {
-        // GIven
-        StringLengthPredicates stringLengthPredicates = givenStringPredicates(true);
-        UniquenessNamesBiPredicates uniquenessNamesBiPredicates = givenUniquenessNames(false);
-        IntegerValuePredicates integerValuePredicates = givenIntPredicates(true, true);
-        PaddockCreationContext context = givenContext();
-        PaddockCreationValidator validator = new PaddockCreationValidator(stringLengthPredicates,
-                uniquenessNamesBiPredicates,
-                integerValuePredicates,
-                RandomUtils.nextInt(), 
-                RandomUtils.nextInt(),
-                RandomUtils.nextInt());
-        // When
-        boolean result = validator.test(context);
-        // Then
-        Assertions.assertThat(result).isFalse();
-    }
-    
-       @Test
+
+    @Test
     public void shouldReturnFalseWhenTheWidthDoesNotRespectTheExpectations() {
         // GIven
-        StringLengthPredicates stringLengthPredicates = givenStringPredicates(true);
-        UniquenessNamesBiPredicates uniquenessNamesBiPredicates = givenUniquenessNames(true);
+        NameValidator nameValidator = givenNameTest(true);
         IntegerValuePredicates integerValuePredicates = givenIntPredicates(true, false);
         PaddockCreationContext context = givenContext();
-        PaddockCreationValidator validator = new PaddockCreationValidator(stringLengthPredicates,
-                uniquenessNamesBiPredicates,
+        PaddockCreationValidator validator = new PaddockCreationValidator(
+                nameValidator,
                 integerValuePredicates,
-                RandomUtils.nextInt(), 
                 RandomUtils.nextInt(),
                 RandomUtils.nextInt());
         // When
@@ -128,18 +96,16 @@ public class PaddockCreationValidatorTestTest {
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
+
     @Test
     public void shouldReturnFalseWhenTheHeightDoesNotRespectTheExpectations() {
         // GIven
-        StringLengthPredicates stringLengthPredicates = givenStringPredicates(true);
-        UniquenessNamesBiPredicates uniquenessNamesBiPredicates = givenUniquenessNames(true);
+        NameValidator nameValidator = givenNameTest(true);
         IntegerValuePredicates integerValuePredicates = givenIntPredicates(false, true);
         PaddockCreationContext context = givenContext();
-        PaddockCreationValidator validator = new PaddockCreationValidator(stringLengthPredicates,
-                uniquenessNamesBiPredicates,
+        PaddockCreationValidator validator = new PaddockCreationValidator(
+                nameValidator,
                 integerValuePredicates,
-                RandomUtils.nextInt(), 
                 RandomUtils.nextInt(),
                 RandomUtils.nextInt());
         // When

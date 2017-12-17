@@ -2,8 +2,8 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalChangeNameContext;
 import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
+import doyenm.zooshell.validator.name.NameDto;
+import doyenm.zooshell.validator.name.NameValidator;
 import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
 
@@ -15,9 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class AnimalChangeNameValidator implements Predicate<AnimalChangeNameContext> {
 
     private final FindAnimal findAnimal;
-    private final StringLengthPredicates stringLengthPredicates;
-    private final UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
-    private final int maxLengthName;
+    private final NameValidator nameValidator;
 
     @Override
     public boolean test(AnimalChangeNameContext t) {
@@ -27,7 +25,9 @@ public class AnimalChangeNameValidator implements Predicate<AnimalChangeNameCont
             return false;
         }
         context.setConvertedAnimal(animal);
-        return this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getNewName(), maxLengthName)
-                & this.uniquenessNamesBiPredicates.test(context.getNewName().toUpperCase(), context.getAnimals());
+        return nameValidator.test(NameDto.builder()
+                .testing(context.getNewName())
+                .existingNames(context.getAnimals())
+                .build());
     }
 }

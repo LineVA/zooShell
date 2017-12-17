@@ -1,9 +1,9 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.KeeperCreationContext;
+import doyenm.zooshell.validator.name.NameDto;
+import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
 
@@ -13,21 +13,19 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public class KeeperCreationValidator implements Predicate<KeeperCreationContext> {
-
-    private final StringLengthPredicates stringLengthPredicates;
-    private final UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
-    private final KeepersNumberPredicate keepersNumberPredicate;
     
-    private final int maxLengthName;
+    private final NameValidator nameValidator;
+    private final KeepersNumberPredicate keepersNumberPredicate;
     
     @Override
     public boolean test(KeeperCreationContext t) {
         KeeperCreationContext context = t;
         
-        return 
-                this.keepersNumberPredicate.test(context)
-                & this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getKeeper(), maxLengthName)
-                & this.uniquenessNamesBiPredicates.test(context.getKeeper().toUpperCase(), context.getKeepers().keySet());
+        return this.keepersNumberPredicate.test(context)
+                & nameValidator.test(NameDto.builder()
+                        .testing(context.getKeeper())
+                        .existingNames(context.getKeepers().keySet())
+                        .build());
     }
-
+    
 }
