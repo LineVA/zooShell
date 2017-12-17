@@ -3,6 +3,7 @@ package doyenm.zooshell.context;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.controller.eventhandling.paddock.PaddockEvent;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +23,6 @@ public class PaddockEvaluationContext {
     public PaddockEvaluationContext(Zoo zoo, Paddock paddock) {
         this.zoo = zoo;
         this.paddock = paddock;
+        paddockEvents = new ArrayList<>();
     }
 }
