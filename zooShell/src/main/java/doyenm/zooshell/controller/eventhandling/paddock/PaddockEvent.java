@@ -48,7 +48,7 @@ public class PaddockEvent implements Event{
 
     @Override
     public EventSubject getEventSubject() {
-        return EventSubject.ANIMAL_EVENT;
+        return EventSubject.PADDOCK_EVENT;
     }
 
 }
