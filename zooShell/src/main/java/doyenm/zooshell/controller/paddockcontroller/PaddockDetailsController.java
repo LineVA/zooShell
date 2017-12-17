@@ -29,7 +29,7 @@ public class PaddockDetailsController
         } else {
             context.addCouple("Entry", "undefined");
         }
-        context.addCouple("Etat", paddockStateFunction.apply(context.getConvertedPaddock().getObsolescence()).toString());
+        context.addCouple("State", paddockStateFunction.apply(context.getConvertedPaddock().getObsolescence()).toString());
         context.addCouple("Biome", context.getConvertedPaddock().getBiome().toString());
         context.addCouple("Type", context.getConvertedPaddock().getType().toString());
         return context;
