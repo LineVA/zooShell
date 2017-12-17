@@ -17,6 +17,7 @@ import doyenm.zooshell.validator.UpdateBiomeValidator;
 import doyenm.zooshell.validator.UpdatePaddockTypeValidator;
 import doyenm.zooshell.validator.function.FindingBiomeFunction;
 import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
+import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
@@ -38,7 +39,7 @@ public class ZooShellPaddockConfig {
 
     @Autowired
     Environment environment;
-    
+
     @Autowired
     PaddockControllerConfig paddockControllerConfig;
 
@@ -82,7 +83,6 @@ public class ZooShellPaddockConfig {
 //    UpdatePaddockTypeController updatePaddockTypeController() {
 //        return new UpdatePaddockTypeController();
 //    }
-
     // Predicates
     @Autowired
     FindPaddock findPaddock;
@@ -101,6 +101,9 @@ public class ZooShellPaddockConfig {
 
     @Autowired
     IntegerValuePredicates integerValuePredicates;
+    
+    @Autowired
+    NameValidator nameValidator; 
 
     // Validators
     @Bean
@@ -114,10 +117,9 @@ public class ZooShellPaddockConfig {
 
     @Bean
     PaddockCreationValidator paddockCreationValidator() {
-        return new PaddockCreationValidator(stringLengthPredicates,
-                uniquenessNamesBiPredicates,
+        return new PaddockCreationValidator(
+                nameValidator,
                 integerValuePredicates,
-                Integer.parseInt(environment.getProperty("paddock.name.max_length")),
                 Integer.parseInt(environment.getProperty("paddock.height.min")),
                 Integer.parseInt(environment.getProperty("paddock.width.min"))
         );
@@ -174,15 +176,15 @@ public class ZooShellPaddockConfig {
     @Bean
     CreatePaddock createPaddock() {
         return new CreatePaddock(
-                paddockCreationValidator(), 
-                paddockLocationValidator(), 
+                paddockCreationValidator(),
+                paddockLocationValidator(),
                 paddockControllerConfig.paddockCreationController());
     }
 
     @Bean
     CreatePaddockEntry createPaddockEntry() {
         return new CreatePaddockEntry(
-                paddockEntryCreationValidator(), 
+                paddockEntryCreationValidator(),
                 paddockControllerConfig.paddockEntryCreationController());
     }
 
@@ -190,14 +192,14 @@ public class ZooShellPaddockConfig {
     CreatePaddockExtension createPaddockExtension() {
         return new CreatePaddockExtension(
                 paddockExtensionCreationValidator(),
-                paddockExtensionLocationValidator(), 
+                paddockExtensionLocationValidator(),
                 paddockControllerConfig.paddockExtensionCreationController());
     }
 
     @Bean
     DetailPad detailPad() {
         return new DetailPad(
-                paddockValidator(), 
+                paddockValidator(),
                 paddockControllerConfig.paddockDetailsController());
     }
 
@@ -219,21 +221,21 @@ public class ZooShellPaddockConfig {
     @Bean
     RemovePaddock removePaddock() {
         return new RemovePaddock(
-                paddockRemoveValidator(), 
+                paddockRemoveValidator(),
                 paddockControllerConfig.paddockRemoveController());
     }
 
     @Bean
     UpdateBiome updateBiome() {
         return new UpdateBiome(
-                updateBiomeValidator(), 
+                updateBiomeValidator(),
                 paddockControllerConfig.updateBiomeController());
     }
 
     @Bean
     UpdatePaddockType updatePaddockType() {
         return new UpdatePaddockType(
-                updatePaddockTypeValidator(), 
+                updatePaddockTypeValidator(),
                 paddockControllerConfig.updatePaddockTypeController());
     }
 
