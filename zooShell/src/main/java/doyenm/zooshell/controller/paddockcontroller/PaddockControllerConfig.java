@@ -58,10 +58,13 @@ public class PaddockControllerConfig {
     PaddockAgeEvaluationController paddockAgeEvaluationController() {
         return new PaddockAgeEvaluationController();
     }
-    
+
     @Bean
     ObsolescenceEvaluationController obsolescenceEvaluationController() {
-        return new ObsolescenceEvaluationController(computeObsolescenceAddedByAge());
+        return new ObsolescenceEvaluationController(
+                computeObsolescenceAddedByAge(),
+                obsolescenceToStateFunction()
+        );
     }
 
     @Bean
