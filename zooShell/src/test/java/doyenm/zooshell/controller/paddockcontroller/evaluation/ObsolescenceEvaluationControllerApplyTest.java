@@ -2,6 +2,7 @@ package doyenm.zooshell.controller.paddockcontroller.evaluation;
 
 import doyenm.zooshell.context.PaddockEvaluationContext;
 import doyenm.zooshell.model.Paddock;
+import doyenm.zooshell.model.PaddockState;
 import doyenm.zooshell.model.Zoo;
 import java.util.HashMap;
 import java.util.function.Function;
@@ -27,6 +28,11 @@ public class ObsolescenceEvaluationControllerApplyTest {
         when(function.apply(any(LightZooDto.class))).thenReturn(added);
         return function;
     }
+    
+      private Function<Double, PaddockState> givenConversionFunction() {
+        Function<Double, PaddockState> function = mock(Function.class);
+        return function;
+    }
 
     private PaddockEvaluationContext givenContext(double init) {
         PaddockEvaluationContext mock = mock(PaddockEvaluationContext.class);
@@ -49,7 +55,7 @@ public class ObsolescenceEvaluationControllerApplyTest {
         double added = 0.51;
         Function<LightZooDto, Double> function = givenFunction(added);
         PaddockEvaluationContext context = givenContext(init);
-        subject = new ObsolescenceEvaluationController(function);
+        subject = new ObsolescenceEvaluationController(function, givenConversionFunction());
         // When
         PaddockEvaluationContext actual = subject.apply(context);
         // Then
@@ -63,7 +69,7 @@ public class ObsolescenceEvaluationControllerApplyTest {
         double added = 0.51;
         Function<LightZooDto, Double> function = givenFunction(added);
         PaddockEvaluationContext context = givenContext(init);
-        subject = new ObsolescenceEvaluationController(function);
+        subject = new ObsolescenceEvaluationController(function, givenConversionFunction());
         // When
         PaddockEvaluationContext actual = subject.apply(context);
         // Then
