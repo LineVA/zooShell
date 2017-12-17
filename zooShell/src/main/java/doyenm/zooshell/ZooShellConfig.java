@@ -26,8 +26,12 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import({ZooShellValidatorConfig.class, ZooShellControllerConfig.class, ZooShellCommandConfig.class,
     ZooShellPaddockConfig.class, ZooShellAnimalConfig.class, ZooShellKeeperConfig.class,
-    ZooShellZooConfig.class, ZooEventsConfig.class})
+    ZooShellZooConfig.class, ZooEventsConfig.class,
+    CommandsConfig.class})
 public class ZooShellConfig {
+    
+    @Autowired
+    CommandsConfig commandsConfig;
 
     @Bean
     MainGUI mainGUI() {
@@ -71,12 +75,6 @@ public class ZooShellConfig {
     LsBiome lsBiome;
 
     @Autowired
-    LsContraceptionMethod lsContraceptionMethod;
-
-    @Autowired
-    LsDiet lsDiet;
-
-    @Autowired
     LsKeeperTask lsKeeperTask;
 
     @Autowired
@@ -84,9 +82,6 @@ public class ZooShellConfig {
 
     @Autowired
     LsPaddockType lsPaddockType;
-
-    @Autowired
-    LsSex lsSex;
 
     @Autowired
     LsSpecie lsSpecie;
@@ -100,51 +95,19 @@ public class ZooShellConfig {
     @Autowired
     UpdatePaddockType updatePaddocktype;
 
-    @Autowired
-    ChangeAnimalName changeAnimalName;
-
-    @Autowired
-    ChangePaddock changePaddock;
-
-    @Autowired
-    CreateAnimal createAnimal;
-
-    @Autowired
-    DetailAnimal detailAnimal;
-
-    @Autowired
-    LsAnimal lsAnimal;
 
     @Autowired
     LsAnimalsWithCriteria lsAnimalsWithCriteria;
 
-    @Autowired
-    RemoveAnimal removeAnimal;
-
-    @Autowired
-    ResetDiet resetDiet;
-
-    @Autowired
-    UpdateContraceptionMethod updateCotnraceptionMethod;
-
-    @Autowired
-    UpdateDiet updateDiet;
-
-    @Autowired
-    UpdateFastDays updateFastDays;
-
-    @Autowired
-    UpdateFoodQuantity updateFoodQuantity;
-
+    
     @Autowired
     ChangeKeeperName changeKeeperName;
 
     @Autowired
     CreateKeeper createKeeper;
-    
+
 //    @Autowired
 //    AddTraining addTraining;
-
     @Autowired
     DetailKeeper detailKeeper;
 
@@ -175,11 +138,14 @@ public class ZooShellConfig {
     @Bean
     CommandManager commandManager() {
         List<ActionPointCommand> commands = Arrays.asList(
+                // Zoo
                 new ActionPointCommand(createZoo, 0),
                 new ActionPointCommand(ZooShellZooConfig.renameZoo(), 0),
                 new ActionPointCommand(detailZoo, 0),
+                // Specie
                 new ActionPointCommand(lsSpecie, 0),
                 new ActionPointCommand(detailSpecie, 0),
+                // Paddock
                 new ActionPointCommand(changePaddockName, 1),
                 new ActionPointCommand(createPaddock, 3),
                 new ActionPointCommand(createPaddockEntry, 1),
@@ -189,18 +155,20 @@ public class ZooShellConfig {
                 new ActionPointCommand(removePaddock, 1),
                 new ActionPointCommand(updateBiome, 1),
                 new ActionPointCommand(updatePaddocktype, 1),
-                new ActionPointCommand(changeAnimalName, 1),
-                new ActionPointCommand(changePaddock, 1),
-                new ActionPointCommand(createAnimal, 3),
-                new ActionPointCommand(lsAnimal, 0),
-                new ActionPointCommand(lsAnimalsWithCriteria, 0),
-                new ActionPointCommand(detailAnimal, 0),
-                new ActionPointCommand(removeAnimal, 1),
-                new ActionPointCommand(resetDiet, 0),
-                new ActionPointCommand(updateDiet, 1),
-                new ActionPointCommand(updateFastDays, 1),
-                new ActionPointCommand(updateFoodQuantity, 1),
-                new ActionPointCommand(updateCotnraceptionMethod, 1),
+                // Animal
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.changeAnimalName(), 1),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.changePaddock(), 1),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.createAnimal(), 3),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.lsAnimal(), 0),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.lsAnimalsWithCriteria(), 0),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.detailAnimal(), 0),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.removeAnimal(), 1),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.resetDiet(), 0),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.updateDiet(), 1),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.updateFastDays(), 1),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.updateFoodQuantity(), 1),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.updateContraceptionMethod(), 1),
+                // Keeper
                 new ActionPointCommand(changeKeeperName, 1),
                 new ActionPointCommand(createKeeper, 3),
                 new ActionPointCommand(lsKeeper, 0),
@@ -208,13 +176,15 @@ public class ZooShellConfig {
                 new ActionPointCommand(removeKeeper, 1),
                 new ActionPointCommand(resetOccupations, 0),
                 new ActionPointCommand(updateOccupations, 1),
-//                new ActionPointCommand(addTraining, 1),
+                //                new ActionPointCommand(addTraining, 1),
+                // Ls
                 new ActionPointCommand(lsBiome, 0),
-                new ActionPointCommand(lsContraceptionMethod, 0),
-                new ActionPointCommand(lsDiet, 0),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.lsContraceptionMethod(), 0),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.lsDiet(), 0),
                 new ActionPointCommand(lsKeeperTask, 0),
                 new ActionPointCommand(lsPaddockType, 0),
-                new ActionPointCommand(lsSex, 0),
+                new ActionPointCommand(commandsConfig.animalCommandsConfig.lsSex(), 0),
+                // General
                 new ActionPointCommand(load, 0),
                 new ActionPointCommand(save, 0));
         return new CommandManager(commands, actionPointsHandler(), getActionPoints(), evaluate);
