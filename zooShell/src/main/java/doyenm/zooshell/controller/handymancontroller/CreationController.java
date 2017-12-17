@@ -17,7 +17,7 @@ public class CreationController
                 .name(t.getName())
                 .age(0)
                 .build();
-        t.getZoo().getHandymen().put(t.getName(), handyman);
+        t.getZoo().getHandymen().put(t.getName().toUpperCase(), handyman);
         return t;
     }
     
