@@ -4,8 +4,6 @@ import doyenm.zooshell.context.PaddockCreationContext;
 import doyenm.zooshell.validator.name.NameDto;
 import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.HashSet;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
@@ -13,7 +11,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
 import org.mockito.Mockito;
 
 /**
