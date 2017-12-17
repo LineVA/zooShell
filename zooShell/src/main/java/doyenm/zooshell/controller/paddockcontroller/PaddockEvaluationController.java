@@ -1,16 +1,10 @@
 package doyenm.zooshell.controller.paddockcontroller;
 
-import doyenm.zooshell.context.AnimalEvaluationContext;
+import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockAgeEvaluationController;
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.context.PaddockEvaluationContext;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalAgeEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalDeathEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalReproductionEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalWellBeingController;
-import doyenm.zooshell.model.Animal;
+import doyenm.zooshell.controller.paddockcontroller.evaluation.ObsolescenceEvaluationController;
 import doyenm.zooshell.model.Paddock;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class PaddockEvaluationController implements Function<EvaluationContext, EvaluationContext> {
 
     private final PaddockAgeEvaluationController paddockAgeEvaluationController;
+    private final ObsolescenceEvaluationController obsolescenceEvaluationController;
 
     @Override
     public EvaluationContext apply(EvaluationContext t) {
@@ -32,6 +27,11 @@ public class PaddockEvaluationController implements Function<EvaluationContext, 
                 .map((Paddock t1) -> new PaddockEvaluationContext(context.getZoo(), t1))
                 // Age
                 .map(paddockAgeEvaluationController)
+                .map(obsolescenceEvaluationController)
+                .map((PaddockEvaluationContext t1) -> {
+                    context.getPaddockEvents().addAll(t1.getPaddockEvents());
+                    return t1;
+                })
                 .map((PaddockEvaluationContext t1) -> t1.getPaddock())
                 .collect(Collectors.toList())
         );

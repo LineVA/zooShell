@@ -30,6 +30,7 @@ public class Paddock {
      */
     private String name;
     private int age;
+    private double obsolescence;
     
     /**
      * Its coordinates

@@ -3,14 +3,18 @@ package doyenm.zooshell.controller.paddockcontroller;
 import doyenm.zooshell.context.PaddockContext;
 import doyenm.zooshell.utils.Utils;
 import java.util.function.Function;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
-public class PaddockDetailsController implements Function<PaddockContext, PaddockContext> {
+@RequiredArgsConstructor
+public class PaddockDetailsController
+        implements Function<PaddockContext, PaddockContext> {
 
     private final Utils utils = new Utils();
+    private final Function paddockStateFunction;
 
     @Override
     public PaddockContext apply(PaddockContext t) {
@@ -25,6 +29,7 @@ public class PaddockDetailsController implements Function<PaddockContext, Paddoc
         } else {
             context.addCouple("Entry", "undefined");
         }
+        context.addCouple("Etat", paddockStateFunction.apply(context.getConvertedPaddock().getObsolescence()).toString());
         context.addCouple("Biome", context.getConvertedPaddock().getBiome().toString());
         context.addCouple("Type", context.getConvertedPaddock().getType().toString());
         return context;

@@ -7,11 +7,13 @@ import doyenm.zooshell.commandLine.general.displayingevent.DisplayingUnaryAnimal
 import doyenm.zooshell.commandLine.general.displayingevent.DisplayingEvents;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingBinaryPaddockEvents;
 import doyenm.zooshell.commandLine.general.displayingevent.DisplayingBinaryZooEvents;
 import doyenm.zooshell.commandLine.general.displayingevent.DisplayingNoneZooEvents;
 import doyenm.zooshell.commandLine.general.displayingevent.DisplayingUnaryZooEvents;
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
+import doyenm.zooshell.controller.eventhandling.paddock.PaddockEvent;
 import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
 import doyenm.zooshell.controller.zoocontroller.EvaluationController;
 import doyenm.zooshell.model.Zoo;
@@ -33,6 +35,7 @@ public class Evaluate implements Command {
 
     private final List<DisplayingEvents> displayingEventsList = Arrays.asList(
             new DisplayingBinaryAnimalEvents(),
+            new DisplayingBinaryPaddockEvents(),
             new DisplayingBinaryZooEvents(),
             new DisplayingNoneZooEvents(),
             new DisplayingUnaryAnimalEvents(),
@@ -68,6 +71,15 @@ public class Evaluate implements Command {
         context.getAnimalEvents()
                 .stream()
                 .forEach((AnimalEvent event) -> {
+                    for (DisplayingEvents displayingEvents : displayingEventsList) {
+                        if (displayingEvents.canFormat(event)) {
+                            resultsList.add(displayingEvents.format(event));
+                        }
+                    }
+                });
+         context.getPaddockEvents()
+                .stream()
+                .forEach((PaddockEvent event) -> {
                     for (DisplayingEvents displayingEvents : displayingEventsList) {
                         if (displayingEvents.canFormat(event)) {
                             resultsList.add(displayingEvents.format(event));
