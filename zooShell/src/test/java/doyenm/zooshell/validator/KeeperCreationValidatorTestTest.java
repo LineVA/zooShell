@@ -2,6 +2,8 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.KeeperCreationContext;
 import doyenm.zooshell.model.AnimalKeeper;
+import doyenm.zooshell.validator.name.NameDto;
+import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
@@ -11,6 +13,7 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anySet;
 import static org.mockito.Matchers.anyString;
@@ -22,15 +25,9 @@ import org.mockito.Mockito;
  */
 public class KeeperCreationValidatorTestTest {
 
-    private StringLengthPredicates givenStringPredicates(boolean value) {
-        StringLengthPredicates mock = Mockito.mock(StringLengthPredicates.class);
-        Mockito.when(mock.mustBeLowerOrEqualsThan(anyString(), anyInt())).thenReturn(value);
-        return mock;
-    }
-
-    private UniquenessNamesBiPredicates givenUniquenessNames(boolean value) {
-        UniquenessNamesBiPredicates mock = Mockito.mock(UniquenessNamesBiPredicates.class);
-        Mockito.when(mock.test(anyString(), anySet())).thenReturn(value);
+    private NameValidator givenNameTest(boolean value) {
+        NameValidator mock = Mockito.mock(NameValidator.class);
+        Mockito.when(mock.test(any(NameDto.class))).thenReturn(value);
         return mock;
     }
 
@@ -62,8 +59,7 @@ public class KeeperCreationValidatorTestTest {
     @Test
     public void shouldReturnTrueWhenTheKeeperCanBeCreated() {
         // Given
-        UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(true);
-        StringLengthPredicates stringPredicates = givenStringPredicates(true);
+        NameValidator nameValidator = givenNameTest(true);
         KeepersNumberPredicate numberPredicates = givenKeepersPredicate(true);
         String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
@@ -71,8 +67,8 @@ public class KeeperCreationValidatorTestTest {
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                stringPredicates, namePredicates, numberPredicates,
-                RandomUtils.nextInt());
+                nameValidator, numberPredicates
+        );
         // When
         boolean result = validator.test(context);
         // Then
@@ -82,8 +78,7 @@ public class KeeperCreationValidatorTestTest {
     @Test
     public void shouldReturnFalseWhenTheNameIsIncorrect() {
         // Given
-        UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(true);
-        StringLengthPredicates stringPredicates = givenStringPredicates(false);
+        NameValidator nameValidator = givenNameTest(false);
         KeepersNumberPredicate numberPredicates = givenKeepersPredicate(true);
         String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
@@ -91,28 +86,7 @@ public class KeeperCreationValidatorTestTest {
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                stringPredicates, namePredicates, numberPredicates,
-                RandomUtils.nextInt());
-        // When
-        boolean result = validator.test(context);
-        // Then
-        Assertions.assertThat(result).isFalse();
-    }
-
-    @Test
-    public void shouldReturnFalseWhenThereIsAlreadyAKeeperWithThisName() {
-        // Given
-        UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(false);
-        StringLengthPredicates stringPredicates = givenStringPredicates(true);
-        KeepersNumberPredicate numberPredicates = givenKeepersPredicate(true);
-        String keeperName = RandomStringUtils.randomAlphabetic(10);
-        AnimalKeeper keeper = givenKeeper();
-        KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
-                keeperName, keeper
-        );
-        KeeperCreationValidator validator = new KeeperCreationValidator(
-                stringPredicates, namePredicates, numberPredicates,
-                RandomUtils.nextInt());
+                nameValidator, numberPredicates);
         // When
         boolean result = validator.test(context);
         // Then
@@ -122,8 +96,7 @@ public class KeeperCreationValidatorTestTest {
     @Test
     public void shouldReturnFalseWhenThereIsFreePlaceForANewKeeper() {
         // Given
-        UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(false);
-        StringLengthPredicates stringPredicates = givenStringPredicates(true);
+        NameValidator nameValidator = givenNameTest(true);
         KeepersNumberPredicate numberPredicates = givenKeepersPredicate(false);
         String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
@@ -131,8 +104,7 @@ public class KeeperCreationValidatorTestTest {
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                stringPredicates, namePredicates, numberPredicates,
-                RandomUtils.nextInt());
+                nameValidator, numberPredicates);
         // When
         boolean result = validator.test(context);
         // Then
