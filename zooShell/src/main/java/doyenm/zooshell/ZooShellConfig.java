@@ -27,11 +27,15 @@ import org.springframework.context.annotation.Import;
 @Import({ZooShellValidatorConfig.class, ZooShellControllerConfig.class, ZooShellCommandConfig.class,
     ZooShellPaddockConfig.class, ZooShellAnimalConfig.class, ZooShellKeeperConfig.class,
     ZooShellZooConfig.class, ZooEventsConfig.class,
-    CommandsConfig.class})
+    CommandsConfig.class,
+    ZooShellHandymanConfig.class})
 public class ZooShellConfig {
-    
+
     @Autowired
     CommandsConfig commandsConfig;
+    
+    @Autowired
+    ZooShellHandymanConfig zooShellHandymanConfig;
 
     @Bean
     MainGUI mainGUI() {
@@ -95,11 +99,9 @@ public class ZooShellConfig {
     @Autowired
     UpdatePaddockType updatePaddocktype;
 
-
     @Autowired
     LsAnimalsWithCriteria lsAnimalsWithCriteria;
 
-    
     @Autowired
     ChangeKeeperName changeKeeperName;
 
@@ -177,6 +179,8 @@ public class ZooShellConfig {
                 new ActionPointCommand(resetOccupations, 0),
                 new ActionPointCommand(updateOccupations, 1),
                 //                new ActionPointCommand(addTraining, 1),
+                // Handyman
+                new ActionPointCommand(zooShellHandymanConfig.createHandyman(), 3),
                 // Ls
                 new ActionPointCommand(lsBiome, 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsContraceptionMethod(), 0),

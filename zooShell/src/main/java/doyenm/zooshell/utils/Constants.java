@@ -153,6 +153,8 @@ public class Constants {
     public static final String GREED = "greed";
     // groupSize
     public static final String GROUPSIZE = "groupSize";
+    // handyman or hd
+    public static final String[] HANDYMAN_OR_HD = {"handyman", "hd"};
     // height
     public static final String HEIGHT = "height";
     // horizon
