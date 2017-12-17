@@ -28,6 +28,10 @@ public class PaddockEvaluationController implements Function<EvaluationContext, 
                 // Age
                 .map(paddockAgeEvaluationController)
                 .map(obsolescenceEvaluationController)
+                .map((PaddockEvaluationContext t1) -> {
+                    context.getPaddockEvents().addAll(t1.getPaddockEvents());
+                    return t1;
+                })
                 .map((PaddockEvaluationContext t1) -> t1.getPaddock())
                 .collect(Collectors.toList())
         );
