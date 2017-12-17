@@ -19,6 +19,6 @@ public class NameValidator implements Predicate<NameDto> {
     @Override
     public boolean test(NameDto t) {
         return this.stringLengthPredicates.mustBeLowerOrEqualsThan(t.getTesting(), maxLengthName)
-                & this.uniquenessNamesBiPredicates.test(t.getTesting().toUpperCase(), t.getExitingNames());
+                & this.uniquenessNamesBiPredicates.test(t.getTesting().toUpperCase(), t.getExistingNames());
     }
 }

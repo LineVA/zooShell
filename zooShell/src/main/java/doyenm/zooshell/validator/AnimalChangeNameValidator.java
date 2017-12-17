@@ -27,7 +27,7 @@ public class AnimalChangeNameValidator implements Predicate<AnimalChangeNameCont
         context.setConvertedAnimal(animal);
         return nameValidator.test(NameDto.builder()
                 .testing(context.getNewName())
-                .exitingNames(context.getAnimals())
+                .existingNames(context.getAnimals())
                 .build());
     }
 }

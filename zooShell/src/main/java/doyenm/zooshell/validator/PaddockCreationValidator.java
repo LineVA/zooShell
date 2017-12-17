@@ -36,7 +36,7 @@ public class PaddockCreationValidator
     private boolean testName(String name, Set<String> otherNames){
         NameDto dto = NameDto.builder()
                 .testing(name)
-                .exitingNames(otherNames)
+                .existingNames(otherNames)
                 .build();
         return nameValidator.test(dto);
     }

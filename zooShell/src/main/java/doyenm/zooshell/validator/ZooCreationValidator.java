@@ -44,7 +44,7 @@ public class ZooCreationValidator implements Predicate<ZooCreationContext> {
     private boolean testName(String name){
         NameDto dto = NameDto.builder()
                 .testing(name)
-                .exitingNames(new HashSet<>())
+                .existingNames(new HashSet<>())
                 .build();
         return nameValidator.test(dto);
     }

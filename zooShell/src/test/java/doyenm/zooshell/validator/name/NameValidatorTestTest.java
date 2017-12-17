@@ -46,7 +46,7 @@ public class NameValidatorTestTest {
         // When
         boolean result = subject.test(NameDto.builder()
                 .testing(RandomStringUtils.randomAlphanumeric(10))
-                .exitingNames(new HashSet<>())
+                .existingNames(new HashSet<>())
                 .build());
         // Then
         Assertions.assertThat(result).isTrue();
@@ -61,7 +61,7 @@ public class NameValidatorTestTest {
         // When
         boolean result = subject.test(NameDto.builder()
                 .testing(RandomStringUtils.randomAlphanumeric(10))
-                .exitingNames(new HashSet<>())
+                .existingNames(new HashSet<>())
                 .build());
         // Then
         Assertions.assertThat(result).isFalse();
@@ -76,7 +76,7 @@ public class NameValidatorTestTest {
         // When
         boolean result = subject.test(NameDto.builder()
                 .testing(RandomStringUtils.randomAlphanumeric(10))
-                .exitingNames(new HashSet<>())
+                .existingNames(new HashSet<>())
                 .build());
         // Then
         Assertions.assertThat(result).isFalse();
@@ -91,7 +91,7 @@ public class NameValidatorTestTest {
         // When
         boolean result = subject.test(NameDto.builder()
                 .testing(RandomStringUtils.randomAlphanumeric(10))
-                .exitingNames(new HashSet<>())
+                .existingNames(new HashSet<>())
                 .build());
         // Then
         Assertions.assertThat(result).isFalse();

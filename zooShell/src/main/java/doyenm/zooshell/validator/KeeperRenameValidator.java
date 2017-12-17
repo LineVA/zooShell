@@ -21,7 +21,7 @@ public class KeeperRenameValidator implements Predicate<KeeperRenameContext> {
         boolean result;
         result = nameValidator.test(NameDto.builder()
                 .testing(t.getNewKeeperName())
-                .exitingNames(t.getKeepers().keySet())
+                .existingNames(t.getKeepers().keySet())
                 .build());
         t.setConvertedKeeper(findKeeper.find(t.getZoo(), t.getKeeper()));
         return result & t.getConvertedKeeper() != null;

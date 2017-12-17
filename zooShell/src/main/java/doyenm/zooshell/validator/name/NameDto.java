@@ -12,5 +12,5 @@ import lombok.Getter;
 @Builder
 public class NameDto {
     private final String testing;
-    private final Set<String> exitingNames;
+    private final Set<String> existingNames;
 }

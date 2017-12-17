@@ -28,7 +28,7 @@ public class PaddockChangeNameValidator
         context.setConvertedPaddock(pad);
         return nameValidator.test(NameDto.builder()
                 .testing(context.getNewName())
-                .exitingNames(context.getPaddocks())
+                .existingNames(context.getPaddocks())
                 .build());
     }
 }
