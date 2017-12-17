@@ -3,6 +3,8 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.AnimalChangeNameContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.validator.name.NameDto;
+import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import java.util.HashSet;
@@ -10,6 +12,7 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anySet;
 import static org.mockito.Matchers.anyString;
@@ -27,15 +30,9 @@ public class AnimalChangeNameValidatorTestTest {
         return mock;
     }
 
-    private StringLengthPredicates givenStringPredicates(boolean value) {
-        StringLengthPredicates mock = Mockito.mock(StringLengthPredicates.class);
-        Mockito.when(mock.mustBeLowerOrEqualsThan(anyString(), anyInt())).thenReturn(value);
-        return mock;
-    }
-
-    private UniquenessNamesBiPredicates givenUniquenessNames(boolean value) {
-        UniquenessNamesBiPredicates mock = Mockito.mock(UniquenessNamesBiPredicates.class);
-        Mockito.when(mock.test(anyString(), anySet())).thenReturn(value);
+    private NameValidator givenNameTest(boolean value) {
+        NameValidator mock = Mockito.mock(NameValidator.class);
+        Mockito.when(mock.test(any(NameDto.class))).thenReturn(value);
         return mock;
     }
 
@@ -64,14 +61,11 @@ public class AnimalChangeNameValidatorTestTest {
         // Given
         Animal convertedAnimal = givenAnimal();
         FindAnimal findAnimal = givenFindAnimal(convertedAnimal);
-        UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(true);
-        StringLengthPredicates stringPredicates = givenStringPredicates(true);
+        NameValidator nameValidator = givenNameTest(true);
         AnimalChangeNameContext context = givenContext();
         AnimalChangeNameValidator validator = new AnimalChangeNameValidator(
                 findAnimal,
-                stringPredicates,
-                namePredicates,
-                RandomUtils.nextInt());
+                nameValidator);
         // When
         boolean result = validator.test(context);
         // Then
@@ -83,14 +77,11 @@ public class AnimalChangeNameValidatorTestTest {
         // Given
         Animal convertedAnimal = null;
         FindAnimal findAnimal = givenFindAnimal(convertedAnimal);
-        UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(true);
-        StringLengthPredicates stringPredicates = givenStringPredicates(true);
+        NameValidator nameValidator = givenNameTest(true);
         AnimalChangeNameContext context = givenContext();
         AnimalChangeNameValidator validator = new AnimalChangeNameValidator(
                 findAnimal,
-                stringPredicates,
-                namePredicates,
-                RandomUtils.nextInt());
+                nameValidator);
         // When
         boolean result = validator.test(context);
         // Then
@@ -98,37 +89,15 @@ public class AnimalChangeNameValidatorTestTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenTheNewNameIsLongerThan50Characters() {
+    public void shouldReturnFalseWhenTheNewNameIsKO() {
         // Given
         Animal convertedAnimal = givenAnimal();
         FindAnimal findAnimal = givenFindAnimal(convertedAnimal);
-        UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(true);
-        StringLengthPredicates stringPredicates = givenStringPredicates(false);
+        NameValidator nameValidator = givenNameTest(false);
         AnimalChangeNameContext context = givenContext();
         AnimalChangeNameValidator validator = new AnimalChangeNameValidator(
                 findAnimal,
-                stringPredicates,
-                namePredicates,
-                RandomUtils.nextInt());
-        // When
-        boolean result = validator.test(context);
-        // Then
-        Assertions.assertThat(result).isFalse();
-    }
-
-    @Test
-    public void shouldReturnFalseWhenTheNewNameIsAlreadyPresent() {
-        // Given
-        Animal convertedAnimal = givenAnimal();
-        FindAnimal findAnimal = givenFindAnimal(convertedAnimal);
-        UniquenessNamesBiPredicates namePredicates = givenUniquenessNames(false);
-        StringLengthPredicates stringPredicates = givenStringPredicates(true);
-        AnimalChangeNameContext context = givenContext();
-        AnimalChangeNameValidator validator = new AnimalChangeNameValidator(
-                findAnimal,
-                stringPredicates,
-                namePredicates,
-                RandomUtils.nextInt());
+                nameValidator);
         // When
         boolean result = validator.test(context);
         // Then
