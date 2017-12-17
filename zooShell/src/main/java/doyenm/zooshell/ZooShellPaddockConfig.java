@@ -43,46 +43,6 @@ public class ZooShellPaddockConfig {
     @Autowired
     PaddockControllerConfig paddockControllerConfig;
 
-    // Controller
-//    @Bean
-//    PaddockChangeNameController paddockChangeNameController() {
-//        return new PaddockChangeNameController();
-//    }
-//
-//    @Bean
-//    PaddockCreationController paddockCreationController() {
-//        return new PaddockCreationController();
-//    }
-//
-//    @Bean
-//    PaddockDetailsController paddockDetailsController() {
-//        return new PaddockDetailsController();
-//    }
-//
-//    @Bean
-//    PaddockEntryCreationController paddockEntryCreationController() {
-//        return new PaddockEntryCreationController();
-//    }
-//
-//    @Bean
-//    PaddockExtensionCreationController paddockExtensionCreationController() {
-//        return new PaddockExtensionCreationController();
-//    }
-//
-//    @Bean
-//    PaddockRemoveController paddockRemoveController() {
-//        return new PaddockRemoveController();
-//    }
-//
-//    @Bean
-//    UpdateBiomeController updateBiomeController() {
-//        return new UpdateBiomeController();
-//    }
-//
-//    @Bean
-//    UpdatePaddockTypeController updatePaddockTypeController() {
-//        return new UpdatePaddockTypeController();
-//    }
     // Predicates
     @Autowired
     FindPaddock findPaddock;
@@ -110,9 +70,7 @@ public class ZooShellPaddockConfig {
     PaddockChangeNameValidator paddockChangeNameValidator() {
         return new PaddockChangeNameValidator(
                 findPaddock,
-                stringLengthPredicates,
-                uniquenessNamesBiPredicates,
-                Integer.parseInt(environment.getProperty("paddock.name.max_length")));
+                nameValidator);
     }
 
     @Bean
