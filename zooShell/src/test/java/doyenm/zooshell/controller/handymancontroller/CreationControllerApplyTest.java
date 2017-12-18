@@ -3,15 +3,12 @@ package doyenm.zooshell.controller.handymancontroller;
 import doyenm.zooshell.context.HandymanCreationContext;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.HandymanCreationValidator;
-import doyenm.zooshell.validator.name.NameValidator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import org.mockito.Mockito;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -38,7 +35,7 @@ public class CreationControllerApplyTest {
     }
 
     @Test
-    public void shouldReturnAContextWithtwoHandymen() {
+    public void shouldReturnAContextWithTwoHandymen() {
         // GIven
         String name = RandomStringUtils.randomAlphanumeric(10);
         Zoo zoo = givenZoo();
@@ -48,8 +45,8 @@ public class CreationControllerApplyTest {
         HandymanCreationContext result = subject.apply(context);
         // Then
         Assertions.assertThat(result.getZoo().getHandymen()).hasSize(2);
-        Assertions.assertThat(result.getZoo().getHandymen().containsKey(name)).isTrue();
-        Assertions.assertThat(result.getZoo().getHandymen().get(name).getName()).isEqualToIgnoringCase(name);
-        Assertions.assertThat(result.getZoo().getHandymen().get(name).getAge()).isEqualTo(0);
+        Assertions.assertThat(result.getZoo().getHandymen().containsKey(name.toUpperCase())).isTrue();
+        Assertions.assertThat(result.getZoo().getHandymen().get(name.toUpperCase()).getName()).isEqualToIgnoringCase(name);
+        Assertions.assertThat(result.getZoo().getHandymen().get(name.toUpperCase()).getAge()).isEqualTo(0);
     }
 }
