@@ -4,6 +4,7 @@ import doyenm.zooshell.context.HandymanCreationContext;
 import doyenm.zooshell.context.PaddockCreationContext;
 import doyenm.zooshell.validator.name.NameDto;
 import doyenm.zooshell.validator.name.NameValidator;
+import doyenm.zooshell.validator.predicates.HandymenNumberPredicate;
 import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
 import java.util.HashSet;
 import org.apache.commons.lang.RandomStringUtils;
@@ -34,16 +35,23 @@ public class HandymanCreationValidatorTestTest {
         return mock;
     }
 
+    private HandymenNumberPredicate givenPredicate(boolean result) {
+        HandymenNumberPredicate mock = mock(HandymenNumberPredicate.class);
+        Mockito.when(mock.test(any(HandymanCreationContext.class))).thenReturn(result);
+        return mock;
+    }
+
     /**
-     * Conditions :  the name is OK
+     * Conditions : the name is OK
      */
     @Test
     public void shouldReturnTrueIfAllConditionsAreTrue() {
         // GIven
         NameValidator nameValidator = givenNameTest(true);
+        HandymenNumberPredicate predicate = givenPredicate(true);
         HandymanCreationContext context = givenContext();
         HandymanCreationValidator validator = new HandymanCreationValidator(
-                nameValidator);
+                nameValidator, predicate);
         // When
         boolean result = validator.test(context);
         // Then
@@ -54,9 +62,24 @@ public class HandymanCreationValidatorTestTest {
     public void shouldReturnFalseWhenTheNameDoesNotRespectTheExpectations() {
         // GIven
         NameValidator nameValidator = givenNameTest(false);
+        HandymenNumberPredicate predicate = givenPredicate(true);
         HandymanCreationContext context = givenContext();
         HandymanCreationValidator validator = new HandymanCreationValidator(
-                nameValidator);
+                nameValidator, predicate);
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result).isFalse();
+    }
+    
+     @Test
+    public void shouldReturnFalseWhenTheNumberOfHandymenDoesNotRespectTheExpectations() {
+        // GIven
+        NameValidator nameValidator = givenNameTest(true);
+        HandymenNumberPredicate predicate = givenPredicate(false);
+        HandymanCreationContext context = givenContext();
+        HandymanCreationValidator validator = new HandymanCreationValidator(
+                nameValidator, predicate);
         // When
         boolean result = validator.test(context);
         // Then

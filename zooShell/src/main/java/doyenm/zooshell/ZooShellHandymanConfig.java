@@ -9,6 +9,7 @@ import doyenm.zooshell.commandLine.commandImpl.handyman.CreateHandyman;
 import doyenm.zooshell.controller.handymancontroller.CreationController;
 import doyenm.zooshell.validator.HandymanCreationValidator;
 import doyenm.zooshell.validator.name.NameValidator;
+import doyenm.zooshell.validator.predicates.HandymenNumberPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,22 +23,23 @@ public class ZooShellHandymanConfig {
     
     @Autowired
     NameValidator nameValidator;
-    
+
     // Controller
     @Bean
-    public CreationController creationController(){
+    public CreationController creationController() {
         return new CreationController();
     }
-    
+
     // Validator
-     @Bean
-    public HandymanCreationValidator handymanCreationValidator(){
-        return new HandymanCreationValidator(nameValidator);
-    } 
-    
+    @Bean
+    public HandymanCreationValidator handymanCreationValidator() {
+        return new HandymanCreationValidator(nameValidator,
+                new HandymenNumberPredicate(0.2));
+    }
+
     // Command
     @Bean
-    public CreateHandyman createHandyman(){
+    public CreateHandyman createHandyman() {
         return new CreateHandyman(handymanCreationValidator(), creationController());
     }
 }
