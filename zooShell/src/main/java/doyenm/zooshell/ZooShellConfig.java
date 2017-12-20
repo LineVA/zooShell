@@ -181,6 +181,7 @@ public class ZooShellConfig {
                 //                new ActionPointCommand(addTraining, 1),
                 // Handyman
                 new ActionPointCommand(zooShellHandymanConfig.createHandyman(), 3),
+                new ActionPointCommand(zooShellHandymanConfig.detailsHandyman(), 0),
                 // Ls
                 new ActionPointCommand(lsBiome, 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsContraceptionMethod(), 0),
