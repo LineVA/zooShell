@@ -1,5 +1,6 @@
-package doyenm.zooshell.commandLine.commandLineImpl.paddock;
+package doyenm.zooshell.commandLine.commandLineImpl.handyman;
 
+import doyenm.zooshell.commandLine.commandImpl.handyman.RenameHandyman;
 import doyenm.zooshell.commandLine.commandImpl.paddock.RenamePaddock;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
@@ -9,17 +10,17 @@ import org.junit.Test;
  *
  * @author doyenm
  */
-public class RenamePaddockCanExecuteTest {
+public class RenameHandymanCanExecuteTest {
 
-    private final String pad = "pad";
-    private final String paddock = "paddock";
-    private final String rename = "rename";
+    private final String HD = "hd";
+    private final String HANDYMAN = "handyman";
+    private final String RENAME = "rename";
 
     @Test
-    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPaddock() {
+    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByHandyman() {
         // Given
-        RenamePaddock cmdLine = new RenamePaddock(null, null);
-        String[] cmd = {this.paddock, this.rename, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
+        RenameHandyman cmdLine = new RenameHandyman(null, null);
+        String[] cmd = {this.HANDYMAN, this.RENAME, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -27,10 +28,10 @@ public class RenamePaddockCanExecuteTest {
     }
     
     @Test
-    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPad() {
+    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByHd() {
         // Given
-        RenamePaddock cmdLine = new RenamePaddock(null, null);
-        String[] cmd = {this.pad, this.rename, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
+        RenameHandyman cmdLine = new RenameHandyman(null, null);
+        String[] cmd = {this.HD, this.RENAME, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -40,8 +41,8 @@ public class RenamePaddockCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
         // Given
-        RenamePaddock cmdLine = new RenamePaddock(null, null);
-        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.rename, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
+        RenameHandyman cmdLine = new RenameHandyman(null, null);
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.RENAME, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -51,8 +52,8 @@ public class RenamePaddockCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheSecondElementIsIncorrect() {
         // Given
-        RenamePaddock cmdLine = new RenamePaddock(null, null);
-        String[] cmd = {this.pad, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
+        RenameHandyman cmdLine = new RenameHandyman(null, null);
+        String[] cmd = {this.HD, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -62,8 +63,8 @@ public class RenamePaddockCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsLessThanFourElements() {
         // Give
-        RenamePaddock cmdLine = new RenamePaddock(null, null);
-        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.rename, RandomStringUtils.randomAlphabetic(10),};
+        RenameHandyman cmdLine = new RenameHandyman(null, null);
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.RENAME, RandomStringUtils.randomAlphabetic(10),};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
@@ -73,8 +74,8 @@ public class RenamePaddockCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanFourElements() {
         // Given
-        RenamePaddock cmdLine = new RenamePaddock(null, null);
-        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.rename, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
+        RenameHandyman cmdLine = new RenameHandyman(null, null);
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.RENAME, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = cmdLine.canExecute(cmd);
         // Then
