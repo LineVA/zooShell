@@ -25,43 +25,43 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ZooShellHandymanConfig {
     
-    @Autowired
-    NameValidator nameValidator;
-    
-    @Autowired
-    Utils utils;
-
-    // Controller
-    @Bean
-    public CreationController creationController() {
-        return new CreationController();
-    }
-    
-    @Bean
-    public HandymanDetailsController handymanDetailsController(){
-        return new HandymanDetailsController(utils);
-    }
-
-    // Validator
-    @Bean
-    public HandymanCreationValidator handymanCreationValidator() {
-        return new HandymanCreationValidator(nameValidator,
-                new HandymenNumberPredicate(0.2));
-    }
-    
-    @Bean
-    public HandymanValidator handymanValidator(){
-        return new HandymanValidator();
-    }
-
-    // Command
-    @Bean
-    public CreateHandyman createHandyman() {
-        return new CreateHandyman(handymanCreationValidator(), creationController());
-    }
-    
-    @Bean
-    public DetailsHandyman detailsHandyman(){
-        return new DetailsHandyman(handymanValidator(), handymanDetailsController());
-    }
+//    @Autowired
+//    NameValidator nameValidator;
+//    
+//    @Autowired
+//    Utils utils;
+//
+//    // Controller
+//    @Bean
+//    public CreationController creationController() {
+//        return new CreationController();
+//    }
+//    
+//    @Bean
+//    public HandymanDetailsController handymanDetailsController(){
+//        return new HandymanDetailsController(utils);
+//    }
+//
+//    // Validator
+//    @Bean
+//    public HandymanCreationValidator handymanCreationValidator() {
+//        return new HandymanCreationValidator(nameValidator,
+//                new HandymenNumberPredicate(0.2));
+//    }
+//    
+//    @Bean
+//    public HandymanValidator handymanValidator(){
+//        return new HandymanValidator();
+//    }
+//
+//    // Command
+//    @Bean
+//    public CreateHandyman createHandyman() {
+//        return new CreateHandyman(handymanCreationValidator(), creationController());
+//    }
+//    
+//    @Bean
+//    public DetailsHandyman detailsHandyman(){
+//        return new DetailsHandyman(handymanValidator(), handymanDetailsController());
+//    }
 }
