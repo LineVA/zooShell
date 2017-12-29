@@ -1,12 +1,15 @@
 package doyenm.zooshell.commandLine.commandLineImpl.paddock;
 
 import doyenm.zooshell.commandLine.commandImpl.paddock.RenamePaddock;
+import doyenm.zooshell.commandLine.commandImpl.paddock.UpdateBiome;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.PaddockChangeNameContext;
 import doyenm.zooshell.controller.paddockcontroller.PaddockChangeNameController;
+import doyenm.zooshell.controller.paddockcontroller.UpdateBiomeController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.PaddockChangeNameValidator;
+import doyenm.zooshell.validator.UpdateBiomeValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import static org.mockito.Matchers.any;
