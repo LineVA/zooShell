@@ -1,6 +1,6 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.KeeperRenameContext;
+import doyenm.zooshell.context.HandymanRenameContext;
 import doyenm.zooshell.validator.name.NameDto;
 import doyenm.zooshell.validator.name.NameValidator;
 import java.util.function.Predicate;
@@ -11,20 +11,20 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class KeeperRenameValidator implements Predicate<KeeperRenameContext> {
+public class HandymanRenameValidator implements Predicate<HandymanRenameContext> {
 
     private final NameValidator nameValidator;
-    private final FindKeeper findKeeper;
+    private final FindHandyman findHandyman;
 
     @Override
-    public boolean test(KeeperRenameContext t) {
+    public boolean test(HandymanRenameContext t) {
         boolean result;
         result = nameValidator.test(NameDto.builder()
-                .testing(t.getNewKeeperName())
-                .existingNames(t.getKeepers().keySet())
+                .testing(t.getNewName())
+                .existingNames(t.getHandymen().keySet())
                 .build());
-        t.setConvertedKeeper(findKeeper.find(t.getZoo(), t.getKeeper()));
-        return result & t.getConvertedKeeper() != null;
+        t.setHandyman(findHandyman.find(t.getZoo(), t.getCurrentName()));
+        return result & t.getHandyman()!= null;
     }
 
 }
