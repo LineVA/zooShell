@@ -59,6 +59,15 @@ public class LsContext {
                 .collect(Collectors.toList())
         );
     }
+    
+      public List<String> getHandymenNames() {
+        return new ArrayList<>(
+                getZoo().getHandymen().values()
+                .stream()
+                .map(handyman -> handyman.getName())
+                .collect(Collectors.toList())
+        );
+    }
 
     public List<String> getSexes() {
         List<String> list = new ArrayList<>();

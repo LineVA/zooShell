@@ -35,4 +35,9 @@ public class HandymanCommandsConfig {
     public RenameHandyman renameHandyman(){
         return new RenameHandyman(validators.renamingValidator(), controllers.renamingController());
     }
+    
+    @Bean
+    public LsHandyman lsHandyman(){
+        return new LsHandyman();
+    }
 }
