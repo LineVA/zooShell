@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class ChangeAnimalName implements Command {
+public class RenameAnimal implements Command {
 
     private final AnimalChangeNameValidator validator;
     private final AnimalChangeNameController controller;
