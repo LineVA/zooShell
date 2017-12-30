@@ -22,8 +22,8 @@ public class AnimalCommandsConfig {
     
     // Commands
     @Bean
-    public ChangeAnimalName changeAnimalName() {
-        return new ChangeAnimalName(zooShellAnimalConfig.animalChangeNameValidator(), 
+    public RenameAnimal changeAnimalName() {
+        return new RenameAnimal(zooShellAnimalConfig.animalChangeNameValidator(), 
                 zooShellAnimalConfig.animalChangeNameController());
     }
 
