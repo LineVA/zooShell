@@ -9,6 +9,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalValidator;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
@@ -17,24 +18,23 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class RemoveAnimal implements Command{
+public class RemoveAnimal implements Command {
 
-    private final AnimalValidator validator;  
-    private final AnimalRemoveController  controller;
+    private final AnimalValidator validator;
+    private final AnimalRemoveController controller;
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        try {
-            AnimalContext context = new AnimalContext(zoo,
-                    cmd[2]);
-            context = Stream.of(context)
-                    .filter(validator)
-                    .map(controller)
-                    .findFirst()
-                    .get();
+        AnimalContext context = new AnimalContext(zoo,
+                cmd[2]);
+        Optional optional = Stream.of(context)
+                .filter(validator)
+                .map(controller)
+                .findFirst();
+
+        if (optional.isPresent()) {
             return new ReturnExec("ANIMAL_REMOVE_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
-        } catch (java.util.NoSuchElementException ex) {
-            ex.printStackTrace();
+        } else {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }
     }

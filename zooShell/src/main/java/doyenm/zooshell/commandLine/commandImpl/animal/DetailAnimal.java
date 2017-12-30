@@ -11,6 +11,7 @@ import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalValidator;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
@@ -26,26 +27,24 @@ public class DetailAnimal implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-      AnimalContext context = generateContext(cmd, zoo);
-        try {
-            context = Stream.of(context)
-                    .filter(validator)
-                    .map(controller)
-                    .findFirst()
-                    .get();
-
+        AnimalContext context = generateContext(cmd, zoo);
+        Optional optional = Stream.of(context)
+                .filter(validator)
+                .map(controller)
+                .findFirst();
+        if (optional.isPresent()) {
             FormattingInList formatting = new FormattingInList();
             return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS, context.getZoo());
-        } catch (NoSuchElementException ex) {
+        } else {
             return new ReturnExec("ERROR", TypeReturn.ERROR, context.getZoo());
         }
     }
-    
-    private AnimalContext generateContext(String[] cmd, Zoo zoo){
-         if (cmd.length == 3) {
-           return new AnimalContext(zoo, cmd[1], true);
+
+    private AnimalContext generateContext(String[] cmd, Zoo zoo) {
+        if (cmd.length == 3) {
+            return new AnimalContext(zoo, cmd[1], true);
         } else {
-           return new AnimalContext(zoo, cmd[1], false);
+            return new AnimalContext(zoo, cmd[1], false);
         }
     }
 

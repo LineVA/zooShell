@@ -9,6 +9,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalUpdateFoodQuantityValidator;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
@@ -17,23 +18,22 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class UpdateFoodQuantity implements Command{
+public class UpdateFoodQuantity implements Command {
 
-    private final AnimalUpdateFoodQuantityValidator validator; 
+    private final AnimalUpdateFoodQuantityValidator validator;
     private final AnimalUpdateFoodQuantityController controller;
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        try {
-            AnimalUpdateFoodQuantityContext context = new AnimalUpdateFoodQuantityContext(zoo,
-                    cmd[2], cmd[3]);
-            context = Stream.of(context)
-                    .filter(validator)
-                    .map(controller)
-                    .findFirst()
-                    .get();
+        AnimalUpdateFoodQuantityContext context = new AnimalUpdateFoodQuantityContext(zoo,
+                cmd[2], cmd[3]);
+        Optional optional = Stream.of(context)
+                .filter(validator)
+                .map(controller)
+                .findFirst();
+        if (optional.isPresent()) {
             return new ReturnExec("UPDATE_FOOD_QUANTITY_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
-        } catch (java.util.NoSuchElementException ex) {
+        } else {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }
     }
