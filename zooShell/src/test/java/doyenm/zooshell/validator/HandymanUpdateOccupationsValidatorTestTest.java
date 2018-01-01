@@ -1,8 +1,9 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.HandymanRenameContext;
-import doyenm.zooshell.model.AnimalKeeper;
+import doyenm.zooshell.context.HandymanUpdateOccupationsContext;
 import doyenm.zooshell.model.Handyman;
+import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.name.NameDto;
 import doyenm.zooshell.validator.name.NameValidator;
@@ -11,26 +12,23 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import static org.mockito.Matchers.any;
 import org.mockito.Mockito;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
  * @author doyenm
  */
-public class HandymanRenameValidatorTestTest {
+public class HandymanUpdateOccupationsValidatorTestTest {
 
-    private HandymanRenameContext givenContext(Handyman handyman) {
-        HandymanRenameContext context = Mockito.mock(HandymanRenameContext.class);
-        Mockito.when(context.getCurrentName()).thenReturn(RandomStringUtils.randomAlphabetic(10));
-        Mockito.when(context.getNewName()).thenReturn(RandomStringUtils.randomAlphabetic(10));
-        Mockito.when(context.getHandyman()).thenReturn(handyman);
-        Mockito.when(context.getZoo()).thenReturn(Mockito.mock(Zoo.class));
+    private HandymanUpdateOccupationsContext givenContext(Handyman handyman, Paddock pad) {
+        HandymanUpdateOccupationsContext context = Mockito.mock(HandymanUpdateOccupationsContext.class);
+        when(context.getHandymanName()).thenReturn(RandomStringUtils.randomAlphabetic(10));
+        when(context.getPaddockName()).thenReturn(RandomStringUtils.randomAlphabetic(10));
+        when(context.getHandyman()).thenReturn(handyman);
+        when(context.getZoo()).thenReturn(Mockito.mock(Zoo.class));
+        when(context.getPaddock()).thenReturn(pad);
         return context;
-    }
-
-    private NameValidator givenNameTest(boolean value) {
-        NameValidator mock = Mockito.mock(NameValidator.class);
-        Mockito.when(mock.test(any(NameDto.class))).thenReturn(value);
-        return mock;
     }
 
     private FindHandyman givenFindHandyman() {
@@ -39,14 +37,20 @@ public class HandymanRenameValidatorTestTest {
         return mock;
     }
 
+    private FindPaddock givenFindPaddock() {
+        FindPaddock mock = Mockito.mock(FindPaddock.class);
+        when(mock.find(Mockito.any(Zoo.class), Mockito.anyString())).thenReturn(Mockito.mock(Paddock.class));
+        return mock;
+    }
+
     @Test
-    public void shouldReturnTrueWhenTheNewNameIsCorrect() {
+    public void shouldReturnTrueWhenHandymanNorPaddockAreNull() {
         // Given
-        HandymanRenameContext context = givenContext(Mockito.mock(Handyman.class));
-        NameValidator nameValidator = givenNameTest(true);
+        HandymanUpdateOccupationsContext context = givenContext(mock(Handyman.class), mock(Paddock.class));
         FindHandyman findHandyman = givenFindHandyman();
-        HandymanRenameValidator validator = new HandymanRenameValidator(nameValidator,
-                findHandyman);
+        FindPaddock findPaddock = givenFindPaddock();
+        HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
+                findHandyman, findPaddock);
         // When
         boolean result = validator.test(context);
         // Then
@@ -54,14 +58,13 @@ public class HandymanRenameValidatorTestTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenTheNewNameIsKO() {
+    public void shouldReturnFalseWhenHandymanIsNull() {
         // Given
-        HandymanRenameContext context = givenContext(Mockito.mock(Handyman.class));
-        NameValidator nameValidator = givenNameTest(false);
+        HandymanUpdateOccupationsContext context = givenContext(null, mock(Paddock.class));
         FindHandyman findHandyman = givenFindHandyman();
-        HandymanRenameValidator validator = new HandymanRenameValidator(
-                nameValidator,
-                findHandyman);
+        FindPaddock findPaddock = givenFindPaddock();
+        HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
+                findHandyman, findPaddock);
         // When
         boolean result = validator.test(context);
         // Then
@@ -69,14 +72,27 @@ public class HandymanRenameValidatorTestTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenTheCurrentNameIsNotTheOneOfAKeeper() {
+    public void shouldReturnFalseWhenPaddockIsNull() {
         // Given
-        HandymanRenameContext context = givenContext(null);
-              NameValidator nameValidator = givenNameTest(true);
+        HandymanUpdateOccupationsContext context = givenContext(mock(Handyman.class), null);
+        FindPaddock findPaddock = givenFindPaddock();
         FindHandyman findHandyman = givenFindHandyman();
-        HandymanRenameValidator validator = new HandymanRenameValidator(
-                nameValidator,
-                findHandyman);
+        HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
+                findHandyman, findPaddock);
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result).isFalse();
+    }
+
+    @Test
+    public void shouldReturnFalseWhenHandymanAndPaddockAreNull() {
+        // Given
+        HandymanUpdateOccupationsContext context = givenContext(null, null);
+        FindHandyman findHandyman = givenFindHandyman();
+        FindPaddock findPaddock = givenFindPaddock();
+        HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
+                findHandyman, findPaddock);
         // When
         boolean result = validator.test(context);
         // Then
