@@ -12,11 +12,12 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class HandymanValidatorsConfig {
-          
+
     @Autowired
     NameValidator nameValidator;
-    
+
     FindHandyman findHandyman = new FindHandyman();
+    FindPaddock findPaddock = new FindPaddock();
 
     // Validator
     @Bean
@@ -24,14 +25,19 @@ public class HandymanValidatorsConfig {
         return new HandymanCreationValidator(nameValidator,
                 new HandymenNumberPredicate(0.2));
     }
-    
+
     @Bean
-    public HandymanValidator handymanValidator(){
+    public HandymanValidator handymanValidator() {
         return new HandymanValidator();
-    } 
-    
+    }
+
     @Bean
-    public HandymanRenameValidator renamingValidator(){
+    public HandymanRenameValidator renamingValidator() {
         return new HandymanRenameValidator(nameValidator, findHandyman);
+    }
+
+    @Bean
+    public HandymanUpdateOccupationsValidator handymanUpdateOccupationsValidator() {
+        return new HandymanUpdateOccupationsValidator(findHandyman, findPaddock);
     }
 }

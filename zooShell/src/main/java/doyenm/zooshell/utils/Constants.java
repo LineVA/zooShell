@@ -21,7 +21,9 @@ public class Constants {
     public static final String ACTUALLIFESPAN_ATT = "actualLifeSpanAttributes";
     // actualReproductionAttributes
     public static final String ACTUALREPRODUCTION_ATT = "actualReproductionAttributes";
-    // additionalEnglishNames
+    // add
+    public static final String ADD = "add";
+// additionalEnglishNames
     public static final String ADDITIONALENGLISHNAMES = "additionalEnglishNames";
     // additionalFrenchNames
     public static final String ADDITIONALFRENCHNAMES = "additionalFrenchNames";
@@ -52,7 +54,7 @@ public class Constants {
     // animalKeepers || keepers
     public static final String[] KEEPERS_OR_ANIMALKEEPERS = {"animalKeepers", "keepers"};
     // animalKeeper-occ || ak-occ
-    public static final String[] AK_OR_ANIMALKEEPER_OCCUPATIONS = {"animalKeeper-occupation",
+    public static final String[] AK_OR_ANIMALKEEPER_OCCUPATIONS = {"animalKeeper-occupations",
         "ak-occupations", "animalKeeper-occ", "ak-occ"};
     // biome
     public static final String BIOME = "biome";
@@ -155,7 +157,10 @@ public class Constants {
     public static final String GROUPSIZE = "groupSize";
     // handyman or hd
     public static final String[] HANDYMAN_OR_HD = {"handyman", "hd"};
-    // handymen
+    // handyma-occupations
+    public static final String[] HANDYMAN_OCCUPATIONS = {"handyman-occupations", "hd-occupations",
+        "handyman-occ", "hd-occ"};
+// handymen
     public static final String HANDYMEN = "handymen";
     // height
     public static final String HEIGHT = "height";

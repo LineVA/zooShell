@@ -2,6 +2,7 @@ package doyenm.zooshell.controller.handymancontroller;
 
 import doyenm.zooshell.context.HandymanCreationContext;
 import doyenm.zooshell.model.Handyman;
+import java.util.ArrayList;
 import java.util.function.Function;
 
 /**
@@ -16,6 +17,7 @@ public class CreationController
         Handyman handyman = Handyman.builder()
                 .name(t.getName())
                 .age(0)
+                .affectations(new ArrayList<>())
                 .build();
         t.getZoo().getHandymen().put(t.getName().toUpperCase(), handyman);
         return t;

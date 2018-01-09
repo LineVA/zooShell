@@ -30,4 +30,9 @@ public class HandymanControllersConfig {
     public RenamingController  renamingController(){
         return new RenamingController();
     }
+    
+    @Bean
+    public UpdateOccupationsController updateOccupationsController(){
+        return new UpdateOccupationsController();
+    }
 }

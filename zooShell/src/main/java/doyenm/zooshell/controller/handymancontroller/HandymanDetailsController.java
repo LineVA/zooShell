@@ -22,7 +22,7 @@ public class HandymanDetailsController implements Function<HandymanContext, Hand
         context.addCouple("Name", handyman.getName());
         int age = context.getHandyman().getAge();
         context.addCouple("Age", utils.getNumbersOfYearsFromAge(age) + " year(s), " + utils.getNumbersOfMonthsFromAge(age) + " month(s)");
-//        context.addCouple("Affectations", handyman.getAffectations().toString());
+        context.addCouple("Occupations", handyman.getAffectations().toString());
         return context;
     }
 }

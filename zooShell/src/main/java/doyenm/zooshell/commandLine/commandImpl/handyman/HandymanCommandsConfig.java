@@ -14,10 +14,10 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import({HandymanControllersConfig.class, HandymanValidatorsConfig.class})
 public class HandymanCommandsConfig {
-    
+
     @Autowired
     HandymanControllersConfig controllers;
-    
+
     @Autowired
     HandymanValidatorsConfig validators;
 
@@ -32,12 +32,18 @@ public class HandymanCommandsConfig {
     }
 
     @Bean
-    public RenameHandyman renameHandyman(){
+    public RenameHandyman renameHandyman() {
         return new RenameHandyman(validators.renamingValidator(), controllers.renamingController());
     }
-    
+
     @Bean
-    public LsHandyman lsHandyman(){
+    public LsHandyman lsHandyman() {
         return new LsHandyman();
+    }
+
+    @Bean
+    public UpdateOccupations updateHandymanOccupations() {
+        return new UpdateOccupations(validators.handymanUpdateOccupationsValidator(),
+                controllers.updateOccupationsController());
     }
 }
