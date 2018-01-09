@@ -6,6 +6,7 @@ import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Grade;
+import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class EvaluationContext {
     private List<Animal> evaluatedAnimalsList = new ArrayList<>();
     private List<AnimalKeeper> evaluatedKeepersList = new ArrayList<>();
     private List<Paddock> evaluatedPaddocksList = new ArrayList<>();
+    private List<Handyman> evaluatedHandymenList = new ArrayList<>();
+    
     private List<Animal> newBornsList = new ArrayList<>();
     private List<AnimalEvent> animalEvents = new ArrayList();
     private List<ZooEvent> zooEvents;
@@ -94,6 +97,10 @@ public class EvaluationContext {
 
     public Map<String, Paddock> getPaddocks() {
         return getZoo().getPaddocks();
+    }
+    
+     public Map<String, Handyman> getHandymen() {
+        return getZoo().getHandymen();
     }
 
     private Map<String, Animal> convertAnimalsListToMap() {

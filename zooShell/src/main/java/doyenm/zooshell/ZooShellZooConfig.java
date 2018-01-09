@@ -6,6 +6,7 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.*;
 import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.*;
 import doyenm.zooshell.controller.animalcontroller.evaluation.death.*;
 import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.*;
+import doyenm.zooshell.controller.handymancontroller.HandymanControllersConfig;
 
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationAgeingController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationController;
@@ -32,7 +33,7 @@ import org.springframework.core.env.Environment;
  */
 @Configuration
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
-@Import({PaddockControllerConfig.class})
+@Import({PaddockControllerConfig.class, HandymanControllersConfig.class})
 public class ZooShellZooConfig {
     
     @Autowired
@@ -40,6 +41,9 @@ public class ZooShellZooConfig {
     
     @Autowired
     PaddockControllerConfig paddockControllerConfig;
+    
+    @Autowired
+    HandymanControllersConfig handymanControllersConfig;
 
 
     @Bean
@@ -194,6 +198,7 @@ public class ZooShellZooConfig {
         return new EvaluationController(animalEvaluationController(), 
                 keeperEvaluationController(), 
                 paddockControllerConfig.paddockEvaluationController(), 
+                handymanControllersConfig.handymanEvaluationController(),
                 zooEvaluationController());
     }
     

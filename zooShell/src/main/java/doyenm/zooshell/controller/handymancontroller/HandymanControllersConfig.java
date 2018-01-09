@@ -1,5 +1,6 @@
 package doyenm.zooshell.controller.handymancontroller;
 
+import doyenm.zooshell.controller.handymancontroller.evaluation.HandymanAgeEvaluationController;
 import doyenm.zooshell.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -34,5 +35,10 @@ public class HandymanControllersConfig {
     @Bean
     public UpdateOccupationsController updateOccupationsController(){
         return new UpdateOccupationsController();
+    }
+    
+    @Bean
+    public HandymanEvaluationController handymanEvaluationController(){
+        return new HandymanEvaluationController(new HandymanAgeEvaluationController());
     }
 }

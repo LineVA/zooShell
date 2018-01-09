@@ -2,6 +2,7 @@ package doyenm.zooshell.controller.zoocontroller;
 
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.controller.animalcontroller.AnimalEvaluationController;
+import doyenm.zooshell.controller.handymancontroller.HandymanEvaluationController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationController;
 import doyenm.zooshell.controller.paddockcontroller.PaddockEvaluationController;
 import java.util.function.Function;
@@ -18,6 +19,7 @@ public class EvaluationController implements Function<EvaluationContext, Evaluat
     private final AnimalEvaluationController animalEvaluationController;
     private final KeeperEvaluationController keeperEvaluationController;
     private final PaddockEvaluationController paddockEvaluationController;
+    private final HandymanEvaluationController handymanEvaluationController;
     private final ZooEvaluationController zooEvaluationController;
 
     @Override
@@ -28,6 +30,7 @@ public class EvaluationController implements Function<EvaluationContext, Evaluat
                 .map(paddockEvaluationController)
                 .map(animalEvaluationController)
                 .map(keeperEvaluationController)
+                .map(handymanEvaluationController)
                 .map((EvaluationContext t1) -> {
                     t1.getZoo().setGradeObj(t1.getGradeObj());
                     t1.getZoo().setGrade(t1.getZoo().getGradeObj().computeGrade());
