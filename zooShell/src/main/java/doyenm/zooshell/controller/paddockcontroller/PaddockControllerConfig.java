@@ -3,6 +3,7 @@ package doyenm.zooshell.controller.paddockcontroller;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.LightZooDto;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.ObsolescenceEvaluationController;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockAgeEvaluationController;
+import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.PaddockState;
 import java.util.function.Function;
 import org.springframework.context.annotation.Bean;
@@ -63,6 +64,7 @@ public class PaddockControllerConfig {
     ObsolescenceEvaluationController obsolescenceEvaluationController() {
         return new ObsolescenceEvaluationController(
                 computeObsolescenceAddedByAge(),
+                computeObsolescenceErasedByHandymen(),
                 obsolescenceToStateFunction()
         );
     }
@@ -101,6 +103,19 @@ public class PaddockControllerConfig {
             public Double apply(LightZooDto dto) {
 //                return 0.001 * (1 + dto.getSpeed() * dto.getAnimalsOfThePaddock());
 return 0.1;
+            }
+        };
+    }
+    
+     Function<LightZooDto, Double> computeObsolescenceErasedByHandymen() {
+        return new Function<LightZooDto, Double>() {
+            @Override
+            public Double apply(LightZooDto dto) {
+                double sum = 0.0;
+                for(Handyman handyman : dto.getHandymen()){
+                    sum += 0.05 / handyman.getAffectations().size();
+                }
+                return sum;
             }
         };
     }
