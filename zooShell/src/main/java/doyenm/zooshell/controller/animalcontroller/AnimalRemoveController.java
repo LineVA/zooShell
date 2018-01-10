@@ -12,7 +12,7 @@ public class AnimalRemoveController implements Function<AnimalContext, AnimalCon
     @Override
     public AnimalContext apply(AnimalContext t) {
         AnimalContext context = t;
-        context.getZoo().getAnimals().remove(context.getAnimal());
+        context.getZoo().getAnimals().remove(context.getAnimal().toUpperCase());
         return context;
     }
 

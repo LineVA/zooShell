@@ -12,7 +12,7 @@ public class PaddockRemoveController implements Function<PaddockContext, Paddock
     @Override
     public PaddockContext apply(PaddockContext t) {
         PaddockContext context = t;
-        context.getZoo().getPaddocks().remove(context.getPaddock());
+        context.getZoo().getPaddocks().remove(context.getPaddock().toUpperCase());
         return context;
     }
 
