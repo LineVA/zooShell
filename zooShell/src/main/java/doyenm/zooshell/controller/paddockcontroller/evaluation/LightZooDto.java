@@ -1,7 +1,10 @@
 package doyenm.zooshell.controller.paddockcontroller.evaluation;
 
 import doyenm.zooshell.context.PaddockEvaluationContext;
+import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.Paddock;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -15,15 +18,20 @@ public class LightZooDto {
     Paddock paddock;
     int speed;
     int animalsOfThePaddock;
+    List<Handyman> handymen;
 
     public static LightZooDto makeLightZooDto(PaddockEvaluationContext context){
          int animals = (int) context.getZoo().getAnimals().values()
                 .stream()
                 .filter(animal -> animal.getPaddock().equals(context.getPaddock()))
                 .count();
+         List<Handyman> handymenInThePaddock = context.getZoo().getHandymen().values()
+                 .stream()
+                 .filter(hd -> hd.getAffectations().contains(context.getPaddock()))
+                 .collect(Collectors.toList());
         return new LightZooDto(context.getPaddock(),
                 context.getZoo().getMonthsPerEvaluation(),
-                animals);
+                animals, handymenInThePaddock);
     }
     
     
