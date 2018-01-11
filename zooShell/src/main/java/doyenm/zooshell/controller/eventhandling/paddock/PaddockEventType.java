@@ -9,7 +9,9 @@ import lombok.Getter;
  */
 public enum PaddockEventType {
 
-   CHANGE_STATE(EventCategory.BINARY, "The state of the paddock {0} has changed : its state is now {1}.");
+   CHANGE_STATE(EventCategory.BINARY, "The state of the paddock {0} has changed : its state is now {1}."),
+   STILL_UNUSABLE(EventCategory.BINARY, "The paddock {0} is still UNUSABLE");
+   
 
     @Getter
     private EventCategory category;
