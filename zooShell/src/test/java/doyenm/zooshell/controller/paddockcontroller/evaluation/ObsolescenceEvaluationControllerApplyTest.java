@@ -28,8 +28,8 @@ public class ObsolescenceEvaluationControllerApplyTest {
         when(function.apply(any(LightZooDto.class))).thenReturn(added);
         return function;
     }
-    
-      private Function<Double, PaddockState> givenConversionFunction() {
+
+    private Function<Double, PaddockState> givenConversionFunction() {
         Function<Double, PaddockState> function = mock(Function.class);
         return function;
     }
@@ -53,23 +53,26 @@ public class ObsolescenceEvaluationControllerApplyTest {
         // Given
         double init = 0.3;
         double added = 0.51;
-        Function<LightZooDto, Double> function = givenFunction(added);
+        double erased = 0.2;
+        Function<LightZooDto, Double> addedFunction = givenFunction(added);
+        Function<LightZooDto, Double> erasedFunction = givenFunction(erased);
         PaddockEvaluationContext context = givenContext(init);
-        subject = new ObsolescenceEvaluationController(function, givenConversionFunction());
+        subject = new ObsolescenceEvaluationController(addedFunction, erasedFunction, givenConversionFunction());
         // When
         PaddockEvaluationContext actual = subject.apply(context);
         // Then
-        Assertions.assertThat(actual.getPaddock().getObsolescence()).isEqualTo(init + added);
+        Assertions.assertThat(actual.getPaddock().getObsolescence()).isEqualTo(init - erased + added);
     }
-    
-     @Test
+
+    @Test
     public void shouldSetTheObsolescenceNotGreaterThan1() {
         // Given
         double init = 0.60;
         double added = 0.51;
-        Function<LightZooDto, Double> function = givenFunction(added);
+        Function<LightZooDto, Double> addedFunction = givenFunction(added);
+        Function<LightZooDto, Double> erasedFunction = givenFunction(0);
         PaddockEvaluationContext context = givenContext(init);
-        subject = new ObsolescenceEvaluationController(function, givenConversionFunction());
+        subject = new ObsolescenceEvaluationController(addedFunction, erasedFunction, givenConversionFunction());
         // When
         PaddockEvaluationContext actual = subject.apply(context);
         // Then
