@@ -35,6 +35,7 @@ public class PaddockCreationController
                 .obsolescence(0.0)
                 .biome(Biome.NONE)
                 .type(PaddockType.UNKNOWN)
+                .turnsOfUnusableState(0)
                 .build();
         context.getZoo().getPaddocks().put(context.getName().toUpperCase(), paddock);
         return context;
