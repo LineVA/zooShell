@@ -13,7 +13,7 @@ import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationFamilyController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationTaskController;
 import doyenm.zooshell.controller.paddockcontroller.PaddockControllerConfig;
-import doyenm.zooshell.controller.zoocontroller.EvaluationController;
+import doyenm.zooshell.controller.EvaluationController;
 import doyenm.zooshell.controller.zoocontroller.RenameZooController;
 import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
 import doyenm.zooshell.model.utils.CohabitationFactorHandler;

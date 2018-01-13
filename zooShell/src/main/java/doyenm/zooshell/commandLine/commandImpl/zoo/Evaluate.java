@@ -15,7 +15,7 @@ import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
 import doyenm.zooshell.controller.eventhandling.paddock.PaddockEvent;
 import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
-import doyenm.zooshell.controller.zoocontroller.EvaluationController;
+import doyenm.zooshell.controller.EvaluationController;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.Arrays;

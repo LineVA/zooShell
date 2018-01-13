@@ -1,10 +1,11 @@
-package doyenm.zooshell.controller.zoocontroller;
+package doyenm.zooshell.controller;
 
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.controller.animalcontroller.AnimalEvaluationController;
 import doyenm.zooshell.controller.handymancontroller.HandymanEvaluationController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationController;
 import doyenm.zooshell.controller.paddockcontroller.PaddockEvaluationController;
+import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
 import java.util.function.Function;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;

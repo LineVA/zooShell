@@ -4,7 +4,7 @@ import doyenm.zooshell.commandLine.commandImpl.zoo.Evaluate;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.EvaluationContext;
-import doyenm.zooshell.controller.zoocontroller.EvaluationController;
+import doyenm.zooshell.controller.EvaluationController;
 import doyenm.zooshell.model.Zoo;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
