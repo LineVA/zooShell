@@ -2,6 +2,8 @@ package doyenm.zooshell.controller.paddockcontroller.evaluation;
 
 import doyenm.zooshell.context.PaddockEvaluationContext;
 import doyenm.zooshell.model.Paddock;
+import doyenm.zooshell.model.Penalty;
+import doyenm.zooshell.model.PenaltyType;
 import java.util.function.Function;
 
 /**
@@ -13,12 +15,18 @@ public class PaddockEvacuationController
 
     @Override
     public PaddockEvaluationContext apply(PaddockEvaluationContext t) {
-        if (t.getPaddock().getTurnsOfUnusableState() >= 3) {
+        if (t.getPaddock().getTurnsOfUnusableState() == 3) {
             Paddock pad = t.getPaddock();
             // Delete animals 
             t = handleAnimals(t);
             // Delete occupation s keepers
             t = handleKeepers(t);
+            // Add penalty
+            t.getZoo().getPenalties().add(Penalty.builder()
+                    .remainingTurns(3)
+                    .type(PenaltyType.UNUSABLE_PADDOCK)
+                    .value(3.0)
+                    .build());
         }
         return t;
     }
