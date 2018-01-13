@@ -3,6 +3,7 @@ package doyenm.zooshell.controller.paddockcontroller;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.LightZooDto;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.ObsolescenceEvaluationController;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockAgeEvaluationController;
+import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockEvacuationController;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.UpdateUnusableState;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.PaddockState;
@@ -69,13 +70,19 @@ public class PaddockControllerConfig {
                 obsolescenceToStateFunction()
         );
     }
+    
+    @Bean
+    PaddockEvacuationController paddockEvacuationController(){
+        return new PaddockEvacuationController();
+    }
 
     @Bean
     public PaddockEvaluationController paddockEvaluationController() {
         return new PaddockEvaluationController(
                 paddockAgeEvaluationController(),
                 obsolescenceEvaluationController(),
-                new UpdateUnusableState(obsolescenceToStateFunction())
+                new UpdateUnusableState(obsolescenceToStateFunction()),
+                paddockEvacuationController()
         );
     }
 
