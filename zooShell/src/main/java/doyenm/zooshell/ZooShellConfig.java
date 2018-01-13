@@ -192,6 +192,7 @@ public class ZooShellConfig {
                 new ActionPointCommand(lsKeeperTask, 0),
                 new ActionPointCommand(lsPaddockType, 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsSex(), 0),
+                new ActionPointCommand(commandsConfig.lsPenalties(), 0),
                 // General
                 new ActionPointCommand(load, 0),
                 new ActionPointCommand(save, 0));

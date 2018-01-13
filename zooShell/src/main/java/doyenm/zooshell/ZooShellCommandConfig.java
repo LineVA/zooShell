@@ -11,7 +11,7 @@ import doyenm.zooshell.commandLine.commandImpl.zoo.CreateZoo;
 import doyenm.zooshell.commandLine.commandImpl.zoo.DetailZoo;
 import doyenm.zooshell.commandLine.commandImpl.zoo.Evaluate;
 import doyenm.zooshell.controller.speciecontroller.SpecieDetailsController;
-import doyenm.zooshell.controller.zoocontroller.EvaluationController;
+import doyenm.zooshell.controller.EvaluationController;
 import doyenm.zooshell.controller.zoocontroller.ZooCreationController;
 import doyenm.zooshell.controller.zoocontroller.ZooDetailsController;
 import doyenm.zooshell.validator.SpecieDetailsValidator;

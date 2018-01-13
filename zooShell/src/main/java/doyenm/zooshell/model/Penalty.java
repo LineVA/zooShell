@@ -8,7 +8,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 /**
  *
@@ -21,19 +20,7 @@ import lombok.ToString;
 @Builder
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@ToString
-public class Grade {
-
-    private double animalsGrade = 0.0;
-    private double paddocksGrade = 0.0;
-    private double zooGrade = 0.0;
-    private double penaltiesGrade = 0.0;
-
-    public double computeGrade() {
-        return getAnimalsGrade()
-                + getPaddocksGrade()
-                + getZooGrade()
-                - getPenaltiesGrade();
-    }
-
+public class Penalty {
+    private double value;
+    private int remainingTurns;
 }

@@ -1,10 +1,11 @@
-package doyenm.zooshell.controller.zoocontroller;
+package doyenm.zooshell.controller;
 
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.controller.animalcontroller.AnimalEvaluationController;
 import doyenm.zooshell.controller.handymancontroller.HandymanEvaluationController;
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationController;
 import doyenm.zooshell.controller.paddockcontroller.PaddockEvaluationController;
+import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
 import java.util.function.Function;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class EvaluationController implements Function<EvaluationContext, Evaluat
     private final PaddockEvaluationController paddockEvaluationController;
     private final HandymanEvaluationController handymanEvaluationController;
     private final ZooEvaluationController zooEvaluationController;
+    private final PenaltiesEvaluationController penaltiesEvaluationController;
 
     @Override
     public EvaluationContext apply(EvaluationContext t) {
@@ -31,6 +33,7 @@ public class EvaluationController implements Function<EvaluationContext, Evaluat
                 .map(animalEvaluationController)
                 .map(keeperEvaluationController)
                 .map(handymanEvaluationController)
+                .map(penaltiesEvaluationController)
                 .map((EvaluationContext t1) -> {
                     t1.getZoo().setGradeObj(t1.getGradeObj());
                     t1.getZoo().setGrade(t1.getZoo().getGradeObj().computeGrade());
@@ -41,5 +44,4 @@ public class EvaluationController implements Function<EvaluationContext, Evaluat
         context.updateAnimals();
         return context;
     }
-
 }

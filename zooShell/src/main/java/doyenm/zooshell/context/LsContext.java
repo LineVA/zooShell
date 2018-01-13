@@ -5,6 +5,7 @@ import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockType;
+import doyenm.zooshell.model.Penalty;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.Zoo;
@@ -68,6 +69,10 @@ public class LsContext {
                 .collect(Collectors.toList())
         );
     }
+      
+      public List<Penalty> getPenalties(){
+          return getZoo().getPenalties();
+      }
 
     public List<String> getSexes() {
         List<String> list = new ArrayList<>();
