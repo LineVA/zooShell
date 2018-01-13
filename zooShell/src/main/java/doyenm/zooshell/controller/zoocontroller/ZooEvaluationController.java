@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  */
 public class ZooEvaluationController  implements Function<EvaluationContext, EvaluationContext> {
     
-    private List<ZooEventsHandler> handlers = Arrays.asList(new KeeperTrainingHandler());
+    private final List<ZooEventsHandler> handlers = Arrays.asList(new KeeperTrainingHandler());
 
     @Override
     public EvaluationContext apply(EvaluationContext t) {
