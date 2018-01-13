@@ -29,7 +29,9 @@ public class ObsolescenceEvaluationController
         double init = context.getPaddock().getObsolescence();
         double sum = addedObsolescenceDuringTheTurn - erasedObsolescenceDuringTheTurn
                 + init;
-        context.getPaddock().setObsolescence(sum > 1.0 ? 1.0 : sum);
+        sum = sum < 0.0 ? 0.0 : sum;
+        sum = sum > 1.0 ? 1.0 : sum;
+        context.getPaddock().setObsolescence(sum);
         if (changeState(init, sum)) {
             context.getPaddockEvents().add(generateEvent(sum, context.getPaddock()));
         }

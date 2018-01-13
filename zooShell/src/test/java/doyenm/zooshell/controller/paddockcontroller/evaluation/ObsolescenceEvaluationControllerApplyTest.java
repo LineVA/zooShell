@@ -78,4 +78,21 @@ public class ObsolescenceEvaluationControllerApplyTest {
         // Then
         Assertions.assertThat(actual.getPaddock().getObsolescence()).isEqualTo(1.0);
     }
+    
+     @Test
+    public void shouldSetTheObsolescenceNotLowerThan0() {
+        // Given
+        double init = 0.0;
+        double added = 0.0;
+        double erased = 0.1;
+        Function<LightZooDto, Double> addedFunction = givenFunction(added);
+        Function<LightZooDto, Double> erasedFunction = givenFunction(erased);
+        PaddockEvaluationContext context = givenContext(init);
+        subject = new ObsolescenceEvaluationController(addedFunction, erasedFunction, givenConversionFunction());
+        // When
+        PaddockEvaluationContext actual = subject.apply(context);
+        // Then
+        Assertions.assertThat(actual.getPaddock().getObsolescence()).isEqualTo(0.0);
+    }
+
 }
