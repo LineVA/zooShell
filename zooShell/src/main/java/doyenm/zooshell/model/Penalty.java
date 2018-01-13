@@ -23,4 +23,5 @@ import lombok.Setter;
 public class Penalty {
     private double value;
     private int remainingTurns;
+    private PenaltyType type;
 }
