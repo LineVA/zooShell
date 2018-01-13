@@ -1,9 +1,5 @@
 package doyenm.zooshell;
 
-import doyenm.zooshell.commandLine.commandImpl.animal.*;
-import doyenm.zooshell.commandLine.commandImpl.ls.LsContraceptionMethod;
-import doyenm.zooshell.commandLine.commandImpl.ls.LsDiet;
-import doyenm.zooshell.commandLine.commandImpl.ls.LsSex;
 import doyenm.zooshell.controller.animalcontroller.*;
 import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithDietCriteriaController;
 import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithPaddockCriteriaController;
@@ -219,7 +215,7 @@ public class ZooShellAnimalConfig {
 
     @Bean
     public AnimalCreationValidator animalCreationValidator() {
-        return new AnimalCreationValidator(Integer.parseInt(environment.getProperty("animal.name.max_length")));
+        return new AnimalCreationValidator(findPaddock, Integer.parseInt(environment.getProperty("animal.name.max_length")));
     }
 
 //    @Bean 
