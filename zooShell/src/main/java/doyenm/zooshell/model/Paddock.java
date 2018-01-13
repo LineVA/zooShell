@@ -51,6 +51,8 @@ public class Paddock {
      */
     private List<Coordinates> extensions;
     
+    private int turnsOfUnusableState;
+    
     public int getX() {
         return this.getCoordinates().getPosition().getX();
     }

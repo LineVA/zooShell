@@ -24,8 +24,8 @@ public class AnimalCreationValidator implements Predicate<AnimalCreationContext>
     StringLengthPredicates stringLengthPredicates = new StringLengthPredicates();
     UniquenessNamesBiPredicates uniquenessNamesBiPredicates = new UniquenessNamesBiPredicates();
     FindingSpecieFunction findingSpecieFunction = new FindingSpecieFunction();
-    FindingPaddockByNameFunction findingPaddockByNameFunction = new FindingPaddockByNameFunction();
     FindingSexFunction findingSexFunction = new FindingSexFunction();
+   private final FindPaddock findPaddock;
     
     private final int maxLengthName;
 
@@ -44,18 +44,15 @@ public class AnimalCreationValidator implements Predicate<AnimalCreationContext>
                 .findFirst()
                 .get()
                 .getSpecie());
-        context.setPaddock(Stream.of(findingPaddockContext)
-                .map(findingPaddockByNameFunction)
-                .findFirst()
-                .get()
-                .getPaddock());
+        t.setPaddock(findPaddock.find(t.getZoo(), t.getPaddockName()));
         context.setSex(Stream.of(findingSexContext)
                 .map(findingSexFunction)
                 .findFirst()
                 .get()
                 .getSex());
         if (context.getSpecie() != null && context.getPaddock() != null && context.getSex() != null) {
-            return Sex.UNKNOWN != context.getSex() && result && context.getPaddock().getEntry() != null;
+            return Sex.UNKNOWN != context.getSex() && result && context.getPaddock().getEntry() != null 
+                    && context.getPaddock().getTurnsOfUnusableState() < 3;
         }
         return false;
     }

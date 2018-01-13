@@ -25,9 +25,10 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         return Mockito.mock(Position.class);
     }
 
-    private Paddock givenPaddockWithEntry(Position entry) {
+    private Paddock givenPaddockWithEntry(Position entry, int turns) {
         Paddock pad = Mockito.mock(Paddock.class);
         Mockito.when(pad.getEntry()).thenReturn(entry);
+        Mockito.when(pad.getTurnsOfUnusableState()).thenReturn(turns);
         return pad;
     }
 
@@ -74,15 +75,15 @@ public class KeeperUpdateOccupationsValidatorTestTest {
 
     /**
      * Should return true: - the keeper exists - the paddock exists and has an
-     * entry - the task exists - the task is not UNKNOWN - the time is a Double - the time is greater or
-     * equals than 0.0 - the sum of the occupations of the keeper is lower or
-     * equals than 100.0
+     * entry - the task exists - the task is not UNKNOWN - the time is a Double
+     * - the time is greater or equals than 0.0 - the sum of the occupations of
+     * the keeper is lower or equals than 100.0
      */
     @Test
     public void shouldReturnTrueWhenEveryThingIsCorrect() {
         // Given
         Position entry = givenPosition();
-        Paddock pad = givenPaddockWithEntry(entry);
+        Paddock pad = givenPaddockWithEntry(entry, 2);
         TaskType task = TaskType.CLEANING;
         double time = 10.0;
         TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 5.0, TaskType.ENRICHMENT);
@@ -102,7 +103,7 @@ public class KeeperUpdateOccupationsValidatorTestTest {
     public void shouldReturnFalseWhenTheKeeperDoesNotExist() {
         // Given
         Position entry = givenPosition();
-        Paddock pad = givenPaddockWithEntry(entry);
+        Paddock pad = givenPaddockWithEntry(entry, 2);
         TaskType task = TaskType.CLEANING;
         double time = 10.0;
         TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 5.0, TaskType.ENRICHMENT);
@@ -141,7 +142,47 @@ public class KeeperUpdateOccupationsValidatorTestTest {
     public void shouldReturnFalseWhenThePaddockExistsButDoesNotHaveAnEntry() {
         // Given
         Position entry = null;
-        Paddock pad = givenPaddockWithEntry(entry);
+        Paddock pad = givenPaddockWithEntry(entry, 2);
+        TaskType task = TaskType.CLEANING;
+        double time = 10.0;
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 5.0, TaskType.ENRICHMENT);
+        List<TimedOccupation> list = new ArrayList<>();
+        list.add(occupation);
+        AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
+        Zoo zoo = givenZoo();
+        KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
+        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result).isFalse();
+    }
+    
+     @Test
+    public void shouldReturnFalseWhenThePaddockExistsButIsUnusableSinceThreeTurns() {
+        // Given
+        Position entry = null;
+        Paddock pad = givenPaddockWithEntry(entry, 3);
+        TaskType task = TaskType.CLEANING;
+        double time = 10.0;
+        TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 5.0, TaskType.ENRICHMENT);
+        List<TimedOccupation> list = new ArrayList<>();
+        list.add(occupation);
+        AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
+        Zoo zoo = givenZoo();
+        KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
+        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result).isFalse();
+    }
+    
+      @Test
+    public void shouldReturnFalseWhenThePaddockExistsButIsUnusableSinceMoreThanThreeTurns() {
+        // Given
+        Position entry = null;
+        Paddock pad = givenPaddockWithEntry(entry, 4);
         TaskType task = TaskType.CLEANING;
         double time = 10.0;
         TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 5.0, TaskType.ENRICHMENT);
@@ -161,7 +202,7 @@ public class KeeperUpdateOccupationsValidatorTestTest {
     public void shouldReturnFalseWhenTheTaskDoesNotExist() {
         // Given
         Position entry = givenPosition();
-        Paddock pad = givenPaddockWithEntry(entry);
+        Paddock pad = givenPaddockWithEntry(entry, 2);
         TaskType task = null;
         double time = 10.0;
         TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 50.0, TaskType.ENRICHMENT);
@@ -176,12 +217,12 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-     @Test
+
+    @Test
     public void shouldReturnFalseWhenTheTaskIsUnknown() {
         // Given
         Position entry = givenPosition();
-        Paddock pad = givenPaddockWithEntry(entry);
+        Paddock pad = givenPaddockWithEntry(entry, 2);
         TaskType task = TaskType.UNKNOWN;
         double time = 10.0;
         TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 50.0, TaskType.ENRICHMENT);
@@ -201,7 +242,7 @@ public class KeeperUpdateOccupationsValidatorTestTest {
     public void shouldReturnFalseWhenTheTimeIsNegativ() {
         // Given
         Position entry = givenPosition();
-        Paddock pad = givenPaddockWithEntry(entry);
+        Paddock pad = givenPaddockWithEntry(entry, 2);
         TaskType task = TaskType.CLEANING;
         double time = -10.0;
         TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 50.0, TaskType.ENRICHMENT);
@@ -221,8 +262,8 @@ public class KeeperUpdateOccupationsValidatorTestTest {
     public void shouldReturnFalseWhenTheSumOfTimesIsGreaterThan100WithNoOccupationWithThisPaddockOrTask() {
         // Given
         Position entry = givenPosition();
-        Paddock pad = givenPaddockWithEntry(entry);
-        Paddock pad2 = givenPaddockWithEntry(entry);
+        Paddock pad = givenPaddockWithEntry(entry, 2);
+        Paddock pad2 = givenPaddockWithEntry(entry, 2);
         TaskType task = TaskType.CLEANING;
         double time = 100.0;
         TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad2, 50.0, TaskType.ENRICHMENT);
@@ -242,7 +283,7 @@ public class KeeperUpdateOccupationsValidatorTestTest {
     public void shouldReturnFalseWhenTheSumOfTimesIsGreaterThan100WithAnOccupationWithThisPaddockButNotWithThisTask() {
         // Given
         Position entry = givenPosition();
-        Paddock pad = givenPaddockWithEntry(entry);
+        Paddock pad = givenPaddockWithEntry(entry, 2);
         TaskType task = TaskType.CLEANING;
         double time = 100.0;
         TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 50.0, TaskType.ENRICHMENT);
@@ -262,8 +303,8 @@ public class KeeperUpdateOccupationsValidatorTestTest {
     public void shouldReturnFalseWhenTheSumOfTimesIsGreaterThan100WithAnOccupationWithThisTaskButNotWithThisPaddock() {
         // Given
         Position entry = givenPosition();
-        Paddock pad = givenPaddockWithEntry(entry);
-        Paddock pad2 = givenPaddockWithEntry(entry);
+        Paddock pad = givenPaddockWithEntry(entry, 2);
+        Paddock pad2 = givenPaddockWithEntry(entry, 2);
         TaskType task = TaskType.CLEANING;
         double time = 100.0;
         TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad2, 50.0, TaskType.CLEANING);
@@ -289,7 +330,7 @@ public class KeeperUpdateOccupationsValidatorTestTest {
     public void shouldReturnTrueWhenTheSumOfTimesIsLowerOrEqualsThan100OnlyBecauseWeUpdateTheTimeOfAnAlreadyExistingOccupation() {
         // Given
         Position entry = givenPosition();
-        Paddock pad = givenPaddockWithEntry(entry);
+        Paddock pad = givenPaddockWithEntry(entry, 2);
         TaskType task = TaskType.CLEANING;
         double time = 100.0;
         TimedOccupation occupation = givenOccupationWithPaddockTimeAndTask(pad, 50.0, TaskType.CLEANING);

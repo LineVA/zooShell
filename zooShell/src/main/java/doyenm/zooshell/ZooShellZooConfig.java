@@ -19,6 +19,7 @@ import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
 import doyenm.zooshell.model.utils.CohabitationFactorHandler;
 import doyenm.zooshell.utils.UniformStatistics;
 import doyenm.zooshell.validator.AnimalCreationValidator;
+import doyenm.zooshell.validator.FindPaddock;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -35,65 +36,67 @@ import org.springframework.core.env.Environment;
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
 @Import({PaddockControllerConfig.class, HandymanControllersConfig.class})
 public class ZooShellZooConfig {
-    
+
     @Autowired
     Environment environment;
-    
+
     @Autowired
     PaddockControllerConfig paddockControllerConfig;
-    
+
     @Autowired
     HandymanControllersConfig handymanControllersConfig;
-
 
     @Bean
     AnimalAgeEvaluationController animalAgeEvaluationController() {
         return new AnimalAgeEvaluationController();
     }
-    
+
     @Bean
-    AnimalUpdateDyingMeasures animalUpdateDyingMeasures(){
+    AnimalUpdateDyingMeasures animalUpdateDyingMeasures() {
         return new AnimalUpdateDyingMeasures(new AnimalDyingPredicates(),
-        Arrays.asList(0.4, 0.3, 0.3, 0.1));
+                Arrays.asList(0.4, 0.3, 0.3, 0.1));
     }
 
     @Bean
-    AnimalDeathPredicates animalDeathPredicates(){
+    AnimalDeathPredicates animalDeathPredicates() {
         return new AnimalDeathPredicates(Integer.parseInt(environment.getProperty("animal.turns.agony")));
     }
-    
+
     @Bean
     AnimalDeathEvaluationController animalDeathEvaluationController() {
         return new AnimalDeathEvaluationController(animalUpdateDyingMeasures(), animalDeathPredicates());
     }
-    
+
     @Bean
-    FemaleReproductionPredicate femaleReproductionPredicate(){
+    FemaleReproductionPredicate femaleReproductionPredicate() {
         return new FemaleReproductionPredicate();
     }
-    
-      @Bean
-    MaleReproductionPredicate maleReproductionPredicate(){
+
+    @Bean
+    MaleReproductionPredicate maleReproductionPredicate() {
         return new MaleReproductionPredicate();
     }
-    
+
     @Bean
-    UniformStatistics uniformStatistics(){
+    UniformStatistics uniformStatistics() {
         return new UniformStatistics();
     }
-    
+
+    @Autowired
+    FindPaddock findPaddock;
+
     @Bean
-    AnimalCreationValidator animalCreationValidator(){
-        return new AnimalCreationValidator(Integer.parseInt(environment.getProperty("animal.name.max_length")));
+    AnimalCreationValidator animalCreationValidator() {
+        return new AnimalCreationValidator(findPaddock, Integer.parseInt(environment.getProperty("animal.name.max_length")));
     }
-    
+
     @Bean
-    CalvingFunction calvingFunction(){
+    CalvingFunction calvingFunction() {
         return new CalvingFunction(uniformStatistics(), animalCreationValidator());
     }
-    
+
     @Bean
-    ExecuteReproductionFunction executeReproductionFunction(){
+    ExecuteReproductionFunction executeReproductionFunction() {
         return new ExecuteReproductionFunction(calvingFunction(), uniformStatistics());
     }
 
@@ -169,46 +172,48 @@ public class ZooShellZooConfig {
     }
 
     @Bean
-    KeeperEvaluationAgeingController keeperAgeingController(){
+    KeeperEvaluationAgeingController keeperAgeingController() {
         return new KeeperEvaluationAgeingController();
     }
+
     @Bean
-    KeeperEvaluationTaskController taskController(){
+    KeeperEvaluationTaskController taskController() {
         return new KeeperEvaluationTaskController();
     }
+
     @Bean
-    KeeperEvaluationFamilyController familyController(){
+    KeeperEvaluationFamilyController familyController() {
         return new KeeperEvaluationFamilyController();
     }
 
     @Bean
     KeeperEvaluationController keeperEvaluationController() {
         return new KeeperEvaluationController(keeperAgeingController(),
-                taskController(), 
+                taskController(),
                 familyController());
     }
-    
+
     @Bean
-    ZooEvaluationController zooEvaluationController(){
+    ZooEvaluationController zooEvaluationController() {
         return new ZooEvaluationController();
-    } 
+    }
 
     @Bean
     EvaluationController evaluationController() {
-        return new EvaluationController(animalEvaluationController(), 
-                keeperEvaluationController(), 
-                paddockControllerConfig.paddockEvaluationController(), 
+        return new EvaluationController(animalEvaluationController(),
+                keeperEvaluationController(),
+                paddockControllerConfig.paddockEvaluationController(),
                 handymanControllersConfig.handymanEvaluationController(),
                 zooEvaluationController());
     }
-    
+
     @Bean
-    static RenameZooController renameZooController(){
+    static RenameZooController renameZooController() {
         return new RenameZooController();
-    } 
-    
+    }
+
     @Bean
-    public static RenameZoo renameZoo(){
+    public static RenameZoo renameZoo() {
         return new RenameZoo(renameZooController());
-    } 
+    }
 }

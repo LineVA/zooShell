@@ -4,6 +4,8 @@ import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockAgeEvaluat
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.context.PaddockEvaluationContext;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.ObsolescenceEvaluationController;
+import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockEvacuationController;
+import doyenm.zooshell.controller.paddockcontroller.evaluation.UpdateUnusableState;
 import doyenm.zooshell.model.Paddock;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -18,6 +20,8 @@ public class PaddockEvaluationController implements Function<EvaluationContext, 
 
     private final PaddockAgeEvaluationController paddockAgeEvaluationController;
     private final ObsolescenceEvaluationController obsolescenceEvaluationController;
+    private final UpdateUnusableState updateUnusableState;
+    private final PaddockEvacuationController paddockEvacuationController;
 
     @Override
     public EvaluationContext apply(EvaluationContext t) {
@@ -28,6 +32,8 @@ public class PaddockEvaluationController implements Function<EvaluationContext, 
                 // Age
                 .map(paddockAgeEvaluationController)
                 .map(obsolescenceEvaluationController)
+                .map(updateUnusableState)
+                .map(paddockEvacuationController)
                 .map((PaddockEvaluationContext t1) -> {
                     context.getPaddockEvents().addAll(t1.getPaddockEvents());
                     return t1;

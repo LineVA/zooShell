@@ -3,6 +3,8 @@ package doyenm.zooshell.controller.paddockcontroller;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.LightZooDto;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.ObsolescenceEvaluationController;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockAgeEvaluationController;
+import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockEvacuationController;
+import doyenm.zooshell.controller.paddockcontroller.evaluation.UpdateUnusableState;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.PaddockState;
 import java.util.function.Function;
@@ -68,12 +70,20 @@ public class PaddockControllerConfig {
                 obsolescenceToStateFunction()
         );
     }
+    
+    @Bean
+    PaddockEvacuationController paddockEvacuationController(){
+        return new PaddockEvacuationController();
+    }
 
     @Bean
     public PaddockEvaluationController paddockEvaluationController() {
         return new PaddockEvaluationController(
                 paddockAgeEvaluationController(),
-                obsolescenceEvaluationController());
+                obsolescenceEvaluationController(),
+                new UpdateUnusableState(obsolescenceToStateFunction()),
+                paddockEvacuationController()
+        );
     }
 
     Function<Double, PaddockState> obsolescenceToStateFunction() {
@@ -102,17 +112,17 @@ public class PaddockControllerConfig {
             @Override
             public Double apply(LightZooDto dto) {
 //                return 0.001 * (1 + dto.getSpeed() * dto.getAnimalsOfThePaddock());
-return 0.1;
+                return 0.8;
             }
         };
     }
-    
-     Function<LightZooDto, Double> computeObsolescenceErasedByHandymen() {
+
+    Function<LightZooDto, Double> computeObsolescenceErasedByHandymen() {
         return new Function<LightZooDto, Double>() {
             @Override
             public Double apply(LightZooDto dto) {
                 double sum = 0.0;
-                for(Handyman handyman : dto.getHandymen()){
+                for (Handyman handyman : dto.getHandymen()) {
                     sum += 0.05 / handyman.getAffectations().size();
                 }
                 return sum;
