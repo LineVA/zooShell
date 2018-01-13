@@ -8,7 +8,6 @@ import doyenm.zooshell.context.LsContext;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import java.util.Arrays;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -21,13 +20,9 @@ public class LsSpecie implements Command {
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         LsContext context = new LsContext(zoo);
         return Stream.of(context)
-                .map(new Function<LsContext, ReturnExec>() {
-                    @Override
-                    public ReturnExec apply(LsContext t) {
-                        FormattingInList formatting = new FormattingInList();
-                        return new ReturnExec(formatting.formatList(context.getSpecieNames()), TypeReturn.SUCCESS);
-                    }
-
+                .map(t -> {
+                    FormattingInList formatting = new FormattingInList();
+                    return new ReturnExec(formatting.formatList(t.getSpecieNames()), TypeReturn.SUCCESS);
                 })
                 .findFirst()
                 .get();
@@ -35,12 +30,8 @@ public class LsSpecie implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2) {
-            if (Arrays.asList(Constants.LS).contains(cmd[0])) {
-                if (Arrays.asList(Constants.SPEC_OR_SPECIE).contains(cmd[1])) {
-                    return true;
-                }
-            }
+        if (cmd.length == 1) {
+            return Arrays.asList(Constants.SPECIES).contains(cmd[0]);
         }
         return false;
     }

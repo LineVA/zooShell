@@ -274,6 +274,8 @@ public class Constants {
     public static final String SOCIAL = "social";
     // specie
     public static final String SPECIE = "specie";
+    // species
+    public static final String SPECIES = "species";
     // specie || spec
     public static final String[] SPEC_OR_SPECIE = {"specie", "spec"};
     // --specie, -s as arguments
