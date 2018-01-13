@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -20,24 +21,19 @@ import lombok.Setter;
 @Builder
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+@ToString
 public class Grade {
 
     private double animalsGrade = 0.0;
     private double paddocksGrade = 0.0;
     private double zooGrade = 0.0;
+    private double penaltiesGrade = 0.0;
 
     public double computeGrade() {
         return getAnimalsGrade()
                 + getPaddocksGrade()
-                + getZooGrade();
+                + getZooGrade()
+                - getPenaltiesGrade();
     }
 
-    @Override
-    public String toString() {
-        return "Grade{" + "animalsGrade=" + animalsGrade 
-                + ", paddocksGrade=" + paddocksGrade 
-                + ", zooGrade=" + zooGrade + '}';
-    }
-
-   
 }
