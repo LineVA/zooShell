@@ -24,7 +24,7 @@ public class AnimalChangePaddockValidator implements Predicate<AnimalChangePaddo
         if(pad != null && animal != null){
             context.setConvertedAnimal(animal);
             context.setConvertedPaddock(pad);
-            return true;
+            return context.getConvertedPaddock().getTurnsOfUnusableState() < 3;
         }
         return false;
     }
