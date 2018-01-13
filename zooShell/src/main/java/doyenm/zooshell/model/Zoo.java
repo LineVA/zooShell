@@ -1,6 +1,7 @@
 package doyenm.zooshell.model;
 
 import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -87,4 +88,6 @@ public class Zoo {
      * The list of the zoo that currently affects it
      */
     private List<ZooEvent> zooEvents;
+    
+    private List<Penalty> penalties = new ArrayList<>();
 }
