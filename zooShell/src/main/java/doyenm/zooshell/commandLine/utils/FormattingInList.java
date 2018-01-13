@@ -1,5 +1,6 @@
 package doyenm.zooshell.commandLine.utils;
 
+import doyenm.zooshell.model.Penalty;
 import java.util.List;
 
 /**
@@ -20,6 +21,14 @@ public class FormattingInList {
         String returnStr = "";
         for (String str : strs) {
             returnStr += str + "\n";
+        }
+        return returnStr;
+    }
+    
+     public String formatPenaltiesList(List<Penalty> strs) {
+        String returnStr = "";
+        for (Penalty str : strs) {
+            returnStr += str.toString() + "\n";
         }
         return returnStr;
     }

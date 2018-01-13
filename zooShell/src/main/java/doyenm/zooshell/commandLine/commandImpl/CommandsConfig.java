@@ -3,6 +3,7 @@ package doyenm.zooshell.commandLine.commandImpl;
 import doyenm.zooshell.commandLine.commandImpl.animal.AnimalCommandsConfig;
 import doyenm.zooshell.commandLine.commandImpl.handyman.HandymanCommandsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -18,4 +19,9 @@ public class CommandsConfig {
     
     @Autowired
     public HandymanCommandsConfig handymanCommandsConfig;
+    
+    @Bean
+    public LsPenalties lsPenalties(){
+        return new LsPenalties();
+    } 
 }

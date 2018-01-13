@@ -242,6 +242,8 @@ public class Constants {
     public static final String[] PADDOCKTYPES_OR_PADTYPES = {"paddockTypes", "padTypes"};
     // --paddockType || --padType || -pT
     public static final String[] PADDOCKTYPE_ARG = {"--paddockType", "--padType", "-pT"};
+    // penalties
+    public static final String PENALTIES = "penalties";
     // personality
     public static final String PERSONALITY = "personality";
     // quantity
