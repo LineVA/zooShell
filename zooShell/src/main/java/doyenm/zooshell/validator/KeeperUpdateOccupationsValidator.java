@@ -33,7 +33,8 @@ public class KeeperUpdateOccupationsValidator
                 .get()
                 .getConvertedTask());
         if (t.getConvertedKeeper() != null & t.getConvertedPaddock() != null & t.getConvertedTask() != null) {
-            return testTime(t) & t.getConvertedPaddock().getEntry() != null & t.getConvertedTask() != TaskType.UNKNOWN;
+            return testTime(t) & t.getConvertedPaddock().getEntry() != null & t.getConvertedTask() != TaskType.UNKNOWN
+                    && t.getConvertedPaddock().getTurnsOfUnusableState() < 3;
         }
         return false;
     }
