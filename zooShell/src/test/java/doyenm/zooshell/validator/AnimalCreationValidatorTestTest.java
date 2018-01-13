@@ -6,11 +6,12 @@ import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.Specie;
+import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+import static org.mockito.Matchers.anyString;
 import org.mockito.Mockito;
 
 /**
@@ -27,9 +28,10 @@ public class AnimalCreationValidatorTestTest {
         return Mockito.mock(Position.class);
     }
 
-    private Paddock givenPaddockWithEntry(Position entry) {
+    private Paddock givenPaddockWithEntry(Position entry, int turns) {
         Paddock pad = Mockito.mock(Paddock.class);
         Mockito.when(pad.getEntry()).thenReturn(entry);
+        Mockito.when(pad.getTurnsOfUnusableState()).thenReturn(turns);
         return pad;
     }
 
@@ -56,6 +58,12 @@ public class AnimalCreationValidatorTestTest {
         return context;
     }
 
+    private FindPaddock givenFindPaddock(Paddock pad) {
+        FindPaddock mock = Mockito.mock(FindPaddock.class);
+        Mockito.when(mock.find(Mockito.any(Zoo.class), anyString())).thenReturn(pad);
+        return mock;
+    }
+
     /**
      * An animal can be created if : - the name is not empty - the name is
      * shorter than 50 characters - the paddock exists - the paddock has an
@@ -66,7 +74,7 @@ public class AnimalCreationValidatorTestTest {
         // Given
         Specie convertedSpecie = givenSpecie();
         Position entry = givenPosition();
-        Paddock convertedPaddock = givenPaddockWithEntry(entry);
+        Paddock convertedPaddock = givenPaddockWithEntry(entry, 1);
         String animalName = RandomStringUtils.randomAlphabetic(10);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
@@ -76,19 +84,19 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(11);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11);
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isTrue();
     }
-    
-      @Test
+
+    @Test
     public void shouldReturnFalseWhenTheNameIsEmpty() {
         // Given
         Specie convertedSpecie = givenSpecie();
         Position entry = givenPosition();
-        Paddock convertedPaddock = givenPaddockWithEntry(entry);
+        Paddock convertedPaddock = givenPaddockWithEntry(entry, 1);
         String animalName = "";
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
@@ -98,19 +106,19 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(11);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11);
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-     @Test
+
+    @Test
     public void shouldReturnFalseWhenTheNameIsTooLong() {
         // Given
         Specie convertedSpecie = givenSpecie();
         Position entry = givenPosition();
-        Paddock convertedPaddock = givenPaddockWithEntry(entry);
+        Paddock convertedPaddock = givenPaddockWithEntry(entry, 1);
         String animalName = RandomStringUtils.randomAlphabetic(51);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
@@ -120,14 +128,14 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(50);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 50);
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-     @Test
+
+    @Test
     public void shouldReturnFalseWhenThePaddockDoesNotExist() {
         // Given
         Specie convertedSpecie = givenSpecie();
@@ -141,19 +149,19 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(11);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11);
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-     @Test
+
+    @Test
     public void shouldReturnFalseWhenThePaddockDoesNotHaveAnEntry() {
         // Given
         Specie convertedSpecie = givenSpecie();
         Position entry = null;
-        Paddock convertedPaddock = givenPaddockWithEntry(entry);
+        Paddock convertedPaddock = givenPaddockWithEntry(entry, 1);
         String animalName = RandomStringUtils.randomAlphabetic(10);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
@@ -163,19 +171,19 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(11);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11);
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-     @Test
+
+    @Test
     public void shouldReturnFalseWhenTheSpecieDoesNotExist() {
         // Given
         Specie convertedSpecie = null;
         Position entry = givenPosition();
-        Paddock convertedPaddock = givenPaddockWithEntry(entry);
+        Paddock convertedPaddock = givenPaddockWithEntry(entry, 1);
         String animalName = RandomStringUtils.randomAlphabetic(10);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
@@ -185,20 +193,20 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(11);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11);
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-     @Test
+
+    @Test
     public void shouldReturnFalseWhenTheSexDoesNotExist() {
         // Given
         Specie convertedSpecie = givenSpecie();
         Position entry = givenPosition();
-        Paddock convertedPaddock = givenPaddockWithEntry(entry);
-        String animalName =  RandomStringUtils.randomAlphabetic(10);
+        Paddock convertedPaddock = givenPaddockWithEntry(entry, 1);
+        String animalName = RandomStringUtils.randomAlphabetic(10);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
                 null,
@@ -207,20 +215,20 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(11);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11);
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-     @Test
+
+    @Test
     public void shouldReturnFalseWhenTheSexIsUnknown() {
         // Given
         Specie convertedSpecie = givenSpecie();
         Position entry = givenPosition();
-        Paddock convertedPaddock = givenPaddockWithEntry(entry);
-        String animalName =  RandomStringUtils.randomAlphabetic(10);
+        Paddock convertedPaddock = givenPaddockWithEntry(entry, 1);
+        String animalName = RandomStringUtils.randomAlphabetic(10);
         Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
         AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
                 Sex.UNKNOWN,
@@ -229,7 +237,51 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(11);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11);
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result).isFalse();
+    }
+    
+    @Test
+    public void shouldReturnFalseWhenThePadIsUnusableSinceThreeTurns() {
+        // Given
+        Specie convertedSpecie = givenSpecie();
+        Position entry = givenPosition();
+        Paddock convertedPaddock = givenPaddockWithEntry(entry, 3);
+        String animalName = RandomStringUtils.randomAlphabetic(10);
+        Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
+        AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
+                Sex.UNKNOWN,
+                convertedSpecie,
+                convertedPaddock,
+                convertedAnimal,
+                animalName
+        );
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11);
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result).isFalse();
+    }
+    
+    @Test
+    public void shouldReturnFalseWhenThePadIsUnusableSinceMoreThanThreeTurns() {
+        // Given
+        Specie convertedSpecie = givenSpecie();
+        Position entry = givenPosition();
+        Paddock convertedPaddock = givenPaddockWithEntry(entry, 6);
+        String animalName = RandomStringUtils.randomAlphabetic(10);
+        Animal convertedAnimal = givenAnimalWithPaddock(convertedPaddock);
+        AnimalCreationContext context = givenContextWithConvertedSexSpeciePaddockAnimalAndAnimalName(
+                Sex.UNKNOWN,
+                convertedSpecie,
+                convertedPaddock,
+                convertedAnimal,
+                animalName
+        );
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11);
         // When
         boolean result = validator.test(context);
         // Then
