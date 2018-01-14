@@ -41,4 +41,9 @@ public class HandymanControllersConfig {
     public HandymanEvaluationController handymanEvaluationController(){
         return new HandymanEvaluationController(new HandymanAgeEvaluationController());
     }
+    
+    @Bean
+    public RemovingController removingController(){
+        return new RemovingController();
+    }
 }
