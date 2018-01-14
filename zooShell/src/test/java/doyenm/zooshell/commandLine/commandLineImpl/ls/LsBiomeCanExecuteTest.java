@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandLineImpl.ls;
 
-import doyenm.zooshell.commandLine.commandImpl.ls.LsBiome;
+import doyenm.zooshell.commandLine.commandImpl.paddock.LsBiome;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

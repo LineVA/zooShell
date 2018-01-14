@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandLine.commandImpl.ls;
+package doyenm.zooshell.commandLine.commandImpl.paddock;
 
 import doyenm.zooshell.commandLine.general.Command;
 import doyenm.zooshell.commandLine.general.ReturnExec;
