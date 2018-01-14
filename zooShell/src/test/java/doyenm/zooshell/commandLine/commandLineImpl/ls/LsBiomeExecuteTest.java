@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandLineImpl.ls;
 
-import doyenm.zooshell.commandLine.commandImpl.ls.LsBiome;
+import doyenm.zooshell.commandLine.commandImpl.paddock.LsBiome;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.model.Zoo;

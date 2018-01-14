@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandLineImpl.ls;
 
-import doyenm.zooshell.commandLine.commandImpl.ls.LsPaddockType;
+import doyenm.zooshell.commandLine.commandImpl.paddock.LsPaddockType;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
