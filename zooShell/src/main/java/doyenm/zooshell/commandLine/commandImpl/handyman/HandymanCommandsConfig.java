@@ -46,4 +46,9 @@ public class HandymanCommandsConfig {
         return new UpdateOccupations(validators.handymanUpdateOccupationsValidator(),
                 controllers.updateOccupationsController());
     }
+    
+    @Bean
+    public RemoveHandyman removeHandyman(){
+        return new RemoveHandyman(validators.handymanValidator(), controllers.removingController());
+    }
 }
