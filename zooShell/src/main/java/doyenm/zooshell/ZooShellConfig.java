@@ -50,9 +50,6 @@ public class ZooShellConfig {
     Save save;
 
     @Autowired
-    LsKeeperTask lsKeeperTask;
-
-    @Autowired
     LsSpecie lsSpecie;
 
     @Bean
@@ -120,7 +117,7 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.lsBiome(), 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsContraceptionMethod(), 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsDiet(), 0),
-                new ActionPointCommand(lsKeeperTask, 0),
+                new ActionPointCommand(commandsConfig.keeperCommandsConfig.lsKeeperTask(), 0),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.LsPaddockType(), 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsSex(), 0),
                 new ActionPointCommand(commandsConfig.lsPenalties(), 0),

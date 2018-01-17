@@ -53,10 +53,10 @@ public class ZooShellCommandConfig {
         return new Evaluate(evaluationController);
     }
 
-    @Bean
-    LsKeeperTask lsKeeperTask() {
-        return new LsKeeperTask();
-    }
+//    @Bean
+//    LsKeeperTask lsKeeperTask() {
+//        return new LsKeeperTask();
+//    }
 
     @Bean
     LsSpecie lsSpecie() {

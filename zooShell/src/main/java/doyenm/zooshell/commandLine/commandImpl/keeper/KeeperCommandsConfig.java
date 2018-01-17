@@ -1,5 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl.keeper;
 
+import doyenm.zooshell.commandLine.commandImpl.ls.LsKeeperTask;
 import doyenm.zooshell.controller.keepercontroller.KeeperControllersConfig;
 import doyenm.zooshell.validator.KeeperValidatorsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +73,10 @@ public class KeeperCommandsConfig {
                 validators.keeperUpdateOccupationsValidator(),
                 controllers.keeperUpdateOccupationsController()
         );
+    }
+
+    @Bean
+    public LsKeeperTask lsKeeperTask() {
+        return new LsKeeperTask();
     }
 }
