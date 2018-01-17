@@ -60,231 +60,231 @@ public class ZooShellAnimalConfig {
         return new Utils();
     }
 
-    // Controller
-    @Bean
-    public AnimalChangeNameController animalChangeNameController() {
-        return new AnimalChangeNameController();
-    }
-
-    @Bean
-    public AnimalChangePaddockController animalChangePaddockController() {
-        return new AnimalChangePaddockController();
-    }
-
-    @Bean
-    public AnimalCreationController animalCreationController() {
-        return new AnimalCreationController();
-    }
-
-    @Bean
-    public AnimalDetailsController animalDetailsController() {
-        return new AnimalDetailsController(utils());
-    }
-
-    @Bean
-    public AnimalRemoveController animalRemoveController() {
-        return new AnimalRemoveController();
-    }
-
-    @Bean
-    public AnimalResetDietController animalResetDietController() {
-        return new AnimalResetDietController();
-    }
-
-    @Bean
-    public AnimalUpdateDietController animalUpdateDietController() {
-        return new AnimalUpdateDietController();
-    }
-
-    @Bean
-    public AnimalUpdateContraceptionController animalUpateContraceptionController() {
-        return new AnimalUpdateContraceptionController();
-    }
-
-    @Bean
-    public AnimalUpdateFastDaysController animalUpdateFastDaysController() {
-        return new AnimalUpdateFastDaysController();
-    }
-
-    @Bean
-    public AnimalUpdateFoodQuantityController animalUpdateFoodQuantityController() {
-        return new AnimalUpdateFoodQuantityController();
-    }
-
-    @Bean
-    public AnimalsWithDietCriteriaController animalsWithDietCriteriaController() {
-        return new AnimalsWithDietCriteriaController();
-    }
-
-    @Bean
-    public AnimalsWithSexCriteriaController animalsWithSexCriteriaController() {
-        return new AnimalsWithSexCriteriaController();
-    }
-
-    @Bean
-    public AnimalsWithPaddockCriteriaController animalsWithPaddockCriteriaController() {
-        return new AnimalsWithPaddockCriteriaController();
-    }
-
-    @Bean
-    public AnimalsWithSpecieCriteriaController animalsWithSpecieCriteriaController() {
-        return new AnimalsWithSpecieCriteriaController();
-    }
-
-    @Bean
-    public LsAnimalsWithCriteriaController lsAnimalsWithCriteriaController() {
-        return new LsAnimalsWithCriteriaController(
-                animalsWithDietCriteriaController(),
-                animalsWithSexCriteriaController(),
-                animalsWithPaddockCriteriaController(),
-                animalsWithSpecieCriteriaController()
-        );
-    }
+//    // Controller
+//    @Bean
+//    public AnimalChangeNameController animalChangeNameController() {
+//        return new AnimalChangeNameController();
+//    }
+//
+//    @Bean
+//    public AnimalChangePaddockController animalChangePaddockController() {
+//        return new AnimalChangePaddockController();
+//    }
+//
+//    @Bean
+//    public AnimalCreationController animalCreationController() {
+//        return new AnimalCreationController();
+//    }
+//
+//    @Bean
+//    public AnimalDetailsController animalDetailsController() {
+//        return new AnimalDetailsController(utils());
+//    }
+//
+//    @Bean
+//    public AnimalRemoveController animalRemoveController() {
+//        return new AnimalRemoveController();
+//    }
+//
+//    @Bean
+//    public AnimalResetDietController animalResetDietController() {
+//        return new AnimalResetDietController();
+//    }
+//
+//    @Bean
+//    public AnimalUpdateDietController animalUpdateDietController() {
+//        return new AnimalUpdateDietController();
+//    }
+//
+//    @Bean
+//    public AnimalUpdateContraceptionController animalUpateContraceptionController() {
+//        return new AnimalUpdateContraceptionController();
+//    }
+//
+//    @Bean
+//    public AnimalUpdateFastDaysController animalUpdateFastDaysController() {
+//        return new AnimalUpdateFastDaysController();
+//    }
+//
+//    @Bean
+//    public AnimalUpdateFoodQuantityController animalUpdateFoodQuantityController() {
+//        return new AnimalUpdateFoodQuantityController();
+//    }
+//
+//    @Bean
+//    public AnimalsWithDietCriteriaController animalsWithDietCriteriaController() {
+//        return new AnimalsWithDietCriteriaController();
+//    }
+//
+//    @Bean
+//    public AnimalsWithSexCriteriaController animalsWithSexCriteriaController() {
+//        return new AnimalsWithSexCriteriaController();
+//    }
+//
+//    @Bean
+//    public AnimalsWithPaddockCriteriaController animalsWithPaddockCriteriaController() {
+//        return new AnimalsWithPaddockCriteriaController();
+//    }
+//
+//    @Bean
+//    public AnimalsWithSpecieCriteriaController animalsWithSpecieCriteriaController() {
+//        return new AnimalsWithSpecieCriteriaController();
+//    }
+//
+//    @Bean
+//    public LsAnimalsWithCriteriaController lsAnimalsWithCriteriaController() {
+//        return new LsAnimalsWithCriteriaController(
+//                animalsWithDietCriteriaController(),
+//                animalsWithSexCriteriaController(),
+//                animalsWithPaddockCriteriaController(),
+//                animalsWithSpecieCriteriaController()
+//        );
+//    }
 
     // Predicates
-    @Autowired
-    FindAnimal findAnimal;
-
-    @Autowired
-    FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction;
-
-    @Autowired
-    FindingDietFunction findingDietFunction;
-
-    @Autowired
-    FindingSexFunction findingSexFunction;
-
-    @Autowired
-    FindingSpecieFunction findingSpecieFunction;
-
-    @Autowired
-    FindPaddock findPaddock;
-
-    @Autowired
-    DoubleValuesPredicates doubleValuesPredicates;
-
-    @Autowired
-    StringLengthPredicates stringLenghtPredicates;
-
-    @Autowired
-    UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
-
-    @Autowired
-    IntegerValuePredicates integerValuePredicates;
-    
-    @Autowired
-    NameValidator nameValidator;
-
-    @Bean
-    public FindingContraceptionFunction findingContraceptionFunction() {
-        return new FindingContraceptionFunction();
-    }
-
-    @Bean
-    public CanHaveAChirurgicalContraceptionPredicate canHaveAChirurgicalContraceptionPredicate() {
-        return new CanHaveAChirurgicalContraceptionPredicate();
-    }
-
-    @Bean
-    public CanHaveAHormonalContraceptionPredicate canHaveAHormonalContraceptionPredicate() {
-        return new CanHaveAHormonalContraceptionPredicate();
-    }
-
-    @Bean
-    public IsContraceptionCompatibleWithPreviousPredicate isContraceptionCompatibleWithPreviousPredicate() {
-        return new IsContraceptionCompatibleWithPreviousPredicate();
-    }
-
-    @Bean
-    public IsContraceptionCompatibleWithSexPredicate isContraceptionCompatibleWithSexPredicate() {
-        return new IsContraceptionCompatibleWithSexPredicate();
-    }
-
-    // Validator
-    @Bean
-    public AnimalChangeNameValidator animalChangeNameValidator() {
-        return new AnimalChangeNameValidator(findAnimal,
-                nameValidator
-        );
-    }
-
-    @Bean
-    public AnimalChangePaddockValidator animalChangePaddockValidator() {
-        return new AnimalChangePaddockValidator(findAnimal, findPaddock);
-    }
-
-    @Bean
-    public AnimalCreationValidator animalCreationValidator() {
-        return new AnimalCreationValidator(findPaddock, Integer.parseInt(environment.getProperty("animal.name.max_length")));
-    }
-
-//    @Bean 
-//    AnimalDetailsValidator animalDetailsValidator(){
-//        return new AnimalDetailsValidator();
+//    @Autowired
+//    FindAnimal findAnimal;
+//
+//    @Autowired
+//    FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction;
+//
+//    @Autowired
+//    FindingDietFunction findingDietFunction;
+//
+//    @Autowired
+//    FindingSexFunction findingSexFunction;
+//
+//    @Autowired
+//    FindingSpecieFunction findingSpecieFunction;
+//
+//    @Autowired
+//    FindPaddock findPaddock;
+//
+//    @Autowired
+//    DoubleValuesPredicates doubleValuesPredicates;
+//
+//    @Autowired
+//    StringLengthPredicates stringLenghtPredicates;
+//
+//    @Autowired
+//    UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
+//
+//    @Autowired
+//    IntegerValuePredicates integerValuePredicates;
+//    
+//    @Autowired
+//    NameValidator nameValidator;
+//
+//    @Bean
+//    public FindingContraceptionFunction findingContraceptionFunction() {
+//        return new FindingContraceptionFunction();
 //    }
-    @Bean
-    public AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator() {
-        return new AnimalUpdateContraceptionValidator(findingContraceptionFunction(),
-                findAnimal,
-                canHaveAHormonalContraceptionPredicate(),
-                canHaveAChirurgicalContraceptionPredicate(),
-                isContraceptionCompatibleWithPreviousPredicate(),
-                isContraceptionCompatibleWithSexPredicate());
-    }
-
-    @Bean
-    public AnimalUpdateDietValidator animalUpdateDietValidator() {
-        return new AnimalUpdateDietValidator(findingDietFunction, findAnimal);
-    }
-
-    @Bean
-    public AnimalUpdateFastDaysValidator animalUpdateFastDaysValidator() {
-        return new AnimalUpdateFastDaysValidator(findAnimal, integerValuePredicates);
-    }
-
-    @Bean
-    public AnimalUpdateFoodQuantityValidator animalUpdateFoodQuantityValidator() {
-        return new AnimalUpdateFoodQuantityValidator(doubleValuesPredicates, findAnimal);
-    }
-
-    @Bean
-    public AnimalValidator animalValidator() {
-        return new AnimalValidator();
-    }
-
-    @Bean
-    public LsWithCriteriaParser lsWithCriteriaParser() {
-        return new LsWithCriteriaParser();
-    }
-
-    @Bean
-    public AnimalsListWithDietCriteriaValidator animalsListWithDietCriteriaValidator() {
-        return new AnimalsListWithDietCriteriaValidator(lsWithCriteriaParser(), findingDietFunction);
-    }
-
-    @Bean
-    public AnimalsListWithSexCriteriaValidator animalsListWithSexCriteriaValidator() {
-        return new AnimalsListWithSexCriteriaValidator(lsWithCriteriaParser(), findingSexFunction);
-    }
-
-    @Bean
-    public AnimalsListWithPaddockCriteriaValidator animalsListWithPaddockCriteriaValidator() {
-        return new AnimalsListWithPaddockCriteriaValidator(lsWithCriteriaParser(), findPaddock);
-    }
-
-    @Bean
-    public AnimalsListWithSpecieCriteriaValidator animalsListWithSpecieCriteriaValidator() {
-        return new AnimalsListWithSpecieCriteriaValidator(lsWithCriteriaParser(), findingSpecieFunction);
-    }
-
-    @Bean
-    public AnimalsWithCriteria animalsWithCriteria() {
-        return new AnimalsWithCriteria(
-                animalsListWithDietCriteriaValidator(),
-                animalsListWithSexCriteriaValidator(),
-                animalsListWithPaddockCriteriaValidator(),
-                animalsListWithSpecieCriteriaValidator()
-        );
-    }
+//
+//    @Bean
+//    public CanHaveAChirurgicalContraceptionPredicate canHaveAChirurgicalContraceptionPredicate() {
+//        return new CanHaveAChirurgicalContraceptionPredicate();
+//    }
+//
+//    @Bean
+//    public CanHaveAHormonalContraceptionPredicate canHaveAHormonalContraceptionPredicate() {
+//        return new CanHaveAHormonalContraceptionPredicate();
+//    }
+//
+//    @Bean
+//    public IsContraceptionCompatibleWithPreviousPredicate isContraceptionCompatibleWithPreviousPredicate() {
+//        return new IsContraceptionCompatibleWithPreviousPredicate();
+//    }
+//
+//    @Bean
+//    public IsContraceptionCompatibleWithSexPredicate isContraceptionCompatibleWithSexPredicate() {
+//        return new IsContraceptionCompatibleWithSexPredicate();
+//    }
+//
+//    // Validator
+//    @Bean
+//    public AnimalChangeNameValidator animalChangeNameValidator() {
+//        return new AnimalChangeNameValidator(findAnimal,
+//                nameValidator
+//        );
+//    }
+//
+//    @Bean
+//    public AnimalChangePaddockValidator animalChangePaddockValidator() {
+//        return new AnimalChangePaddockValidator(findAnimal, findPaddock);
+//    }
+//
+//    @Bean
+//    public AnimalCreationValidator animalCreationValidator() {
+//        return new AnimalCreationValidator(findPaddock, Integer.parseInt(environment.getProperty("animal.name.max_length")));
+//    }
+//
+////    @Bean 
+////    AnimalDetailsValidator animalDetailsValidator(){
+////        return new AnimalDetailsValidator();
+////    }
+//    @Bean
+//    public AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator() {
+//        return new AnimalUpdateContraceptionValidator(findingContraceptionFunction(),
+//                findAnimal,
+//                canHaveAHormonalContraceptionPredicate(),
+//                canHaveAChirurgicalContraceptionPredicate(),
+//                isContraceptionCompatibleWithPreviousPredicate(),
+//                isContraceptionCompatibleWithSexPredicate());
+//    }
+//
+//    @Bean
+//    public AnimalUpdateDietValidator animalUpdateDietValidator() {
+//        return new AnimalUpdateDietValidator(findingDietFunction, findAnimal);
+//    }
+//
+//    @Bean
+//    public AnimalUpdateFastDaysValidator animalUpdateFastDaysValidator() {
+//        return new AnimalUpdateFastDaysValidator(findAnimal, integerValuePredicates);
+//    }
+//
+//    @Bean
+//    public AnimalUpdateFoodQuantityValidator animalUpdateFoodQuantityValidator() {
+//        return new AnimalUpdateFoodQuantityValidator(doubleValuesPredicates, findAnimal);
+//    }
+//
+//    @Bean
+//    public AnimalValidator animalValidator() {
+//        return new AnimalValidator();
+//    }
+//
+//    @Bean
+//    public LsWithCriteriaParser lsWithCriteriaParser() {
+//        return new LsWithCriteriaParser();
+//    }
+//
+//    @Bean
+//    public AnimalsListWithDietCriteriaValidator animalsListWithDietCriteriaValidator() {
+//        return new AnimalsListWithDietCriteriaValidator(lsWithCriteriaParser(), findingDietFunction);
+//    }
+//
+//    @Bean
+//    public AnimalsListWithSexCriteriaValidator animalsListWithSexCriteriaValidator() {
+//        return new AnimalsListWithSexCriteriaValidator(lsWithCriteriaParser(), findingSexFunction);
+//    }
+//
+//    @Bean
+//    public AnimalsListWithPaddockCriteriaValidator animalsListWithPaddockCriteriaValidator() {
+//        return new AnimalsListWithPaddockCriteriaValidator(lsWithCriteriaParser(), findPaddock);
+//    }
+//
+//    @Bean
+//    public AnimalsListWithSpecieCriteriaValidator animalsListWithSpecieCriteriaValidator() {
+//        return new AnimalsListWithSpecieCriteriaValidator(lsWithCriteriaParser(), findingSpecieFunction);
+//    }
+//
+//    @Bean
+//    public AnimalsWithCriteria animalsWithCriteria() {
+//        return new AnimalsWithCriteria(
+//                animalsListWithDietCriteriaValidator(),
+//                animalsListWithSexCriteriaValidator(),
+//                animalsListWithPaddockCriteriaValidator(),
+//                animalsListWithSpecieCriteriaValidator()
+//        );
+//    }
 
 }

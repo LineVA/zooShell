@@ -70,9 +70,6 @@ public class ZooShellConfig {
     LsSpecie lsSpecie;
 
     @Autowired
-    LsAnimalsWithCriteria lsAnimalsWithCriteria;
-
-    @Autowired
     ChangeKeeperName changeKeeperName;
 
     @Autowired

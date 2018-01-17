@@ -4,6 +4,8 @@ import doyenm.zooshell.ZooShellAnimalConfig;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsContraceptionMethod;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsDiet;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsSex;
+import doyenm.zooshell.controller.animalcontroller.AnimalControllersConfig;
+import doyenm.zooshell.validator.AnimalValidatorsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,38 +16,41 @@ import org.springframework.context.annotation.Import;
  * @author doyenm
  */
 @Configuration
-@Import({ZooShellAnimalConfig.class})
+@Import({AnimalValidatorsConfig.class, AnimalControllersConfig.class})
 public class AnimalCommandsConfig {
     
     @Autowired
-    ZooShellAnimalConfig zooShellAnimalConfig;
+    AnimalValidatorsConfig validators;
+    
+    @Autowired
+    AnimalControllersConfig controllers;
     
     // Commands
     @Bean
     public RenameAnimal changeAnimalName() {
-        return new RenameAnimal(zooShellAnimalConfig.animalChangeNameValidator(), 
-                zooShellAnimalConfig.animalChangeNameController());
+        return new RenameAnimal(validators.animalChangeNameValidator(), 
+                controllers.animalChangeNameController());
     }
 
     @Bean
     public ChangePaddock changePaddock() {
         return new ChangePaddock(
-                zooShellAnimalConfig.animalChangePaddockValidator(), 
-                zooShellAnimalConfig.animalChangePaddockController());
+                validators.animalChangePaddockValidator(), 
+                controllers.animalChangePaddockController());
     }
 
     @Bean
     public CreateAnimal createAnimal() {
         return new CreateAnimal(
-                zooShellAnimalConfig.animalCreationValidator(), 
-                zooShellAnimalConfig.animalCreationController());
+                validators.animalCreationValidator(), 
+                controllers.animalCreationController());
     }
 
     @Bean
     public DetailAnimal detailAnimal() {
         return new DetailAnimal(
-                zooShellAnimalConfig.animalValidator(),
-                zooShellAnimalConfig.animalDetailsController());
+                validators.animalValidator(),
+                controllers.animalDetailsController());
     }
 
     @Bean
@@ -56,43 +61,43 @@ public class AnimalCommandsConfig {
     @Bean
     public RemoveAnimal removeAnimal() {
         return new RemoveAnimal(
-                zooShellAnimalConfig.animalValidator(),
-                zooShellAnimalConfig.animalRemoveController());
+                validators.animalValidator(),
+                controllers.animalRemoveController());
     }
 
     @Bean
     public ResetDiet resetDiet() {
         return new ResetDiet(
-                zooShellAnimalConfig.animalValidator(),
-                zooShellAnimalConfig.animalResetDietController());
+                validators.animalValidator(),
+                controllers.animalResetDietController());
     }
 
     @Bean
     public UpdateContraceptionMethod updateContraceptionMethod() {
         return new UpdateContraceptionMethod(
-                zooShellAnimalConfig.animalUpdateContraceptionValidator(), 
-                zooShellAnimalConfig.animalUpateContraceptionController());
+                validators.animalUpdateContraceptionValidator(), 
+                controllers.animalUpateContraceptionController());
     }
 
     @Bean
     public UpdateDiet updateDiet() {
         return new UpdateDiet(
-                zooShellAnimalConfig.animalUpdateDietValidator(), 
-                zooShellAnimalConfig.animalUpdateDietController());
+                validators.animalUpdateDietValidator(), 
+                controllers.animalUpdateDietController());
     }
 
     @Bean
     public UpdateFastDays updateFastDays() {
         return new UpdateFastDays(
-                zooShellAnimalConfig.animalUpdateFastDaysValidator(), 
-                zooShellAnimalConfig.animalUpdateFastDaysController());
+                validators.animalUpdateFastDaysValidator(), 
+                controllers.animalUpdateFastDaysController());
     }
 
     @Bean
     public UpdateFoodQuantity updateFoodQuantity() {
         return new UpdateFoodQuantity(
-                zooShellAnimalConfig.animalUpdateFoodQuantityValidator(),
-                zooShellAnimalConfig.animalUpdateFoodQuantityController());
+                validators.animalUpdateFoodQuantityValidator(),
+                controllers.animalUpdateFoodQuantityController());
     }
 
     @Bean
@@ -113,7 +118,7 @@ public class AnimalCommandsConfig {
     @Bean
     public LsAnimalsWithCriteria lsAnimalsWithCriteria() {
         return new LsAnimalsWithCriteria(
-                zooShellAnimalConfig.animalsWithCriteria(), 
-                zooShellAnimalConfig.lsAnimalsWithCriteriaController());
+                validators.animalsWithCriteria(), 
+                controllers.lsAnimalsWithCriteriaController());
     }
 }
