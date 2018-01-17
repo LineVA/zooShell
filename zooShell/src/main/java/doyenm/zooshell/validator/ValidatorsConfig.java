@@ -1,9 +1,16 @@
-package doyenm.zooshell;
+package doyenm.zooshell.validator;
 
-import doyenm.zooshell.validator.FindAnimal;
-import doyenm.zooshell.validator.FindPaddock;
-import doyenm.zooshell.validator.function.*;
-import doyenm.zooshell.validator.predicates.*;
+import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
+import doyenm.zooshell.validator.function.FindingBiomeFunction;
+import doyenm.zooshell.validator.function.FindingDietFunction;
+import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
+import doyenm.zooshell.validator.function.FindingSexFunction;
+import doyenm.zooshell.validator.function.FindingSpecieFunction;
+import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
+import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
+import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
+import doyenm.zooshell.validator.predicates.StringLengthPredicates;
+import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,15 +19,15 @@ import org.springframework.context.annotation.Configuration;
  * @author doyenm
  */
 @Configuration
-public class ZooShellPredicatesConfig {
-    
+public class ValidatorsConfig {
+
     @Bean
-    FindAnimal findAnimal(){
+    FindAnimal findAnimal() {
         return new FindAnimal();
     }
-    
+
     @Bean
-    FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction(){
+    FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction() {
         return new FindingAnimalWithEntryCheckFunction();
     }
 
@@ -28,19 +35,19 @@ public class ZooShellPredicatesConfig {
     FindingBiomeFunction findingBiomeFunction() {
         return new FindingBiomeFunction();
     }
-    
-     @Bean
+
+    @Bean
     FindingSpecieFunction findingSpecieFunction() {
         return new FindingSpecieFunction();
     }
-    
-     @Bean
+
+    @Bean
     FindingDietFunction findingDietFunction() {
         return new FindingDietFunction();
     }
-    
+
     @Bean
-    FindingSexFunction findingSexFunction(){
+    FindingSexFunction findingSexFunction() {
         return new FindingSexFunction();
     }
 
@@ -48,23 +55,22 @@ public class ZooShellPredicatesConfig {
     FindingPaddockTypeFunction findingPaddockTypeFunction() {
         return new FindingPaddockTypeFunction();
     }
-    
-    
+
     @Bean
     FindPaddock findPaddock() {
         return new FindPaddock();
     }
-    
+
     @Bean
-    KeepersNumberPredicate keeperNumbersPredicate(){
+    KeepersNumberPredicate keeperNumbersPredicate() {
         return new KeepersNumberPredicate();
     }
 
     @Bean
-     DoubleValuesPredicates doubleValuesPredicates(){
-         return new DoubleValuesPredicates();
-     }
-    
+    DoubleValuesPredicates doubleValuesPredicates() {
+        return new DoubleValuesPredicates();
+    }
+
     @Bean
     IntegerValuePredicates integerValuePredicates() {
         return new IntegerValuePredicates();
@@ -80,4 +86,8 @@ public class ZooShellPredicatesConfig {
         return new UniquenessNamesBiPredicates();
     }
 
+    @Bean
+    public SpecieDetailsValidator specieDetailsValidator() {
+        return new SpecieDetailsValidator();
+    }
 }

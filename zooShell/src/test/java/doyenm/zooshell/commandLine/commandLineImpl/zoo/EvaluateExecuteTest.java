@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandLine.commandLineImpl.zoo;
 
-import doyenm.zooshell.commandLine.commandImpl.zoo.Evaluate;
+import doyenm.zooshell.commandLine.commandImpl.Evaluate;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
 import doyenm.zooshell.context.EvaluationContext;

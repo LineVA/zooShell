@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandLine.commandImpl.zoo;
+package doyenm.zooshell.commandLine.commandImpl;
 
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.commandLine.general.Command;

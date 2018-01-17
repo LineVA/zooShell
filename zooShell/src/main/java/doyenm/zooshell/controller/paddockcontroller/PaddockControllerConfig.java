@@ -9,11 +9,13 @@ import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.PaddockState;
 import java.util.function.Function;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  *
  * @author doyenm
  */
+@Configuration
 public class PaddockControllerConfig {
 
     @Bean

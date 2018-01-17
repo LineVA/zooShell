@@ -1,23 +1,6 @@
-package doyenm.zooshell;
+package doyenm.zooshell.validator;
 
-import doyenm.zooshell.controller.animalcontroller.*;
-import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithDietCriteriaController;
-import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithPaddockCriteriaController;
-import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSexCriteriaController;
-import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSpecieCriteriaController;
-import doyenm.zooshell.utils.Utils;
-import doyenm.zooshell.validator.AnimalChangeNameValidator;
-import doyenm.zooshell.validator.AnimalChangePaddockValidator;
-import doyenm.zooshell.validator.AnimalCreationValidator;
-import doyenm.zooshell.validator.AnimalUpdateContraceptionValidator;
-import doyenm.zooshell.validator.AnimalUpdateDietValidator;
-import doyenm.zooshell.validator.AnimalUpdateFastDaysValidator;
-import doyenm.zooshell.validator.AnimalUpdateFoodQuantityValidator;
-import doyenm.zooshell.validator.AnimalValidator;
-import doyenm.zooshell.validator.AnimalsWithCriteria;
 import doyenm.zooshell.validator.criteria.AnimalsListWithDietCriteriaValidator;
-import doyenm.zooshell.validator.FindAnimal;
-import doyenm.zooshell.validator.FindPaddock;
 import doyenm.zooshell.validator.criteria.AnimalsListWithPaddockCriteriaValidator;
 import doyenm.zooshell.validator.criteria.AnimalsListWithSexCriteriaValidator;
 import doyenm.zooshell.validator.criteria.AnimalsListWithSpecieCriteriaValidator;
@@ -39,7 +22,6 @@ import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
@@ -48,100 +30,12 @@ import org.springframework.core.env.Environment;
  * @author doyenm
  */
 @Configuration
-@Import(ZooShellPredicatesConfig.class)
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
-public class ZooShellAnimalConfig {
+public class AnimalValidatorsConfig {
 
     @Autowired
     Environment environment;
 
-    @Bean
-    Utils utils() {
-        return new Utils();
-    }
-
-    // Controller
-    @Bean
-    public AnimalChangeNameController animalChangeNameController() {
-        return new AnimalChangeNameController();
-    }
-
-    @Bean
-    public AnimalChangePaddockController animalChangePaddockController() {
-        return new AnimalChangePaddockController();
-    }
-
-    @Bean
-    public AnimalCreationController animalCreationController() {
-        return new AnimalCreationController();
-    }
-
-    @Bean
-    public AnimalDetailsController animalDetailsController() {
-        return new AnimalDetailsController(utils());
-    }
-
-    @Bean
-    public AnimalRemoveController animalRemoveController() {
-        return new AnimalRemoveController();
-    }
-
-    @Bean
-    public AnimalResetDietController animalResetDietController() {
-        return new AnimalResetDietController();
-    }
-
-    @Bean
-    public AnimalUpdateDietController animalUpdateDietController() {
-        return new AnimalUpdateDietController();
-    }
-
-    @Bean
-    public AnimalUpdateContraceptionController animalUpateContraceptionController() {
-        return new AnimalUpdateContraceptionController();
-    }
-
-    @Bean
-    public AnimalUpdateFastDaysController animalUpdateFastDaysController() {
-        return new AnimalUpdateFastDaysController();
-    }
-
-    @Bean
-    public AnimalUpdateFoodQuantityController animalUpdateFoodQuantityController() {
-        return new AnimalUpdateFoodQuantityController();
-    }
-
-    @Bean
-    public AnimalsWithDietCriteriaController animalsWithDietCriteriaController() {
-        return new AnimalsWithDietCriteriaController();
-    }
-
-    @Bean
-    public AnimalsWithSexCriteriaController animalsWithSexCriteriaController() {
-        return new AnimalsWithSexCriteriaController();
-    }
-
-    @Bean
-    public AnimalsWithPaddockCriteriaController animalsWithPaddockCriteriaController() {
-        return new AnimalsWithPaddockCriteriaController();
-    }
-
-    @Bean
-    public AnimalsWithSpecieCriteriaController animalsWithSpecieCriteriaController() {
-        return new AnimalsWithSpecieCriteriaController();
-    }
-
-    @Bean
-    public LsAnimalsWithCriteriaController lsAnimalsWithCriteriaController() {
-        return new LsAnimalsWithCriteriaController(
-                animalsWithDietCriteriaController(),
-                animalsWithSexCriteriaController(),
-                animalsWithPaddockCriteriaController(),
-                animalsWithSpecieCriteriaController()
-        );
-    }
-
-    // Predicates
     @Autowired
     FindAnimal findAnimal;
 
@@ -171,7 +65,7 @@ public class ZooShellAnimalConfig {
 
     @Autowired
     IntegerValuePredicates integerValuePredicates;
-    
+
     @Autowired
     NameValidator nameValidator;
 
@@ -286,5 +180,4 @@ public class ZooShellAnimalConfig {
                 animalsListWithSpecieCriteriaValidator()
         );
     }
-
 }

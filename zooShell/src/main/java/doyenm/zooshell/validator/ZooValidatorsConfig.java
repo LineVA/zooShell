@@ -1,4 +1,5 @@
-package doyenm.zooshell;
+package doyenm.zooshell.validator;
+
 
 import doyenm.zooshell.validator.SpecieDetailsValidator;
 import doyenm.zooshell.validator.ZooCreationValidator;
@@ -12,15 +13,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+
 /**
  *
  * @author doyenm
  */
 @Configuration
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
-public class ZooShellValidatorConfig {
-
-    @Autowired
+public class ZooValidatorsConfig {
+     @Autowired
     Environment environment;
 
     @Bean
@@ -52,7 +53,7 @@ public class ZooShellValidatorConfig {
     }
 
     @Bean
-    ZooCreationValidator zooCreationValidator() {
+    public ZooCreationValidator zooCreationValidator() {
         return new ZooCreationValidator(
                 integerValuePredicates(),
                 nameValidator(),
