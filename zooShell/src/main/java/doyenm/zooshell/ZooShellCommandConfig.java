@@ -43,10 +43,10 @@ public class ZooShellCommandConfig {
     @Autowired
     LoadFunction loadFunction;
 
-    @Bean
-    DetailSpecie detailSpecie() {
-        return new DetailSpecie(specieDetailsValidator, specieDetailsController);
-    }
+//    @Bean
+//    DetailSpecie detailSpecie() {
+//        return new DetailSpecie(specieDetailsValidator, specieDetailsController);
+//    }
     
     @Bean
     Evaluate evaluate(){
@@ -58,10 +58,15 @@ public class ZooShellCommandConfig {
 //        return new LsKeeperTask();
 //    }
 
-    @Bean
-    LsSpecie lsSpecie() {
-        return new LsSpecie();
-    }
+//    @Bean
+//    DetailSpecie detailSpecie() {
+//        return new DetailSpecie(specieDetailsValidator, specieDetailsController);
+//    }
+//    
+//    @Bean
+//    LsSpecie lsSpecie() {
+//        return new LsSpecie();
+//    }
     
     @Bean
     Save save(){

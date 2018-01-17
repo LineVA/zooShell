@@ -38,9 +38,6 @@ public class ZooShellConfig {
     }
 
     @Autowired
-    DetailSpecie detailSpecie;
-
-    @Autowired
     Evaluate evaluate;
 
     @Autowired
@@ -48,9 +45,6 @@ public class ZooShellConfig {
 
     @Autowired
     Save save;
-
-    @Autowired
-    LsSpecie lsSpecie;
 
     @Bean
     ActionPointsHandler actionPointsHandler() {
@@ -72,8 +66,8 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.zooCommandsConfig.renameZoo(), 1),
                 new ActionPointCommand(commandsConfig.zooCommandsConfig.detailZoo(), 0),
                 // Specie
-                new ActionPointCommand(lsSpecie, 0),
-                new ActionPointCommand(detailSpecie, 0),
+                new ActionPointCommand(commandsConfig.lsSpecie(), 0),
+                new ActionPointCommand(commandsConfig.detailSpecie(), 0),
                 // Paddock
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.changePaddockName(), 1),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.createPaddock(), 3),
