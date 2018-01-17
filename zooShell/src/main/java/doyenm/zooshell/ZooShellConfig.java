@@ -1,14 +1,9 @@
 package doyenm.zooshell;
 
-import doyenm.zooshell.commandLine.commandImpl.Evaluate;
 import doyenm.zooshell.commandLine.commandImpl.*;
-import doyenm.zooshell.commandLine.commandImpl.zoo.*;
-import doyenm.zooshell.commandLine.commandImpl.ls.*;
-import doyenm.zooshell.commandLine.commandImpl.keeper.*;
 import doyenm.zooshell.commandLine.general.ActionPointCommand;
 import doyenm.zooshell.commandLine.general.ActionPointsHandler;
 import doyenm.zooshell.commandLine.general.CommandManager;
-import doyenm.zooshell.controller.eventhandling.zoo.ZooEventsConfig;
 import doyenm.zooshell.gui.MainGUI;
 import doyenm.zooshell.main.Main;
 import java.util.Arrays;
@@ -23,9 +18,7 @@ import org.springframework.context.annotation.Import;
  * @author doyenm
  */
 @Configuration
-@Import({ZooShellValidatorConfig.class, ZooShellControllerConfig.class, ZooShellCommandConfig.class,
-    ZooShellPaddockConfig.class, ZooShellKeeperConfig.class,
-    ZooShellZooConfig.class, ZooEventsConfig.class,
+@Import({
     CommandsConfig.class})
 public class ZooShellConfig {
 
@@ -36,9 +29,6 @@ public class ZooShellConfig {
     MainGUI mainGUI() {
         return new MainGUI();
     }
-
-    @Autowired
-    Evaluate evaluate;
 
     @Bean
     ActionPointsHandler actionPointsHandler() {
@@ -112,7 +102,7 @@ public class ZooShellConfig {
                 // General
                 new ActionPointCommand(commandsConfig.load(), 0),
                 new ActionPointCommand(commandsConfig.save(), 0));
-        return new CommandManager(commands, actionPointsHandler(), getActionPoints(), evaluate);
+        return new CommandManager(commands, actionPointsHandler(), getActionPoints(), commandsConfig.evaluate());
     }
 
     @Bean
