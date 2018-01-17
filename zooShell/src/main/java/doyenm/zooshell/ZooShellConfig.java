@@ -1,11 +1,8 @@
 package doyenm.zooshell;
 
-import doyenm.zooshell.commandLine.commandImpl.paddock.LsPaddockType;
-import doyenm.zooshell.commandLine.commandImpl.paddock.LsBiome;
 import doyenm.zooshell.commandLine.commandImpl.*;
 import doyenm.zooshell.commandLine.commandImpl.zoo.*;
 import doyenm.zooshell.commandLine.commandImpl.ls.*;
-import doyenm.zooshell.commandLine.commandImpl.animal.*;
 import doyenm.zooshell.commandLine.commandImpl.keeper.*;
 import doyenm.zooshell.commandLine.general.ActionPointCommand;
 import doyenm.zooshell.commandLine.general.ActionPointsHandler;
@@ -28,16 +25,12 @@ import org.springframework.context.annotation.Import;
 @Import({ZooShellValidatorConfig.class, ZooShellControllerConfig.class, ZooShellCommandConfig.class,
     ZooShellPaddockConfig.class, ZooShellKeeperConfig.class,
     ZooShellZooConfig.class, ZooEventsConfig.class,
-    CommandsConfig.class,
-    ZooShellHandymanConfig.class})
+    CommandsConfig.class})
 public class ZooShellConfig {
 
     @Autowired
     CommandsConfig commandsConfig;
     
-    @Autowired
-    ZooShellHandymanConfig zooShellHandymanConfig;
-
     @Bean
     MainGUI mainGUI() {
         return new MainGUI();
