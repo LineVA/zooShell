@@ -28,15 +28,15 @@ public class ZooShellControllerConfig {
         return new SpecieDetailsController();
     }
 
-    @Bean
-    ZooCreationController zooCreationController() {
-        return new ZooCreationController();
-    }
+//    @Bean
+//    ZooCreationController zooCreationController() {
+//        return new ZooCreationController();
+//    }
 
-    @Bean
-    ZooDetailsController zooDetailsController() {
-        return new ZooDetailsController(utils());
-    }
+//    @Bean
+//    ZooDetailsController zooDetailsController() {
+//        return new ZooDetailsController(utils());
+//    }
     
     @Bean
     SaveFunction saveFunction(){

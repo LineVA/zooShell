@@ -16,6 +16,7 @@ import doyenm.zooshell.controller.paddockcontroller.PaddockControllerConfig;
 import doyenm.zooshell.controller.EvaluationController;
 import doyenm.zooshell.controller.PenaltiesEvaluationController;
 import doyenm.zooshell.controller.zoocontroller.RenameZooController;
+import doyenm.zooshell.controller.zoocontroller.ZooControllersConfig;
 import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
 import doyenm.zooshell.model.utils.CohabitationFactorHandler;
 import doyenm.zooshell.utils.UniformStatistics;
@@ -35,7 +36,7 @@ import org.springframework.core.env.Environment;
  */
 @Configuration
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
-@Import({PaddockControllerConfig.class, HandymanControllersConfig.class})
+@Import({PaddockControllerConfig.class, HandymanControllersConfig.class, ZooControllersConfig.class})
 public class ZooShellZooConfig {
 
     @Autowired
@@ -49,6 +50,9 @@ public class ZooShellZooConfig {
 
     @Autowired
     HandymanControllersConfig handymanControllersConfig;
+    
+    @Autowired
+    ZooControllersConfig zooControllersConfig;
 
 //    @Bean
 //    AnimalAgeEvaluationController animalAgeEvaluationController() {
@@ -197,10 +201,10 @@ public class ZooShellZooConfig {
                 familyController());
     }
 
-    @Bean
-    ZooEvaluationController zooEvaluationController() {
-        return new ZooEvaluationController();
-    }
+//    @Bean
+//    ZooEvaluationController zooEvaluationController() {
+//        return new ZooEvaluationController();
+//    }
 
     @Bean
     PenaltiesEvaluationController penaltiesEvaluationController() {
@@ -213,17 +217,17 @@ public class ZooShellZooConfig {
                 keeperEvaluationController(),
                 paddockControllerConfig.paddockEvaluationController(),
                 handymanControllersConfig.handymanEvaluationController(),
-                zooEvaluationController(),
+                zooControllersConfig.zooEvaluationController(),
                 penaltiesEvaluationController());
     }
 
-    @Bean
-    static RenameZooController renameZooController() {
-        return new RenameZooController();
-    }
+//    @Bean
+//    static RenameZooController renameZooController() {
+//        return new RenameZooController();
+//    }
 
-    @Bean
-    public static RenameZoo renameZoo() {
-        return new RenameZoo(renameZooController());
-    }
+//    @Bean
+//    public static RenameZoo renameZoo() {
+//        return new RenameZoo(renameZooController());
+//    }
 }

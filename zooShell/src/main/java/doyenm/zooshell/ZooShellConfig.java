@@ -1,5 +1,6 @@
 package doyenm.zooshell;
 
+import doyenm.zooshell.commandLine.commandImpl.Evaluate;
 import doyenm.zooshell.commandLine.commandImpl.*;
 import doyenm.zooshell.commandLine.commandImpl.zoo.*;
 import doyenm.zooshell.commandLine.commandImpl.ls.*;
@@ -36,16 +37,8 @@ public class ZooShellConfig {
         return new MainGUI();
     }
 
-
-    @Autowired
-    CreateZoo createZoo;
-
-
     @Autowired
     DetailSpecie detailSpecie;
-
-    @Autowired
-    DetailZoo detailZoo;
 
     @Autowired
     Evaluate evaluate;
@@ -78,9 +71,9 @@ public class ZooShellConfig {
     CommandManager commandManager() {
         List<ActionPointCommand> commands = Arrays.asList(
                 // Zoo
-                new ActionPointCommand(createZoo, 0),
-                new ActionPointCommand(ZooShellZooConfig.renameZoo(), 0),
-                new ActionPointCommand(detailZoo, 0),
+                new ActionPointCommand(commandsConfig.zooCommandsConfig.createZoo(), 0),
+                new ActionPointCommand(commandsConfig.zooCommandsConfig.renameZoo(), 1),
+                new ActionPointCommand(commandsConfig.zooCommandsConfig.detailZoo(), 0),
                 // Specie
                 new ActionPointCommand(lsSpecie, 0),
                 new ActionPointCommand(detailSpecie, 0),
