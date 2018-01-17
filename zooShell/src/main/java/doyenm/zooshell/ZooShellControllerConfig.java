@@ -16,17 +16,17 @@ import org.springframework.context.annotation.Bean;
  */
 public class ZooShellControllerConfig {
 
-    @Bean
-    Utils utils() {
-        return new Utils();
-    }
-    
-   
-
-    @Bean
-    SpecieDetailsController specieDetailsController() {
-        return new SpecieDetailsController();
-    }
+//    @Bean
+//    Utils utils() {
+//        return new Utils();
+//    }
+//    
+//   
+//
+//    @Bean
+//    SpecieDetailsController specieDetailsController() {
+//        return new SpecieDetailsController();
+//    }
 
 //    @Bean
 //    ZooCreationController zooCreationController() {

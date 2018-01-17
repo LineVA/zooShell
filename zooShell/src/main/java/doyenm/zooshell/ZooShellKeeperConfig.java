@@ -28,26 +28,26 @@ import org.springframework.core.env.Environment;
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
 public class ZooShellKeeperConfig {
 
-    @Autowired
-    Environment environment;
-
-    @Bean
-    Utils utils() {
-        return new Utils();
-    }
-
-    // Predicates
-    @Autowired
-    KeepersNumberPredicate keeperNumbersPredicate;
-
-    @Autowired
-    StringLengthPredicates stringLengthPredicates;
-
-    @Autowired
-    UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
-
-    @Autowired
-    NameValidator nameValidator;
+//    @Autowired
+//    Environment environment;
+//
+//    @Bean
+//    Utils utils() {
+//        return new Utils();
+//    }
+//
+//    // Predicates
+//    @Autowired
+//    KeepersNumberPredicate keeperNumbersPredicate;
+//
+//    @Autowired
+//    StringLengthPredicates stringLengthPredicates;
+//
+//    @Autowired
+//    UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
+//
+//    @Autowired
+//    NameValidator nameValidator;
 
     // Controllers
 //    @Bean
