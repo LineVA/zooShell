@@ -40,23 +40,23 @@ import org.springframework.core.env.Environment;
 @Import({PaddockControllerConfig.class, HandymanControllersConfig.class, ZooControllersConfig.class, KeeperControllersConfig.class})
 public class ZooShellZooConfig {
 
-    @Autowired
-    Environment environment;
-    
-    @Autowired
-    AnimalControllersConfig animalControllersConfig;
-
-    @Autowired
-    PaddockControllerConfig paddockControllerConfig;
-
-    @Autowired
-    HandymanControllersConfig handymanControllersConfig;
-    
-    @Autowired
-    ZooControllersConfig zooControllersConfig;
-    
-    @Autowired
-    KeeperControllersConfig keeperControllersConfig;
+//    @Autowired
+//    Environment environment;
+//    
+//    @Autowired
+//    AnimalControllersConfig animalControllersConfig;
+//
+//    @Autowired
+//    PaddockControllerConfig paddockControllerConfig;
+//
+//    @Autowired
+//    HandymanControllersConfig handymanControllersConfig;
+//    
+//    @Autowired
+//    ZooControllersConfig zooControllersConfig;
+//    
+//    @Autowired
+//    KeeperControllersConfig keeperControllersConfig;
 
 //    @Bean
 //    AnimalAgeEvaluationController animalAgeEvaluationController() {
@@ -210,20 +210,20 @@ public class ZooShellZooConfig {
 //        return new ZooEvaluationController();
 //    }
 
-    @Bean
-    PenaltiesEvaluationController penaltiesEvaluationController() {
-        return new PenaltiesEvaluationController();
-    }
-
-    @Bean
-    EvaluationController evaluationController() {
-        return new EvaluationController(animalControllersConfig.animalEvaluationController(),
-                keeperControllersConfig.keeperEvaluationController(),
-                paddockControllerConfig.paddockEvaluationController(),
-                handymanControllersConfig.handymanEvaluationController(),
-                zooControllersConfig.zooEvaluationController(),
-                penaltiesEvaluationController());
-    }
+//    @Bean
+//    PenaltiesEvaluationController penaltiesEvaluationController() {
+//        return new PenaltiesEvaluationController();
+//    }
+//
+//    @Bean
+//    EvaluationController evaluationController() {
+//        return new EvaluationController(animalControllersConfig.animalEvaluationController(),
+//                keeperControllersConfig.keeperEvaluationController(),
+//                paddockControllerConfig.paddockEvaluationController(),
+//                handymanControllersConfig.handymanEvaluationController(),
+//                zooControllersConfig.zooEvaluationController(),
+//                penaltiesEvaluationController());
+//    }
 
 //    @Bean
 //    static RenameZooController renameZooController() {

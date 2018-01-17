@@ -6,6 +6,7 @@ import doyenm.zooshell.commandLine.commandImpl.handyman.HandymanCommandsConfig;
 import doyenm.zooshell.commandLine.commandImpl.keeper.KeeperCommandsConfig;
 import doyenm.zooshell.commandLine.commandImpl.paddock.PaddockCommandsConfig;
 import doyenm.zooshell.commandLine.commandImpl.zoo.ZooCommandsConfig;
+import doyenm.zooshell.controller.ControllersConfig;
 import doyenm.zooshell.controller.speciecontroller.SpecieControllersConfig;
 import doyenm.zooshell.validator.ValidatorsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.context.annotation.Import;
     PaddockCommandsConfig.class,
     ZooCommandsConfig.class,
     BackupConfig.class,
+    ControllersConfig.class,
     ValidatorsConfig.class,
     SpecieControllersConfig.class})
 public class CommandsConfig {
@@ -41,6 +43,9 @@ public class CommandsConfig {
 
     @Autowired
     public ZooCommandsConfig zooCommandsConfig;
+    
+    @Autowired
+    ControllersConfig controllersConfig;
 
     @Autowired
     ValidatorsConfig validatorsConfig;
@@ -77,6 +82,11 @@ public class CommandsConfig {
     @Bean
     public Load load() {
         return new Load(backupConfig.loadFunction());
+    }
+    
+    @Bean
+    public Evaluate evaluate(){
+        return new Evaluate(controllersConfig.evaluationController());
     }
 
 }

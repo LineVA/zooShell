@@ -30,9 +30,9 @@ public class ZooShellCommandConfig {
 //    @Autowired
 //    ZooCreationValidator zooCreationValidator;
 
-    // Controllers
-    @Autowired
-    EvaluationController evaluationController;
+//    // Controllers
+//    @Autowired
+//    EvaluationController evaluationController;
     
 //    @Autowired
 //    SpecieDetailsController specieDetailsController;
@@ -48,10 +48,10 @@ public class ZooShellCommandConfig {
 //        return new DetailSpecie(specieDetailsValidator, specieDetailsController);
 //    }
     
-    @Bean
-    Evaluate evaluate(){
-        return new Evaluate(evaluationController);
-    }
+//    @Bean
+//    Evaluate evaluate(){
+//        return new Evaluate(evaluationController);
+//    }
 
 //    @Bean
 //    LsKeeperTask lsKeeperTask() {
