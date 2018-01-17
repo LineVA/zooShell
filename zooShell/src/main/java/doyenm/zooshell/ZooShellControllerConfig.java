@@ -38,14 +38,14 @@ public class ZooShellControllerConfig {
 //        return new ZooDetailsController(utils());
 //    }
     
-    @Bean
-    SaveFunction saveFunction(){
-        return new SaveFunction();
-    }
-    
-    @Bean
-    LoadFunction loadFunction(){
-        return new LoadFunction();
-    }
+//    @Bean
+//    SaveFunction saveFunction(){
+//        return new SaveFunction();
+//    }
+//    
+//    @Bean
+//    LoadFunction loadFunction(){
+//        return new LoadFunction();
+//    }
 
 }

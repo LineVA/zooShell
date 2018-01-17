@@ -1,5 +1,6 @@
 package doyenm.zooshell.commandLine.commandImpl;
 
+import doyenm.zooshell.backup.BackupConfig;
 import doyenm.zooshell.commandLine.commandImpl.animal.AnimalCommandsConfig;
 import doyenm.zooshell.commandLine.commandImpl.handyman.HandymanCommandsConfig;
 import doyenm.zooshell.commandLine.commandImpl.keeper.KeeperCommandsConfig;
@@ -21,7 +22,8 @@ import org.springframework.context.annotation.Import;
     KeeperCommandsConfig.class,
     PaddockCommandsConfig.class,
     ZooCommandsConfig.class,
-    ValidatorsConfig.class, 
+    BackupConfig.class,
+    ValidatorsConfig.class,
     SpecieControllersConfig.class})
 public class CommandsConfig {
 
@@ -39,12 +41,15 @@ public class CommandsConfig {
 
     @Autowired
     public ZooCommandsConfig zooCommandsConfig;
-    
+
     @Autowired
     ValidatorsConfig validatorsConfig;
-    
+
     @Autowired
     SpecieControllersConfig specieControllersConfig;
+    
+    @Autowired
+    BackupConfig backupConfig;
 
     @Bean
     public LsPenalties lsPenalties() {
@@ -54,7 +59,7 @@ public class CommandsConfig {
     @Bean
     public DetailSpecie detailSpecie() {
         return new DetailSpecie(
-                validatorsConfig.specieDetailsValidator(), 
+                validatorsConfig.specieDetailsValidator(),
                 specieControllersConfig.specieDetailsController()
         );
     }
@@ -62,6 +67,16 @@ public class CommandsConfig {
     @Bean
     public LsSpecie lsSpecie() {
         return new LsSpecie();
+    }
+
+    @Bean
+    public Save save() {
+        return new Save(backupConfig.saveFunction());
+    }
+
+    @Bean
+    public Load load() {
+        return new Load(backupConfig.loadFunction());
     }
 
 }

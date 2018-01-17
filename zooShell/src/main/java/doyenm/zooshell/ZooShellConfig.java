@@ -40,12 +40,6 @@ public class ZooShellConfig {
     @Autowired
     Evaluate evaluate;
 
-    @Autowired
-    Load load;
-
-    @Autowired
-    Save save;
-
     @Bean
     ActionPointsHandler actionPointsHandler() {
         ActionPointsHandler actionPointsHandler = new ActionPointsHandler();
@@ -116,8 +110,8 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsSex(), 0),
                 new ActionPointCommand(commandsConfig.lsPenalties(), 0),
                 // General
-                new ActionPointCommand(load, 0),
-                new ActionPointCommand(save, 0));
+                new ActionPointCommand(commandsConfig.load(), 0),
+                new ActionPointCommand(commandsConfig.save(), 0));
         return new CommandManager(commands, actionPointsHandler(), getActionPoints(), evaluate);
     }
 

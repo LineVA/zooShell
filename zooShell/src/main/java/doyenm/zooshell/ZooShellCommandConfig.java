@@ -24,24 +24,24 @@ import org.springframework.context.annotation.Import;
 public class ZooShellCommandConfig {
 
     // Validators    
-    @Autowired
-    SpecieDetailsValidator specieDetailsValidator;
+//    @Autowired
+//    SpecieDetailsValidator specieDetailsValidator;
 
-    @Autowired
-    ZooCreationValidator zooCreationValidator;
+//    @Autowired
+//    ZooCreationValidator zooCreationValidator;
 
     // Controllers
     @Autowired
     EvaluationController evaluationController;
     
-    @Autowired
-    SpecieDetailsController specieDetailsController;
+//    @Autowired
+//    SpecieDetailsController specieDetailsController;
 
-    @Autowired
-    SaveFunction saveFunction;
-    
-    @Autowired
-    LoadFunction loadFunction;
+//    @Autowired
+//    SaveFunction saveFunction;
+//    
+//    @Autowired
+//    LoadFunction loadFunction;
 
 //    @Bean
 //    DetailSpecie detailSpecie() {
@@ -68,13 +68,13 @@ public class ZooShellCommandConfig {
 //        return new LsSpecie();
 //    }
     
-    @Bean
-    Save save(){
-        return new Save(saveFunction);
-    }
-    
-    @Bean
-    Load load(){
-        return new Load(loadFunction);
-    }
+//    @Bean
+//    Save save(){
+//        return new Save(saveFunction);
+//    }
+//    
+//    @Bean
+//    Load load(){
+//        return new Load(loadFunction);
+//    }
 }
