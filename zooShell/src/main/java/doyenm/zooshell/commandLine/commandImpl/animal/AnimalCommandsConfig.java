@@ -1,6 +1,5 @@
 package doyenm.zooshell.commandLine.commandImpl.animal;
 
-import doyenm.zooshell.ZooShellAnimalConfig;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsContraceptionMethod;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsDiet;
 import doyenm.zooshell.commandLine.commandImpl.ls.LsSex;

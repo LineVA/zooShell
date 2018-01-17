@@ -26,7 +26,7 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @Import({ZooShellValidatorConfig.class, ZooShellControllerConfig.class, ZooShellCommandConfig.class,
-    ZooShellPaddockConfig.class, ZooShellAnimalConfig.class, ZooShellKeeperConfig.class,
+    ZooShellPaddockConfig.class, ZooShellKeeperConfig.class,
     ZooShellZooConfig.class, ZooEventsConfig.class,
     CommandsConfig.class,
     ZooShellHandymanConfig.class})
