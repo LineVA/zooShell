@@ -52,5 +52,27 @@ public class KeeperControllersConfig {
     public KeeperUpdateOccupationsController keeperUpdateOccupationsController() {
         return new KeeperUpdateOccupationsController();
     }
+    
+    @Bean
+    KeeperEvaluationAgeingController keeperAgeingController() {
+        return new KeeperEvaluationAgeingController();
+    }
+
+    @Bean
+    KeeperEvaluationTaskController taskController() {
+        return new KeeperEvaluationTaskController();
+    }
+
+    @Bean
+    KeeperEvaluationFamilyController familyController() {
+        return new KeeperEvaluationFamilyController();
+    }
+
+    @Bean
+    public KeeperEvaluationController keeperEvaluationController() {
+        return new KeeperEvaluationController(keeperAgeingController(),
+                taskController(),
+                familyController());
+    }
 
 }

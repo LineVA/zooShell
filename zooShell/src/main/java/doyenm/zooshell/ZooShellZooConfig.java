@@ -15,6 +15,7 @@ import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationTaskControlle
 import doyenm.zooshell.controller.paddockcontroller.PaddockControllerConfig;
 import doyenm.zooshell.controller.EvaluationController;
 import doyenm.zooshell.controller.PenaltiesEvaluationController;
+import doyenm.zooshell.controller.keepercontroller.KeeperControllersConfig;
 import doyenm.zooshell.controller.zoocontroller.RenameZooController;
 import doyenm.zooshell.controller.zoocontroller.ZooControllersConfig;
 import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
@@ -36,7 +37,7 @@ import org.springframework.core.env.Environment;
  */
 @Configuration
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
-@Import({PaddockControllerConfig.class, HandymanControllersConfig.class, ZooControllersConfig.class})
+@Import({PaddockControllerConfig.class, HandymanControllersConfig.class, ZooControllersConfig.class, KeeperControllersConfig.class})
 public class ZooShellZooConfig {
 
     @Autowired
@@ -53,6 +54,9 @@ public class ZooShellZooConfig {
     
     @Autowired
     ZooControllersConfig zooControllersConfig;
+    
+    @Autowired
+    KeeperControllersConfig keeperControllersConfig;
 
 //    @Bean
 //    AnimalAgeEvaluationController animalAgeEvaluationController() {
@@ -179,27 +183,27 @@ public class ZooShellZooConfig {
 //                animalWellBeingController());
 //    }
 
-    @Bean
-    KeeperEvaluationAgeingController keeperAgeingController() {
-        return new KeeperEvaluationAgeingController();
-    }
-
-    @Bean
-    KeeperEvaluationTaskController taskController() {
-        return new KeeperEvaluationTaskController();
-    }
-
-    @Bean
-    KeeperEvaluationFamilyController familyController() {
-        return new KeeperEvaluationFamilyController();
-    }
-
-    @Bean
-    KeeperEvaluationController keeperEvaluationController() {
-        return new KeeperEvaluationController(keeperAgeingController(),
-                taskController(),
-                familyController());
-    }
+//    @Bean
+//    KeeperEvaluationAgeingController keeperAgeingController() {
+//        return new KeeperEvaluationAgeingController();
+//    }
+//
+//    @Bean
+//    KeeperEvaluationTaskController taskController() {
+//        return new KeeperEvaluationTaskController();
+//    }
+//
+//    @Bean
+//    KeeperEvaluationFamilyController familyController() {
+//        return new KeeperEvaluationFamilyController();
+//    }
+//
+//    @Bean
+//    KeeperEvaluationController keeperEvaluationController() {
+//        return new KeeperEvaluationController(keeperAgeingController(),
+//                taskController(),
+//                familyController());
+//    }
 
 //    @Bean
 //    ZooEvaluationController zooEvaluationController() {
@@ -214,7 +218,7 @@ public class ZooShellZooConfig {
     @Bean
     EvaluationController evaluationController() {
         return new EvaluationController(animalControllersConfig.animalEvaluationController(),
-                keeperEvaluationController(),
+                keeperControllersConfig.keeperEvaluationController(),
                 paddockControllerConfig.paddockEvaluationController(),
                 handymanControllersConfig.handymanEvaluationController(),
                 zooControllersConfig.zooEvaluationController(),
