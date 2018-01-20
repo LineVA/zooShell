@@ -113,8 +113,8 @@ public class PaddockControllerConfig {
         return new Function<LightZooDto, Double>() {
             @Override
             public Double apply(LightZooDto dto) {
-//                return 0.001 * (1 + dto.getSpeed() * dto.getAnimalsOfThePaddock());
-                return 0.8;
+                return 0.001 * (1 + dto.getSpeed() * dto.getAnimalsOfThePaddock());
+//                return 0.8;
             }
         };
     }

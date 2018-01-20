@@ -1,6 +1,8 @@
 package doyenm.zooshell.controller.eventhandling.animal;
 
 import doyenm.zooshell.controller.eventhandling.EventCategory;
+import java.util.Arrays;
+import java.util.List;
 import lombok.Getter;
 
 /**
@@ -32,5 +34,9 @@ public enum AnimalEventType {
         this.category = category;
         this.message = message;
         this.animalEventCategory  = animalEventCategory;
+    }
+    
+    public List<AnimalEventType> getAvoidableDeathsEventTypes(){
+        return Arrays.asList(DEATH_OF_DROWN, DEATH_OF_HUNGER, DEATH_OF_PREDATION);
     }
 }
