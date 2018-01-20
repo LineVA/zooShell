@@ -26,7 +26,9 @@ public class KeeperAddTrainingValidator implements Predicate<KeeperAddTrainingCo
                 .findFirst()
                 .get()
                 .getConvertedFamily());
-        return t.getKeeper() != null && t.getFamily() != null && !t.getZoo().getAvailableKeeperTrainings().isEmpty();
+        return t.getKeeper() != null && t.getFamily() != null
+                && !t.getZoo().getAvailableKeeperTrainings().isEmpty()
+                && t.getKeeper().getTraining() == null;
     }
 
 }
