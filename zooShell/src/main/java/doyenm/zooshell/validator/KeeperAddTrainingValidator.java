@@ -1,9 +1,10 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.KeeperRenameContext;
-import doyenm.zooshell.validator.name.NameDto;
-import doyenm.zooshell.validator.name.NameValidator;
+import doyenm.zooshell.context.KeeperAddTrainingContext;
+import doyenm.zooshell.validator.context.FindingFamilyContext;
+import doyenm.zooshell.validator.function.FindingFamilyFunction;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -11,20 +12,21 @@ import lombok.RequiredArgsConstructor;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class KeeperRenameValidator implements Predicate<KeeperRenameContext> {
+public class KeeperAddTrainingValidator implements Predicate<KeeperAddTrainingContext> {
 
-    private final NameValidator nameValidator;
     private final FindKeeper findKeeper;
+    private final FindingFamilyFunction findingFamilyFunction;
 
     @Override
-    public boolean test(KeeperRenameContext t) {
-        boolean result;
-        result = nameValidator.test(NameDto.builder()
-                .testing(t.getNewKeeperName())
-                .existingNames(t.getKeepers().keySet())
-                .build());
-        t.setConvertedKeeper(findKeeper.find(t.getZoo(), t.getKeeper()));
-        return result & t.getConvertedKeeper() != null;
+    public boolean test(KeeperAddTrainingContext t) {
+        t.setKeeper(findKeeper.find(t.getZoo(), t.getKeeperName()));
+        FindingFamilyContext findingContext = new FindingFamilyContext(t.getFamilyName());
+        t.setFamily(Stream.of(findingContext)
+                .map(findingFamilyFunction)
+                .findFirst()
+                .get()
+                .getConvertedFamily());
+        return t.getKeeper() != null && t.getFamily() != null && !t.getZoo().getAvailableKeeperTrainings().isEmpty();
     }
 
 }
