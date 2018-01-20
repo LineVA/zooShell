@@ -24,7 +24,7 @@ public class ZooShellConfig {
 
     @Autowired
     CommandsConfig commandsConfig;
-    
+
     @Bean
     MainGUI mainGUI() {
         return new MainGUI();
@@ -83,7 +83,7 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.keeperCommandsConfig.removeKeeper(), 1),
                 new ActionPointCommand(commandsConfig.keeperCommandsConfig.resetOccupations(), 0),
                 new ActionPointCommand(commandsConfig.keeperCommandsConfig.updateOccupations(), 1),
-                //                new ActionPointCommand(addTraining, 1),
+                new ActionPointCommand(commandsConfig.keeperCommandsConfig.addTraining(), 0),
                 // Handyman
                 new ActionPointCommand(commandsConfig.handymanCommandsConfig.createHandyman(), 3),
                 new ActionPointCommand(commandsConfig.handymanCommandsConfig.detailsHandyman(), 0),

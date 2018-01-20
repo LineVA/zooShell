@@ -74,5 +74,10 @@ public class KeeperControllersConfig {
                 taskController(),
                 familyController());
     }
+    
+    @Bean
+    public KeeperAddTrainingController keeperAddTrainingController(){
+        return new KeeperAddTrainingController();
+    }
 
 }
