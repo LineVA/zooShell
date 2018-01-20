@@ -10,5 +10,6 @@ package doyenm.zooshell.model;
  * @author doyenm
  */
 public enum PenaltyType {
+    AVOIDABLE_ANIMAL_DEATH,
     UNUSABLE_PADDOCK;
 }

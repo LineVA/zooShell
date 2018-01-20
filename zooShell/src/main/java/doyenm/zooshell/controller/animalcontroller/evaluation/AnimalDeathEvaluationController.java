@@ -7,7 +7,10 @@ import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
 import doyenm.zooshell.controller.eventhandling.animal.AnimalEventCategory;
 import doyenm.zooshell.controller.eventhandling.animal.AnimalEventType;
 import doyenm.zooshell.model.Animal;
+import doyenm.zooshell.model.Penalty;
+import doyenm.zooshell.model.PenaltyType;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -46,10 +49,30 @@ public class AnimalDeathEvaluationController
                 });
 
         context.setDead(isDead(animal));
+        context.getZoo().getPenalties().addAll(addPenalties(context));
 
         return filterDeadEvents(context);
     }
 
+    private List<Penalty> addPenalties(AnimalEvaluationContext context) {
+        return context.getEvents()
+                .stream()
+                .filter(event -> AnimalEventType.DEATH_OF_AGE.getAvoidableDeathsEventTypes().contains(event.getEventType()))
+                .map(event -> Penalty.builder()
+                 .remainingTurns(3)
+                .value(3.0)
+                .type(PenaltyType.AVOIDABLE_ANIMAL_DEATH)
+                .build()
+                )
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * If the animal is dead, we delete the events about this animal dying
+     *
+     * @param context
+     * @return
+     */
     private AnimalEvaluationContext filterDeadEvents(AnimalEvaluationContext context) {
         if (context.isDead()) {
             context.setEvents(context.getEvents()
