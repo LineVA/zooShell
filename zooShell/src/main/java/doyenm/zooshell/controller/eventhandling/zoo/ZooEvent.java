@@ -16,8 +16,6 @@ import lombok.Getter;
 @Getter
 public class ZooEvent implements Event{
     private final ZooEventType eventType;
-    private final AnimalKeeper keeper;
-    private final Family family;
 
     @Override
     public EventCategory getEventCategory() {
