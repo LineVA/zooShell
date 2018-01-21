@@ -33,7 +33,7 @@ public class AnimalKeepersTimeInfluenceEvaluationController
     private double computeWellBeing(AnimalEvaluationContext context, double trait) {
         Paddock paddock = context.getPaddock();
         double sum = 0.0;
-        for (AnimalKeeper keeper : context.getKeepers()) {
+        for (AnimalKeeper keeper : context.getKeepers().stream().filter(k -> k.getTraining() == null).collect(Collectors.toList())) {
             List<TimedOccupation> timedOccupations = keeperUtils.listOfTimedOccupationsInGivenPaddock(keeper, paddock);
             if (timedOccupations != null && !timedOccupations.isEmpty()) {
                 sum += timedOccupations
