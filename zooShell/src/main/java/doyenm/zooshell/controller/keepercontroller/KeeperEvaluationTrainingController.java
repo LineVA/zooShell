@@ -1,6 +1,8 @@
 package doyenm.zooshell.controller.keepercontroller;
 
 import doyenm.zooshell.context.KeeperEvaluationContext;
+import doyenm.zooshell.controller.eventhandling.keeper.KeeperEvent;
+import doyenm.zooshell.controller.eventhandling.keeper.KeeperEventType;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Training;
 import java.util.function.Function;
@@ -24,6 +26,7 @@ public class KeeperEvaluationTrainingController
 //                        keeper.getFamilyEvaluations().get(training.getFamilySubject()) + training.getBonus());
                 keeper = updateEvaluation(keeper);
                 keeper.setTraining(null);
+                t.getEvents().add(new KeeperEvent(KeeperEventType.END_OF_TRAINING, keeper));
             }
         }
         return t;

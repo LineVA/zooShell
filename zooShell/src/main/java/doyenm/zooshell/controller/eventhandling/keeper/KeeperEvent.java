@@ -34,6 +34,6 @@ public class KeeperEvent implements Event {
 
     @Override
     public EventSubject getEventSubject() {
-        return EventSubject.ANIMAL_EVENT;
+        return EventSubject.KEEPER_EVENT;
     }
 }

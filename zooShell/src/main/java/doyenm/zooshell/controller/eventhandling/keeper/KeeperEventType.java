@@ -14,7 +14,7 @@ import lombok.Getter;
  */
 public enum KeeperEventType {
     
-    PREGNANCY_PURSUIT(EventCategory.UNARY, KeeperEventCategory.TRAINING,"The keeper {0} hasfinished their training");
+    END_OF_TRAINING(EventCategory.UNARY, KeeperEventCategory.TRAINING,"The keeper {0} has finished their training");
 
     @Getter
     private EventCategory category;
