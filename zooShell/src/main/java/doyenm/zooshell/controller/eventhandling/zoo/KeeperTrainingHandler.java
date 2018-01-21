@@ -10,7 +10,11 @@ public class KeeperTrainingHandler implements ZooEventsHandler{
 
     @Override
     public boolean canExecute(EvaluationContext t) {
-        return true;
+       if(t.getKeepers().isEmpty()){
+           return false;
+       }
+       int nbOfTurns = t.getZoo().getAge() / t.getZoo().getMonthsPerEvaluation();
+       return nbOfTurns % 15 == 0;
     }
 
     @Override
