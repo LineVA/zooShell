@@ -1,5 +1,6 @@
 package doyenm.zooshell.context;
 
+import doyenm.zooshell.controller.eventhandling.keeper.KeeperEvent;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Family;
@@ -9,8 +10,8 @@ import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -19,13 +20,18 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@AllArgsConstructor
 public class KeeperEvaluationContext {
 
-    private final Zoo zoo;
+    private Zoo zoo;
     private AnimalKeeper keeper;
-    
-    public int getKeeperAge(){
+    private List<KeeperEvent> events = new ArrayList<>();
+
+    public KeeperEvaluationContext(Zoo zoo, AnimalKeeper keeper) {
+        this.zoo = zoo;
+        this.keeper = keeper;
+    }
+
+    public int getKeeperAge() {
         return getKeeper().getAge();
     }
 
@@ -44,8 +50,8 @@ public class KeeperEvaluationContext {
     public Map<Family, Double> getFamilyEvaluationMap() {
         return getKeeper().getFamilyEvaluations();
     }
-    
-    public int getMonthsPerTurn(){
+
+    public int getMonthsPerTurn() {
         return getZoo().getMonthsPerEvaluation();
     }
 }

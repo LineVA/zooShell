@@ -29,6 +29,10 @@ public class KeeperEvaluationController implements Function<EvaluationContext, E
                 .map(taskController)
                 .map(familyController)
                 .map(trainingController)
+                .map((KeeperEvaluationContext t1) -> {
+                    context.getKeeperEvents().addAll(t1.getEvents());
+                    return t1;
+                })
                 .map((KeeperEvaluationContext t1) -> t1.getKeeper())
                 .collect(Collectors.toList())
         );
