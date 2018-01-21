@@ -23,6 +23,14 @@ public class KeeperEvaluationFamilyController
     @Override
     public KeeperEvaluationContext apply(KeeperEvaluationContext t) {
         KeeperEvaluationContext context = t;
+        if (t.getKeeper().getTraining() != null) {
+            return context;
+        } else {
+            return computeFamilyProgression(context);
+        }
+    }
+
+    private KeeperEvaluationContext computeFamilyProgression(KeeperEvaluationContext context) {
         Map<Paddock, Double> paddocksMap = this.generateTimedPaddockMap(context.getOccupations());
         Map<Paddock, Set<Family>> familiesPerPaddockMap = generateFamiliesPerPaddockMap(context.getOccupations(), context.getAnimals());
         familiesPerPaddockMap.entrySet().stream().forEach((entry) -> {

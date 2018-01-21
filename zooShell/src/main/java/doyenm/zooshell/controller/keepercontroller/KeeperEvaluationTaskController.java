@@ -18,6 +18,14 @@ public class KeeperEvaluationTaskController
     @Override
     public KeeperEvaluationContext apply(KeeperEvaluationContext t) {
         KeeperEvaluationContext context = t;
+        if (context.getKeeper().getTraining() != null) {
+            return context;
+        } else {
+            return computeTaskProgression(context);
+        }
+    }
+
+    private KeeperEvaluationContext computeTaskProgression(KeeperEvaluationContext context) {
         Map<TaskType, Double> map = generateTimedTaskMap(context.getOccupations());
         for (Map.Entry<TaskType, Double> entry : map.entrySet()) {
             if (context.getTaskEvaluationMap().containsKey(entry.getKey())) {
