@@ -14,17 +14,17 @@ import org.springframework.core.env.Environment;
 @Configuration
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
 public class KeeperControllersConfig {
-    
-        @Autowired
+
+    @Autowired
     Environment environment;
 
     @Bean
     Utils utils() {
         return new Utils();
     }
-    
+
     @Bean
-   public KeeperRenameController keeperRenameController() {
+    public KeeperRenameController keeperRenameController() {
         return new KeeperRenameController();
     }
 
@@ -34,17 +34,17 @@ public class KeeperControllersConfig {
     }
 
     @Bean
-   public KeeperDetailsController keeperDetailsController() {
+    public KeeperDetailsController keeperDetailsController() {
         return new KeeperDetailsController(utils());
     }
 
     @Bean
-   public KeeperDeletionController keeperDeletionController() {
+    public KeeperDeletionController keeperDeletionController() {
         return new KeeperDeletionController();
     }
 
     @Bean
-  public  KeeperResetOccupationsController keeperResetOccupationsController() {
+    public KeeperResetOccupationsController keeperResetOccupationsController() {
         return new KeeperResetOccupationsController();
     }
 
@@ -52,7 +52,7 @@ public class KeeperControllersConfig {
     public KeeperUpdateOccupationsController keeperUpdateOccupationsController() {
         return new KeeperUpdateOccupationsController();
     }
-    
+
     @Bean
     KeeperEvaluationAgeingController keeperAgeingController() {
         return new KeeperEvaluationAgeingController();
@@ -69,14 +69,22 @@ public class KeeperControllersConfig {
     }
 
     @Bean
-    public KeeperEvaluationController keeperEvaluationController() {
-        return new KeeperEvaluationController(keeperAgeingController(),
-                taskController(),
-                familyController());
+    KeeperEvaluationTrainingController trainingController() {
+        return new KeeperEvaluationTrainingController();
     }
-    
+
     @Bean
-    public KeeperAddTrainingController keeperAddTrainingController(){
+    public KeeperEvaluationController keeperEvaluationController() {
+        return new KeeperEvaluationController(
+                keeperAgeingController(),
+                taskController(),
+                familyController(),
+                trainingController()
+        );
+    }
+
+    @Bean
+    public KeeperAddTrainingController keeperAddTrainingController() {
         return new KeeperAddTrainingController();
     }
 
