@@ -79,4 +79,12 @@ public class KeeperCommandsConfig {
     public LsKeeperTask lsKeeperTask() {
         return new LsKeeperTask();
     }
+    
+    @Bean
+    public AddTraining addTraining(){
+        return new AddTraining(
+                validators.keeperAddTrainingValidator(), 
+                controllers.keeperAddTrainingController()
+        );
+    }
 }

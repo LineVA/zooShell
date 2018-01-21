@@ -1,10 +1,12 @@
 package doyenm.zooshell.model;
 
 import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
+import doyenm.zooshell.controller.eventhandling.zoo.ZooEventType;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -88,6 +90,14 @@ public class Zoo {
      * The list of the zoo that currently affects it
      */
     private List<ZooEvent> zooEvents;
+
+    public List<ZooEvent> getAvailableKeeperTrainings(){
+        return getZooEvents()
+                .stream()
+                .filter(e -> ZooEventType.KEEPER_TRAINING == e.getEventType())
+                .collect(Collectors.toList());
+    }
     
     private List<Penalty> penalties = new ArrayList<>();
+    
 }

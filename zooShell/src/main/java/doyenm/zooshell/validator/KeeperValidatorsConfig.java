@@ -1,6 +1,7 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.utils.Utils;
+import doyenm.zooshell.validator.function.FindingFamilyFunction;
 import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
@@ -41,6 +42,11 @@ public class KeeperValidatorsConfig {
     FindKeeper findKeeper() {
         return new FindKeeper();
     }
+    
+    @Bean
+    FindingFamilyFunction findingFamilyFunction(){
+        return new FindingFamilyFunction();
+    }
 
     @Bean
     public KeeperRenameValidator keeperRenameValidator() {
@@ -65,5 +71,10 @@ public class KeeperValidatorsConfig {
     @Bean
     public KeeperUpdateOccupationsValidator keeperUpdateOccupationsValidator() {
         return new KeeperUpdateOccupationsValidator();
+    }
+    
+    @Bean
+    public KeeperAddTrainingValidator keeperAddTrainingValidator(){
+        return new KeeperAddTrainingValidator(findKeeper(), findingFamilyFunction());
     }
 }

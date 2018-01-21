@@ -54,6 +54,17 @@ public class KeeperEvaluationControllerApplyTest {
         return ctrl;
     }
 
+    private KeeperEvaluationTrainingController givenTrainingController() {
+        KeeperEvaluationTrainingController ctrl = Mockito.mock(KeeperEvaluationTrainingController.class);
+        Mockito.when(ctrl.apply(Mockito.any(KeeperEvaluationContext.class)))
+                .thenAnswer(new Answer<KeeperEvaluationContext>() {
+                    public KeeperEvaluationContext answer(InvocationOnMock invocation) {
+                        return (KeeperEvaluationContext) invocation.getArguments()[0];
+                    }
+                });
+        return ctrl;
+    }
+
     private EvaluationContext givenContextWithKeepers(Map<String, AnimalKeeper> keepers) {
         EvaluationContext context = Mockito.mock(EvaluationContext.class);
         Mockito.when(context.getEvaluatedKeepersList()).thenCallRealMethod();
@@ -69,11 +80,16 @@ public class KeeperEvaluationControllerApplyTest {
         KeeperEvaluationAgeingController ageingController = givenAgeingController();
         KeeperEvaluationTaskController taskController = givenTaskController();
         KeeperEvaluationFamilyController familyController = givenFamilyController();
+        KeeperEvaluationTrainingController trainingController = givenTrainingController();
         Map<String, AnimalKeeper> keepers = new HashMap<>();
         keepers.put(RandomStringUtils.random(10), Mockito.mock(AnimalKeeper.class));
         keepers.put(RandomStringUtils.random(10), Mockito.mock(AnimalKeeper.class));
         EvaluationContext context = givenContextWithKeepers(keepers);
-        KeeperEvaluationController controller = new KeeperEvaluationController(ageingController, taskController, familyController);
+        KeeperEvaluationController controller = new KeeperEvaluationController(
+                ageingController,
+                taskController,
+                familyController,
+                trainingController);
         // When
         EvaluationContext actualContext = controller.apply(context);
         // Then

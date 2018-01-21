@@ -6,6 +6,7 @@ import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TaskType;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -40,7 +41,7 @@ public class AnimalTasksInfluenceEvaluationController
         Paddock paddock = context.getPaddock();
         double competence = 0.0;
         double sum = 0.0;
-        for (AnimalKeeper keeper : context.getKeepers()) {
+        for (AnimalKeeper keeper : context.getKeepers().stream().filter(k -> k.getTraining() == null).collect(Collectors.toList())) {
             if (keeper.getTaskEvaluations().containsKey(task)) {
                 competence = keeper.getTaskEvaluations().get(task);
             } else {

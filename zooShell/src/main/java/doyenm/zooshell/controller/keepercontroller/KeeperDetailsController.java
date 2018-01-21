@@ -27,17 +27,18 @@ public class KeeperDetailsController implements Function<KeeperContext, KeeperCo
         context.addCouple("Name", keeper.getName());
         int age = context.getConvertedKeeper().getAge();
         context.addCouple("Age", utils.getNumbersOfYearsFromAge(age) + " year(s), " + utils.getNumbersOfMonthsFromAge(age) + " month(s)");
+        context.addCouple("Training", keeper.getTraining() == null ? "null" : keeper.getTraining().toString());
         context.addCouple("Occupations", keeper.getOccupations().toString());
         if (context.isDetailed()) {
-            context.addCouplesList(new ArrayList(context.getConvertedKeeper().getTaskEvaluations().keySet()),
-                    new ArrayList(context.getConvertedKeeper().getTaskEvaluations().values()));
-            context.addCouplesList(new ArrayList(context.getConvertedKeeper().getFamilyEvaluations().keySet()),
-                    new ArrayList(context.getConvertedKeeper().getFamilyEvaluations().values()));
+            context.addCouplesList(new ArrayList(keeper.getTaskEvaluations().keySet()),
+                    new ArrayList(keeper.getTaskEvaluations().values()));
+            context.addCouplesList(new ArrayList(keeper.getFamilyEvaluations().keySet()),
+                    new ArrayList(keeper.getFamilyEvaluations().values()));
         } else {
             context.addCouple("Average task evaluation", computeAverageTaskEvaluation(
-                    context.getConvertedKeeper().getTaskEvaluations()));
+                    keeper.getTaskEvaluations()));
             context.addCouple("Average family evaluation", computeAverageFamilyEvaluation(
-                    context.getConvertedKeeper().getFamilyEvaluations()));
+                    keeper.getFamilyEvaluations()));
         }
         return context;
     }
