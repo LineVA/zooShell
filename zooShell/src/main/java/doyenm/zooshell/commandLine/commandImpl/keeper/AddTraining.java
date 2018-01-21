@@ -10,6 +10,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.KeeperAddTrainingValidator;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
@@ -25,19 +26,17 @@ public class AddTraining implements Command{
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        try {
             KeeperAddTrainingContext context = new KeeperAddTrainingContext(zoo,
                     cmd[2], cmd[3]);
-            context = Stream.of(context)
+            Optional optional = Stream.of(context)
                     .filter(validator)
                     .map(controller)
-                    .findFirst()
-                    .get();
-            return new ReturnExec("KEEPER_ADD_TRAINING_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
-        } catch (java.util.NoSuchElementException ex) {
-            ex.printStackTrace();
-            return new ReturnExec("ERROR", TypeReturn.ERROR);
-        }
+                    .findFirst();
+           if (optional.isPresent()) {
+                return new ReturnExec("HANDYMAN_REMOVE_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
+            } else {
+                return new ReturnExec("ERROR", TypeReturn.ERROR, context.getZoo());
+            }
     }
 
     @Override
