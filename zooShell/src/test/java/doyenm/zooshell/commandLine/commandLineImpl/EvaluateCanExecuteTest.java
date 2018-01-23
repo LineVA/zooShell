@@ -16,7 +16,7 @@ public class EvaluateCanExecuteTest {
     @Test
     public void shouldReturnTrueWhenTheOnlyElementIsCorrect(){
         // Given
-        Evaluate evaluate = new Evaluate(null);
+        Evaluate evaluate = new Evaluate(null, null);
         String[] cmd = {EVALUATE};
         // When
         boolean actualResult = evaluate.canExecute(cmd);
@@ -27,7 +27,7 @@ public class EvaluateCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsNoElement() {
         // Given
-        Evaluate evaluate = new Evaluate(null);
+        Evaluate evaluate = new Evaluate(null, null);
         String[] cmd = {};
         // When
         boolean actualResult = evaluate.canExecute(cmd);
@@ -38,7 +38,7 @@ public class EvaluateCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanOneElement() {
         // Given
-        Evaluate evaluate = new Evaluate(null);
+        Evaluate evaluate = new Evaluate(null, null);
         String[] cmd = {EVALUATE, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = evaluate.canExecute(cmd);
@@ -49,7 +49,7 @@ public class EvaluateCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheOnlyElementIsIncorrect() {
         // Given
-        Evaluate evaluate = new Evaluate(null);
+        Evaluate evaluate = new Evaluate(null, null);
         String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = evaluate.canExecute(cmd);
