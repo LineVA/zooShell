@@ -16,11 +16,12 @@ import org.mockito.Mockito;
  */
 public class AnimalRemoveControllerApplyTest {
 
-    private Zoo givenZooWithNames(String name1, String name2) {
+    private Zoo givenZooWithNames(String... names) {
         Zoo zoo = Mockito.mock(Zoo.class);
         Map<String, Animal> map = new HashMap<>();
-        map.put(name1, Mockito.mock(Animal.class));
-        map.put(name2, Mockito.mock(Animal.class));
+        for (int i = 0; i < names.length; i++) {
+            map.put(names[i].toUpperCase(), Mockito.mock(Animal.class));
+        }
         Mockito.doCallRealMethod().when(zoo).setAnimals(Mockito.anyMap());
         zoo.setAnimals(map);
         Mockito.when(zoo.getAnimals()).thenCallRealMethod();
