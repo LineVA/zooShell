@@ -1,36 +1,44 @@
 package doyenm.zooshell.controller.animalcontroller;
 
-import doyenm.zooshell.context.AnimalChangePaddockContext;
 import doyenm.zooshell.context.AnimalUpdateDietContext;
+import doyenm.zooshell.context.AnimalUpdateFastDaysContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
-import doyenm.zooshell.model.Paddock;
+import doyenm.zooshell.model.FoodAttributes;
 import doyenm.zooshell.model.Zoo;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import static org.mockito.Matchers.anyList;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.doCallRealMethod;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
  *
  * @author doyenm
  */
-public class AnimalUpdateDietControllerApplyTest {
+public class AnimalUpdateFastDaysControllerApplyTest {
 
-    private AnimalUpdateDietController subject;
+    private AnimalUpdateFastDaysController subject;
 
-    private Animal givenAnimal(String name, Diet diet) {
+    private Animal givenAnimal(String name, int days) {
+        FoodAttributes att = mock(FoodAttributes.class);
+        when(att.getFastDays()).thenCallRealMethod();
+        doCallRealMethod().when(att).setFastDays(anyInt());
+        
         Animal animal = Mockito.mock(Animal.class);
-        doCallRealMethod().when(animal).setDiets(anyList());
-        when(animal.getDiets()).thenCallRealMethod();
-        animal.setDiets(Arrays.asList(diet));
+        doCallRealMethod().when(animal).setCurrentFoodAttributes(any());
+        when(animal.getCurrentFoodAttributes()).thenCallRealMethod();
+        animal.setCurrentFoodAttributes(att);
+        
         when(animal.getName()).thenReturn(name);
         return animal;
     }
@@ -47,29 +55,33 @@ public class AnimalUpdateDietControllerApplyTest {
         return zoo;
     }
 
-    private AnimalUpdateDietContext givenContext(Zoo zoo, Animal animal, List<Diet> diets) {
-        AnimalUpdateDietContext context = Mockito.mock(AnimalUpdateDietContext.class);
+    private AnimalUpdateFastDaysContext givenContext(Zoo zoo, Animal animal, int newFastDays) {
+        AnimalUpdateFastDaysContext context = Mockito.mock(AnimalUpdateFastDaysContext.class);
         Mockito.when(context.getZoo()).thenReturn(zoo);
         Mockito.when(context.getConvertedAnimal()).thenReturn(animal);
-        Mockito.when(context.diffLists()).thenReturn(diets);
+        when(context.getConvertedFastDays()).thenReturn(newFastDays);
+        String name = animal.getName();
+        when(context.getAnimal()).thenReturn(name);
         return context;
     }
 
     @Test
-    public void shouldReplaceTheDietsOfTheAnimal() {
+    public void shouldReplaceTheNumberOfFastDaysOfTheAnimal() {
         // Given
         String name = RandomStringUtils.randomAlphabetic(10);
-        Animal animal = givenAnimal(name, Diet.FOLIVOROUS);
+        Animal animal = givenAnimal(name, RandomUtils.nextInt());
         Map<String, Animal> animals = givenMapWithAnimal(animal);
         Zoo zoo = givenZooWithAnimals(animals);
-        AnimalUpdateDietContext context = givenContext(zoo, animal, Arrays.asList(Diet.CARNIVOROUS, Diet.NECTARIVOROUS));
-        subject = new AnimalUpdateDietController();
+        int newFastDays = RandomUtils.nextInt();
+        AnimalUpdateFastDaysContext context = givenContext(zoo, animal, newFastDays);
+        subject = new AnimalUpdateFastDaysController();
         // When
-        AnimalUpdateDietContext actualContext = subject.apply(context);
+        AnimalUpdateFastDaysContext actualContext = subject.apply(context);
         // Then
         Assertions.assertThat(actualContext.getZoo().getAnimals()).isNotNull();
         Assertions.assertThat(actualContext.getZoo().getAnimals()
-                .get(name.toUpperCase()).getDiets()).isEqualTo(Arrays.asList(Diet.CARNIVOROUS, Diet.NECTARIVOROUS));
+                .get(name.toUpperCase()).getCurrentFoodAttributes().getFastDays())
+                .isEqualTo(newFastDays);
 
     }
 }

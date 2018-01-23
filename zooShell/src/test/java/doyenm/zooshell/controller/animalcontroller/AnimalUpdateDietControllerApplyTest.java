@@ -50,6 +50,8 @@ public class AnimalUpdateDietControllerApplyTest {
         Mockito.when(context.getZoo()).thenReturn(zoo);
         Mockito.when(context.getConvertedAnimal()).thenReturn(animal);
         Mockito.when(context.diffLists()).thenReturn(diets);
+        String name = animal.getName();
+        when(context.getAnimal()).thenReturn(name);
         return context;
     }
 

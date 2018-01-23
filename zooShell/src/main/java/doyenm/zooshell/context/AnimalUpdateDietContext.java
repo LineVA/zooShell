@@ -28,11 +28,6 @@ public class AnimalUpdateDietContext {
     private Animal convertedAnimal;
     private List<Diet> convertedDiets = new ArrayList<>();
 
-    public void build() {
-        this.getConvertedAnimal().setDiets(diffLists());
-        this.getZoo().getAnimals().replace(this.getAnimal().toUpperCase(), this.getConvertedAnimal());
-    }
-    
     public Position getEntry(){
         return getConvertedAnimal().getPaddock().getEntry();
     }

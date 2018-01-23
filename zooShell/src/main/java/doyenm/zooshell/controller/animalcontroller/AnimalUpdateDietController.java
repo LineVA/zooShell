@@ -13,7 +13,7 @@ public class AnimalUpdateDietController
     @Override
     public AnimalUpdateDietContext apply(AnimalUpdateDietContext t) {
         t.getConvertedAnimal().setDiets(t.diffLists());
-        t.getZoo().getAnimals().replace(t.getAnimal(), t.getConvertedAnimal());
+        t.getZoo().getAnimals().replace(t.getAnimal().toUpperCase(), t.getConvertedAnimal());
         return t;
     }
 

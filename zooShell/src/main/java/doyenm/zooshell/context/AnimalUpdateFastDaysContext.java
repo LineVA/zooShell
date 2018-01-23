@@ -30,9 +30,4 @@ public class AnimalUpdateFastDaysContext {
     public Position getEntry(){
         return getConvertedAnimal().getPaddock().getEntry();
     }
-
-    public void build() {
-        getConvertedAnimal().getCurrentFoodAttributes().setFastDays(this.getConvertedFastDays());
-        getZoo().getAnimals().replace(this.getAnimal(), this.getConvertedAnimal());
-    }
 }

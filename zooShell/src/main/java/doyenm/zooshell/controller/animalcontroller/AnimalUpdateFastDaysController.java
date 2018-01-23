@@ -12,7 +12,8 @@ public class AnimalUpdateFastDaysController
 
     @Override
     public AnimalUpdateFastDaysContext apply(AnimalUpdateFastDaysContext t) {
-        t.build();
+        t.getConvertedAnimal().getCurrentFoodAttributes().setFastDays(t.getConvertedFastDays());
+        t.getZoo().getAnimals().replace(t.getAnimal().toUpperCase(), t.getConvertedAnimal());
         return t;
     }
 
