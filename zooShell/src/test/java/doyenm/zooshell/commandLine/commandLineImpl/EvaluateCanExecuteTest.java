@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandLine.commandLineImpl.zoo;
+package doyenm.zooshell.commandLine.commandLineImpl;
 
 import doyenm.zooshell.commandLine.commandImpl.Evaluate;
 import org.apache.commons.lang.RandomStringUtils;
