@@ -6,9 +6,19 @@ import doyenm.zooshell.commandLine.commandImpl.handyman.HandymanCommandsConfig;
 import doyenm.zooshell.commandLine.commandImpl.keeper.KeeperCommandsConfig;
 import doyenm.zooshell.commandLine.commandImpl.paddock.PaddockCommandsConfig;
 import doyenm.zooshell.commandLine.commandImpl.zoo.ZooCommandsConfig;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingBinaryAnimalEvents;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingBinaryPaddockEvents;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingBinaryZooEvents;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingEvents;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingNoneZooEvents;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingUnaryAnimalEvents;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingUnaryKeeperEvents;
+import doyenm.zooshell.commandLine.general.displayingevent.DisplayingUnaryZooEvents;
 import doyenm.zooshell.controller.ControllersConfig;
 import doyenm.zooshell.controller.speciecontroller.SpecieControllersConfig;
 import doyenm.zooshell.validator.ValidatorsConfig;
+import java.util.Arrays;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,7 +53,7 @@ public class CommandsConfig {
 
     @Autowired
     public ZooCommandsConfig zooCommandsConfig;
-    
+
     @Autowired
     ControllersConfig controllersConfig;
 
@@ -52,7 +62,7 @@ public class CommandsConfig {
 
     @Autowired
     SpecieControllersConfig specieControllersConfig;
-    
+
     @Autowired
     BackupConfig backupConfig;
 
@@ -83,10 +93,21 @@ public class CommandsConfig {
     public Load load() {
         return new Load(backupConfig.loadFunction());
     }
-    
+
+    private final List<DisplayingEvents> displayingEventsList = Arrays.asList(
+            new DisplayingBinaryAnimalEvents(),
+            new DisplayingBinaryPaddockEvents(),
+            new DisplayingBinaryZooEvents(),
+            new DisplayingNoneZooEvents(),
+            new DisplayingUnaryAnimalEvents(),
+            new DisplayingUnaryZooEvents(),
+            new DisplayingUnaryKeeperEvents()
+    );
+
     @Bean
-    public Evaluate evaluate(){
-        return new Evaluate(controllersConfig.evaluationController());
+    public Evaluate evaluate() {
+        return new Evaluate(controllersConfig.evaluationController(),
+                displayingEventsList);
     }
 
 }

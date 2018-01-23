@@ -2,16 +2,9 @@ package doyenm.zooshell.commandLine.commandImpl;
 
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.commandLine.general.Command;
-import doyenm.zooshell.commandLine.general.displayingevent.DisplayingBinaryAnimalEvents;
-import doyenm.zooshell.commandLine.general.displayingevent.DisplayingUnaryAnimalEvents;
 import doyenm.zooshell.commandLine.general.displayingevent.DisplayingEvents;
 import doyenm.zooshell.commandLine.general.ReturnExec;
 import doyenm.zooshell.commandLine.general.TypeReturn;
-import doyenm.zooshell.commandLine.general.displayingevent.DisplayingBinaryPaddockEvents;
-import doyenm.zooshell.commandLine.general.displayingevent.DisplayingBinaryZooEvents;
-import doyenm.zooshell.commandLine.general.displayingevent.DisplayingNoneZooEvents;
-import doyenm.zooshell.commandLine.general.displayingevent.DisplayingUnaryKeeperEvents;
-import doyenm.zooshell.commandLine.general.displayingevent.DisplayingUnaryZooEvents;
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
 import doyenm.zooshell.controller.eventhandling.paddock.PaddockEvent;
@@ -20,7 +13,6 @@ import doyenm.zooshell.controller.EvaluationController;
 import doyenm.zooshell.controller.eventhandling.keeper.KeeperEvent;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -35,15 +27,7 @@ public class Evaluate implements Command {
 
     private final EvaluationController controller;
 
-    private final List<DisplayingEvents> displayingEventsList = Arrays.asList(
-            new DisplayingBinaryAnimalEvents(),
-            new DisplayingBinaryPaddockEvents(),
-            new DisplayingBinaryZooEvents(),
-            new DisplayingNoneZooEvents(),
-            new DisplayingUnaryAnimalEvents(),
-            new DisplayingUnaryZooEvents(),
-            new DisplayingUnaryKeeperEvents()
-    );
+    private final List<DisplayingEvents> displayingEventsList;
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
