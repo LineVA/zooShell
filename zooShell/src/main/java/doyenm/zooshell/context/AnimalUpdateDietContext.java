@@ -30,14 +30,14 @@ public class AnimalUpdateDietContext {
 
     public void build() {
         this.getConvertedAnimal().setDiets(diffLists());
-        this.getZoo().getAnimals().replace(this.getAnimal(), this.getConvertedAnimal());
+        this.getZoo().getAnimals().replace(this.getAnimal().toUpperCase(), this.getConvertedAnimal());
     }
     
     public Position getEntry(){
         return getConvertedAnimal().getPaddock().getEntry();
     }
 
-    private List<Diet> diffLists() {
+    public List<Diet> diffLists() {
         Set<Diet> set = new HashSet<>();
         set.addAll(this.getConvertedDiets());
         set.addAll(this.getConvertedAnimal().getDiets());
