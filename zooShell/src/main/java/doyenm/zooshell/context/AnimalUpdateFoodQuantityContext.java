@@ -30,9 +30,4 @@ public class AnimalUpdateFoodQuantityContext {
     public Position getEntry(){
         return getConvertedAnimal().getPaddock().getEntry();
     }
-
-    public void build() {
-        getConvertedAnimal().getCurrentFoodAttributes().setQuantity(this.getConvertedFoodQuantity());
-        getZoo().getAnimals().replace(this.getAnimal(), this.getConvertedAnimal());
-    }
 }

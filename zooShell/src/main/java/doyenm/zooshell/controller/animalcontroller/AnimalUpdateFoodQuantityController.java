@@ -12,7 +12,8 @@ public class AnimalUpdateFoodQuantityController
 
     @Override
     public AnimalUpdateFoodQuantityContext apply(AnimalUpdateFoodQuantityContext t) {
-        t.build();
+        t.getConvertedAnimal().getCurrentFoodAttributes().setQuantity(t.getConvertedFoodQuantity());
+        t.getZoo().getAnimals().replace(t.getAnimal().toUpperCase(), t.getConvertedAnimal());
         return t;
     }
 
