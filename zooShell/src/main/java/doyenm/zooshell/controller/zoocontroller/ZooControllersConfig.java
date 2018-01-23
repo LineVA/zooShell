@@ -1,6 +1,10 @@
 package doyenm.zooshell.controller.zoocontroller;
 
+import doyenm.zooshell.controller.eventhandling.zoo.KeeperTrainingHandler;
+import doyenm.zooshell.controller.eventhandling.zoo.ZooEventsHandler;
 import doyenm.zooshell.utils.Utils;
+import java.util.Arrays;
+import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,13 +29,15 @@ public class ZooControllersConfig {
     public ZooCreationController zooCreationController() {
         return new ZooCreationController();
     }
-    
-     @Bean
+
+    private final List<ZooEventsHandler> handlers = Arrays.asList(new KeeperTrainingHandler());
+
+    @Bean
     public ZooEvaluationController zooEvaluationController() {
-        return new ZooEvaluationController();
+        return new ZooEvaluationController(handlers);
     }
-    
-     @Bean
+
+    @Bean
     public RenameZooController renameZooController() {
         return new RenameZooController();
     }
