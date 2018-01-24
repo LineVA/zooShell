@@ -16,7 +16,7 @@ public class AnimalChangeNameController
         AnimalChangeNameContext context = t;
         Animal animal = context.getConvertedAnimal();
         animal.setName(context.getNewName());
-        context.getZoo().getAnimals().remove(context.getCurrentName());
+        context.getZoo().getAnimals().remove(context.getCurrentName().toUpperCase());
         context.getZoo().getAnimals().put(animal.getName().toUpperCase(), animal);
         return context;
     }
