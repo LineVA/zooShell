@@ -14,8 +14,8 @@ public class AnimalResetDietController implements Function<AnimalContext, Animal
 
     @Override
     public AnimalContext apply(AnimalContext t) {
-       Animal animal = t.getConvertedAnimal();
-       animal.setDiets(Arrays.asList(Diet.NONE));
+        Animal animal = t.getConvertedAnimal();
+        animal.setDiets(Arrays.asList(Diet.NONE));
         t.getZoo().getAnimals().replace(t.getAnimal(), animal);
         return t;
     }
