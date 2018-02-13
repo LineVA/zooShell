@@ -50,6 +50,15 @@ public class AnimalEvaluationContext {
         this.zoo = zoo;
         this.animal = animal;
     }
+    
+    public double getMaxWellBeingWithoutKeeper(){
+        return getBase() 
+                + getBase()
+                + getBase() * getUicnCoefficient()
+                + getBase()
+                + getBase() * getUicnCoefficient()
+                + getBase() * getUicnCoefficient();
+    }
 
     public int getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock() {
         return getAnimalsOfTheZoo()
@@ -110,4 +119,6 @@ public class AnimalEvaluationContext {
                 .filter(other -> other.getPaddock().equals(getAnimal().getPaddock()))
                 .collect(Collectors.toList());
     }
+    
+    
 }
