@@ -22,16 +22,16 @@ import org.springframework.core.env.Environment;
  */
 @Configuration
 public class AnimalControllersConfig {
-    
-     @Autowired
+
+    @Autowired
     Environment environment;
 
     @Bean
     Utils utils() {
         return new Utils();
     }
-    
-     // Controller
+
+    // Controller
     @Bean
     public AnimalChangeNameController animalChangeNameController() {
         return new AnimalChangeNameController();
@@ -111,7 +111,7 @@ public class AnimalControllersConfig {
                 animalsWithSpecieCriteriaController()
         );
     }
-    
+
     @Bean
     AnimalAgeEvaluationController animalAgeEvaluationController() {
         return new AnimalAgeEvaluationController();
@@ -123,9 +123,15 @@ public class AnimalControllersConfig {
                 Arrays.asList(0.4, 0.3, 0.3, 0.1));
     }
 
+    private final double minProportionOfMaxWellBeingToProcrastinateDeath = 0.9;
+    private final double chanceToProcrastinateDeath = 0.5;
+
     @Bean
     AnimalDeathPredicates animalDeathPredicates() {
-        return new AnimalDeathPredicates(Integer.parseInt(environment.getProperty("animal.turns.agony")));
+        return new AnimalDeathPredicates(Integer.parseInt(environment.getProperty("animal.turns.agony")),
+                minProportionOfMaxWellBeingToProcrastinateDeath,
+                chanceToProcrastinateDeath
+        );
     }
 
     @Bean
@@ -147,8 +153,8 @@ public class AnimalControllersConfig {
     UniformStatistics uniformStatistics() {
         return new UniformStatistics();
     }
-    
-     @Autowired
+
+    @Autowired
     FindPaddock findPaddock;
 
     @Bean

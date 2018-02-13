@@ -34,7 +34,7 @@ public class AnimalDeathEvaluationController
         animal = measures.updateIsDyingByHunger(animal, context.getKeepers());
         animal = measures.updateIsDeadByPredation(animal, context.getAnimalsOfThePaddock());
         context.setAnimal(animal);
-        Map<AnimalEventType, Boolean> events = generateEvents(context.getAnimal());
+        Map<AnimalEventType, Boolean> events = generateEvents(context);
 
         events.keySet()
                 .stream()
@@ -48,7 +48,7 @@ public class AnimalDeathEvaluationController
                     }
                 });
 
-        context.setDead(isDead(animal));
+        context.setDead(isDead(context));
         context.getZoo().getPenalties().addAll(addPenalties(context));
 
         return filterDeadEvents(context);
@@ -59,7 +59,7 @@ public class AnimalDeathEvaluationController
                 .stream()
                 .filter(event -> AnimalEventType.DEATH_OF_AGE.getAvoidableDeathsEventTypes().contains(event.getEventType()))
                 .map(event -> Penalty.builder()
-                 .remainingTurns(3)
+                .remainingTurns(3)
                 .value(3.0)
                 .type(PenaltyType.AVOIDABLE_ANIMAL_DEATH)
                 .build()
@@ -84,9 +84,10 @@ public class AnimalDeathEvaluationController
         return context;
     }
 
-    private Map<AnimalEventType, Boolean> generateEvents(Animal animal) {
+    private Map<AnimalEventType, Boolean> generateEvents(AnimalEvaluationContext context) {
+        Animal animal = context.getAnimal();
         Map<AnimalEventType, Boolean> events = new HashMap<>();
-        events.put(AnimalEventType.DEATH_OF_AGE, deathPredicates.isDeadByOldAge(animal));
+        events.put(AnimalEventType.DEATH_OF_AGE, deathPredicates.isDeadByOldAge(animal, context.getMaxWellBeingWithoutKeeper()));
         events.put(AnimalEventType.DEATH_OF_DROWN, deathPredicates.isDeadByDrowning(animal));
         events.put(AnimalEventType.DEATH_OF_HUNGER, deathPredicates.isDeadByHunger(animal));
         events.put(AnimalEventType.DEATH_OF_PREDATION, deathPredicates.isDeadByPredation(animal));
@@ -95,10 +96,11 @@ public class AnimalDeathEvaluationController
         return events;
     }
 
-    private boolean isDead(Animal animal) {
+    private boolean isDead(AnimalEvaluationContext context) {
+        Animal animal = context.getAnimal();
         return deathPredicates.isDeadByDrowning(animal)
                 || deathPredicates.isDeadByHunger(animal)
-                || deathPredicates.isDeadByOldAge(animal)
+                || deathPredicates.isDeadByOldAge(animal, context.getMaxWellBeingWithoutKeeper())
                 || deathPredicates.isDeadByPredation(animal);
     }
 
