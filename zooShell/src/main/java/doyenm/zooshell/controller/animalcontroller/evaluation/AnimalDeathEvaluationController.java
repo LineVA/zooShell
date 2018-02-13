@@ -48,7 +48,7 @@ public class AnimalDeathEvaluationController
                     }
                 });
 
-        context.setDead(isDead(context));
+        context.setDead(isDead(events));
         context.getZoo().getPenalties().addAll(addPenalties(context));
 
         return filterDeadEvents(context);
@@ -96,12 +96,11 @@ public class AnimalDeathEvaluationController
         return events;
     }
 
-    private boolean isDead(AnimalEvaluationContext context) {
-        Animal animal = context.getAnimal();
-        return deathPredicates.isDeadByDrowning(animal)
-                || deathPredicates.isDeadByHunger(animal)
-                || deathPredicates.isDeadByOldAge(animal, context.getMaxWellBeingWithoutKeeper())
-                || deathPredicates.isDeadByPredation(animal);
+    private boolean isDead(Map<AnimalEventType, Boolean> events) {
+        return events.get(AnimalEventType.DEATH_OF_AGE)
+                || events.get(AnimalEventType.DEATH_OF_DROWN)
+                || events.get(AnimalEventType.DEATH_OF_HUNGER)
+                || events.get(AnimalEventType.DEATH_OF_PREDATION);
     }
 
 }
