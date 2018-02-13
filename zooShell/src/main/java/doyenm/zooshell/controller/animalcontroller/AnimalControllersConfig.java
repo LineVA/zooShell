@@ -1,30 +1,10 @@
 package doyenm.zooshell.controller.animalcontroller;
 
-import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithDietCriteriaController;
-import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithPaddockCriteriaController;
-import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSexCriteriaController;
-import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSpecieCriteriaController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalAgeEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalCohabitationEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalDeathEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalReproductionEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalWellBeingController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.KeeperUtils;
-import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalDeathPredicates;
-import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalDyingPredicates;
-import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalUpdateDyingMeasures;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.CalvingFunction;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.ExecuteReproductionFunction;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.FemaleReproductionPredicate;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.MaleReproductionPredicate;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalBiomeEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalDietsEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalFastDaysEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalFoodQuantityEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalGroupSizeEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalKeepersTimeInfluenceEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalTasksInfluenceEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.AnimalTerritorySizeEvaluationController;
+import doyenm.zooshell.controller.animalcontroller.criteria.*;
+import doyenm.zooshell.controller.animalcontroller.evaluation.*;
+import doyenm.zooshell.controller.animalcontroller.evaluation.death.*;
+import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.*;
+import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.*;
 import doyenm.zooshell.model.utils.CohabitationFactorHandler;
 import doyenm.zooshell.utils.UniformStatistics;
 import doyenm.zooshell.utils.Utils;
@@ -42,16 +22,16 @@ import org.springframework.core.env.Environment;
  */
 @Configuration
 public class AnimalControllersConfig {
-    
-     @Autowired
+
+    @Autowired
     Environment environment;
 
     @Bean
     Utils utils() {
         return new Utils();
     }
-    
-     // Controller
+
+    // Controller
     @Bean
     public AnimalChangeNameController animalChangeNameController() {
         return new AnimalChangeNameController();
@@ -131,7 +111,7 @@ public class AnimalControllersConfig {
                 animalsWithSpecieCriteriaController()
         );
     }
-    
+
     @Bean
     AnimalAgeEvaluationController animalAgeEvaluationController() {
         return new AnimalAgeEvaluationController();
@@ -143,9 +123,15 @@ public class AnimalControllersConfig {
                 Arrays.asList(0.4, 0.3, 0.3, 0.1));
     }
 
+    private final double minProportionOfMaxWellBeingToProcrastinateDeath = 0.9;
+    private final double chanceToProcrastinateDeath = 0.5;
+
     @Bean
     AnimalDeathPredicates animalDeathPredicates() {
-        return new AnimalDeathPredicates(Integer.parseInt(environment.getProperty("animal.turns.agony")));
+        return new AnimalDeathPredicates(Integer.parseInt(environment.getProperty("animal.turns.agony")),
+                minProportionOfMaxWellBeingToProcrastinateDeath,
+                chanceToProcrastinateDeath
+        );
     }
 
     @Bean
@@ -167,8 +153,8 @@ public class AnimalControllersConfig {
     UniformStatistics uniformStatistics() {
         return new UniformStatistics();
     }
-    
-     @Autowired
+
+    @Autowired
     FindPaddock findPaddock;
 
     @Bean
