@@ -1,10 +1,13 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 
+import com.google.inject.internal.util.ImmutableMap;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.controller.animalcontroller.evaluation.KeeperUtils;
+import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TaskType;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -18,23 +21,34 @@ public class AnimalTasksInfluenceEvaluationController
         implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
 
     private final KeeperUtils keeperUtils;
+    private final Double limitBetweenPositivAndNegativTime;
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
+        Map<TaskType, Double> charactersMap = generateCharactersMap(context.getAnimal());
         context.getWellBeingObj().setKeepersTaskWellBeing((computeWellBeingForTask(context, TaskType.CLEANING,
-                context.getAnimal().getCharacterAttributes().getMeticulousness())
+                charactersMap.get(TaskType.CLEANING))
                 + computeWellBeingForTask(context, TaskType.ENRICHMENT,
-                        context.getAnimal().getCharacterAttributes().getCuriosity())
+                        charactersMap.get(TaskType.ENRICHMENT))
                 + computeWellBeingForTask(context, TaskType.MEDICAL_TRAINING,
-                        context.getAnimal().getCharacterAttributes().getInteligence())
-                + computeWellBeingForTask(context,
-                        TaskType.FEEDING, context.getAnimal().getCharacterAttributes().getGourmandise()))
-                + computeWellBeingForTask(context,
-                        TaskType.NURSING, context.getAnimal().getCharacterAttributes().getGourmandise())
-                / 5.0
-        );
+                        charactersMap.get(TaskType.MEDICAL_TRAINING))
+                + computeWellBeingForTask(context, TaskType.FEEDING,
+                        charactersMap.get(TaskType.FEEDING))
+                + computeWellBeingForTask(context, TaskType.NURSING,
+                        charactersMap.get(TaskType.NURSING)))
+                / charactersMap.size());
         return context;
+    }
+
+    private Map<TaskType, Double> generateCharactersMap(Animal animal) {
+        return ImmutableMap.<TaskType, Double>builder()
+                .put(TaskType.CLEANING, animal.getCharacterAttributes().getMeticulousness())
+                .put(TaskType.ENRICHMENT, animal.getCharacterAttributes().getCuriosity())
+                .put(TaskType.MEDICAL_TRAINING, animal.getCharacterAttributes().getInteligence())
+                .put(TaskType.FEEDING, animal.getCharacterAttributes().getGourmandise())
+                .put(TaskType.NURSING, animal.getCharacterAttributes().getGourmandise())
+                .build();
     }
 
     private double computeWellBeingForTask(AnimalEvaluationContext context, TaskType task, double trait) {
@@ -50,7 +64,7 @@ public class AnimalTasksInfluenceEvaluationController
             sum += keeperUtils.timeSpentDoingTheTaskInThePaddock(keeper, task, paddock)
                     * competence;
         }
-        if (trait >= 0.5) {
+        if (trait >= limitBetweenPositivAndNegativTime) {
             return sum * context.getBase();
         }
         return -sum * context.getBase();

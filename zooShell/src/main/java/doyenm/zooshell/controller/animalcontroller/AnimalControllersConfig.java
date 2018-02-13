@@ -126,8 +126,8 @@ public class AnimalControllersConfig {
     @Bean
     AnimalDeathPredicates animalDeathPredicates() {
         return new AnimalDeathPredicates(Integer.parseInt(environment.getProperty("animal.turns.agony")),
-               environment.getProperty("animal.min.proportion_of_max_well_being_to_procrastinate_death", Double.class),
-               environment.getProperty("animal.chance_to_procrastinate_death", Double.class)
+                environment.getProperty("animal.min.proportion_of_max_well_being_to_procrastinate_death", Double.class),
+                environment.getProperty("animal.chance_to_procrastinate_death", Double.class)
         );
     }
 
@@ -210,7 +210,9 @@ public class AnimalControllersConfig {
 
     @Bean
     AnimalTasksInfluenceEvaluationController animalTasksInfluenceEvaluationController() {
-        return new AnimalTasksInfluenceEvaluationController(new KeeperUtils());
+        return new AnimalTasksInfluenceEvaluationController(
+                new KeeperUtils(),
+                environment.getProperty("animal.wb.limit_for_keeper_tasks", Double.class));
     }
 
     @Bean
