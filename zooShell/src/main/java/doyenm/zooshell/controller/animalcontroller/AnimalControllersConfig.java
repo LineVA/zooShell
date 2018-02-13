@@ -123,14 +123,11 @@ public class AnimalControllersConfig {
                 Arrays.asList(0.4, 0.3, 0.3, 0.1));
     }
 
-    private final double minProportionOfMaxWellBeingToProcrastinateDeath = 0.9;
-    private final double chanceToProcrastinateDeath = 0.5;
-
     @Bean
     AnimalDeathPredicates animalDeathPredicates() {
         return new AnimalDeathPredicates(Integer.parseInt(environment.getProperty("animal.turns.agony")),
-                minProportionOfMaxWellBeingToProcrastinateDeath,
-                chanceToProcrastinateDeath
+               environment.getProperty("animal.min.proportion_of_max_well_being_to_procrastinate_death", Double.class),
+               environment.getProperty("animal.chance_to_procrastinate_death", Double.class)
         );
     }
 
