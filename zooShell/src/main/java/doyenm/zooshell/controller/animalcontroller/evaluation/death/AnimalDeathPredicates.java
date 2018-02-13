@@ -24,7 +24,7 @@ public class AnimalDeathPredicates {
             if(animal.getWellBeing() >= maxWellBeingExceptKeepers * minProportionOfMaxWellBeingToProcrastinateDeath){
                 return uniformStatistics.uniform() < chanceToProcrastinateDeath;
             } 
-            return false;
+            return true;
         }
     }
 
