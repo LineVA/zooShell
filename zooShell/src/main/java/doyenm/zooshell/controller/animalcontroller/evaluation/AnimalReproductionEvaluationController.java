@@ -24,6 +24,7 @@ public class AnimalReproductionEvaluationController
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
+        // If not currently in gestation
         if (context.getAnimal().getMonthsOfGestation() == 0) {
             Optional result = Stream.of(context)
                     .filter(femaleReproductionController)
