@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.death;
 
 import doyenm.zooshell.model.Animal;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -21,7 +22,7 @@ public class AnimalDeathPredicatesIsDeadByDrowningTest {
     public void shouldReturnTrueWhenTheAnimalIsDrowningForThreeTurns() {
         // Given
         Animal animal = givenAnimalWithDrowningDays(3);
-        AnimalDeathPredicates predicate = new AnimalDeathPredicates(3);
+        AnimalDeathPredicates predicate = new AnimalDeathPredicates(3, RandomUtils.nextDouble(), RandomUtils.nextDouble());
         // When
         boolean result = predicate.isDeadByDrowning(animal);
         // Then
@@ -32,7 +33,7 @@ public class AnimalDeathPredicatesIsDeadByDrowningTest {
     public void shouldReturnTrueWhenTheAnimalIsDrowningForFourTurns() {
         // Given
         Animal animal = givenAnimalWithDrowningDays(4);
-        AnimalDeathPredicates predicate = new AnimalDeathPredicates(3);
+        AnimalDeathPredicates predicate = new AnimalDeathPredicates(3, RandomUtils.nextDouble(), RandomUtils.nextDouble());
         // When
         boolean result = predicate.isDeadByDrowning(animal);
         // Then
@@ -43,7 +44,7 @@ public class AnimalDeathPredicatesIsDeadByDrowningTest {
     public void shouldReturnFalseWhenTheAnimalIsDrowningForTwoTurns() {
         // Given
         Animal animal = givenAnimalWithDrowningDays(2);
-        AnimalDeathPredicates predicate = new AnimalDeathPredicates(3);
+        AnimalDeathPredicates predicate = new AnimalDeathPredicates(3, RandomUtils.nextDouble(), RandomUtils.nextDouble());
         // When
         boolean result = predicate.isDeadByDrowning(animal);
         // Then
