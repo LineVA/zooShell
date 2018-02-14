@@ -26,8 +26,9 @@ public class HandymanValidatorsConfig {
     // Validator
     @Bean
     public HandymanCreationValidator handymanCreationValidator() {
-        return new HandymanCreationValidator(nameValidator,
-                new HandymenNumberPredicate(0.2));
+        return new HandymanCreationValidator(
+                nameValidator,
+                new HandymenNumberPredicate(environment.getProperty("handyman.creation.max_number_per_paddock", Double.class)));
     }
 
     @Bean
