@@ -217,7 +217,9 @@ public class AnimalControllersConfig {
 
     @Bean
     AnimalKeepersTimeInfluenceEvaluationController animalKeepersTimeInfluenceEvaluationController() {
-        return new AnimalKeepersTimeInfluenceEvaluationController(new KeeperUtils());
+        return new AnimalKeepersTimeInfluenceEvaluationController(
+                new KeeperUtils(),
+                environment.getProperty("animal.wb.limit_for_keeper_time", Double.class));
     }
 
     @Bean
