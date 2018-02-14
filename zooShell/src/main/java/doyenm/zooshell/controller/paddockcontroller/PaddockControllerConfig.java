@@ -8,8 +8,10 @@ import doyenm.zooshell.controller.paddockcontroller.evaluation.UpdateUnusableSta
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.PaddockState;
 import java.util.function.Function;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
 /**
  *
@@ -17,6 +19,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class PaddockControllerConfig {
+    
+    @Autowired
+    Environment environment;
 
     @Bean
     public PaddockChangeNameController paddockChangeNameController() {
@@ -75,7 +80,10 @@ public class PaddockControllerConfig {
     
     @Bean
     PaddockEvacuationController paddockEvacuationController(){
-        return new PaddockEvacuationController();
+        return new PaddockEvacuationController(
+        environment.getProperty("paddock.obsolescence.max_number_of_turn_when_unusable", Integer.class),
+        environment.getProperty("paddock.obsolescence.penality_duration", Integer.class),
+        environment.getProperty("paddock.obsolescence.penality_duration", Double.class));
     }
 
     @Bean

@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
  */
 public class PaddockEvacuationControllerApplyTest {
 
-    PaddockEvacuationController subject = new PaddockEvacuationController();
+    PaddockEvacuationController subject = new PaddockEvacuationController(3, 3, 3.0);
 
     @Test
     public void shouldHaveOnePenaltyAndNoMoreReferenceToThePaddocksWhenThePaddockIsUnusableSinceThreeTurns() {
