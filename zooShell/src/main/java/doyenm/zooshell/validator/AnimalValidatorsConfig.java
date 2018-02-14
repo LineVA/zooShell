@@ -109,7 +109,9 @@ public class AnimalValidatorsConfig {
 
     @Bean
     public AnimalCreationValidator animalCreationValidator() {
-        return new AnimalCreationValidator(findPaddock, Integer.parseInt(environment.getProperty("animal.name.max_length")));
+        return new AnimalCreationValidator(findPaddock, 
+                Integer.parseInt(environment.getProperty("animal.name.max_length")),
+        environment.getProperty("paddock.obsolescence.max_number_of_turn_when_unusable", Integer.class));
     }
 
 //    @Bean 

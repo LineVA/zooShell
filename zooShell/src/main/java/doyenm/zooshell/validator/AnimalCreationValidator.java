@@ -5,7 +5,6 @@ import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.validator.context.FindingPaddockContext;
 import doyenm.zooshell.validator.context.FindingSexContext;
 import doyenm.zooshell.validator.context.FindingSpecieContext;
-import doyenm.zooshell.validator.function.FindingPaddockByNameFunction;
 import doyenm.zooshell.validator.function.FindingSexFunction;
 import doyenm.zooshell.validator.function.FindingSpecieFunction;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
@@ -25,8 +24,9 @@ public class AnimalCreationValidator implements Predicate<AnimalCreationContext>
     UniquenessNamesBiPredicates uniquenessNamesBiPredicates = new UniquenessNamesBiPredicates();
     FindingSpecieFunction findingSpecieFunction = new FindingSpecieFunction();
     FindingSexFunction findingSexFunction = new FindingSexFunction();
-   private final FindPaddock findPaddock;
-    
+    private final FindPaddock findPaddock;
+    private final int maxTurnsOfUnusableState;
+
     private final int maxLengthName;
 
     @Override
@@ -51,8 +51,8 @@ public class AnimalCreationValidator implements Predicate<AnimalCreationContext>
                 .get()
                 .getSex());
         if (context.getSpecie() != null && context.getPaddock() != null && context.getSex() != null) {
-            return Sex.UNKNOWN != context.getSex() && result && context.getPaddock().getEntry() != null 
-                    && context.getPaddock().getTurnsOfUnusableState() < 3;
+            return Sex.UNKNOWN != context.getSex() && result && context.getPaddock().getEntry() != null
+                    && context.getPaddock().getTurnsOfUnusableState() < maxTurnsOfUnusableState;
         }
         return false;
     }
