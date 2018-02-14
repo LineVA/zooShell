@@ -5,8 +5,10 @@ import doyenm.zooshell.controller.eventhandling.zoo.ZooEventsHandler;
 import doyenm.zooshell.utils.Utils;
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
 /**
  *
@@ -14,6 +16,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ZooControllersConfig {
+
+    @Autowired
+    Environment environment;
 
     @Bean
     Utils utils() {
@@ -30,10 +35,11 @@ public class ZooControllersConfig {
         return new ZooCreationController();
     }
 
-    private final List<ZooEventsHandler> handlers = Arrays.asList(new KeeperTrainingHandler());
-
     @Bean
     public ZooEvaluationController zooEvaluationController() {
+        List<ZooEventsHandler> handlers = Arrays.asList(new KeeperTrainingHandler(
+                environment.getProperty("keeper.training.training_per_x_turns", Integer.class)
+        ));
         return new ZooEvaluationController(handlers);
     }
 
