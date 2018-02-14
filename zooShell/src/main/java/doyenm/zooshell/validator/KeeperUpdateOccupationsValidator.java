@@ -8,18 +8,22 @@ import doyenm.zooshell.validator.function.FindingTaskFunction;
 import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class KeeperUpdateOccupationsValidator
         implements Predicate<KeeperUpdateOccupationsContext> {
 
-    FindKeeper findKeeper = new FindKeeper();
-    FindPaddock findPaddock = new FindPaddock();
-    FindingTaskFunction findingTaskFunction = new FindingTaskFunction();
-    DoubleValuesPredicates doubleValuesPredicates = new DoubleValuesPredicates();
+    private final FindKeeper findKeeper;
+    private final FindPaddock findPaddock;
+    private final FindingTaskFunction findingTaskFunction;
+    private final DoubleValuesPredicates doubleValuesPredicates;
+    
+    private final int maxTurnsInUnusableState;
 
     @Override
     public boolean test(KeeperUpdateOccupationsContext t) {
@@ -34,7 +38,7 @@ public class KeeperUpdateOccupationsValidator
                 .getConvertedTask());
         if (t.getConvertedKeeper() != null & t.getConvertedPaddock() != null & t.getConvertedTask() != null) {
             return testTime(t) & t.getConvertedPaddock().getEntry() != null & t.getConvertedTask() != TaskType.UNKNOWN
-                    && t.getConvertedPaddock().getTurnsOfUnusableState() < 3;
+                    && t.getConvertedPaddock().getTurnsOfUnusableState() < maxTurnsInUnusableState;
         }
         return false;
     }
