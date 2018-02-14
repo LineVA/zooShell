@@ -161,7 +161,12 @@ public class AnimalControllersConfig {
 
     @Bean
     CalvingFunction calvingFunction() {
-        return new CalvingFunction(uniformStatistics(), animalCreationValidator());
+        return new CalvingFunction(
+                uniformStatistics(),
+                animalCreationValidator(),
+                environment.getProperty("animal.reproduction.percentage_of_females", Double.class),
+                environment.getProperty("animal.reproduction.percentage_of_breeding_by_mother_youngs", Double.class),
+                environment.getProperty("animal.reproduction.max_size_of_litter_compared_to_animal_value", Integer.class));
     }
 
     @Bean

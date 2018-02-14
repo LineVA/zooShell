@@ -20,6 +20,10 @@ public class CalvingFunction implements Function<AnimalEvaluationContext, Animal
 
     private final UniformStatistics uniformStatistics; 
     private final AnimalCreationValidator animalCreationValidator;
+    
+    private final double percentageOfFemales;
+    private final double percentageOfYougnsBreedingByMother;
+    private final int maxSizeLitterComparedToTheAnimalValue;
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
@@ -48,7 +52,8 @@ public class CalvingFunction implements Function<AnimalEvaluationContext, Animal
     }
 
     private int determineLitterSize(Animal female) {
-        return uniformStatistics.getRandomLowerOrEqualsThan(female.getReproductionAttributes().getLitterSize() * 2);
+        return uniformStatistics.getRandomLowerOrEqualsThan(
+                female.getReproductionAttributes().getLitterSize() * maxSizeLitterComparedToTheAnimalValue);
     }
 
     private String determineName(Animal female, int j) {
@@ -57,14 +62,14 @@ public class CalvingFunction implements Function<AnimalEvaluationContext, Animal
     }
 
     private String determineSex() {
-        if (uniformStatistics.uniform() >= 0.5) {
+        if (uniformStatistics.uniform() >= percentageOfFemales) {
             return Sex.MALE.toString();
         }
         return Sex.FEMALE.toString();
     }
 
     private boolean needWeaningByHumans() {
-        return uniformStatistics.uniform() >= 0.9;
+        return uniformStatistics.uniform() >= percentageOfYougnsBreedingByMother;
     }
 
 }
