@@ -23,6 +23,11 @@ public class AnimalTasksInfluenceEvaluationController
     private final KeeperUtils keeperUtils;
     private final Double limitBetweenPositivAndNegativTime;
 
+   /**
+    * The formula is (cleaning + enrichement + medical_training + (feeding + nursing) / 2) / 4 
+    * @param t the initial context
+    * @return the context with the keepers tasks well-being 
+    */
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
@@ -33,11 +38,11 @@ public class AnimalTasksInfluenceEvaluationController
                         charactersMap.get(TaskType.ENRICHMENT))
                 + computeWellBeingForTask(context, TaskType.MEDICAL_TRAINING,
                         charactersMap.get(TaskType.MEDICAL_TRAINING))
-                + computeWellBeingForTask(context, TaskType.FEEDING,
+                + (computeWellBeingForTask(context, TaskType.FEEDING,
                         charactersMap.get(TaskType.FEEDING))
                 + computeWellBeingForTask(context, TaskType.NURSING,
-                        charactersMap.get(TaskType.NURSING)))
-                / charactersMap.size());
+                        charactersMap.get(TaskType.NURSING))) / 2)
+                / (charactersMap.size() - 1));
         return context;
     }
 

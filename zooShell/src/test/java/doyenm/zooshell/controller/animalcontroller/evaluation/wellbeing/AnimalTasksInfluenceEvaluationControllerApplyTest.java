@@ -87,12 +87,12 @@ public class AnimalTasksInfluenceEvaluationControllerApplyTest {
         AnimalKeeper keeper2 = givenKeeperWithCompetences(0.4, 1.0, 1.0, 1.0, 1.0);
         KeeperUtils utils = givenKeeperUtilsWithOccupations(time1, keeper1, pad1, time2, keeper2, pad2, TaskType.ENRICHMENT);
         AnimalEvaluationContext context = givenContext(Arrays.asList(keeper1, keeper2), animal, pad1);
-        AnimalTasksInfluenceEvaluationController controller = new AnimalTasksInfluenceEvaluationController(utils);
+        AnimalTasksInfluenceEvaluationController controller = new AnimalTasksInfluenceEvaluationController(utils, 0.5);
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTaskWellBeing()).isEqualTo(0.3 * 5 * 0.5);
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTaskWellBeing()).isEqualTo(0.3 * 5 * 0.5 / 4);
     }
 
     @Test
@@ -108,12 +108,12 @@ public class AnimalTasksInfluenceEvaluationControllerApplyTest {
         AnimalKeeper keeper2 = givenKeeperWithCompetences(0.4, 1.0, 1.0, 1.0, 1.0);
         KeeperUtils utils = givenKeeperUtilsWithOccupations(time1, keeper1, pad1, time2, keeper2, pad2, TaskType.ENRICHMENT);
         AnimalEvaluationContext context = givenContext(Arrays.asList(keeper1, keeper2), animal, pad1);
-        AnimalTasksInfluenceEvaluationController controller = new AnimalTasksInfluenceEvaluationController(utils);
+        AnimalTasksInfluenceEvaluationController controller = new AnimalTasksInfluenceEvaluationController(utils, 0.5);
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTaskWellBeing()).isEqualTo(0.3 * 5 * 0.5);
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTaskWellBeing()).isEqualTo(0.3 * 5 * 0.5 / 4);
     }
 
     @Test
@@ -129,12 +129,12 @@ public class AnimalTasksInfluenceEvaluationControllerApplyTest {
         AnimalKeeper keeper2 = givenKeeperWithCompetences(0.4, 1.0, 1.0, 1.0, 1.0);
         KeeperUtils utils = givenKeeperUtilsWithOccupations(time1, keeper1, pad1, time2, keeper2, pad2, TaskType.ENRICHMENT);
         AnimalEvaluationContext context = givenContext(Arrays.asList(keeper1, keeper2), animal, pad1);
-        AnimalTasksInfluenceEvaluationController controller = new AnimalTasksInfluenceEvaluationController(utils);
+        AnimalTasksInfluenceEvaluationController controller = new AnimalTasksInfluenceEvaluationController(utils, 0.5);
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTaskWellBeing()).isEqualTo(-0.3 * 5 * 0.5);
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTaskWellBeing()).isEqualTo(-0.3 * 5 * 0.5 / 4);
     }
 
     @Test
@@ -151,11 +151,11 @@ public class AnimalTasksInfluenceEvaluationControllerApplyTest {
         AnimalKeeper keeper2 = givenKeeperWithCompetences(1.0, 1.0, 1.0, 0.4, 1.0);
         KeeperUtils utils = givenKeeperUtilsWithOccupations(time1, keeper1, pad1, time2, keeper2, pad2, TaskType.MEDICAL_TRAINING);
         AnimalEvaluationContext context = givenContext(Arrays.asList(keeper1, keeper2), animal, pad1);
-        AnimalTasksInfluenceEvaluationController controller = new AnimalTasksInfluenceEvaluationController(utils);
+        AnimalTasksInfluenceEvaluationController controller = new AnimalTasksInfluenceEvaluationController(utils, 0.5);
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTaskWellBeing()).isEqualTo(0.3 * 5 * 0.5);
+        Assertions.assertThat(actualContext.getWellBeingObj().getKeepersTaskWellBeing()).isEqualTo(0.3 * 5 * 0.5 / 4);
     }
 }
