@@ -5,6 +5,7 @@ import doyenm.zooshell.validator.predicates.HandymenNumberPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
 /**
  *
@@ -12,6 +13,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class HandymanValidatorsConfig {
+
+    @Autowired
+    Environment environment;
 
     @Autowired
     NameValidator nameValidator;
@@ -38,6 +42,9 @@ public class HandymanValidatorsConfig {
 
     @Bean
     public HandymanUpdateOccupationsValidator handymanUpdateOccupationsValidator() {
-        return new HandymanUpdateOccupationsValidator(findHandyman, findPaddock);
+        return new HandymanUpdateOccupationsValidator(
+                findHandyman,
+                findPaddock,
+                environment.getProperty("handyman.affectation.max_number", Integer.class));
     }
 }

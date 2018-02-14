@@ -14,6 +14,7 @@ public class HandymanUpdateOccupationsValidator
 
     private final FindHandyman findHandyman;
     private final FindPaddock findPaddock;
+    private final int maxNumberOfAffectations;
 
     @Override
     public boolean test(HandymanUpdateOccupationsContext t) {
@@ -31,7 +32,7 @@ public class HandymanUpdateOccupationsValidator
     }
     
     private boolean checkAddition(HandymanUpdateOccupationsContext t){
-        return t.getHandyman().getAffectations().size() < 5 
+        return t.getHandyman().getAffectations().size() < maxNumberOfAffectations 
                     && !t.getHandyman().getAffectations().contains(t.getPaddock());
     }
 
