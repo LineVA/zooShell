@@ -100,15 +100,15 @@ public class PaddockControllerConfig {
         return new Function<Double, PaddockState>() {
             @Override
             public PaddockState apply(Double t) {
-                if (t < 0.1) {
+                if (t < environment.getProperty("paddock.obsolescence.new_limit", Double.class)) {
                     return PaddockState.NEW;
-                } else if (t < 0.2) {
+                } else if (t < environment.getProperty("paddock.obsolescence.excellent_limit", Double.class)) {
                     return PaddockState.EXCELLENT;
-                } else if (t < 0.6) {
+                } else if (t < environment.getProperty("paddock.obsolescence.good_limit", Double.class)) {
                     return PaddockState.GOOD;
-                } else if (t < 0.8) {
+                } else if (t < environment.getProperty("paddock.obsolescence.fair_limit", Double.class)) {
                     return PaddockState.FAIR;
-                } else if (t < 0.95) {
+                } else if (t < environment.getProperty("paddock.obsolescence.damaged_limit", Double.class)) {
                     return PaddockState.DAMAGED;
                 } else {
                     return PaddockState.UNSUABLE;
