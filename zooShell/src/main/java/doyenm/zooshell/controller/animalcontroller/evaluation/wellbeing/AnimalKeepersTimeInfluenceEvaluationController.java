@@ -19,6 +19,7 @@ public class AnimalKeepersTimeInfluenceEvaluationController
         implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
 
     private final KeeperUtils keeperUtils;
+    private final double limitBetweenPositivAndNegativTime;
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
@@ -43,7 +44,7 @@ public class AnimalKeepersTimeInfluenceEvaluationController
                         * keeper.getFamilyEvaluations().get(context.getFamily());
             }
         }
-        if (trait >= 0.5) {
+        if (trait >= limitBetweenPositivAndNegativTime) {
             return sum * context.getBase();
         }
         return -sum * context.getBase();

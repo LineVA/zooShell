@@ -5,17 +5,23 @@ import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Penalty;
 import doyenm.zooshell.model.PenaltyType;
 import java.util.function.Function;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author doyenm
  */
+@RequiredArgsConstructor
 public class PaddockEvacuationController
         implements Function<PaddockEvaluationContext, PaddockEvaluationContext> {
 
+    private final int maxTurnsWhenUnusable;
+    private final int penaltyDuration;
+    private final double penaltyValue;
+    
     @Override
     public PaddockEvaluationContext apply(PaddockEvaluationContext t) {
-        if (t.getPaddock().getTurnsOfUnusableState() == 3) {
+        if (t.getPaddock().getTurnsOfUnusableState() == maxTurnsWhenUnusable) {
             Paddock pad = t.getPaddock();
             // Delete animals 
             t = handleAnimals(t);
@@ -23,9 +29,9 @@ public class PaddockEvacuationController
             t = handleKeepers(t);
             // Add penalty
             t.getZoo().getPenalties().add(Penalty.builder()
-                    .remainingTurns(3)
+                    .remainingTurns(penaltyDuration)
                     .type(PenaltyType.UNUSABLE_PADDOCK)
-                    .value(3.0)
+                    .value(penaltyValue)
                     .build());
         }
         return t;

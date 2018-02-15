@@ -31,7 +31,7 @@ public class PaddockLocationValidator implements Predicate<PaddockCreationContex
                             paddock.getY(), paddock.getHeight());
                     return canOverlapPredicate.test(overlap);
        })
-                .collect(toList()).size() == 0;
+                .collect(toList()).isEmpty();
     }
 
 }

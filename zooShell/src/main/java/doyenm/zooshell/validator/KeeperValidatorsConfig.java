@@ -2,7 +2,9 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.validator.function.FindingFamilyFunction;
+import doyenm.zooshell.validator.function.FindingTaskFunction;
 import doyenm.zooshell.validator.name.NameValidator;
+import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
 import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
@@ -18,6 +20,7 @@ import org.springframework.core.env.Environment;
 @Configuration
 public class KeeperValidatorsConfig {
 
+    @Autowired
     Environment environment;
 
     @Bean
@@ -38,14 +41,22 @@ public class KeeperValidatorsConfig {
     @Autowired
     NameValidator nameValidator;
 
+    @Autowired
+    FindPaddock findPaddock;
+
     @Bean
     FindKeeper findKeeper() {
         return new FindKeeper();
     }
-    
+
     @Bean
-    FindingFamilyFunction findingFamilyFunction(){
+    FindingFamilyFunction findingFamilyFunction() {
         return new FindingFamilyFunction();
+    }
+
+    @Bean
+    FindingTaskFunction findingTaskFunction() {
+        return new FindingTaskFunction();
     }
 
     @Bean
@@ -70,11 +81,18 @@ public class KeeperValidatorsConfig {
 
     @Bean
     public KeeperUpdateOccupationsValidator keeperUpdateOccupationsValidator() {
-        return new KeeperUpdateOccupationsValidator();
+        int maxTurnsInUnusabeState =  environment.getProperty("paddock.obsolescence.max_number_of_turn_when_unusable", Integer.class);
+        return new KeeperUpdateOccupationsValidator(
+                findKeeper(),
+                findPaddock,
+                findingTaskFunction(),
+                new DoubleValuesPredicates(),
+                maxTurnsInUnusabeState
+        );
     }
-    
+
     @Bean
-    public KeeperAddTrainingValidator keeperAddTrainingValidator(){
+    public KeeperAddTrainingValidator keeperAddTrainingValidator() {
         return new KeeperAddTrainingValidator(findKeeper(), findingFamilyFunction());
     }
 }

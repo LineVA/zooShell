@@ -7,6 +7,8 @@ import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.TimedOccupation;
 import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.validator.function.FindingTaskFunction;
+import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,14 @@ import org.mockito.Mockito;
  * @author doyenm
  */
 public class KeeperUpdateOccupationsValidatorTestTest {
+
+    KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator(
+            new FindKeeper(),
+            new FindPaddock(),
+            new FindingTaskFunction(),
+            new DoubleValuesPredicates(),
+            3
+    );
 
     private Position givenPosition() {
         return Mockito.mock(Position.class);
@@ -92,7 +102,6 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then
@@ -112,7 +121,6 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = null;
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then
@@ -131,7 +139,6 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then
@@ -151,14 +158,13 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-     @Test
+
+    @Test
     public void shouldReturnFalseWhenThePaddockExistsButIsUnusableSinceThreeTurns() {
         // Given
         Position entry = null;
@@ -171,14 +177,13 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then
         Assertions.assertThat(result).isFalse();
     }
-    
-      @Test
+
+    @Test
     public void shouldReturnFalseWhenThePaddockExistsButIsUnusableSinceMoreThanThreeTurns() {
         // Given
         Position entry = null;
@@ -191,7 +196,6 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then
@@ -211,7 +215,6 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then
@@ -231,7 +234,6 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then
@@ -251,7 +253,6 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then
@@ -272,7 +273,6 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then
@@ -292,7 +292,6 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then
@@ -313,7 +312,6 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then
@@ -339,7 +337,6 @@ public class KeeperUpdateOccupationsValidatorTestTest {
         AnimalKeeper keeper = givenKeeperWithOccupationsList(list);
         Zoo zoo = givenZoo();
         KeeperUpdateOccupationsContext context = givenContextWithZooPaddockTaskTimeAndKeeper(zoo, pad, task, time, keeper);
-        KeeperUpdateOccupationsValidator validator = new KeeperUpdateOccupationsValidator();
         // When
         boolean result = validator.test(context);
         // Then

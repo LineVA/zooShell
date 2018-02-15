@@ -8,8 +8,10 @@ import doyenm.zooshell.controller.paddockcontroller.evaluation.UpdateUnusableSta
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.PaddockState;
 import java.util.function.Function;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
 /**
  *
@@ -17,6 +19,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class PaddockControllerConfig {
+    
+    @Autowired
+    Environment environment;
 
     @Bean
     public PaddockChangeNameController paddockChangeNameController() {
@@ -75,7 +80,10 @@ public class PaddockControllerConfig {
     
     @Bean
     PaddockEvacuationController paddockEvacuationController(){
-        return new PaddockEvacuationController();
+        return new PaddockEvacuationController(
+        environment.getProperty("paddock.obsolescence.max_number_of_turn_when_unusable", Integer.class),
+        environment.getProperty("paddock.obsolescence.penality_duration", Integer.class),
+        environment.getProperty("paddock.obsolescence.penality_duration", Double.class));
     }
 
     @Bean
@@ -92,15 +100,15 @@ public class PaddockControllerConfig {
         return new Function<Double, PaddockState>() {
             @Override
             public PaddockState apply(Double t) {
-                if (t < 0.1) {
+                if (t < environment.getProperty("paddock.obsolescence.new_limit", Double.class)) {
                     return PaddockState.NEW;
-                } else if (t < 0.2) {
+                } else if (t < environment.getProperty("paddock.obsolescence.excellent_limit", Double.class)) {
                     return PaddockState.EXCELLENT;
-                } else if (t < 0.6) {
+                } else if (t < environment.getProperty("paddock.obsolescence.good_limit", Double.class)) {
                     return PaddockState.GOOD;
-                } else if (t < 0.8) {
+                } else if (t < environment.getProperty("paddock.obsolescence.fair_limit", Double.class)) {
                     return PaddockState.FAIR;
-                } else if (t < 0.95) {
+                } else if (t < environment.getProperty("paddock.obsolescence.damaged_limit", Double.class)) {
                     return PaddockState.DAMAGED;
                 } else {
                     return PaddockState.UNSUABLE;

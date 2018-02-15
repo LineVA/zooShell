@@ -123,14 +123,11 @@ public class AnimalControllersConfig {
                 Arrays.asList(0.4, 0.3, 0.3, 0.1));
     }
 
-    private final double minProportionOfMaxWellBeingToProcrastinateDeath = 0.9;
-    private final double chanceToProcrastinateDeath = 0.5;
-
     @Bean
     AnimalDeathPredicates animalDeathPredicates() {
         return new AnimalDeathPredicates(Integer.parseInt(environment.getProperty("animal.turns.agony")),
-                minProportionOfMaxWellBeingToProcrastinateDeath,
-                chanceToProcrastinateDeath
+                environment.getProperty("animal.min.proportion_of_max_well_being_to_procrastinate_death", Double.class),
+                environment.getProperty("animal.chance_to_procrastinate_death", Double.class)
         );
     }
 
@@ -159,12 +156,19 @@ public class AnimalControllersConfig {
 
     @Bean
     AnimalCreationValidator animalCreationValidator() {
-        return new AnimalCreationValidator(findPaddock, Integer.parseInt(environment.getProperty("animal.name.max_length")));
+        return new AnimalCreationValidator(findPaddock, 
+                Integer.parseInt(environment.getProperty("animal.name.max_length")),
+        environment.getProperty("paddock.obsolescence.max_number_of_turn_when_unusable", Integer.class));
     }
 
     @Bean
     CalvingFunction calvingFunction() {
-        return new CalvingFunction(uniformStatistics(), animalCreationValidator());
+        return new CalvingFunction(
+                uniformStatistics(),
+                animalCreationValidator(),
+                environment.getProperty("animal.reproduction.percentage_of_females", Double.class),
+                environment.getProperty("animal.reproduction.percentage_of_breeding_by_mother_youngs", Double.class),
+                environment.getProperty("animal.reproduction.max_size_of_litter_compared_to_animal_value", Integer.class));
     }
 
     @Bean
@@ -213,12 +217,16 @@ public class AnimalControllersConfig {
 
     @Bean
     AnimalTasksInfluenceEvaluationController animalTasksInfluenceEvaluationController() {
-        return new AnimalTasksInfluenceEvaluationController(new KeeperUtils());
+        return new AnimalTasksInfluenceEvaluationController(
+                new KeeperUtils(),
+                environment.getProperty("animal.wb.limit_for_keeper_tasks", Double.class));
     }
 
     @Bean
     AnimalKeepersTimeInfluenceEvaluationController animalKeepersTimeInfluenceEvaluationController() {
-        return new AnimalKeepersTimeInfluenceEvaluationController(new KeeperUtils());
+        return new AnimalKeepersTimeInfluenceEvaluationController(
+                new KeeperUtils(),
+                environment.getProperty("animal.wb.limit_for_keeper_time", Double.class));
     }
 
     @Bean

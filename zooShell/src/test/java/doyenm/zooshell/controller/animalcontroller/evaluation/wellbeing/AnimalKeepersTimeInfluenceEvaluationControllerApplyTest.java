@@ -66,7 +66,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
     }
 
     @Test
-    public void shouldSetTheKeepersTimeWBToBaseTimesTimeWhenTheAnimalHasABraveryGreaterThanOneHalfAndOnlyOneKeeperInThePaddock() {
+    public void shouldSetTheKeepersTimeWBToBaseTimesTimeWhenTheAnimalHasABraveryGreaterThanTheLimitfAndOnlyOneKeeperInThePaddock() {
         // Given
         CharacterAttributes characterAttributes = givenCharacterAttributesWithBravery(0.7);
         Animal animal = givenAnimalWithCharacterAttributes(characterAttributes);
@@ -86,7 +86,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         AnimalKeeper keeper2 = givenKeeperWithCompetence(0.4);
         KeeperUtils utils = givenKeeperUtilsWithOccupations(occ1, keeper1, pad1, occ2, keeper2, pad2);
         AnimalEvaluationContext context = givenContext(Arrays.asList(keeper1, keeper2), animal, pad1);
-        AnimalKeepersTimeInfluenceEvaluationController controller = new AnimalKeepersTimeInfluenceEvaluationController(utils);
+        AnimalKeepersTimeInfluenceEvaluationController controller = new AnimalKeepersTimeInfluenceEvaluationController(utils, 0.5);
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
@@ -95,7 +95,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
     }
     
      @Test
-    public void shouldSetTheKeepersTimeWBToBaseTimesTimeWhenTheAnimalHasABraveryEqualToOneHalfAndOnlyOneKeeperInThePaddock() {
+    public void shouldSetTheKeepersTimeWBToBaseTimesTimeWhenTheAnimalHasABraveryEqualToTheLimitAndOnlyOneKeeperInThePaddock() {
         // Given
         CharacterAttributes characterAttributes = givenCharacterAttributesWithBravery(0.5);
         Animal animal = givenAnimalWithCharacterAttributes(characterAttributes);
@@ -115,7 +115,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         AnimalKeeper keeper2 = givenKeeperWithCompetence(0.4);
         KeeperUtils utils = givenKeeperUtilsWithOccupations(occ1, keeper1, pad1, occ2, keeper2, pad2);
         AnimalEvaluationContext context = givenContext(Arrays.asList(keeper1, keeper2), animal, pad1);
-        AnimalKeepersTimeInfluenceEvaluationController controller = new AnimalKeepersTimeInfluenceEvaluationController(utils);
+        AnimalKeepersTimeInfluenceEvaluationController controller = new AnimalKeepersTimeInfluenceEvaluationController(utils, 0.5);
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
@@ -124,7 +124,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
     }
     
      @Test
-    public void shouldSetTheKeepersTimeWBToBaseTimesTimeWhenTheAnimalHasABraveryLowerThanOneHalfAndOnlyOneKeeperInThePaddock() {
+    public void shouldSetTheKeepersTimeWBToBaseTimesTimeWhenTheAnimalHasABraveryLowerThanTheLimitAndOnlyOneKeeperInThePaddock() {
         // Given
         CharacterAttributes characterAttributes = givenCharacterAttributesWithBravery(0.1);
         Animal animal = givenAnimalWithCharacterAttributes(characterAttributes);
@@ -144,7 +144,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         AnimalKeeper keeper2 = givenKeeperWithCompetence(0.4);
         KeeperUtils utils = givenKeeperUtilsWithOccupations(occ1, keeper1, pad1, occ2, keeper2, pad2);
         AnimalEvaluationContext context = givenContext(Arrays.asList(keeper1, keeper2), animal, pad1);
-        AnimalKeepersTimeInfluenceEvaluationController controller = new AnimalKeepersTimeInfluenceEvaluationController(utils);
+        AnimalKeepersTimeInfluenceEvaluationController controller = new AnimalKeepersTimeInfluenceEvaluationController(utils, 0.5);
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
@@ -153,7 +153,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
     }
     
      @Test
-    public void shouldSetTheKeepersTimeWBToBaseTimesTimeWhenTheAnimalHasABraveryGreaterThanOneHalfAndTwoKeepersInThePaddock() {
+    public void shouldSetTheKeepersTimeWBToBaseTimesTimeWhenTheAnimalHasABraveryGreaterThanTheLimitAndTwoKeepersInThePaddock() {
         // Given
         CharacterAttributes characterAttributes = givenCharacterAttributesWithBravery(0.7);
         Animal animal = givenAnimalWithCharacterAttributes(characterAttributes);
@@ -172,7 +172,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         AnimalKeeper keeper2 = givenKeeperWithCompetence(0.4);
         KeeperUtils utils = givenKeeperUtilsWithOccupations(occ1, keeper1, pad1, occ2, keeper2, pad1);
         AnimalEvaluationContext context = givenContext(Arrays.asList(keeper1, keeper2), animal, pad1);
-        AnimalKeepersTimeInfluenceEvaluationController controller = new AnimalKeepersTimeInfluenceEvaluationController(utils);
+        AnimalKeepersTimeInfluenceEvaluationController controller = new AnimalKeepersTimeInfluenceEvaluationController(utils, 0.5);
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
@@ -181,7 +181,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
     }
     
     @Test
-    public void shouldSetTheKeepersTimeWBToBaseTimesTimeWhenTheAnimalHasABraveryEqualsToOneHalfAndTwoKeepersInThePaddock() {
+    public void shouldSetTheKeepersTimeWBToBaseTimesTimeWhenTheAnimalHasABraveryEqualsToTheLimitAndTwoKeepersInThePaddock() {
         // Given
         CharacterAttributes characterAttributes = givenCharacterAttributesWithBravery(0.5);
         Animal animal = givenAnimalWithCharacterAttributes(characterAttributes);
@@ -200,7 +200,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         AnimalKeeper keeper2 = givenKeeperWithCompetence(0.4);
         KeeperUtils utils = givenKeeperUtilsWithOccupations(occ1, keeper1, pad1, occ2, keeper2, pad1);
         AnimalEvaluationContext context = givenContext(Arrays.asList(keeper1, keeper2), animal, pad1);
-        AnimalKeepersTimeInfluenceEvaluationController controller = new AnimalKeepersTimeInfluenceEvaluationController(utils);
+        AnimalKeepersTimeInfluenceEvaluationController controller = new AnimalKeepersTimeInfluenceEvaluationController(utils, 0.5);
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
@@ -209,7 +209,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
     }
     
     @Test
-    public void shouldSetTheKeepersTimeWBToBaseTimesTimeWhenTheAnimalHasABraveryLowerThanOneHalfAndTwoKeepersInThePaddock() {
+    public void shouldSetTheKeepersTimeWBToBaseTimesTimeWhenTheAnimalHasABraveryLowerThanTheLimitAndTwoKeepersInThePaddock() {
         // Given
         CharacterAttributes characterAttributes = givenCharacterAttributesWithBravery(0.3);
         Animal animal = givenAnimalWithCharacterAttributes(characterAttributes);
@@ -228,7 +228,7 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         AnimalKeeper keeper2 = givenKeeperWithCompetence(0.4);
         KeeperUtils utils = givenKeeperUtilsWithOccupations(occ1, keeper1, pad1, occ2, keeper2, pad1);
         AnimalEvaluationContext context = givenContext(Arrays.asList(keeper1, keeper2), animal, pad1);
-        AnimalKeepersTimeInfluenceEvaluationController controller = new AnimalKeepersTimeInfluenceEvaluationController(utils);
+        AnimalKeepersTimeInfluenceEvaluationController controller = new AnimalKeepersTimeInfluenceEvaluationController(utils, 0.5);
         // When
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then

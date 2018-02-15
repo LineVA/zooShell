@@ -58,7 +58,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
         FindHandyman findHandyman = givenFindHandyman();
         FindPaddock findPaddock = givenFindPaddock();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
-                findHandyman, findPaddock);
+                findHandyman, findPaddock, 5);
         // When
         boolean result = validator.test(context);
         // Then
@@ -77,7 +77,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
         FindHandyman findHandyman = givenFindHandyman();
         FindPaddock findPaddock = givenFindPaddock();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
-                findHandyman, findPaddock);
+                findHandyman, findPaddock, 5);
         // When
         boolean result = validator.test(context);
         // Then
@@ -93,7 +93,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
         FindHandyman findHandyman = givenFindHandyman();
         FindPaddock findPaddock = givenFindPaddock();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
-                findHandyman, findPaddock);
+                findHandyman, findPaddock, 5);
         // When
         boolean result = validator.test(context);
         // Then
@@ -109,7 +109,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
         FindHandyman findHandyman = givenFindHandyman();
         FindPaddock findPaddock = givenFindPaddock();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
-                findHandyman, findPaddock);
+                findHandyman, findPaddock, 5);
         // When
         boolean result = validator.test(context);
         // Then
@@ -125,7 +125,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
         FindHandyman findHandyman = givenFindHandyman();
         FindPaddock findPaddock = givenFindPaddock();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
-                findHandyman, findPaddock);
+                findHandyman, findPaddock, 5);
         // When
         boolean result = validator.test(context);
         // Then
@@ -140,7 +140,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
         FindHandyman findHandyman = givenFindHandyman();
         FindPaddock findPaddock = givenFindPaddock();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
-                findHandyman, findPaddock);
+                findHandyman, findPaddock, 5);
         // When
         boolean result = validator.test(context);
         // Then
@@ -154,7 +154,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
         FindPaddock findPaddock = givenFindPaddock();
         FindHandyman findHandyman = givenFindHandyman();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
-                findHandyman, findPaddock);
+                findHandyman, findPaddock, 5);
         // When
         boolean result = validator.test(context);
         // Then

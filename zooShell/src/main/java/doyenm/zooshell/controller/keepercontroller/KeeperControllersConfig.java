@@ -85,7 +85,10 @@ public class KeeperControllersConfig {
 
     @Bean
     public KeeperAddTrainingController keeperAddTrainingController() {
-        return new KeeperAddTrainingController();
+        return new KeeperAddTrainingController(
+                environment.getProperty("keeper.training.duration", Integer.class),
+                environment.getProperty("keeper.training.bonus", Double.class)
+        );
     }
 
 }
