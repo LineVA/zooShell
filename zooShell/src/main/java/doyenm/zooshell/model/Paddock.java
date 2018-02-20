@@ -2,6 +2,7 @@ package doyenm.zooshell.model;
 
 import doyenm.zooshell.launch.options.Option;
 import java.util.List;
+import java.util.Set;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -46,6 +47,10 @@ public class Paddock {
      * Its type
      */
     private PaddockType type;
+    /**
+     * its arrangements
+     */
+    private List<PaddockArrangement> arrangements;
     /**
      * List of extensions
      */
