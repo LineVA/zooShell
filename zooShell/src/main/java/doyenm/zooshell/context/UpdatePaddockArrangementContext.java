@@ -23,8 +23,4 @@ public class UpdatePaddockArrangementContext {
     private Paddock convertedPaddock;
     private PaddockArrangement convertedArrangement;
 
-//    public void build() {
-//        this.getConvertedPaddock().setType(this.getConvertedType());
-//        this.getZoo().getPaddocks().replace(this.getPaddock(), this.getConvertedPaddock());
-//    }
 }
