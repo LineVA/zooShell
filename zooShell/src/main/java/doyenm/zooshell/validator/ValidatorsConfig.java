@@ -3,6 +3,7 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
 import doyenm.zooshell.validator.function.FindingBiomeFunction;
 import doyenm.zooshell.validator.function.FindingDietFunction;
+import doyenm.zooshell.validator.function.FindingPaddockArrangementFunction;
 import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
 import doyenm.zooshell.validator.function.FindingSexFunction;
 import doyenm.zooshell.validator.function.FindingSpecieFunction;
@@ -54,6 +55,11 @@ public class ValidatorsConfig {
     @Bean
     FindingPaddockTypeFunction findingPaddockTypeFunction() {
         return new FindingPaddockTypeFunction();
+    }
+    
+      @Bean
+    FindingPaddockArrangementFunction findingPaddockArrangementFunction() {
+        return new FindingPaddockArrangementFunction();
     }
 
     @Bean

@@ -62,6 +62,7 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.removePaddock(), 1),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.updateBiome(), 1),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.updatePaddockType(), 1),
+                new ActionPointCommand(commandsConfig.paddockCommandsConfig.updatePaddockArrangements(), 1),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.LsPaddockType(), 0),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.lsPaddockArrangements(), 0),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.lsBiome(), 0),
