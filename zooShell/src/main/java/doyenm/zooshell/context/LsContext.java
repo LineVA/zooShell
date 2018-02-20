@@ -4,6 +4,7 @@ import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.Paddock;
+import doyenm.zooshell.model.PaddockArrangement;
 import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.model.Penalty;
 import doyenm.zooshell.model.Sex;
@@ -102,6 +103,14 @@ public class LsContext {
         List<String> list = new ArrayList<>();
         for (PaddockType type : PaddockType.values()) {
             list.add(type.getId() + " - " + type.toString());
+        }
+        return list;
+    }
+    
+    public List<String> getPaddockArrangements() {
+        List<String> list = new ArrayList<>();
+        for (PaddockArrangement arrangement : PaddockArrangement.values()) {
+            list.add(arrangement.getId() + " - " + arrangement.toString());
         }
         return list;
     }

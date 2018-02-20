@@ -62,6 +62,9 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.removePaddock(), 1),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.updateBiome(), 1),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.updatePaddockType(), 1),
+                new ActionPointCommand(commandsConfig.paddockCommandsConfig.LsPaddockType(), 0),
+                new ActionPointCommand(commandsConfig.paddockCommandsConfig.lsPaddockArrangements(), 0),
+                new ActionPointCommand(commandsConfig.paddockCommandsConfig.lsBiome(), 0),
                 // Animal
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.changeAnimalName(), 1),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.changePaddock(), 1),
@@ -92,11 +95,9 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.handymanCommandsConfig.updateHandymanOccupations(), 1),
                 new ActionPointCommand(commandsConfig.handymanCommandsConfig.removeHandyman(), 1),
                 // Ls
-                new ActionPointCommand(commandsConfig.paddockCommandsConfig.lsBiome(), 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsContraceptionMethod(), 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsDiet(), 0),
                 new ActionPointCommand(commandsConfig.keeperCommandsConfig.lsKeeperTask(), 0),
-                new ActionPointCommand(commandsConfig.paddockCommandsConfig.LsPaddockType(), 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsSex(), 0),
                 new ActionPointCommand(commandsConfig.lsPenalties(), 0),
                 // General

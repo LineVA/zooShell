@@ -93,4 +93,9 @@ public class PaddockCommandsConfig {
     public LsBiome lsBiome() {
         return new LsBiome();
     }
+    
+     @Bean
+    public LsPaddockArrangements lsPaddockArrangements() {
+        return new LsPaddockArrangements();
+    }
 }
