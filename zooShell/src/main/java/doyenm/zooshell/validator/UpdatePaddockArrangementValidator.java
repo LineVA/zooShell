@@ -28,6 +28,7 @@ public class UpdatePaddockArrangementValidator
         if (pad == null) {
             return false;
         }
+        t.setConvertedPaddock(pad);
         t.setConvertedArrangement(Stream.of(findingPaddockArrangementContext)
                 .map(findingPaddockArrangementFunction)
                 .findFirst()
