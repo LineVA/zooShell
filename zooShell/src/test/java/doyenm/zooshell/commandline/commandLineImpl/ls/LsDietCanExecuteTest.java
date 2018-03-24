@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandline.commandLineImpl.ls;
 
-import doyenm.zooshell.commandline.commandImpl.ls.LsDiet;
+import doyenm.zooshell.commandline.commandimpl.ls.LsDiet;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

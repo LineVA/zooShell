@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandline.commandLineImpl.ls;
 
-import doyenm.zooshell.commandline.commandImpl.paddock.LsPaddockType;
+import doyenm.zooshell.commandline.commandimpl.paddock.LsPaddockType;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.model.Zoo;

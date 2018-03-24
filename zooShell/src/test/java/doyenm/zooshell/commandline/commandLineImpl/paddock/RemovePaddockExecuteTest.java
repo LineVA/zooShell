@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandline.commandLineImpl.paddock;
 
-import doyenm.zooshell.commandline.commandImpl.paddock.RemovePaddock;
-import doyenm.zooshell.commandline.commandImpl.paddock.UpdateBiome;
+import doyenm.zooshell.commandline.commandimpl.paddock.RemovePaddock;
+import doyenm.zooshell.commandline.commandimpl.paddock.UpdateBiome;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.context.PaddockContext;

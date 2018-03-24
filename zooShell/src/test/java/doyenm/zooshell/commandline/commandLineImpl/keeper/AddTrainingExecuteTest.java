@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandline.commandLineImpl.keeper;
 
-import doyenm.zooshell.commandline.commandImpl.keeper.AddTraining;
-import doyenm.zooshell.commandline.commandImpl.paddock.CreatePaddock;
+import doyenm.zooshell.commandline.commandimpl.keeper.AddTraining;
+import doyenm.zooshell.commandline.commandimpl.paddock.CreatePaddock;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.context.KeeperAddTrainingContext;

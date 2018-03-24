@@ -1,12 +1,12 @@
 //package doyenm.zooshell.commandLine.general;
 //
-//import doyenm.zooshell.commandline.commandImpl.DetailSpecie;
-//import doyenm.zooshell.commandline.commandImpl.LsSpecie;
-//import doyenm.zooshell.commandline.commandImpl.animal.*;
-//import doyenm.zooshell.commandline.commandImpl.ls.*;
-//import doyenm.zooshell.commandline.commandImpl.paddock.*;
-//import doyenm.zooshell.commandline.commandImpl.zoo.*;
-//import doyenm.zooshell.commandline.commandImpl.keeper.*;
+//import doyenm.zooshell.commandline.commandimpl.DetailSpecie;
+//import doyenm.zooshell.commandline.commandimpl.LsSpecie;
+//import doyenm.zooshell.commandline.commandimpl.animal.*;
+//import doyenm.zooshell.commandline.commandimpl.ls.*;
+//import doyenm.zooshell.commandline.commandimpl.paddock.*;
+//import doyenm.zooshell.commandline.commandimpl.zoo.*;
+//import doyenm.zooshell.commandline.commandimpl.keeper.*;
 //import static java.util.Arrays.asList;
 //import doyenm.zooshell.launch.options.Option;
 //import doyenm.zooshell.launch.play.OldPlay;

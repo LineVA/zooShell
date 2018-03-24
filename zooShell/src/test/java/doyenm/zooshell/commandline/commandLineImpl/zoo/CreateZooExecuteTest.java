@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandline.commandLineImpl.zoo;
 
-import doyenm.zooshell.commandline.commandImpl.zoo.CreateZoo;
+import doyenm.zooshell.commandline.commandimpl.zoo.CreateZoo;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.context.ZooCreationContext;

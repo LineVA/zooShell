@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandline.commandLineImpl.paddock;
 
-import doyenm.zooshell.commandline.commandImpl.paddock.RenamePaddock;
+import doyenm.zooshell.commandline.commandimpl.paddock.RenamePaddock;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandline.commandLineImpl.handyman;
 
-import doyenm.zooshell.commandline.commandImpl.handyman.RemoveHandyman;
-import doyenm.zooshell.commandline.commandImpl.paddock.RemovePaddock;
+import doyenm.zooshell.commandline.commandimpl.handyman.RemoveHandyman;
+import doyenm.zooshell.commandline.commandimpl.paddock.RemovePaddock;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.context.HandymanContext;

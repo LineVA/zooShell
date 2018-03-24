@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandline.commandLineImpl.handyman;
 
-import doyenm.zooshell.commandline.commandImpl.handyman.RenameHandyman;
-import doyenm.zooshell.commandline.commandImpl.paddock.RenamePaddock;
+import doyenm.zooshell.commandline.commandimpl.handyman.RenameHandyman;
+import doyenm.zooshell.commandline.commandimpl.paddock.RenamePaddock;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

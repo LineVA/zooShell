@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandline.commandLineImpl.animal;
 
-import doyenm.zooshell.commandline.commandImpl.animal.ChangePaddock;
-import doyenm.zooshell.commandline.commandImpl.animal.RemoveAnimal;
+import doyenm.zooshell.commandline.commandimpl.animal.ChangePaddock;
+import doyenm.zooshell.commandline.commandimpl.animal.RemoveAnimal;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
