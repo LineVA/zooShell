@@ -2,21 +2,25 @@ package doyenm.zooshell.controller.animalcontroller.criteria;
 
 import doyenm.zooshell.context.AnimalsWithCriteriaContext;
 import doyenm.zooshell.model.Specie;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 /**
  *
  * @author doyenm
  */
+@Slf4j
 public class AnimalsWithSpecieCriteriaController
         implements Function<AnimalsWithCriteriaContext, AnimalsWithCriteriaContext> {
 
     @Override
     public AnimalsWithCriteriaContext apply(AnimalsWithCriteriaContext t) {
-        return Arrays.asList(t)
+        Optional<AnimalsWithCriteriaContext> optional = Arrays.asList(t)
                 .stream()
                 .map(t1 -> {
                     for (Map.Entry<String, Specie> entry : t1.getConvertedSpecies().entrySet()) {
@@ -31,8 +35,13 @@ public class AnimalsWithSpecieCriteriaController
                     t1.setSpecieExpression(BuildingExpression.rebuildBooleanExpression(t1.getSpecieExpressionList()));
                     return t1;
                 })
-                .findFirst()
-                .get();
+                .findFirst();
+        if(optional.isPresent()){
+            return optional.get();
+        } else {
+            log.info("Fatal Error ; no value returned after examining specie criterion on animal {}", t.getAnimal().getName());
+            return t;
+        }
     }
 
 }
