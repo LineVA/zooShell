@@ -36,9 +36,7 @@ public class AnimalUpdateContraceptionValidator
         AnimalUpdateContraceptionContext context = retrieveAnimal(t);
         context = retrieveContraceptionMethod(context);
         return !Stream.of(context)
-                .filter((AnimalUpdateContraceptionContext t1) -> {
-                    return t1.getConvertedAnimal() != null && t1.getConvertedContraceptionMethod() != null;
-                })
+                .filter(t1 -> t1.getConvertedAnimal() != null && t1.getConvertedContraceptionMethod() != null)
                 .filter(compatibleWithSexPredicate)
                 .filter(hormonalContraceptionPredicate)
                 .filter(chirurgicalContraceptionPredicate)
