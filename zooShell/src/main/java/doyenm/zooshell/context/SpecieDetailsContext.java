@@ -1,6 +1,6 @@
 package doyenm.zooshell.context;
 
-import doyenm.zooshell.commandLine.utils.Couple;
+import doyenm.zooshell.commandline.utils.Couple;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.model.Zoo;
 import java.util.ArrayList;

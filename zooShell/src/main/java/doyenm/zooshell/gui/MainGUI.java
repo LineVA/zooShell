@@ -1,6 +1,6 @@
 package doyenm.zooshell.gui;
 
-import doyenm.zooshell.commandLine.general.CommandManager;
+import doyenm.zooshell.commandline.general.CommandManager;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.WindowAdapter;

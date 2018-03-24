@@ -1,7 +1,7 @@
 //package doyenm.zooshell.launch.play;
 //
 //import doyenm.zooshell.launch.options.Option;
-//import doyenm.zooshell.commandLine.commandManagerImpl.OldFreeCommandManager;
+//import doyenm.zooshell.commandline.commandManagerImpl.OldFreeCommandManager;
 //
 ///**
 // *

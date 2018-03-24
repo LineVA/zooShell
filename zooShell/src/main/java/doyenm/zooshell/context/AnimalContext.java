@@ -1,6 +1,6 @@
 package doyenm.zooshell.context;
 
-import doyenm.zooshell.commandLine.utils.Couple;
+import doyenm.zooshell.commandline.utils.Couple;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.FoodAttributes;

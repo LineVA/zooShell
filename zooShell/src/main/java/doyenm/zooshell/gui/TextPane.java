@@ -1,7 +1,7 @@
 package doyenm.zooshell.gui;
 
-import doyenm.zooshell.commandLine.general.CommandManager;
-import doyenm.zooshell.commandLine.general.ReturnExec;
+import doyenm.zooshell.commandline.general.CommandManager;
+import doyenm.zooshell.commandline.general.ReturnExec;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;

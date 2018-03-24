@@ -1,9 +1,9 @@
 package doyenm.zooshell;
 
-import doyenm.zooshell.commandLine.commandImpl.*;
-import doyenm.zooshell.commandLine.general.ActionPointCommand;
-import doyenm.zooshell.commandLine.general.ActionPointsHandler;
-import doyenm.zooshell.commandLine.general.CommandManager;
+import doyenm.zooshell.commandline.commandImpl.*;
+import doyenm.zooshell.commandline.general.ActionPointCommand;
+import doyenm.zooshell.commandline.general.ActionPointsHandler;
+import doyenm.zooshell.commandline.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
 import doyenm.zooshell.main.Main;
 import java.util.Arrays;
