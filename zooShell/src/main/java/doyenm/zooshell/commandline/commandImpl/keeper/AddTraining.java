@@ -41,14 +41,9 @@ public class AddTraining implements Command{
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 4) {
-            if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER_TRAINING).contains(cmd[0])) {
-                if (Constants.UPDATE.equalsIgnoreCase(cmd[1])) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return cmd.length == 4
+                && Arrays.asList(Constants.AK_OR_ANIMALKEEPER_TRAINING).contains(cmd[0])
+                && Constants.UPDATE.equalsIgnoreCase(cmd[1]);
     }
 
 }
