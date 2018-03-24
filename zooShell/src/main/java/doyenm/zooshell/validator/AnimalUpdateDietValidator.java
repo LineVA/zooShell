@@ -3,12 +3,14 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.AnimalUpdateDietContext;
 import doyenm.zooshell.validator.context.FindingDietContext;
 import doyenm.zooshell.validator.function.FindingDietFunction;
+
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -20,8 +22,8 @@ public class AnimalUpdateDietValidator implements Predicate<AnimalUpdateDietCont
     @Override
     public boolean test(AnimalUpdateDietContext t) {
         AnimalUpdateDietContext context = t;
-        context = retrieveAnimal(context);
-        context = retrieveDiet(context);
+        retrieveAnimal(context);
+        retrieveDiet(context);
         if (t.getConvertedAnimal() != null && t.getConvertedDiets() != null) {
             return t.getConvertedDiets().size() == t.getDiets().size() && t.getEntry() != null;
         }
@@ -37,12 +39,12 @@ public class AnimalUpdateDietValidator implements Predicate<AnimalUpdateDietCont
         if (t.getConvertedDiets() != null) {
             t.getConvertedDiets().addAll(
                     t.getDiets()
-                    .stream()
-                    .map((String t1) -> new FindingDietContext(t1))
-                    .map(findingDietFunction)
-                    .map((FindingDietContext t1) -> t1.getConvertedDiet())
-                    .filter(e -> e != null)
-                    .collect(Collectors.toList())
+                            .stream()
+                            .map(FindingDietContext::new)
+                            .map(findingDietFunction)
+                            .map(FindingDietContext::getConvertedDiet)
+                            .filter(Objects::nonNull)
+                            .collect(Collectors.toList())
             );
         }
         return t;
