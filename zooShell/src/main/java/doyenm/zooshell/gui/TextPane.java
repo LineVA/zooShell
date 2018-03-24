@@ -38,7 +38,7 @@ public class TextPane extends JTextPane {
         this.keyEventListener();
         this.mouseEventListener();
         sc = StyleContext.getDefaultStyleContext();
-        this.setText(manager.getFirstLine());
+        this.setText(CommandManager.FIRST_LINE);
         this.append("", EditorColors.CMD.getColor());
         this.setCaretPosition(this.cmdInvite.length());
         this.goEndOfTheText();

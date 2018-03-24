@@ -18,6 +18,8 @@ public class CommandManager {
     private final GetActionPoints getActionPoints;
     private final Evaluate evaluate;
 
+    public static final String FIRST_LINE = "Welcome";
+
     private Zoo zoo;
 
     public ReturnExec run(String cmd) {
@@ -48,9 +50,6 @@ public class CommandManager {
         return new ReturnExec("UNKNOWN CMD", TypeReturn.ERROR, null);
     }
 
-    public String getFirstLine() {
-        return "Welcome";
-    }
 
     private ReturnExec save(ReturnExec returnExec) {
         if (TypeReturn.SUCCESS == returnExec.getTypeReturn() && returnExec.getZoo() != null) {
