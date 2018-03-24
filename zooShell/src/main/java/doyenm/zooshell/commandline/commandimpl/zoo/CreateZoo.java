@@ -8,12 +8,14 @@ import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.context.ZooCreationContext;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.ZooCreationValidator;
+
+import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -39,7 +41,7 @@ public class CreateZoo implements Command {
      * @param cmd
      * @return
      */
-//    @Override
+    @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3 || cmd.length == 5 || cmd.length == 7) {
             if (Constants.ZOO.equalsIgnoreCase(cmd[0]) && Constants.CREATE.equalsIgnoreCase(cmd[1])) {
@@ -49,21 +51,18 @@ public class CreateZoo implements Command {
         return false;
     }
 
+    @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        try {
-            ZooCreationContext context = createContext(cmd);
-            context = Stream.of(context)
-                    .filter(validator)
-                    .map(controller)
-                    .findFirst()
-                    .get();
+        ZooCreationContext context = createContext(cmd);
+        Optional<ZooCreationContext> optional = Stream.of(context)
+                .filter(validator)
+                .map(controller)
+                .findFirst();
+        if (optional.isPresent()) {
             return new ReturnExec("ZOO_CREATION_SUCESS", TypeReturn.SUCCESS, context.getZoo());
-
-        } catch (java.lang.NumberFormatException ex) {
+        } else {
             return new ReturnExec("Exception",
                     TypeReturn.ERROR, null);
-        } catch (java.util.NoSuchElementException ex) {
-            return new ReturnExec("ERROR", TypeReturn.ERROR, null);
         }
     }
 
