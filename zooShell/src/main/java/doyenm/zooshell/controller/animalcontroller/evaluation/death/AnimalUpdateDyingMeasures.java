@@ -28,10 +28,10 @@ public class AnimalUpdateDyingMeasures {
 
     public Animal updateIsDyingByHunger(Animal animal, Collection<AnimalKeeper> keepers) {
         if (dyingPredicates.isDyingByFast(animal)
-                | dyingPredicates.isDyingByBadDiets(animal)
-                | dyingPredicates.isDyingByFoodQuantityToZero(animal)
-                | dyingPredicates.isDyingByLackOfKeeper(animal, keepers)
-                | dyingPredicates.isDyingByLackOfNursing(animal, keepers)) {
+                || dyingPredicates.isDyingByBadDiets(animal)
+                || dyingPredicates.isDyingByFoodQuantityToZero(animal)
+                || dyingPredicates.isDyingByLackOfKeeper(animal, keepers)
+                || dyingPredicates.isDyingByLackOfNursing(animal, keepers)) {
             animal.setDaysOfHunger(animal.getDaysOfHunger() + 1);
         } else {
             animal.setDaysOfHunger(0);
