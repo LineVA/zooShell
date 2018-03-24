@@ -20,7 +20,7 @@ FindingSpecieFunction findingSpecieFunction = new FindingSpecieFunction();
         t.setSpecie(Stream.of(findingSpecieContext)
                 .map(findingSpecieFunction)
                 .findFirst()
-                .get()
+                .orElseGet(null)
                 .getSpecie());
        return t.getSpecie()!= null;
     }
