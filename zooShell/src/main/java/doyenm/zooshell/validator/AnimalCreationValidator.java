@@ -32,7 +32,6 @@ public class AnimalCreationValidator implements Predicate<AnimalCreationContext>
     @Override
     public boolean test(AnimalCreationContext t) {
         AnimalCreationContext context = t;
-        context.convert();
         boolean result;
         result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getName(), maxLengthName);
         result &= this.uniquenessNamesBiPredicates.test(context.getName().toUpperCase(), context.getAnimals().keySet());

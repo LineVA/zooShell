@@ -56,9 +56,6 @@ public class AnimalCreationContext {
     private final SizeAttributesConstructor sizeAttributesConstructor = new SizeAttributesConstructor();
     private final CharacterAttributesConstructor characterConstructor = new CharacterAttributesConstructor();
 
-    public void convert() {
-    }
-
     public void build() {
         ReproductionAttributes reproductionAttributes = reproductionAttributesConstructor.build(specie);
         int age = (getSex() == Sex.FEMALE) ? reproductionAttributes.getFemaleMaturityAge() : reproductionAttributes.getMaleMaturityAge();
