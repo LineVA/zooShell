@@ -14,15 +14,15 @@ public class AnimalBiomeEvaluationController
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
         if (context.getAnimal().getSpecie().getBiomes().getBiomes() == null) {
-            context.getWellBeingObj().setBiomeWellBeing(context.ZERO);
+            context.getWellBeingObj().setBiomeWellBeing(AnimalEvaluationContext.ZERO);
             return context;
         }
         if (context.getAnimal().getSpecie().getBiomes().getBiomes().contains(context.getAnimal().getPaddock().getBiome())) {
-            context.getWellBeingObj().setBiomeWellBeing(context.BASE);
+            context.getWellBeingObj().setBiomeWellBeing(AnimalEvaluationContext.BASE);
 
         } else {
-            context.setBiomeWellBeing(context.ZERO);
-            context.getWellBeingObj().setBiomeWellBeing(context.ZERO);
+            context.setBiomeWellBeing(AnimalEvaluationContext.ZERO);
+            context.getWellBeingObj().setBiomeWellBeing(AnimalEvaluationContext.ZERO);
 
         }
         return context;
