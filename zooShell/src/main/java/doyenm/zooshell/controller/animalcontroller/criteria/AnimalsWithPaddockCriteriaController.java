@@ -38,7 +38,7 @@ public class AnimalsWithPaddockCriteriaController
         if (optional.isPresent()) {
             return optional.get();
         } else {
-            log.info("Fatal Error ; no value returned after examining paddock criteria on animal {}", t.getAnimal().getName());
+            log.info("Fatal Error ; no value returned after examining paddock criterion on animal {}", t.getAnimal().getName());
             return t;
         }
     }

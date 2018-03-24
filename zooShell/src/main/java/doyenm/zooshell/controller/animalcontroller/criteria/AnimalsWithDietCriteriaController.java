@@ -39,7 +39,7 @@ public class AnimalsWithDietCriteriaController
         if(optional.isPresent()){
             return optional.get();
         } else {
-            log.info("Fatal Error ; no value returned after examining diet criteria on animal {}", t.getAnimal().getName());
+            log.info("Fatal Error ; no value returned after examining diet criterion on animal {}", t.getAnimal().getName());
             return t;
         }
     }
