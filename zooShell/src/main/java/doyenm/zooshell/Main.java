@@ -1,6 +1,5 @@
-package doyenm.zooshell.main;
+package doyenm.zooshell;
 
-import doyenm.zooshell.ZooShellConfig;
 import doyenm.zooshell.commandLine.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
 import lombok.RequiredArgsConstructor;

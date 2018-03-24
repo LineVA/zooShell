@@ -5,7 +5,7 @@ import doyenm.zooshell.commandLine.general.ActionPointCommand;
 import doyenm.zooshell.commandLine.general.ActionPointsHandler;
 import doyenm.zooshell.commandLine.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
-import doyenm.zooshell.main.Main;
+
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
