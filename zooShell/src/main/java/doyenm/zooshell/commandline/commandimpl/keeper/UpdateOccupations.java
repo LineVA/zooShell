@@ -5,16 +5,14 @@ import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.context.KeeperUpdateOccupationsContext;
 import doyenm.zooshell.controller.keepercontroller.KeeperUpdateOccupationsController;
-import doyenm.zooshell.launch.options.Option;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.KeeperUpdateOccupationsValidator;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
-
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author doyenm
