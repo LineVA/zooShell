@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 @Setter
 public class AnimalEvaluationContext {
 
-    public final static double BASE = 5.0;
-    public final static double ZERO = 0.0;
+    public static final double BASE = 5.0;
+    public static final double ZERO = 0.0;
 
     private final Zoo zoo;
     private Animal animal;
