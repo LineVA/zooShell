@@ -61,7 +61,7 @@ public class AnimalFoodQuantityEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getFoodQuantityWellBeing()).isEqualTo(context.getBase()*coef);
+        Assertions.assertThat(actualContext.getWellBeingObj().getFoodQuantityWellBeing()).isEqualTo(context.BASE*coef);
     }
 
     @Test
@@ -78,6 +78,6 @@ public class AnimalFoodQuantityEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getFoodQuantityWellBeing()).isEqualTo(context.getZero());
+        Assertions.assertThat(actualContext.getWellBeingObj().getFoodQuantityWellBeing()).isEqualTo(context.ZERO);
     }
 }

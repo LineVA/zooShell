@@ -76,7 +76,7 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getTerritoryWellBeing()).isEqualTo(context.getBase() * coef);
+        Assertions.assertThat(actualContext.getWellBeingObj().getTerritoryWellBeing()).isEqualTo(context.BASE * coef);
     }
 
     @Test
@@ -93,6 +93,6 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getTerritoryWellBeing()).isEqualTo(context.getZero());
+        Assertions.assertThat(actualContext.getWellBeingObj().getTerritoryWellBeing()).isEqualTo(context.ZERO);
     }
 }

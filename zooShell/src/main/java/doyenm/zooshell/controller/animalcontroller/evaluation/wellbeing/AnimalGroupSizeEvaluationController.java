@@ -24,10 +24,10 @@ public class AnimalGroupSizeEvaluationController
         if (utils.isBetweenAuthorizedValues(currentDeviation,
                 context.getUicnStandardDeviation())) {
 //            context.setGroupSizeWellBeing(context.getBase() * context.getUicnCoefficient());
-            context.getWellBeingObj().setSocialWellBeing(context.getBase() * context.getUicnCoefficient());
+            context.getWellBeingObj().setSocialWellBeing(context.BASE * context.getUicnCoefficient());
         } else {
 //            context.setGroupSizeWellBeing(context.getZero());
-            context.getWellBeingObj().setSocialWellBeing(context.getZero());
+            context.getWellBeingObj().setSocialWellBeing(context.ZERO);
         }
         return context;
     }

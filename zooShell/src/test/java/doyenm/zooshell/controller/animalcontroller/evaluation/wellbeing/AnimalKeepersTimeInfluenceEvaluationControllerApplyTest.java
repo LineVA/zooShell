@@ -57,7 +57,6 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         Mockito.when(context.getKeepers()).thenReturn(keepers);
         Mockito.when(context.getAnimal()).thenReturn(animal);
         Mockito.when(context.getPaddock()).thenReturn(pad);
-        Mockito.when(context.getBase()).thenCallRealMethod();
         WellBeing wb = Mockito.mock(WellBeing.class);
         Mockito.when(wb.getKeepersTimeWellBeing()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(wb).setKeepersTimeWellBeing(Mockito.anyDouble());

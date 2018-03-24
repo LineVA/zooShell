@@ -65,7 +65,6 @@ public class AnimalTasksInfluenceEvaluationControllerApplyTest {
         Mockito.when(context.getKeepers()).thenReturn(keepers);
         Mockito.when(context.getAnimal()).thenReturn(animal);
         Mockito.when(context.getPaddock()).thenReturn(pad);
-        Mockito.when(context.getBase()).thenCallRealMethod();
         Mockito.when(context.getTaskInfluenceWellBeing()).thenCallRealMethod();
         WellBeing wb = Mockito.mock(WellBeing.class);
         Mockito.when(wb.getKeepersTaskWellBeing()).thenCallRealMethod();

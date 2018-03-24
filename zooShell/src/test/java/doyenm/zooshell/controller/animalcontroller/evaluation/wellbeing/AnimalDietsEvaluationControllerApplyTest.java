@@ -41,7 +41,7 @@ public class AnimalDietsEvaluationControllerApplyTest {
         Mockito.doCallRealMethod().when(wb).setDietsWellBeing(Mockito.anyDouble());
         Mockito.when(context.getWellBeingObj()).thenReturn(wb);
         Mockito.when(context.getDietsWellBeing()).thenCallRealMethod();
-        Mockito.when(context.getBase()).thenCallRealMethod();
+//        Mockito.when(context.BASE).thenCallRealMethod();
         return context;
     }
 

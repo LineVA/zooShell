@@ -18,7 +18,7 @@ public class AnimalDietsEvaluationController
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
         if (isNullOrEmpty(context)) {
-            context.setDietsWellBeing(context.getZero());
+            context.setDietsWellBeing(context.ZERO);
         } else {
             List<Diet> diets = new ArrayList<>();
             List<Diet> animalDiets = context.getAnimal().getDiets();
@@ -31,7 +31,7 @@ public class AnimalDietsEvaluationController
                     sum += 1;
                 }
             }
-            context.getWellBeingObj().setDietsWellBeing(context.getBase() * (double) sum / ((double) diets.size()));
+            context.getWellBeingObj().setDietsWellBeing(context.BASE * (double) sum / ((double) diets.size()));
         }
         return context;
     }

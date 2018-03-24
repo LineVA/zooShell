@@ -22,10 +22,10 @@ public class AnimalFoodQuantityEvaluationController
                 context.getAnimal().getOptimalFoodAttributes().getQuantity());
         if (utils.isBetweenAuthorizedValues(currentDeviation,
                 context.getUicnStandardDeviation())) {
-            context.getWellBeingObj().setFoodQuantityWellBeing(context.getBase() * context.getUicnCoefficient());
+            context.getWellBeingObj().setFoodQuantityWellBeing(context.BASE * context.getUicnCoefficient());
 //            context.setFoodQuantityWellBeing(context.getBase() * context.getUicnCoefficient());
         } else {
-            context.getWellBeingObj().setFoodQuantityWellBeing(context.getZero());
+            context.getWellBeingObj().setFoodQuantityWellBeing(context.ZERO);
 //            context.setFoodQuantityWellBeing(context.getZero());
         }
         return context;

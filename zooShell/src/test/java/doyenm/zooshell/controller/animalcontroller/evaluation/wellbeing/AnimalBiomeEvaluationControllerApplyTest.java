@@ -48,7 +48,6 @@ public class AnimalBiomeEvaluationControllerApplyTest {
         Mockito.when(wb.getBiomeWellBeing()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(wb).setBiomeWellBeing(Mockito.anyDouble());
         Mockito.when(context.getWellBeingObj()).thenReturn(wb);
-        Mockito.when(context.getBase()).thenCallRealMethod();
         return context;
     }
 

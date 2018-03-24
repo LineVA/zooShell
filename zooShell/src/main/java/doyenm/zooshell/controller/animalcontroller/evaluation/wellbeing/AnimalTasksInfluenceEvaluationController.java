@@ -70,9 +70,9 @@ public class AnimalTasksInfluenceEvaluationController
                     * competence;
         }
         if (trait >= limitBetweenPositivAndNegativTime) {
-            return sum * context.getBase();
+            return sum * context.BASE;
         }
-        return -sum * context.getBase();
+        return -sum * context.BASE;
     }
 
 }
