@@ -30,7 +30,7 @@ public class UpdateBiomeValidator implements Predicate<UpdateBiomeContext> {
         context.setConvertedBiome(Stream.of(findingBiomeContext)
                 .map(findingBiomeFunction)
                 .findFirst()
-                .get()
+                .orElseGet(null)
                 .getConvertedBiome());
        return context.getConvertedBiome() != null;
     }
