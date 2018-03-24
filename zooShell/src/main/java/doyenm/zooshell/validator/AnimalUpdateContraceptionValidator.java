@@ -8,13 +8,11 @@ import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPred
 import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithPreviousPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithSexPredicate;
+import lombok.RequiredArgsConstructor;
 
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author doyenm
@@ -34,7 +32,7 @@ public class AnimalUpdateContraceptionValidator
     @Override
     public boolean test(AnimalUpdateContraceptionContext t) {
         AnimalUpdateContraceptionContext context = retrieveAnimal(t);
-        context = retrieveContraceptionMethod(context);
+        retrieveContraceptionMethod(context);
         return !Stream.of(context)
                 .filter(t1 -> t1.getConvertedAnimal() != null && t1.getConvertedContraceptionMethod() != null)
                 .filter(compatibleWithSexPredicate)
