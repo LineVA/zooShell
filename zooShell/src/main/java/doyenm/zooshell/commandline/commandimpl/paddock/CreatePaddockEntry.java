@@ -8,13 +8,14 @@ import doyenm.zooshell.controller.paddockcontroller.PaddockEntryCreationControll
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.PaddockEntryCreationValidator;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -40,13 +41,8 @@ public class CreatePaddockEntry implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 5) {
-            if (Arrays.asList(Constants.PAD_OR_PADDOCK_ENTRY).contains(cmd[0])) {
-                if (Constants.CREATE.equalsIgnoreCase(cmd[1])) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return cmd.length == 5
+                && Arrays.asList(Constants.PAD_OR_PADDOCK_ENTRY).contains(cmd[0])
+                && Constants.CREATE.equalsIgnoreCase(cmd[1]);
     }
 }
