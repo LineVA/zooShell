@@ -22,7 +22,7 @@ public class CalvingFunction implements Function<AnimalEvaluationContext, Animal
     private final AnimalCreationValidator animalCreationValidator;
     
     private final double percentageOfFemales;
-    private final double percentageOfYougnsBreedingByMother;
+    private final double percentageOfYoungsBreedingByMother;
     private final int maxSizeLitterComparedToTheAnimalValue;
 
     @Override
@@ -33,15 +33,12 @@ public class CalvingFunction implements Function<AnimalEvaluationContext, Animal
         for (int i = 0; i < litterSize; i++) {
             final int j = i + 1;
             Optional optional = Stream.of(context)
-                    .map((AnimalEvaluationContext t1) -> new AnimalCreationContext(t1.getZoo(),
+                    .map(t1 -> new AnimalCreationContext(t1.getZoo(),
                                     determineName(female, j), female.getSpecie().getNames().getName(),
                                     determineSex(), female.getPaddock().getName()))
                     .filter(animalCreationValidator)
-                    .map((AnimalCreationContext t1) -> t1.createNewborn())
-                    .map((Animal t1) -> {
-                        t1.setNotNursingByMother(needWeaningByHumans());
-                        return t1;
-                    })
+                    .map(AnimalCreationContext::createNewborn)
+                    .peek(t1 -> t1.setNotNursingByMother(needWeaningByHumans()))
                     .findFirst();
             if (optional.isPresent()) {
                 context.getChildren().add((Animal) optional.get());
@@ -69,7 +66,7 @@ public class CalvingFunction implements Function<AnimalEvaluationContext, Animal
     }
 
     private boolean needWeaningByHumans() {
-        return uniformStatistics.uniform() >= percentageOfYougnsBreedingByMother;
+        return uniformStatistics.uniform() >= percentageOfYoungsBreedingByMother;
     }
 
 }
