@@ -2,14 +2,18 @@ package doyenm.zooshell.controller.animalcontroller.evaluation;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.*;
+
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- *
  * @author doyenm
  */
+@Slf4j
 @RequiredArgsConstructor
 public class AnimalWellBeingController
         implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
@@ -26,7 +30,7 @@ public class AnimalWellBeingController
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
-        return Stream.of(context)
+        Optional<AnimalEvaluationContext> optional = Stream.of(context)
                 .map(animalBiomeEvaluationController)
                 .map(animalDietsEvaluationController)
                 .map(animalFastDaysEvaluationController)
@@ -35,21 +39,12 @@ public class AnimalWellBeingController
                 .map(animalTerritorySizeEvaluationController)
                 .map(animalTasksInfluenceEvaluationController)
                 .map(animalKeepersTimeInfluenceEvaluationController)
-//                .map((AnimalEvaluationContext t1) -> {
-//                    t1.setWellBeing((t1.getBiomeWellBeing()
-//                            + t1.getDietsWellBeing()
-//                            + t1.getFastDaysWellBeing()
-//                            + t1.getFoodQuantityWellBeing()
-//                            + t1.getGroupSizeWellBeing()
-//                            + t1.getTerritorySizeWellBeing()
-//                            + t1.getTaskInfluenceWellBeing()
-//                            + t1.getKeeperInfluenceWellBeing())
-//                            / 8.0);
-//                    return t1;
-//                    
-//                })
-                .findFirst()
-                .get();
+                .findFirst();
+        if (optional.isPresent()) {
+            return optional.get();
+        } else {
+            log.info("Fatal Error : no value returning from the animals evaluation controller's");
+            return context;
+        }
     }
-
 }
