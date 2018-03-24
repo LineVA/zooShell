@@ -23,13 +23,6 @@ import lombok.Setter;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Specie {
-//    private final List<Integer> diets;
-//    private final int family;
-//    private final FeedingAttributes specieFeeding;
-//    private final ReproductionAttributes specieReproduction;
-//    private final LifeSpanAttributes specieLifeSpan;
-//    private final SocialAttributes specieSocial;
-//    private final TerritoryAttributes specieTerritory;
 
     private Names names;
     private Uicn uicn;
@@ -43,15 +36,6 @@ public class Specie {
     private TerritoryAttributes territoryAttributes;
     private SizeAttributes sizeAttributes;
     private CharacterAttributes characterAttributes;
-//    private final int ecoregion;
-//    private final int conservation;
-//    private final int size;
-//    private final List<Integer> continents;
-//    private GaussianSocialAttributes gaussianSocialAttributes;
-//    private GaussianTerritoryAttributes gaussianTerritoryAttributes;
-//    private DocumentationURI documentation;
-//    int breedingProgramme;
-//    Tags tags;
 
     public Specie(Names names, Uicn uicn, BiomesSpecie biomes, DietsSpecie diets) {
         this.names = names;
