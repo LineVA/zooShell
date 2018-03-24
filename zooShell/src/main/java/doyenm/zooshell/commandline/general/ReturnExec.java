@@ -20,7 +20,7 @@ public class ReturnExec {
         this.typeReturn = typeReturn;
     }
     
-    public void concat(String msg_2){
-         this.message += " \n" + msg_2; 
+    public void concat(String msg2){
+         this.message += " \n" + msg2;
     }
 }
