@@ -32,9 +32,7 @@ public class AnimalDyingPredicates {
 
     public boolean isDyingByBadDiets(Animal animal) {
         List<Diet> specieDiets = animal.getSpecie().getDiets().getDiets();
-        if (specieDiets.isEmpty()) {
-            return false;
-        } else if (!animal.getDiets().stream().noneMatch(diet -> (specieDiets.contains(diet)))) {
+        if (specieDiets.isEmpty() || !animal.getDiets().stream().noneMatch(diet -> (specieDiets.contains(diet)))) {
             return false;
         }
         return true;
@@ -50,7 +48,7 @@ public class AnimalDyingPredicates {
         if (animal.isNotNursingByMother()) {
             return keepers
                     .stream()
-                    .noneMatch((keeper) -> (keeperUtils.isKeeperNursingInGivenPaddock(keeper, animal.getPaddock())));
+                    .noneMatch(keeper -> (keeperUtils.isKeeperNursingInGivenPaddock(keeper, animal.getPaddock())));
         }
         return false;
     }
