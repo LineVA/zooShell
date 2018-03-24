@@ -15,7 +15,6 @@ public class AnimalBiomeEvaluationController
         AnimalEvaluationContext context = t;
         if (context.getAnimal().getSpecie().getBiomes().getBiomes() == null) {
             context.getWellBeingObj().setBiomeWellBeing(context.getZero());
-//            context.setBiomeWellBeing(context.getZero());
             return context;
         }
         if (context.getAnimal().getSpecie().getBiomes().getBiomes().contains(context.getAnimal().getPaddock().getBiome())) {
