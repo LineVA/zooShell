@@ -3,13 +3,15 @@ package doyenm.zooshell.validator.criteria;
 import doyenm.zooshell.context.LsWithCriteriaContext;
 import doyenm.zooshell.validator.context.FindingDietContext;
 import doyenm.zooshell.validator.function.FindingDietFunction;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -26,7 +28,7 @@ public class AnimalsListWithDietCriteriaValidator implements Predicate<LsWithCri
         if (context.getDietsExpression() != null && !context.getDietsExpression().isEmpty() && context.getDiets() != null) {
             context.getDiets().addAll(parser.parse(context.getDietsExpression(), excluded));
             context.setDietsExpression(parser.replaceGrammaticalExpression(context.getDietsExpression()));
-            context = retrieveDiet(context);
+            retrieveDiet(context);
             if (context.getConvertedDiets() != null) {
                 return context.getDiets().size() == context.getConvertedDiets().size();
             }
@@ -38,12 +40,11 @@ public class AnimalsListWithDietCriteriaValidator implements Predicate<LsWithCri
     private LsWithCriteriaContext retrieveDiet(LsWithCriteriaContext t) {
         t.getDiets()
                 .stream()
-                .map((String t1) -> new FindingDietContext(t1))
+                .map(FindingDietContext::new)
                 .map(findingDietFunction)
-                .filter(e -> e.getConvertedDiet() != null)
-                .forEach(e -> {
-                    t.getConvertedDiets().put(e.getDiet(), e.getConvertedDiet());
-                });
+                .filter(Objects::nonNull)
+                .forEach(e ->
+                        t.getConvertedDiets().put(e.getDiet(), e.getConvertedDiet()));
         return t;
     }
 }
