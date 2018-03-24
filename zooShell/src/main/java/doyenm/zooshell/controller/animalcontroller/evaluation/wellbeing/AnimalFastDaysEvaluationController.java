@@ -15,10 +15,8 @@ public class AnimalFastDaysEvaluationController
         AnimalEvaluationContext context = t;
         if (context.getAnimal().getCurrentFoodAttributes().getFastDays()
                 == context.getAnimal().getOptimalFoodAttributes().getFastDays()) {
-//            context.setFastDaysWellBeing(context.getBase());
             context.getWellBeingObj().setFastDaysWellBeing(context.BASE);
         } else {
-//            context.setFastDaysWellBeing(context.getZero());
             context.getWellBeingObj().setFastDaysWellBeing(context.ZERO);
         }
         return context;
