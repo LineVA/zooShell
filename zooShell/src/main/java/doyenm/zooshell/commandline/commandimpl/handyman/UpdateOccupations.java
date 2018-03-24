@@ -13,13 +13,14 @@ import doyenm.zooshell.controller.handymancontroller.UpdateOccupationsController
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.HandymanUpdateOccupationsValidator;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -46,15 +47,14 @@ public class UpdateOccupations implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 4) {
-            if (Arrays.asList(Constants.HANDYMAN_OCCUPATIONS).contains(cmd[0])) {
-                if (Constants.ADD.equalsIgnoreCase(cmd[2])) {
-                    addition = true;
-                    return true;
-                } else if (Constants.REMOVE.equalsIgnoreCase(cmd[2])) {
-                    addition = false;
-                    return true;
-                }
+        if (cmd.length == 4
+                && Arrays.asList(Constants.HANDYMAN_OCCUPATIONS).contains(cmd[0])) {
+            if (Constants.ADD.equalsIgnoreCase(cmd[2])) {
+                addition = true;
+                return true;
+            } else if (Constants.REMOVE.equalsIgnoreCase(cmd[2])) {
+                addition = false;
+                return true;
             }
         }
         return false;
