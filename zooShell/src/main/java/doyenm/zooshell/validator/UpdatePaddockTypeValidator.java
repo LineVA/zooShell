@@ -29,7 +29,7 @@ public class UpdatePaddockTypeValidator implements Predicate<UpdatePaddockTypeCo
         t.setConvertedType(Stream.of(findingPaddockTypeContext)
                 .map(findingPaddockTypeFunction)
                 .findFirst()
-                .get()
+                .orElseGet(null)
                 .getConvertedType());
        return t.getConvertedType()!= null;
     }

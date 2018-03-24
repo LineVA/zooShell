@@ -20,7 +20,7 @@ public class UpdateUnusableState
 
     @Override
     public PaddockEvaluationContext apply(PaddockEvaluationContext t) {
-        t = update(t);
+        update(t);
         if(t.getPaddock().getTurnsOfUnusableState() > 1){
             t.getPaddockEvents().add(generateEvent(t.getPaddock()));
         }
