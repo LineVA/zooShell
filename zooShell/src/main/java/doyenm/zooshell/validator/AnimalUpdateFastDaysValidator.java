@@ -24,7 +24,7 @@ public class AnimalUpdateFastDaysValidator
                 &&integerValuePredicates.mustBeLowerOrEqualsThan(t.getConvertedFastDays(), 7))) {
             return false;
         }
-        t = retrieveAnimal(t);
+        retrieveAnimal(t);
         if (t.getConvertedAnimal() != null) {
             return t.getEntry() != null;
         }
