@@ -1,19 +1,22 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
+import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.validator.context.FindingContraceptionContext;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
 import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithPreviousPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithSexPredicate;
+
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -52,11 +55,16 @@ public class AnimalUpdateContraceptionValidator
     private AnimalUpdateContraceptionContext retrieveContraceptionMethod(AnimalUpdateContraceptionContext t) {
         FindingContraceptionContext findingContraceptionMethodContext
                 = new FindingContraceptionContext(t.getContraceptionMethod());
-        t.setConvertedContraceptionMethod(Stream.of(findingContraceptionMethodContext)
+        ContraceptionMethod method = Stream.of(findingContraceptionMethodContext)
                 .map(findingContraceptionMethodFunction)
                 .findFirst()
-                .get()
-                .getConvertedContraception());
+                .orElse(
+                        findingContraceptionMethodContext
+                )
+                .getConvertedContraception();
+
+        t.setConvertedContraceptionMethod(method);
+
         return t;
     }
 }

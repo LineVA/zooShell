@@ -81,7 +81,7 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
      - the method is compatible with the previous one
      */
     @Test
-    public void shouldRetrunTrueIfAllTheConditionsAreTrue() {
+    public void shouldReturnTrueIfAllTheConditionsAreTrue() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(ContraceptionMethod.NONE);
         FindAnimal findAnimal = givenFindAnimal(Mockito.mock(Animal.class));
@@ -105,7 +105,7 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     }
     
      @Test
-    public void shouldRetrunFalseIfTheAnimalDoesNotExist() {
+    public void shouldReturnFalseIfTheAnimalDoesNotExist() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(ContraceptionMethod.NONE);
              FindAnimal findAnimal = givenFindAnimal(null);
@@ -128,7 +128,7 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     }
     
       @Test
-    public void shouldRetrunFalseIfTheMethodDoesNotExist() {
+    public void shouldReturnFalseIfTheMethodDoesNotExist() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(null);
         FindAnimal findAnimal = givenFindAnimal(Mockito.mock(Animal.class));
@@ -151,7 +151,7 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     }
     
       @Test
-    public void shouldRetrunFalseIfThereIsIncompatibilityWithTheHormonalContraception() {
+    public void shouldReturnFalseIfThereIsIncompatibilityWithTheHormonalContraception() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(ContraceptionMethod.NONE);
         FindAnimal findAnimal = givenFindAnimal(Mockito.mock(Animal.class));
@@ -174,7 +174,7 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     }
     
       @Test
-    public void shouldRetrunFalseIfThereIsIncompatibilityWithTheChirurgicalContraception() {
+    public void shouldReturnFalseIfThereIsIncompatibilityWithTheChirurgicalContraception() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(ContraceptionMethod.NONE);
         FindAnimal findAnimal = givenFindAnimal(Mockito.mock(Animal.class));
@@ -197,7 +197,7 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     }
     
       @Test
-    public void shouldRetrunFalseIfThereIsIncompatibilityWithThePreviousMethod() {
+    public void shouldReturnFalseIfThereIsIncompatibilityWithThePreviousMethod() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(ContraceptionMethod.NONE);
         FindAnimal findAnimal = givenFindAnimal(Mockito.mock(Animal.class));
@@ -220,7 +220,7 @@ public class AnimalUpdateContraceptionValidatorApplyTest {
     }
     
       @Test
-    public void shouldRetrunFalseIfThereIsIncompatibilityWithTheSex() {
+    public void shouldReturnFalseIfThereIsIncompatibilityWithTheSex() {
         // Given
         FindingContraceptionFunction findingContraception = givenFindingContraception(ContraceptionMethod.NONE);
         FindAnimal findAnimal = givenFindAnimal(Mockito.mock(Animal.class));
