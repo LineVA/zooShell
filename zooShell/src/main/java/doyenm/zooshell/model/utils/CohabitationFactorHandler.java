@@ -5,12 +5,16 @@ import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.SizeAttributes;
 import doyenm.zooshell.model.Specie;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
  *
  * @author doyenm
  */
+@Slf4j
 public class CohabitationFactorHandler {
 
     public double compute(double agressivity, Specie specie, SizeAttributes sizeAttributes, Sex sex) {
@@ -23,22 +27,31 @@ public class CohabitationFactorHandler {
         //    + agressivity
         //        + specie_agresivity)
         //    / 4
-        return Stream.of(cohabitation)
-                .map((Double t) -> {
+        Optional<Double> optional = Stream.of(cohabitation)
+                .map(t -> {
                     t += weight >= 1000.0 ? 1.0 : weight / 1000.0;
                     return t;
                 })
-                .map((Double t) -> {
+                .map(t -> {
                     if (specie.getDiets().getDiets().contains(Diet.CARNIVOROUS)) {
                         t += 1.0;
                     }
                     return t;
                 })
-                .map((Double t) -> t += agressivity)
-                .map((Double t) -> t += specie.getCharacterAttributes().getAgressivity())
-                .map((Double t) -> t / 4.0)
-                .findFirst()
-                .get();
+                .map(t -> add(t, agressivity))
+                .map(t -> add(t, specie.getCharacterAttributes().getAgressivity()))
+                .map(t -> t / 4.0)
+                .findFirst();
+        if(optional.isPresent()){
+            return optional.get();
+        } else {
+            log.info("No result when computing the cohabitation factor of the animal");
+            return cohabitation;
+        }
+    }
+
+    private double add(double a, double b){
+        return a + b;
     }
 
     public double compute(Animal animal) {
