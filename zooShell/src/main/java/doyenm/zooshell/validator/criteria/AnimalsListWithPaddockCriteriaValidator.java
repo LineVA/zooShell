@@ -5,6 +5,7 @@ import doyenm.zooshell.validator.FindPaddock;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import lombok.RequiredArgsConstructor;
@@ -40,7 +41,7 @@ public class AnimalsListWithPaddockCriteriaValidator implements Predicate<LsWith
         t.getPaddocks()
                 .stream()
                 .map(pad -> findPaddock.find(t.getZoo(), pad))
-                .filter(e -> e != null)
+                .filter(Objects::nonNull)
                 .forEach(e ->
                     t.getConvertedPaddocks().put(e.getName(), e)
                 );
