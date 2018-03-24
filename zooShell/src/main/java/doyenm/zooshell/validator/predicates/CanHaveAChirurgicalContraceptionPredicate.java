@@ -12,7 +12,7 @@ import java.util.function.Predicate;
  */
 public class CanHaveAChirurgicalContraceptionPredicate implements Predicate<AnimalUpdateContraceptionContext> {
 
-    private final double THREE_QUARTER = 0.75;
+    private static final double THREE_QUARTER = 0.75;
 
     @Override
     public boolean test(AnimalUpdateContraceptionContext t) {
