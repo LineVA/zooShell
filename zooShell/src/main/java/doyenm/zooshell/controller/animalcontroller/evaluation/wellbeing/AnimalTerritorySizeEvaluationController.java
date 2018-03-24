@@ -25,9 +25,9 @@ public class AnimalTerritorySizeEvaluationController
                 groupsNumber * context.getAnimal().getTerritoryAttributes().getTerritorySizeForOneGroup());
         if (utils.isBetweenAuthorizedValues(currentDeviation,
                 context.getUicnStandardDeviation())) {
-            context.getWellBeingObj().setTerritoryWellBeing(context.BASE * context.getUicnCoefficient());
+            context.getWellBeingObj().setTerritoryWellBeing(AnimalEvaluationContext.BASE * context.getUicnCoefficient());
         } else {
-            context.getWellBeingObj().setTerritoryWellBeing(context.ZERO);
+            context.getWellBeingObj().setTerritoryWellBeing(AnimalEvaluationContext.ZERO);
         }
         return context;
     }

@@ -43,8 +43,8 @@ public class AnimalKeepersTimeInfluenceEvaluationController
             }
         }
         if (trait >= limitBetweenPositivAndNegativTime) {
-            return sum * context.BASE;
+            return sum * AnimalEvaluationContext.BASE;
         }
-        return -sum * context.BASE;
+        return -sum * AnimalEvaluationContext.BASE;
     }
 }

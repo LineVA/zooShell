@@ -23,9 +23,9 @@ public class AnimalGroupSizeEvaluationController
                 context.getAnimal().getSocialAttributes().getIndividualsPerGroup());
         if (utils.isBetweenAuthorizedValues(currentDeviation,
                 context.getUicnStandardDeviation())) {
-            context.getWellBeingObj().setSocialWellBeing(context.BASE * context.getUicnCoefficient());
+            context.getWellBeingObj().setSocialWellBeing(AnimalEvaluationContext.BASE * context.getUicnCoefficient());
         } else {
-            context.getWellBeingObj().setSocialWellBeing(context.ZERO);
+            context.getWellBeingObj().setSocialWellBeing(AnimalEvaluationContext.ZERO);
         }
         return context;
     }
