@@ -36,10 +36,10 @@ public class AnimalEvaluationController implements Function<EvaluationContext, E
         Collections.shuffle(animals);
         context.setEvaluatedAnimalsList(animals
                 .stream()
-                .map((Animal t1) -> new AnimalEvaluationContext(context.getZoo(), t1))
+                .map(t1 -> new AnimalEvaluationContext(context.getZoo(), t1))
                 // Reproduction
                 .map(animalReproductionEvaluationController)
-                .map((AnimalEvaluationContext t1) -> {
+                .map(t1 -> {
                     newborns.addAll(t1.getChildren());
                     return t1;
                 })
@@ -49,14 +49,14 @@ public class AnimalEvaluationController implements Function<EvaluationContext, E
                 .map(animalWellBeingController)
                 // Death
                 .map(animalDeathEvaluationController)
-                .map((AnimalEvaluationContext t1) -> {
+                .map(t1 -> {
                     context.getAnimalEvents().addAll(t1.getEvents());
                     return t1;
                 })
                 // Cohabitation
                 .map(animalCohabitationEvaluationController)
-                .filter((AnimalEvaluationContext t1) -> !t1.isDead())
-                .map((AnimalEvaluationContext t1) -> {
+                .filter(t1 -> !t1.isDead())
+                .map(t1 -> {
                     t1.getAnimal().setWellBeingObj(t1.getWellBeingObj());
                     t1.getAnimal().setWellBeing(t1.getAnimal().getWellBeingObj().computeWellBeing());
                     return t1;
