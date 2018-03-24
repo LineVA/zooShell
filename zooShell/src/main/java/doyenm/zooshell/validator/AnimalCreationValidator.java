@@ -36,7 +36,6 @@ public class AnimalCreationValidator implements Predicate<AnimalCreationContext>
         result = this.stringLengthPredicates.mustBeLowerOrEqualsThan(context.getName(), maxLengthName);
         result &= this.uniquenessNamesBiPredicates.test(context.getName().toUpperCase(), context.getAnimals().keySet());
         FindingSpecieContext findingSpecieContext = new FindingSpecieContext(context.getSpecies(), context.getSpecieName());
-        FindingPaddockContext findingPaddockContext = new FindingPaddockContext(context.getPaddocks(), context.getPaddockName());
         FindingSexContext findingSexContext = new FindingSexContext(context.getSexName());
         context.setSpecie(Stream.of(findingSpecieContext)
                 .map(findingSpecieFunction)
