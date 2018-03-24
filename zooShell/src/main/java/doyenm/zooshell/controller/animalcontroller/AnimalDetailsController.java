@@ -29,8 +29,7 @@ public class AnimalDetailsController implements Function<AnimalContext, AnimalCo
         context.addCouple("Diet", context.getDiet().toString());
         context.addCouple("Food attributes", context.getCurrentFoodAttributes().toString());
         context.addCouple("Contraception method", context.getConvertedAnimal().getContraceptionMethod().toString());
-        context = displayWellBeing(context);
-        return context;
+        return displayWellBeing(context);
     }
 
     private String displaySex(Animal animal, AnimalContext context) {
