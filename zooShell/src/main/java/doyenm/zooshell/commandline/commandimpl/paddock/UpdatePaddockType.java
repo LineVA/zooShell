@@ -8,13 +8,14 @@ import doyenm.zooshell.controller.paddockcontroller.UpdatePaddockTypeController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.UpdatePaddockTypeValidator;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -40,13 +41,8 @@ public class UpdatePaddockType implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 4) {
-            if (Arrays.asList(Constants.PAD_OR_PADDOCK_TYPE).contains(cmd[0])) {
-                if (Arrays.asList(Constants.UPDATE).contains(cmd[1])) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return cmd.length == 4
+                && Arrays.asList(Constants.PAD_OR_PADDOCK_TYPE).contains(cmd[0])
+                && Arrays.asList(Constants.UPDATE).contains(cmd[1]);
     }
 }
