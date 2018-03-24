@@ -84,7 +84,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11, 3);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 3, 11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -106,7 +106,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11, 3);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 3, 11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -128,7 +128,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 50, 3);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 3, 50);
         // When
         boolean result = validator.test(context);
         // Then
@@ -149,7 +149,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11, 3);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 3, 11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -171,7 +171,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11, 3);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 3, 11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -193,7 +193,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11, 3);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 3, 11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -215,7 +215,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11, 3);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 3, 11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -237,7 +237,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11, 3);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 3, 11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -259,7 +259,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11, 3);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 3, 11);
         // When
         boolean result = validator.test(context);
         // Then
@@ -281,7 +281,7 @@ public class AnimalCreationValidatorTestTest {
                 convertedAnimal,
                 animalName
         );
-        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 11, 3);
+        AnimalCreationValidator validator = new AnimalCreationValidator(givenFindPaddock(convertedPaddock), 3, 11);
         // When
         boolean result = validator.test(context);
         // Then
