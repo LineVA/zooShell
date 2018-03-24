@@ -4,15 +4,15 @@ import doyenm.zooshell.commandline.general.Command;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.context.KeeperAddTrainingContext;
-import doyenm.zooshell.context.KeeperUpdateOccupationsContext;
 import doyenm.zooshell.controller.keepercontroller.KeeperAddTrainingController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.KeeperAddTrainingValidator;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
