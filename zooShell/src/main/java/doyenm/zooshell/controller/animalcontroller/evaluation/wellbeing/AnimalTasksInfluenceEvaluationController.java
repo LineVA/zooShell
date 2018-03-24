@@ -58,7 +58,7 @@ public class AnimalTasksInfluenceEvaluationController
 
     private double computeWellBeingForTask(AnimalEvaluationContext context, TaskType task, double trait) {
         Paddock paddock = context.getPaddock();
-        double competence = 0.0;
+        double competence;
         double sum = 0.0;
         for (AnimalKeeper keeper : context.getKeepers().stream().filter(k -> k.getTraining() == null).collect(Collectors.toList())) {
             if (keeper.getTaskEvaluations().containsKey(task)) {
