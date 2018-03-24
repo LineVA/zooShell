@@ -9,13 +9,14 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.PaddockCreationValidator;
 import doyenm.zooshell.validator.PaddockLocationValidator;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -42,16 +43,10 @@ public class CreatePaddock implements Command {
     }
 
     @Override
-    public boolean canExecute(String[] cmd
-    ) {
-        if (cmd.length == 7) {
-            if (Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])) {
-                if (Constants.CREATE.equalsIgnoreCase(cmd[1])) {
-                    return true;
-                }
-            }
-        }
-        return false;
+    public boolean canExecute(String[] cmd) {
+        return cmd.length == 7
+                && Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])
+                && Constants.CREATE.equalsIgnoreCase(cmd[1]);
     }
 
 }
