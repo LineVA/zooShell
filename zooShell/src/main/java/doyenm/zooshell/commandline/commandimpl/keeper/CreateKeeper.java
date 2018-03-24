@@ -8,12 +8,14 @@ import doyenm.zooshell.controller.keepercontroller.KeeperCreationController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.KeeperCreationValidator;
+
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -24,31 +26,24 @@ public class CreateKeeper implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        try {
             KeeperCreationContext context = new KeeperCreationContext(zoo,
                     cmd[2]);
-            context = Stream.of(context)
+        Optional<KeeperCreationContext> optional = Stream.of(context)
                     .filter(validator)
                     .map(controller)
-                    .findFirst()
-                    .get();
+                    .findFirst();
+        if(optional.isPresent()){
             return new ReturnExec("KEEPERL_CREATION_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
-        } catch (java.util.NoSuchElementException ex) {
-            ex.printStackTrace();
+        } else {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 3) {
-            if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])) {
-                if (Constants.CREATE.equalsIgnoreCase(cmd[1])) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return cmd.length == 3
+                && Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])
+                && Constants.CREATE.equalsIgnoreCase(cmd[1]);
     }
 
 }
