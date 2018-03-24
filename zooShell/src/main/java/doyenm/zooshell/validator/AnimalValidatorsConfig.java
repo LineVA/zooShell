@@ -114,10 +114,6 @@ public class AnimalValidatorsConfig {
         environment.getProperty("paddock.obsolescence.max_number_of_turn_when_unusable", Integer.class));
     }
 
-//    @Bean 
-//    AnimalDetailsValidator animalDetailsValidator(){
-//        return new AnimalDetailsValidator();
-//    }
     @Bean
     public AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator() {
         return new AnimalUpdateContraceptionValidator(findingContraceptionFunction(),
