@@ -23,10 +23,8 @@ public class AnimalFoodQuantityEvaluationController
         if (utils.isBetweenAuthorizedValues(currentDeviation,
                 context.getUicnStandardDeviation())) {
             context.getWellBeingObj().setFoodQuantityWellBeing(context.BASE * context.getUicnCoefficient());
-//            context.setFoodQuantityWellBeing(context.getBase() * context.getUicnCoefficient());
         } else {
             context.getWellBeingObj().setFoodQuantityWellBeing(context.ZERO);
-//            context.setFoodQuantityWellBeing(context.getZero());
         }
         return context;
     }
