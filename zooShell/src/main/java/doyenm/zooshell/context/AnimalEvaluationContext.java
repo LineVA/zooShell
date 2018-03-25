@@ -51,7 +51,8 @@ public class AnimalEvaluationContext {
                 + BASE * getUicnCoefficient()
                 + BASE
                 + BASE * getUicnCoefficient()
-                + BASE * getUicnCoefficient();
+                + BASE * getUicnCoefficient()
+                + BASE;
     }
 
     public int getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock() {
