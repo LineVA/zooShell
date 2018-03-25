@@ -9,19 +9,20 @@ import doyenm.zooshell.controller.speciecontroller.SpecieDetailsController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.SpecieDetailsValidator;
+
 import java.util.Arrays;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class DetailSpecie implements Command{
+public class DetailSpecie implements Command {
 
-   private final SpecieDetailsValidator validator;
-   private final SpecieDetailsController controller;
+    private final SpecieDetailsValidator validator;
+    private final SpecieDetailsController controller;
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
@@ -37,11 +38,7 @@ public class DetailSpecie implements Command{
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2) {
-            if (Arrays.asList(Constants.SPEC_OR_SPECIE).contains(cmd[0])) {
-                return true;
-            }
-        }
-        return false;
+        return cmd.length == 2
+                && Arrays.asList(Constants.SPEC_OR_SPECIE).contains(cmd[0]);
     }
 }

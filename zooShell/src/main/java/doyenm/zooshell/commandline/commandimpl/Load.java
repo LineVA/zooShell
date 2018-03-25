@@ -8,14 +8,15 @@ import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.context.ZooContext;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
+
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -39,9 +40,7 @@ public class Load implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2) {
-            return Arrays.asList(Constants.LOAD).contains(cmd[0]);
-        }
-        return false;
+        return cmd.length == 2
+                && Arrays.asList(Constants.LOAD).contains(cmd[0]);
     }
 }

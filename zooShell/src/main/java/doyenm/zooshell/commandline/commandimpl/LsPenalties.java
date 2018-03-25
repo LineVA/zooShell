@@ -7,12 +7,12 @@ import doyenm.zooshell.commandline.utils.FormattingInList;
 import doyenm.zooshell.context.LsContext;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
+
 import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
- *
  * @author doyenm
  */
 public class LsPenalties implements Command {
@@ -35,9 +35,7 @@ public class LsPenalties implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 1) {
-           return Arrays.asList(Constants.PENALTIES).contains(cmd[0]);
-        }
-        return false;
+        return cmd.length == 1
+                && Arrays.asList(Constants.PENALTIES).contains(cmd[0]);
     }
 }

@@ -12,14 +12,15 @@ import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
 import doyenm.zooshell.controller.EvaluationController;
 import doyenm.zooshell.controller.eventhandling.keeper.KeeperEvent;
 import doyenm.zooshell.model.Zoo;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -46,10 +47,8 @@ public class Evaluate implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 1) {
-            return Constants.EVALUATE.equals(cmd[0]);
-        }
-        return false;
+        return cmd.length == 1
+                && Constants.EVALUATE.equals(cmd[0]);
     }
 
     private String formatEvents(EvaluationContext context) {

@@ -30,9 +30,7 @@ public class LsSpecie implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 1) {
-            return Arrays.asList(Constants.SPECIES).contains(cmd[0]);
-        }
-        return false;
+        return cmd.length == 1
+            && Arrays.asList(Constants.SPECIES).contains(cmd[0]);
     }
 }

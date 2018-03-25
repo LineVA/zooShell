@@ -7,10 +7,9 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 
 /**
- *
  * @author doyenm
  */
-public class GetActionPoints implements Command{
+public class GetActionPoints implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
@@ -19,11 +18,7 @@ public class GetActionPoints implements Command{
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 1) {
-            if (Constants.ACTION_POINTS.equals(cmd[0])) {
-                return true;
-            }
-        }
-        return false;
+        return cmd.length == 1
+                && Constants.ACTION_POINTS.equals(cmd[0]);
     }
 }
