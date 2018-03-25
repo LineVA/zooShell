@@ -1,22 +1,19 @@
 package doyenm.zooshell.commandline.commandLineImpl.handyman;
 
 import doyenm.zooshell.commandline.commandimpl.handyman.RenameHandyman;
-import doyenm.zooshell.commandline.commandimpl.paddock.RenamePaddock;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.context.HandymanRenameContext;
-import doyenm.zooshell.context.PaddockChangeNameContext;
 import doyenm.zooshell.controller.handymancontroller.RenamingController;
-import doyenm.zooshell.controller.paddockcontroller.PaddockChangeNameController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.HandymanRenameValidator;
-import doyenm.zooshell.validator.PaddockChangeNameValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import static org.mockito.Matchers.any;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+
+import static org.mockito.Matchers.any;
 
 /**
  *

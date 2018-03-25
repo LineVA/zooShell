@@ -2,8 +2,9 @@ package doyenm.zooshell.validator.name;
 
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Predicate;
 
 /**
  *

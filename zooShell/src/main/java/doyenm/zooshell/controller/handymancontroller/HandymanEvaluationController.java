@@ -9,9 +9,10 @@ import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.context.HandymanEvaluationContext;
 import doyenm.zooshell.controller.handymancontroller.evaluation.HandymanAgeEvaluationController;
 import doyenm.zooshell.model.Handyman;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

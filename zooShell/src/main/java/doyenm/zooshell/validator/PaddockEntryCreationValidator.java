@@ -1,8 +1,9 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.PaddockEntryCreationContext;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Predicate;
 
 /**
  *

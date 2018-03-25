@@ -1,6 +1,7 @@
 package doyenm.zooshell.validator.predicates;
 
 import doyenm.zooshell.context.PaddockEntryCreationContext;
+
 import java.util.function.Predicate;
 
 /**

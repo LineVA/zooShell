@@ -4,15 +4,17 @@ import doyenm.zooshell.context.AnimalUpdateDietContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.Zoo;
+import org.apache.commons.lang.RandomStringUtils;
+import org.assertj.core.api.Assertions;
+import org.junit.Test;
+import org.mockito.Mockito;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang.RandomStringUtils;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
+
 import static org.mockito.Matchers.anyList;
-import org.mockito.Mockito;
 import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.when;
 

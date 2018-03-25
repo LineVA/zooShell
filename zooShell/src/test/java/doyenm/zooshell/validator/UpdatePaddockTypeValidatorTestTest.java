@@ -1,14 +1,10 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.UpdateBiomeContext;
 import doyenm.zooshell.context.UpdatePaddockTypeContext;
-import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.context.FindingBiomeContext;
 import doyenm.zooshell.validator.context.FindingPaddockTypeContext;
-import doyenm.zooshell.validator.function.FindingBiomeFunction;
 import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

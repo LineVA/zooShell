@@ -5,11 +5,12 @@ import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
 import doyenm.zooshell.controller.eventhandling.animal.AnimalEventType;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.utils.UniformStatistics;
+import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

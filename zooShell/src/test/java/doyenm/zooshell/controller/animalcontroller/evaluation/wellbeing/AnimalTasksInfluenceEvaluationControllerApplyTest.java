@@ -2,20 +2,16 @@ package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.controller.animalcontroller.evaluation.KeeperUtils;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.CharacterAttributes;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.TaskType;
-import doyenm.zooshell.model.WellBeing;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import doyenm.zooshell.model.*;
 import org.assertj.core.api.Assertions;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *

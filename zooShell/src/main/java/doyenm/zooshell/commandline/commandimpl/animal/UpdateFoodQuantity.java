@@ -8,12 +8,11 @@ import doyenm.zooshell.controller.animalcontroller.AnimalUpdateFoodQuantityContr
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalUpdateFoodQuantityValidator;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
-
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author doyenm

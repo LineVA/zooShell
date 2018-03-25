@@ -1,19 +1,12 @@
 package doyenm.zooshell.context;
 
-import doyenm.zooshell.model.Biome;
-import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.model.Diet;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockType;
-import doyenm.zooshell.model.Penalty;
-import doyenm.zooshell.model.Sex;
-import doyenm.zooshell.model.TaskType;
-import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.model.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

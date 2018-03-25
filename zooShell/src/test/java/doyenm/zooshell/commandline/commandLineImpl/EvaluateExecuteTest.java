@@ -1,17 +1,12 @@
 package doyenm.zooshell.commandline.commandLineImpl;
 
-import doyenm.zooshell.commandline.commandimpl.Evaluate;
-import doyenm.zooshell.commandline.general.ReturnExec;
-import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.controller.EvaluationController;
-import doyenm.zooshell.model.Zoo;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import static org.mockito.Matchers.any;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+
+import static org.mockito.Matchers.any;
 
 /**
  *

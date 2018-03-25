@@ -1,9 +1,8 @@
 package doyenm.zooshell.gui;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.OutputStream;
-
-import javax.swing.JTextPane;
 
 /**
  * Un OutputStream vers un JTextPane. Utile pour redéfinir System.out

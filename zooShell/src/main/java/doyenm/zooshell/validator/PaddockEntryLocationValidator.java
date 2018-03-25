@@ -1,12 +1,13 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.PaddockEntryCreationContext;
-import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.validator.context.OverlapContext;
 import doyenm.zooshell.validator.predicates.CanOverlapPredicate;
+
 import java.util.function.Predicate;
-import static java.util.stream.Collectors.toList;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  *

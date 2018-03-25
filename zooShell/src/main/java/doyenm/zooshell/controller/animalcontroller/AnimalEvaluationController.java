@@ -1,19 +1,16 @@
 package doyenm.zooshell.controller.animalcontroller;
 
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalWellBeingController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalReproductionEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalDeathEvaluationController;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalAgeEvaluationController;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.context.EvaluationContext;
-import doyenm.zooshell.controller.animalcontroller.evaluation.AnimalCohabitationEvaluationController;
+import doyenm.zooshell.controller.animalcontroller.evaluation.*;
 import doyenm.zooshell.model.Animal;
+import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

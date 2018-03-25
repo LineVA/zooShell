@@ -10,10 +10,11 @@ import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPred
 import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithPreviousPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithSexPredicate;
-import java.util.HashMap;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.HashMap;
 
 /**
  *

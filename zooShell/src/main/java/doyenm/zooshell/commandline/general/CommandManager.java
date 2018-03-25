@@ -1,10 +1,11 @@
 package doyenm.zooshell.commandline.general;
 
-import doyenm.zooshell.commandline.commandimpl.GetActionPoints;
 import doyenm.zooshell.commandline.commandimpl.Evaluate;
+import doyenm.zooshell.commandline.commandimpl.GetActionPoints;
 import doyenm.zooshell.model.Zoo;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 /**
  *

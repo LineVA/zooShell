@@ -3,9 +3,10 @@ package doyenm.zooshell.controller.keepercontroller;
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.context.KeeperEvaluationContext;
 import doyenm.zooshell.model.AnimalKeeper;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

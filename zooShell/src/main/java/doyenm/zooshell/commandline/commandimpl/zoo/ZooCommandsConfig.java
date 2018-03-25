@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandline.commandimpl.zoo;
 
-import doyenm.zooshell.validator.ZooValidatorsConfig;
 import doyenm.zooshell.controller.zoocontroller.ZooControllersConfig;
+import doyenm.zooshell.validator.ZooValidatorsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

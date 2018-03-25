@@ -7,13 +7,14 @@ import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithPaddockCr
 import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSexCriteriaController;
 import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSpecieCriteriaController;
 import doyenm.zooshell.model.Animal;
+import lombok.RequiredArgsConstructor;
+import org.mvel2.MVEL;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
-import org.mvel2.MVEL;
 
 /**
  *

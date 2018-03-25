@@ -7,6 +7,7 @@ import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
+
 import static org.mockito.Mockito.when;
 
 /**

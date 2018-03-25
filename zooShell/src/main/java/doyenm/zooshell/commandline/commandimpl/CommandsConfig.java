@@ -6,23 +6,17 @@ import doyenm.zooshell.commandline.commandimpl.handyman.HandymanCommandsConfig;
 import doyenm.zooshell.commandline.commandimpl.keeper.KeeperCommandsConfig;
 import doyenm.zooshell.commandline.commandimpl.paddock.PaddockCommandsConfig;
 import doyenm.zooshell.commandline.commandimpl.zoo.ZooCommandsConfig;
-import doyenm.zooshell.commandline.general.displayingevent.DisplayingBinaryAnimalEvents;
-import doyenm.zooshell.commandline.general.displayingevent.DisplayingBinaryPaddockEvents;
-import doyenm.zooshell.commandline.general.displayingevent.DisplayingBinaryZooEvents;
-import doyenm.zooshell.commandline.general.displayingevent.DisplayingEvents;
-import doyenm.zooshell.commandline.general.displayingevent.DisplayingNoneZooEvents;
-import doyenm.zooshell.commandline.general.displayingevent.DisplayingUnaryAnimalEvents;
-import doyenm.zooshell.commandline.general.displayingevent.DisplayingUnaryKeeperEvents;
-import doyenm.zooshell.commandline.general.displayingevent.DisplayingUnaryZooEvents;
+import doyenm.zooshell.commandline.general.displayingevent.*;
 import doyenm.zooshell.controller.ControllersConfig;
 import doyenm.zooshell.controller.speciecontroller.SpecieControllersConfig;
 import doyenm.zooshell.validator.ValidatorsConfig;
-import java.util.Arrays;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *

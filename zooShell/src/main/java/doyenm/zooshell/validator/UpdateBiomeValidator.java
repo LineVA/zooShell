@@ -4,9 +4,10 @@ import doyenm.zooshell.context.UpdateBiomeContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.validator.context.FindingBiomeContext;
 import doyenm.zooshell.validator.function.FindingBiomeFunction;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Predicate;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

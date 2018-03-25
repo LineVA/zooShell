@@ -3,10 +3,11 @@ package doyenm.zooshell.context;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
-import java.util.Map;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+
+import java.util.Map;
 
 /**
  *

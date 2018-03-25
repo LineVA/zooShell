@@ -2,13 +2,12 @@ package doyenm.zooshell.validator.criteria;
 
 import doyenm.zooshell.context.LsWithCriteriaContext;
 import doyenm.zooshell.validator.FindPaddock;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
-
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author doyenm

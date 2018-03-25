@@ -1,20 +1,29 @@
 package doyenm.zooshell.controller.animalcontroller;
 
-import doyenm.zooshell.controller.animalcontroller.criteria.*;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithDietCriteriaController;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithPaddockCriteriaController;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSexCriteriaController;
+import doyenm.zooshell.controller.animalcontroller.criteria.AnimalsWithSpecieCriteriaController;
 import doyenm.zooshell.controller.animalcontroller.evaluation.*;
-import doyenm.zooshell.controller.animalcontroller.evaluation.death.*;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.*;
+import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalDeathPredicates;
+import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalDyingPredicates;
+import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalUpdateDyingMeasures;
+import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.CalvingFunction;
+import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.ExecuteReproductionFunction;
+import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.FemaleReproductionPredicate;
+import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.MaleReproductionPredicate;
 import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.*;
 import doyenm.zooshell.model.utils.CohabitationFactorHandler;
 import doyenm.zooshell.utils.UniformStatistics;
 import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.validator.AnimalCreationValidator;
 import doyenm.zooshell.validator.FindPaddock;
-import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+
+import java.util.Arrays;
 
 /**
  *

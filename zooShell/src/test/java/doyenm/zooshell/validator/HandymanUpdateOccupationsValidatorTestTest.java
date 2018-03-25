@@ -4,14 +4,16 @@ import doyenm.zooshell.context.HandymanUpdateOccupationsContext;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

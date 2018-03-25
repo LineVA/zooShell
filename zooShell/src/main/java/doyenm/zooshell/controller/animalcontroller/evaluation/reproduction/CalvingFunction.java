@@ -6,10 +6,11 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.utils.UniformStatistics;
 import doyenm.zooshell.validator.AnimalCreationValidator;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

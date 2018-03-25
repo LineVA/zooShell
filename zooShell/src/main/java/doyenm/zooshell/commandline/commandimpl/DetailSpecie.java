@@ -9,11 +9,10 @@ import doyenm.zooshell.controller.speciecontroller.SpecieDetailsController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.SpecieDetailsValidator;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
-
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author doyenm

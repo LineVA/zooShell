@@ -4,9 +4,13 @@ package doyenm.zooshell.gui;
  *
  * @author doyenm
  */
-import java.awt.event.*;
+
 import javax.swing.*;
-import java.util.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 
 /** 

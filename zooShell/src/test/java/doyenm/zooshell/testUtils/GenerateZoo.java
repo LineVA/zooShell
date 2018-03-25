@@ -1,28 +1,12 @@
 package doyenm.zooshell.testUtils;
 
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.Biome;
-import doyenm.zooshell.model.CharacterAttributes;
-import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.model.Coordinates;
-import doyenm.zooshell.model.Diet;
-import doyenm.zooshell.model.FoodAttributes;
-import doyenm.zooshell.model.LifespanAttributes;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockType;
-import doyenm.zooshell.model.Position;
-import doyenm.zooshell.model.ReproductionAttributes;
-import doyenm.zooshell.model.Sex;
-import doyenm.zooshell.model.SizeAttributes;
-import doyenm.zooshell.model.SocialAttributes;
-import doyenm.zooshell.model.Specie;
-import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.model.*;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.math.RandomUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.math.RandomUtils;
 
 /**
  *

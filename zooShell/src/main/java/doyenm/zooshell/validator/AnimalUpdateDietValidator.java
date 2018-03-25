@@ -3,12 +3,11 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.AnimalUpdateDietContext;
 import doyenm.zooshell.validator.context.FindingDietContext;
 import doyenm.zooshell.validator.function.FindingDietFunction;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author doyenm

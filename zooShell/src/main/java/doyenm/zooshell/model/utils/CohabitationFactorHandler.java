@@ -1,10 +1,6 @@
 package doyenm.zooshell.model.utils;
 
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.Diet;
-import doyenm.zooshell.model.Sex;
-import doyenm.zooshell.model.SizeAttributes;
-import doyenm.zooshell.model.Specie;
+import doyenm.zooshell.model.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;

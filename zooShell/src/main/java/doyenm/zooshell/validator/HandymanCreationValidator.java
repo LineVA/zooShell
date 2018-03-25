@@ -4,8 +4,9 @@ import doyenm.zooshell.context.HandymanCreationContext;
 import doyenm.zooshell.validator.name.NameDto;
 import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.HandymenNumberPredicate;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Predicate;
 
 /**
  *

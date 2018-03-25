@@ -5,6 +5,7 @@ import doyenm.zooshell.controller.eventhandling.keeper.KeeperEvent;
 import doyenm.zooshell.controller.eventhandling.keeper.KeeperEventType;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Training;
+
 import java.util.function.Function;
 
 /**

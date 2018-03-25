@@ -3,13 +3,15 @@ package doyenm.zooshell.controller.animalcontroller;
 import doyenm.zooshell.context.AnimalChangeNameContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Zoo;
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import static org.mockito.Matchers.anyString;
 import org.mockito.Mockito;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 /**

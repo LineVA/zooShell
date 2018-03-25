@@ -4,17 +4,15 @@ import doyenm.zooshell.commandline.general.Command;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.context.HandymanContext;
-import doyenm.zooshell.context.HandymanRenameContext;
 import doyenm.zooshell.controller.handymancontroller.RemovingController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.HandymanValidator;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
-
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author doyenm

@@ -1,8 +1,9 @@
 package doyenm.zooshell.validator.name;
 
-import java.util.Set;
 import lombok.Builder;
 import lombok.Getter;
+
+import java.util.Set;
 
 /**
  *

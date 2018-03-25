@@ -6,9 +6,10 @@ import doyenm.zooshell.model.TimedOccupation;
 import doyenm.zooshell.validator.context.FindingTaskContext;
 import doyenm.zooshell.validator.function.FindingTaskFunction;
 import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Predicate;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

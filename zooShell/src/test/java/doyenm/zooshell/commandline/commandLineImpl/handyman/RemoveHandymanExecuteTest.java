@@ -1,22 +1,19 @@
 package doyenm.zooshell.commandline.commandLineImpl.handyman;
 
 import doyenm.zooshell.commandline.commandimpl.handyman.RemoveHandyman;
-import doyenm.zooshell.commandline.commandimpl.paddock.RemovePaddock;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.context.HandymanContext;
-import doyenm.zooshell.context.PaddockContext;
 import doyenm.zooshell.controller.handymancontroller.RemovingController;
-import doyenm.zooshell.controller.paddockcontroller.PaddockRemoveController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.HandymanValidator;
-import doyenm.zooshell.validator.PaddockRemoveValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import static org.mockito.Matchers.any;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+
+import static org.mockito.Matchers.any;
 
 /**
  *

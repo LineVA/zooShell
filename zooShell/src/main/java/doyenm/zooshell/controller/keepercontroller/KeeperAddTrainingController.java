@@ -2,8 +2,9 @@ package doyenm.zooshell.controller.keepercontroller;
 
 import doyenm.zooshell.context.KeeperAddTrainingContext;
 import doyenm.zooshell.model.Training;
-import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Function;
 
 /**
  *

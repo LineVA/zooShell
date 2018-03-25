@@ -5,10 +5,11 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.KeeperUtils;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TimedOccupation;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

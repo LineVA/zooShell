@@ -1,11 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.LifespanAttributes;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockType;
-import doyenm.zooshell.model.Sex;
+import doyenm.zooshell.model.*;
 import org.mockito.Mockito;
 
 /**

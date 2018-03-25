@@ -2,11 +2,12 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.PaddockCreationContext;
 import doyenm.zooshell.model.Paddock;
-import java.util.Arrays;
-import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *

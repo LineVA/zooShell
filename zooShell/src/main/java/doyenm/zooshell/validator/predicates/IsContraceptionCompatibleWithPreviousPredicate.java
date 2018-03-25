@@ -3,6 +3,7 @@ package doyenm.zooshell.validator.predicates;
 import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
+
 import java.util.function.Predicate;
 
 /**

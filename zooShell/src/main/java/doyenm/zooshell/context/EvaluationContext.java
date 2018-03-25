@@ -4,21 +4,13 @@ import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
 import doyenm.zooshell.controller.eventhandling.keeper.KeeperEvent;
 import doyenm.zooshell.controller.eventhandling.paddock.PaddockEvent;
 import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.Grade;
-import doyenm.zooshell.model.Handyman;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.Zoo;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import doyenm.zooshell.model.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  *

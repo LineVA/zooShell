@@ -1,7 +1,6 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.HandymanRenameContext;
-import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.name.NameDto;
@@ -9,8 +8,9 @@ import doyenm.zooshell.validator.name.NameValidator;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import static org.mockito.Matchers.any;
 import org.mockito.Mockito;
+
+import static org.mockito.Matchers.any;
 
 /**
  *

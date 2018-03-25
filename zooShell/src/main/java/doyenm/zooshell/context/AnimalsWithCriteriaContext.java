@@ -1,15 +1,12 @@
 package doyenm.zooshell.context;
 
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.Diet;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.Sex;
-import doyenm.zooshell.model.Specie;
-import java.util.List;
-import java.util.Map;
+import doyenm.zooshell.model.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  *

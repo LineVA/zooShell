@@ -2,6 +2,7 @@ package doyenm.zooshell.validator.function;
 
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.validator.context.FindingSexContext;
+
 import java.util.function.Function;
 
 /**

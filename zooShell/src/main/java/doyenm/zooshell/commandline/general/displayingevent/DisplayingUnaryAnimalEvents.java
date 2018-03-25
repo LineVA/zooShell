@@ -4,6 +4,7 @@ import doyenm.zooshell.controller.eventhandling.Event;
 import doyenm.zooshell.controller.eventhandling.EventCategory;
 import doyenm.zooshell.controller.eventhandling.EventSubject;
 import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
+
 import java.text.MessageFormat;
 
 /**

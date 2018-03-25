@@ -6,12 +6,10 @@ import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import static org.mockito.Matchers.anyString;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.doCallRealMethod;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
 
 /**
  *

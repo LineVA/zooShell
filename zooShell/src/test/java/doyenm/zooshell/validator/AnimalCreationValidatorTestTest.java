@@ -1,18 +1,15 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalCreationContext;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.Position;
-import doyenm.zooshell.model.Sex;
-import doyenm.zooshell.model.Specie;
-import doyenm.zooshell.model.Zoo;
-import java.util.ArrayList;
+import doyenm.zooshell.model.*;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import static org.mockito.Matchers.anyString;
 import org.mockito.Mockito;
+
+import java.util.ArrayList;
+
+import static org.mockito.Matchers.anyString;
 
 /**
  *

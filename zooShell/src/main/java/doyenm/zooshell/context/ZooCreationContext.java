@@ -2,12 +2,13 @@ package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Grade;
 import doyenm.zooshell.model.Specie;
-import lombok.Getter;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.xml.specie.SpecieGenerator;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.Map;
-import lombok.Setter;
 
 /**
  *

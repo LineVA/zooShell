@@ -1,24 +1,23 @@
 package doyenm.zooshell.commandline.commandimpl;
 
-import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.commandline.general.Command;
-import doyenm.zooshell.commandline.general.displayingevent.DisplayingEvents;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
+import doyenm.zooshell.commandline.general.displayingevent.DisplayingEvents;
 import doyenm.zooshell.context.EvaluationContext;
+import doyenm.zooshell.controller.EvaluationController;
 import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
+import doyenm.zooshell.controller.eventhandling.keeper.KeeperEvent;
 import doyenm.zooshell.controller.eventhandling.paddock.PaddockEvent;
 import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
-import doyenm.zooshell.controller.EvaluationController;
-import doyenm.zooshell.controller.eventhandling.keeper.KeeperEvent;
 import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.utils.Constants;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
-
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author doyenm

@@ -4,8 +4,9 @@ import doyenm.zooshell.context.PaddockEvaluationContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Penalty;
 import doyenm.zooshell.model.PenaltyType;
-import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Function;
 
 /**
  *

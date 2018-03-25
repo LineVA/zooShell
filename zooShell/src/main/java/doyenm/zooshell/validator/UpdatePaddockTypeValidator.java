@@ -4,9 +4,10 @@ import doyenm.zooshell.context.UpdatePaddockTypeContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.validator.context.FindingPaddockTypeContext;
 import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Predicate;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

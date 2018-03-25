@@ -3,10 +3,11 @@ package doyenm.zooshell.validator.criteria;
 import doyenm.zooshell.context.LsWithCriteriaContext;
 import doyenm.zooshell.validator.context.FindingSexContext;
 import doyenm.zooshell.validator.function.FindingSexFunction;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

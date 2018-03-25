@@ -1,10 +1,11 @@
 package doyenm.zooshell.validator.predicates;
 
-import java.util.HashSet;
-import java.util.Set;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *

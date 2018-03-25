@@ -1,6 +1,5 @@
 package doyenm.zooshell.commandline.commandLineImpl.handyman;
 
-import doyenm.zooshell.commandline.commandimpl.animal.LsAnimal;
 import doyenm.zooshell.commandline.commandimpl.handyman.LsHandyman;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;

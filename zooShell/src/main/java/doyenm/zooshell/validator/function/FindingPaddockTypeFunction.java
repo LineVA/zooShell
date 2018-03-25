@@ -2,6 +2,7 @@ package doyenm.zooshell.validator.function;
 
 import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.validator.context.FindingPaddockTypeContext;
+
 import java.util.function.Function;
 
 /**

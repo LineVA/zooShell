@@ -1,33 +1,14 @@
 package doyenm.zooshell.context;
 
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.CharacterAttributes;
-import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.model.Diet;
-import doyenm.zooshell.model.FoodAttributes;
-import doyenm.zooshell.model.LifespanAttributes;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.ReproductionAttributes;
-import doyenm.zooshell.model.Sex;
-import doyenm.zooshell.model.SizeAttributes;
-import doyenm.zooshell.model.SocialAttributes;
-import doyenm.zooshell.model.Specie;
-import doyenm.zooshell.model.TerritoryAttributes;
-import doyenm.zooshell.model.WellBeing;
-import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.model.utils.CharacterAttributesConstructor;
-import doyenm.zooshell.model.utils.FoodAttributesConstructor;
-import doyenm.zooshell.model.utils.LifespanAttributesConstructor;
-import doyenm.zooshell.model.utils.ReproductionAttributesConstructor;
-import doyenm.zooshell.model.utils.SizeAttributesConstructor;
-import doyenm.zooshell.model.utils.SocialAttributesConstructor;
-import doyenm.zooshell.model.utils.TerritoryAttributesConstructor;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import doyenm.zooshell.model.*;
+import doyenm.zooshell.model.utils.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  *

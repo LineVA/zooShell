@@ -1,8 +1,9 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.HandymanUpdateOccupationsContext;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Predicate;
 
 /**
  *

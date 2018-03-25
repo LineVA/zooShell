@@ -3,7 +3,6 @@ package doyenm.zooshell.validator.predicates;
 import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.model.Sex;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

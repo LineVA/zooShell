@@ -1,16 +1,17 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Biome;
-import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockType;
+import doyenm.zooshell.model.Zoo;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 /**
  *

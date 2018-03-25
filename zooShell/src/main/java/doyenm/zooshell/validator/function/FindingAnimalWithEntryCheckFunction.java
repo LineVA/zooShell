@@ -2,6 +2,7 @@ package doyenm.zooshell.validator.function;
 
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.validator.context.FindingAnimalContext;
+
 import java.util.function.Function;
 
 /**

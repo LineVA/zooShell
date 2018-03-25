@@ -1,24 +1,9 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.validator.criteria.AnimalsListWithDietCriteriaValidator;
-import doyenm.zooshell.validator.criteria.AnimalsListWithPaddockCriteriaValidator;
-import doyenm.zooshell.validator.criteria.AnimalsListWithSexCriteriaValidator;
-import doyenm.zooshell.validator.criteria.AnimalsListWithSpecieCriteriaValidator;
-import doyenm.zooshell.validator.criteria.LsWithCriteriaParser;
-import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
-import doyenm.zooshell.validator.function.FindingContraceptionFunction;
-import doyenm.zooshell.validator.function.FindingDietFunction;
-import doyenm.zooshell.validator.function.FindingSexFunction;
-import doyenm.zooshell.validator.function.FindingSpecieFunction;
+import doyenm.zooshell.validator.criteria.*;
+import doyenm.zooshell.validator.function.*;
 import doyenm.zooshell.validator.name.NameValidator;
-import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;
-import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
-import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
-import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
-import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithPreviousPredicate;
-import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithSexPredicate;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
+import doyenm.zooshell.validator.predicates.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

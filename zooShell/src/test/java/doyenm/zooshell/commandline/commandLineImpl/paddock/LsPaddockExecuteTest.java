@@ -4,10 +4,11 @@ import doyenm.zooshell.commandline.commandimpl.paddock.LsPaddock;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.model.Zoo;
-import java.util.HashMap;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.HashMap;
 
 /**
  *

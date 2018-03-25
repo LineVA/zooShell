@@ -3,16 +3,16 @@ package doyenm.zooshell.controller.animalcontroller;
 import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.Zoo;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import static org.mockito.Matchers.any;
 import org.mockito.Mockito;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.when;
 

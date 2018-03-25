@@ -2,8 +2,6 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.LsWithCriteriaContext;
 import doyenm.zooshell.validator.criteria.AnimalsListWithDietCriteriaValidator;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
 import org.mockito.Mockito;
 
 /**

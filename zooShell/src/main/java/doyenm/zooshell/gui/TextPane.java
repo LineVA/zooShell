@@ -2,8 +2,13 @@ package doyenm.zooshell.gui;
 
 import doyenm.zooshell.commandline.general.CommandManager;
 import doyenm.zooshell.commandline.general.ReturnExec;
-import java.awt.Color;
-import java.awt.Dimension;
+
+import javax.swing.*;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -11,11 +16,6 @@ import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.stream.Stream;
-import javax.swing.JTextPane;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
 
 /**
  *

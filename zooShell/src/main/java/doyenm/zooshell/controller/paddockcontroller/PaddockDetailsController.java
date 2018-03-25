@@ -2,8 +2,9 @@ package doyenm.zooshell.controller.paddockcontroller;
 
 import doyenm.zooshell.context.PaddockContext;
 import doyenm.zooshell.utils.Utils;
-import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Function;
 
 /**
  *

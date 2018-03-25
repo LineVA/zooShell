@@ -6,13 +6,10 @@ import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.GenerateZoo;
-import java.io.FileNotFoundException;
+import org.apache.commons.lang.RandomStringUtils;
+
 import java.util.HashMap;
 import java.util.Map;
-import javax.xml.bind.JAXBException;
-import org.apache.commons.lang.RandomStringUtils;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
 
 /**
  *

@@ -1,6 +1,7 @@
 package doyenm.zooshell.commandline.utils;
 
 import doyenm.zooshell.model.Penalty;
+
 import java.util.List;
 
 /**

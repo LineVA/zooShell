@@ -1,19 +1,16 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.AnimalUpdateFastDaysContext;
 import doyenm.zooshell.context.AnimalUpdateFoodQuantityContext;
 import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
-import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
-import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import static org.mockito.Matchers.anyInt;
 import org.mockito.Mockito;
+
+import static org.mockito.Matchers.anyInt;
 
 /**
  *

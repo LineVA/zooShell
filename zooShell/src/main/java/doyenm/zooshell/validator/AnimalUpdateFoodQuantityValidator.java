@@ -2,10 +2,9 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalUpdateFoodQuantityContext;
 import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
+import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;
-
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author doyenm

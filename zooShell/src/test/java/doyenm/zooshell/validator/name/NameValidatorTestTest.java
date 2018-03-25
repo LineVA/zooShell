@@ -7,15 +7,15 @@ package doyenm.zooshell.validator.name;
 
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
-import java.util.HashSet;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anySet;
-import static org.mockito.Matchers.anyString;
 import org.mockito.Mockito;
+
+import java.util.HashSet;
+
+import static org.mockito.Matchers.*;
 
 /**
  *

@@ -1,17 +1,19 @@
 package doyenm.zooshell;
 
-import doyenm.zooshell.commandline.commandimpl.*;
+import doyenm.zooshell.commandline.commandimpl.CommandsConfig;
+import doyenm.zooshell.commandline.commandimpl.GetActionPoints;
 import doyenm.zooshell.commandline.general.ActionPointCommand;
 import doyenm.zooshell.commandline.general.ActionPointsHandler;
 import doyenm.zooshell.commandline.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
 import doyenm.zooshell.main.Main;
-import java.util.Arrays;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *

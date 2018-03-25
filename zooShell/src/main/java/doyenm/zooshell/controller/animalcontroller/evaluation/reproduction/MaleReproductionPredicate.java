@@ -4,6 +4,7 @@ import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Sex;
+
 import java.util.Optional;
 import java.util.function.Predicate;
 

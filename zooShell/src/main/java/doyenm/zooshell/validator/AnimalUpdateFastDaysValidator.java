@@ -2,8 +2,9 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalUpdateFastDaysContext;
 import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Predicate;
 
 /**
  *

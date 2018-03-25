@@ -4,12 +4,13 @@ import doyenm.zooshell.context.KeeperContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.TimedOccupation;
 import doyenm.zooshell.model.Zoo;
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *

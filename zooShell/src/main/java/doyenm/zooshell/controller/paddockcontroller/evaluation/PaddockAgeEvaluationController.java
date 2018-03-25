@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.paddockcontroller.evaluation;
 
 import doyenm.zooshell.context.PaddockEvaluationContext;
+
 import java.util.function.Function;
 
 /**
