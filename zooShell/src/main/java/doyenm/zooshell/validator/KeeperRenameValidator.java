@@ -25,7 +25,7 @@ public class KeeperRenameValidator implements Predicate<KeeperRenameContext> {
                 .existingNames(t.getKeepers().keySet())
                 .build());
         t.setConvertedKeeper(findKeeper.find(t.getZoo(), t.getKeeper()));
-        return result & t.getConvertedKeeper() != null;
+        return result && t.getConvertedKeeper() != null;
     }
 
 }
