@@ -30,16 +30,16 @@ public class KeeperEvaluationFamilyController
     private KeeperEvaluationContext computeFamilyProgression(KeeperEvaluationContext context) {
         Map<Paddock, Double> paddocksMap = this.generateTimedPaddockMap(context.getOccupations());
         Map<Paddock, Set<Family>> familiesPerPaddockMap = generateFamiliesPerPaddockMap(context.getOccupations(), context.getAnimals());
-        familiesPerPaddockMap.entrySet().stream().forEach((entry) -> {
-            entry.getValue().stream().forEach((family) -> {
+        familiesPerPaddockMap.entrySet().stream().forEach(entry ->
+            entry.getValue().stream().forEach(family -> {
                 if (context.getFamilyEvaluationMap().containsKey(family)) {
                     double currentValue = context.getFamilyEvaluationMap().get(family);
                     context.getKeeper().getFamilyEvaluations().replace(family, paddocksMap.get(entry.getKey()) + currentValue);
                 } else {
                     context.getKeeper().getFamilyEvaluations().put(family, paddocksMap.get(entry.getKey()));
                 }
-            });
-        });
+            })
+        );
         return context;
     }
 
