@@ -1,9 +1,14 @@
 package doyenm.zooshell.gui;
 
-import doyenm.zooshell.commandLine.general.CommandManager;
-import doyenm.zooshell.commandLine.general.ReturnExec;
-import java.awt.Color;
-import java.awt.Dimension;
+import doyenm.zooshell.commandline.general.CommandManager;
+import doyenm.zooshell.commandline.general.ReturnExec;
+
+import javax.swing.*;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -11,11 +16,6 @@ import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.stream.Stream;
-import javax.swing.JTextPane;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
 
 /**
  *
@@ -26,21 +26,20 @@ public class TextPane extends JTextPane {
     CommandManager manager;
     AttributeSet aset;
     StyleContext sc;
-    private final String cmdInvite = "> ";
+    private static final String CMD_INVITE = "> ";
 
      public TextPane(CommandManager play, int columns, int line) {
         super();
         this.setPreferredSize(new Dimension(line, columns));
         this.setBackground(Color.BLACK);
         this.setForeground(EditorColors.CMD.getColor());
-//        manager = new FreeCommandManager(play);
         this.manager = play;
         this.keyEventListener();
         this.mouseEventListener();
         sc = StyleContext.getDefaultStyleContext();
-        this.setText(manager.getFirstLine());
+        this.setText(CommandManager.FIRST_LINE);
         this.append("", EditorColors.CMD.getColor());
-        this.setCaretPosition(this.cmdInvite.length());
+        this.setCaretPosition(CMD_INVITE.length());
         this.goEndOfTheText();
     }
 
@@ -99,7 +98,7 @@ public class TextPane extends JTextPane {
         } else {
             caretInCurrent = caret - countCharBeforeCurrentLine(lines) - 2;
         }
-        return (caretInCurrent > this.cmdInvite.length());
+        return (caretInCurrent > CMD_INVITE.length());
     }
 
     private Object[] recoverCmdLinesArray() {
@@ -108,16 +107,10 @@ public class TextPane extends JTextPane {
         return stream.toArray();
     }
 
-//    private void enterPressed() {
-//        Object[] cmdLinesArray = recoverCmdLinesArray();
-//        String currentCmdLineWithCdInvite = cmdLinesArray[cmdLinesArray.length - 1].toString();
-//        append(manager.run(currentCmdLineWithCdInvite.substring(this.cmdInvite.length())), EditorColors.INFO.getColor());
-//    }
-
     private void enterPressed() {
         Object[] cmdLinesArray = recoverCmdLinesArray();
         String currentCmdLineWithCmdInvite = cmdLinesArray[cmdLinesArray.length - 1].toString();
-        ReturnExec exec = manager.run(currentCmdLineWithCmdInvite.substring(this.cmdInvite.length()));
+        ReturnExec exec = manager.run(currentCmdLineWithCmdInvite.substring(CMD_INVITE.length()));
         append(exec.getMessage(), EditorColors.CMD.getCorrespondingColor(exec.getTypeReturn()));
     }
 
@@ -137,7 +130,7 @@ public class TextPane extends JTextPane {
 
         setCaretPosition(getDocument().getLength());
         setCharacterAttributes(aset, false);
-        replaceSelection("\n" + this.cmdInvite);
+        replaceSelection("\n" + CMD_INVITE);
     }
 
     private void mouseEventListener() {

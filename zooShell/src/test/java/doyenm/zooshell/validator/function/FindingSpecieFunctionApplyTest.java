@@ -3,12 +3,13 @@ package doyenm.zooshell.validator.function;
 import doyenm.zooshell.model.Names;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.validator.context.FindingSpecieContext;
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *

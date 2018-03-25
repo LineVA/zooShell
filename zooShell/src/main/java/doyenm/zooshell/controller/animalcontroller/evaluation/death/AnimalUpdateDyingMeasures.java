@@ -2,10 +2,11 @@ package doyenm.zooshell.controller.animalcontroller.evaluation.death;
 
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -28,10 +29,10 @@ public class AnimalUpdateDyingMeasures {
 
     public Animal updateIsDyingByHunger(Animal animal, Collection<AnimalKeeper> keepers) {
         if (dyingPredicates.isDyingByFast(animal)
-                | dyingPredicates.isDyingByBadDiets(animal)
-                | dyingPredicates.isDyingByFoodQuantityToZero(animal)
-                | dyingPredicates.isDyingByLackOfKeeper(animal, keepers)
-                | dyingPredicates.isDyingByLackOfNursing(animal, keepers)) {
+                || dyingPredicates.isDyingByBadDiets(animal)
+                || dyingPredicates.isDyingByFoodQuantityToZero(animal)
+                || dyingPredicates.isDyingByLackOfKeeper(animal, keepers)
+                || dyingPredicates.isDyingByLackOfNursing(animal, keepers)) {
             animal.setDaysOfHunger(animal.getDaysOfHunger() + 1);
         } else {
             animal.setDaysOfHunger(0);

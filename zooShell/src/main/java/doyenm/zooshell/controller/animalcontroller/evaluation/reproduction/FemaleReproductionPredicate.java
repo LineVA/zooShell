@@ -5,6 +5,7 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.utils.UniformStatistics;
+
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;

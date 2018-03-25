@@ -3,10 +3,12 @@ package doyenm.zooshell.controller.zoocontroller;
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
 import doyenm.zooshell.controller.eventhandling.zoo.ZooEventsHandler;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -40,7 +42,7 @@ public class ZooEvaluationController implements Function<EvaluationContext, Eval
                     } 
                     return null;
                 })
-                .filter(zooEvent -> zooEvent != null)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 

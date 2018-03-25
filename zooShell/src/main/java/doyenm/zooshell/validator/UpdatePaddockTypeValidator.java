@@ -4,9 +4,10 @@ import doyenm.zooshell.context.UpdatePaddockTypeContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.validator.context.FindingPaddockTypeContext;
 import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Predicate;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -29,7 +30,7 @@ public class UpdatePaddockTypeValidator implements Predicate<UpdatePaddockTypeCo
         t.setConvertedType(Stream.of(findingPaddockTypeContext)
                 .map(findingPaddockTypeFunction)
                 .findFirst()
-                .get()
+                .orElseGet(null)
                 .getConvertedType());
        return t.getConvertedType()!= null;
     }

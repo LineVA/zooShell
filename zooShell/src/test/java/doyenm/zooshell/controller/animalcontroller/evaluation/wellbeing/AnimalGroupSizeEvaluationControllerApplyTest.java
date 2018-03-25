@@ -62,7 +62,7 @@ public class AnimalGroupSizeEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getSocialWellBeing()).isEqualTo(context.getBase() * coef);
+        Assertions.assertThat(actualContext.getWellBeingObj().getSocialWellBeing()).isEqualTo(context.BASE * coef);
     }
 
     @Test
@@ -79,6 +79,6 @@ public class AnimalGroupSizeEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getSocialWellBeing()).isEqualTo(context.getZero());
+        Assertions.assertThat(actualContext.getWellBeingObj().getSocialWellBeing()).isEqualTo(context.ZERO);
     }
 }

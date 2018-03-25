@@ -9,12 +9,13 @@ import doyenm.zooshell.controller.eventhandling.animal.AnimalEventType;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Penalty;
 import doyenm.zooshell.model.PenaltyType;
-import java.util.HashMap;
+import lombok.RequiredArgsConstructor;
+
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -86,7 +87,7 @@ public class AnimalDeathEvaluationController
 
     private Map<AnimalEventType, Boolean> generateEvents(AnimalEvaluationContext context) {
         Animal animal = context.getAnimal();
-        Map<AnimalEventType, Boolean> events = new HashMap<>();
+        Map<AnimalEventType, Boolean> events = new EnumMap<>(AnimalEventType.class);
         events.put(AnimalEventType.DEATH_OF_AGE, deathPredicates.isDeadByOldAge(animal, context.getMaxWellBeingWithoutKeeper()));
         events.put(AnimalEventType.DEATH_OF_DROWN, deathPredicates.isDeadByDrowning(animal));
         events.put(AnimalEventType.DEATH_OF_HUNGER, deathPredicates.isDeadByHunger(animal));

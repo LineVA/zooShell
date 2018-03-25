@@ -4,6 +4,7 @@ import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Sex;
+
 import java.util.function.Predicate;
 
 /**
@@ -12,7 +13,7 @@ import java.util.function.Predicate;
  */
 public class CanHaveAChirurgicalContraceptionPredicate implements Predicate<AnimalUpdateContraceptionContext> {
 
-    private final double THREE_QUARTER = 0.75;
+    private static final double THREE_QUARTER = 0.75;
 
     @Override
     public boolean test(AnimalUpdateContraceptionContext t) {

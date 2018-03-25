@@ -1,18 +1,12 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.death;
 
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.Diet;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.Specie;
-import doyenm.zooshell.model.TaskType;
-import doyenm.zooshell.model.TimedOccupation;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import doyenm.zooshell.model.*;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *

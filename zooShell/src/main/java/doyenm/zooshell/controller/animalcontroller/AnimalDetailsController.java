@@ -4,8 +4,9 @@ import doyenm.zooshell.context.AnimalContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.utils.Utils;
-import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Function;
 
 /**
  *
@@ -29,8 +30,7 @@ public class AnimalDetailsController implements Function<AnimalContext, AnimalCo
         context.addCouple("Diet", context.getDiet().toString());
         context.addCouple("Food attributes", context.getCurrentFoodAttributes().toString());
         context.addCouple("Contraception method", context.getConvertedAnimal().getContraceptionMethod().toString());
-        context = displayWellBeing(context);
-        return context;
+        return displayWellBeing(context);
     }
 
     private String displaySex(Animal animal, AnimalContext context) {

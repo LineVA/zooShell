@@ -1,6 +1,7 @@
 package doyenm.zooshell.validator.function;
 
 import doyenm.zooshell.validator.context.FindingSpecieContext;
+
 import java.util.function.Function;
 
 /**

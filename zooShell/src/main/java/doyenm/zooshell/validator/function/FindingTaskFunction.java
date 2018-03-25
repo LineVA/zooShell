@@ -2,6 +2,7 @@ package doyenm.zooshell.validator.function;
 
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.validator.context.FindingTaskContext;
+
 import java.util.function.Function;
 
 /**

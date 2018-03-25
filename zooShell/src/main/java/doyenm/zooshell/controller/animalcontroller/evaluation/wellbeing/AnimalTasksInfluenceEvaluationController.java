@@ -7,10 +7,11 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TaskType;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -58,7 +59,7 @@ public class AnimalTasksInfluenceEvaluationController
 
     private double computeWellBeingForTask(AnimalEvaluationContext context, TaskType task, double trait) {
         Paddock paddock = context.getPaddock();
-        double competence = 0.0;
+        double competence;
         double sum = 0.0;
         for (AnimalKeeper keeper : context.getKeepers().stream().filter(k -> k.getTraining() == null).collect(Collectors.toList())) {
             if (keeper.getTaskEvaluations().containsKey(task)) {
@@ -70,9 +71,9 @@ public class AnimalTasksInfluenceEvaluationController
                     * competence;
         }
         if (trait >= limitBetweenPositivAndNegativTime) {
-            return sum * context.getBase();
+            return sum * AnimalEvaluationContext.BASE;
         }
-        return -sum * context.getBase();
+        return -sum * AnimalEvaluationContext.BASE;
     }
 
 }

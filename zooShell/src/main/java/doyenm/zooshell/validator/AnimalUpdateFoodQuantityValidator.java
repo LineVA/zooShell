@@ -2,11 +2,11 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalUpdateFoodQuantityContext;
 import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
 
+import java.util.function.Predicate;
+
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -22,7 +22,7 @@ public class AnimalUpdateFoodQuantityValidator
         if (!doubleValuePredicates.mustBeGreaterOrEqualsThan(t.getConvertedFoodQuantity(), 0.0)) {
             return false;
         }
-       t = retrieveAnimal(t);
+        retrieveAnimal(t);
         if (t.getConvertedAnimal() != null) {
             return t.getEntry() != null;
         }

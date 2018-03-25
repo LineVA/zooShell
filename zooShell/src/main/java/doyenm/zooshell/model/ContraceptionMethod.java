@@ -1,12 +1,13 @@
 package doyenm.zooshell.model;
 
-import java.util.Arrays;
-import java.util.List;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *

@@ -2,12 +2,13 @@ package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Grade;
 import doyenm.zooshell.model.Specie;
-import lombok.Getter;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.xml.specie.SpecieGenerator;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.Map;
-import lombok.Setter;
 
 /**
  *
@@ -18,12 +19,12 @@ import lombok.Setter;
 public class ZooCreationContext {
 
     private final SpecieGenerator specieGenerator = new SpecieGenerator();
-    private final String speciePath = "src/main/resources/doyenm/zooshell/species";
+    private static final String SPECIE_PATH = "src/main/resources/doyenm/zooshell/species";
 
-    private final String INIT_WIDTH = "50";
-    private final String INIT_HEIGHT = "50";
-    private final String INIT_HORIZON = "5";
-    private final String INIT_SPEED = "6";
+    private static final String INIT_WIDTH = "50";
+    private static final String INIT_HEIGHT = "50";
+    private static final String INIT_HORIZON = "5";
+    private static final String INIT_SPEED = "6";
 
     private final String name;
     private final String initWidth;
@@ -37,26 +38,16 @@ public class ZooCreationContext {
     private int convertedHeight;
     private int convertedHorizon;
     private int convertedSpeed;
-    private final int age = 0;
+    private static final int AGE = 0;
 
     private boolean isValidation;
 
     public ZooCreationContext(String name) {
-        this.name = name;
-        this.initHeight = INIT_HEIGHT;
-        this.initWidth = INIT_WIDTH;
-        this.initHorizon = INIT_HORIZON;
-        this.initSpeed = INIT_SPEED;
-        this.species = specieGenerator.generateSpecie(this.speciePath);
+       this(name, INIT_WIDTH, INIT_HEIGHT, INIT_HORIZON,INIT_SPEED);
     }
 
     public ZooCreationContext(String name, String width, String height) {
-        this.name = name;
-        this.initHeight = height;
-        this.initWidth = width;
-        this.initHorizon = INIT_HORIZON;
-        this.initSpeed = INIT_SPEED;
-        this.species = specieGenerator.generateSpecie(this.speciePath);
+        this(name, width, height, INIT_HORIZON, INIT_SPEED);
     }
 
     public ZooCreationContext(String name, String width, String height, String horizon, String speed) {
@@ -65,7 +56,7 @@ public class ZooCreationContext {
         this.initWidth = width;
         this.initHorizon = horizon;
         this.initSpeed = speed;
-        this.species = specieGenerator.generateSpecie(this.speciePath);
+        this.species = specieGenerator.generateSpecie(SPECIE_PATH);
     }
 
     public void convert() {
@@ -81,7 +72,7 @@ public class ZooCreationContext {
         zoo.setName(this.getName());
         zoo.setHorizon(this.getConvertedHorizon());
         zoo.setMonthsPerEvaluation(this.getConvertedSpeed());
-        zoo.setAge(this.getAge());
+        zoo.setAge(AGE);
         zoo.setSpecies(this.getSpecies());
         zoo.setGradeObj(new Grade());
         zoo.setZooEvents(new ArrayList<>());

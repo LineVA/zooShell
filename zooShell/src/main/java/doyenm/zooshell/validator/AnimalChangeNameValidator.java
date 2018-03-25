@@ -4,8 +4,9 @@ import doyenm.zooshell.context.AnimalChangeNameContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.validator.name.NameDto;
 import doyenm.zooshell.validator.name.NameValidator;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Predicate;
 
 /**
  *

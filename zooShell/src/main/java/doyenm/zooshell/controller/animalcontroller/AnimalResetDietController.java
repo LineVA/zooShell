@@ -3,6 +3,7 @@ package doyenm.zooshell.controller.animalcontroller;
 import doyenm.zooshell.context.AnimalContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
+
 import java.util.Arrays;
 import java.util.function.Function;
 

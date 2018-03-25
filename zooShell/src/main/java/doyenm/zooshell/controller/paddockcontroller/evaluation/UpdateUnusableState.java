@@ -5,8 +5,9 @@ import doyenm.zooshell.controller.eventhandling.paddock.PaddockEvent;
 import doyenm.zooshell.controller.eventhandling.paddock.PaddockEventType;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockState;
-import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Function;
 
 /**
  *
@@ -20,7 +21,7 @@ public class UpdateUnusableState
 
     @Override
     public PaddockEvaluationContext apply(PaddockEvaluationContext t) {
-        t = update(t);
+        update(t);
         if(t.getPaddock().getTurnsOfUnusableState() > 1){
             t.getPaddockEvents().add(generateEvent(t.getPaddock()));
         }

@@ -1,9 +1,10 @@
 package doyenm.zooshell.validator.criteria;
 
-import java.util.Arrays;
-import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *

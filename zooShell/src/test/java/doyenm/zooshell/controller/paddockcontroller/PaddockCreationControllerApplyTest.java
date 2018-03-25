@@ -5,12 +5,13 @@ import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.model.Zoo;
-import java.util.HashMap;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.HashMap;
 
 /**
  *

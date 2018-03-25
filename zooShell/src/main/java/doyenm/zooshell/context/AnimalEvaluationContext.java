@@ -1,19 +1,14 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.controller.eventhandling.animal.AnimalEvent;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.Family;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.Specie;
-import doyenm.zooshell.model.WellBeing;
-import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.model.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
@@ -23,8 +18,8 @@ import lombok.Setter;
 @Setter
 public class AnimalEvaluationContext {
 
-    private final double base = 5.0;
-    private final double zero = 0.0;
+    public static final double BASE = 5.0;
+    public static final double ZERO = 0.0;
 
     private final Zoo zoo;
     private Animal animal;
@@ -40,8 +35,6 @@ public class AnimalEvaluationContext {
     private double keeperInfluenceWellBeing = 0.0;
     private double taskInfluenceWellBeing = 0.0;
 
-//    private double wellBeing = 0.0;
-    
     private WellBeing wellBeingObj = new WellBeing();
     
     private List<AnimalEvent> events = new ArrayList<>();
@@ -52,12 +45,12 @@ public class AnimalEvaluationContext {
     }
     
     public double getMaxWellBeingWithoutKeeper(){
-        return getBase() 
-                + getBase()
-                + getBase() * getUicnCoefficient()
-                + getBase()
-                + getBase() * getUicnCoefficient()
-                + getBase() * getUicnCoefficient();
+        return BASE
+                + BASE
+                + BASE * getUicnCoefficient()
+                + BASE
+                + BASE * getUicnCoefficient()
+                + BASE * getUicnCoefficient();
     }
 
     public int getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock() {

@@ -1,11 +1,10 @@
 package doyenm.zooshell.controller.zoocontroller;
 
 import doyenm.zooshell.context.ZooContext;
-import doyenm.zooshell.controller.eventhandling.zoo.ZooEventType;
 import doyenm.zooshell.utils.Utils;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Function;
 
 /**
  *
@@ -31,8 +30,7 @@ public class ZooDetailsController implements Function<ZooContext, ZooContext> {
         context.addCouple("Number of animal keepers", t.getZoo().getKeepers().size());
         context.addCouple("Number of penalties", t.getZoo().getPenalties().size());
         context.addCouple("Number of available trainings for keepers", t.getZoo().getAvailableKeeperTrainings().size());
-        context = displayGrade(context);
-        return context;
+        return displayGrade(context);
     }
 
     private ZooContext displayGrade(ZooContext t) {

@@ -4,6 +4,7 @@ import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.context.FindingPaddockContext;
 import doyenm.zooshell.validator.function.FindingPaddockByNameFunction;
+
 import java.util.stream.Stream;
 
 /**

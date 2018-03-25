@@ -2,20 +2,15 @@ package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.controller.animalcontroller.evaluation.KeeperUtils;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.CharacterAttributes;
-import doyenm.zooshell.model.Family;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.TimedOccupation;
-import doyenm.zooshell.model.WellBeing;
+import doyenm.zooshell.model.*;
+import org.assertj.core.api.Assertions;
+import org.junit.Test;
+import org.mockito.Mockito;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  *
@@ -57,7 +52,6 @@ public class AnimalKeepersTimeInfluenceEvaluationControllerApplyTest {
         Mockito.when(context.getKeepers()).thenReturn(keepers);
         Mockito.when(context.getAnimal()).thenReturn(animal);
         Mockito.when(context.getPaddock()).thenReturn(pad);
-        Mockito.when(context.getBase()).thenCallRealMethod();
         WellBeing wb = Mockito.mock(WellBeing.class);
         Mockito.when(wb.getKeepersTimeWellBeing()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(wb).setKeepersTimeWellBeing(Mockito.anyDouble());

@@ -1,7 +1,8 @@
 package doyenm.zooshell.model;
 
-import java.util.List;
 import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 /**
  *

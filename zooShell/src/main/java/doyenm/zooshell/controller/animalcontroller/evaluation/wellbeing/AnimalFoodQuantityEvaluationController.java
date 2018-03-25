@@ -1,8 +1,9 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
-import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Function;
 
 /**
  *
@@ -22,11 +23,9 @@ public class AnimalFoodQuantityEvaluationController
                 context.getAnimal().getOptimalFoodAttributes().getQuantity());
         if (utils.isBetweenAuthorizedValues(currentDeviation,
                 context.getUicnStandardDeviation())) {
-            context.getWellBeingObj().setFoodQuantityWellBeing(context.getBase() * context.getUicnCoefficient());
-//            context.setFoodQuantityWellBeing(context.getBase() * context.getUicnCoefficient());
+            context.getWellBeingObj().setFoodQuantityWellBeing(AnimalEvaluationContext.BASE * context.getUicnCoefficient());
         } else {
-            context.getWellBeingObj().setFoodQuantityWellBeing(context.getZero());
-//            context.setFoodQuantityWellBeing(context.getZero());
+            context.getWellBeingObj().setFoodQuantityWellBeing(AnimalEvaluationContext.ZERO);
         }
         return context;
     }

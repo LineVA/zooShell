@@ -4,9 +4,10 @@ import doyenm.zooshell.context.PaddockCreationContext;
 import doyenm.zooshell.validator.name.NameDto;
 import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Set;
 import java.util.function.Predicate;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

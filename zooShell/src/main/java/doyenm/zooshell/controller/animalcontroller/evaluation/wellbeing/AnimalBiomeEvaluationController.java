@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
+
 import java.util.function.Function;
 
 /**
@@ -14,16 +15,15 @@ public class AnimalBiomeEvaluationController
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
         if (context.getAnimal().getSpecie().getBiomes().getBiomes() == null) {
-            context.getWellBeingObj().setBiomeWellBeing(context.getZero());
-//            context.setBiomeWellBeing(context.getZero());
+            context.getWellBeingObj().setBiomeWellBeing(AnimalEvaluationContext.ZERO);
             return context;
         }
         if (context.getAnimal().getSpecie().getBiomes().getBiomes().contains(context.getAnimal().getPaddock().getBiome())) {
-            context.getWellBeingObj().setBiomeWellBeing(context.getBase());
+            context.getWellBeingObj().setBiomeWellBeing(AnimalEvaluationContext.BASE);
 
         } else {
-            context.setBiomeWellBeing(context.getZero());
-            context.getWellBeingObj().setBiomeWellBeing(context.getZero());
+            context.setBiomeWellBeing(AnimalEvaluationContext.ZERO);
+            context.getWellBeingObj().setBiomeWellBeing(AnimalEvaluationContext.ZERO);
 
         }
         return context;

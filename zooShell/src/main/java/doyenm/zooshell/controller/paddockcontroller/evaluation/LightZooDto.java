@@ -3,10 +3,11 @@ package doyenm.zooshell.controller.paddockcontroller.evaluation;
 import doyenm.zooshell.context.PaddockEvaluationContext;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.Paddock;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *

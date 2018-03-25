@@ -1,11 +1,12 @@
 package doyenm.zooshell.context;
 
-import doyenm.zooshell.commandLine.utils.Couple;
+import doyenm.zooshell.commandline.utils.Couple;
 import doyenm.zooshell.model.Zoo;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *

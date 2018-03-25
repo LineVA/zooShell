@@ -1,11 +1,8 @@
 package doyenm.zooshell.controller.paddockcontroller;
 
 import doyenm.zooshell.context.PaddockCreationContext;
-import doyenm.zooshell.model.Biome;
-import doyenm.zooshell.model.Coordinates;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockType;
-import doyenm.zooshell.model.Position;
+import doyenm.zooshell.model.*;
+
 import java.util.ArrayList;
 import java.util.function.Function;
 

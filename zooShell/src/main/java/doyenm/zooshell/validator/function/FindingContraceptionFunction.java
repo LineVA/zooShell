@@ -1,8 +1,8 @@
 package doyenm.zooshell.validator.function;
 
 import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.validator.context.FindingContraceptionContext;
+
 import java.util.function.Function;
 
 /**

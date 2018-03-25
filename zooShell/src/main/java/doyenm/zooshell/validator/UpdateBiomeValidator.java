@@ -4,9 +4,10 @@ import doyenm.zooshell.context.UpdateBiomeContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.validator.context.FindingBiomeContext;
 import doyenm.zooshell.validator.function.FindingBiomeFunction;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Predicate;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -30,7 +31,7 @@ public class UpdateBiomeValidator implements Predicate<UpdateBiomeContext> {
         context.setConvertedBiome(Stream.of(findingBiomeContext)
                 .map(findingBiomeFunction)
                 .findFirst()
-                .get()
+                .orElseGet(null)
                 .getConvertedBiome());
        return context.getConvertedBiome() != null;
     }

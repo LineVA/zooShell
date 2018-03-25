@@ -5,11 +5,12 @@ import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Family;
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.utils.Utils;
+import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

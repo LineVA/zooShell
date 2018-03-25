@@ -1,11 +1,11 @@
 package doyenm.zooshell.context;
 
-import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Zoo;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+
 import static org.mockito.Mockito.mock;
 
 /**

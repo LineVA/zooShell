@@ -1,8 +1,9 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
-import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Function;
 
 /**
  *
@@ -25,11 +26,9 @@ public class AnimalTerritorySizeEvaluationController
                 groupsNumber * context.getAnimal().getTerritoryAttributes().getTerritorySizeForOneGroup());
         if (utils.isBetweenAuthorizedValues(currentDeviation,
                 context.getUicnStandardDeviation())) {
-//            context.setTerritorySizeWellBeing(context.getBase() * context.getUicnCoefficient());
-            context.getWellBeingObj().setTerritoryWellBeing(context.getBase() * context.getUicnCoefficient());
+            context.getWellBeingObj().setTerritoryWellBeing(AnimalEvaluationContext.BASE * context.getUicnCoefficient());
         } else {
-//            context.setTerritorySizeWellBeing(context.getZero());
-            context.getWellBeingObj().setTerritoryWellBeing(context.getZero());
+            context.getWellBeingObj().setTerritoryWellBeing(AnimalEvaluationContext.ZERO);
         }
         return context;
     }

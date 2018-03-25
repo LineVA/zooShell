@@ -1,7 +1,7 @@
 package doyenm.zooshell.main;
 
 import doyenm.zooshell.ZooShellConfig;
-import doyenm.zooshell.commandLine.general.CommandManager;
+import doyenm.zooshell.commandline.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

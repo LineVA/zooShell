@@ -3,9 +3,10 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.KeeperAddTrainingContext;
 import doyenm.zooshell.validator.context.FindingFamilyContext;
 import doyenm.zooshell.validator.function.FindingFamilyFunction;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Predicate;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -24,7 +25,7 @@ public class KeeperAddTrainingValidator implements Predicate<KeeperAddTrainingCo
         t.setFamily(Stream.of(findingContext)
                 .map(findingFamilyFunction)
                 .findFirst()
-                .get()
+                .orElseGet(null)
                 .getConvertedFamily());
         return t.getKeeper() != null && t.getFamily() != null
                 && !t.getZoo().getAvailableKeeperTrainings().isEmpty()

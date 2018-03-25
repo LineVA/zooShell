@@ -1,16 +1,7 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
-import doyenm.zooshell.validator.function.FindingBiomeFunction;
-import doyenm.zooshell.validator.function.FindingDietFunction;
-import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
-import doyenm.zooshell.validator.function.FindingSexFunction;
-import doyenm.zooshell.validator.function.FindingSpecieFunction;
-import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
-import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
-import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
+import doyenm.zooshell.validator.function.*;
+import doyenm.zooshell.validator.predicates.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

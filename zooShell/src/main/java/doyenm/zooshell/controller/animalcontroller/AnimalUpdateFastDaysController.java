@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller;
 
 import doyenm.zooshell.context.AnimalUpdateFastDaysContext;
+
 import java.util.function.Function;
 
 /**

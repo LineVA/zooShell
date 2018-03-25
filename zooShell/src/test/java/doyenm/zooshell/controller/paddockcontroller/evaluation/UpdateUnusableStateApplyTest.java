@@ -8,15 +8,15 @@ package doyenm.zooshell.controller.paddockcontroller.evaluation;
 import doyenm.zooshell.context.PaddockEvaluationContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockState;
-import java.util.Random;
-import java.util.function.Function;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.doCallRealMethod;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+
+import java.util.Random;
+import java.util.function.Function;
+
+import static org.mockito.Mockito.*;
 
 /**
  *

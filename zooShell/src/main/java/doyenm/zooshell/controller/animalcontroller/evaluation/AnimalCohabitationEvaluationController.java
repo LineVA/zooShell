@@ -2,8 +2,9 @@ package doyenm.zooshell.controller.animalcontroller.evaluation;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.utils.CohabitationFactorHandler;
-import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Function;
 
 /**
  *

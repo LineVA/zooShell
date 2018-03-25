@@ -1,21 +1,17 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.KeeperUpdateOccupationsContext;
-import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.Position;
-import doyenm.zooshell.model.TaskType;
-import doyenm.zooshell.model.TimedOccupation;
-import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.model.*;
 import doyenm.zooshell.validator.function.FindingTaskFunction;
 import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  *

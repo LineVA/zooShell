@@ -3,9 +3,10 @@ package doyenm.zooshell.controller.keepercontroller;
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.context.KeeperEvaluationContext;
 import doyenm.zooshell.model.AnimalKeeper;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -33,7 +34,7 @@ public class KeeperEvaluationController implements Function<EvaluationContext, E
                     context.getKeeperEvents().addAll(t1.getEvents());
                     return t1;
                 })
-                .map((KeeperEvaluationContext t1) -> t1.getKeeper())
+                .map(KeeperEvaluationContext::getKeeper)
                 .collect(Collectors.toList())
         );
         return context;

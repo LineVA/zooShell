@@ -4,10 +4,11 @@ import doyenm.zooshell.context.PaddockExtensionCreationContext;
 import doyenm.zooshell.model.Coordinates;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Position;
-import java.util.Arrays;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.Arrays;
 
 /**
  *
