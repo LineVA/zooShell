@@ -59,6 +59,11 @@ public class PaddockControllerConfig {
     public UpdatePaddockTypeController updatePaddockTypeController() {
         return new UpdatePaddockTypeController();
     }
+    
+    @Bean
+    public UpdatePaddockArrangementController updatePaddockArrangementController() {
+        return new UpdatePaddockArrangementController();
+    }
 
     // Evaluation
     @Bean

@@ -5,6 +5,7 @@ import doyenm.zooshell.validator.predicates.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 /**
  *
  * @author doyenm
@@ -45,6 +46,11 @@ public class ValidatorsConfig {
     @Bean
     FindingPaddockTypeFunction findingPaddockTypeFunction() {
         return new FindingPaddockTypeFunction();
+    }
+    
+      @Bean
+    FindingPaddockArrangementFunction findingPaddockArrangementFunction() {
+        return new FindingPaddockArrangementFunction();
     }
 
     @Bean

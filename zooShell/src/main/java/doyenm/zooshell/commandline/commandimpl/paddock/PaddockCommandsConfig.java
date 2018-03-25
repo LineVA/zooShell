@@ -83,6 +83,13 @@ public class PaddockCommandsConfig {
                 validators.updatePaddockTypeValidator(),
                 controllers.updatePaddockTypeController());
     }
+    
+    @Bean
+    public UpdatePaddockArrangements updatePaddockArrangements() {
+        return new UpdatePaddockArrangements(
+                validators.updatePaddockArrangementValidator(),
+                controllers.updatePaddockArrangementController());
+    }
 
     @Bean
     public LsPaddockType lsPaddockType() {
@@ -92,5 +99,10 @@ public class PaddockCommandsConfig {
     @Bean
     public LsBiome lsBiome() {
         return new LsBiome();
+    }
+    
+     @Bean
+    public LsPaddockArrangements lsPaddockArrangements() {
+        return new LsPaddockArrangements();
     }
 }

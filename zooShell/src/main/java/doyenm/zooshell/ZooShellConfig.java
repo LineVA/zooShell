@@ -6,7 +6,6 @@ import doyenm.zooshell.commandline.general.ActionPointCommand;
 import doyenm.zooshell.commandline.general.ActionPointsHandler;
 import doyenm.zooshell.commandline.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
-import doyenm.zooshell.main.Main;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +13,7 @@ import org.springframework.context.annotation.Import;
 
 import java.util.Arrays;
 import java.util.List;
+
 
 /**
  *
@@ -64,6 +64,10 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.removePaddock(), 1),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.updateBiome(), 1),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.updatePaddockType(), 1),
+                new ActionPointCommand(commandsConfig.paddockCommandsConfig.updatePaddockArrangements(), 1),
+                new ActionPointCommand(commandsConfig.paddockCommandsConfig.lsPaddockType(), 0),
+                new ActionPointCommand(commandsConfig.paddockCommandsConfig.lsPaddockArrangements(), 0),
+                new ActionPointCommand(commandsConfig.paddockCommandsConfig.lsBiome(), 0),
                 // Animal
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.changeAnimalName(), 1),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.changePaddock(), 1),
@@ -94,11 +98,9 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.handymanCommandsConfig.updateHandymanOccupations(), 1),
                 new ActionPointCommand(commandsConfig.handymanCommandsConfig.removeHandyman(), 1),
                 // Ls
-                new ActionPointCommand(commandsConfig.paddockCommandsConfig.lsBiome(), 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsContraceptionMethod(), 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsDiet(), 0),
                 new ActionPointCommand(commandsConfig.keeperCommandsConfig.lsKeeperTask(), 0),
-                new ActionPointCommand(commandsConfig.paddockCommandsConfig.lsPaddockType(), 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsSex(), 0),
                 new ActionPointCommand(commandsConfig.lsPenalties(), 0),
                 // General

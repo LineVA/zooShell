@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 /**
  *
  * @author doyenm
@@ -95,6 +96,14 @@ public class LsContext {
         List<String> list = new ArrayList<>();
         for (PaddockType type : PaddockType.values()) {
             list.add(type.getId() + " - " + type.toString());
+        }
+        return list;
+    }
+    
+    public List<String> getPaddockArrangements() {
+        List<String> list = new ArrayList<>();
+        for (PaddockArrangement arrangement : PaddockArrangement.values()) {
+            list.add(arrangement.getId() + " - " + arrangement.toString());
         }
         return list;
     }

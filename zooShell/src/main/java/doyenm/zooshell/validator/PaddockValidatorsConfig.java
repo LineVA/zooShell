@@ -1,6 +1,7 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.validator.function.FindingBiomeFunction;
+import doyenm.zooshell.validator.function.FindingPaddockArrangementFunction;
 import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
 import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
@@ -30,6 +31,9 @@ public class PaddockValidatorsConfig {
     @Autowired
     FindingPaddockTypeFunction findingPaddockTypeFunction;
 
+      @Autowired
+    FindingPaddockArrangementFunction findingPaddockArrangementFunction;
+    
     @Autowired
     Environment environment;
 
@@ -88,6 +92,11 @@ public class PaddockValidatorsConfig {
     @Bean
     public UpdatePaddockTypeValidator updatePaddockTypeValidator() {
         return new UpdatePaddockTypeValidator(findPaddock, findingPaddockTypeFunction);
+    }
+    
+    @Bean
+    public UpdatePaddockArrangementValidator updatePaddockArrangementValidator() {
+        return new UpdatePaddockArrangementValidator(findPaddock, findingPaddockArrangementFunction);
     }
 
 }

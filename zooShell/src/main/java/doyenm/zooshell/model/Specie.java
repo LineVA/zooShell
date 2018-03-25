@@ -27,16 +27,19 @@ public class Specie {
     private LifespanAttributes lifespanAttributes;
     private BiomesSpecie biomes;
     private DietsSpecie diets;
+    private PaddockArrangementSpecie arrangements;
     private FoodAttributes foodAttributes;
     private SocialAttributes socialAttributes;
     private TerritoryAttributes territoryAttributes;
     private SizeAttributes sizeAttributes;
     private CharacterAttributes characterAttributes;
 
-    public Specie(Names names, Uicn uicn, BiomesSpecie biomes, DietsSpecie diets) {
+    public Specie(Names names, Uicn uicn, BiomesSpecie biomes, DietsSpecie diets,
+            PaddockArrangementSpecie arrangements) {
         this.names = names;
         this.uicn = uicn;
         this.biomes = biomes;
         this.diets = diets;
+        this.arrangements = arrangements;
     }
 }

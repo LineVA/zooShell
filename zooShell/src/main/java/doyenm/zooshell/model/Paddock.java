@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
+
 /**
  *
  * @author doyenm
@@ -41,6 +42,10 @@ public class Paddock {
      * Its type
      */
     private PaddockType type;
+    /**
+     * its arrangements
+     */
+    private List<PaddockArrangement> arrangements;
     /**
      * List of extensions
      */

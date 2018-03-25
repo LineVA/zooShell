@@ -23,6 +23,7 @@ public class SpecieDetailsController implements Function<SpecieDetailsContext, S
         context.addCouple("Lifespan attributes", specie.getLifespanAttributes().toString());
         context.addCouple("Reproduction attributes", specie.getReproductionAttributes().toString());
         context.addCouple("Biomes", specie.getBiomes().getBiomes().toString());
+        context.addCouple("Arrangements", specie.getArrangements().getArrangements().toString());
         context.addCouple("Diets", specie.getDiets().getDiets().toString());
         context.addCouple("Food attributes", specie.getFoodAttributes().toString());
         context.addCouple("Size", specie.getSizeAttributes().toString());

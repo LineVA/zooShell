@@ -34,6 +34,7 @@ public class AnimalEvaluationContext {
     private double groupSizeWellBeing = 0.0;
     private double keeperInfluenceWellBeing = 0.0;
     private double taskInfluenceWellBeing = 0.0;
+    private double installationsWellBeing = 0.0;
 
     private WellBeing wellBeingObj = new WellBeing();
     
@@ -50,7 +51,8 @@ public class AnimalEvaluationContext {
                 + BASE * getUicnCoefficient()
                 + BASE
                 + BASE * getUicnCoefficient()
-                + BASE * getUicnCoefficient();
+                + BASE * getUicnCoefficient()
+                + BASE;
     }
 
     public int getNumberOfAnimalsOfTheSameSpecieAndInTheSamePaddock() {
@@ -112,6 +114,13 @@ public class AnimalEvaluationContext {
                 .filter(other -> other.getPaddock().equals(getAnimal().getPaddock()))
                 .collect(Collectors.toList());
     }
-    
-    
+
+    public List<PaddockArrangement> getArrangements(){
+        return getAnimal().getPaddock().getArrangements();
+    }
+
+    public List<PaddockArrangement> getSpecieArrangements(){
+        return getAnimal().getSpecie().getArrangements().getArrangements();
+    }
+
 }
