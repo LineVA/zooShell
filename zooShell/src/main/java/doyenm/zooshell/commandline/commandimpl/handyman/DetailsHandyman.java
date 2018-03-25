@@ -13,13 +13,15 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalValidator;
 import doyenm.zooshell.validator.HandymanValidator;
+
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -30,28 +32,26 @@ public class DetailsHandyman implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-      HandymanContext context = generateContext(cmd, zoo);
-        try {
-            context = Stream.of(context)
-                    .filter(validator)
-                    .map(controller)
-                    .findFirst()
-                    .get();
-
+        HandymanContext context = generateContext(cmd, zoo);
+        Optional<HandymanContext> optional = Stream.of(context)
+                .filter(validator)
+                .map(controller)
+                .findFirst();
+        if (optional.isPresent()) {
             FormattingInList formatting = new FormattingInList();
             return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS, context.getZoo());
-        } catch (NoSuchElementException ex) {
+        } else {
             return new ReturnExec("ERROR", TypeReturn.ERROR, context.getZoo());
         }
     }
-    
-    private HandymanContext generateContext(String[] cmd, Zoo zoo){
-           return new HandymanContext(zoo, cmd[1]);
+
+    private HandymanContext generateContext(String[] cmd, Zoo zoo) {
+        return new HandymanContext(zoo, cmd[1]);
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
-       return cmd.length == 2
+        return cmd.length == 2
                 && Arrays.asList(Constants.HANDYMAN_OR_HD).contains(cmd[0]);
     }
 }
