@@ -10,6 +10,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.KeeperValidator;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
@@ -31,18 +32,21 @@ public class DetailKeeper implements Command {
         } else {
             context = new KeeperContext(zoo, cmd[1], false);
         }
-        context = Stream.of(context)
+        Optional<KeeperContext> optional = Stream.of(context)
                 .filter(validator)
                 .map(controller)
-                .findFirst()
-                .get();
-        FormattingInList formatting = new FormattingInList();
-        return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS);
+                .findFirst();
+        if(optional.isPresent()) {
+            FormattingInList formatting = new FormattingInList();
+            return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS);
+        } else  {
+            return new ReturnExec("ERROR", TypeReturn.ERROR);
+        }
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2 | cmd.length == 3) {
+        if (cmd.length == 2 || cmd.length == 3) {
             if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])) {
                 if (cmd.length == 3) {
                     return Constants.DETAILED.equals(cmd[2]);
