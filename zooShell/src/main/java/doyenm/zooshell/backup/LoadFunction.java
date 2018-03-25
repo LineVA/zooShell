@@ -49,8 +49,8 @@ public class LoadFunction implements Function<ZooContext, ZooContext> {
      * @return a zoo with merged paddocks
      */
     private Zoo mergePaddocks(Zoo zoo) {
-        zoo = mergePaddocksForAnimals(zoo);
-        zoo = mergePaddocksForKeepers(zoo);
+        mergePaddocksForAnimals(zoo);
+        mergePaddocksForKeepers(zoo);
         return zoo;
     }
 
