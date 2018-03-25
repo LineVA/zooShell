@@ -25,7 +25,7 @@ public class KeeperAddTrainingValidator implements Predicate<KeeperAddTrainingCo
         t.setFamily(Stream.of(findingContext)
                 .map(findingFamilyFunction)
                 .findFirst()
-                .get()
+                .orElseGet(null)
                 .getConvertedFamily());
         return t.getKeeper() != null && t.getFamily() != null
                 && !t.getZoo().getAvailableKeeperTrainings().isEmpty()
