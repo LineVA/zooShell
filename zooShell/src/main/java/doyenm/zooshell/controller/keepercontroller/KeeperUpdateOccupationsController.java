@@ -22,7 +22,7 @@ public class KeeperUpdateOccupationsController
                 .build();
         TimedOccupation removingOccupation = null;
         for (TimedOccupation occ : t.getConvertedKeeper().getOccupations()) {
-            if (occ.getPaddock().equals(t.getConvertedPaddock()) & occ.getTaskType().equals(t.getConvertedTask())) {
+            if (occ.getPaddock().equals(t.getConvertedPaddock()) && occ.getTaskType().equals(t.getConvertedTask())) {
                 removingOccupation = occ;
                 break;
             }
