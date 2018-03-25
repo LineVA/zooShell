@@ -35,11 +35,7 @@ public class LsDiet implements Command{
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 1) {
-                if (Arrays.asList(Constants.DIETS).contains(cmd[0])) {
-                    return true;
-            }
-        }
-        return false;
+        return cmd.length == 1
+                && Arrays.asList(Constants.DIETS).contains(cmd[0]);
     }
 }

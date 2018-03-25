@@ -36,6 +36,6 @@ public class LsPaddockType implements Command{
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 1
-                && Arrays.asList(Constants.PAD_OR_PADDOCK_TYPE).contains(cmd[0]);
+                && Arrays.asList(Constants.PADDOCKTYPES_OR_PADTYPES).contains(cmd[0]);
     }
 }
