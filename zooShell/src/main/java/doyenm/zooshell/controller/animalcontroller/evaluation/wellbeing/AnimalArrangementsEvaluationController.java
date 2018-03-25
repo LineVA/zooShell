@@ -14,8 +14,11 @@ public class AnimalArrangementsEvaluationController
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
-        List<PaddockArrangement> paddockInstallations = t.getPaddock().getArrangements();
-        List<PaddockArrangement> specieInstallations = t.getSpecie().getArrangements().getArrangements();
+        List<PaddockArrangement> paddockInstallations = t.getArrangements();
+        List<PaddockArrangement> specieInstallations = t.getSpecieArrangements();
+        if(specieInstallations == null || paddockInstallations == null){
+            return t;
+        }
         int commonInstallations = 0;
         for(PaddockArrangement installation : paddockInstallations){
             if(specieInstallations.contains(installation)){
@@ -24,7 +27,9 @@ public class AnimalArrangementsEvaluationController
                 commonInstallations -= 1;
             }
         }
-        t.setInstallationsWellBeing(commonInstallations / specieInstallations.size() * AnimalEvaluationContext.BASE);
+        int specieSize = specieInstallations.size() == 0 ? 1 : specieInstallations.size();
+        t.getWellBeingObj().setInstallationsWellBeing(
+                commonInstallations / specieSize * AnimalEvaluationContext.BASE);
         return t;
     }
     

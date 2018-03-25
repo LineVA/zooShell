@@ -113,6 +113,13 @@ public class AnimalEvaluationContext {
                 .filter(other -> other.getPaddock().equals(getAnimal().getPaddock()))
                 .collect(Collectors.toList());
     }
-    
-    
+
+    public List<PaddockArrangement> getArrangements(){
+        return getAnimal().getPaddock().getArrangements();
+    }
+
+    public List<PaddockArrangement> getSpecieArrangements(){
+        return getAnimal().getSpecie().getArrangements().getArrangements();
+    }
+
 }
