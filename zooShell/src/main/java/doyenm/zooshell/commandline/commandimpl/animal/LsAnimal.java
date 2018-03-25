@@ -7,15 +7,15 @@ import doyenm.zooshell.commandline.utils.FormattingInList;
 import doyenm.zooshell.context.LsContext;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
+
 import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
- *
  * @author doyenm
  */
-public class LsAnimal implements Command{
+public class LsAnimal implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
@@ -35,12 +35,8 @@ public class LsAnimal implements Command{
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 1) {
-                if (Arrays.asList(Constants.ANIMALS).contains(cmd[0])) {
-                    return true;
-            }
-        }
-        return false;
+        return cmd.length == 1
+                && Arrays.asList(Constants.ANIMALS).contains(cmd[0]);
     }
 
 }

@@ -10,14 +10,15 @@ import doyenm.zooshell.controller.animalcontroller.LsAnimalsWithCriteriaControll
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalsWithCriteria;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -31,7 +32,7 @@ public class LsAnimalsWithCriteria implements Command {
         LsWithCriteriaContext context = new LsWithCriteriaContext(zoo,
                 retrieveDietsExpression(cmd),
                 retrieveSexesExpression(cmd),
-                retrievePaddocksExpression(cmd), 
+                retrievePaddocksExpression(cmd),
                 retrieveSpeciesExpression(cmd)
         );
         Optional<LsWithCriteriaContext> optionnal = Stream.of(context)
@@ -48,12 +49,8 @@ public class LsAnimalsWithCriteria implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length > 1) {
-            if (Arrays.asList(Constants.ANIMALS).contains(cmd[0])) {
-                return true;
-            }
-        }
-        return false;
+        return cmd.length > 1
+                && Arrays.asList(Constants.ANIMALS).contains(cmd[0]);
     }
 
     private List<String> retrieveDietsExpression(String[] cmd) {

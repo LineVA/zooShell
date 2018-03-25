@@ -8,13 +8,14 @@ import doyenm.zooshell.controller.animalcontroller.AnimalRemoveController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalValidator;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -41,14 +42,9 @@ public class RemoveAnimal implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 3) {
-            if (Arrays.asList(Constants.ANIMAL).contains(cmd[0])) {
-                if (Constants.REMOVE.equalsIgnoreCase(cmd[1])) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return cmd.length == 3
+                && Arrays.asList(Constants.ANIMAL).contains(cmd[0])
+                && Constants.REMOVE.equalsIgnoreCase(cmd[1]);
     }
 
 }
