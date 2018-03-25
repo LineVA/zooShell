@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class Name {
 
-    String name;
+    private String name;
 
     Name() {
     }
