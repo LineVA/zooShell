@@ -18,8 +18,6 @@ public class DisplayingUnaryZooEvents implements DisplayingEvents {
 
     @Override
     public String format(Event event) {
-//        ZooEvent zooEvent = (ZooEvent) event;
-//        return MessageFormat.format(zooEvent.getEventType().getMessage(), zooEvent.getSubject().getName());
         return null;
     }
 
