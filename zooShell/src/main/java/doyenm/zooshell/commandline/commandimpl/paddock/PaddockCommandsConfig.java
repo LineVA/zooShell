@@ -85,7 +85,7 @@ public class PaddockCommandsConfig {
     }
 
     @Bean
-    public LsPaddockType LsPaddockType() {
+    public LsPaddockType lsPaddockType() {
         return new LsPaddockType();
     }
 

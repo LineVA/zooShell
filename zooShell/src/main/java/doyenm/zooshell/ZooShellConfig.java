@@ -96,7 +96,7 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsContraceptionMethod(), 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsDiet(), 0),
                 new ActionPointCommand(commandsConfig.keeperCommandsConfig.lsKeeperTask(), 0),
-                new ActionPointCommand(commandsConfig.paddockCommandsConfig.LsPaddockType(), 0),
+                new ActionPointCommand(commandsConfig.paddockCommandsConfig.lsPaddockType(), 0),
                 new ActionPointCommand(commandsConfig.animalCommandsConfig.lsSex(), 0),
                 new ActionPointCommand(commandsConfig.lsPenalties(), 0),
                 // General
