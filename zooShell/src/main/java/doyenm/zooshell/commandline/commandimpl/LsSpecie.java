@@ -19,13 +19,8 @@ public class LsSpecie implements Command {
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         LsContext context = new LsContext(zoo);
-        return Stream.of(context)
-                .map(t -> {
-                    FormattingInList formatting = new FormattingInList();
-                    return new ReturnExec(formatting.formatList(t.getSpecieNames()), TypeReturn.SUCCESS);
-                })
-                .findFirst()
-                .get();
+        FormattingInList formatting = new FormattingInList();
+        return new ReturnExec(formatting.formatList(context.getSpecieNames()), TypeReturn.SUCCESS);
     }
 
     @Override

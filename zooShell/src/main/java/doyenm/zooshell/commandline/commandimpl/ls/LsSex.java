@@ -20,17 +20,8 @@ public class LsSex implements Command{
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         LsContext context = new LsContext(zoo);
-        return Stream.of(context)
-                .map(new Function<LsContext, ReturnExec>() {
-                    @Override
-                    public ReturnExec apply(LsContext t) {
-                        FormattingInList formatting = new FormattingInList();
-                        return new ReturnExec(formatting.formatList(context.getSexes()), TypeReturn.SUCCESS);
-                    }
-
-                })
-                .findFirst()
-                .get();
+        FormattingInList formatting = new FormattingInList();
+        return new ReturnExec(formatting.formatList(context.getSexes()), TypeReturn.SUCCESS);
     }
 
     @Override

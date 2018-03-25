@@ -16,22 +16,6 @@ import lombok.Getter;
  */
 public class MainGUI extends JFrame {
 
-    @Getter
-    private TextPane editor;
-
-//    public MainGUI(Play play) {
-//        super("Zoo");
-//        this.setLayout(new FlowLayout());
-//        // To set the JFrame in fullscreen 
-//        Dimension dimension = new Dimension(600, 600);
-//        TextPane editor =  new TextPane(play, 700, 700);
-//        JScrollPane scroll = new JScrollPane(editor);
-//        this.getContentPane().add(scroll);
-//        this.setSize(dimension);
-//        this.closeWindows();
-//        this.pack();
-//        setVisible(true);
-//    }
     public MainGUI() {
         super("Zoo");
 

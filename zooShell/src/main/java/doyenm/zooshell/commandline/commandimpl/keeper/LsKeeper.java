@@ -19,13 +19,8 @@ public class LsKeeper implements Command {
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         LsContext context = new LsContext(zoo);
-        return Stream.of(context)
-                .map((LsContext t) -> {
-                    FormattingInList formatting = new FormattingInList();
-                    return new ReturnExec(formatting.formatList(context.getKeeperNames()), TypeReturn.SUCCESS);
-                })
-                .findFirst()
-                .get();
+        FormattingInList formatting = new FormattingInList();
+        return new ReturnExec(formatting.formatList(context.getKeeperNames()), TypeReturn.SUCCESS);
     }
 
     @Override
