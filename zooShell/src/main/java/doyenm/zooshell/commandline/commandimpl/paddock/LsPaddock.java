@@ -7,11 +7,11 @@ import doyenm.zooshell.commandline.utils.FormattingInList;
 import doyenm.zooshell.context.LsContext;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
+
 import java.util.Arrays;
 import java.util.stream.Stream;
 
 /**
- *
  * @author doyenm
  */
 public class LsPaddock implements Command {
@@ -30,12 +30,8 @@ public class LsPaddock implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 1) {
-            if (Arrays.asList(Constants.PADS_OR_PADDOCKS).contains(cmd[0])) {
-                return true;
-            }
-        }
-        return false;
+        return cmd.length == 1
+                && Arrays.asList(Constants.PADS_OR_PADDOCKS).contains(cmd[0]);
     }
 
 }

@@ -8,13 +8,14 @@ import doyenm.zooshell.controller.paddockcontroller.PaddockChangeNameController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.PaddockChangeNameValidator;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -40,14 +41,9 @@ public class RenamePaddock implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 4) {
-            if (Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])) {
-                if (Constants.RENAME.equalsIgnoreCase(cmd[1])) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return cmd.length == 4
+                && Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])
+                && Constants.RENAME.equalsIgnoreCase(cmd[1]);
     }
 
 }
