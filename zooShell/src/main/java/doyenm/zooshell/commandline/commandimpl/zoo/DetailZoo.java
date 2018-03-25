@@ -30,17 +30,8 @@ public class DetailZoo implements Command {
         } else {
             context = new ZooContext(zoo, true);
         }
-        return Stream.of(context)
-                .map(controller)
-                .map(new Function<ZooContext, ReturnExec>() {
-                    @Override
-                    public ReturnExec apply(ZooContext t) {
-                        FormattingInList formatting = new FormattingInList();
-                        return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS);
-                    }
-                })
-                .findFirst()
-                .get();
+        FormattingInList formatting = new FormattingInList();
+        return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS);
     }
 
     @Override

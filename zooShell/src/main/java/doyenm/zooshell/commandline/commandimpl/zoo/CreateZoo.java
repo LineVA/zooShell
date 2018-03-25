@@ -42,12 +42,9 @@ public class CreateZoo implements Command {
      */
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 3 || cmd.length == 5 || cmd.length == 7) {
-            if (Constants.ZOO.equalsIgnoreCase(cmd[0]) && Constants.CREATE.equalsIgnoreCase(cmd[1])) {
-                return true;
-            }
-        }
-        return false;
+        return (cmd.length == 3 || cmd.length == 5 || cmd.length == 7)
+                && Constants.ZOO.equalsIgnoreCase(cmd[0])
+                && Constants.CREATE.equalsIgnoreCase(cmd[1]);
     }
 
     @Override
