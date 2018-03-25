@@ -18,7 +18,7 @@ public class PaddockEntryCreationValidator
     public boolean test(PaddockEntryCreationContext t) {
         PaddockEntryCreationContext context = t;
         context.convert();
-       t = retrievePaddock(t);
+        retrievePaddock(t);
         return context.getConvertedPaddock() != null;
     }
 
