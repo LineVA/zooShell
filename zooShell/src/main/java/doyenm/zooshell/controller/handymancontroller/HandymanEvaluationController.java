@@ -31,7 +31,7 @@ public class HandymanEvaluationController implements Function<EvaluationContext,
                 .map((Handyman t1) -> new HandymanEvaluationContext(context.getZoo(), t1))
                 // Age
                 .map(handymanAgeEvaluationController)
-                .map((HandymanEvaluationContext t1) -> t1.getHandyman())
+                .map(HandymanEvaluationContext::getHandyman)
                 .collect(Collectors.toList())
         );
         return context;
