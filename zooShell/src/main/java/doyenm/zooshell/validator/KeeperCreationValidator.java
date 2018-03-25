@@ -23,7 +23,7 @@ public class KeeperCreationValidator implements Predicate<KeeperCreationContext>
         KeeperCreationContext context = t;
         
         return this.keepersNumberPredicate.test(context)
-                & nameValidator.test(NameDto.builder()
+                && nameValidator.test(NameDto.builder()
                         .testing(context.getKeeper())
                         .existingNames(context.getKeepers().keySet())
                         .build());
