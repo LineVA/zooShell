@@ -5,32 +5,36 @@ import doyenm.zooshell.model.Penalty;
 import java.util.List;
 
 /**
- *
  * @author doyenm
  */
 public class FormattingInList {
 
     public String format(List<Couple> couples) {
-        String returnStr = "";
+        StringBuilder builder = new StringBuilder();
         for (Couple couple : couples) {
-            returnStr += couple.getKey() + " : " + couple.getValue() + "\n";
+            builder.append(couple.getKey());
+            builder.append(" : ");
+            builder.append(couple.getValue());
+            builder.append("\n");
         }
-        return returnStr;
+        return builder.toString();
     }
 
     public String formatList(List<String> strs) {
-        String returnStr = "";
+        StringBuilder builder = new StringBuilder();
         for (String str : strs) {
-            returnStr += str + "\n";
+            builder.append(str);
+            builder.append("\n");
         }
-        return returnStr;
+        return builder.toString();
     }
-    
-     public String formatPenaltiesList(List<Penalty> strs) {
-        String returnStr = "";
+
+    public String formatPenaltiesList(List<Penalty> strs) {
+        StringBuilder builder = new StringBuilder();
         for (Penalty str : strs) {
-            returnStr += str.toString() + "\n";
+            builder.append(str.toString());
+            builder.append("\n");
         }
-        return returnStr;
+        return builder.toString();
     }
 }
