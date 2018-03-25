@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  */
 public class KeeperUtils {
     
-    private final Double ZERO = 0.0;
+    private static final Double ZERO = 0.0;
 
     public boolean isKeeperFeedingInGivenPaddock(AnimalKeeper keeper, Paddock paddock) {
         return !keeper.getOccupations()
@@ -51,6 +51,6 @@ public class KeeperUtils {
                 .filter((TimedOccupation occupation) -> paddock == occupation.getPaddock())
                 .map(TimedOccupation::getTime)
                 .findFirst();
-        return time.isPresent()?time.get():this.ZERO;
+        return time.isPresent()?time.get():ZERO;
     }
 }
