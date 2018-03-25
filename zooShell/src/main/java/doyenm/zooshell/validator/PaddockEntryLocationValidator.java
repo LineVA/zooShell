@@ -20,22 +20,16 @@ public class PaddockEntryLocationValidator implements Predicate<PaddockEntryCrea
     public boolean test(PaddockEntryCreationContext t) {
           return Stream.of(t.getConvertedPaddock())
                 // Test hoverlap
-                .filter(new Predicate<Paddock>() {
-                    @Override
-                    public boolean test(Paddock paddock) {
+                .filter(input -> {
                         OverlapContext overlap = new OverlapContext(t.getConvertedX(), 0,
-                                paddock.getX(), paddock.getWidth());
+                                input.getX(), input.getWidth());
                         return canOverlapPredicate.test(overlap);
-                    }
                 })
                 // Test voverlap
-                .filter(new Predicate<Paddock>() {
-                    @Override
-                    public boolean test(Paddock paddock) {
+                .filter(input ->{
                         OverlapContext overlap = new OverlapContext(t.getConvertedY(), 0,
-                                paddock.getY(), paddock.getHeight());
+                                input.getY(), input.getHeight());
                         return canOverlapPredicate.test(overlap);
-                    }
 
                 })
                 .collect(toList()).isEmpty();
