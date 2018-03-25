@@ -34,7 +34,7 @@ public class KeeperEvaluationController implements Function<EvaluationContext, E
                     context.getKeeperEvents().addAll(t1.getEvents());
                     return t1;
                 })
-                .map((KeeperEvaluationContext t1) -> t1.getKeeper())
+                .map(KeeperEvaluationContext::getKeeper)
                 .collect(Collectors.toList())
         );
         return context;
