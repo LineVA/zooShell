@@ -22,7 +22,7 @@ public class LsContext {
         return new ArrayList<>(
                 getZoo().getPaddocks().values()
                 .stream()
-                .map(paddock -> paddock.getName())
+                .map(Paddock::getName)
                 .collect(Collectors.toList())
         );
     }
@@ -40,7 +40,7 @@ public class LsContext {
         return new ArrayList<>(
                 getZoo().getAnimals().values()
                 .stream()
-                .map(animal -> animal.getName())
+                .map(Animal::getName)
                 .collect(Collectors.toList())
         );
     }
@@ -49,7 +49,7 @@ public class LsContext {
         return new ArrayList<>(
                 getZoo().getKeepers().values()
                 .stream()
-                .map(keeper -> keeper.getName())
+                .map(AnimalKeeper::getName)
                 .collect(Collectors.toList())
         );
     }
@@ -58,7 +58,7 @@ public class LsContext {
         return new ArrayList<>(
                 getZoo().getHandymen().values()
                 .stream()
-                .map(handyman -> handyman.getName())
+                .map(Handyman::getName)
                 .collect(Collectors.toList())
         );
     }
