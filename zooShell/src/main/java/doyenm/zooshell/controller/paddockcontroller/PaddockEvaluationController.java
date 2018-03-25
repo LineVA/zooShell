@@ -38,7 +38,7 @@ public class PaddockEvaluationController implements Function<EvaluationContext, 
                     context.getPaddockEvents().addAll(t1.getPaddockEvents());
                     return t1;
                 })
-                .map((PaddockEvaluationContext t1) -> t1.getPaddock())
+                .map(PaddockEvaluationContext::getPaddock)
                 .collect(Collectors.toList())
         );
         return context;
