@@ -1,7 +1,5 @@
 package doyenm.zooshell.commandline.commandimpl.paddock;
 
-import doyenm.zooshell.commandLine.commandImpl.paddock.LsPaddockArrangements;
-import doyenm.zooshell.commandLine.commandImpl.paddock.UpdatePaddockArrangements;
 import doyenm.zooshell.controller.paddockcontroller.PaddockControllerConfig;
 import doyenm.zooshell.validator.PaddockValidatorsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
