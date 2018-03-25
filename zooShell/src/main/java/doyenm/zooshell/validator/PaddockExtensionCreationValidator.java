@@ -17,7 +17,7 @@ public class PaddockExtensionCreationValidator
     @Override
     public boolean test(PaddockExtensionCreationContext t) {
         t.convert();
-        t = retrievePaddock(t);
+        retrievePaddock(t);
         if (t.getConvertedPaddock() != null) {
             return t.getConvertedPaddock().getEntry() != null;
         }
