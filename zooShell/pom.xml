@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>doyenm</groupId>
     <artifactId>zooShell</artifactId>
@@ -10,20 +11,20 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-    
+
     <profiles>
         <profile>
-        <id>test</id>
-        <properties>
-            <env>test</env>
-            <gebEnv>test</gebEnv>
-            <jacoco.skip>false</jacoco.skip>
-            <maven.test.skip>false</maven.test.skip>
-            <skip.unit.tests>false</skip.unit.tests>
-        </properties>
-    </profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+                <gebEnv>test</gebEnv>
+                <jacoco.skip>false</jacoco.skip>
+                <maven.test.skip>false</maven.test.skip>
+                <skip.unit.tests>false</skip.unit.tests>
+            </properties>
+        </profile>
     </profiles>
-    
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin -->
         <dependency>
@@ -61,14 +62,13 @@
             <version>4.3.9.RELEASE</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.mvel/mvel2 -->
-<dependency>
-    <groupId>org.mvel</groupId>
-    <artifactId>mvel2</artifactId>
-    <version>2.3.1.Final</version>
-</dependency>
+        <dependency>
+            <groupId>org.mvel</groupId>
+            <artifactId>mvel2</artifactId>
+            <version>2.3.1.Final</version>
+        </dependency>
 
-        
-        
+
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
@@ -89,76 +89,87 @@
             <version>3.8.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core-java8 -->
-<dependency>
-    <groupId>org.assertj</groupId>
-    <artifactId>assertj-core-java8</artifactId>
-    <version>1.0.0m1</version>
-    <scope>test</scope>
-</dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core-java8</artifactId>
+            <version>1.0.0m1</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
-    
+
     <build>
         <plugins>
-              <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.7.9</version>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>prepare-agent</goal>
-                    </goals>
-                </execution>
-                <execution>
-                    <id>report</id>
-                    <phase>prepare-package</phase>
-                    <goals>
-                        <goal>report</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-         <plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.9</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.zenjava</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>@project.version@</version>
                 <configuration>
                     <mainClass>com.zenjava.test.Main</mainClass>
                 </configuration>
-</plugin>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>doyenm.zooshell.Main</mainClass>
+                    <arguments>
+                        <!--<argument>argument1</argument>-->
+                    </arguments>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-  
-    <reporting>
-<!--        <plugins>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                             select non-aggregate reports 
-                            <report>report</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-      
-   
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.3</version>
-            </plugin>
 
-            
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.10-SNAPSHOT</version>
-            </plugin>
-        </plugins>-->
+    <reporting>
+        <!--        <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                     select non-aggregate reports
+                                    <report>report</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jxr-plugin</artifactId>
+                        <version>2.3</version>
+                    </plugin>
+
+
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>0.7.10-SNAPSHOT</version>
+                    </plugin>
+                </plugins>-->
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>
