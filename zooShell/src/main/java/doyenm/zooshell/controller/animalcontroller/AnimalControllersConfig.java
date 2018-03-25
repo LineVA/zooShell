@@ -239,6 +239,11 @@ public class AnimalControllersConfig {
     }
 
     @Bean
+    AnimalArrangementsEvaluationController animalArrangementsEvaluationController(){
+        return new AnimalArrangementsEvaluationController();
+    }
+
+    @Bean
     AnimalWellBeingController animalWellBeingController() {
         return new AnimalWellBeingController(animalBiomeEvaluationController(),
                 animalDietsEvaluationController(),
@@ -247,7 +252,8 @@ public class AnimalControllersConfig {
                 animalTerritorySizeEvaluationController(),
                 animalGroupSizeEvaluationController(),
                 animalTasksInfluenceEvaluationController(),
-                animalKeepersTimeInfluenceEvaluationController());
+                animalKeepersTimeInfluenceEvaluationController(),
+                animalArrangementsEvaluationController());
     }
 
     @Bean
