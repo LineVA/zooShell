@@ -35,10 +35,10 @@ public class KeeperUpdateOccupationsValidator
         t.setConvertedTask(Stream.of(findingContext)
                 .map(findingTaskFunction)
                 .findFirst()
-                .get()
+                .orElseGet(null)
                 .getConvertedTask());
-        if (t.getConvertedKeeper() != null & t.getConvertedPaddock() != null & t.getConvertedTask() != null) {
-            return testTime(t) & t.getConvertedPaddock().getEntry() != null & t.getConvertedTask() != TaskType.UNKNOWN
+        if (t.getConvertedKeeper() != null && t.getConvertedPaddock() != null && t.getConvertedTask() != null) {
+            return testTime(t) && t.getConvertedPaddock().getEntry() != null && t.getConvertedTask() != TaskType.UNKNOWN
                     && t.getConvertedPaddock().getTurnsOfUnusableState() < maxTurnsInUnusableState;
         }
         return false;
@@ -50,7 +50,7 @@ public class KeeperUpdateOccupationsValidator
         }
         double sum = 0.0;
         for(TimedOccupation occ : t.getConvertedKeeper().getOccupations()){
-            if(!occ.getPaddock().equals(t.getConvertedPaddock()) | !occ.getTaskType().equals(t.getConvertedTask())){
+            if(!occ.getPaddock().equals(t.getConvertedPaddock()) || !occ.getTaskType().equals(t.getConvertedTask())){
                 sum += t.getConvertedTime();
             }
         }
