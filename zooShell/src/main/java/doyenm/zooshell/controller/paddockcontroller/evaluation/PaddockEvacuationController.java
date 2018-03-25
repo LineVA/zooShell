@@ -22,11 +22,10 @@ public class PaddockEvacuationController
     @Override
     public PaddockEvaluationContext apply(PaddockEvaluationContext t) {
         if (t.getPaddock().getTurnsOfUnusableState() == maxTurnsWhenUnusable) {
-            Paddock pad = t.getPaddock();
-            // Delete animals 
-            t = handleAnimals(t);
+            // Delete animals
+            handleAnimals(t);
             // Delete occupation s keepers
-            t = handleKeepers(t);
+            handleKeepers(t);
             // Add penalty
             t.getZoo().getPenalties().add(Penalty.builder()
                     .remainingTurns(penaltyDuration)
