@@ -15,7 +15,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class FindingAnimalContext {
     private final Map<String, Animal> animals;
-    private final String AnimalName;
+    private final String animalName;
     @Setter
     private Animal animal;
 }

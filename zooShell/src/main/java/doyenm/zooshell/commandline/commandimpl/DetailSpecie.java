@@ -12,6 +12,7 @@ import doyenm.zooshell.validator.SpecieDetailsValidator;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -26,13 +27,16 @@ public class DetailSpecie implements Command {
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         SpecieDetailsContext context = new SpecieDetailsContext(zoo, cmd[1]);
-        context = Stream.of(context)
+        Optional<SpecieDetailsContext> optinal = Stream.of(context)
                 .filter(validator)
                 .map(controller)
-                .findFirst()
-                .get();
-        FormattingInList formatting = new FormattingInList();
-        return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS);
+                .findFirst();
+        if(optinal.isPresent()) {
+            FormattingInList formatting = new FormattingInList();
+            return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS);
+        } else {
+            return new ReturnExec("ERROR", TypeReturn.ERROR);
+        }
     }
 
     @Override
