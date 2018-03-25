@@ -25,11 +25,10 @@ public class PaddockRemoveValidator implements Predicate<PaddockContext> {
         }
         context.setConvertedPaddock(pad);
         // A paddock must be empty of animals to be remove
-        boolean isEmpty = context.getAnimals()
+        return context.getAnimals()
                 .stream()
                 .filter((Animal t1) -> t1.getPaddock().equals(context.getConvertedPaddock()))
                 .collect(Collectors.toList()).isEmpty();
-        return isEmpty;
     }
 
 }
