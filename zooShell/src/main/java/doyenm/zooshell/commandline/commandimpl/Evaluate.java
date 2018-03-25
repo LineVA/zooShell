@@ -36,8 +36,8 @@ public class Evaluate implements Command {
                 .map(controller)
                 .findFirst();
         if (optional.isPresent()) {
-            String events = formatEvents((EvaluationContext) optional.get());
-            events += "The grade of the zoo is : " + ((EvaluationContext) optional.get()).getZoo().getGrade();
+            String events = formatEvents(optional.get());
+            events += "The grade of the zoo is : " + (optional.get()).getZoo().getGrade();
             return new ReturnExec(events, TypeReturn.SUCCESS, context.getZoo());
         } else {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
@@ -51,7 +51,6 @@ public class Evaluate implements Command {
     }
 
     private String formatEvents(EvaluationContext context) {
-        String result = "";
         List<String> resultsList = new ArrayList<>();
         context.getAnimalEvents()
                 .stream()
@@ -89,10 +88,12 @@ public class Evaluate implements Command {
                         }
                     }
                 });
+        StringBuilder builder = new StringBuilder();
         for (String input : resultsList) {
-            result += input + "\n";
+            builder.append(input);
+            builder.append("\n");
         }
-        return result;
+        return builder.toString();
     }
 
 }
