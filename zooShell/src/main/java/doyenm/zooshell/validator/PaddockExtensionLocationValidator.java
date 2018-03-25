@@ -24,23 +24,16 @@ public class PaddockExtensionLocationValidator implements Predicate<PaddockExten
         return !t.getCoordinatesListExceptYours()
                 .stream()
                 // Test hoverlap
-                .filter(new Predicate<Coordinates>() {
-                    @Override
-                    public boolean test(Coordinates coor) {
+                .filter(input -> {
                         OverlapContext overlap = new OverlapContext(t.getConvertedX(), t.getConvertedWidth(),
-                                coor.getPosition().getX(), coor.getWidth());
+                                input.getPosition().getX(), input.getWidth());
                         return canOverlapPredicate.test(overlap);
-                    }
                 })
                 // Test woverlap
-                .filter(new Predicate<Coordinates>() {
-                    @Override
-                    public boolean test(Coordinates coor) {
+                .filter(input -> {
                         OverlapContext overlap = new OverlapContext(t.getConvertedY(), t.getConvertedHeight(),
-                                coor.getPosition().getY(), coor.getHeight());
+                                input.getPosition().getY(), input.getHeight());
                         return canOverlapPredicate.test(overlap);
-                    }
-
                 })
                 .collect(toList()).isEmpty();
     }
@@ -49,22 +42,16 @@ public class PaddockExtensionLocationValidator implements Predicate<PaddockExten
         return !t.getYourCoordinatesList()
                 .stream()
                 // Test hoverlap
-                .filter(new Predicate<Coordinates>() {
-                    @Override
-                    public boolean test(Coordinates coor) {
+                .filter(input -> {
                         OverlapContext overlap = new OverlapContext(t.getConvertedX(), t.getConvertedWidth(),
-                                coor.getPosition().getX(), coor.getWidth());
+                                input.getPosition().getX(), input.getWidth());
                         return canOverlapPredicate.test(overlap);
-                    }
                 })
                 // Test woverlap
-                .filter(new Predicate<Coordinates>() {
-                    @Override
-                    public boolean test(Coordinates coor) {
+                .filter(input -> {
                         OverlapContext overlap = new OverlapContext(t.getConvertedY(), t.getConvertedHeight(),
-                                coor.getPosition().getY(), coor.getHeight());
+                                input.getPosition().getY(), input.getHeight());
                         return canOverlapPredicate.test(overlap);
-                    }
                 })
                 .collect(toList()).isEmpty();
     }
