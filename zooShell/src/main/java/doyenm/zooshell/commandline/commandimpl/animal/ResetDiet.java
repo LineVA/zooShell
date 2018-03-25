@@ -8,13 +8,14 @@ import doyenm.zooshell.controller.animalcontroller.AnimalResetDietController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.AnimalValidator;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -40,13 +41,8 @@ public class ResetDiet implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 3) {
-            if (Arrays.asList(Constants.ANIMAL_DIET).contains(cmd[0])) {
-                if (Arrays.asList(Constants.RESET).contains(cmd[1])) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return cmd.length == 3
+                && Arrays.asList(Constants.ANIMAL_DIET).contains(cmd[0])
+                && Arrays.asList(Constants.RESET).contains(cmd[1]);
     }
 }
