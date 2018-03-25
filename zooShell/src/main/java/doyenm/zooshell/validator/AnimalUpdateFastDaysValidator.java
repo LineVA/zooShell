@@ -2,8 +2,9 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalUpdateFastDaysContext;
 import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Predicate;
 
 /**
  *
@@ -24,7 +25,7 @@ public class AnimalUpdateFastDaysValidator
                 &&integerValuePredicates.mustBeLowerOrEqualsThan(t.getConvertedFastDays(), 7))) {
             return false;
         }
-        t = retrieveAnimal(t);
+        retrieveAnimal(t);
         if (t.getConvertedAnimal() != null) {
             return t.getEntry() != null;
         }

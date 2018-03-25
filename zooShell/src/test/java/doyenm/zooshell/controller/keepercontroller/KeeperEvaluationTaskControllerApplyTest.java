@@ -5,15 +5,16 @@ import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.TimedOccupation;
+import org.assertj.core.api.Assertions;
+import org.junit.Test;
+import org.mockito.Mockito;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.assertj.core.api.Assertions;
+
 import static org.assertj.core.api.Assertions.offset;
-import org.assertj.core.data.Offset;
-import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  *

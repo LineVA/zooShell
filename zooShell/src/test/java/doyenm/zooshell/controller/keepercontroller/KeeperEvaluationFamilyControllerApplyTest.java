@@ -1,23 +1,15 @@
 package doyenm.zooshell.controller.keepercontroller;
 
 import doyenm.zooshell.context.KeeperEvaluationContext;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.Family;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.Specie;
-import doyenm.zooshell.model.TaskType;
-import doyenm.zooshell.model.TimedOccupation;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import doyenm.zooshell.model.*;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
-import static org.assertj.core.api.Assertions.offset;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.*;
+
+import static org.assertj.core.api.Assertions.offset;
 
 /**
  *

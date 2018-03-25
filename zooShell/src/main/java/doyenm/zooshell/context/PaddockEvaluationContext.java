@@ -1,16 +1,13 @@
 package doyenm.zooshell.context;
 
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.controller.eventhandling.paddock.PaddockEvent;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.Handyman;
+import doyenm.zooshell.model.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *

@@ -1,11 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.SocialAttributes;
-import doyenm.zooshell.model.TerritoryAttributes;
-import doyenm.zooshell.model.WellBeing;
+import doyenm.zooshell.model.*;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -76,7 +72,7 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getTerritoryWellBeing()).isEqualTo(context.getBase() * coef);
+        Assertions.assertThat(actualContext.getWellBeingObj().getTerritoryWellBeing()).isEqualTo(context.BASE * coef);
     }
 
     @Test
@@ -93,6 +89,6 @@ public class AnimalTerritorySizeEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getTerritoryWellBeing()).isEqualTo(context.getZero());
+        Assertions.assertThat(actualContext.getWellBeingObj().getTerritoryWellBeing()).isEqualTo(context.ZERO);
     }
 }

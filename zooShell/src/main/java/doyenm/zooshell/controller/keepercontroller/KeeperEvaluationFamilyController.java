@@ -5,11 +5,8 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Family;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TimedOccupation;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -33,16 +30,16 @@ public class KeeperEvaluationFamilyController
     private KeeperEvaluationContext computeFamilyProgression(KeeperEvaluationContext context) {
         Map<Paddock, Double> paddocksMap = this.generateTimedPaddockMap(context.getOccupations());
         Map<Paddock, Set<Family>> familiesPerPaddockMap = generateFamiliesPerPaddockMap(context.getOccupations(), context.getAnimals());
-        familiesPerPaddockMap.entrySet().stream().forEach((entry) -> {
-            entry.getValue().stream().forEach((family) -> {
+        familiesPerPaddockMap.entrySet().stream().forEach(entry ->
+            entry.getValue().stream().forEach(family -> {
                 if (context.getFamilyEvaluationMap().containsKey(family)) {
                     double currentValue = context.getFamilyEvaluationMap().get(family);
                     context.getKeeper().getFamilyEvaluations().replace(family, paddocksMap.get(entry.getKey()) + currentValue);
                 } else {
                     context.getKeeper().getFamilyEvaluations().put(family, paddocksMap.get(entry.getKey()));
                 }
-            });
-        });
+            })
+        );
         return context;
     }
 

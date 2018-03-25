@@ -5,10 +5,11 @@ import doyenm.zooshell.controller.animalcontroller.evaluation.KeeperUtils;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.TimedOccupation;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -24,8 +25,6 @@ public class AnimalKeepersTimeInfluenceEvaluationController
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
         AnimalEvaluationContext context = t;
-//        context.setKeeperInfluenceWellBeing((computeWellBeing(context,
-//                context.getAnimal().getCharacterAttributes().getBravery())));
         context.getWellBeingObj().setKeepersTimeWellBeing((
                 computeWellBeing(context, context.getAnimal().getCharacterAttributes().getBravery())));
         return context;
@@ -45,8 +44,8 @@ public class AnimalKeepersTimeInfluenceEvaluationController
             }
         }
         if (trait >= limitBetweenPositivAndNegativTime) {
-            return sum * context.getBase();
+            return sum * AnimalEvaluationContext.BASE;
         }
-        return -sum * context.getBase();
+        return -sum * AnimalEvaluationContext.BASE;
     }
 }

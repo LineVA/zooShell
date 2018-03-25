@@ -1,20 +1,18 @@
 package doyenm.zooshell.controller.handymancontroller;
 
-import doyenm.zooshell.controller.animalcontroller.*;
-import doyenm.zooshell.context.AnimalChangePaddockContext;
 import doyenm.zooshell.context.HandymanRenameContext;
-import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Handyman;
-import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Ignore;
 import org.junit.Test;
-import static org.mockito.Matchers.anyMap;
 import org.mockito.Mockito;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.mockito.Matchers.anyMap;
 import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.when;
 

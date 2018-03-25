@@ -4,10 +4,11 @@ import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.ExecuteReproductionFunction;
 import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.FemaleReproductionPredicate;
 import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.MaleReproductionPredicate;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

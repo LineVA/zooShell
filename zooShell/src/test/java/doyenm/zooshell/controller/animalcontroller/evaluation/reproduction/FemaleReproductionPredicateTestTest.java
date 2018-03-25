@@ -1,11 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.reproduction;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.model.ReproductionAttributes;
-import doyenm.zooshell.model.Sex;
-import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.model.*;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

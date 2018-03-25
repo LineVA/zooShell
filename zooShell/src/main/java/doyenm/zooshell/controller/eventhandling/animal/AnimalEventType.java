@@ -1,9 +1,10 @@
 package doyenm.zooshell.controller.eventhandling.animal;
 
 import doyenm.zooshell.controller.eventhandling.EventCategory;
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.List;
-import lombok.Getter;
 
 /**
  *

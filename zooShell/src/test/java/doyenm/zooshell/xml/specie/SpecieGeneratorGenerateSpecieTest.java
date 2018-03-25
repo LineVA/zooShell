@@ -1,9 +1,10 @@
 package doyenm.zooshell.xml.specie;
 
 import doyenm.zooshell.model.Specie;
-import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+
+import java.util.Map;
 
 /**
  *

@@ -3,8 +3,9 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.AnimalChangePaddockContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Predicate;
 
 /**
  *

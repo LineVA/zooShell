@@ -4,9 +4,11 @@ import com.google.inject.internal.util.ImmutableMap;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.Zoo;
-import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+
+import java.util.Map;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

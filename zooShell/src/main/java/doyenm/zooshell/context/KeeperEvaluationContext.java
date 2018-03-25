@@ -1,18 +1,13 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.controller.eventhandling.keeper.KeeperEvent;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.Family;
-import doyenm.zooshell.model.TaskType;
-import doyenm.zooshell.model.TimedOccupation;
-import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.model.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 /**
  *

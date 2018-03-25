@@ -1,12 +1,13 @@
 package doyenm.zooshell.commandLine.commandImpl.paddock;
 
-import doyenm.zooshell.commandLine.general.Command;
-import doyenm.zooshell.commandLine.general.ReturnExec;
-import doyenm.zooshell.commandLine.general.TypeReturn;
-import doyenm.zooshell.commandLine.utils.FormattingInList;
+import doyenm.zooshell.commandline.general.Command;
+import doyenm.zooshell.commandline.general.ReturnExec;
+import doyenm.zooshell.commandline.general.TypeReturn;
+import doyenm.zooshell.commandline.utils.FormattingInList;
 import doyenm.zooshell.context.LsContext;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
+
 import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -15,7 +16,7 @@ import java.util.stream.Stream;
  *
  * @author doyenm
  */
-public class LsPaddockArrangements implements Command{
+public class LsPaddockArrangements implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {

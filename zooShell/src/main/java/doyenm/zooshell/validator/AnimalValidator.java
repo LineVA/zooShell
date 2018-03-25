@@ -1,6 +1,7 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalContext;
+
 import java.util.function.Predicate;
 
 /**

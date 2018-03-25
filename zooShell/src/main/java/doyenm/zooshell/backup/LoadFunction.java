@@ -1,20 +1,17 @@
 package doyenm.zooshell.backup;
 
 import doyenm.zooshell.context.ZooContext;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.TimedOccupation;
-import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.model.*;
 import doyenm.zooshell.validator.FindPaddock;
 import doyenm.zooshell.xml.specie.SpecieGenerator;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 
 /**
  *
@@ -52,8 +49,8 @@ public class LoadFunction implements Function<ZooContext, ZooContext> {
      * @return a zoo with merged paddocks
      */
     private Zoo mergePaddocks(Zoo zoo) {
-        zoo = mergePaddocksForAnimals(zoo);
-        zoo = mergePaddocksForKeepers(zoo);
+        mergePaddocksForAnimals(zoo);
+        mergePaddocksForKeepers(zoo);
         return zoo;
     }
 

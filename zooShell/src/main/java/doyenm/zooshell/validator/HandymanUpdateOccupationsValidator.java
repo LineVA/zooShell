@@ -1,8 +1,9 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.HandymanUpdateOccupationsContext;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Predicate;
 
 /**
  *
@@ -20,7 +21,7 @@ public class HandymanUpdateOccupationsValidator
     public boolean test(HandymanUpdateOccupationsContext t) {
         t.setHandyman(findHandyman.find(t.getZoo(), t.getHandymanName()));
         t.setPaddock(findPaddock.find(t.getZoo(), t.getPaddockName()));
-        return t.getHandyman() != null & t.getPaddock() != null && checkAction(t);
+        return t.getHandyman() != null && t.getPaddock() != null && checkAction(t);
     }
     
     private boolean checkAction(HandymanUpdateOccupationsContext t){

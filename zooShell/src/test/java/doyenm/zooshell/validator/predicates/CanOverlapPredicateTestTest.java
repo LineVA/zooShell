@@ -1,8 +1,6 @@
 package doyenm.zooshell.validator.predicates;
 
 import doyenm.zooshell.validator.context.OverlapContext;
-import java.util.function.Function;
-import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

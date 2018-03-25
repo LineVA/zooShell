@@ -3,10 +3,12 @@ package doyenm.zooshell.context;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.TimedOccupation;
 import doyenm.zooshell.model.Zoo;
-import java.util.Arrays;
-import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

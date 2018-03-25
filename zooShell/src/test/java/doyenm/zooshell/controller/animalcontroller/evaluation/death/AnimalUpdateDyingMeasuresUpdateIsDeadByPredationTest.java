@@ -2,13 +2,14 @@ package doyenm.zooshell.controller.animalcontroller.evaluation.death;
 
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.CharacterAttributes;
-import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.ReproductionAttributes;
-import java.util.Arrays;
-import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

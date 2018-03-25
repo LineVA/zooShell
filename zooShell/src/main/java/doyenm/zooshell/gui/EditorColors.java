@@ -1,10 +1,8 @@
 package doyenm.zooshell.gui;
 
-import doyenm.zooshell.commandLine.general.TypeReturn;
-import static doyenm.zooshell.commandLine.general.TypeReturn.ERROR;
-import static doyenm.zooshell.commandLine.general.TypeReturn.QUESTION;
-import static doyenm.zooshell.commandLine.general.TypeReturn.SUCCESS;
-import java.awt.Color;
+import doyenm.zooshell.commandline.general.TypeReturn;
+
+import java.awt.*;
 
 /**
  *

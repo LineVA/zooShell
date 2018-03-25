@@ -7,11 +7,13 @@ package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

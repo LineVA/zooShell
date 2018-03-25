@@ -1,20 +1,13 @@
 package doyenm.zooshell.context;
 
-import doyenm.zooshell.model.Biome;
-import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.model.Diet;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockArrangement;
-import doyenm.zooshell.model.PaddockType;
-import doyenm.zooshell.model.Penalty;
-import doyenm.zooshell.model.Sex;
-import doyenm.zooshell.model.TaskType;
-import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.model.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+
 
 /**
  *
@@ -30,7 +23,7 @@ public class LsContext {
         return new ArrayList<>(
                 getZoo().getPaddocks().values()
                 .stream()
-                .map(paddock -> paddock.getName())
+                .map(Paddock::getName)
                 .collect(Collectors.toList())
         );
     }
@@ -48,7 +41,7 @@ public class LsContext {
         return new ArrayList<>(
                 getZoo().getAnimals().values()
                 .stream()
-                .map(animal -> animal.getName())
+                .map(Animal::getName)
                 .collect(Collectors.toList())
         );
     }
@@ -57,7 +50,7 @@ public class LsContext {
         return new ArrayList<>(
                 getZoo().getKeepers().values()
                 .stream()
-                .map(keeper -> keeper.getName())
+                .map(AnimalKeeper::getName)
                 .collect(Collectors.toList())
         );
     }
@@ -66,7 +59,7 @@ public class LsContext {
         return new ArrayList<>(
                 getZoo().getHandymen().values()
                 .stream()
-                .map(handyman -> handyman.getName())
+                .map(Handyman::getName)
                 .collect(Collectors.toList())
         );
     }

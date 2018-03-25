@@ -2,6 +2,7 @@ package doyenm.zooshell.validator.function;
 
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.validator.context.FindingDietContext;
+
 import java.util.function.Function;
 
 /**

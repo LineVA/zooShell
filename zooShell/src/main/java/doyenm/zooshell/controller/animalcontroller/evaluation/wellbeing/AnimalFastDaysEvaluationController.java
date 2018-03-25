@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
+
 import java.util.function.Function;
 
 /**
@@ -15,11 +16,9 @@ public class AnimalFastDaysEvaluationController
         AnimalEvaluationContext context = t;
         if (context.getAnimal().getCurrentFoodAttributes().getFastDays()
                 == context.getAnimal().getOptimalFoodAttributes().getFastDays()) {
-//            context.setFastDaysWellBeing(context.getBase());
-            context.getWellBeingObj().setFastDaysWellBeing(context.getBase());
+            context.getWellBeingObj().setFastDaysWellBeing(AnimalEvaluationContext.BASE);
         } else {
-//            context.setFastDaysWellBeing(context.getZero());
-            context.getWellBeingObj().setFastDaysWellBeing(context.getZero());
+            context.getWellBeingObj().setFastDaysWellBeing(AnimalEvaluationContext.ZERO);
         }
         return context;
     }

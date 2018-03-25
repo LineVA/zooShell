@@ -5,10 +5,11 @@ import doyenm.zooshell.validator.criteria.AnimalsListWithDietCriteriaValidator;
 import doyenm.zooshell.validator.criteria.AnimalsListWithPaddockCriteriaValidator;
 import doyenm.zooshell.validator.criteria.AnimalsListWithSexCriteriaValidator;
 import doyenm.zooshell.validator.criteria.AnimalsListWithSpecieCriteriaValidator;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

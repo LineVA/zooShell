@@ -6,9 +6,10 @@ import doyenm.zooshell.controller.handymancontroller.HandymanEvaluationControlle
 import doyenm.zooshell.controller.keepercontroller.KeeperEvaluationController;
 import doyenm.zooshell.controller.paddockcontroller.PaddockEvaluationController;
 import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Function;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

@@ -5,8 +5,9 @@ import doyenm.zooshell.controller.eventhandling.paddock.PaddockEvent;
 import doyenm.zooshell.controller.eventhandling.paddock.PaddockEventType;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockState;
-import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Function;
 
 /**
  *

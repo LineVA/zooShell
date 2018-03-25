@@ -2,8 +2,9 @@ package doyenm.zooshell.controller.paddockcontroller;
 
 import doyenm.zooshell.context.PaddockContext;
 import doyenm.zooshell.utils.Utils;
-import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Function;
 
 /**
  *
@@ -23,7 +24,6 @@ public class PaddockDetailsController
         int age = context.getConvertedPaddock().getAge();
         context.addCouple("Age", utils.getNumbersOfYearsFromAge(age) + " year(s), " + utils.getNumbersOfMonthsFromAge(age) + " month(s)");
         context.addCouple("Coordinates", context.getConvertedPaddock().getCoordinates().toString());
-//        context.addCouple("Extensions", context.getConvertedPaddock().getExtensions());
         if (context.getConvertedPaddock().getEntry() != null) {
             context.addCouple("Entry", context.getConvertedPaddock().getEntry().toString());
         } else {

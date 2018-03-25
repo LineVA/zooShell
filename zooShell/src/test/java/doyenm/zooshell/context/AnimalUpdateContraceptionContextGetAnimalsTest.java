@@ -3,10 +3,12 @@ package doyenm.zooshell.context;
 import com.google.inject.internal.util.ImmutableMap;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Zoo;
-import java.util.Map;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+
+import java.util.Map;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

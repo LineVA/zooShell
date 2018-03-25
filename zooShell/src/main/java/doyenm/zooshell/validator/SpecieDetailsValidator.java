@@ -3,6 +3,7 @@ package doyenm.zooshell.validator;
 import doyenm.zooshell.context.SpecieDetailsContext;
 import doyenm.zooshell.validator.context.FindingSpecieContext;
 import doyenm.zooshell.validator.function.FindingSpecieFunction;
+
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -20,7 +21,7 @@ FindingSpecieFunction findingSpecieFunction = new FindingSpecieFunction();
         t.setSpecie(Stream.of(findingSpecieContext)
                 .map(findingSpecieFunction)
                 .findFirst()
-                .get()
+                .orElseGet(null)
                 .getSpecie());
        return t.getSpecie()!= null;
     }

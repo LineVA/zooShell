@@ -1,10 +1,11 @@
 package doyenm.zooshell.validator.context;
 
 import doyenm.zooshell.model.Animal;
-import java.util.Map;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+
+import java.util.Map;
 
 /**
  *
@@ -14,7 +15,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class FindingAnimalContext {
     private final Map<String, Animal> animals;
-    private final String AnimalName;
+    private final String animalName;
     @Setter
     private Animal animal;
 }

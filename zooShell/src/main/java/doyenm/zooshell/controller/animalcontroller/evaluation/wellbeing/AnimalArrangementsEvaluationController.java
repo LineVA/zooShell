@@ -24,7 +24,7 @@ public class AnimalArrangementsEvaluationController
                 commonInstallations -= 1;
             }
         }
-        t.setInstallationsWellBeing(commonInstallations / specieInstallations.size() * t.getBase());
+        t.setInstallationsWellBeing(commonInstallations / specieInstallations.size() * AnimalEvaluationContext.BASE);
         return t;
     }
     

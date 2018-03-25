@@ -1,16 +1,17 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Biome;
-import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockType;
+import doyenm.zooshell.model.Zoo;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 /**
  *
@@ -23,8 +24,8 @@ public class PaddockCreationContext {
 
     private final Zoo zoo;
     private final String name;
-    private final Biome biome = Biome.NONE;
-    private final PaddockType type = PaddockType.UNKNOWN;
+    private static final Biome BIOME = Biome.NONE;
+    private static final PaddockType TYPE = PaddockType.UNKNOWN;
     private final String x;
     private final String y;
     private final String width;
@@ -40,14 +41,6 @@ public class PaddockCreationContext {
         this.convertedHeight = Integer.parseInt(this.height);
         this.convertedX = Integer.parseInt(this.x);
         this.convertedY = Integer.parseInt(this.y);
-    }
-
-    public Integer getWidthZoo() {
-        return this.getZoo().getWidth();
-    }
-
-    public Integer getHeightZoo() {
-        return this.getZoo().getHeight();
     }
 
     public List<Paddock> getPaddocksList() {

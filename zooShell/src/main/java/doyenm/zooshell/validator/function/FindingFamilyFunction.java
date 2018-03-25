@@ -2,6 +2,7 @@ package doyenm.zooshell.validator.function;
 
 import doyenm.zooshell.model.Family;
 import doyenm.zooshell.validator.context.FindingFamilyContext;
+
 import java.util.function.Function;
 
 /**

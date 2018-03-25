@@ -1,19 +1,20 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
+import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.validator.context.FindingContraceptionContext;
 import doyenm.zooshell.validator.function.FindingContraceptionFunction;
 import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithPreviousPredicate;
 import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithSexPredicate;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -31,11 +32,9 @@ public class AnimalUpdateContraceptionValidator
     @Override
     public boolean test(AnimalUpdateContraceptionContext t) {
         AnimalUpdateContraceptionContext context = retrieveAnimal(t);
-        context = retrieveContraceptionMethod(context);
+        retrieveContraceptionMethod(context);
         return !Stream.of(context)
-                .filter((AnimalUpdateContraceptionContext t1) -> {
-                    return t1.getConvertedAnimal() != null && t1.getConvertedContraceptionMethod() != null;
-                })
+                .filter(t1 -> t1.getConvertedAnimal() != null && t1.getConvertedContraceptionMethod() != null)
                 .filter(compatibleWithSexPredicate)
                 .filter(hormonalContraceptionPredicate)
                 .filter(chirurgicalContraceptionPredicate)
@@ -52,11 +51,16 @@ public class AnimalUpdateContraceptionValidator
     private AnimalUpdateContraceptionContext retrieveContraceptionMethod(AnimalUpdateContraceptionContext t) {
         FindingContraceptionContext findingContraceptionMethodContext
                 = new FindingContraceptionContext(t.getContraceptionMethod());
-        t.setConvertedContraceptionMethod(Stream.of(findingContraceptionMethodContext)
+        ContraceptionMethod method = Stream.of(findingContraceptionMethodContext)
                 .map(findingContraceptionMethodFunction)
                 .findFirst()
-                .get()
-                .getConvertedContraception());
+                .orElse(
+                        findingContraceptionMethodContext
+                )
+                .getConvertedContraception();
+
+        t.setConvertedContraceptionMethod(method);
+
         return t;
     }
 }

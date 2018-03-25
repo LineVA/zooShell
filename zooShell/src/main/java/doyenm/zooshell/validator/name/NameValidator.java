@@ -2,8 +2,9 @@ package doyenm.zooshell.validator.name;
 
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;
 import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Predicate;
 
 /**
  *
@@ -19,6 +20,6 @@ public class NameValidator implements Predicate<NameDto> {
     @Override
     public boolean test(NameDto t) {
         return this.stringLengthPredicates.mustBeLowerOrEqualsThan(t.getTesting(), maxLengthName)
-                & this.uniquenessNamesBiPredicates.test(t.getTesting().toUpperCase(), t.getExistingNames());
+                && this.uniquenessNamesBiPredicates.test(t.getTesting().toUpperCase(), t.getExistingNames());
     }
 }

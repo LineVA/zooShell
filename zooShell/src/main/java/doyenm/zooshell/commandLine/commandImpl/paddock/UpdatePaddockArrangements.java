@@ -1,17 +1,18 @@
 package doyenm.zooshell.commandLine.commandImpl.paddock;
 
-import doyenm.zooshell.commandLine.general.Command;
-import doyenm.zooshell.commandLine.general.ReturnExec;
-import doyenm.zooshell.commandLine.general.TypeReturn;
+import doyenm.zooshell.commandline.general.Command;
+import doyenm.zooshell.commandline.general.ReturnExec;
+import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.context.UpdatePaddockArrangementContext;
 import doyenm.zooshell.controller.paddockcontroller.UpdatePaddockArrangementController;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.validator.UpdatePaddockArrangementValidator;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
 /**
  *

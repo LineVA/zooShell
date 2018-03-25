@@ -1,8 +1,6 @@
 package doyenm.zooshell.validator;
 
 
-import doyenm.zooshell.validator.SpecieDetailsValidator;
-import doyenm.zooshell.validator.ZooCreationValidator;
 import doyenm.zooshell.validator.name.NameValidator;
 import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
 import doyenm.zooshell.validator.predicates.StringLengthPredicates;

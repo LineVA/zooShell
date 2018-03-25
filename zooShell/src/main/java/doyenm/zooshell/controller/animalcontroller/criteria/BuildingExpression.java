@@ -8,14 +8,17 @@ import java.util.List;
  */
 public class BuildingExpression {
 
+    private BuildingExpression(){}
+
     public static String rebuildBooleanExpression(List<String> list) {
-        String expressionStr = "";
+        StringBuilder builder = new StringBuilder();
         for (String str : list) {
             if (!str.equals(",")) {
-                expressionStr += str + " ";
+                builder.append(str );
+                builder.append(" ");
             }
         }
-        return expressionStr;
+        return builder.toString();
     }
 
 }

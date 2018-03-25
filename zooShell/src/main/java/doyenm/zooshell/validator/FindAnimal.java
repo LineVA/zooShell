@@ -4,6 +4,7 @@ import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.validator.context.FindingAnimalContext;
 import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
+
 import java.util.stream.Stream;
 
 /**

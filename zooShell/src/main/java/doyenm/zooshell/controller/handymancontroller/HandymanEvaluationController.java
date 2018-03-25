@@ -9,9 +9,10 @@ import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.context.HandymanEvaluationContext;
 import doyenm.zooshell.controller.handymancontroller.evaluation.HandymanAgeEvaluationController;
 import doyenm.zooshell.model.Handyman;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -30,7 +31,7 @@ public class HandymanEvaluationController implements Function<EvaluationContext,
                 .map((Handyman t1) -> new HandymanEvaluationContext(context.getZoo(), t1))
                 // Age
                 .map(handymanAgeEvaluationController)
-                .map((HandymanEvaluationContext t1) -> t1.getHandyman())
+                .map(HandymanEvaluationContext::getHandyman)
                 .collect(Collectors.toList())
         );
         return context;

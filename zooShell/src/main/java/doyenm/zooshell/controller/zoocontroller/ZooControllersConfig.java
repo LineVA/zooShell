@@ -3,12 +3,13 @@ package doyenm.zooshell.controller.zoocontroller;
 import doyenm.zooshell.controller.eventhandling.zoo.KeeperTrainingHandler;
 import doyenm.zooshell.controller.eventhandling.zoo.ZooEventsHandler;
 import doyenm.zooshell.utils.Utils;
-import java.util.Arrays;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *

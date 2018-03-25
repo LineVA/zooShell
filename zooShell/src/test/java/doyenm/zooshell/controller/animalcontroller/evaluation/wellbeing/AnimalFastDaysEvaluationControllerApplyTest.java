@@ -50,7 +50,7 @@ public class AnimalFastDaysEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getFastDaysWellBeing()).isEqualTo(context.getBase());
+        Assertions.assertThat(actualContext.getWellBeingObj().getFastDaysWellBeing()).isEqualTo(context.BASE);
     }
 
     @Test
@@ -68,6 +68,6 @@ public class AnimalFastDaysEvaluationControllerApplyTest {
         AnimalEvaluationContext actualContext = controller.apply(context);
         // Then
         Assertions.assertThat(actualContext).isNotNull();
-        Assertions.assertThat(actualContext.getWellBeingObj().getFastDaysWellBeing()).isEqualTo(context.getZero());
+        Assertions.assertThat(actualContext.getWellBeingObj().getFastDaysWellBeing()).isEqualTo(context.ZERO);
     }
 }

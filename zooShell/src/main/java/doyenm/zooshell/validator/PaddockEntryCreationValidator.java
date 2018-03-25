@@ -1,8 +1,9 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.PaddockEntryCreationContext;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Predicate;
 
 /**
  *
@@ -18,7 +19,7 @@ public class PaddockEntryCreationValidator
     public boolean test(PaddockEntryCreationContext t) {
         PaddockEntryCreationContext context = t;
         context.convert();
-       t = retrievePaddock(t);
+        retrievePaddock(t);
         return context.getConvertedPaddock() != null;
     }
 

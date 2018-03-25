@@ -1,17 +1,14 @@
 package doyenm.zooshell.controller.paddockcontroller;
 
-import doyenm.zooshell.controller.paddockcontroller.evaluation.LightZooDto;
-import doyenm.zooshell.controller.paddockcontroller.evaluation.ObsolescenceEvaluationController;
-import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockAgeEvaluationController;
-import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockEvacuationController;
-import doyenm.zooshell.controller.paddockcontroller.evaluation.UpdateUnusableState;
+import doyenm.zooshell.controller.paddockcontroller.evaluation.*;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.PaddockState;
-import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+
+import java.util.function.Function;
 
 /**
  *
@@ -127,7 +124,6 @@ public class PaddockControllerConfig {
             @Override
             public Double apply(LightZooDto dto) {
                 return 0.001 * (1 + dto.getSpeed() * dto.getAnimalsOfThePaddock());
-//                return 0.8;
             }
         };
     }

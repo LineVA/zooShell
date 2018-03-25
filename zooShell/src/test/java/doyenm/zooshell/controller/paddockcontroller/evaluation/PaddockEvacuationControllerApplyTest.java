@@ -1,22 +1,18 @@
 package doyenm.zooshell.controller.paddockcontroller.evaluation;
 
 import doyenm.zooshell.context.PaddockEvaluationContext;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.TimedOccupation;
-import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.model.*;
+import org.apache.commons.lang.RandomStringUtils;
+import org.assertj.core.api.Assertions;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang.RandomStringUtils;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
+
 import static org.mockito.Matchers.anyList;
-import static org.mockito.Mockito.doCallRealMethod;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  *

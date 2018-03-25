@@ -2,13 +2,14 @@ package doyenm.zooshell.validator.criteria;
 
 import doyenm.zooshell.context.LsWithCriteriaContext;
 import doyenm.zooshell.validator.FindPaddock;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
+
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -23,11 +24,11 @@ public class AnimalsListWithPaddockCriteriaValidator implements Predicate<LsWith
     public boolean test(LsWithCriteriaContext t) {
         LsWithCriteriaContext context = t;
 
-        if (context.getPaddocksExpression()!= null && !context.getPaddocksExpression().isEmpty() && context.getPaddocks()!= null) {
+        if (context.getPaddocksExpression() != null && !context.getPaddocksExpression().isEmpty() && context.getPaddocks() != null) {
             context.getPaddocks().addAll(parser.parse(context.getPaddocksExpression(), excluded));
             context.setPaddocksExpression(parser.replaceGrammaticalExpression(context.getPaddocksExpression()));
-            context = retrievePaddock(context);
-            if (context.getConvertedPaddocks()!= null) {
+            retrievePaddock(context);
+            if (context.getConvertedPaddocks() != null) {
                 return context.getPaddocks().size() == context.getConvertedPaddocks().size();
             }
             return false;
@@ -38,13 +39,11 @@ public class AnimalsListWithPaddockCriteriaValidator implements Predicate<LsWith
     private LsWithCriteriaContext retrievePaddock(LsWithCriteriaContext t) {
         t.getPaddocks()
                 .stream()
-                .map(pad -> {
-                    return findPaddock.find(t.getZoo(), pad);
-                })
-                .filter(e -> e != null)
-                .forEach(e -> {
-                    t.getConvertedPaddocks().put(e.getName(), e);
-                });
+                .map(pad -> findPaddock.find(t.getZoo(), pad))
+                .filter(Objects::nonNull)
+                .forEach(e ->
+                    t.getConvertedPaddocks().put(e.getName(), e)
+                );
         return t;
     }
 }

@@ -1,15 +1,16 @@
 package doyenm.zooshell.controller.paddockcontroller;
 
-import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockAgeEvaluationController;
 import doyenm.zooshell.context.EvaluationContext;
 import doyenm.zooshell.context.PaddockEvaluationContext;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.ObsolescenceEvaluationController;
+import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockAgeEvaluationController;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.PaddockEvacuationController;
 import doyenm.zooshell.controller.paddockcontroller.evaluation.UpdateUnusableState;
 import doyenm.zooshell.model.Paddock;
+import lombok.RequiredArgsConstructor;
+
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -38,7 +39,7 @@ public class PaddockEvaluationController implements Function<EvaluationContext, 
                     context.getPaddockEvents().addAll(t1.getPaddockEvents());
                     return t1;
                 })
-                .map((PaddockEvaluationContext t1) -> t1.getPaddock())
+                .map(PaddockEvaluationContext::getPaddock)
                 .collect(Collectors.toList())
         );
         return context;

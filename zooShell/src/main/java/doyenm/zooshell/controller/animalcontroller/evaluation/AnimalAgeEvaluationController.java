@@ -2,6 +2,7 @@ package doyenm.zooshell.controller.animalcontroller.evaluation;
 
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
+
 import java.util.function.Function;
 
 /**
