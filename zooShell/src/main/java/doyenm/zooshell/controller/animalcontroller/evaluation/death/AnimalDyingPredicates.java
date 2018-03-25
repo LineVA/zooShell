@@ -32,10 +32,7 @@ public class AnimalDyingPredicates {
 
     public boolean isDyingByBadDiets(Animal animal) {
         List<Diet> specieDiets = animal.getSpecie().getDiets().getDiets();
-        if (specieDiets.isEmpty() || !animal.getDiets().stream().noneMatch(diet -> (specieDiets.contains(diet)))) {
-            return false;
-        }
-        return true;
+        return !(specieDiets.isEmpty() || !animal.getDiets().stream().noneMatch(diet -> (specieDiets.contains(diet))));
     }
 
     public boolean isDyingByLackOfKeeper(Animal animal, Collection<AnimalKeeper> keepers) {
