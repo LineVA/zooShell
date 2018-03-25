@@ -25,7 +25,7 @@ public class HandymanRenameValidator implements Predicate<HandymanRenameContext>
                 .existingNames(t.getHandymen().keySet())
                 .build());
         t.setHandyman(findHandyman.find(t.getZoo(), t.getCurrentName()));
-        return result & t.getHandyman()!= null;
+        return result && t.getHandyman()!= null;
     }
 
 }
