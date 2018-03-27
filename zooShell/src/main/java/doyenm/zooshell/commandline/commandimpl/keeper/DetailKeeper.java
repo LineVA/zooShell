@@ -16,7 +16,6 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -37,10 +36,10 @@ public class DetailKeeper implements Command {
                 .filter(validator)
                 .map(controller)
                 .findFirst();
-        if(optional.isPresent()) {
+        if (optional.isPresent()) {
             FormattingInList formatting = new FormattingInList();
             return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS);
-        } else  {
+        } else {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }
     }
@@ -48,9 +47,13 @@ public class DetailKeeper implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2 || cmd.length == 3) {
-            if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])) {
+            if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER)
+                    .stream()
+                    .anyMatch(cmd[0]::equalsIgnoreCase)) {
                 if (cmd.length == 3) {
-                    return Constants.DETAILED.equals(cmd[2]);
+                    return Arrays.asList(Constants.DETAILED)
+                            .stream()
+                            .anyMatch(cmd[2]::equalsIgnoreCase);
                 }
                 return true;
             }

@@ -41,8 +41,12 @@ public class UpdateOccupations implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 6
-                && Arrays.asList(Constants.AK_OR_ANIMALKEEPER_OCCUPATIONS).contains(cmd[0])
-                && Constants.UPDATE.equalsIgnoreCase(cmd[1]);
+                && Arrays.asList(Constants.AK_OR_ANIMALKEEPER_OCCUPATIONS)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.UPDATE)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 
 }

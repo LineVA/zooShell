@@ -41,8 +41,12 @@ public class ResetOccupations implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 3
-                && Arrays.asList(Constants.AK_OR_ANIMALKEEPER_OCCUPATIONS).contains(cmd[0])
-                && Constants.RESET.equalsIgnoreCase(cmd[1]);
+                && Arrays.asList(Constants.AK_OR_ANIMALKEEPER_OCCUPATIONS)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.RESET)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase);
     }
 
 }
