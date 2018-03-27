@@ -9,11 +9,11 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -37,8 +37,12 @@ public class RenameZoo implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 3 
-                && Constants.ZOO.equalsIgnoreCase(cmd[0])
-                    && Constants.RENAME.equalsIgnoreCase(cmd[1]);
+        return cmd.length == 3
+                && Arrays.asList(Constants.ZOO)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.RENAME)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 }
