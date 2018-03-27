@@ -26,6 +26,8 @@ public class LsDiet implements Command{
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 1
-                && Arrays.asList(Constants.DIETS).contains(cmd[0]);
+                && Arrays.asList(Constants.DIETS)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase);
     }
 }

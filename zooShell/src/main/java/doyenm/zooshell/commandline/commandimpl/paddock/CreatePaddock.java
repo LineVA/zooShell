@@ -44,8 +44,12 @@ public class CreatePaddock implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 7
-                && Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])
-                && Constants.CREATE.equalsIgnoreCase(cmd[1]);
+                && Arrays.asList(Constants.PAD_OR_PADDOCK)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.CREATE)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 
 }

@@ -41,7 +41,11 @@ public class UpdateFoodQuantity implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 4
-                && Arrays.asList(Constants.ANIMAL_FOOD_QUANTITY).contains(cmd[0])
-                && Arrays.asList(Constants.UPDATE).contains(cmd[1]);
+                && Arrays.asList(Constants.ANIMAL_FOOD_QUANTITY)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.UPDATE)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 }

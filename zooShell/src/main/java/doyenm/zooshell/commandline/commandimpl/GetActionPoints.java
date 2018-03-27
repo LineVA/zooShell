@@ -6,6 +6,8 @@ import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 
+import java.util.Arrays;
+
 /**
  * @author doyenm
  */
@@ -19,6 +21,8 @@ public class GetActionPoints implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 1
-                && Constants.ACTION_POINTS.equals(cmd[0]);
+                && Arrays.asList(Constants.ACTION_POINTS)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase);
     }
 }

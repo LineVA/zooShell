@@ -10,6 +10,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -37,12 +38,18 @@ public class DetailZoo implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 1) {
-            if (Constants.ZOO.equalsIgnoreCase(cmd[0])) {
+            if (Arrays.asList(Constants.ZOO)
+                    .stream()
+                    .anyMatch(cmd[0]::equalsIgnoreCase)) {
                 return true;
             }
         } 
         return cmd.length == 2 
-                && Constants.ZOO.equalsIgnoreCase(cmd[0])
-                && Constants.DETAILED.equalsIgnoreCase(cmd[1]);
+                && Arrays.asList(Constants.ZOO)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.DETAILED)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 }

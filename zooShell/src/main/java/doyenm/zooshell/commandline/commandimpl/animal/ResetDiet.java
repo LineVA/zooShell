@@ -41,7 +41,11 @@ public class ResetDiet implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 3
-                && Arrays.asList(Constants.ANIMAL_DIET).contains(cmd[0])
-                && Arrays.asList(Constants.RESET).contains(cmd[1]);
+                && Arrays.asList(Constants.ANIMAL_DIET)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.RESET)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 }

@@ -11,6 +11,7 @@ import doyenm.zooshell.validator.ZooCreationValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -43,8 +44,12 @@ public class CreateZoo implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return (cmd.length == 3 || cmd.length == 5 || cmd.length == 7)
-                && Constants.ZOO.equalsIgnoreCase(cmd[0])
-                && Constants.CREATE.equalsIgnoreCase(cmd[1]);
+                && Arrays.asList(Constants.ZOO)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.CREATE)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 
     @Override

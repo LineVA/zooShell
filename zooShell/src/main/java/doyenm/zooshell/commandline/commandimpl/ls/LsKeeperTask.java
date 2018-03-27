@@ -26,6 +26,8 @@ public class LsKeeperTask implements Command{
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 1
-                && Arrays.asList(Constants.TASKS).contains(cmd[0]);
+                && Arrays.asList(Constants.TASKS)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase);
     }
 }

@@ -36,11 +36,9 @@ public class LsPaddockArrangements implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 1) {
-                if (Arrays.asList(Constants.PADDOCKARRANGEMENTS_OR_PADARRANGEMENTS).contains(cmd[0])) {
-                    return true;
-            }
-        }
-        return false;
+        return cmd.length == 1
+                 && Arrays.asList(Constants.PAD_OR_PADDOCK_ARRANGEMENT)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase);
     }
 }

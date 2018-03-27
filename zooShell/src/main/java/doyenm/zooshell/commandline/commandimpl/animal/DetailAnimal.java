@@ -51,9 +51,13 @@ public class DetailAnimal implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         boolean noDetails = cmd.length == 2 && Arrays.asList(Constants.ANIMAL).contains(cmd[0]);
-        boolean details = cmd.length == 3
-                && Arrays.asList(Constants.ANIMAL).contains(cmd[0])
-                && Arrays.asList(Constants.DETAILED).contains(cmd[2]);
+        boolean details = (cmd.length == 3)
+                && Arrays.asList(Constants.ANIMAL)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.DETAILED)
+                .stream()
+                .anyMatch(cmd[2]::equalsIgnoreCase);
         return noDetails || details;
     }
 }

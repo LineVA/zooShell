@@ -15,6 +15,7 @@ import doyenm.zooshell.utils.Constants;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -47,7 +48,9 @@ public class Evaluate implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 1
-                && Constants.EVALUATE.equals(cmd[0]);
+                && Arrays.asList(Constants.EVALUATE)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase);
     }
 
     private String formatEvents(EvaluationContext context) {

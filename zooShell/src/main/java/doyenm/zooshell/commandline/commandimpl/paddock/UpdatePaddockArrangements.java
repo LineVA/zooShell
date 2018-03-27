@@ -15,7 +15,6 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -41,13 +40,12 @@ public class UpdatePaddockArrangements implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 4) {
-            if (Arrays.asList(Constants.PAD_OR_PADDOCK_ARRANGEMENT).contains(cmd[0])) {
-                if (Arrays.asList(Constants.UPDATE).contains(cmd[1])) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return cmd.length == 4
+                && Arrays.asList(Constants.PAD_OR_PADDOCK_ARRANGEMENT)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.UPDATE)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 }

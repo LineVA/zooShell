@@ -41,8 +41,12 @@ public class RemoveKeeper implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 3
-                && Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])
-                && Constants.REMOVE.equalsIgnoreCase(cmd[1]);
+                && Arrays.asList(Constants.AK_OR_ANIMALKEEPER)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.REMOVE)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 
 }

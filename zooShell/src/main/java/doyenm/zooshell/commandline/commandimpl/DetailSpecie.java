@@ -42,6 +42,8 @@ public class DetailSpecie implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 2
-                && Arrays.asList(Constants.SPEC_OR_SPECIE).contains(cmd[0]);
+                && Arrays.asList(Constants.SPEC_OR_SPECIE)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase);
     }
 }

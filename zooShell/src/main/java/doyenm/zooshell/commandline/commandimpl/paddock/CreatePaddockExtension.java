@@ -44,7 +44,11 @@ public class CreatePaddockExtension implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 7
-                && Arrays.asList(Constants.PAD_OR_PADDOCK_EXTENSION).contains(cmd[0])
-                && Constants.CREATE.equalsIgnoreCase(cmd[1]);
+                && Arrays.asList(Constants.PAD_OR_PADDOCK_EXTENSION)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.CREATE)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 }

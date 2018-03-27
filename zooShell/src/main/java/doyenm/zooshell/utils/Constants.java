@@ -9,17 +9,17 @@ public class Constants {
     private Constants(){}
 
     // action_points
-    public static final String ACTION_POINTS = "action_points";
+    public static final String[] ACTION_POINTS = {"action_points"};
     // add
-    public static final String ADD = "add";
+    public static final String[] ADD = {"add"};
     // animal
-    public static final String ANIMAL = "animal";
+    public static final String[] ANIMAL = {"animal"};
     // animals
-    public static final String ANIMALS = "animals";
+    public static final String[] ANIMALS = {"animals"};
     // animal-contraceptionMethod
-    public static final String ANIMAL_CONTRACEPTION = "animal-contraceptionMethod";
+    public static final String[] ANIMAL_CONTRACEPTION = {"animal-contraceptionMethod"};
     // animal-diet
-    public static final String ANIMAL_DIET = "animal-diet";
+    public static final String[] ANIMAL_DIET = {"animal-diet"};
     // animal-fastDays || animal-fd
     public static final String[] ANIMAL_FAST_DAYS = {"animal-fastDays", "animal-fd"};
     // animal-foodQuantity || animal-fq
@@ -37,28 +37,28 @@ public class Constants {
     public static final String[] AK_OR_ANIMALKEEPER_TRAINING = {"animalKeeper-training",
         "ak-training"};
     // biomes
-    public static final String BIOMES = "biomes";
+    public static final String[] BIOMES = {"biomes"};
     // contraception methods
-    public static final String CONTRACEPTIONMETHODS = "contraceptionMethods";
+    public static final String[] CONTRACEPTIONMETHODS = {"contraceptionMethods"};
     // create
-    public static final String CREATE = "create";
+    public static final String[] CREATE = {"create"};
     // detailed
-    public static final String DETAILED = "detailed";
+    public static final String[] DETAILED = {"detailed"};
     // diets
-    public static final String DIETS = "diets";
+    public static final String[] DIETS = {"diets"};
     // evaluate
-    public static final String EVALUATE = "evaluate";
+    public static final String[] EVALUATE = {"evaluate"};
     // feeding
-    public static final String FEEDING = "feeding";
+    public static final String[] FEEDING = {"feeding"};
     // handyman or hd
     public static final String[] HANDYMAN_OR_HD = {"handyman", "hd"};
     // handyma-occupations
     public static final String[] HANDYMAN_OCCUPATIONS = {"handyman-occupations", "hd-occupations",
         "handyman-occ", "hd-occ"};
 // handymen
-    public static final String HANDYMEN = "handymen";
+    public static final String[] HANDYMEN = {"handymen"};
     // load
-    public static final String LOAD = "load";
+    public static final String[] LOAD = {"load"};
     // paddock || pad
     public static final String[] PAD_OR_PADDOCK = {"paddock", "pad"};
     // paddocks || pads
@@ -78,26 +78,27 @@ public class Constants {
     // paddockTypes || padTypes
     public static final String[] PADDOCKTYPES_OR_PADTYPES = {"paddockTypes", "padTypes"};
     // penalties
-    public static final String PENALTIES = "penalties";
+    public static final String[] PENALTIES = {"penalties"};
     // remove
-    public static final String REMOVE = "remove";
+    public static final String[] REMOVE = {"remove"};
     // rename
-    public static final String RENAME = "rename";
+    public static final String[] RENAME = {"rename"};
     // reset
-    public static final String RESET = "reset";
+    public static final String[] RESET = {"reset"};
     // save
-    public static final String SAVE = "save";
+    public static final String[] SAVE = {"save"};
     // sexes
-    public static final String SEXES = "sexes";
+    public static final String[] SEXES = {"sexes"};
     // species
-    public static final String SPECIES = "species";
+    public static final String[] SPECIES = {"species"};
     // specie || spec
     public static final String[] SPEC_OR_SPECIE = {"specie", "spec"};
     // tasks
-    public static final String TASKS = "tasks";
+    public static final String[] TASKS = {"tasks"};
     // update
-    public static final String UPDATE = "update";
+    public static final String[] UPDATE = {"update"};
+    public static final String[] UPDATE2 = {"update"};
     // zoo
-    public static final String ZOO = "zoo";
+    public static final String[] ZOO = {"zoo"};
 
 }

@@ -41,8 +41,12 @@ public class RemoveHandyman implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 3
-                && Arrays.asList(Constants.HANDYMAN_OR_HD).contains(cmd[0])
-                && Constants.REMOVE.equalsIgnoreCase(cmd[1]);
+                && Arrays.asList(Constants.HANDYMAN_OR_HD)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.REMOVE)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 
 }

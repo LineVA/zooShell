@@ -26,7 +26,9 @@ public class LsHandyman implements Command{
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 1
-                && Arrays.asList(Constants.HANDYMEN).contains(cmd[0]);
+                && Arrays.asList(Constants.HANDYMEN)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase);
     }
 
 }

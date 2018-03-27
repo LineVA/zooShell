@@ -47,11 +47,17 @@ public class UpdateOccupations implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 4
-                && Arrays.asList(Constants.HANDYMAN_OCCUPATIONS).contains(cmd[0])) {
-            if (Constants.ADD.equalsIgnoreCase(cmd[2])) {
+                && Arrays.asList(Constants.HANDYMAN_OCCUPATIONS)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)) {
+            if (Arrays.asList(Constants.ADD)
+                    .stream()
+                    .anyMatch(cmd[2]::equalsIgnoreCase)) {
                 addition = true;
                 return true;
-            } else if (Constants.REMOVE.equalsIgnoreCase(cmd[2])) {
+            } else if (Arrays.asList(Constants.REMOVE)
+                    .stream()
+                    .anyMatch(cmd[2]::equalsIgnoreCase)) {
                 addition = false;
                 return true;
             }
