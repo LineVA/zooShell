@@ -11,7 +11,7 @@ import org.junit.Test;
  */
 public class LsBiomeCanExecuteTest {
 
-    private static final String BIOMES = "biomes";
+    private static final String BIOMES = "Biomes";
 
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {

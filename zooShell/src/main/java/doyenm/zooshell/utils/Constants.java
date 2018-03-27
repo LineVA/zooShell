@@ -37,7 +37,7 @@ public class Constants {
     public static final String[] AK_OR_ANIMALKEEPER_TRAINING = {"animalKeeper-training",
         "ak-training"};
     // biomes
-    public static final String BIOMES = "biomes";
+    public static final String[] BIOMES = {"biomes"};
     // contraception methods
     public static final String CONTRACEPTIONMETHODS = "contraceptionMethods";
     // create
