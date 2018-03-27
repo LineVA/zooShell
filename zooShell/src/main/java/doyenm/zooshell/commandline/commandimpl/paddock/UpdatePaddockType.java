@@ -41,7 +41,11 @@ public class UpdatePaddockType implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 4
-                && Arrays.asList(Constants.PAD_OR_PADDOCK_TYPE).contains(cmd[0])
-                && Arrays.asList(Constants.UPDATE).contains(cmd[1]);
+                && Arrays.asList(Constants.PAD_OR_PADDOCK_TYPE)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.UPDATE)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 }

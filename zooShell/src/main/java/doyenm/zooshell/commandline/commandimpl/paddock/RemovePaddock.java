@@ -41,8 +41,12 @@ public class RemovePaddock implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 3
-                && Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])
-                && Constants.REMOVE.equalsIgnoreCase(cmd[1]);
+                && Arrays.asList(Constants.PAD_OR_PADDOCK)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.REMOVE)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 
 }
