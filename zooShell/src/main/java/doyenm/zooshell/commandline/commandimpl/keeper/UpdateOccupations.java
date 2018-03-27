@@ -32,7 +32,7 @@ public class UpdateOccupations implements Command {
                 .map(controller)
                 .findFirst();
         if (optional.isPresent()) {
-            return new ReturnExec("KEEPER_UPATE_OCCUPATIONS_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
+            return new ReturnExec("KEEPER_UPDATE_OCCUPATIONS_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } else {
             return new ReturnExec("ERROR", TypeReturn.ERROR);
         }
