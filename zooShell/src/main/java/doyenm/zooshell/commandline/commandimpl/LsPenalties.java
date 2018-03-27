@@ -25,6 +25,8 @@ public class LsPenalties implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 1
-                && Arrays.asList(Constants.PENALTIES).contains(cmd[0]);
+                && Arrays.asList(Constants.PENALTIES)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase);
     }
 }
