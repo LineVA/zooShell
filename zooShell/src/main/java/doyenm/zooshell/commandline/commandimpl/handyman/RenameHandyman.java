@@ -41,8 +41,12 @@ public class RenameHandyman implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 4
-                && Arrays.asList(Constants.HANDYMAN_OR_HD).contains(cmd[0])
-                && Constants.RENAME.equalsIgnoreCase(cmd[1]);
+                && Arrays.asList(Constants.HANDYMAN_OR_HD)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.RENAME)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 
 }
