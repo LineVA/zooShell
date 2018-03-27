@@ -41,8 +41,12 @@ public class ChangePaddock implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 4
-                && Arrays.asList(Constants.ANIMAL_PADDOCK).contains(cmd[0])
-                && Constants.UPDATE.equalsIgnoreCase(cmd[1]);
+                && Arrays.asList(Constants.ANIMAL_PADDOCK)
+                .stream()
+                .anyMatch(cmd[0]::equalsIgnoreCase)
+                && Arrays.asList(Constants.UPDATE2)
+                .stream()
+                .anyMatch(cmd[1]::equalsIgnoreCase);
     }
 
 }
