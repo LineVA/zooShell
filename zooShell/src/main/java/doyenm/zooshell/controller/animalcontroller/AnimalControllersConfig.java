@@ -26,7 +26,6 @@ import org.springframework.core.env.Environment;
 import java.util.Arrays;
 
 /**
- *
  * @author doyenm
  */
 @Configuration
@@ -164,17 +163,17 @@ public class AnimalControllersConfig {
     FindPaddock findPaddock;
 
     @Bean
-    AnimalCreationValidator animalCreationValidator() {
-        return new AnimalCreationValidator(findPaddock, 
-                Integer.parseInt(environment.getProperty("animal.name.max_length")),
-        environment.getProperty("paddock.obsolescence.max_number_of_turn_when_unusable", Integer.class));
+    AnimalCreationValidator animalCreationAfterReproductionValidator() {
+        return new AnimalCreationValidator(findPaddock,
+                environment.getProperty("paddock.obsolescence.max_number_of_turn_when_unusable", Integer.class),
+                environment.getProperty("animal.name.max_length", Integer.class));
     }
 
     @Bean
     CalvingFunction calvingFunction() {
         return new CalvingFunction(
                 uniformStatistics(),
-                animalCreationValidator(),
+                animalCreationAfterReproductionValidator(),
                 environment.getProperty("animal.reproduction.percentage_of_females", Double.class),
                 environment.getProperty("animal.reproduction.percentage_of_breeding_by_mother_youngs", Double.class),
                 environment.getProperty("animal.reproduction.max_size_of_litter_compared_to_animal_value", Integer.class));
@@ -239,7 +238,7 @@ public class AnimalControllersConfig {
     }
 
     @Bean
-    AnimalArrangementsEvaluationController animalArrangementsEvaluationController(){
+    AnimalArrangementsEvaluationController animalArrangementsEvaluationController() {
         return new AnimalArrangementsEvaluationController();
     }
 
