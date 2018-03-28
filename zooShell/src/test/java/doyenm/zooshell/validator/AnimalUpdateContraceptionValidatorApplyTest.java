@@ -1,15 +1,16 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
+import doyenm.zooshell.animal.contraception.AnimalUpdateContraceptionContext;
+import doyenm.zooshell.animal.contraception.AnimalUpdateContraceptionValidator;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.context.FindingContraceptionContext;
-import doyenm.zooshell.validator.function.FindingContraceptionFunction;
-import doyenm.zooshell.validator.predicates.CanHaveAChirurgicalContraceptionPredicate;
-import doyenm.zooshell.validator.predicates.CanHaveAHormonalContraceptionPredicate;
-import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithPreviousPredicate;
-import doyenm.zooshell.validator.predicates.IsContraceptionCompatibleWithSexPredicate;
+import doyenm.zooshell.common.context.FindingContraceptionContext;
+import doyenm.zooshell.common.function.FindingContraceptionFunction;
+import doyenm.zooshell.common.predicates.CanHaveAChirurgicalContraceptionPredicate;
+import doyenm.zooshell.common.predicates.CanHaveAHormonalContraceptionPredicate;
+import doyenm.zooshell.common.predicates.IsContraceptionCompatibleWithPreviousPredicate;
+import doyenm.zooshell.common.predicates.IsContraceptionCompatibleWithSexPredicate;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

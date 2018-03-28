@@ -1,8 +1,8 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.PaddockEntryCreationContext;
-import doyenm.zooshell.validator.context.OverlapContext;
-import doyenm.zooshell.validator.predicates.CanOverlapPredicate;
+import doyenm.zooshell.common.context.OverlapContext;
+import doyenm.zooshell.common.predicates.CanOverlapPredicate;
 
 import java.util.function.Predicate;
 import java.util.stream.Stream;

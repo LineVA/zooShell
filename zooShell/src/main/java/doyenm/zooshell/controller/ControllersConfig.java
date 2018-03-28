@@ -1,6 +1,6 @@
 package doyenm.zooshell.controller;
 
-import doyenm.zooshell.controller.animalcontroller.AnimalControllersConfig;
+import doyenm.zooshell.animal.AnimalControllersConfig;
 import doyenm.zooshell.controller.handymancontroller.HandymanControllersConfig;
 import doyenm.zooshell.controller.keepercontroller.KeeperControllersConfig;
 import doyenm.zooshell.controller.paddockcontroller.PaddockControllerConfig;

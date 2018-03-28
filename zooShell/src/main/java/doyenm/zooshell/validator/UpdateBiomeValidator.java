@@ -2,8 +2,8 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.UpdateBiomeContext;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.validator.context.FindingBiomeContext;
-import doyenm.zooshell.validator.function.FindingBiomeFunction;
+import doyenm.zooshell.common.context.FindingBiomeContext;
+import doyenm.zooshell.common.function.FindingBiomeFunction;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

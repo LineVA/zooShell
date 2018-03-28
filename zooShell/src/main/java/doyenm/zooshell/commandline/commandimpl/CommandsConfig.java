@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandline.commandimpl;
 
 import doyenm.zooshell.backup.BackupConfig;
-import doyenm.zooshell.commandline.commandimpl.animal.AnimalCommandsConfig;
+import doyenm.zooshell.animal.AnimalCommandsConfig;
 import doyenm.zooshell.commandline.commandimpl.handyman.HandymanCommandsConfig;
 import doyenm.zooshell.commandline.commandimpl.keeper.KeeperCommandsConfig;
 import doyenm.zooshell.commandline.commandimpl.paddock.PaddockCommandsConfig;

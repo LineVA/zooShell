@@ -1,12 +1,13 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.AnimalUpdateDietContext;
+import doyenm.zooshell.animal.diets.AnimalUpdateDietContext;
+import doyenm.zooshell.animal.diets.AnimalUpdateDietValidator;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.context.FindingDietContext;
-import doyenm.zooshell.validator.function.FindingDietFunction;
+import doyenm.zooshell.common.context.FindingDietContext;
+import doyenm.zooshell.common.function.FindingDietFunction;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

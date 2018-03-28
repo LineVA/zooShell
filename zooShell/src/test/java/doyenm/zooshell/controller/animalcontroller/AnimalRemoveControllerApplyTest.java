@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller;
 
-import doyenm.zooshell.context.AnimalContext;
+import doyenm.zooshell.animal.AnimalContext;
+import doyenm.zooshell.animal.remove.AnimalRemoveController;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Zoo;
 import org.apache.commons.lang.RandomStringUtils;

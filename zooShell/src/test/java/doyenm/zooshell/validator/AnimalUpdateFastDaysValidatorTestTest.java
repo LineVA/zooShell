@@ -1,10 +1,11 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.AnimalUpdateFastDaysContext;
+import doyenm.zooshell.animal.diets.AnimalUpdateFastDaysContext;
+import doyenm.zooshell.animal.diets.AnimalUpdateFastDaysValidator;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
+import doyenm.zooshell.common.predicates.IntegerValuePredicates;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

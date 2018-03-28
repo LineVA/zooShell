@@ -2,9 +2,9 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.KeeperCreationContext;
 import doyenm.zooshell.model.AnimalKeeper;
-import doyenm.zooshell.validator.name.NameDto;
-import doyenm.zooshell.validator.name.NameValidator;
-import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
+import doyenm.zooshell.common.name.NameDto;
+import doyenm.zooshell.common.name.NameValidator;
+import doyenm.zooshell.common.predicates.KeepersNumberPredicate;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

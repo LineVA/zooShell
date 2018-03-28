@@ -1,9 +1,9 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.KeeperCreationContext;
-import doyenm.zooshell.validator.name.NameDto;
-import doyenm.zooshell.validator.name.NameValidator;
-import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
+import doyenm.zooshell.common.name.NameDto;
+import doyenm.zooshell.common.name.NameValidator;
+import doyenm.zooshell.common.predicates.KeepersNumberPredicate;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

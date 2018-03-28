@@ -1,7 +1,7 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.validator.name.NameValidator;
-import doyenm.zooshell.validator.predicates.HandymenNumberPredicate;
+import doyenm.zooshell.common.name.NameValidator;
+import doyenm.zooshell.common.predicates.HandymenNumberPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

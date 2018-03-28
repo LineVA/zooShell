@@ -1,6 +1,7 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.AnimalCreationContext;
+import doyenm.zooshell.animal.creation.AnimalCreationContext;
+import doyenm.zooshell.animal.creation.AnimalCreationValidator;
 import doyenm.zooshell.model.*;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;

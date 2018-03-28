@@ -2,8 +2,8 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.context.FindingKeeperContext;
-import doyenm.zooshell.validator.function.FindingKeeperFunction;
+import doyenm.zooshell.common.context.FindingKeeperContext;
+import doyenm.zooshell.common.function.FindingKeeperFunction;
 
 import java.util.stream.Stream;
 

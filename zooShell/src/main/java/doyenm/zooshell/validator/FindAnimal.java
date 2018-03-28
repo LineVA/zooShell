@@ -2,8 +2,8 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.context.FindingAnimalContext;
-import doyenm.zooshell.validator.function.FindingAnimalWithEntryCheckFunction;
+import doyenm.zooshell.common.context.FindingAnimalContext;
+import doyenm.zooshell.common.function.FindingAnimalWithEntryCheckFunction;
 
 import java.util.stream.Stream;
 

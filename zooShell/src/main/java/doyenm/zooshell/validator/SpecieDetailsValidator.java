@@ -1,8 +1,8 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.SpecieDetailsContext;
-import doyenm.zooshell.validator.context.FindingSpecieContext;
-import doyenm.zooshell.validator.function.FindingSpecieFunction;
+import doyenm.zooshell.common.context.FindingSpecieContext;
+import doyenm.zooshell.common.function.FindingSpecieFunction;
 
 import java.util.function.Predicate;
 import java.util.stream.Stream;

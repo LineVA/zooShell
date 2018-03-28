@@ -2,8 +2,8 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.PaddockChangeNameContext;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.validator.name.NameDto;
-import doyenm.zooshell.validator.name.NameValidator;
+import doyenm.zooshell.common.name.NameDto;
+import doyenm.zooshell.common.name.NameValidator;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

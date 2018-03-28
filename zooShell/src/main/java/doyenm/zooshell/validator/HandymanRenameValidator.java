@@ -1,8 +1,8 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.HandymanRenameContext;
-import doyenm.zooshell.validator.name.NameDto;
-import doyenm.zooshell.validator.name.NameValidator;
+import doyenm.zooshell.common.name.NameDto;
+import doyenm.zooshell.common.name.NameValidator;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

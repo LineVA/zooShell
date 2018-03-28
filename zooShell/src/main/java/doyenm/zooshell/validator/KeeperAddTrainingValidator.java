@@ -1,8 +1,8 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.KeeperAddTrainingContext;
-import doyenm.zooshell.validator.context.FindingFamilyContext;
-import doyenm.zooshell.validator.function.FindingFamilyFunction;
+import doyenm.zooshell.common.context.FindingFamilyContext;
+import doyenm.zooshell.common.function.FindingFamilyFunction;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

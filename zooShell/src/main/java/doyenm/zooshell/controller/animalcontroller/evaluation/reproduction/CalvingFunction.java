@@ -1,11 +1,11 @@
 package doyenm.zooshell.controller.animalcontroller.evaluation.reproduction;
 
-import doyenm.zooshell.context.AnimalCreationContext;
+import doyenm.zooshell.animal.creation.AnimalCreationContext;
 import doyenm.zooshell.context.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.utils.UniformStatistics;
-import doyenm.zooshell.validator.AnimalCreationValidator;
+import doyenm.zooshell.animal.creation.AnimalCreationValidator;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;

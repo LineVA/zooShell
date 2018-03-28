@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller;
 
-import doyenm.zooshell.context.AnimalChangeNameContext;
+import doyenm.zooshell.animal.rename.AnimalChangeNameContext;
+import doyenm.zooshell.animal.rename.AnimalChangeNameController;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Zoo;
 import org.apache.commons.lang.RandomStringUtils;

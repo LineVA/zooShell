@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller;
 
-import doyenm.zooshell.context.AnimalContext;
+import doyenm.zooshell.animal.AnimalContext;
+import doyenm.zooshell.animal.diets.AnimalResetDietController;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.model.Zoo;

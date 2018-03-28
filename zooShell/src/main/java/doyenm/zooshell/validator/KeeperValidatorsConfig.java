@@ -1,13 +1,13 @@
 package doyenm.zooshell.validator;
 
 import doyenm.zooshell.utils.Utils;
-import doyenm.zooshell.validator.function.FindingFamilyFunction;
-import doyenm.zooshell.validator.function.FindingTaskFunction;
-import doyenm.zooshell.validator.name.NameValidator;
-import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
-import doyenm.zooshell.validator.predicates.KeepersNumberPredicate;
-import doyenm.zooshell.validator.predicates.StringLengthPredicates;
-import doyenm.zooshell.validator.predicates.UniquenessNamesBiPredicates;
+import doyenm.zooshell.common.function.FindingFamilyFunction;
+import doyenm.zooshell.common.function.FindingTaskFunction;
+import doyenm.zooshell.common.name.NameValidator;
+import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
+import doyenm.zooshell.common.predicates.KeepersNumberPredicate;
+import doyenm.zooshell.common.predicates.StringLengthPredicates;
+import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

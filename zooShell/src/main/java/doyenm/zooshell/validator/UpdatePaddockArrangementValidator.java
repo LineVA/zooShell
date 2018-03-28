@@ -2,8 +2,8 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.context.UpdatePaddockArrangementContext;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.validator.context.FindingPaddockArrangementContext;
-import doyenm.zooshell.validator.function.FindingPaddockArrangementFunction;
+import doyenm.zooshell.common.context.FindingPaddockArrangementContext;
+import doyenm.zooshell.common.function.FindingPaddockArrangementFunction;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;

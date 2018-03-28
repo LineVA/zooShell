@@ -1,6 +1,7 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.AnimalChangePaddockContext;
+import doyenm.zooshell.animal.move.AnimalChangePaddockContext;
+import doyenm.zooshell.animal.move.AnimalChangePaddockValidator;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
