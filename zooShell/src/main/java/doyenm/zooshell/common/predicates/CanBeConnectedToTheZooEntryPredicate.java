@@ -1,6 +1,6 @@
 package doyenm.zooshell.common.predicates;
 
-import doyenm.zooshell.context.PaddockEntryCreationContext;
+import doyenm.zooshell.paddock.entry.PaddockEntryCreationContext;
 
 import java.util.function.Predicate;
 

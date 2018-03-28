@@ -2,6 +2,7 @@ package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.paddock.rename.PaddockChangeNameContext;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

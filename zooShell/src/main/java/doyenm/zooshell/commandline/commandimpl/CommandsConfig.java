@@ -4,7 +4,7 @@ import doyenm.zooshell.backup.BackupConfig;
 import doyenm.zooshell.animal.AnimalCommandsConfig;
 import doyenm.zooshell.commandline.commandimpl.handyman.HandymanCommandsConfig;
 import doyenm.zooshell.commandline.commandimpl.keeper.KeeperCommandsConfig;
-import doyenm.zooshell.commandline.commandimpl.paddock.PaddockCommandsConfig;
+import doyenm.zooshell.paddock.PaddockCommandsConfig;
 import doyenm.zooshell.commandline.commandimpl.zoo.ZooCommandsConfig;
 import doyenm.zooshell.commandline.general.displayingevent.*;
 import doyenm.zooshell.controller.ControllersConfig;

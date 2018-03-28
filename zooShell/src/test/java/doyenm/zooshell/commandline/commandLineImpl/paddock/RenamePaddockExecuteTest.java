@@ -1,12 +1,12 @@
 package doyenm.zooshell.commandline.commandLineImpl.paddock;
 
-import doyenm.zooshell.commandline.commandimpl.paddock.RenamePaddock;
+import doyenm.zooshell.paddock.rename.RenamePaddock;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
-import doyenm.zooshell.context.PaddockChangeNameContext;
-import doyenm.zooshell.controller.paddockcontroller.PaddockChangeNameController;
+import doyenm.zooshell.paddock.rename.PaddockChangeNameContext;
+import doyenm.zooshell.paddock.rename.PaddockChangeNameController;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.PaddockChangeNameValidator;
+import doyenm.zooshell.paddock.rename.PaddockChangeNameValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

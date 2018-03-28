@@ -1,12 +1,12 @@
 package doyenm.zooshell.commandline.commandLineImpl.paddock;
 
-import doyenm.zooshell.commandline.commandimpl.paddock.UpdateBiome;
+import doyenm.zooshell.paddock.biomes.UpdateBiome;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
-import doyenm.zooshell.context.UpdateBiomeContext;
-import doyenm.zooshell.controller.paddockcontroller.UpdateBiomeController;
+import doyenm.zooshell.paddock.biomes.UpdateBiomeContext;
+import doyenm.zooshell.paddock.biomes.UpdateBiomeController;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.UpdateBiomeValidator;
+import doyenm.zooshell.paddock.biomes.UpdateBiomeValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
