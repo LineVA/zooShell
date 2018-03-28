@@ -1,12 +1,12 @@
 package doyenm.zooshell.commandline.commandLineImpl.keeper;
 
-import doyenm.zooshell.commandline.commandimpl.keeper.AddTraining;
+import doyenm.zooshell.keeper.training.AddTraining;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
-import doyenm.zooshell.context.KeeperAddTrainingContext;
-import doyenm.zooshell.controller.keepercontroller.KeeperAddTrainingController;
+import doyenm.zooshell.keeper.training.KeeperAddTrainingContext;
+import doyenm.zooshell.keeper.training.KeeperAddTrainingController;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.KeeperAddTrainingValidator;
+import doyenm.zooshell.keeper.training.KeeperAddTrainingValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

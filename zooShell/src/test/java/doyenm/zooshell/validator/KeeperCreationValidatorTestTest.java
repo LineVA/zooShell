@@ -1,6 +1,7 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.KeeperCreationContext;
+import doyenm.zooshell.keeper.creation.KeeperCreationContext;
+import doyenm.zooshell.keeper.creation.KeeperCreationValidator;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;

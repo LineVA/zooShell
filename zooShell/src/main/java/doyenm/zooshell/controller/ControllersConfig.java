@@ -2,7 +2,7 @@ package doyenm.zooshell.controller;
 
 import doyenm.zooshell.animal.AnimalControllersConfig;
 import doyenm.zooshell.controller.handymancontroller.HandymanControllersConfig;
-import doyenm.zooshell.controller.keepercontroller.KeeperControllersConfig;
+import doyenm.zooshell.keeper.KeeperControllersConfig;
 import doyenm.zooshell.paddock.PaddockControllerConfig;
 import doyenm.zooshell.zoo.ZooControllersConfig;
 import org.springframework.beans.factory.annotation.Autowired;

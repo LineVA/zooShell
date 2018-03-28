@@ -1,6 +1,7 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.KeeperRenameContext;
+import doyenm.zooshell.keeper.rename.KeeperRenameContext;
+import doyenm.zooshell.keeper.rename.KeeperRenameValidator;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.common.name.NameDto;

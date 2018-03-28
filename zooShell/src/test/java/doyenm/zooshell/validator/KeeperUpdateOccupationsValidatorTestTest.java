@@ -1,6 +1,7 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.KeeperUpdateOccupationsContext;
+import doyenm.zooshell.keeper.tasks.KeeperUpdateOccupationsContext;
+import doyenm.zooshell.keeper.tasks.KeeperUpdateOccupationsValidator;
 import doyenm.zooshell.model.*;
 import doyenm.zooshell.common.function.FindingTaskFunction;
 import doyenm.zooshell.common.predicates.DoubleValuesPredicates;

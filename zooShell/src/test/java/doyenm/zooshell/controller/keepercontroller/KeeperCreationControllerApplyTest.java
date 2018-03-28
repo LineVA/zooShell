@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.keepercontroller;
 
-import doyenm.zooshell.context.KeeperCreationContext;
+import doyenm.zooshell.keeper.creation.KeeperCreationContext;
+import doyenm.zooshell.keeper.creation.KeeperCreationController;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
 import org.apache.commons.lang.RandomStringUtils;

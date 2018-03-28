@@ -1,5 +1,6 @@
 package doyenm.zooshell.context;
 
+import doyenm.zooshell.keeper.creation.KeeperCreationContext;
 import doyenm.zooshell.model.Zoo;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
@@ -17,7 +18,7 @@ public class KeeperCreationContextGetkeeperTest {
     public void shouldReturnTheZooOfTheContext() {
         // Given
         String keeper = RandomStringUtils.randomAlphanumeric(10);
-        KeeperCreationContext subject = new KeeperCreationContext(mock(Zoo.class), 
+        KeeperCreationContext subject = new KeeperCreationContext(mock(Zoo.class),
                 keeper);
         // When
        String actualKeeper = subject.getKeeper();

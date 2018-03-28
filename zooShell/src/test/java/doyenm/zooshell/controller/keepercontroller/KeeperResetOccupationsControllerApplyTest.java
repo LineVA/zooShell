@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.keepercontroller;
 
-import doyenm.zooshell.context.KeeperContext;
+import doyenm.zooshell.keeper.KeeperContext;
+import doyenm.zooshell.keeper.tasks.KeeperResetOccupationsController;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.TimedOccupation;
 import doyenm.zooshell.model.Zoo;
