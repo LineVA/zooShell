@@ -1,7 +1,8 @@
-package doyenm.zooshell.commandline.commandimpl.zoo;
+package doyenm.zooshell.zoo;
 
-import doyenm.zooshell.controller.zoocontroller.ZooControllersConfig;
-import doyenm.zooshell.validator.ZooValidatorsConfig;
+import doyenm.zooshell.zoo.creation.CreateZoo;
+import doyenm.zooshell.zoo.details.DetailZoo;
+import doyenm.zooshell.zoo.rename.RenameZoo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -5,7 +5,7 @@ import doyenm.zooshell.animal.AnimalCommandsConfig;
 import doyenm.zooshell.commandline.commandimpl.handyman.HandymanCommandsConfig;
 import doyenm.zooshell.commandline.commandimpl.keeper.KeeperCommandsConfig;
 import doyenm.zooshell.paddock.PaddockCommandsConfig;
-import doyenm.zooshell.commandline.commandimpl.zoo.ZooCommandsConfig;
+import doyenm.zooshell.zoo.ZooCommandsConfig;
 import doyenm.zooshell.commandline.general.displayingevent.*;
 import doyenm.zooshell.controller.ControllersConfig;
 import doyenm.zooshell.controller.speciecontroller.SpecieControllersConfig;

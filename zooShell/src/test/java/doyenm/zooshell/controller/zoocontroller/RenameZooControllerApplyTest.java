@@ -1,7 +1,8 @@
 package doyenm.zooshell.controller.zoocontroller;
 
-import doyenm.zooshell.context.ZooContext;
+import doyenm.zooshell.zoo.ZooContext;
 import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.zoo.rename.RenameZooController;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

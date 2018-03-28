@@ -1,6 +1,6 @@
-package doyenm.zooshell.validator;
+package doyenm.zooshell.zoo.creation;
 
-import doyenm.zooshell.context.ZooCreationContext;
+import doyenm.zooshell.zoo.creation.ZooCreationContext;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;

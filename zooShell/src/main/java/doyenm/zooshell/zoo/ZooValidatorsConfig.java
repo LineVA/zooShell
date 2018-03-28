@@ -1,10 +1,12 @@
-package doyenm.zooshell.validator;
+package doyenm.zooshell.zoo;
 
 
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;
 import doyenm.zooshell.common.predicates.StringLengthPredicates;
 import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;
+import doyenm.zooshell.validator.SpecieDetailsValidator;
+import doyenm.zooshell.zoo.creation.ZooCreationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

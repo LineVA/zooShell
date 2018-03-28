@@ -1,6 +1,6 @@
-package doyenm.zooshell.controller.zoocontroller;
+package doyenm.zooshell.zoo.details;
 
-import doyenm.zooshell.context.ZooContext;
+import doyenm.zooshell.zoo.ZooContext;
 import doyenm.zooshell.utils.Utils;
 import lombok.RequiredArgsConstructor;
 

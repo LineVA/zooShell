@@ -1,6 +1,6 @@
-package doyenm.zooshell.controller.zoocontroller;
+package doyenm.zooshell.zoo.rename;
 
-import doyenm.zooshell.context.ZooContext;
+import doyenm.zooshell.zoo.ZooContext;
 
 import java.util.function.Function;
 

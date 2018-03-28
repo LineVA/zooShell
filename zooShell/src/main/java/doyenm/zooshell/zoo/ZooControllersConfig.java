@@ -1,8 +1,12 @@
-package doyenm.zooshell.controller.zoocontroller;
+package doyenm.zooshell.zoo;
 
 import doyenm.zooshell.controller.eventhandling.zoo.KeeperTrainingHandler;
 import doyenm.zooshell.controller.eventhandling.zoo.ZooEventsHandler;
+import doyenm.zooshell.zoo.rename.RenameZooController;
+import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
 import doyenm.zooshell.utils.Utils;
+import doyenm.zooshell.zoo.creation.ZooCreationController;
+import doyenm.zooshell.zoo.details.ZooDetailsController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

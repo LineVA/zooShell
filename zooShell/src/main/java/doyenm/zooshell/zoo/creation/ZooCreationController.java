@@ -1,6 +1,6 @@
-package doyenm.zooshell.controller.zoocontroller;
+package doyenm.zooshell.zoo.creation;
 
-import doyenm.zooshell.context.ZooCreationContext;
+import doyenm.zooshell.zoo.creation.ZooCreationContext;
 
 import java.util.function.Function;
 
