@@ -1,10 +1,5 @@
 package doyenm.zooshell.keeper;
 
-import doyenm.zooshell.keeper.creation.KeeperCreationValidator;
-import doyenm.zooshell.keeper.rename.KeeperRenameValidator;
-import doyenm.zooshell.keeper.tasks.KeeperUpdateOccupationsValidator;
-import doyenm.zooshell.keeper.training.KeeperAddTrainingValidator;
-import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.common.function.FindingFamilyFunction;
 import doyenm.zooshell.common.function.FindingTaskFunction;
 import doyenm.zooshell.common.name.NameValidator;
@@ -12,6 +7,11 @@ import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
 import doyenm.zooshell.common.predicates.KeepersNumberPredicate;
 import doyenm.zooshell.common.predicates.StringLengthPredicates;
 import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;
+import doyenm.zooshell.keeper.creation.KeeperCreationValidator;
+import doyenm.zooshell.keeper.rename.KeeperRenameValidator;
+import doyenm.zooshell.keeper.tasks.KeeperUpdateOccupationsValidator;
+import doyenm.zooshell.keeper.training.KeeperAddTrainingValidator;
+import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.validator.FindKeeper;
 import doyenm.zooshell.validator.FindPaddock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import org.springframework.core.env.Environment;
  * @author doyenm
  */
 @Configuration
-public class gitKeeperValidatorsConfig {
+public class KeeperValidatorsConfig {
 
     @Autowired
     Environment environment;
