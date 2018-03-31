@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package doyenm.zooshell.controller.handymancontroller;
+package doyenm.zooshell.handyman.occupations;
 
-import doyenm.zooshell.context.HandymanUpdateOccupationsContext;
+import doyenm.zooshell.handyman.list.LsHandyman;
 
 import java.util.function.Function;
 
@@ -14,10 +14,10 @@ import java.util.function.Function;
  * @author doyenm
  */
 public class UpdateOccupationsController
-        implements Function<HandymanUpdateOccupationsContext, HandymanUpdateOccupationsContext> {
+        implements Function<LsHandyman.HandymanUpdateOccupationsContext, LsHandyman.HandymanUpdateOccupationsContext> {
 
     @Override
-    public HandymanUpdateOccupationsContext apply(HandymanUpdateOccupationsContext t) {
+    public LsHandyman.HandymanUpdateOccupationsContext apply(LsHandyman.HandymanUpdateOccupationsContext t) {
         if(t.isAddition()){
             t.getHandyman().getAffectations().add(t.getPaddock());
         } else {

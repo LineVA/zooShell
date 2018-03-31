@@ -1,6 +1,12 @@
-package doyenm.zooshell.controller.handymancontroller;
+package doyenm.zooshell.handyman;
 
+import doyenm.zooshell.controller.handymancontroller.*;
 import doyenm.zooshell.controller.handymancontroller.evaluation.HandymanAgeEvaluationController;
+import doyenm.zooshell.handyman.create.CreationController;
+import doyenm.zooshell.handyman.details.HandymanDetailsController;
+import doyenm.zooshell.handyman.occupations.UpdateOccupations;
+import doyenm.zooshell.handyman.occupations.UpdateOccupationsController;
+import doyenm.zooshell.handyman.rename.RenamingController;
 import doyenm.zooshell.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +34,7 @@ public class HandymanControllersConfig {
     }
     
     @Bean
-    public RenamingController  renamingController(){
+    public RenamingController renamingController(){
         return new RenamingController();
     }
     
@@ -43,7 +49,7 @@ public class HandymanControllersConfig {
     }
     
     @Bean
-    public RemovingController removingController(){
-        return new RemovingController();
+    public UpdateOccupations.RemovingController removingController(){
+        return new UpdateOccupations.RemovingController();
     }
 }

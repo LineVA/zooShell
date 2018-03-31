@@ -1,14 +1,13 @@
-package doyenm.zooshell.commandline.commandimpl.handyman;
+package doyenm.zooshell.handyman.details;
 
 import doyenm.zooshell.commandline.general.Command;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.commandline.utils.FormattingInList;
-import doyenm.zooshell.context.HandymanContext;
-import doyenm.zooshell.controller.handymancontroller.HandymanDetailsController;
+import doyenm.zooshell.handyman.HandymanContext;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
-import doyenm.zooshell.validator.HandymanValidator;
+import doyenm.zooshell.handyman.HandymanValidator;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;

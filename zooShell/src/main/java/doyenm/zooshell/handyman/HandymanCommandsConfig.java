@@ -1,7 +1,10 @@
-package doyenm.zooshell.commandline.commandimpl.handyman;
+package doyenm.zooshell.handyman;
 
-import doyenm.zooshell.controller.handymancontroller.HandymanControllersConfig;
-import doyenm.zooshell.validator.HandymanValidatorsConfig;
+import doyenm.zooshell.handyman.create.CreateHandyman;
+import doyenm.zooshell.handyman.details.DetailsHandyman;
+import doyenm.zooshell.handyman.list.LsHandyman;
+import doyenm.zooshell.handyman.occupations.UpdateOccupations;
+import doyenm.zooshell.handyman.rename.RenameHandyman;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,7 +51,7 @@ public class HandymanCommandsConfig {
     }
     
     @Bean
-    public RemoveHandyman removeHandyman(){
-        return new RemoveHandyman(validators.handymanValidator(), controllers.removingController());
+    public UpdateOccupations.RemoveHandyman removeHandyman(){
+        return new UpdateOccupations.RemoveHandyman(validators.handymanValidator(), controllers.removingController());
     }
 }

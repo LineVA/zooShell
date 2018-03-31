@@ -1,6 +1,6 @@
-package doyenm.zooshell.controller.handymancontroller;
+package doyenm.zooshell.handyman.rename;
 
-import doyenm.zooshell.context.HandymanRenameContext;
+import doyenm.zooshell.handyman.rename.HandymanRenameContext;
 import doyenm.zooshell.model.Handyman;
 
 import java.util.function.Function;

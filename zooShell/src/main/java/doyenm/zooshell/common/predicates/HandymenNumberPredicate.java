@@ -1,6 +1,6 @@
 package doyenm.zooshell.common.predicates;
 
-import doyenm.zooshell.context.HandymanCreationContext;
+import doyenm.zooshell.handyman.create.HandymanCreationContext;
 import lombok.RequiredArgsConstructor;
 
 /**

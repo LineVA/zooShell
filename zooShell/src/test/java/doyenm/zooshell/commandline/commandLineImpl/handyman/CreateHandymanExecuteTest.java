@@ -1,12 +1,12 @@
 package doyenm.zooshell.commandline.commandLineImpl.handyman;
 
-import doyenm.zooshell.commandline.commandimpl.handyman.CreateHandyman;
+import doyenm.zooshell.handyman.create.CreateHandyman;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
-import doyenm.zooshell.context.HandymanCreationContext;
-import doyenm.zooshell.controller.handymancontroller.CreationController;
+import doyenm.zooshell.handyman.create.HandymanCreationContext;
+import doyenm.zooshell.handyman.create.CreationController;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.HandymanCreationValidator;
+import doyenm.zooshell.handyman.create.HandymanCreationValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

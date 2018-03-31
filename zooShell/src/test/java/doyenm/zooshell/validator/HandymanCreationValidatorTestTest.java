@@ -1,9 +1,10 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.HandymanCreationContext;
+import doyenm.zooshell.handyman.create.HandymanCreationContext;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.HandymenNumberPredicate;
+import doyenm.zooshell.handyman.create.HandymanCreationValidator;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

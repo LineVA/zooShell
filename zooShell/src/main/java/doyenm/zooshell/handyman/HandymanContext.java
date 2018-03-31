@@ -1,4 +1,4 @@
-package doyenm.zooshell.context;
+package doyenm.zooshell.handyman;
 
 import doyenm.zooshell.commandline.utils.Couple;
 import doyenm.zooshell.model.Handyman;

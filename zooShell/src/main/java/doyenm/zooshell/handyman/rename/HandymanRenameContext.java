@@ -1,4 +1,4 @@
-package doyenm.zooshell.context;
+package doyenm.zooshell.handyman.rename;
 
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.Zoo;

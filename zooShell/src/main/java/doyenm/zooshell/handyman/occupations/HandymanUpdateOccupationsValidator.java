@@ -1,6 +1,8 @@
-package doyenm.zooshell.validator;
+package doyenm.zooshell.handyman.occupations;
 
-import doyenm.zooshell.context.HandymanUpdateOccupationsContext;
+import doyenm.zooshell.handyman.list.LsHandyman;
+import doyenm.zooshell.validator.FindHandyman;
+import doyenm.zooshell.validator.FindPaddock;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;
@@ -11,20 +13,20 @@ import java.util.function.Predicate;
  */
 @RequiredArgsConstructor
 public class HandymanUpdateOccupationsValidator
-        implements Predicate<HandymanUpdateOccupationsContext> {
+        implements Predicate<LsHandyman.HandymanUpdateOccupationsContext> {
 
     private final FindHandyman findHandyman;
     private final FindPaddock findPaddock;
     private final int maxNumberOfAffectations;
 
     @Override
-    public boolean test(HandymanUpdateOccupationsContext t) {
+    public boolean test(LsHandyman.HandymanUpdateOccupationsContext t) {
         t.setHandyman(findHandyman.find(t.getZoo(), t.getHandymanName()));
         t.setPaddock(findPaddock.find(t.getZoo(), t.getPaddockName()));
         return t.getHandyman() != null && t.getPaddock() != null && checkAction(t);
     }
     
-    private boolean checkAction(HandymanUpdateOccupationsContext t){
+    private boolean checkAction(LsHandyman.HandymanUpdateOccupationsContext t){
         if(t.isAddition()){
            return checkAddition(t);
         } else {
@@ -32,12 +34,12 @@ public class HandymanUpdateOccupationsValidator
         }
     }
     
-    private boolean checkAddition(HandymanUpdateOccupationsContext t){
+    private boolean checkAddition(LsHandyman.HandymanUpdateOccupationsContext t){
         return t.getHandyman().getAffectations().size() < maxNumberOfAffectations 
                     && !t.getHandyman().getAffectations().contains(t.getPaddock());
     }
 
-       private boolean checkSoustraction(HandymanUpdateOccupationsContext t){
+       private boolean checkSoustraction(LsHandyman.HandymanUpdateOccupationsContext t){
         return t.getHandyman().getAffectations().contains(t.getPaddock());
     }
 }

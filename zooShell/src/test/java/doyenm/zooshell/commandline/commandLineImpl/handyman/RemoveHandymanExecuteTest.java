@@ -1,12 +1,11 @@
 package doyenm.zooshell.commandline.commandLineImpl.handyman;
 
-import doyenm.zooshell.commandline.commandimpl.handyman.RemoveHandyman;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
-import doyenm.zooshell.context.HandymanContext;
-import doyenm.zooshell.controller.handymancontroller.RemovingController;
+import doyenm.zooshell.handyman.HandymanContext;
+import doyenm.zooshell.handyman.occupations.UpdateOccupations;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.HandymanValidator;
+import doyenm.zooshell.handyman.HandymanValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -27,8 +26,8 @@ public class RemoveHandymanExecuteTest {
         return validator;
     }
 
-    private RemovingController givenController() {
-        RemovingController controller = Mockito.mock(RemovingController.class);
+    private UpdateOccupations.RemovingController givenController() {
+        UpdateOccupations.RemovingController controller = Mockito.mock(UpdateOccupations.RemovingController.class);
         Mockito.when(controller.apply(any(HandymanContext.class))).thenAnswer(new Answer<HandymanContext>() {
             @Override
             public HandymanContext answer(InvocationOnMock invocation) throws Throwable {
@@ -43,8 +42,8 @@ public class RemoveHandymanExecuteTest {
     public void shouldReturnAReturnExecWithTypeReturnToSuccessWhenTheCommandIsInSuccess() {
         // Given
         HandymanValidator validator = givenValidator(true);
-        RemovingController controller = givenController();
-        RemoveHandyman command = new RemoveHandyman(validator, controller);
+        UpdateOccupations.RemovingController controller = givenController();
+        UpdateOccupations.RemoveHandyman command = new UpdateOccupations.RemoveHandyman(validator, controller);
         String[] cmd = new String[3];
         // When
         ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));
@@ -59,8 +58,8 @@ public class RemoveHandymanExecuteTest {
     public void shouldReturnAReturnExecWithTypeReturnToFailedWhenTheCommandIsFailed() {
         // Given
         HandymanValidator validator = givenValidator(false);
-        RemovingController controller = givenController();
-        RemoveHandyman command = new RemoveHandyman(validator, controller);
+        UpdateOccupations.RemovingController controller = givenController();
+        UpdateOccupations.RemoveHandyman command = new UpdateOccupations.RemoveHandyman(validator, controller);
         String[] cmd = new String[3];
         // When
         ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));

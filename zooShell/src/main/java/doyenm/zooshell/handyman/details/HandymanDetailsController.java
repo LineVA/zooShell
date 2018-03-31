@@ -1,6 +1,6 @@
-package doyenm.zooshell.controller.handymancontroller;
+package doyenm.zooshell.handyman.details;
 
-import doyenm.zooshell.context.HandymanContext;
+import doyenm.zooshell.handyman.HandymanContext;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.utils.Utils;
 import lombok.RequiredArgsConstructor;

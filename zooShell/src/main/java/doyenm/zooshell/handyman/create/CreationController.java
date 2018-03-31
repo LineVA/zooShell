@@ -1,6 +1,6 @@
-package doyenm.zooshell.controller.handymancontroller;
+package doyenm.zooshell.handyman.create;
 
-import doyenm.zooshell.context.HandymanCreationContext;
+import doyenm.zooshell.handyman.create.HandymanCreationContext;
 import doyenm.zooshell.model.Handyman;
 
 import java.util.ArrayList;
