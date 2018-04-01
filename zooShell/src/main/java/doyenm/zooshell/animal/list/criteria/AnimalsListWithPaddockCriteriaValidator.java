@@ -24,7 +24,9 @@ public class AnimalsListWithPaddockCriteriaValidator implements Predicate<LsWith
     public boolean test(LsWithCriteriaContext t) {
         LsWithCriteriaContext context = t;
 
-        if (context.getPaddocksExpression() != null && !context.getPaddocksExpression().isEmpty() && context.getPaddocks() != null) {
+        if (context.getPaddocksExpression() != null
+                && !context.getPaddocksExpression().isEmpty()
+                && context.getPaddocks() != null) {
             context.getPaddocks().addAll(parser.parse(context.getPaddocksExpression(), excluded));
             context.setPaddocksExpression(parser.replaceGrammaticalExpression(context.getPaddocksExpression()));
             retrievePaddock(context);
