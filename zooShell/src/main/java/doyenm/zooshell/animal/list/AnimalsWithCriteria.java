@@ -1,10 +1,7 @@
 package doyenm.zooshell.animal.list;
 
 import doyenm.zooshell.animal.LsWithCriteriaContext;
-import doyenm.zooshell.animal.list.criteria.AnimalsListWithDietCriteriaValidator;
-import doyenm.zooshell.animal.list.criteria.AnimalsListWithPaddockCriteriaValidator;
-import doyenm.zooshell.animal.list.criteria.AnimalsListWithSexCriteriaValidator;
-import doyenm.zooshell.animal.list.criteria.AnimalsListWithSpecieCriteriaValidator;
+import doyenm.zooshell.animal.list.criteria.*;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
@@ -22,6 +19,7 @@ public class AnimalsWithCriteria implements Predicate<LsWithCriteriaContext> {
     private final AnimalsListWithSexCriteriaValidator animalsListWithSexCriteriaValidator;
     private final AnimalsListWithPaddockCriteriaValidator animalsListWithPaddockCriteriaValidator;
     private final AnimalsListWithSpecieCriteriaValidator animalsListWithSpecieCriteriaValidator;
+    private final AnimalsListWithContraceptionCriteriaValidator animalsListWithContraceptionCriteriaValidator;
 
     @Override
     public boolean test(LsWithCriteriaContext t) {
@@ -32,6 +30,7 @@ public class AnimalsWithCriteria implements Predicate<LsWithCriteriaContext> {
                 .filter(animalsListWithSexCriteriaValidator)
                 .filter(animalsListWithPaddockCriteriaValidator)
                 .filter(animalsListWithSpecieCriteriaValidator)
+                .filter(animalsListWithContraceptionCriteriaValidator)
                 .findFirst();
         return optional.isPresent();
     }
