@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandline.commandLineImpl.zoo;
 
-import doyenm.zooshell.commandline.commandimpl.zoo.RenameZoo;
+import doyenm.zooshell.zoo.rename.RenameZoo;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

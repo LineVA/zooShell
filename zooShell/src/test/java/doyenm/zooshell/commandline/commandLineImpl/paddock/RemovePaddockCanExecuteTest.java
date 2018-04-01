@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandline.commandLineImpl.paddock;
 
-import doyenm.zooshell.commandline.commandimpl.paddock.RemovePaddock;
+import doyenm.zooshell.paddock.remove.RemovePaddock;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

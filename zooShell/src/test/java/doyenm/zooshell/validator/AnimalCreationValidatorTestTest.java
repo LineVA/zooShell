@@ -1,6 +1,8 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.AnimalCreationContext;
+import doyenm.zooshell.animal.creation.AnimalCreationContext;
+import doyenm.zooshell.animal.creation.AnimalCreationValidator;
+import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.model.*;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
@@ -64,7 +66,7 @@ public class AnimalCreationValidatorTestTest {
     /**
      * An animal can be created if : - the name is not empty - the name is
      * shorter than 50 characters - the paddock exists - the paddock has an
-     * entry - the specie exists - the sex exists - the sex is not UNKNOWN
+     * entry - the xml exists - the sex exists - the sex is not UNKNOWN
      */
     @Test
     public void shouldReturnTrueWhenTheAnimalCanBeCreated() {

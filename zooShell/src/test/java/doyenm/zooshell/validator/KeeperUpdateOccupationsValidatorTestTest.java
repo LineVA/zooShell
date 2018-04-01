@@ -1,9 +1,12 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.KeeperUpdateOccupationsContext;
+import doyenm.zooshell.common.FindKeeper;
+import doyenm.zooshell.common.FindPaddock;
+import doyenm.zooshell.keeper.tasks.KeeperUpdateOccupationsContext;
+import doyenm.zooshell.keeper.tasks.KeeperUpdateOccupationsValidator;
 import doyenm.zooshell.model.*;
-import doyenm.zooshell.validator.function.FindingTaskFunction;
-import doyenm.zooshell.validator.predicates.DoubleValuesPredicates;
+import doyenm.zooshell.common.function.FindingTaskFunction;
+import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

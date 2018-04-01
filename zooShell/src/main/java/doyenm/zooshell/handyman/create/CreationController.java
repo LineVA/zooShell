@@ -1,0 +1,27 @@
+package doyenm.zooshell.handyman.create;
+
+import doyenm.zooshell.handyman.create.HandymanCreationContext;
+import doyenm.zooshell.model.Handyman;
+
+import java.util.ArrayList;
+import java.util.function.Function;
+
+/**
+ *
+ * @author doyenm
+ */
+public class CreationController
+        implements Function<HandymanCreationContext, HandymanCreationContext>{
+
+    @Override
+    public HandymanCreationContext apply(HandymanCreationContext t) {
+        Handyman handyman = Handyman.builder()
+                .name(t.getName())
+                .age(0)
+                .affectations(new ArrayList<>())
+                .build();
+        t.getZoo().getHandymen().put(t.getName().toUpperCase(), handyman);
+        return t;
+    }
+    
+}

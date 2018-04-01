@@ -1,6 +1,7 @@
 package doyenm.zooshell.context;
 
 import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.paddock.rename.PaddockChangeNameContext;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -17,7 +18,7 @@ public class PaddockChangeNameContextGetZooTest {
     public void shouldReturnTheZooOfTheContext() {
         // Given
         Zoo zoo = mock(Zoo.class);
-        PaddockChangeNameContext subject = new PaddockChangeNameContext(zoo, 
+        PaddockChangeNameContext subject = new PaddockChangeNameContext(zoo,
                 RandomStringUtils.random(10), RandomStringUtils.randomAlphabetic(10));
         // When
         Zoo actualZoo = subject.getZoo();

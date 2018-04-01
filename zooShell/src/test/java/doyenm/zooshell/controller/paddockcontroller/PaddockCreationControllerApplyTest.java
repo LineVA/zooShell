@@ -1,10 +1,11 @@
 package doyenm.zooshell.controller.paddockcontroller;
 
-import doyenm.zooshell.context.PaddockCreationContext;
+import doyenm.zooshell.paddock.creation.PaddockCreationContext;
 import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.paddock.creation.PaddockCreationController;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;

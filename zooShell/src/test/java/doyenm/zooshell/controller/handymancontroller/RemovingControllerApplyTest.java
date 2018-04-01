@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.handymancontroller;
 
-import doyenm.zooshell.context.HandymanContext;
+import doyenm.zooshell.handyman.HandymanContext;
+import doyenm.zooshell.handyman.occupations.UpdateOccupations;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.Zoo;
 import org.apache.commons.lang.RandomStringUtils;
@@ -42,7 +43,7 @@ public class RemovingControllerApplyTest {
         String name2 = RandomStringUtils.randomAlphabetic(10);
         Zoo zoo = givenZooWithNames(name1, name2);
         HandymanContext context = givenContextWithZooAndName(zoo, name1);
-        RemovingController controller = new RemovingController();
+        UpdateOccupations.RemovingController controller = new UpdateOccupations.RemovingController();
         // When
         HandymanContext actualContext = controller.apply(context);
         // Then

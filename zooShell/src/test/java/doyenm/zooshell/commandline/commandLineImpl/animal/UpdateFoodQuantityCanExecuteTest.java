@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandline.commandLineImpl.animal;
 
-import doyenm.zooshell.commandline.commandimpl.animal.UpdateFoodQuantity;
+import doyenm.zooshell.animal.diets.UpdateFoodQuantity;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

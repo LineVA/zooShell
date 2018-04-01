@@ -1,10 +1,10 @@
 package doyenm.zooshell.commandline.commandLineImpl.zoo;
 
-import doyenm.zooshell.commandline.commandimpl.zoo.RenameZoo;
+import doyenm.zooshell.zoo.rename.RenameZoo;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
-import doyenm.zooshell.context.ZooContext;
-import doyenm.zooshell.controller.zoocontroller.RenameZooController;
+import doyenm.zooshell.zoo.ZooContext;
+import doyenm.zooshell.zoo.rename.RenameZooController;
 import doyenm.zooshell.model.Zoo;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

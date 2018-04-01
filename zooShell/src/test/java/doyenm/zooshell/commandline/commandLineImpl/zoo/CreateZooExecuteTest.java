@@ -1,12 +1,12 @@
 package doyenm.zooshell.commandline.commandLineImpl.zoo;
 
-import doyenm.zooshell.commandline.commandimpl.zoo.CreateZoo;
+import doyenm.zooshell.zoo.creation.CreateZoo;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
-import doyenm.zooshell.context.ZooCreationContext;
-import doyenm.zooshell.controller.zoocontroller.ZooCreationController;
+import doyenm.zooshell.zoo.creation.ZooCreationContext;
+import doyenm.zooshell.zoo.creation.ZooCreationController;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.ZooCreationValidator;
+import doyenm.zooshell.zoo.creation.ZooCreationValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

@@ -1,9 +1,9 @@
 package doyenm.zooshell.backup;
 
-import doyenm.zooshell.context.ZooContext;
+import doyenm.zooshell.zoo.ZooContext;
 import doyenm.zooshell.model.*;
-import doyenm.zooshell.validator.FindPaddock;
-import doyenm.zooshell.xml.specie.SpecieGenerator;
+import doyenm.zooshell.common.FindPaddock;
+import doyenm.zooshell.specie.xml.SpecieGenerator;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

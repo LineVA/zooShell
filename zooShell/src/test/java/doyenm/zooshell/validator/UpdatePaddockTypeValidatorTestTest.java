@@ -1,11 +1,13 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.UpdatePaddockTypeContext;
+import doyenm.zooshell.common.FindPaddock;
+import doyenm.zooshell.paddock.types.UpdatePaddockTypeContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.context.FindingPaddockTypeContext;
-import doyenm.zooshell.validator.function.FindingPaddockTypeFunction;
+import doyenm.zooshell.common.context.FindingPaddockTypeContext;
+import doyenm.zooshell.common.function.FindingPaddockTypeFunction;
+import doyenm.zooshell.paddock.types.UpdatePaddockTypeValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

@@ -1,9 +1,10 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.PaddockExtensionCreationContext;
+import doyenm.zooshell.paddock.extension.PaddockExtensionCreationContext;
 import doyenm.zooshell.model.Coordinates;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Position;
+import doyenm.zooshell.paddock.extension.PaddockExtensionLocationValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

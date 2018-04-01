@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.handymancontroller;
 
-import doyenm.zooshell.context.HandymanRenameContext;
+import doyenm.zooshell.handyman.rename.HandymanRenameContext;
+import doyenm.zooshell.handyman.rename.RenamingController;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.Zoo;
 import org.apache.commons.lang.RandomStringUtils;

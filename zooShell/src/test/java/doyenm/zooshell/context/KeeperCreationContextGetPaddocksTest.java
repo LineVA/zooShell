@@ -5,6 +5,7 @@
  */
 package doyenm.zooshell.context;
 
+import doyenm.zooshell.keeper.creation.KeeperCreationContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import org.apache.commons.lang.RandomStringUtils;

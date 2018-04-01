@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller;
 
-import doyenm.zooshell.context.AnimalUpdateFastDaysContext;
+import doyenm.zooshell.animal.diets.AnimalUpdateFastDaysContext;
+import doyenm.zooshell.animal.diets.AnimalUpdateFastDaysController;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.FoodAttributes;
 import doyenm.zooshell.model.Zoo;

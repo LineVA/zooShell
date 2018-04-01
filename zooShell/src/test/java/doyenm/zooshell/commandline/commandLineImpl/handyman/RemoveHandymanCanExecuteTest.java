@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandline.commandLineImpl.handyman;
 
-import doyenm.zooshell.commandline.commandimpl.handyman.RemoveHandyman;
+import doyenm.zooshell.handyman.occupations.UpdateOccupations;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class RemoveHandymanCanExecuteTest {
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsWithHandyman() {
         // Given
-        RemoveHandyman commandImpl = new RemoveHandyman(null, null);
+        UpdateOccupations.RemoveHandyman commandImpl = new UpdateOccupations.RemoveHandyman(null, null);
         String[] cmd = {this.HANDYMAN, this.REMOVE, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = commandImpl.canExecute(cmd);
@@ -30,7 +30,7 @@ public class RemoveHandymanCanExecuteTest {
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsWithHd() {
         // Given
-        RemoveHandyman commandImpl = new RemoveHandyman(null, null);
+        UpdateOccupations.RemoveHandyman commandImpl = new UpdateOccupations.RemoveHandyman(null, null);
         String[] cmd = {this.HD, this.REMOVE, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = commandImpl.canExecute(cmd);
@@ -41,7 +41,7 @@ public class RemoveHandymanCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheTheFirstElementIsIncorrect() {
         // Given
-        RemoveHandyman commandImpl = new RemoveHandyman(null, null);
+        UpdateOccupations.RemoveHandyman commandImpl = new UpdateOccupations.RemoveHandyman(null, null);
         String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.REMOVE,
             RandomStringUtils.randomAlphabetic(10)};
         // When
@@ -53,7 +53,7 @@ public class RemoveHandymanCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheTheSecondElementIsIncorrect() {
         // Given
-        RemoveHandyman commandImpl = new RemoveHandyman(null, null);
+        UpdateOccupations.RemoveHandyman commandImpl = new UpdateOccupations.RemoveHandyman(null, null);
         String[] cmd = {this.HANDYMAN, RandomStringUtils.randomAlphabetic(10),
             RandomStringUtils.randomAlphabetic(10)};
         // When
@@ -65,7 +65,7 @@ public class RemoveHandymanCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsLessThanThreeElements() {
         // Given
-        RemoveHandyman commandImpl = new RemoveHandyman(null, null);
+        UpdateOccupations.RemoveHandyman commandImpl = new UpdateOccupations.RemoveHandyman(null, null);
         String[] cmd = {this.HANDYMAN, this.REMOVE};
         // When
         boolean actualResult = commandImpl.canExecute(cmd);
@@ -76,7 +76,7 @@ public class RemoveHandymanCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanThreeElements() {
         // Given
-        RemoveHandyman commandImpl = new RemoveHandyman(null, null);
+        UpdateOccupations.RemoveHandyman commandImpl = new UpdateOccupations.RemoveHandyman(null, null);
         String[] cmd = {this.HANDYMAN, this.REMOVE,
             RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When

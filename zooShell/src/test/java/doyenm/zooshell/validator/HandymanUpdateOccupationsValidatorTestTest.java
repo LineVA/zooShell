@@ -1,6 +1,9 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.HandymanUpdateOccupationsContext;
+import doyenm.zooshell.common.FindHandyman;
+import doyenm.zooshell.common.FindPaddock;
+import doyenm.zooshell.handyman.list.LsHandyman;
+import doyenm.zooshell.handyman.occupations.HandymanUpdateOccupationsValidator;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
@@ -23,8 +26,8 @@ import static org.mockito.Mockito.when;
  */
 public class HandymanUpdateOccupationsValidatorTestTest {
 
-    private HandymanUpdateOccupationsContext givenContext(Handyman handyman, Paddock pad, boolean isAddition) {
-        HandymanUpdateOccupationsContext context = Mockito.mock(HandymanUpdateOccupationsContext.class);
+    private LsHandyman.HandymanUpdateOccupationsContext givenContext(Handyman handyman, Paddock pad, boolean isAddition) {
+        LsHandyman.HandymanUpdateOccupationsContext context = Mockito.mock(LsHandyman.HandymanUpdateOccupationsContext.class);
         when(context.getHandymanName()).thenReturn(RandomStringUtils.randomAlphabetic(10));
         when(context.getPaddockName()).thenReturn(RandomStringUtils.randomAlphabetic(10));
         when(context.getHandyman()).thenReturn(handyman);
@@ -56,7 +59,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
     public void shouldReturnTrueWhenHandymanNorPaddockAreNullAndAdditionIsAuthorized() {
         // Given
         Handyman handyman = givenHandyman(new ArrayList<>());
-        HandymanUpdateOccupationsContext context = givenContext(handyman, mock(Paddock.class), true);
+        LsHandyman.HandymanUpdateOccupationsContext context = givenContext(handyman, mock(Paddock.class), true);
         FindHandyman findHandyman = givenFindHandyman();
         FindPaddock findPaddock = givenFindPaddock();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
@@ -75,7 +78,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
                 mock(Paddock.class),
                 mock(Paddock.class),
                 mock(Paddock.class)));
-        HandymanUpdateOccupationsContext context = givenContext(handyman, mock(Paddock.class), true);
+        LsHandyman.HandymanUpdateOccupationsContext context = givenContext(handyman, mock(Paddock.class), true);
         FindHandyman findHandyman = givenFindHandyman();
         FindPaddock findPaddock = givenFindPaddock();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
@@ -91,7 +94,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
         // Given
         Paddock pad = mock(Paddock.class);
         Handyman handyman = givenHandyman(Arrays.asList(pad));
-        HandymanUpdateOccupationsContext context = givenContext(handyman, pad, true);
+        LsHandyman.HandymanUpdateOccupationsContext context = givenContext(handyman, pad, true);
         FindHandyman findHandyman = givenFindHandyman();
         FindPaddock findPaddock = givenFindPaddock();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
@@ -107,7 +110,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
         // Given
         Paddock pad = mock(Paddock.class);
         Handyman handyman = givenHandyman(Arrays.asList(pad));
-        HandymanUpdateOccupationsContext context = givenContext(handyman, pad, false);
+        LsHandyman.HandymanUpdateOccupationsContext context = givenContext(handyman, pad, false);
         FindHandyman findHandyman = givenFindHandyman();
         FindPaddock findPaddock = givenFindPaddock();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
@@ -123,7 +126,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
         // Given
         Paddock pad = mock(Paddock.class);
         Handyman handyman = givenHandyman(Arrays.asList());
-        HandymanUpdateOccupationsContext context = givenContext(handyman, pad, false);
+        LsHandyman.HandymanUpdateOccupationsContext context = givenContext(handyman, pad, false);
         FindHandyman findHandyman = givenFindHandyman();
         FindPaddock findPaddock = givenFindPaddock();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
@@ -138,7 +141,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
     @Test
     public void shouldReturnFalseWhenHandymanIsNull() {
         // Given
-        HandymanUpdateOccupationsContext context = givenContext(null, mock(Paddock.class), RandomUtils.nextBoolean());
+        LsHandyman.HandymanUpdateOccupationsContext context = givenContext(null, mock(Paddock.class), RandomUtils.nextBoolean());
         FindHandyman findHandyman = givenFindHandyman();
         FindPaddock findPaddock = givenFindPaddock();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(
@@ -152,7 +155,7 @@ public class HandymanUpdateOccupationsValidatorTestTest {
     @Test
     public void shouldReturnFalseWhenPaddockIsNull() {
         // Given
-        HandymanUpdateOccupationsContext context = givenContext(mock(Handyman.class), null, RandomUtils.nextBoolean());
+        LsHandyman.HandymanUpdateOccupationsContext context = givenContext(mock(Handyman.class), null, RandomUtils.nextBoolean());
         FindPaddock findPaddock = givenFindPaddock();
         FindHandyman findHandyman = givenFindHandyman();
         HandymanUpdateOccupationsValidator validator = new HandymanUpdateOccupationsValidator(

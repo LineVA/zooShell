@@ -1,10 +1,12 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.PaddockChangeNameContext;
+import doyenm.zooshell.common.FindPaddock;
+import doyenm.zooshell.paddock.rename.PaddockChangeNameContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.name.NameDto;
-import doyenm.zooshell.validator.name.NameValidator;
+import doyenm.zooshell.common.name.NameDto;
+import doyenm.zooshell.common.name.NameValidator;
+import doyenm.zooshell.paddock.rename.PaddockChangeNameValidator;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

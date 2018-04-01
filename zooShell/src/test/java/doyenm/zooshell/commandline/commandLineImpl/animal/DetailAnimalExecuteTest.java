@@ -1,12 +1,12 @@
 package doyenm.zooshell.commandline.commandLineImpl.animal;
 
-import doyenm.zooshell.commandline.commandimpl.animal.DetailAnimal;
+import doyenm.zooshell.animal.details.DetailAnimal;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
-import doyenm.zooshell.context.AnimalContext;
-import doyenm.zooshell.controller.animalcontroller.AnimalDetailsController;
+import doyenm.zooshell.animal.AnimalContext;
+import doyenm.zooshell.animal.details.AnimalDetailsController;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.AnimalValidator;
+import doyenm.zooshell.animal.AnimalValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandline.commandLineImpl.ls;
 
-import doyenm.zooshell.commandline.commandimpl.ls.LsKeeperTask;
+import doyenm.zooshell.keeper.tasks.LsKeeperTask;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

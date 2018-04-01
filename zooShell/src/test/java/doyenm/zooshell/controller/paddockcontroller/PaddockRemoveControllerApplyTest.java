@@ -1,8 +1,9 @@
 package doyenm.zooshell.controller.paddockcontroller;
 
-import doyenm.zooshell.context.PaddockContext;
+import doyenm.zooshell.paddock.PaddockContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
+import doyenm.zooshell.paddock.remove.PaddockRemoveController;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

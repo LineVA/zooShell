@@ -1,6 +1,7 @@
 package doyenm.zooshell.controller.animalcontroller;
 
-import doyenm.zooshell.context.AnimalUpdateContraceptionContext;
+import doyenm.zooshell.animal.contraception.AnimalUpdateContraceptionContext;
+import doyenm.zooshell.animal.contraception.AnimalUpdateContraceptionController;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Zoo;

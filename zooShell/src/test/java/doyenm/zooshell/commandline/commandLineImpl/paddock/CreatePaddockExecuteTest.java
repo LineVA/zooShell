@@ -1,13 +1,13 @@
 package doyenm.zooshell.commandline.commandLineImpl.paddock;
 
-import doyenm.zooshell.commandline.commandimpl.paddock.CreatePaddock;
+import doyenm.zooshell.paddock.creation.CreatePaddock;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
-import doyenm.zooshell.context.PaddockCreationContext;
-import doyenm.zooshell.controller.paddockcontroller.PaddockCreationController;
+import doyenm.zooshell.paddock.creation.PaddockCreationContext;
+import doyenm.zooshell.paddock.creation.PaddockCreationController;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.PaddockCreationValidator;
-import doyenm.zooshell.validator.PaddockLocationValidator;
+import doyenm.zooshell.paddock.creation.PaddockCreationValidator;
+import doyenm.zooshell.paddock.creation.PaddockLocationValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

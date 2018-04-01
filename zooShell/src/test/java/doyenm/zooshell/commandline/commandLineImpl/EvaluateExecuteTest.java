@@ -1,7 +1,7 @@
 package doyenm.zooshell.commandline.commandLineImpl;
 
-import doyenm.zooshell.context.EvaluationContext;
-import doyenm.zooshell.controller.EvaluationController;
+import doyenm.zooshell.evaluation.EvaluationContext;
+import doyenm.zooshell.evaluation.EvaluationController;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;

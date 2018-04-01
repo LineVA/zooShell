@@ -1,5 +1,6 @@
 package doyenm.zooshell.context;
 
+import doyenm.zooshell.animal.contraception.AnimalUpdateContraceptionContext;
 import doyenm.zooshell.model.Zoo;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
@@ -17,7 +18,7 @@ public class AnimalUpdateContraceptionContextGetZooTest {
     public void shouldReturnTheZooOfTheContext() {
         // Given
         Zoo zoo = mock(Zoo.class);
-        AnimalUpdateContraceptionContext subject = new AnimalUpdateContraceptionContext(zoo, 
+        AnimalUpdateContraceptionContext subject = new AnimalUpdateContraceptionContext(zoo,
                 RandomStringUtils.random(10), RandomStringUtils.randomAlphabetic(10));
         // When
         Zoo actualZoo = subject.getZoo();

@@ -1,10 +1,12 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.KeeperRenameContext;
+import doyenm.zooshell.common.FindKeeper;
+import doyenm.zooshell.keeper.rename.KeeperRenameContext;
+import doyenm.zooshell.keeper.rename.KeeperRenameValidator;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.validator.name.NameDto;
-import doyenm.zooshell.validator.name.NameValidator;
+import doyenm.zooshell.common.name.NameDto;
+import doyenm.zooshell.common.name.NameValidator;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

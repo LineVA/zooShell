@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandline.commandLineImpl.handyman;
 
-import doyenm.zooshell.commandline.commandimpl.handyman.RenameHandyman;
+import doyenm.zooshell.handyman.rename.RenameHandyman;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

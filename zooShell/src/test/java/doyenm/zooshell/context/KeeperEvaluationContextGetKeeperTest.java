@@ -1,5 +1,6 @@
 package doyenm.zooshell.context;
 
+import doyenm.zooshell.evaluation.KeeperEvaluationContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
 import org.assertj.core.api.Assertions;
@@ -17,7 +18,7 @@ public class KeeperEvaluationContextGetKeeperTest {
     public void shouldReturnTheKeeperOfTheContext() {
         // Given
         AnimalKeeper keeper = mock(AnimalKeeper.class);
-        KeeperEvaluationContext subject = new KeeperEvaluationContext(mock(Zoo.class), 
+        KeeperEvaluationContext subject = new KeeperEvaluationContext(mock(Zoo.class),
                 keeper);
         // When
         AnimalKeeper actualKeeper = subject.getKeeper();

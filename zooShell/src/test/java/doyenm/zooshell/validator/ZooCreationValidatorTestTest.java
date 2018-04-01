@@ -1,9 +1,10 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.ZooCreationContext;
-import doyenm.zooshell.validator.name.NameDto;
-import doyenm.zooshell.validator.name.NameValidator;
-import doyenm.zooshell.validator.predicates.IntegerValuePredicates;
+import doyenm.zooshell.zoo.creation.ZooCreationContext;
+import doyenm.zooshell.common.name.NameDto;
+import doyenm.zooshell.common.name.NameValidator;
+import doyenm.zooshell.common.predicates.IntegerValuePredicates;
+import doyenm.zooshell.zoo.creation.ZooCreationValidator;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;

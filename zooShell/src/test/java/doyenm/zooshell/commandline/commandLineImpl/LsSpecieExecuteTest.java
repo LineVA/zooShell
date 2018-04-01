@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandline.commandLineImpl;
 
-import doyenm.zooshell.commandline.commandimpl.LsSpecie;
+import doyenm.zooshell.specie.LsSpecie;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.model.Zoo;

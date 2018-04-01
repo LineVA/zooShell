@@ -1,5 +1,6 @@
 package doyenm.zooshell.context;
 
+import doyenm.zooshell.evaluation.KeeperEvaluationContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
 import org.apache.commons.lang.math.RandomUtils;
@@ -21,7 +22,7 @@ public class KeeperEvaluationContextGetKeeperAgeTest {
         int age = RandomUtils.nextInt();
         AnimalKeeper keeper = mock(AnimalKeeper.class);
         when(keeper.getAge()).thenReturn(age);
-        KeeperEvaluationContext subject = new KeeperEvaluationContext(mock(Zoo.class), 
+        KeeperEvaluationContext subject = new KeeperEvaluationContext(mock(Zoo.class),
                 keeper);
         // When
         int actualAge = subject.getKeeperAge();
