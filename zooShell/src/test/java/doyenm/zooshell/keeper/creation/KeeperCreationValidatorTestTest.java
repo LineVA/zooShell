@@ -24,8 +24,8 @@ public class KeeperCreationValidatorTestTest {
         return mock;
     }
 
-    private KeeperCreationPredicates givenKeepersPredicate(boolean value) {
-        KeeperCreationPredicates mock = Mockito.mock(KeeperCreationPredicates.class);
+    private NumberOfKeepersPredicates givenKeepersPredicate(boolean value) {
+        NumberOfKeepersPredicates mock = Mockito.mock(NumberOfKeepersPredicates.class);
         Mockito.when(mock.test(Mockito.any(KeeperCreationContext.class))).thenReturn(value);
         return mock;
     }
@@ -52,7 +52,7 @@ public class KeeperCreationValidatorTestTest {
     public void shouldReturnTrueWhenTheKeeperCanBeCreated() {
         // Given
         NameValidator nameValidator = givenNameTest(true);
-        KeeperCreationPredicates numberPredicates = givenKeepersPredicate(true);
+        NumberOfKeepersPredicates numberPredicates = givenKeepersPredicate(true);
         String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
@@ -71,7 +71,7 @@ public class KeeperCreationValidatorTestTest {
     public void shouldReturnFalseWhenTheNameIsIncorrect() {
         // Given
         NameValidator nameValidator = givenNameTest(false);
-        KeeperCreationPredicates numberPredicates = givenKeepersPredicate(true);
+        NumberOfKeepersPredicates numberPredicates = givenKeepersPredicate(true);
         String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
@@ -89,7 +89,7 @@ public class KeeperCreationValidatorTestTest {
     public void shouldReturnFalseWhenThereIsNoFreePlaceForANewKeeper() {
         // Given
         NameValidator nameValidator = givenNameTest(true);
-        KeeperCreationPredicates numberPredicates = givenKeepersPredicate(false);
+        NumberOfKeepersPredicates numberPredicates = givenKeepersPredicate(false);
         String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(

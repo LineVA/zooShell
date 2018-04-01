@@ -4,7 +4,7 @@ import doyenm.zooshell.common.function.FindingFamilyFunction;
 import doyenm.zooshell.common.function.FindingTaskFunction;
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
-import doyenm.zooshell.keeper.creation.KeeperCreationPredicates;
+import doyenm.zooshell.keeper.creation.NumberOfKeepersPredicates;
 import doyenm.zooshell.common.predicates.StringLengthPredicates;
 import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;
 import doyenm.zooshell.keeper.creation.KeeperCreationValidator;
@@ -36,7 +36,7 @@ public class KeeperValidatorsConfig {
 
     // Predicates
     @Autowired
-    KeeperCreationPredicates keeperNumbersPredicate;
+    NumberOfKeepersPredicates keeperNumbersPredicate;
 
     @Autowired
     StringLengthPredicates stringLengthPredicates;
