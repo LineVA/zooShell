@@ -41,7 +41,7 @@ public class AnimalsListWithDietCriteriaValidator implements Predicate<LsWithCri
                 .stream()
                 .map(FindingDietContext::new)
                 .map(findingDietFunction)
-                .filter(Objects::nonNull)
+                .filter(context -> context.getConvertedDiet() != null)
                 .forEach(e ->
                         t.getConvertedDiets().put(e.getDiet(), e.getConvertedDiet()));
         return t;
