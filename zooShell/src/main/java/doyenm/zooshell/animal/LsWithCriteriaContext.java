@@ -37,6 +37,10 @@ public class LsWithCriteriaContext {
     private List<String> species = new ArrayList<>();
     private Map<String, Specie> convertedSpecies = new HashMap<>();
 
+    private List<String> contraceptionExpression;
+    private List<String> contraception = new ArrayList<>();
+    private Map<String, ContraceptionMethod> convertedContraception = new HashMap<>();
+
     private List<String> animalsList = new ArrayList<>();
 
     public LsWithCriteriaContext(Zoo zoo,
