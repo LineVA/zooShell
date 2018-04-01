@@ -36,9 +36,9 @@ public class KeeperDetailsController implements Function<KeeperContext, KeeperCo
             context.addCouplesList(new ArrayList(keeper.getFamilyEvaluations().keySet()),
                     new ArrayList(keeper.getFamilyEvaluations().values()));
         } else {
-            context.addCouple("Average task evaluation", computeAverageTaskEvaluation(
+            context.addCouple("Average task animal", computeAverageTaskEvaluation(
                     keeper.getTaskEvaluations()));
-            context.addCouple("Average family evaluation", computeAverageFamilyEvaluation(
+            context.addCouple("Average family animal", computeAverageFamilyEvaluation(
                     keeper.getFamilyEvaluations()));
         }
         return context;

@@ -1,6 +1,7 @@
 package doyenm.zooshell.context;
 
 import com.google.inject.internal.util.ImmutableMap;
+import doyenm.zooshell.evaluation.KeeperEvaluationContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.Zoo;

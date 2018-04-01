@@ -1,7 +1,7 @@
 package doyenm.zooshell.paddock;
 
-import doyenm.zooshell.controller.paddockcontroller.PaddockEvaluationController;
-import doyenm.zooshell.controller.paddockcontroller.evaluation.*;
+import doyenm.zooshell.evaluation.PaddockEvaluationController;
+import doyenm.zooshell.evaluation.paddock.*;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.PaddockState;
 import doyenm.zooshell.paddock.biomes.UpdateBiomeController;

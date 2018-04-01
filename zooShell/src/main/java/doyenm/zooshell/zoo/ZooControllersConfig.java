@@ -1,9 +1,9 @@
 package doyenm.zooshell.zoo;
 
-import doyenm.zooshell.controller.eventhandling.zoo.KeeperTrainingHandler;
-import doyenm.zooshell.controller.eventhandling.zoo.ZooEventsHandler;
+import doyenm.zooshell.evaluation.eventhandling.zoo.KeeperTrainingHandler;
+import doyenm.zooshell.evaluation.eventhandling.zoo.ZooEventsHandler;
 import doyenm.zooshell.zoo.rename.RenameZooController;
-import doyenm.zooshell.controller.zoocontroller.ZooEvaluationController;
+import doyenm.zooshell.evaluation.ZooEvaluationController;
 import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.zoo.creation.ZooCreationController;
 import doyenm.zooshell.zoo.details.ZooDetailsController;

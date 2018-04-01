@@ -1,7 +1,7 @@
 package doyenm.zooshell.model;
 
-import doyenm.zooshell.controller.eventhandling.zoo.ZooEvent;
-import doyenm.zooshell.controller.eventhandling.zoo.ZooEventType;
+import doyenm.zooshell.evaluation.eventhandling.zoo.ZooEvent;
+import doyenm.zooshell.evaluation.eventhandling.zoo.ZooEventType;
 import lombok.*;
 
 import javax.xml.bind.annotation.XmlAccessType;

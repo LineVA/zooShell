@@ -1,6 +1,7 @@
 package doyenm.zooshell.context;
 
 import com.google.inject.internal.util.ImmutableMap;
+import doyenm.zooshell.evaluation.KeeperEvaluationContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
@@ -29,7 +30,7 @@ public class KeeperEvaluationContextGetAnimalsTest {
                         .build();
         Zoo zoo = mock(Zoo.class);
         when(zoo.getAnimals()).thenReturn(animals);
-        KeeperEvaluationContext subject = new KeeperEvaluationContext(zoo, 
+        KeeperEvaluationContext subject = new KeeperEvaluationContext(zoo,
                 mock(AnimalKeeper.class));
         // When
         List<Animal> actualAnimals = subject.getAnimals();

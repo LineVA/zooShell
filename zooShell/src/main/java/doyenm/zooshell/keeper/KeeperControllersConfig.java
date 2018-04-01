@@ -1,6 +1,6 @@
 package doyenm.zooshell.keeper;
 
-import doyenm.zooshell.controller.keepercontroller.*;
+import doyenm.zooshell.evaluation.keeper.*;
 import doyenm.zooshell.keeper.creation.KeeperCreationController;
 import doyenm.zooshell.keeper.details.KeeperDetailsController;
 import doyenm.zooshell.keeper.remove.KeeperDeletionController;

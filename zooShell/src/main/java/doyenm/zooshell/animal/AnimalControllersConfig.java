@@ -11,16 +11,16 @@ import doyenm.zooshell.animal.list.*;
 import doyenm.zooshell.animal.move.AnimalChangePaddockController;
 import doyenm.zooshell.animal.remove.AnimalRemoveController;
 import doyenm.zooshell.animal.rename.AnimalChangeNameController;
-import doyenm.zooshell.controller.animalcontroller.*;
-import doyenm.zooshell.controller.animalcontroller.evaluation.*;
-import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalDeathPredicates;
-import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalDyingPredicates;
-import doyenm.zooshell.controller.animalcontroller.evaluation.death.AnimalUpdateDyingMeasures;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.CalvingFunction;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.ExecuteReproductionFunction;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.FemaleReproductionPredicate;
-import doyenm.zooshell.controller.animalcontroller.evaluation.reproduction.MaleReproductionPredicate;
-import doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.*;
+import doyenm.zooshell.evaluation.AnimalEvaluationController;
+import doyenm.zooshell.evaluation.animal.*;
+import doyenm.zooshell.evaluation.animal.death.AnimalDeathPredicates;
+import doyenm.zooshell.evaluation.animal.death.AnimalDyingPredicates;
+import doyenm.zooshell.evaluation.animal.death.AnimalUpdateDyingMeasures;
+import doyenm.zooshell.evaluation.animal.reproduction.CalvingFunction;
+import doyenm.zooshell.evaluation.animal.reproduction.ExecuteReproductionFunction;
+import doyenm.zooshell.evaluation.animal.reproduction.FemaleReproductionPredicate;
+import doyenm.zooshell.evaluation.animal.reproduction.MaleReproductionPredicate;
+import doyenm.zooshell.evaluation.animal.wellbeing.*;
 import doyenm.zooshell.model.utils.CohabitationFactorHandler;
 import doyenm.zooshell.utils.UniformStatistics;
 import doyenm.zooshell.utils.Utils;
@@ -213,7 +213,7 @@ public class AnimalControllersConfig {
 
     @Bean
     AnimalFoodQuantityEvaluationController animalFoodQuantityEvaluationController() {
-        return new AnimalFoodQuantityEvaluationController(new doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.Utils());
+        return new AnimalFoodQuantityEvaluationController(new doyenm.zooshell.evaluation.animal.wellbeing.Utils());
     }
 
     @Bean
@@ -223,12 +223,12 @@ public class AnimalControllersConfig {
 
     @Bean
     AnimalTerritorySizeEvaluationController animalTerritorySizeEvaluationController() {
-        return new AnimalTerritorySizeEvaluationController(new doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.Utils());
+        return new AnimalTerritorySizeEvaluationController(new doyenm.zooshell.evaluation.animal.wellbeing.Utils());
     }
 
     @Bean
     AnimalGroupSizeEvaluationController animalGroupSizeEvaluationController() {
-        return new AnimalGroupSizeEvaluationController(new doyenm.zooshell.controller.animalcontroller.evaluation.wellbeing.Utils());
+        return new AnimalGroupSizeEvaluationController(new doyenm.zooshell.evaluation.animal.wellbeing.Utils());
     }
 
     @Bean

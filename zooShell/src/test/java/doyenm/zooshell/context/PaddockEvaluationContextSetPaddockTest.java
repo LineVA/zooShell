@@ -1,5 +1,6 @@
 package doyenm.zooshell.context;
 
+import doyenm.zooshell.evaluation.PaddockEvaluationContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import org.assertj.core.api.Assertions;

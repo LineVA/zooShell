@@ -1,5 +1,6 @@
 package doyenm.zooshell.context;
 
+import doyenm.zooshell.evaluation.KeeperEvaluationContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Zoo;
 import org.apache.commons.lang.math.RandomUtils;
@@ -21,7 +22,7 @@ public class KeeperEvaluationContextGetMonthsPerTurnTest {
         int months = RandomUtils.nextInt();
         Zoo zoo = mock(Zoo.class);
         when(zoo.getMonthsPerEvaluation()).thenReturn(months);
-        KeeperEvaluationContext subject = new KeeperEvaluationContext(zoo, 
+        KeeperEvaluationContext subject = new KeeperEvaluationContext(zoo,
                 mock(AnimalKeeper.class));
         // When
         int actualMonths = subject.getMonthsPerTurn();

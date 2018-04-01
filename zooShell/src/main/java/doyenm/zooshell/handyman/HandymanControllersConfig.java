@@ -1,7 +1,7 @@
 package doyenm.zooshell.handyman;
 
-import doyenm.zooshell.controller.handymancontroller.*;
-import doyenm.zooshell.controller.handymancontroller.evaluation.HandymanAgeEvaluationController;
+import doyenm.zooshell.evaluation.HandymanEvaluationController;
+import doyenm.zooshell.evaluation.handyman.HandymanAgeEvaluationController;
 import doyenm.zooshell.handyman.create.CreationController;
 import doyenm.zooshell.handyman.details.HandymanDetailsController;
 import doyenm.zooshell.handyman.occupations.UpdateOccupations;

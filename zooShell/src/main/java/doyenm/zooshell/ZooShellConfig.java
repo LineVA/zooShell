@@ -1,6 +1,5 @@
 package doyenm.zooshell;
 
-import doyenm.zooshell.commandline.commandimpl.CommandsConfig;
 import doyenm.zooshell.zoo.GetActionPoints;
 import doyenm.zooshell.commandline.general.ActionPointCommand;
 import doyenm.zooshell.commandline.general.ActionPointsHandler;

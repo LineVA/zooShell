@@ -1,8 +1,8 @@
 package doyenm.zooshell.commandline.general.displayingevent;
 
-import doyenm.zooshell.controller.eventhandling.Event;
-import doyenm.zooshell.controller.eventhandling.EventCategory;
-import doyenm.zooshell.controller.eventhandling.EventSubject;
+import doyenm.zooshell.evaluation.eventhandling.Event;
+import doyenm.zooshell.evaluation.eventhandling.EventCategory;
+import doyenm.zooshell.evaluation.eventhandling.EventSubject;
 
 /**
  *
