@@ -8,6 +8,7 @@ import doyenm.zooshell.keeper.creation.NumberOfKeepersPredicates;
 import doyenm.zooshell.common.predicates.StringLengthPredicates;
 import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;
 import doyenm.zooshell.keeper.creation.KeeperCreationValidator;
+import doyenm.zooshell.keeper.creation.PresenceOfAnimalsPredicate;
 import doyenm.zooshell.keeper.rename.KeeperRenameValidator;
 import doyenm.zooshell.keeper.tasks.KeeperUpdateOccupationsValidator;
 import doyenm.zooshell.keeper.training.KeeperAddTrainingValidator;
@@ -29,20 +30,16 @@ public class KeeperValidatorsConfig {
     @Autowired
     Environment environment;
 
+    // Predicates
     @Bean
-    Utils utils() {
-        return new Utils();
+    NumberOfKeepersPredicates keeperNumbersPredicates(){
+        return new NumberOfKeepersPredicates();
     }
 
-    // Predicates
-    @Autowired
-    NumberOfKeepersPredicates keeperNumbersPredicate;
-
-    @Autowired
-    StringLengthPredicates stringLengthPredicates;
-
-    @Autowired
-    UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
+    @Bean
+    PresenceOfAnimalsPredicate presenceOfAnimalsPredicate(){
+        return new PresenceOfAnimalsPredicate();
+    }
 
     @Autowired
     NameValidator nameValidator;
@@ -76,7 +73,8 @@ public class KeeperValidatorsConfig {
     public KeeperCreationValidator keeperCreationValidator() {
         return new KeeperCreationValidator(
                 nameValidator,
-                keeperNumbersPredicate
+                keeperNumbersPredicates(),
+                presenceOfAnimalsPredicate()
         );
     }
 

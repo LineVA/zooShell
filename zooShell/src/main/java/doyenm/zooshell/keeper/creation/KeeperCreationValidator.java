@@ -15,6 +15,7 @@ public class KeeperCreationValidator implements Predicate<KeeperCreationContext>
 
     private final NameValidator nameValidator;
     private final NumberOfKeepersPredicates numberOfKeepersPredicates;
+    private final PresenceOfAnimalsPredicate presenceOfAnimalsPredicate;
 
     @Override
     public boolean test(KeeperCreationContext t) {
@@ -25,7 +26,7 @@ public class KeeperCreationValidator implements Predicate<KeeperCreationContext>
 
         return Stream.of(t)
                 .filter(numberOfKeepersPredicates::test)
-//                .filter(NumberOfKeepersPredicates.MUST_HAVE_AN_ANIMAL_In_THE_ZOO)
+                .filter(presenceOfAnimalsPredicate::test)
                 .filter(i -> nameValidator.test(dto))
                 .anyMatch(i -> true);
     }

@@ -30,6 +30,12 @@ public class KeeperCreationValidatorTestTest {
         return mock;
     }
 
+    private PresenceOfAnimalsPredicate givenPresenceOfAnimalsPredicate(boolean value) {
+        PresenceOfAnimalsPredicate mock = Mockito.mock(PresenceOfAnimalsPredicate.class);
+        Mockito.when(mock.test(Mockito.any(KeeperCreationContext.class))).thenReturn(value);
+        return mock;
+    }
+
     private AnimalKeeper givenKeeper() {
         return Mockito.mock(AnimalKeeper.class);
     }
@@ -47,19 +53,21 @@ public class KeeperCreationValidatorTestTest {
     /**
      * A keeper can be created if : - the name is correct
      * - there is at least one more free place
+     * - there is at least one animal in the zoo
      */
     @Test
     public void shouldReturnTrueWhenTheKeeperCanBeCreated() {
         // Given
         NameValidator nameValidator = givenNameTest(true);
         NumberOfKeepersPredicates numberPredicates = givenKeepersPredicate(true);
+        PresenceOfAnimalsPredicate animalsPredicate = givenPresenceOfAnimalsPredicate(true);
         String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                nameValidator, numberPredicates
+                nameValidator, numberPredicates, animalsPredicate
         );
         // When
         boolean result = validator.test(context);
@@ -72,13 +80,14 @@ public class KeeperCreationValidatorTestTest {
         // Given
         NameValidator nameValidator = givenNameTest(false);
         NumberOfKeepersPredicates numberPredicates = givenKeepersPredicate(true);
+        PresenceOfAnimalsPredicate animalsPredicate = givenPresenceOfAnimalsPredicate(true);
         String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                nameValidator, numberPredicates);
+                nameValidator, numberPredicates, animalsPredicate);
         // When
         boolean result = validator.test(context);
         // Then
@@ -90,13 +99,33 @@ public class KeeperCreationValidatorTestTest {
         // Given
         NameValidator nameValidator = givenNameTest(true);
         NumberOfKeepersPredicates numberPredicates = givenKeepersPredicate(false);
+        PresenceOfAnimalsPredicate animalsPredicate = givenPresenceOfAnimalsPredicate(true);
         String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                nameValidator, numberPredicates);
+                nameValidator, numberPredicates, animalsPredicate);
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result).isFalse();
+    }
+
+    @Test
+    public void shouldReturnFalseWhenThereIsNoAnimalInTheZoo() {
+        // Given
+        NameValidator nameValidator = givenNameTest(true);
+        NumberOfKeepersPredicates numberPredicates = givenKeepersPredicate(false);
+        PresenceOfAnimalsPredicate animalsPredicate = givenPresenceOfAnimalsPredicate(false);
+        String keeperName = RandomStringUtils.randomAlphabetic(10);
+        AnimalKeeper keeper = givenKeeper();
+        KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
+                keeperName, keeper
+        );
+        KeeperCreationValidator validator = new KeeperCreationValidator(
+                nameValidator, numberPredicates, animalsPredicate);
         // When
         boolean result = validator.test(context);
         // Then
