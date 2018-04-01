@@ -4,6 +4,7 @@ import doyenm.zooshell.animal.AnimalControllersConfig;
 import doyenm.zooshell.handyman.HandymanControllersConfig;
 import doyenm.zooshell.keeper.KeeperControllersConfig;
 import doyenm.zooshell.paddock.PaddockControllerConfig;
+import doyenm.zooshell.zoo.PenaltiesEvaluationController;
 import doyenm.zooshell.zoo.ZooControllersConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

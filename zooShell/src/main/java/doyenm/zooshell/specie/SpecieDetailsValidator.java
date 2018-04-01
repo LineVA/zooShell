@@ -1,6 +1,6 @@
-package doyenm.zooshell.validator;
+package doyenm.zooshell.specie;
 
-import doyenm.zooshell.context.SpecieDetailsContext;
+import doyenm.zooshell.specie.SpecieDetailsContext;
 import doyenm.zooshell.common.context.FindingSpecieContext;
 import doyenm.zooshell.common.function.FindingSpecieFunction;
 

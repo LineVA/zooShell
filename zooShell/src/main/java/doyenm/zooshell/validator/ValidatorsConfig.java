@@ -2,6 +2,7 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.common.function.*;
 import doyenm.zooshell.common.predicates.*;
+import doyenm.zooshell.specie.SpecieDetailsValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

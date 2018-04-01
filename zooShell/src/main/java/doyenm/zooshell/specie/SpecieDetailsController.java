@@ -1,6 +1,6 @@
-package doyenm.zooshell.controller.speciecontroller;
+package doyenm.zooshell.specie;
 
-import doyenm.zooshell.context.SpecieDetailsContext;
+import doyenm.zooshell.specie.SpecieDetailsContext;
 import doyenm.zooshell.model.Specie;
 
 import java.util.function.Function;

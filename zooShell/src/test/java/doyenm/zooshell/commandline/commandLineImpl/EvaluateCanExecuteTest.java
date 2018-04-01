@@ -1,6 +1,6 @@
 package doyenm.zooshell.commandline.commandLineImpl;
 
-import doyenm.zooshell.commandline.commandimpl.Evaluate;
+import doyenm.zooshell.evaluation.Evaluate;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

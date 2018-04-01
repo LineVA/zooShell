@@ -1,4 +1,4 @@
-package doyenm.zooshell.controller;
+package doyenm.zooshell.zoo;
 
 import doyenm.zooshell.context.EvaluationContext;
 import java.util.function.Function;
