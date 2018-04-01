@@ -32,11 +32,11 @@ public class LsAnimalsWithCriteria implements Command {
                 retrievePaddocksExpression(cmd),
                 retrieveSpeciesExpression(cmd)
         );
-        Optional<LsWithCriteriaContext> optionnal = Stream.of(context)
+        Optional<LsWithCriteriaContext> optional = Stream.of(context)
                 .filter(validator)
                 .map(controller)
                 .findFirst();
-        if (optionnal.isPresent()) {
+        if (optional.isPresent()) {
             FormattingInList formatting = new FormattingInList();
             return new ReturnExec(formatting.formatList(context.getAnimalsList()), TypeReturn.SUCCESS, context.getZoo());
         } else {
