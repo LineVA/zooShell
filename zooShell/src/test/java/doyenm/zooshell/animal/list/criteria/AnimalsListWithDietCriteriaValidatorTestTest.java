@@ -1,6 +1,6 @@
 package doyenm.zooshell.animal.list.criteria;
 
-import doyenm.zooshell.animal.LsWithCriteriaContext;
+import doyenm.zooshell.animal.list.LsWithCriteriaContext;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.common.context.FindingDietContext;
 import doyenm.zooshell.common.function.FindingDietFunction;
@@ -8,7 +8,6 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.util.*;
 

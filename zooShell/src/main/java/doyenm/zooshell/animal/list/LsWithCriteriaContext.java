@@ -1,4 +1,4 @@
-package doyenm.zooshell.animal;
+package doyenm.zooshell.animal.list;
 
 import doyenm.zooshell.model.*;
 import lombok.Getter;

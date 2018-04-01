@@ -1,6 +1,5 @@
 package doyenm.zooshell.animal.list;
 
-import doyenm.zooshell.animal.LsWithCriteriaContext;
 import doyenm.zooshell.model.Animal;
 import lombok.RequiredArgsConstructor;
 import org.mvel2.MVEL;

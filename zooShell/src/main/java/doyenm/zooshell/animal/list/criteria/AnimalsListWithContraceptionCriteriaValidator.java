@@ -1,8 +1,7 @@
 package doyenm.zooshell.animal.list.criteria;
 
-import doyenm.zooshell.animal.LsWithCriteriaContext;
+import doyenm.zooshell.animal.list.LsWithCriteriaContext;
 import doyenm.zooshell.common.context.FindingContraceptionContext;
-import doyenm.zooshell.common.context.FindingDietContext;
 import doyenm.zooshell.common.function.FindingContraceptionFunction;
 import lombok.RequiredArgsConstructor;
 

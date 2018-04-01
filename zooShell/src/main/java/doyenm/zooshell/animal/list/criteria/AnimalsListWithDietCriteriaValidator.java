@@ -1,13 +1,12 @@
 package doyenm.zooshell.animal.list.criteria;
 
-import doyenm.zooshell.animal.LsWithCriteriaContext;
+import doyenm.zooshell.animal.list.LsWithCriteriaContext;
 import doyenm.zooshell.common.context.FindingDietContext;
 import doyenm.zooshell.common.function.FindingDietFunction;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Predicate;
 
 /**

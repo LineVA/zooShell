@@ -1,6 +1,6 @@
 package doyenm.zooshell.animal.list.criteria;
 
-import doyenm.zooshell.animal.LsWithCriteriaContext;
+import doyenm.zooshell.animal.list.LsWithCriteriaContext;
 import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.model.Paddock;
 import org.apache.commons.lang.RandomStringUtils;
