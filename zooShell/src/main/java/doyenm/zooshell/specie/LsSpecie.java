@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.commandimpl;
+package doyenm.zooshell.specie;
 
 import doyenm.zooshell.commandline.general.Command;
 import doyenm.zooshell.commandline.general.ReturnExec;
@@ -11,21 +11,22 @@ import doyenm.zooshell.utils.Constants;
 import java.util.Arrays;
 
 /**
+ *
  * @author doyenm
  */
-public class LsPenalties implements Command {
+public class LsSpecie implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         LsContext context = new LsContext(zoo);
         FormattingInList formatting = new FormattingInList();
-        return new ReturnExec(formatting.formatPenaltiesList(context.getPenalties()), TypeReturn.SUCCESS);
+        return new ReturnExec(formatting.formatList(context.getSpecieNames()), TypeReturn.SUCCESS);
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 1
-                && Arrays.asList(Constants.PENALTIES)
+            && Arrays.asList(Constants.SPECIES)
                 .stream()
                 .anyMatch(cmd[0]::equalsIgnoreCase);
     }

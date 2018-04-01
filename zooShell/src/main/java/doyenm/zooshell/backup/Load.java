@@ -1,6 +1,6 @@
-package doyenm.zooshell.commandline.commandimpl;
+package doyenm.zooshell.backup;
 
-import doyenm.zooshell.backup.SaveFunction;
+import doyenm.zooshell.backup.LoadFunction;
 import doyenm.zooshell.commandline.general.Command;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
@@ -18,27 +18,28 @@ import java.util.stream.Stream;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class Save implements Command {
+public class Load implements Command {
 
-    private final SaveFunction controller;
+    private final LoadFunction controller;
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        ZooContext context = new ZooContext(zoo, cmd[1]);
+        ZooContext context = new ZooContext(cmd[1]);
         Optional optional = Stream.of(context)
                 .map(controller)
                 .filter(Objects::nonNull)
                 .findFirst();
         if (optional.isPresent()) {
-            return new ReturnExec("SUCCESSFUL_SAVING", TypeReturn.SUCCESS, zoo);
+            ZooContext zooContext = (ZooContext) optional.get();
+            return new ReturnExec("SUCCESSFUL_LOADING", TypeReturn.SUCCESS, zooContext.getZoo());
         }
-        return new ReturnExec("FAILED_SAVING", TypeReturn.ERROR, zoo);
+        return new ReturnExec("FAILED_LOADING", TypeReturn.ERROR);
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 2
-                && Arrays.asList(Constants.SAVE)
+                && Arrays.asList(Constants.LOAD)
                 .stream()
                 .anyMatch(cmd[0]::equalsIgnoreCase);
     }

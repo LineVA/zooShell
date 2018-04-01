@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.commandimpl.ls;
+package doyenm.zooshell.zoo;
 
 import doyenm.zooshell.commandline.general.Command;
 import doyenm.zooshell.commandline.general.ReturnExec;
@@ -11,22 +11,21 @@ import doyenm.zooshell.utils.Constants;
 import java.util.Arrays;
 
 /**
- *
  * @author doyenm
  */
-public class LsContraceptionMethod implements Command{
+public class LsPenalties implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         LsContext context = new LsContext(zoo);
         FormattingInList formatting = new FormattingInList();
-        return new ReturnExec(formatting.formatList(context.getContraceptionMethods()), TypeReturn.SUCCESS);
+        return new ReturnExec(formatting.formatPenaltiesList(context.getPenalties()), TypeReturn.SUCCESS);
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 1
-                && Arrays.asList(Constants.CONTRACEPTIONMETHODS)
+                && Arrays.asList(Constants.PENALTIES)
                 .stream()
                 .anyMatch(cmd[0]::equalsIgnoreCase);
     }

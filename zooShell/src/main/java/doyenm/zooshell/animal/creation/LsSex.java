@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.commandimpl.ls;
+package doyenm.zooshell.animal.creation;
 
 import doyenm.zooshell.commandline.general.Command;
 import doyenm.zooshell.commandline.general.ReturnExec;
@@ -14,19 +14,19 @@ import java.util.Arrays;
  *
  * @author doyenm
  */
-public class LsDiet implements Command{
+public class LsSex implements Command{
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         LsContext context = new LsContext(zoo);
         FormattingInList formatting = new FormattingInList();
-        return new ReturnExec(formatting.formatList(context.getDiets()), TypeReturn.SUCCESS);
+        return new ReturnExec(formatting.formatList(context.getSexes()), TypeReturn.SUCCESS);
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 1
-                && Arrays.asList(Constants.DIETS)
+                && Arrays.asList(Constants.SEXES)
                 .stream()
                 .anyMatch(cmd[0]::equalsIgnoreCase);
     }
