@@ -1,6 +1,4 @@
-package doyenm.zooshell.common.predicates;
-
-import doyenm.zooshell.keeper.creation.KeeperCreationContext;
+package doyenm.zooshell.keeper.creation;
 
 /**
  *

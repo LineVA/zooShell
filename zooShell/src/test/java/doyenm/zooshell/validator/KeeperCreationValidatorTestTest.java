@@ -5,7 +5,7 @@ import doyenm.zooshell.keeper.creation.KeeperCreationValidator;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.common.predicates.KeepersNumberPredicate;
+import doyenm.zooshell.keeper.creation.KeepersNumberPredicate;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

@@ -1,6 +1,7 @@
 package doyenm.zooshell.common.predicates;
 
 import doyenm.zooshell.keeper.creation.KeeperCreationContext;
+import doyenm.zooshell.keeper.creation.KeepersNumberPredicate;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import org.apache.commons.lang.RandomStringUtils;

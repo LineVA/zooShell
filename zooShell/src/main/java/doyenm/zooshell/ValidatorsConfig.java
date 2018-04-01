@@ -2,6 +2,7 @@ package doyenm.zooshell;
 
 import doyenm.zooshell.common.function.*;
 import doyenm.zooshell.common.predicates.*;
+import doyenm.zooshell.keeper.creation.KeepersNumberPredicate;
 import doyenm.zooshell.specie.SpecieDetailsValidator;
 import doyenm.zooshell.common.FindAnimal;
 import doyenm.zooshell.common.FindPaddock;
