@@ -1,11 +1,8 @@
-package doyenm.zooshell.validator;
+package doyenm.zooshell.keeper.creation;
 
-import doyenm.zooshell.keeper.creation.KeeperCreationContext;
-import doyenm.zooshell.keeper.creation.KeeperCreationValidator;
-import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.keeper.creation.KeepersNumberPredicate;
+import doyenm.zooshell.model.AnimalKeeper;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -17,7 +14,6 @@ import java.util.Map;
 import static org.mockito.Matchers.any;
 
 /**
- *
  * @author doyenm
  */
 public class KeeperCreationValidatorTestTest {
@@ -49,9 +45,8 @@ public class KeeperCreationValidatorTestTest {
     }
 
     /**
-     * A keeper can be created if : - the name is not empty - the name is
-     * shorter than 50 characters - A keeper with this name does not already
-     * existing - there is at least one more free place
+     * A keeper can be created if : - the name is correct
+     * - there is at least one more free place
      */
     @Test
     public void shouldReturnTrueWhenTheKeeperCanBeCreated() {
@@ -91,7 +86,7 @@ public class KeeperCreationValidatorTestTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenThereIsFreePlaceForANewKeeper() {
+    public void shouldReturnFalseWhenThereIsNoFreePlaceForANewKeeper() {
         // Given
         NameValidator nameValidator = givenNameTest(true);
         KeepersNumberPredicate numberPredicates = givenKeepersPredicate(false);
