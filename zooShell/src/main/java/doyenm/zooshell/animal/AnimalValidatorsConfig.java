@@ -164,12 +164,18 @@ public class AnimalValidatorsConfig {
     }
 
     @Bean
+    public AnimalsListWithContraceptionCriteriaValidator animalsListWithContraceptionCriteriaValidator() {
+        return new AnimalsListWithContraceptionCriteriaValidator(lsWithCriteriaParser(), findingContraceptionFunction());
+    }
+
+    @Bean
     public AnimalsWithCriteria animalsWithCriteria() {
         return new AnimalsWithCriteria(
                 animalsListWithDietCriteriaValidator(),
                 animalsListWithSexCriteriaValidator(),
                 animalsListWithPaddockCriteriaValidator(),
-                animalsListWithSpecieCriteriaValidator()
+                animalsListWithSpecieCriteriaValidator(),
+                animalsListWithContraceptionCriteriaValidator()
         );
     }
 }
