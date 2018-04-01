@@ -1,11 +1,8 @@
-package doyenm.zooshell.validator;
+package doyenm.zooshell.keeper.creation;
 
-import doyenm.zooshell.keeper.creation.KeeperCreationContext;
-import doyenm.zooshell.keeper.creation.KeeperCreationValidator;
-import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.common.predicates.KeepersNumberPredicate;
+import doyenm.zooshell.model.AnimalKeeper;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -17,7 +14,6 @@ import java.util.Map;
 import static org.mockito.Matchers.any;
 
 /**
- *
  * @author doyenm
  */
 public class KeeperCreationValidatorTestTest {
@@ -28,8 +24,14 @@ public class KeeperCreationValidatorTestTest {
         return mock;
     }
 
-    private KeepersNumberPredicate givenKeepersPredicate(boolean value) {
-        KeepersNumberPredicate mock = Mockito.mock(KeepersNumberPredicate.class);
+    private NumberOfKeepersPredicates givenKeepersPredicate(boolean value) {
+        NumberOfKeepersPredicates mock = Mockito.mock(NumberOfKeepersPredicates.class);
+        Mockito.when(mock.test(Mockito.any(KeeperCreationContext.class))).thenReturn(value);
+        return mock;
+    }
+
+    private PresenceOfAnimalsPredicate givenPresenceOfAnimalsPredicate(boolean value) {
+        PresenceOfAnimalsPredicate mock = Mockito.mock(PresenceOfAnimalsPredicate.class);
         Mockito.when(mock.test(Mockito.any(KeeperCreationContext.class))).thenReturn(value);
         return mock;
     }
@@ -49,22 +51,23 @@ public class KeeperCreationValidatorTestTest {
     }
 
     /**
-     * A keeper can be created if : - the name is not empty - the name is
-     * shorter than 50 characters - A keeper with this name does not already
-     * existing - there is at least one more free place
+     * A keeper can be created if : - the name is correct
+     * - there is at least one more free place
+     * - there is at least one animal in the zoo
      */
     @Test
     public void shouldReturnTrueWhenTheKeeperCanBeCreated() {
         // Given
         NameValidator nameValidator = givenNameTest(true);
-        KeepersNumberPredicate numberPredicates = givenKeepersPredicate(true);
+        NumberOfKeepersPredicates numberPredicates = givenKeepersPredicate(true);
+        PresenceOfAnimalsPredicate animalsPredicate = givenPresenceOfAnimalsPredicate(true);
         String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                nameValidator, numberPredicates
+                nameValidator, numberPredicates, animalsPredicate
         );
         // When
         boolean result = validator.test(context);
@@ -76,14 +79,15 @@ public class KeeperCreationValidatorTestTest {
     public void shouldReturnFalseWhenTheNameIsIncorrect() {
         // Given
         NameValidator nameValidator = givenNameTest(false);
-        KeepersNumberPredicate numberPredicates = givenKeepersPredicate(true);
+        NumberOfKeepersPredicates numberPredicates = givenKeepersPredicate(true);
+        PresenceOfAnimalsPredicate animalsPredicate = givenPresenceOfAnimalsPredicate(true);
         String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                nameValidator, numberPredicates);
+                nameValidator, numberPredicates, animalsPredicate);
         // When
         boolean result = validator.test(context);
         // Then
@@ -91,17 +95,37 @@ public class KeeperCreationValidatorTestTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenThereIsFreePlaceForANewKeeper() {
+    public void shouldReturnFalseWhenThereIsNoFreePlaceForANewKeeper() {
         // Given
         NameValidator nameValidator = givenNameTest(true);
-        KeepersNumberPredicate numberPredicates = givenKeepersPredicate(false);
+        NumberOfKeepersPredicates numberPredicates = givenKeepersPredicate(false);
+        PresenceOfAnimalsPredicate animalsPredicate = givenPresenceOfAnimalsPredicate(true);
         String keeperName = RandomStringUtils.randomAlphabetic(10);
         AnimalKeeper keeper = givenKeeper();
         KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
                 keeperName, keeper
         );
         KeeperCreationValidator validator = new KeeperCreationValidator(
-                nameValidator, numberPredicates);
+                nameValidator, numberPredicates, animalsPredicate);
+        // When
+        boolean result = validator.test(context);
+        // Then
+        Assertions.assertThat(result).isFalse();
+    }
+
+    @Test
+    public void shouldReturnFalseWhenThereIsNoAnimalInTheZoo() {
+        // Given
+        NameValidator nameValidator = givenNameTest(true);
+        NumberOfKeepersPredicates numberPredicates = givenKeepersPredicate(false);
+        PresenceOfAnimalsPredicate animalsPredicate = givenPresenceOfAnimalsPredicate(false);
+        String keeperName = RandomStringUtils.randomAlphabetic(10);
+        AnimalKeeper keeper = givenKeeper();
+        KeeperCreationContext context = givenContextWithKeeperNameAndKeepers(
+                keeperName, keeper
+        );
+        KeeperCreationValidator validator = new KeeperCreationValidator(
+                nameValidator, numberPredicates, animalsPredicate);
         // When
         boolean result = validator.test(context);
         // Then

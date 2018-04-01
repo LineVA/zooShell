@@ -1,32 +1,34 @@
 package doyenm.zooshell.keeper.creation;
 
-import doyenm.zooshell.keeper.creation.KeeperCreationContext;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.common.predicates.KeepersNumberPredicate;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
 public class KeeperCreationValidator implements Predicate<KeeperCreationContext> {
-    
+
     private final NameValidator nameValidator;
-    private final KeepersNumberPredicate keepersNumberPredicate;
-    
+    private final NumberOfKeepersPredicates numberOfKeepersPredicates;
+    private final PresenceOfAnimalsPredicate presenceOfAnimalsPredicate;
+
     @Override
     public boolean test(KeeperCreationContext t) {
-        KeeperCreationContext context = t;
-        
-        return this.keepersNumberPredicate.test(context)
-                && nameValidator.test(NameDto.builder()
-                        .testing(context.getKeeper())
-                        .existingNames(context.getKeepers().keySet())
-                        .build());
+        NameDto dto = NameDto.builder()
+                .testing(t.getKeeper())
+                .existingNames(t.getKeepers().keySet())
+                .build();
+
+        return Stream.of(t)
+                .filter(numberOfKeepersPredicates::test)
+                .filter(presenceOfAnimalsPredicate::test)
+                .filter(i -> nameValidator.test(dto))
+                .anyMatch(i -> true);
     }
-    
+
 }

@@ -1,6 +1,5 @@
-package doyenm.zooshell.common.predicates;
+package doyenm.zooshell.keeper.creation;
 
-import doyenm.zooshell.keeper.creation.KeeperCreationContext;
 import doyenm.zooshell.model.AnimalKeeper;
 import doyenm.zooshell.model.Paddock;
 import org.apache.commons.lang.RandomStringUtils;
@@ -15,7 +14,7 @@ import java.util.Map;
  *
  * @author doyenm
  */
-public class KeepersNumberPredicateTestTest {
+public class NumberOfKeepersPredicatesTestTest {
 
     private Map<String, Paddock> givenPaddocksMap(int number) {
         Map<String, Paddock> map = new HashMap<>();
@@ -47,7 +46,7 @@ public class KeepersNumberPredicateTestTest {
         Map<String, Paddock> paddocks = givenPaddocksMap(4);
         Map<String, AnimalKeeper> keepers = givenKeepersMap(1);
         KeeperCreationContext context = givenContext(paddocks, keepers);
-        KeepersNumberPredicate predicate = new KeepersNumberPredicate();
+        NumberOfKeepersPredicates predicate = new NumberOfKeepersPredicates();
         // When
         boolean result = predicate.test(context);
         // Then
@@ -60,7 +59,7 @@ public class KeepersNumberPredicateTestTest {
         Map<String, Paddock> paddocks = givenPaddocksMap(3);
         Map<String, AnimalKeeper> keepers = givenKeepersMap(1);
         KeeperCreationContext context = givenContext(paddocks, keepers);
-        KeepersNumberPredicate predicate = new KeepersNumberPredicate();
+        NumberOfKeepersPredicates predicate = new NumberOfKeepersPredicates();
         // When
         boolean result = predicate.test(context);
         // Then
@@ -73,7 +72,7 @@ public class KeepersNumberPredicateTestTest {
         Map<String, Paddock> paddocks = givenPaddocksMap(4);
         Map<String, AnimalKeeper> keepers = givenKeepersMap(0);
         KeeperCreationContext context = givenContext(paddocks, keepers);
-        KeepersNumberPredicate predicate = new KeepersNumberPredicate();
+        NumberOfKeepersPredicates predicate = new NumberOfKeepersPredicates();
         // When
         boolean result = predicate.test(context);
         // Then
@@ -86,7 +85,7 @@ public class KeepersNumberPredicateTestTest {
         Map<String, Paddock> paddocks = givenPaddocksMap(3);
         Map<String, AnimalKeeper> keepers = givenKeepersMap(0);
         KeeperCreationContext context = givenContext(paddocks, keepers);
-        KeepersNumberPredicate predicate = new KeepersNumberPredicate();
+        NumberOfKeepersPredicates predicate = new NumberOfKeepersPredicates();
         // When
         boolean result = predicate.test(context);
         // Then
@@ -99,7 +98,7 @@ public class KeepersNumberPredicateTestTest {
         Map<String, Paddock> paddocks = givenPaddocksMap(0);
         Map<String, AnimalKeeper> keepers = givenKeepersMap(0);
         KeeperCreationContext context = givenContext(paddocks, keepers);
-        KeepersNumberPredicate predicate = new KeepersNumberPredicate();
+        NumberOfKeepersPredicates predicate = new NumberOfKeepersPredicates();
         // When
         boolean result = predicate.test(context);
         // Then
@@ -112,7 +111,7 @@ public class KeepersNumberPredicateTestTest {
         Map<String, Paddock> paddocks = givenPaddocksMap(3);
         Map<String, AnimalKeeper> keepers = givenKeepersMap(2);
         KeeperCreationContext context = givenContext(paddocks, keepers);
-        KeepersNumberPredicate predicate = new KeepersNumberPredicate();
+        NumberOfKeepersPredicates predicate = new NumberOfKeepersPredicates();
         // When
         boolean result = predicate.test(context);
         // Then
@@ -125,7 +124,7 @@ public class KeepersNumberPredicateTestTest {
         Map<String, Paddock> paddocks = givenPaddocksMap(4);
         Map<String, AnimalKeeper> keepers = givenKeepersMap(2);
         KeeperCreationContext context = givenContext(paddocks, keepers);
-        KeepersNumberPredicate predicate = new KeepersNumberPredicate();
+        NumberOfKeepersPredicates predicate = new NumberOfKeepersPredicates();
         // When
         boolean result = predicate.test(context);
         // Then
