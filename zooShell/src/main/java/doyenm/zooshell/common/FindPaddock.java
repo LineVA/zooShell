@@ -1,4 +1,4 @@
-package doyenm.zooshell.validator;
+package doyenm.zooshell.common;
 
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;

@@ -1,9 +1,8 @@
 package doyenm.zooshell.animal.diets;
 
-import doyenm.zooshell.animal.diets.AnimalUpdateDietContext;
 import doyenm.zooshell.common.context.FindingDietContext;
 import doyenm.zooshell.common.function.FindingDietFunction;
-import doyenm.zooshell.validator.FindAnimal;
+import doyenm.zooshell.common.FindAnimal;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;

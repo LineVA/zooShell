@@ -1,8 +1,10 @@
-package doyenm.zooshell.validator;
+package doyenm.zooshell;
 
 import doyenm.zooshell.common.function.*;
 import doyenm.zooshell.common.predicates.*;
 import doyenm.zooshell.specie.SpecieDetailsValidator;
+import doyenm.zooshell.common.FindAnimal;
+import doyenm.zooshell.common.FindPaddock;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

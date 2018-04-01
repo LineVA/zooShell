@@ -1,6 +1,6 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.context.LsWithCriteriaContext;
+import doyenm.zooshell.animal.LsWithCriteriaContext;
 import doyenm.zooshell.animal.list.criteria.AnimalsListWithDietCriteriaValidator;
 import org.mockito.Mockito;
 

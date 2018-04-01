@@ -1,7 +1,6 @@
 package doyenm.zooshell.paddock.extension;
 
-import doyenm.zooshell.paddock.extension.PaddockExtensionCreationContext;
-import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.common.FindPaddock;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

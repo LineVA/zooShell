@@ -1,7 +1,7 @@
 package doyenm.zooshell.animal.creation;
 
 import doyenm.zooshell.model.Sex;
-import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.common.context.FindingSexContext;
 import doyenm.zooshell.common.context.FindingSpecieContext;
 import doyenm.zooshell.common.function.FindingSexFunction;

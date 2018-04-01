@@ -2,12 +2,11 @@ package doyenm.zooshell.handyman;
 
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.HandymenNumberPredicate;
-import doyenm.zooshell.handyman.HandymanValidator;
 import doyenm.zooshell.handyman.create.HandymanCreationValidator;
 import doyenm.zooshell.handyman.occupations.HandymanUpdateOccupationsValidator;
 import doyenm.zooshell.handyman.rename.HandymanRenameValidator;
-import doyenm.zooshell.validator.FindHandyman;
-import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.common.FindHandyman;
+import doyenm.zooshell.common.FindPaddock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

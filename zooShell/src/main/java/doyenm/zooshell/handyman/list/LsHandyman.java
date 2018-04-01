@@ -4,7 +4,7 @@ import doyenm.zooshell.commandline.general.Command;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.commandline.utils.FormattingInList;
-import doyenm.zooshell.context.LsContext;
+import doyenm.zooshell.LsContext;
 import doyenm.zooshell.model.Handyman;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;

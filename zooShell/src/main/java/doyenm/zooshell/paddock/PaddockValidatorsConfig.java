@@ -1,5 +1,6 @@
 package doyenm.zooshell.paddock;
 
+import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.common.function.FindingBiomeFunction;
 import doyenm.zooshell.common.function.FindingPaddockArrangementFunction;
 import doyenm.zooshell.common.function.FindingPaddockTypeFunction;
@@ -15,7 +16,6 @@ import doyenm.zooshell.paddock.facilities.UpdatePaddockArrangementValidator;
 import doyenm.zooshell.paddock.remove.PaddockRemoveValidator;
 import doyenm.zooshell.paddock.rename.PaddockChangeNameValidator;
 import doyenm.zooshell.paddock.types.UpdatePaddockTypeValidator;
-import doyenm.zooshell.validator.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

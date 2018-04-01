@@ -1,4 +1,4 @@
-package doyenm.zooshell.context;
+package doyenm.zooshell;
 
 import doyenm.zooshell.model.*;
 import lombok.Getter;

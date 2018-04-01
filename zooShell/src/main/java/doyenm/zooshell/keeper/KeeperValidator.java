@@ -1,7 +1,6 @@
 package doyenm.zooshell.keeper;
 
-import doyenm.zooshell.keeper.KeeperContext;
-import doyenm.zooshell.validator.FindKeeper;
+import doyenm.zooshell.common.FindKeeper;
 
 import java.util.function.Predicate;
 

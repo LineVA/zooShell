@@ -2,6 +2,7 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.animal.diets.AnimalUpdateFastDaysContext;
 import doyenm.zooshell.animal.diets.AnimalUpdateFastDaysValidator;
+import doyenm.zooshell.common.FindAnimal;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;

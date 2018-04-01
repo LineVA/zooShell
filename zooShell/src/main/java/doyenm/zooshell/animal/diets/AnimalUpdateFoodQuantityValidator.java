@@ -1,8 +1,7 @@
 package doyenm.zooshell.animal.diets;
 
-import doyenm.zooshell.animal.diets.AnimalUpdateFoodQuantityContext;
 import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
-import doyenm.zooshell.validator.FindAnimal;
+import doyenm.zooshell.common.FindAnimal;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

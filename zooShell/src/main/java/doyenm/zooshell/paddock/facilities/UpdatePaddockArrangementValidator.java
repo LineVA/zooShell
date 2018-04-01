@@ -1,13 +1,12 @@
 package doyenm.zooshell.paddock.facilities;
 
-import doyenm.zooshell.paddock.facilities.UpdatePaddockArrangementContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.common.context.FindingPaddockArrangementContext;
 import doyenm.zooshell.common.function.FindingPaddockArrangementFunction;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.common.FindPaddock;
 import lombok.RequiredArgsConstructor;
 
 /**

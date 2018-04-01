@@ -1,7 +1,6 @@
 package doyenm.zooshell.animal;
 
-import doyenm.zooshell.animal.AnimalContext;
-import doyenm.zooshell.validator.FindAnimal;
+import doyenm.zooshell.common.FindAnimal;
 
 import java.util.function.Predicate;
 

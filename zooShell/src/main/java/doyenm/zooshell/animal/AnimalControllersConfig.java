@@ -25,7 +25,7 @@ import doyenm.zooshell.model.utils.CohabitationFactorHandler;
 import doyenm.zooshell.utils.UniformStatistics;
 import doyenm.zooshell.utils.Utils;
 import doyenm.zooshell.animal.creation.AnimalCreationValidator;
-import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.common.FindPaddock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

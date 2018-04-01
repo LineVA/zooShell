@@ -2,6 +2,7 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.animal.diets.AnimalUpdateFoodQuantityContext;
 import doyenm.zooshell.animal.diets.AnimalUpdateFoodQuantityValidator;
+import doyenm.zooshell.common.FindAnimal;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;

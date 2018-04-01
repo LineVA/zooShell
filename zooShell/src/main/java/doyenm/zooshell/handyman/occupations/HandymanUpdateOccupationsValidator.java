@@ -1,8 +1,8 @@
 package doyenm.zooshell.handyman.occupations;
 
 import doyenm.zooshell.handyman.list.LsHandyman;
-import doyenm.zooshell.validator.FindHandyman;
-import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.common.FindHandyman;
+import doyenm.zooshell.common.FindPaddock;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

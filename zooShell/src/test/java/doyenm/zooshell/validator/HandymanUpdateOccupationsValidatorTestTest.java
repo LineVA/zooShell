@@ -1,5 +1,7 @@
 package doyenm.zooshell.validator;
 
+import doyenm.zooshell.common.FindHandyman;
+import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.handyman.list.LsHandyman;
 import doyenm.zooshell.handyman.occupations.HandymanUpdateOccupationsValidator;
 import doyenm.zooshell.model.Handyman;

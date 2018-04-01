@@ -2,6 +2,7 @@ package doyenm.zooshell.validator;
 
 import doyenm.zooshell.animal.rename.AnimalChangeNameContext;
 import doyenm.zooshell.animal.rename.AnimalChangeNameValidator;
+import doyenm.zooshell.common.FindAnimal;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.common.name.NameDto;

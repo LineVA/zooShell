@@ -1,7 +1,7 @@
 package doyenm.zooshell.animal.list.criteria;
 
-import doyenm.zooshell.context.LsWithCriteriaContext;
-import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.animal.LsWithCriteriaContext;
+import doyenm.zooshell.common.FindPaddock;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;

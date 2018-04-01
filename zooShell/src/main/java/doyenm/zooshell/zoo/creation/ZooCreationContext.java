@@ -3,7 +3,7 @@ package doyenm.zooshell.zoo.creation;
 import doyenm.zooshell.model.Grade;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.xml.specie.SpecieGenerator;
+import doyenm.zooshell.specie.xml.SpecieGenerator;
 import lombok.Getter;
 import lombok.Setter;
 

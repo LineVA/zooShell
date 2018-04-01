@@ -1,6 +1,6 @@
 package doyenm.zooshell.animal.list.criteria;
 
-import doyenm.zooshell.context.LsWithCriteriaContext;
+import doyenm.zooshell.animal.LsWithCriteriaContext;
 import doyenm.zooshell.common.context.FindingSpecieContext;
 import doyenm.zooshell.common.function.FindingSpecieFunction;
 import lombok.RequiredArgsConstructor;

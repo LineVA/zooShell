@@ -1,10 +1,9 @@
 package doyenm.zooshell.paddock.biomes;
 
-import doyenm.zooshell.paddock.biomes.UpdateBiomeContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.common.context.FindingBiomeContext;
 import doyenm.zooshell.common.function.FindingBiomeFunction;
-import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.common.FindPaddock;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

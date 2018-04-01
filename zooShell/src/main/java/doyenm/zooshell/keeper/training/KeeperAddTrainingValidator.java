@@ -1,9 +1,8 @@
 package doyenm.zooshell.keeper.training;
 
-import doyenm.zooshell.keeper.training.KeeperAddTrainingContext;
 import doyenm.zooshell.common.context.FindingFamilyContext;
 import doyenm.zooshell.common.function.FindingFamilyFunction;
-import doyenm.zooshell.validator.FindKeeper;
+import doyenm.zooshell.common.FindKeeper;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

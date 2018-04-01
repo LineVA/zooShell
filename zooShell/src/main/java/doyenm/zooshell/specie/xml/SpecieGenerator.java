@@ -1,4 +1,4 @@
-package doyenm.zooshell.xml.specie;
+package doyenm.zooshell.specie.xml;
 
 import doyenm.zooshell.model.Specie;
 

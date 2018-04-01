@@ -1,6 +1,6 @@
 package doyenm.zooshell.animal.list;
 
-import doyenm.zooshell.context.LsWithCriteriaContext;
+import doyenm.zooshell.animal.LsWithCriteriaContext;
 import doyenm.zooshell.animal.list.criteria.AnimalsListWithDietCriteriaValidator;
 import doyenm.zooshell.animal.list.criteria.AnimalsListWithPaddockCriteriaValidator;
 import doyenm.zooshell.animal.list.criteria.AnimalsListWithSexCriteriaValidator;

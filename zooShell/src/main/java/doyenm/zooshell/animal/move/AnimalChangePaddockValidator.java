@@ -1,10 +1,9 @@
 package doyenm.zooshell.animal.move;
 
-import doyenm.zooshell.animal.move.AnimalChangePaddockContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.validator.FindAnimal;
-import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.common.FindAnimal;
+import doyenm.zooshell.common.FindPaddock;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

@@ -1,5 +1,7 @@
 package doyenm.zooshell.validator;
 
+import doyenm.zooshell.common.FindKeeper;
+import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.keeper.tasks.KeeperUpdateOccupationsContext;
 import doyenm.zooshell.keeper.tasks.KeeperUpdateOccupationsValidator;
 import doyenm.zooshell.model.*;

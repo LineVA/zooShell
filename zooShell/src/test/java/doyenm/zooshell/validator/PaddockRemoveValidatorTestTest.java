@@ -1,5 +1,6 @@
 package doyenm.zooshell.validator;
 
+import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.paddock.PaddockContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;

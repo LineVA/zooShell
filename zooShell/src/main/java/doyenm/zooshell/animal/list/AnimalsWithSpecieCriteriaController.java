@@ -38,7 +38,7 @@ public class AnimalsWithSpecieCriteriaController
         if(optional.isPresent()){
             return optional.get();
         } else {
-            log.info("Fatal Error ; no value returned after examining specie criterion on animal {}", t.getAnimal().getName());
+            log.info("Fatal Error ; no value returned after examining xml criterion on animal {}", t.getAnimal().getName());
             return t;
         }
     }

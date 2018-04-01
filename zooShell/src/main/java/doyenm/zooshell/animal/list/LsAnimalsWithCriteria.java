@@ -5,7 +5,7 @@ import doyenm.zooshell.commandline.general.ExtractingExpression;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.commandline.utils.FormattingInList;
-import doyenm.zooshell.context.LsWithCriteriaContext;
+import doyenm.zooshell.animal.LsWithCriteriaContext;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import lombok.RequiredArgsConstructor;
@@ -63,6 +63,6 @@ public class LsAnimalsWithCriteria implements Command {
     }
 
     private List<String> retrieveSpeciesExpression(String[] cmd) {
-        return ExtractingExpression.extractExpression("specie", cmd);
+        return ExtractingExpression.extractExpression("xml", cmd);
     }
 }

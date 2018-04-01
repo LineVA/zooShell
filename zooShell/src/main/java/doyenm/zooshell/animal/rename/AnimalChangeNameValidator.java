@@ -1,10 +1,9 @@
 package doyenm.zooshell.animal.rename;
 
-import doyenm.zooshell.animal.rename.AnimalChangeNameContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.validator.FindAnimal;
+import doyenm.zooshell.common.FindAnimal;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

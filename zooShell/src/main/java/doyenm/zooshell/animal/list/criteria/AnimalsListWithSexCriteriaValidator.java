@@ -1,6 +1,6 @@
 package doyenm.zooshell.animal.list.criteria;
 
-import doyenm.zooshell.context.LsWithCriteriaContext;
+import doyenm.zooshell.animal.LsWithCriteriaContext;
 import doyenm.zooshell.common.context.FindingSexContext;
 import doyenm.zooshell.common.function.FindingSexFunction;
 import lombok.RequiredArgsConstructor;

@@ -1,9 +1,8 @@
 package doyenm.zooshell.keeper.rename;
 
-import doyenm.zooshell.keeper.rename.KeeperRenameContext;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.validator.FindKeeper;
+import doyenm.zooshell.common.FindKeeper;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

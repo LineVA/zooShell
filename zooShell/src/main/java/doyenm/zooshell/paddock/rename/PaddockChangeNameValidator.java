@@ -1,10 +1,9 @@
 package doyenm.zooshell.paddock.rename;
 
-import doyenm.zooshell.paddock.rename.PaddockChangeNameContext;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.common.FindPaddock;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

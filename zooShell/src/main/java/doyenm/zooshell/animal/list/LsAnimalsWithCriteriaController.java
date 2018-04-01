@@ -1,11 +1,6 @@
 package doyenm.zooshell.animal.list;
 
-import doyenm.zooshell.animal.list.AnimalsWithCriteriaContext;
-import doyenm.zooshell.context.LsWithCriteriaContext;
-import doyenm.zooshell.animal.list.AnimalsWithDietCriteriaController;
-import doyenm.zooshell.animal.list.AnimalsWithPaddockCriteriaController;
-import doyenm.zooshell.animal.list.AnimalsWithSexCriteriaController;
-import doyenm.zooshell.animal.list.AnimalsWithSpecieCriteriaController;
+import doyenm.zooshell.animal.LsWithCriteriaContext;
 import doyenm.zooshell.model.Animal;
 import lombok.RequiredArgsConstructor;
 import org.mvel2.MVEL;

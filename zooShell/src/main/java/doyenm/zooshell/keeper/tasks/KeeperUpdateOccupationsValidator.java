@@ -1,13 +1,12 @@
 package doyenm.zooshell.keeper.tasks;
 
-import doyenm.zooshell.keeper.tasks.KeeperUpdateOccupationsContext;
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.TimedOccupation;
 import doyenm.zooshell.common.context.FindingTaskContext;
 import doyenm.zooshell.common.function.FindingTaskFunction;
 import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
-import doyenm.zooshell.validator.FindKeeper;
-import doyenm.zooshell.validator.FindPaddock;
+import doyenm.zooshell.common.FindKeeper;
+import doyenm.zooshell.common.FindPaddock;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Predicate;

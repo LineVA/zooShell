@@ -1,4 +1,4 @@
-package doyenm.zooshell.controller;
+package doyenm.zooshell;
 
 import doyenm.zooshell.animal.AnimalControllersConfig;
 import doyenm.zooshell.evaluation.EvaluationController;

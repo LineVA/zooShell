@@ -1,5 +1,6 @@
 package doyenm.zooshell.validator;
 
+import doyenm.zooshell.common.FindKeeper;
 import doyenm.zooshell.keeper.rename.KeeperRenameContext;
 import doyenm.zooshell.keeper.rename.KeeperRenameValidator;
 import doyenm.zooshell.model.AnimalKeeper;

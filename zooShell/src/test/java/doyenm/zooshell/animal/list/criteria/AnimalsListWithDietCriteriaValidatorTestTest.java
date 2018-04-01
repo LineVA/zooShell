@@ -1,6 +1,6 @@
 package doyenm.zooshell.animal.list.criteria;
 
-import doyenm.zooshell.context.LsWithCriteriaContext;
+import doyenm.zooshell.animal.LsWithCriteriaContext;
 import doyenm.zooshell.model.Diet;
 import doyenm.zooshell.common.context.FindingDietContext;
 import doyenm.zooshell.common.function.FindingDietFunction;

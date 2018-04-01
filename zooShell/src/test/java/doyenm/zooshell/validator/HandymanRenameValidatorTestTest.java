@@ -1,5 +1,6 @@
 package doyenm.zooshell.validator;
 
+import doyenm.zooshell.common.FindHandyman;
 import doyenm.zooshell.handyman.rename.HandymanRenameContext;
 import doyenm.zooshell.handyman.rename.HandymanRenameValidator;
 import doyenm.zooshell.model.Handyman;
