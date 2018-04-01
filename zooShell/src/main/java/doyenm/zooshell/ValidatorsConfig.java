@@ -2,7 +2,7 @@ package doyenm.zooshell;
 
 import doyenm.zooshell.common.function.*;
 import doyenm.zooshell.common.predicates.*;
-import doyenm.zooshell.keeper.creation.KeepersNumberPredicate;
+import doyenm.zooshell.keeper.creation.KeeperCreationPredicates;
 import doyenm.zooshell.specie.SpecieDetailsValidator;
 import doyenm.zooshell.common.FindAnimal;
 import doyenm.zooshell.common.FindPaddock;
@@ -63,8 +63,8 @@ public class ValidatorsConfig {
     }
 
     @Bean
-    KeepersNumberPredicate keeperNumbersPredicate() {
-        return new KeepersNumberPredicate();
+    KeeperCreationPredicates keeperNumbersPredicate() {
+        return new KeeperCreationPredicates();
     }
 
     @Bean

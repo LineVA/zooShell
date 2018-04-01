@@ -6,7 +6,7 @@ import java.util.function.Predicate;
  *
  * @author doyenm
  */
-public class KeepersNumberPredicate implements Predicate<KeeperCreationContext>{
+public class KeeperCreationPredicates implements Predicate<KeeperCreationContext>{
 
     public boolean test(KeeperCreationContext context){
         double ratio = context.getPaddocks().size() / 2.0;

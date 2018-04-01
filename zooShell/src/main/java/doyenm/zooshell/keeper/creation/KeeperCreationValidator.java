@@ -4,7 +4,6 @@ import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
 import lombok.RequiredArgsConstructor;
 
-import javax.print.StreamPrintService;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -15,7 +14,7 @@ import java.util.stream.Stream;
 public class KeeperCreationValidator implements Predicate<KeeperCreationContext> {
 
     private final NameValidator nameValidator;
-    private final KeepersNumberPredicate keepersNumberPredicate;
+    private final KeeperCreationPredicates keeperCreationPredicates;
 
     @Override
     public boolean test(KeeperCreationContext t) {
@@ -25,7 +24,7 @@ public class KeeperCreationValidator implements Predicate<KeeperCreationContext>
                 .build();
 
         return Stream.of(t)
-                .filter(keepersNumberPredicate::test)
+                .filter(keeperCreationPredicates::test)
                 .filter(i -> nameValidator.test(dto))
                 .anyMatch(i -> true);
     }
