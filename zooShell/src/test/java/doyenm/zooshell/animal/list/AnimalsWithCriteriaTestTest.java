@@ -1,4 +1,4 @@
-package doyenm.zooshell.validator;
+package doyenm.zooshell.animal.list;
 
 import doyenm.zooshell.animal.LsWithCriteriaContext;
 import doyenm.zooshell.animal.list.criteria.AnimalsListWithDietCriteriaValidator;

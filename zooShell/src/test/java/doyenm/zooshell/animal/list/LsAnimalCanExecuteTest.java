@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.commandLineImpl.animal;
+package doyenm.zooshell.animal.list.criteria;
 
 import doyenm.zooshell.animal.list.LsAnimal;
 import org.apache.commons.lang.RandomStringUtils;
