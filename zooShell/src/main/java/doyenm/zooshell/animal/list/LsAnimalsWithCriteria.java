@@ -5,7 +5,6 @@ import doyenm.zooshell.commandline.general.ExtractingExpression;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.commandline.utils.FormattingInList;
-import doyenm.zooshell.animal.LsWithCriteriaContext;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import lombok.RequiredArgsConstructor;
@@ -30,13 +29,14 @@ public class LsAnimalsWithCriteria implements Command {
                 retrieveDietsExpression(cmd),
                 retrieveSexesExpression(cmd),
                 retrievePaddocksExpression(cmd),
-                retrieveSpeciesExpression(cmd)
+                retrieveSpeciesExpression(cmd),
+                retrieveContraceptionExpression(cmd)
         );
-        Optional<LsWithCriteriaContext> optionnal = Stream.of(context)
+        Optional<LsWithCriteriaContext> optional = Stream.of(context)
                 .filter(validator)
                 .map(controller)
                 .findFirst();
-        if (optionnal.isPresent()) {
+        if (optional.isPresent()) {
             FormattingInList formatting = new FormattingInList();
             return new ReturnExec(formatting.formatList(context.getAnimalsList()), TypeReturn.SUCCESS, context.getZoo());
         } else {
@@ -64,5 +64,9 @@ public class LsAnimalsWithCriteria implements Command {
 
     private List<String> retrieveSpeciesExpression(String[] cmd) {
         return ExtractingExpression.extractExpression("xml", cmd);
+    }
+
+    private List<String> retrieveContraceptionExpression(String[] cmd) {
+        return ExtractingExpression.extractExpression("contraception", cmd);
     }
 }

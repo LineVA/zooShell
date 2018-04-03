@@ -1,6 +1,5 @@
 package doyenm.zooshell.animal.list;
 
-import doyenm.zooshell.animal.LsWithCriteriaContext;
 import doyenm.zooshell.model.Animal;
 import lombok.RequiredArgsConstructor;
 import org.mvel2.MVEL;
@@ -23,6 +22,7 @@ public class LsAnimalsWithCriteriaController
     private final AnimalsWithSexCriteriaController animalsWithSexCriteriaController;
     private final AnimalsWithPaddockCriteriaController animalsWithPaddockCriteriaController;
     private final AnimalsWithSpecieCriteriaController animalsWithSpecieCriteriaController;
+    private final AnimalsWithContraceptionCriteriaController animalsWithContraceptionCriteriaController;
 
     @Override
     public LsWithCriteriaContext apply(LsWithCriteriaContext t) {
@@ -41,7 +41,9 @@ public class LsAnimalsWithCriteriaController
                         .convertedPaddocks(context.getConvertedPaddocks())
                         .paddockExpressionList(context.getPaddocksExpression().isEmpty() ? Arrays.asList("true") : context.getPaddocksExpression())
                         .convertedSpecies(context.getConvertedSpecies())
-                        .specieExpressionList(context.getSpeciesExpression().isEmpty() ? Arrays.asList("true") : context.getSpeciesExpression())
+                        .specieExpressionList(context.getSpeciesExpression().isEmpty() ? Arrays.asList("true") : context.getContraceptionExpression())
+                        .convertedContraception(context.getConvertedContraception())
+                        .contraceptionExpressionList(context.getContraceptionExpression().isEmpty() ? Arrays.asList("true") : context.getContraceptionExpression())
                         .build())
                 .map(animalsWithDietCriteriaController)
                 .filter(t1 -> (Boolean) MVEL.eval(t1.getDietExpression()))
@@ -51,6 +53,8 @@ public class LsAnimalsWithCriteriaController
                 .filter(t1 -> (Boolean) MVEL.eval(t1.getPaddockExpression()))
                  .map(animalsWithSpecieCriteriaController)
                 .filter(t1 -> (Boolean) MVEL.eval(t1.getSpecieExpression()))
+                .map(animalsWithContraceptionCriteriaController)
+                .filter(t1 -> (Boolean) MVEL.eval(t1.getContraceptionExpression()))
                 .map(t1 -> t1.getAnimal().getName())
                 .collect(Collectors.toList())
         );

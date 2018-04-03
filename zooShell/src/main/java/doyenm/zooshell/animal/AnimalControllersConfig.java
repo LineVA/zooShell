@@ -119,12 +119,18 @@ public class AnimalControllersConfig {
     }
 
     @Bean
+    public AnimalsWithContraceptionCriteriaController animalsWithContraceptionCriteriaController() {
+        return new AnimalsWithContraceptionCriteriaController();
+    }
+
+    @Bean
     public LsAnimalsWithCriteriaController lsAnimalsWithCriteriaController() {
         return new LsAnimalsWithCriteriaController(
                 animalsWithDietCriteriaController(),
                 animalsWithSexCriteriaController(),
                 animalsWithPaddockCriteriaController(),
-                animalsWithSpecieCriteriaController()
+                animalsWithSpecieCriteriaController(),
+                animalsWithContraceptionCriteriaController()
         );
     }
 

@@ -1,6 +1,6 @@
 package doyenm.zooshell.animal.list.criteria;
 
-import doyenm.zooshell.animal.LsWithCriteriaContext;
+import doyenm.zooshell.animal.list.LsWithCriteriaContext;
 import doyenm.zooshell.common.FindPaddock;
 import lombok.RequiredArgsConstructor;
 
@@ -15,16 +15,18 @@ import java.util.function.Predicate;
 @RequiredArgsConstructor
 public class AnimalsListWithPaddockCriteriaValidator implements Predicate<LsWithCriteriaContext> {
 
+    private final List<String> excluded;
+
     private final LsWithCriteriaParser parser;
     private final FindPaddock findPaddock;
-
-    private final List<String> excluded = Arrays.asList("AND", "OR", "NOT", "(", ")", ",");
 
     @Override
     public boolean test(LsWithCriteriaContext t) {
         LsWithCriteriaContext context = t;
 
-        if (context.getPaddocksExpression() != null && !context.getPaddocksExpression().isEmpty() && context.getPaddocks() != null) {
+        if (context.getPaddocksExpression() != null
+                && !context.getPaddocksExpression().isEmpty()
+                && context.getPaddocks() != null) {
             context.getPaddocks().addAll(parser.parse(context.getPaddocksExpression(), excluded));
             context.setPaddocksExpression(parser.replaceGrammaticalExpression(context.getPaddocksExpression()));
             retrievePaddock(context);

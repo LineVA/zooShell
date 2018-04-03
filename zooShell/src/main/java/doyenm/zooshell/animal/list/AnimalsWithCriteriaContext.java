@@ -38,4 +38,9 @@ public class AnimalsWithCriteriaContext {
     private Specie currentSpecie;
     private List<String> specieExpressionList;
     private String specieExpression;
+
+    private final Map<String, ContraceptionMethod> convertedContraception;
+    private ContraceptionMethod currentContraception;
+    private List<String> contraceptionExpressionList;
+    private String contraceptionExpression;
 }
