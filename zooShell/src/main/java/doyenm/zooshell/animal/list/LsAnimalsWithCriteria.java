@@ -29,7 +29,8 @@ public class LsAnimalsWithCriteria implements Command {
                 retrieveDietsExpression(cmd),
                 retrieveSexesExpression(cmd),
                 retrievePaddocksExpression(cmd),
-                retrieveSpeciesExpression(cmd)
+                retrieveSpeciesExpression(cmd),
+                retrieveContraceptionExpression(cmd)
         );
         Optional<LsWithCriteriaContext> optional = Stream.of(context)
                 .filter(validator)
@@ -63,5 +64,9 @@ public class LsAnimalsWithCriteria implements Command {
 
     private List<String> retrieveSpeciesExpression(String[] cmd) {
         return ExtractingExpression.extractExpression("xml", cmd);
+    }
+
+    private List<String> retrieveContraceptionExpression(String[] cmd) {
+        return ExtractingExpression.extractExpression("contraception", cmd);
     }
 }

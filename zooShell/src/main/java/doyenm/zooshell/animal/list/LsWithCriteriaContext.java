@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * @author doyenm
  */
 @Getter
@@ -44,14 +43,16 @@ public class LsWithCriteriaContext {
     private List<String> animalsList = new ArrayList<>();
 
     public LsWithCriteriaContext(Zoo zoo,
-            List<String> dietExpression,
-            List<String> sexExpression,
-            List<String> paddockExpression,
-            List<String> specieExpression) {
+                                 List<String> dietExpression,
+                                 List<String> sexExpression,
+                                 List<String> paddockExpression,
+                                 List<String> specieExpression,
+                                 List<String> contraceptionExpression) {
         this.zoo = zoo;
         this.dietsExpression = dietExpression;
         this.sexesExpression = sexExpression;
         this.paddocksExpression = paddockExpression;
         this.speciesExpression = specieExpression;
+        this.contraceptionExpression = contraceptionExpression;
     }
 }
