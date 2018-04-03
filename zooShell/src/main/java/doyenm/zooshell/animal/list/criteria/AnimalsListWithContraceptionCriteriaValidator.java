@@ -38,7 +38,7 @@ public class AnimalsListWithContraceptionCriteriaValidator implements Predicate<
     }
 
     private LsWithCriteriaContext retrieveContraception(LsWithCriteriaContext t) {
-        t.getDiets()
+        t.getContraception()
                 .stream()
                 .map(FindingContraceptionContext::new)
                 .map(findingContraceptionFunction)
