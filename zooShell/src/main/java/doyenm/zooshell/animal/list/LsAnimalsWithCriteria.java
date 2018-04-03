@@ -63,7 +63,7 @@ public class LsAnimalsWithCriteria implements Command {
     }
 
     private List<String> retrieveSpeciesExpression(String[] cmd) {
-        return ExtractingExpression.extractExpression("xml", cmd);
+        return ExtractingExpression.extractExpression("specie", cmd);
     }
 
     private List<String> retrieveContraceptionExpression(String[] cmd) {
