@@ -17,7 +17,7 @@ public class Constants {
     // animals
     public static final String[] ANIMALS = {"animals"};
     // animal-contraceptionMethod
-    public static final String[] ANIMAL_CONTRACEPTION = {"animal-contraceptionMethod"};
+    public static final String[] ANIMAL_CONTRACEPTION = {"animal-contraceptionMethod", "animal-contraception"};
     // animal-diet
     public static final String[] ANIMAL_DIET = {"animal-diet"};
     // animal-fastDays || animal-fd
