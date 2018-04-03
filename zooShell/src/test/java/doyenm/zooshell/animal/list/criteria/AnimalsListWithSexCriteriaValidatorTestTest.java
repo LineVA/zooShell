@@ -35,7 +35,7 @@ public class AnimalsListWithSexCriteriaValidatorTestTest {
         when(parser.parse(anyList(), anyList())).thenReturn(new ArrayList<>());
         when(parser.parse(anyList(), anyList())).thenReturn(new ArrayList<>());
 
-        subject = new AnimalsListWithSexCriteriaValidator(parser, findingSexFunction);
+        subject = new AnimalsListWithSexCriteriaValidator(Arrays.asList(), parser, findingSexFunction);
     }
 
     @Test

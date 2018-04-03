@@ -37,7 +37,7 @@ public class AnimalsListWithDietCriteriaValidatorTestTest {
         when(parser.parse(anyList(), anyList())).thenReturn(new ArrayList<>());
         when(parser.parse(anyList(), anyList())).thenReturn(new ArrayList<>());
 
-        subject = new AnimalsListWithDietCriteriaValidator(parser, findingDietFunction);
+        subject = new AnimalsListWithDietCriteriaValidator(Arrays.asList(), parser, findingDietFunction);
     }
 
     @Test
@@ -119,7 +119,7 @@ public class AnimalsListWithDietCriteriaValidatorTestTest {
                 new HashMap<>(),
                 null,
                 Arrays.asList(RandomStringUtils.randomAlphabetic(10)));
-        AnimalsListWithDietCriteriaValidator validator = new AnimalsListWithDietCriteriaValidator(parser, findingDietFunction);
+        AnimalsListWithDietCriteriaValidator validator = new AnimalsListWithDietCriteriaValidator(Arrays.asList(), parser, findingDietFunction);
         // When
         boolean result = validator.test(context);
         // Then

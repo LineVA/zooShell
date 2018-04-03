@@ -15,10 +15,10 @@ import java.util.function.Predicate;
 @RequiredArgsConstructor
 public class AnimalsListWithContraceptionCriteriaValidator implements Predicate<LsWithCriteriaContext> {
 
+    private final List<String> excluded;
+
     private final LsWithCriteriaParser parser;
     private final FindingContraceptionFunction findingContraceptionFunction;
-
-    private final List<String> excluded = Arrays.asList("AND", "OR", "NOT", "(", ")", ",");
 
     @Override
     public boolean test(LsWithCriteriaContext t) {

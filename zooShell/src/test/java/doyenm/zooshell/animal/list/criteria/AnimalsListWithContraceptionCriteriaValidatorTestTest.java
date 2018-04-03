@@ -34,7 +34,7 @@ public class AnimalsListWithContraceptionCriteriaValidatorTestTest {
         when(parser.parse(anyList(), anyList())).thenReturn(new ArrayList<>());
         when(parser.parse(anyList(), anyList())).thenReturn(new ArrayList<>());
 
-        subject = new AnimalsListWithContraceptionCriteriaValidator(parser, findingContraceptionFunction);
+        subject = new AnimalsListWithContraceptionCriteriaValidator(Arrays.asList(), parser, findingContraceptionFunction);
     }
 
     @Test

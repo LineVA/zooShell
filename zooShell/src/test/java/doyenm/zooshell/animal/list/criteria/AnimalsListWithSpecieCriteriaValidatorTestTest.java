@@ -34,7 +34,7 @@ public class AnimalsListWithSpecieCriteriaValidatorTestTest {
         when(parser.parse(anyList(), anyList())).thenReturn(new ArrayList<>());
         when(parser.parse(anyList(), anyList())).thenReturn(new ArrayList<>());
 
-        subject = new AnimalsListWithSpecieCriteriaValidator(parser, findingSpecieFunction);
+        subject = new AnimalsListWithSpecieCriteriaValidator(Arrays.asList(), parser, findingSpecieFunction);
     }
 
     @Test

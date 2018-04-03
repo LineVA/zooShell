@@ -30,7 +30,7 @@ public class AnimalsListWithPaddockCriteriaValidatorTestTest {
         when(parser.parse(anyList(), anyList())).thenReturn(new ArrayList<>());
         when(parser.parse(anyList(), anyList())).thenReturn(new ArrayList<>());
 
-        subject = new AnimalsListWithPaddockCriteriaValidator(parser, findPaddock);
+        subject = new AnimalsListWithPaddockCriteriaValidator(Arrays.asList(), parser, findPaddock);
     }
 
     @Test

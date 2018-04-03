@@ -20,6 +20,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author doyenm
  */
@@ -143,29 +146,31 @@ public class AnimalValidatorsConfig {
         return new LsWithCriteriaParser();
     }
 
+    private final List<String> excluded = Arrays.asList("AND", "OR", "NOT", "(", ")", ",");
+
     @Bean
     public AnimalsListWithDietCriteriaValidator animalsListWithDietCriteriaValidator() {
-        return new AnimalsListWithDietCriteriaValidator(lsWithCriteriaParser(), findingDietFunction);
+        return new AnimalsListWithDietCriteriaValidator(excluded, lsWithCriteriaParser(), findingDietFunction);
     }
 
     @Bean
     public AnimalsListWithSexCriteriaValidator animalsListWithSexCriteriaValidator() {
-        return new AnimalsListWithSexCriteriaValidator(lsWithCriteriaParser(), findingSexFunction);
+        return new AnimalsListWithSexCriteriaValidator(excluded, lsWithCriteriaParser(), findingSexFunction);
     }
 
     @Bean
     public AnimalsListWithPaddockCriteriaValidator animalsListWithPaddockCriteriaValidator() {
-        return new AnimalsListWithPaddockCriteriaValidator(lsWithCriteriaParser(), findPaddock);
+        return new AnimalsListWithPaddockCriteriaValidator(excluded, lsWithCriteriaParser(), findPaddock);
     }
 
     @Bean
     public AnimalsListWithSpecieCriteriaValidator animalsListWithSpecieCriteriaValidator() {
-        return new AnimalsListWithSpecieCriteriaValidator(lsWithCriteriaParser(), findingSpecieFunction);
+        return new AnimalsListWithSpecieCriteriaValidator(excluded, lsWithCriteriaParser(), findingSpecieFunction);
     }
 
     @Bean
     public AnimalsListWithContraceptionCriteriaValidator animalsListWithContraceptionCriteriaValidator() {
-        return new AnimalsListWithContraceptionCriteriaValidator(lsWithCriteriaParser(), findingContraceptionFunction());
+        return new AnimalsListWithContraceptionCriteriaValidator(excluded, lsWithCriteriaParser(), findingContraceptionFunction());
     }
 
     @Bean

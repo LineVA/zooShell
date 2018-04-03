@@ -16,10 +16,10 @@ import java.util.function.Predicate;
 @RequiredArgsConstructor
 public class AnimalsListWithSexCriteriaValidator implements Predicate<LsWithCriteriaContext> {
 
+    private final List<String> excluded;
+
     private final LsWithCriteriaParser parser;
     private final FindingSexFunction findingSexFunction;
-
-    private final List<String> excluded = Arrays.asList("AND", "OR", "NOT", "(", ")", ",");
 
     @Override
     public boolean test(LsWithCriteriaContext t) {
