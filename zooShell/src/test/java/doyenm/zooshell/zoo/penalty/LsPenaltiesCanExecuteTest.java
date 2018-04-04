@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.commandLineImpl;
+package doyenm.zooshell.zoo.penalty;
 
 import doyenm.zooshell.zoo.penalty.LsPenalties;
 import org.apache.commons.lang.RandomStringUtils;
