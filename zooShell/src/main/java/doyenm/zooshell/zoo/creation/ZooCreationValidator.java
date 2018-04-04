@@ -1,20 +1,21 @@
 package doyenm.zooshell.zoo.creation;
 
-import doyenm.zooshell.zoo.creation.ZooCreationContext;
+import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;
+import doyenm.zooshell.errorhandling.ErrorType;
 import lombok.RequiredArgsConstructor;
 
 import java.util.HashSet;
-import java.util.function.Predicate;
+import java.util.function.Function;
 
 /**
  *
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class ZooCreationValidator implements Predicate<ZooCreationContext> {
+public class ZooCreationValidator implements Function<ZooCreationContext, ZooCreationContext> {
 
     private final IntegerValuePredicates integerValuePredicates;
     private final NameValidator nameValidator;
@@ -26,7 +27,7 @@ public class ZooCreationValidator implements Predicate<ZooCreationContext> {
     private final int maxSpeed;
 
     @Override
-    public boolean test(ZooCreationContext t) {
+    public ZooCreationContext apply(ZooCreationContext t) {
         ZooCreationContext context = t;
         context.convert();
         boolean result
@@ -37,8 +38,8 @@ public class ZooCreationValidator implements Predicate<ZooCreationContext> {
         result &= this.integerValuePredicates.mustBeLowerOrEqualsThan(context.getConvertedHorizon(), min);
         result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedSpeed(), minSpeed);
         result &= this.integerValuePredicates.mustBeLowerOrEqualsThan(context.getConvertedSpeed(), maxSpeed);
-        result &= testName(context.getName());
-        return result;
+        testName(context);
+        return context;
     }
     
     private boolean testName(String name){
@@ -47,5 +48,17 @@ public class ZooCreationValidator implements Predicate<ZooCreationContext> {
                 .existingNames(new HashSet<>())
                 .build();
         return nameValidator.test(dto);
+    }
+
+    private ZooCreationContext testName(ZooCreationContext context){
+        NameDto dto = NameDto.builder()
+                .testing(context.getName())
+                .existingNames(new HashSet<>())
+                .build();
+        boolean result = nameValidator.test(dto);
+        if(result){
+            context.getErrors().getErrorsList().add(new BusinessError(ErrorType.INCORRECT_NAME));
+        }
+        return context;
     }
 }

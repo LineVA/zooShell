@@ -23,7 +23,7 @@ public class CreateZooExecuteTest {
 
     private ZooCreationValidator givenCreationValidator(boolean value) {
         ZooCreationValidator validator = Mockito.mock(ZooCreationValidator.class);
-        Mockito.doReturn(value).when(validator).test(any(ZooCreationContext.class));
+        Mockito.doReturn(value).when(validator).apply(any(ZooCreationContext.class));
         return validator;
     }
 

@@ -1,5 +1,6 @@
 package doyenm.zooshell.zoo.creation;
 
+import doyenm.zooshell.errorhandling.Errors;
 import doyenm.zooshell.model.Grade;
 import doyenm.zooshell.model.Specie;
 import doyenm.zooshell.model.Zoo;
@@ -25,6 +26,8 @@ public class ZooCreationContext {
     private static final String INIT_HEIGHT = "50";
     private static final String INIT_HORIZON = "5";
     private static final String INIT_SPEED = "6";
+
+    private Errors errors = new Errors();
 
     private final String name;
     private final String initWidth;

@@ -20,7 +20,7 @@ public class FormattingInList {
         return builder.toString();
     }
 
-    public String formatList(List<String> strs) {
+    public static String formatList(List<String> strs) {
         StringBuilder builder = new StringBuilder();
         for (String str : strs) {
             builder.append(str);
