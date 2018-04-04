@@ -26,6 +26,13 @@ public class FormattingInList {
             builder.append(str);
             builder.append("\n");
         }
+        builder.append("--> ");
+        builder.append(strs.size());
+        if(strs.size() > 1){
+            builder.append(" items");
+        } else {
+            builder.append(" item");
+        }
         return builder.toString();
     }
 }
