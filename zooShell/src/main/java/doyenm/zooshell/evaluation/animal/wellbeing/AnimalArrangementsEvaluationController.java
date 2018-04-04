@@ -27,7 +27,7 @@ public class AnimalArrangementsEvaluationController
                 commonInstallations -= 1;
             }
         }
-        int specieSize = specieInstallations.size() == 0 ? 1 : specieInstallations.size();
+        double specieSize = specieInstallations.isEmpty() ? 1.0 : specieInstallations.size();
         t.getWellBeingObj().setInstallationsWellBeing(
                 commonInstallations / specieSize * AnimalEvaluationContext.BASE);
         return t;
