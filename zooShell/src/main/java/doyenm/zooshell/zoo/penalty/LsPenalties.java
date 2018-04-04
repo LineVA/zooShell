@@ -1,4 +1,4 @@
-package doyenm.zooshell.zoo;
+package doyenm.zooshell.zoo.penalty;
 
 import doyenm.zooshell.commandline.general.Command;
 import doyenm.zooshell.commandline.general.ReturnExec;
@@ -19,7 +19,7 @@ public class LsPenalties implements Command {
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         LsContext context = new LsContext(zoo);
         FormattingInList formatting = new FormattingInList();
-        return new ReturnExec(formatting.formatPenaltiesList(context.getPenalties()), TypeReturn.SUCCESS);
+        return new ReturnExec(formatting.formatList(context.getPenalties()), TypeReturn.SUCCESS);
     }
 
     @Override

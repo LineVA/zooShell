@@ -1,6 +1,6 @@
-package doyenm.zooshell.commandline.commandLineImpl;
+package doyenm.zooshell.zoo.penalty;
 
-import doyenm.zooshell.zoo.LsPenalties;
+import doyenm.zooshell.zoo.penalty.LsPenalties;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

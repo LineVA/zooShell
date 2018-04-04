@@ -64,8 +64,11 @@ public class LsContext {
         );
     }
       
-      public List<Penalty> getPenalties(){
-          return getZoo().getPenalties();
+      public List<String> getPenalties(){
+          return getZoo().getPenalties()
+                  .stream()
+                  .map(Penalty::toString)
+                  .collect(Collectors.toList());
       }
 
     public List<String> getSexes() {
