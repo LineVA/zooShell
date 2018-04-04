@@ -4,7 +4,6 @@ import doyenm.zooshell.animal.list.LsWithCriteriaContext;
 import doyenm.zooshell.common.FindPaddock;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;

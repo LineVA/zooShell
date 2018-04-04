@@ -5,7 +5,6 @@ import doyenm.zooshell.common.context.FindingSexContext;
 import doyenm.zooshell.common.function.FindingSexFunction;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
