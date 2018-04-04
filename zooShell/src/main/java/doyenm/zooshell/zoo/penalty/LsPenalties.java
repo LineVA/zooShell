@@ -1,4 +1,4 @@
-package doyenm.zooshell.zoo;
+package doyenm.zooshell.zoo.penalty;
 
 import doyenm.zooshell.commandline.general.Command;
 import doyenm.zooshell.commandline.general.ReturnExec;

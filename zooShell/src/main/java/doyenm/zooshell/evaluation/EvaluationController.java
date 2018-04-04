@@ -1,12 +1,7 @@
 package doyenm.zooshell.evaluation;
 
-import doyenm.zooshell.evaluation.EvaluationContext;
-import doyenm.zooshell.evaluation.AnimalEvaluationController;
-import doyenm.zooshell.evaluation.HandymanEvaluationController;
 import doyenm.zooshell.evaluation.keeper.KeeperEvaluationController;
-import doyenm.zooshell.evaluation.PaddockEvaluationController;
-import doyenm.zooshell.evaluation.ZooEvaluationController;
-import doyenm.zooshell.zoo.PenaltiesEvaluationController;
+import doyenm.zooshell.zoo.penalty.PenaltiesEvaluationController;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Function;
