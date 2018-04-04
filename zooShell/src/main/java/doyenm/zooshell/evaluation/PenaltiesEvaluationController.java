@@ -1,6 +1,5 @@
 package doyenm.zooshell.evaluation;
 
-import doyenm.zooshell.evaluation.EvaluationContext;
 import java.util.function.Function;
 
 /**
