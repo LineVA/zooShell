@@ -1,7 +1,6 @@
 package doyenm.zooshell.evaluation;
 
 import doyenm.zooshell.evaluation.keeper.KeeperEvaluationController;
-import doyenm.zooshell.zoo.penalty.PenaltiesEvaluationController;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Function;
