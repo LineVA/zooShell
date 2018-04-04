@@ -28,13 +28,4 @@ public class FormattingInList {
         }
         return builder.toString();
     }
-
-    public String formatPenaltiesList(List<Penalty> strs) {
-        StringBuilder builder = new StringBuilder();
-        for (Penalty str : strs) {
-            builder.append(str.toString());
-            builder.append("\n");
-        }
-        return builder.toString();
-    }
 }
