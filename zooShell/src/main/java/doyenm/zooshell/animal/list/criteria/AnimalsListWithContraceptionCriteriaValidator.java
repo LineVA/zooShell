@@ -5,7 +5,6 @@ import doyenm.zooshell.common.context.FindingContraceptionContext;
 import doyenm.zooshell.common.function.FindingContraceptionFunction;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
