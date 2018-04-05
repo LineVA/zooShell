@@ -42,14 +42,6 @@ public class ZooCreationValidator implements Function<ZooCreationContext, ZooCre
         return context;
     }
     
-    private boolean testName(String name){
-        NameDto dto = NameDto.builder()
-                .testing(name)
-                .existingNames(new HashSet<>())
-                .build();
-        return nameValidator.test(dto);
-    }
-
     private ZooCreationContext testName(ZooCreationContext context){
         NameDto dto = NameDto.builder()
                 .testing(context.getName())
