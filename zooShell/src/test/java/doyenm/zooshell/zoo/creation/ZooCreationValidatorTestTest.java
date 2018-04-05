@@ -1,185 +1,171 @@
-//package doyenm.zooshell.validator;
-//
-//import doyenm.zooshell.zoo.creation.ZooCreationContext;
-//import doyenm.zooshell.common.name.NameDto;
-//import doyenm.zooshell.common.name.NameValidator;
-//import doyenm.zooshell.common.predicates.IntegerValuePredicates;
-//import doyenm.zooshell.zoo.creation.ZooCreationValidator;
-//import org.apache.commons.lang.RandomStringUtils;
-//import org.apache.commons.lang.math.RandomUtils;
-//import org.assertj.core.api.Assertions;
-//import org.junit.Test;
-//import org.mockito.Mockito;
-//
-//import static org.mockito.Matchers.any;
-//
-///**
-// *
-// * @author doyenm
-// */
-//public class ZooCreationValidatorTestTest {
-//
-//     private IntegerValuePredicates givenIntegerValuePredicates(boolean bool1, boolean bool2,
-//             boolean bool3, boolean bool4, boolean bool5, boolean bool6) {
-//        IntegerValuePredicates mock = Mockito.mock(IntegerValuePredicates.class);
-//        Mockito.when(mock.mustBeGreaterOrEqualsThan(Mockito.anyInt(), Mockito.anyInt()))
-//                .thenReturn(bool1).thenReturn(bool2).thenReturn(bool3).thenReturn(bool5);
-//          Mockito.when(mock.mustBeLowerOrEqualsThan(Mockito.anyInt(), Mockito.anyInt()))
-//                .thenReturn(bool4).thenReturn(bool6);
-//        return mock;
-//    }
-//
-//     private NameValidator givenNameValidator(boolean bool) {
-//        NameValidator mock = Mockito.mock(NameValidator.class);
-//        Mockito.when(mock.test(any(NameDto.class)))
-//                .thenReturn(bool);
-//        return mock;
-//    }
-//
-//    private ZooCreationContext givenContext() {
-//        ZooCreationContext context = Mockito.mock(ZooCreationContext.class);
-//        Mockito.when(context.getName()).thenReturn(RandomStringUtils.randomAlphabetic(10));
-//        Mockito.when(context.getConvertedHeight()).thenReturn(RandomUtils.nextInt());
-//        Mockito.when(context.getConvertedWidth()).thenReturn(RandomUtils.nextInt());
-//        Mockito.when(context.getConvertedSpeed()).thenReturn(RandomUtils.nextInt());
-//        Mockito.when(context.getConvertedHorizon()).thenReturn(RandomUtils.nextInt());
-//        Mockito.doNothing().when(context).convert();
-//        return context;
-//    }
-//
-//    @Test
-//    public void shouldReturnTrueWhenEverythingIsOk(){
-//        // Given
-//        IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, true, true, true, true, true);
-//        NameValidator nameValidator = givenNameValidator(true);
-//        ZooCreationContext context = givenContext();
-//        ZooCreationValidator validator = new ZooCreationValidator(
-//                integerValuePredicates, nameValidator,
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt());
-//        // When
-//        boolean result = validator.test(context);
-//        // Then
-//        Assertions.assertThat(result).isTrue();
-//    }
-//
-//    @Test
-//    public void shouldReturnFalseWhenTheWidthIsTooLow(){
-//        // Given
-//        IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(false, true, true, true, true, true);
-//        NameValidator stringLengthPredicates = givenNameValidator(true);
-//        ZooCreationContext context = givenContext();
-//        ZooCreationValidator validator = new ZooCreationValidator(
-//                integerValuePredicates, stringLengthPredicates,
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt());
-//        // When
-//        boolean result = validator.test(context);
-//        // Then
-//        Assertions.assertThat(result).isFalse();
-//    }
-//
-//     @Test
-//    public void shouldReturnFalseWhenTheHeightIsTooLow(){
-//        // Given
-//        IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, false, true, true, true, true);
-//        NameValidator stringLengthPredicates = givenNameValidator(true);
-//        ZooCreationContext context = givenContext();
-//        ZooCreationValidator validator = new ZooCreationValidator(
-//                integerValuePredicates, stringLengthPredicates,
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt());
-//        // When
-//        boolean result = validator.test(context);
-//        // Then
-//        Assertions.assertThat(result).isFalse();
-//    }
-//
-//      @Test
-//    public void shouldReturnFalseWhenTheHorizonIsTooLowInAbsoluteValue(){
-//        // Given
-//        IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, true, false, true, true, true);
-//        NameValidator stringLengthPredicates = givenNameValidator(true);
-//        ZooCreationContext context = givenContext();
-//        ZooCreationValidator validator = new ZooCreationValidator(
-//                integerValuePredicates, stringLengthPredicates,
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt());
-//        // When
-//        boolean result = validator.test(context);
-//        // Then
-//        Assertions.assertThat(result).isFalse();
-//    }
-//
-//      @Test
-//    public void shouldReturnFalseWhenTheHorizonIsTooLowForThisZoo(){
-//        // Given
-//        IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, true, true, false, true, true);
-//        NameValidator stringLengthPredicates = givenNameValidator(true);
-//        ZooCreationContext context = givenContext();
-//        ZooCreationValidator validator = new ZooCreationValidator(
-//                integerValuePredicates, stringLengthPredicates,
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt());
-//        // When
-//        boolean result = validator.test(context);
-//        // Then
-//        Assertions.assertThat(result).isFalse();
-//    }
-//
-//      @Test
-//    public void shouldReturnFalseWhenTheSpeedIsTooLow(){
-//        // Given
-//        IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, true, true, true, false, true);
-//        NameValidator stringLengthPredicates = givenNameValidator(true);
-//        ZooCreationContext context = givenContext();
-//        ZooCreationValidator validator = new ZooCreationValidator(
-//                integerValuePredicates, stringLengthPredicates,
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt());
-//        // When
-//        boolean result = validator.test(context);
-//        // Then
-//        Assertions.assertThat(result).isFalse();
-//    }
-//
-//     @Test
-//    public void shouldReturnFalseWhenTheSpeedIsTooHight(){
-//        // Given
-//        IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, true, true, true, true, false);
-//        NameValidator stringLengthPredicates = givenNameValidator(true);
-//        ZooCreationContext context = givenContext();
-//        ZooCreationValidator validator = new ZooCreationValidator(
-//                integerValuePredicates, stringLengthPredicates,
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt());
-//        // When
-//        boolean result = validator.test(context);
-//        // Then
-//        Assertions.assertThat(result).isFalse();
-//    }
-//
-//     @Test
-//    public void shouldReturnFalseWhenTheNameIsTooLong(){
-//        // Given
-//        IntegerValuePredicates integerValuePredicates = givenIntegerValuePredicates(true, true, true, true, true, true);
-//        NameValidator stringLengthPredicates = givenNameValidator(false);
-//        ZooCreationContext context = givenContext();
-//        ZooCreationValidator validator = new ZooCreationValidator(
-//                integerValuePredicates, stringLengthPredicates,
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt(), RandomUtils.nextInt(),
-//                RandomUtils.nextInt());
-//        // When
-//        boolean result = validator.test(context);
-//        // Then
-//        Assertions.assertThat(result).isFalse();
-//    }
-//}
+package doyenm.zooshell.validator;
+
+import doyenm.zooshell.model.Name;
+import doyenm.zooshell.zoo.creation.ZooCreationContext;
+import doyenm.zooshell.common.name.NameDto;
+import doyenm.zooshell.common.name.NameValidator;
+import doyenm.zooshell.common.predicates.IntegerValuePredicates;
+import doyenm.zooshell.zoo.creation.ZooCreationValidator;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.math.RandomUtils;
+import org.assertj.core.api.Assertions;
+import org.assertj.core.util.Lists;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.in;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doCallRealMethod;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+/**
+ * @author doyenm
+ */
+public class ZooCreationValidatorTestTest {
+
+    private ZooCreationValidator subject;
+    private IntegerValuePredicates integerValuePredicates;
+    private NameValidator nameValidator;
+    private ZooCreationContext context;
+
+    @Before
+    public void setUp() {
+        integerValuePredicates = mock(IntegerValuePredicates.class);
+        nameValidator = mock(NameValidator.class);
+        subject = new ZooCreationValidator(integerValuePredicates, nameValidator,
+                RandomUtils.nextInt(), RandomUtils.nextInt(),
+                RandomUtils.nextInt(), RandomUtils.nextInt(),
+                RandomUtils.nextInt());
+
+        context = mock(ZooCreationContext.class);
+        when(context.getName()).thenReturn(RandomStringUtils.randomAlphabetic(10));
+        when(context.getConvertedHeight()).thenReturn(RandomUtils.nextInt());
+        when(context.getConvertedWidth()).thenReturn(RandomUtils.nextInt());
+        when(context.getConvertedSpeed()).thenReturn(RandomUtils.nextInt());
+        when(context.getConvertedHorizon()).thenReturn(RandomUtils.nextInt());
+        when(context.getErrors()).thenCallRealMethod();
+        doCallRealMethod().when(context).setErrors(any());
+        context.setErrors(Lists.newArrayList());
+        Mockito.doNothing().when(context).convert();
+    }
+
+    @Test
+    public void shouldReturnNoErrorWhenEverythingIsOk() {
+        // Given
+        givenIntegerValuePredicates(true, true, true, true, true, true);
+        givenNameValidator(true);
+        // When
+        ZooCreationContext result = subject.apply(context);
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).isEmpty();
+
+    }
+
+    @Test
+    public void shouldReturnOneErrorWhenTheWidthIsTooLow() {
+        // Given
+        givenIntegerValuePredicates(false, true, true, true, true, true);
+        givenNameValidator(true);
+        // When
+        ZooCreationContext result = subject.apply(context);
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
+    }
+
+    @Test
+    public void shouldReturnOneErrorWhenTheHeightIsTooLow() {
+        // Given
+        givenIntegerValuePredicates(true, false, true, true, true, true);
+        givenNameValidator(true);
+        // When
+        ZooCreationContext result = subject.apply(context);
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
+    }
+
+    @Test
+    public void shouldReturnOneErrorWhenTheHorizonIsTooLowInAbsoluteValue() {
+        // Given
+        givenIntegerValuePredicates(true, true, false, true, true, true);
+        // When
+        ZooCreationContext result = subject.apply(context);
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(2);
+    }
+
+    @Test
+    public void shouldReturnOneErrorWhenTheHorizonIsTooLowForThisZoo() {
+        // Given
+        givenIntegerValuePredicates(true, true, true, false, true, true);
+        givenNameValidator(true);
+        // When
+        ZooCreationContext result = subject.apply(context);
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
+    }
+
+    @Test
+    public void shouldReturnOneErrorWhenTheSpeedIsTooLow() {
+        // Given
+        givenIntegerValuePredicates(true, true, true, true, false, true);
+        givenNameValidator(true);
+        // When
+        ZooCreationContext result = subject.apply(context);
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
+    }
+
+    @Test
+    public void shouldReturnOneErrorWhenTheSpeedIsTooHight() {
+        // Given
+        givenIntegerValuePredicates(true, true, true, true, true, false);
+        givenNameValidator(true);
+        // When
+        ZooCreationContext result = subject.apply(context);
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
+    }
+
+    @Test
+    public void shouldReturnOneErrorWhenTheNameIsTooLong() {
+        // Given
+        givenIntegerValuePredicates(true, true, true, true, true, true);
+        givenNameValidator(false);
+        // When
+        ZooCreationContext result = subject.apply(context);
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
+    }
+
+    private void givenIntegerValuePredicates(boolean bool1, boolean bool2,
+                                             boolean bool3, boolean bool4, boolean bool5, boolean bool6) {
+        when(integerValuePredicates.mustBeGreaterOrEqualsThan(Mockito.anyInt(), Mockito.anyInt()))
+                .thenReturn(bool1).thenReturn(bool2).thenReturn(bool3).thenReturn(bool5);
+        when(integerValuePredicates.mustBeLowerOrEqualsThan(Mockito.anyInt(), Mockito.anyInt()))
+                .thenReturn(bool4).thenReturn(bool6);
+    }
+
+    private void givenNameValidator(boolean bool) {
+        when(nameValidator.test(any(NameDto.class)))
+                .thenReturn(bool);
+    }
+}
