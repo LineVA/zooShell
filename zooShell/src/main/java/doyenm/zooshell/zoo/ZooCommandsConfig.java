@@ -40,6 +40,9 @@ public class ZooCommandsConfig {
 
     @Bean
     public RenameZoo renameZoo() {
-        return new RenameZoo(controllers.renameZooController());
+        return new RenameZoo(
+                validators.renameZooValidator(),
+                controllers.renameZooController()
+        );
     }
 }

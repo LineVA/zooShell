@@ -36,7 +36,7 @@ public class RenameZooExecuteTest {
     public void shouldReturnAReturnExecWithTypeReturnToSuccessWhenTheCommandIsInSuccess() {
         // Given
         RenameZooController controller = givenController();
-        RenameZoo command = new RenameZoo(controller);
+        RenameZoo command = new RenameZoo(null, controller);
         String[] cmd = new String[3];
         // When
         ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));

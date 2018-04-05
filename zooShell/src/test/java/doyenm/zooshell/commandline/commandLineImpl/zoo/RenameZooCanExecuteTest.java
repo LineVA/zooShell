@@ -3,6 +3,7 @@ package doyenm.zooshell.commandline.commandLineImpl.zoo;
 import doyenm.zooshell.zoo.rename.RenameZoo;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -14,13 +15,19 @@ public class RenameZooCanExecuteTest {
     private final static String ZOO = "zoo";
     private final static String RENAME = "rename";
 
+    private RenameZoo subject;
+
+    @Before
+    public void setUp(){
+        subject = new RenameZoo(null, null);
+    }
+
     @Test
     public void shouldReturnTrueWhenTheElementsAreCorrect() {
         // Given
-        RenameZoo renameZoo = new RenameZoo(null);
         String[] cmd = {ZOO, RENAME, RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = renameZoo.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isTrue();
     }
@@ -28,10 +35,9 @@ public class RenameZooCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsLessthanThreeElements() {
         // Given
-        RenameZoo renameZoo = new RenameZoo(null);
         String[] cmd = {ZOO, RENAME};
         // When
-        boolean actualResult = renameZoo.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
@@ -39,11 +45,10 @@ public class RenameZooCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanThreeElements() {
         // Given
-        RenameZoo renameZoo = new RenameZoo(null);
         String[] cmd = {ZOO, RENAME,
             RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = renameZoo.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
@@ -51,10 +56,9 @@ public class RenameZooCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
         // Given
-        RenameZoo renameZoo = new RenameZoo(null);
         String[] cmd = {RandomStringUtils.randomAlphabetic(10), RENAME, RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = renameZoo.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
@@ -62,10 +66,9 @@ public class RenameZooCanExecuteTest {
      @Test
     public void shouldReturnFalseWhenTheSecondElementIsIncorrect() {
         // Given
-        RenameZoo renameZoo = new RenameZoo(null);
         String[] cmd = {ZOO, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = renameZoo.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }

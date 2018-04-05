@@ -7,6 +7,7 @@ import doyenm.zooshell.common.predicates.StringLengthPredicates;
 import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;
 import doyenm.zooshell.specie.SpecieDetailsValidator;
 import doyenm.zooshell.zoo.creation.ZooCreationValidator;
+import doyenm.zooshell.zoo.rename.RenameZooValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -63,5 +64,10 @@ public class ZooValidatorsConfig {
                 Integer.parseInt(environment.getProperty("zoo.speed.min")),
                 Integer.parseInt(environment.getProperty("zoo.speed.max"))
         );
+    }
+
+    @Bean
+    public RenameZooValidator renameZooValidator(){
+        return new RenameZooValidator(nameValidator());
     }
 }
