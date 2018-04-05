@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.commandLineImpl.zoo;
+package doyenm.zooshell.zoo.creation;
 
 import doyenm.zooshell.zoo.creation.CreateZoo;
 import org.apache.commons.lang.RandomStringUtils;
