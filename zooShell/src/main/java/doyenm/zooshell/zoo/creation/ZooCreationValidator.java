@@ -56,7 +56,7 @@ public class ZooCreationValidator implements Function<ZooCreationContext, ZooCre
                 .existingNames(new HashSet<>())
                 .build();
         boolean result = nameValidator.test(dto);
-        if(result){
+        if(!result){
             context.getErrors().add(new BusinessError(ErrorType.INCORRECT_NAME));
         }
         return context;
