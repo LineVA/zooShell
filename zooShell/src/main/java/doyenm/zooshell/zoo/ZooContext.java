@@ -22,6 +22,7 @@ public class ZooContext {
     private List<Couple> couples = new ArrayList<>();
     private String saveName;
 
+    @Setter
     private List<BusinessError> errors = new ArrayList<>();
 
     public ZooContext(Zoo zoo, String saveName) {
