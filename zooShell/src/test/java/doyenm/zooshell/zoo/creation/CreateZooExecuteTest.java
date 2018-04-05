@@ -1,12 +1,10 @@
 package doyenm.zooshell.zoo.creation;
 
-import doyenm.zooshell.zoo.creation.CreateZoo;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
-import doyenm.zooshell.zoo.creation.ZooCreationContext;
-import doyenm.zooshell.zoo.creation.ZooCreationController;
+import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.zoo.creation.ZooCreationValidator;
+import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -14,30 +12,14 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
- *
  * @author doyenm
  */
 public class CreateZooExecuteTest {
-
-    private ZooCreationValidator givenCreationValidator(boolean value) {
-        ZooCreationValidator validator = Mockito.mock(ZooCreationValidator.class);
-        Mockito.doReturn(value).when(validator).apply(any(ZooCreationContext.class));
-        return validator;
-    }
-
-    private ZooCreationController givenController() {
-        ZooCreationController controller = Mockito.mock(ZooCreationController.class);
-        Mockito.when(controller.apply(any(ZooCreationContext.class))).thenAnswer(new Answer<ZooCreationContext>() {
-            @Override
-            public ZooCreationContext answer(InvocationOnMock invocation) throws Throwable {
-                Object[] args = invocation.getArguments();
-                return (ZooCreationContext) args[0];
-            }
-        });
-        return controller;
-    }
 
     @Test
     public void shouldReturnAReturnExecWithTypeReturnToSuccessWhenTheCommandIsInSuccess() {
@@ -47,14 +29,14 @@ public class CreateZooExecuteTest {
         CreateZoo command = new CreateZoo(creationValidator, controller);
         String[] cmd = new String[7];
         // When
-        ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));
+        ReturnExec result = command.execute(cmd, mock(Zoo.class));
         // Then
         Assertions.assertThat(result).isNotNull();
         Assertions.assertThat(result.getTypeReturn()).isEqualTo(TypeReturn.SUCCESS);
         Assertions.assertThat(result.getMessage()).isNotEmpty();
         Assertions.assertThat(result.getZoo()).isNotNull();
     }
-    
+
     @Test
     public void shouldReturnAReturnExecWithTypeReturnToSuccessWhenTheValidatorReturnsFalse() {
         // Given
@@ -63,11 +45,42 @@ public class CreateZooExecuteTest {
         CreateZoo command = new CreateZoo(creationValidator, controller);
         String[] cmd = new String[7];
         // When
-        ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));
+        ReturnExec result = command.execute(cmd, mock(Zoo.class));
         // Then
         Assertions.assertThat(result).isNotNull();
         Assertions.assertThat(result.getTypeReturn()).isEqualTo(TypeReturn.ERROR);
         Assertions.assertThat(result.getMessage()).isNotEmpty();
     }
+
+    private ZooCreationValidator givenCreationValidator(boolean isOk) {
+        ZooCreationValidator validator = mock(ZooCreationValidator.class);
+        when(validator.apply(any(ZooCreationContext.class))).thenAnswer(new Answer<ZooCreationContext>() {
+            @Override
+            public ZooCreationContext answer(InvocationOnMock invocation) throws Throwable {
+                Object[] args = invocation.getArguments();
+                if (!isOk) {
+                    ZooCreationContext context = (ZooCreationContext) args[0];
+                    context.getErrors().add(BusinessError.builder().type(TestUtils.getErrorType()).build());
+                    return context;
+                } else {
+                    return (ZooCreationContext) args[0];
+                }
+            }
+        });
+        return validator;
+    }
+
+    private ZooCreationController givenController() {
+        ZooCreationController controller = mock(ZooCreationController.class);
+        when(controller.apply(any(ZooCreationContext.class))).thenAnswer(new Answer<ZooCreationContext>() {
+            @Override
+            public ZooCreationContext answer(InvocationOnMock invocation) throws Throwable {
+                Object[] args = invocation.getArguments();
+                return (ZooCreationContext) args[0];
+            }
+        });
+        return controller;
+    }
+
 
 }
