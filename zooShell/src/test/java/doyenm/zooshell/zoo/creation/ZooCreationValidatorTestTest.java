@@ -1,25 +1,20 @@
 package doyenm.zooshell.validator;
 
-import doyenm.zooshell.model.Name;
-import doyenm.zooshell.zoo.creation.ZooCreationContext;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;
+import doyenm.zooshell.zoo.creation.ZooCreationContext;
 import doyenm.zooshell.zoo.creation.ZooCreationValidator;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
-import static org.assertj.core.api.Java6Assertions.in;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doCallRealMethod;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * @author doyenm
