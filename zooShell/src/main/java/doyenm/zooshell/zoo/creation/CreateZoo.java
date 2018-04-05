@@ -63,7 +63,7 @@ public class CreateZoo implements Command {
                 .map(controller)
                 .findFirst();
         if (optional.isPresent()) {
-            return new ReturnExec("ZOO_CREATION_SUCESS", TypeReturn.SUCCESS, context.getZoo());
+            return new ReturnExec("ZOO_CREATION_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } else {
             List<String> errors = context.getErrors()
                     .stream()
