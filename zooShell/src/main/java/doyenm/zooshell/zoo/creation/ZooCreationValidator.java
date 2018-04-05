@@ -58,7 +58,6 @@ public class ZooCreationValidator implements Function<ZooCreationContext, ZooCre
 
     private void testSpeed(ZooCreationContext context){
         boolean isCorrect = true;
-        int max = Math.min(context.getConvertedHeight(), context.getConvertedWidth());
         isCorrect &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedSpeed(), minSpeed);
         isCorrect &= this.integerValuePredicates.mustBeLowerOrEqualsThan(context.getConvertedSpeed(), maxSpeed);
         if(!isCorrect){
