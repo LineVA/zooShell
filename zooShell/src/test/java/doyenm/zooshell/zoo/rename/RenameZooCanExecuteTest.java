@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.commandLineImpl.zoo;
+package doyenm.zooshell.zoo.rename;
 
 import doyenm.zooshell.zoo.rename.RenameZoo;
 import org.apache.commons.lang.RandomStringUtils;
