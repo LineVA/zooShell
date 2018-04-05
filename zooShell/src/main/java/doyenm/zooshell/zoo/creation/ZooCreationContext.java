@@ -1,5 +1,6 @@
 package doyenm.zooshell.zoo.creation;
 
+import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.errorhandling.Errors;
 import doyenm.zooshell.model.Grade;
 import doyenm.zooshell.model.Specie;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,7 +29,7 @@ public class ZooCreationContext {
     private static final String INIT_HORIZON = "5";
     private static final String INIT_SPEED = "6";
 
-    private Errors errors = new Errors();
+    private List<BusinessError> errors = new ArrayList<>();
 
     private final String name;
     private final String initWidth;

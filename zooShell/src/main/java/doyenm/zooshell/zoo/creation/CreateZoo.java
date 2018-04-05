@@ -59,13 +59,13 @@ public class CreateZoo implements Command {
         ZooCreationContext context = createContext(cmd);
         Optional<ZooCreationContext> optional = Stream.of(context)
                 .map(validator)
-                .filter(t -> t.getErrors().getErrorsList().isEmpty())
+                .filter(t -> t.getErrors().isEmpty())
                 .map(controller)
                 .findFirst();
         if (optional.isPresent()) {
             return new ReturnExec("ZOO_CREATION_SUCESS", TypeReturn.SUCCESS, context.getZoo());
         } else {
-            List<String> errors = context.getErrors().getErrorsList()
+            List<String> errors = context.getErrors()
                     .stream()
                     .map(BusinessError::getType)
                     .map(ErrorType::toString)

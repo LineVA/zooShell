@@ -57,7 +57,7 @@ public class ZooCreationValidator implements Function<ZooCreationContext, ZooCre
                 .build();
         boolean result = nameValidator.test(dto);
         if(result){
-            context.getErrors().getErrorsList().add(new BusinessError(ErrorType.INCORRECT_NAME));
+            context.getErrors().add(new BusinessError(ErrorType.INCORRECT_NAME));
         }
         return context;
     }
