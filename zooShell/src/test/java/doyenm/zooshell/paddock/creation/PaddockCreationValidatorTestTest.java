@@ -1,47 +1,52 @@
 package doyenm.zooshell.paddock.creation;
 
-import doyenm.zooshell.paddock.creation.PaddockCreationContext;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;
-import doyenm.zooshell.paddock.creation.PaddockCreationValidator;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.*;
 
 /**
- *
  * @author doyenm
  */
 public class PaddockCreationValidatorTestTest {
 
-    private NameValidator givenNameTest(boolean value) {
-        NameValidator mock = Mockito.mock(NameValidator.class);
-        Mockito.when(mock.test(any(NameDto.class))).thenReturn(value);
-        return mock;
-    }
+    private PaddockCreationValidator subject;
+    private NameValidator nameValidator;
+    private IntegerValuePredicates integerPredicates;
+    private int minHeight;
+    private int minWidth;
 
-    private IntegerValuePredicates givenIntPredicates(boolean value, boolean value2) {
-        IntegerValuePredicates mock = Mockito.mock(IntegerValuePredicates.class);
-        Mockito.when(mock.mustBeGreaterOrEqualsThan(anyInt(), anyInt())).thenReturn(value).thenReturn(value2);
-        return mock;
-    }
+    private PaddockCreationContext context;
 
-    private PaddockCreationContext givenContext() {
-        PaddockCreationContext mock = Mockito.mock(PaddockCreationContext.class);
-        Mockito.when(mock.getConvertedHeight()).thenReturn(RandomUtils.nextInt());
-        Mockito.when(mock.getConvertedWidth()).thenReturn(RandomUtils.nextInt());
-        Mockito.doNothing().when(mock).convert();
-        Mockito.when(mock.getName()).thenReturn(RandomStringUtils.random(10));
-        Mockito.when(mock.getPaddocksNameSet()).thenReturn(new HashSet<>());
-        return mock;
+    @Before
+    public void setUp() {
+
+        context = mock(PaddockCreationContext.class);
+        when(context.getConvertedHeight()).thenReturn(RandomUtils.nextInt());
+        when(context.getConvertedWidth()).thenReturn(RandomUtils.nextInt());
+        doNothing().when(context).convert();
+        when(context.getName()).thenReturn(RandomStringUtils.random(10));
+        when(context.getPaddocksNameSet()).thenReturn(new HashSet<>());
+        when(context.getErrors()).thenCallRealMethod();
+        doCallRealMethod().when(context).setErrors(anyList());
+        context.setErrors(new ArrayList<>());
+
+        nameValidator = mock(NameValidator.class);
+        integerPredicates = mock(IntegerValuePredicates.class);
+        subject = new PaddockCreationValidator(nameValidator, integerPredicates, minHeight, minWidth);
     }
 
     /**
@@ -51,70 +56,74 @@ public class PaddockCreationValidatorTestTest {
      */
     @Test
     public void shouldReturnTrueIfAllConditionsAreTrue() {
-        // GIven
-        IntegerValuePredicates integerValuePredicates = givenIntPredicates(true, true);
-        NameValidator nameValidator = givenNameTest(true);
-        PaddockCreationContext context = givenContext();
+        // Given
+        when(integerPredicates.mustBeGreaterOrEqualsThan(anyInt(), anyInt())).thenReturn(true).thenReturn(true);
+        when(nameValidator.test(any(NameDto.class))).thenReturn(true);
         PaddockCreationValidator validator = new PaddockCreationValidator(
                 nameValidator,
-                integerValuePredicates,
+                integerPredicates,
                 RandomUtils.nextInt(),
                 RandomUtils.nextInt());
         // When
-        boolean result = validator.test(context);
+        PaddockCreationContext result = validator.apply(context);
         // Then
-        Assertions.assertThat(result).isTrue();
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).isEmpty();
     }
 
     @Test
     public void shouldReturnFalseWhenTheNameDoesNotRespectTheExpectations() {
-        // GIven
-        NameValidator nameValidator = givenNameTest(false);
-        IntegerValuePredicates integerValuePredicates = givenIntPredicates(true, true);
-        PaddockCreationContext context = givenContext();
+        // Given
+        when(integerPredicates.mustBeGreaterOrEqualsThan(anyInt(), anyInt())).thenReturn(true).thenReturn(true);
+        when(nameValidator.test(any(NameDto.class))).thenReturn(false);
         PaddockCreationValidator validator = new PaddockCreationValidator(
                 nameValidator,
-                integerValuePredicates,
+                integerPredicates,
                 RandomUtils.nextInt(),
                 RandomUtils.nextInt());
         // When
-        boolean result = validator.test(context);
+        PaddockCreationContext result = validator.apply(context);
         // Then
-        Assertions.assertThat(result).isFalse();
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
     }
 
     @Test
     public void shouldReturnFalseWhenTheWidthDoesNotRespectTheExpectations() {
-        // GIven
-        NameValidator nameValidator = givenNameTest(true);
-        IntegerValuePredicates integerValuePredicates = givenIntPredicates(true, false);
-        PaddockCreationContext context = givenContext();
+        // Given
+        when(integerPredicates.mustBeGreaterOrEqualsThan(anyInt(), anyInt())).thenReturn(true).thenReturn(false);
+        when(nameValidator.test(any(NameDto.class))).thenReturn(true);
         PaddockCreationValidator validator = new PaddockCreationValidator(
                 nameValidator,
-                integerValuePredicates,
+                integerPredicates,
                 RandomUtils.nextInt(),
                 RandomUtils.nextInt());
         // When
-        boolean result = validator.test(context);
+        PaddockCreationContext result = validator.apply(context);
         // Then
-        Assertions.assertThat(result).isFalse();
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
     }
 
     @Test
     public void shouldReturnFalseWhenTheHeightDoesNotRespectTheExpectations() {
-        // GIven
-        NameValidator nameValidator = givenNameTest(true);
-        IntegerValuePredicates integerValuePredicates = givenIntPredicates(false, true);
-        PaddockCreationContext context = givenContext();
+        // Given
+        when(integerPredicates.mustBeGreaterOrEqualsThan(anyInt(), anyInt())).thenReturn(false).thenReturn(true);
+        when(nameValidator.test(any(NameDto.class))).thenReturn(true);
         PaddockCreationValidator validator = new PaddockCreationValidator(
                 nameValidator,
-                integerValuePredicates,
+                integerPredicates,
                 RandomUtils.nextInt(),
                 RandomUtils.nextInt());
         // When
-        boolean result = validator.test(context);
+        PaddockCreationContext result = validator.apply(context);
         // Then
-        Assertions.assertThat(result).isFalse();
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
     }
 
 }

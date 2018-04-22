@@ -5,6 +5,7 @@ import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
+import doyenm.zooshell.utils.DisplayingErrorsList;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
@@ -26,14 +27,15 @@ public class CreatePaddock implements Command {
         PaddockCreationContext context = new PaddockCreationContext(zoo,
                 cmd[2], cmd[3], cmd[4], cmd[5], cmd[6]);
         Optional<PaddockCreationContext> optionnal = Stream.of(context)
-                .filter(valueValidator)
+                .map(valueValidator)
                 .filter(locationValidator)
+                .filter(t -> t.getErrors().isEmpty())
                 .map(controller)
                 .findFirst();
         if (optionnal.isPresent()) {
             return new ReturnExec("PADDOCK_CREATION_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } else {
-            return new ReturnExec("ERROR", TypeReturn.ERROR, context.getZoo());
+            return DisplayingErrorsList.displayErrorList(context.getErrors());
         }
     }
 

@@ -30,7 +30,7 @@ public class CreatePaddockExecuteTest {
 
     private PaddockCreationValidator givenCreationValidator(boolean value) {
         PaddockCreationValidator validator = Mockito.mock(PaddockCreationValidator.class);
-        Mockito.doReturn(value).when(validator).test(any(PaddockCreationContext.class));
+        Mockito.doReturn(value).when(validator).apply(any(PaddockCreationContext.class));
         return validator;
     }
 
