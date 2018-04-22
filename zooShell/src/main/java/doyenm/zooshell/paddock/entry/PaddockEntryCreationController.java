@@ -1,7 +1,5 @@
 package doyenm.zooshell.paddock.entry;
 
-import doyenm.zooshell.paddock.entry.PaddockEntryCreationContext;
-
 import java.util.function.Function;
 
 /**
