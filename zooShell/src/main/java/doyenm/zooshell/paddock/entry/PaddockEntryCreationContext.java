@@ -37,29 +37,4 @@ public class PaddockEntryCreationContext {
         this.convertedY = Integer.parseInt(this.y);
     }
 
-    public Map<String, Paddock> getPaddocksMap() {
-        return this.getZoo().getPaddocks();
-    }
-
-    public int getPaddockX() {
-        return this.getConvertedPaddock().getCoordinates().getPosition().getX();
-    }
-
-    public int getPaddockY() {
-        return this.getConvertedPaddock().getCoordinates().getPosition().getY();
-    }
-
-    public int getPaddockWidth() {
-        return this.getConvertedPaddock().getCoordinates().getWidth();
-    }
-
-    public int getPaddockHeight() {
-        return this.getConvertedPaddock().getCoordinates().getHeight();
-    }
-    
-    public void build(){
-        Position entry = new Position(this.getConvertedX(), this.getConvertedY());
-        this.getConvertedPaddock().setEntry(entry);
-        this.getZoo().getPaddocks().replace(this.getPaddock(), this.getConvertedPaddock());
-    }
 }
