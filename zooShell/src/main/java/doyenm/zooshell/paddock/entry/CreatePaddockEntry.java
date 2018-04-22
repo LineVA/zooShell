@@ -25,7 +25,8 @@ public class CreatePaddockEntry implements Command {
         PaddockEntryCreationContext context = new PaddockEntryCreationContext(zoo,
                 cmd[2], cmd[3], cmd[4]);
         Optional<PaddockEntryCreationContext> optional = Stream.of(context)
-                .filter(validator)
+                .map(validator)
+                .filter(t -> t.getErrors().isEmpty())
                 .map(controller)
                 .findFirst();
         if (optional.isPresent()) {

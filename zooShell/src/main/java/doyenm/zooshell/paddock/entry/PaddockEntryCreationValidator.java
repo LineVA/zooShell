@@ -1,8 +1,12 @@
 package doyenm.zooshell.paddock.entry;
 
 import doyenm.zooshell.common.FindPaddock;
+import doyenm.zooshell.errorhandling.BusinessError;
+import doyenm.zooshell.errorhandling.ErrorType;
+import doyenm.zooshell.model.Paddock;
 import lombok.RequiredArgsConstructor;
 
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -11,20 +15,25 @@ import java.util.function.Predicate;
  */
 @RequiredArgsConstructor
 public class PaddockEntryCreationValidator
-        implements Predicate<PaddockEntryCreationContext> {
+        implements Function<PaddockEntryCreationContext, PaddockEntryCreationContext> {
 
     private final FindPaddock findPaddock;
 
     @Override
-    public boolean test(PaddockEntryCreationContext t) {
+    public PaddockEntryCreationContext apply(PaddockEntryCreationContext t) {
         PaddockEntryCreationContext context = t;
         context.convert();
         retrievePaddock(t);
-        return context.getConvertedPaddock() != null;
+        return context;
     }
 
       private PaddockEntryCreationContext retrievePaddock(PaddockEntryCreationContext t) {
-        t.setConvertedPaddock(findPaddock.find(t.getZoo(), t.getPaddock()));
+       Paddock pad = findPaddock.find(t.getZoo(), t.getPaddock());
+        if(pad == null){
+            t.getErrors().add(new BusinessError(ErrorType.UNKNOWN_PADDOCK));
+        } else {
+            t.setConvertedPaddock(pad);
+        }
         return t;
     }
 }
