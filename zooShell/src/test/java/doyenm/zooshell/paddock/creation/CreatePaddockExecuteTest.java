@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.commandLineImpl.paddock;
+package doyenm.zooshell.paddock.creation;
 
 import doyenm.zooshell.paddock.creation.CreatePaddock;
 import doyenm.zooshell.commandline.general.ReturnExec;

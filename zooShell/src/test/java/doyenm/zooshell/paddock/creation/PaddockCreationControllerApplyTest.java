@@ -1,4 +1,4 @@
-package doyenm.zooshell.controller.paddockcontroller;
+package doyenm.zooshell.paddock.creation;
 
 import doyenm.zooshell.paddock.creation.PaddockCreationContext;
 import doyenm.zooshell.model.Biome;
