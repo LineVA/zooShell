@@ -1,14 +1,19 @@
 package doyenm.zooshell.paddock.creation;
 
-import doyenm.zooshell.paddock.creation.PaddockCreationContext;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.paddock.creation.PaddockLocationValidator;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.mockito.Matchers.anyList;
+import static org.mockito.Mockito.doCallRealMethod;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -16,72 +21,90 @@ import java.util.List;
  */
 public class PaddockLocationValidatorTest {
 
-    private Paddock givenPaddockWithCoordinates(int x, int y, int width, int height) {
-        Paddock pad = Mockito.mock(Paddock.class);
-        Mockito.when(pad.getX()).thenReturn(x);
-        Mockito.when(pad.getY()).thenReturn(y);
-        Mockito.when(pad.getWidth()).thenReturn(width);
-        Mockito.when(pad.getHeight()).thenReturn(height);
-        return pad;
+    private PaddockLocationValidator subject;
+
+
+    @Before
+    public void setUp(){
+        subject = new PaddockLocationValidator();
     }
 
-    private PaddockCreationContext givenPaddockCreatioNContextWithPaddocksListAndCoordinates(
-            List<Paddock> paddocks, int x, int y, int width, int height) {
-        PaddockCreationContext context = Mockito.mock(PaddockCreationContext.class);
-        Mockito.when(context.getPaddocksList()).thenReturn(paddocks);
-        Mockito.when(context.getConvertedX()).thenReturn(x);
-        Mockito.when(context.getConvertedY()).thenReturn(y);
-        Mockito.when(context.getConvertedWidth()).thenReturn(width);
-        Mockito.when(context.getConvertedHeight()).thenReturn(height);
-        return context;
-    }
 
     @Test
     public void shouldReturnTrueWhenThereIsNoOverlap() {
         // Given
-        PaddockLocationValidator validator = new PaddockLocationValidator();
         Paddock paddock = givenPaddockWithCoordinates(10, 10, 10, 10);
-        PaddockCreationContext context = givenPaddockCreatioNContextWithPaddocksListAndCoordinates(Arrays.asList(paddock), 25, 25, 20, 10);
+        PaddockCreationContext context = givenPaddockCreationContextWithPaddocksListAndCoordinates(Arrays.asList(paddock), 25, 25, 20, 10);
         // When
-        boolean result = validator.test(context);
+        PaddockCreationContext result = subject.apply(context);
         // Then
-        Assertions.assertThat(result).isTrue();
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).isEmpty();
     }
     
       @Test
     public void shouldReturnTrueWhenThereIsVerticalOverlap() {
         // Given
-        PaddockLocationValidator validator = new PaddockLocationValidator();
         Paddock paddock = givenPaddockWithCoordinates(10, 10, 10, 10);
-        PaddockCreationContext context = givenPaddockCreatioNContextWithPaddocksListAndCoordinates(Arrays.asList(paddock), 10, 25, 10, 10);
+        PaddockCreationContext context = givenPaddockCreationContextWithPaddocksListAndCoordinates(Arrays.asList(paddock), 10, 25, 10, 10);
         // When
-        boolean result = validator.test(context);
-        // Then
-        Assertions.assertThat(result).isTrue();
+          PaddockCreationContext result = subject.apply(context);
+          // Then
+          assertThat(result).isNotNull();
+          assertThat(result.getErrors()).isNotNull();
+          assertThat(result.getErrors()).isEmpty();
     }
     
     @Test
     public void shouldReturnTrueWhenThereIsHorizontalOverlap() {
         // Given
-        PaddockLocationValidator validator = new PaddockLocationValidator();
         Paddock paddock = givenPaddockWithCoordinates(10, 10, 10, 10);
-        PaddockCreationContext context = givenPaddockCreatioNContextWithPaddocksListAndCoordinates(Arrays.asList(paddock), 25, 10, 10, 10);
+        PaddockCreationContext context = givenPaddockCreationContextWithPaddocksListAndCoordinates(Arrays.asList(paddock), 25, 10, 10, 10);
         // When
-        boolean result = validator.test(context);
+        PaddockCreationContext result = subject.apply(context);
         // Then
-        Assertions.assertThat(result).isTrue();
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).isEmpty();
     }
     
     @Test
     public void shouldReturnFalseWhenThereIsBothHorizontalAndVerticalOverlap() {
         // Given
-        PaddockLocationValidator validator = new PaddockLocationValidator();
         Paddock paddock = givenPaddockWithCoordinates(10, 10, 10, 10);
-        PaddockCreationContext context = givenPaddockCreatioNContextWithPaddocksListAndCoordinates(Arrays.asList(paddock), 15, 15, 10, 10);
+        PaddockCreationContext context = givenPaddockCreationContextWithPaddocksListAndCoordinates(Arrays.asList(paddock), 15, 15, 10, 10);
         // When
-        boolean result = validator.test(context);
+        PaddockCreationContext result = subject.apply(context);
         // Then
-        Assertions.assertThat(result).isFalse();
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
+    }
+
+    private Paddock givenPaddockWithCoordinates(int x, int y, int width, int height) {
+        Paddock pad = mock(Paddock.class);
+        when(pad.getX()).thenReturn(x);
+        when(pad.getY()).thenReturn(y);
+        when(pad.getWidth()).thenReturn(width);
+        when(pad.getHeight()).thenReturn(height);
+        return pad;
+    }
+
+    private PaddockCreationContext givenPaddockCreationContextWithPaddocksListAndCoordinates(
+            List<Paddock> paddocks, int x, int y, int width, int height) {
+        PaddockCreationContext context = mock(PaddockCreationContext.class);
+        when(context.getPaddocksList()).thenReturn(paddocks);
+        when(context.getConvertedX()).thenReturn(x);
+        when(context.getConvertedY()).thenReturn(y);
+        when(context.getConvertedWidth()).thenReturn(width);
+        when(context.getConvertedHeight()).thenReturn(height);
+
+        when(context.getErrors()).thenCallRealMethod();
+        doCallRealMethod().when(context).setErrors(anyList());
+        context.setErrors(new ArrayList<>());
+
+        return context;
     }
 
 }

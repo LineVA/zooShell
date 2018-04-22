@@ -28,7 +28,7 @@ public class CreatePaddock implements Command {
                 cmd[2], cmd[3], cmd[4], cmd[5], cmd[6]);
         Optional<PaddockCreationContext> optionnal = Stream.of(context)
                 .map(valueValidator)
-                .filter(locationValidator)
+                .map(locationValidator)
                 .filter(t -> t.getErrors().isEmpty())
                 .map(controller)
                 .findFirst();
