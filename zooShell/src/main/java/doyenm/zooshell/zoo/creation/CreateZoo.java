@@ -8,6 +8,7 @@ import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.errorhandling.ErrorType;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
+import doyenm.zooshell.utils.DisplayingErrorsList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -65,13 +66,7 @@ public class CreateZoo implements Command {
         if (optional.isPresent()) {
             return new ReturnExec("ZOO_CREATION_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } else {
-            List<String> errors = context.getErrors()
-                    .stream()
-                    .map(BusinessError::getType)
-                    .map(ErrorType::toString)
-                    .collect(Collectors.toList());
-            return new ReturnExec(FormattingInList.formatList(errors),
-                    TypeReturn.ERROR, null);
+            return DisplayingErrorsList.displayErrorList(context.getErrors());
         }
     }
 

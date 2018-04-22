@@ -6,6 +6,7 @@ import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.commandline.utils.FormattingInList;
 import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.errorhandling.ErrorType;
+import doyenm.zooshell.utils.DisplayingErrorsList;
 import doyenm.zooshell.zoo.ZooContext;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
@@ -38,12 +39,7 @@ public class RenameZoo implements Command {
         if (optional.isPresent()) {
             return new ReturnExec("ZOO_CHANGE_NAME_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } else {
-            List<String> errors = context.getErrors()
-                    .stream()
-                    .map(BusinessError::getType)
-                    .map(ErrorType::toString)
-                    .collect(Collectors.toList());
-            return new ReturnExec(FormattingInList.formatList(errors), TypeReturn.ERROR);
+           return DisplayingErrorsList.displayErrorList(context.getErrors());
         }
     }
 
