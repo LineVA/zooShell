@@ -1,6 +1,7 @@
 package doyenm.zooshell.paddock;
 
 import doyenm.zooshell.commandline.utils.Couple;
+import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
@@ -23,6 +24,8 @@ public class PaddockContext {
 
     private final Zoo zoo;
     private final String paddock;
+
+    private List<BusinessError> errors = new ArrayList<>();
 
     private Paddock convertedPaddock;
 

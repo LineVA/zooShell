@@ -1,19 +1,26 @@
 package doyenm.zooshell.paddock.remove;
 
-import doyenm.zooshell.paddock.remove.RemovePaddock;
+import doyenm.zooshell.errorhandling.BusinessError;
+import doyenm.zooshell.errorhandling.ErrorType;
+import doyenm.zooshell.paddock.extension.*;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.paddock.PaddockContext;
-import doyenm.zooshell.paddock.remove.PaddockRemoveController;
 import doyenm.zooshell.model.Zoo;
-import doyenm.zooshell.paddock.remove.PaddockRemoveValidator;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -21,53 +28,60 @@ import static org.mockito.Matchers.any;
  */
 public class RemovePaddockExecuteTest {
 
-    private PaddockRemoveValidator givenValidator(boolean value) {
-        PaddockRemoveValidator validator = Mockito.mock(PaddockRemoveValidator.class);
-        Mockito.doReturn(value).when(validator).test(any(PaddockContext.class));
-        return validator;
-    }
+    private RemovePaddock subject;
 
-    private PaddockRemoveController givenController() {
-        PaddockRemoveController controller = Mockito.mock(PaddockRemoveController.class);
-        Mockito.when(controller.apply(any(PaddockContext.class))).thenAnswer(new Answer<PaddockContext>() {
+    private PaddockRemoveValidator validator;
+    private PaddockRemoveController controller;
+
+    private PaddockContext contextWithNoError;
+    private PaddockContext contextWithError;
+
+    String[] cmd = new String[4];
+
+    @Before
+    public void setUp(){
+        validator = mock(PaddockRemoveValidator.class);
+        controller = mock(PaddockRemoveController.class);
+        when(controller.apply(any(PaddockContext.class))).thenAnswer(new Answer<PaddockContext>() {
             @Override
             public PaddockContext answer(InvocationOnMock invocation) throws Throwable {
                 Object[] args = invocation.getArguments();
                 return (PaddockContext) args[0];
             }
         });
-        return controller;
+
+        contextWithNoError = mock(PaddockContext.class);
+        when(contextWithNoError.getErrors()).thenReturn(new ArrayList<>());
+
+        contextWithError = mock(PaddockContext.class);
+        when(contextWithError.getErrors()).thenReturn(Arrays.asList(new BusinessError(ErrorType.INCORRECT_LOCATION)));
+
+        subject = new RemovePaddock(validator, controller);
     }
 
     @Test
     public void shouldReturnAReturnExecWithTypeReturnToSuccessWhenTheCommandIsInSuccess() {
         // Given
-        PaddockRemoveValidator validator = givenValidator(true);
-        PaddockRemoveController controller = givenController();
-        RemovePaddock command = new RemovePaddock(validator, controller);
-        String[] cmd = new String[4];
+        when(validator.apply(any())).thenReturn(contextWithNoError);
         // When
-        ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));
+        ReturnExec result = subject.execute(cmd, Mockito.mock(Zoo.class));
         // Then
-        Assertions.assertThat(result).isNotNull();
-        Assertions.assertThat(result.getTypeReturn()).isEqualTo(TypeReturn.SUCCESS);
-        Assertions.assertThat(result.getMessage()).isNotEmpty();
-        Assertions.assertThat(result.getZoo()).isNotNull();
+        assertThat(result).isNotNull();
+        assertThat(result.getTypeReturn()).isEqualTo(TypeReturn.SUCCESS);
+        assertThat(result.getMessage()).isNotEmpty();
+        assertThat(result.getZoo()).isNotNull();
     }
     
      @Test
     public void shouldReturnAReturnExecWithTypeReturnToFailedWhenTheCommandIsFailed() {
         // Given
-        PaddockRemoveValidator validator = givenValidator(false);
-        PaddockRemoveController controller = givenController();
-        RemovePaddock command = new RemovePaddock(validator, controller);
-        String[] cmd = new String[4];
-        // When
-        ReturnExec result = command.execute(cmd, Mockito.mock(Zoo.class));
+         when(validator.apply(any())).thenReturn(contextWithError);
+         // When
+        ReturnExec result = subject.execute(cmd, Mockito.mock(Zoo.class));
         // Then
-        Assertions.assertThat(result).isNotNull();
-        Assertions.assertThat(result.getTypeReturn()).isEqualTo(TypeReturn.ERROR);
-        Assertions.assertThat(result.getMessage()).isNotEmpty();
-        Assertions.assertThat(result.getZoo()).isNull();
+        assertThat(result).isNotNull();
+        assertThat(result.getTypeReturn()).isEqualTo(TypeReturn.ERROR);
+        assertThat(result.getMessage()).isNotEmpty();
+        assertThat(result.getZoo()).isNull();
     }
 }

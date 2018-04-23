@@ -8,6 +8,7 @@ import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.paddock.remove.PaddockRemoveValidator;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -16,87 +17,101 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyList;
+import static org.mockito.Mockito.doCallRealMethod;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 /**
  *
  * @author doyenm
  */
 public class PaddockRemoveValidatorTestTest {
 
-    private Paddock givenPaddock() {
-        Paddock pad = Mockito.mock(Paddock.class);
-        return pad;
-    }
-
     private Animal givenAnimalWithPaddock(Paddock pad) {
-        Animal animal = Mockito.mock(Animal.class);
-        Mockito.when(animal.getPaddock()).thenReturn(pad);
+        Animal animal = mock(Animal.class);
+        when(animal.getPaddock()).thenReturn(pad);
         return animal;
     }
 
-    private PaddockContext givenContextWithZooAnimalsAndPad(
-            Zoo zoo, Collection<Animal> animals, Paddock pad) {
-        PaddockContext context = Mockito.mock(PaddockContext.class);
-        Mockito.when(context.getPaddock()).thenReturn(RandomStringUtils.random(10));
-        Mockito.when(context.getConvertedPaddock()).thenReturn(pad);
-        Mockito.when(context.getAnimals()).thenReturn(animals);
-        Mockito.when(context.getZoo()).thenReturn(zoo);
-        return context;
-    }
-
-    private Zoo givenZoo() {
-        Zoo zoo = Mockito.mock(Zoo.class);
-        return zoo;
-    }
-
     private FindPaddock givenFindWithPad(Paddock pad) {
-        FindPaddock find = Mockito.mock(FindPaddock.class);
+        FindPaddock find = mock(FindPaddock.class);
         Mockito.doReturn(pad).when(find).find(Mockito.any(Zoo.class), Mockito.anyString());
         return find;
+    }
+
+    private PaddockRemoveValidator subject;
+
+    private FindPaddock findPaddock;
+    private Paddock paddock;
+    private List<Animal> animals;
+    private Zoo zoo;
+
+    @Before
+    public void setUp(){
+        findPaddock = mock(FindPaddock.class);
+        paddock = mock(Paddock.class);
+        zoo = mock(Zoo.class);
+        subject = new PaddockRemoveValidator(findPaddock);
     }
 
     @Test
     public void shouldReturnTrueIfThePaddockExistsAndIsEmpty() {
         // Given
-        Paddock pad = givenPaddock();
-        Zoo zoo = givenZoo();
-        FindPaddock find = givenFindWithPad(pad);
-        List<Animal> animals = new ArrayList<>();
-        PaddockContext context = givenContextWithZooAnimalsAndPad(zoo, animals, pad);
-        PaddockRemoveValidator validator = new PaddockRemoveValidator(find);
+        when(findPaddock.find(any(), any())).thenReturn(paddock);
+        animals = new ArrayList<>();
+        PaddockContext context = givenContextWithZooAnimalsAndPad(zoo, animals, paddock);
         // When
-        boolean result = validator.test(context);
+        PaddockContext result = subject.apply(context);
         // Then
-        Assertions.assertThat(result).isTrue();
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).isEmpty();
     }
 
     @Test
     public void shouldReturnFalseIfThePaddockDoesNotExist() {
         // Given
-        Paddock pad = givenPaddock();
-        Zoo zoo = givenZoo();
-        FindPaddock find = givenFindWithPad(null);
-        List<Animal> animals = new ArrayList<>();
-        PaddockContext context = givenContextWithZooAnimalsAndPad(zoo, animals, pad);
-        PaddockRemoveValidator validator = new PaddockRemoveValidator(find);
+        when(findPaddock.find(any(), any())).thenReturn(null);
+        animals = new ArrayList<>();
+        PaddockContext context = givenContextWithZooAnimalsAndPad(zoo, animals, paddock);
         // When
-        boolean result = validator.test(context);
+        PaddockContext result = subject.apply(context);
         // Then
-        Assertions.assertThat(result).isFalse();
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
     }
 
     @Test
     public void shouldReturnFalseIfThePaddockExistsButIsNotEmpty() {
         // Given
-        Paddock pad = givenPaddock();
-        Zoo zoo = givenZoo();
-        FindPaddock find = givenFindWithPad(pad);
-        Animal animal = givenAnimalWithPaddock(pad);
+        when(findPaddock.find(any(), any())).thenReturn(paddock);
+        Animal animal = givenAnimalWithPaddock(paddock);
         List<Animal> animals = Arrays.asList(animal);
-        PaddockContext context = givenContextWithZooAnimalsAndPad(zoo, animals, pad);
-        PaddockRemoveValidator validator = new PaddockRemoveValidator(find);
+        PaddockContext context = givenContextWithZooAnimalsAndPad(zoo, animals, paddock);
         // When
-        boolean result = validator.test(context);
+        PaddockContext result = subject.apply(context);
         // Then
-        Assertions.assertThat(result).isFalse();
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
+    }
+
+    private PaddockContext givenContextWithZooAnimalsAndPad(
+            Zoo zoo, Collection<Animal> animals, Paddock pad) {
+        PaddockContext context = mock(PaddockContext.class);
+        when(context.getPaddock()).thenReturn(RandomStringUtils.random(10));
+        when(context.getConvertedPaddock()).thenReturn(pad);
+        when(context.getAnimals()).thenReturn(animals);
+        when(context.getZoo()).thenReturn(zoo);
+
+        when(context.getErrors()).thenCallRealMethod();
+        doCallRealMethod().when(context).setErrors(anyList());
+        context.setErrors(new ArrayList<>());
+
+        return context;
     }
 }

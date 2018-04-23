@@ -6,5 +6,6 @@ public enum ErrorType {
     INCORRECT_LOCATION,
     INCORRECT_NAME,
     NO_ENTRY,
+    NOT_EMPTY_PADDOCK,
     UNKNOWN_PADDOCK;
 }
