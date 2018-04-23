@@ -1,10 +1,11 @@
 package doyenm.zooshell.paddock.extension;
 
-import doyenm.zooshell.paddock.extension.PaddockExtensionCreationContext;
 import doyenm.zooshell.common.context.OverlapContext;
 import doyenm.zooshell.common.predicates.CanOverlapPredicate;
+import doyenm.zooshell.errorhandling.BusinessError;
+import doyenm.zooshell.errorhandling.ErrorType;
 
-import java.util.function.Predicate;
+import java.util.function.Function;
 
 import static java.util.stream.Collectors.toList;
 
@@ -12,13 +13,17 @@ import static java.util.stream.Collectors.toList;
  *
  * @author doyenm
  */
-public class PaddockExtensionLocationValidator implements Predicate<PaddockExtensionCreationContext> {
+public class PaddockExtensionLocationValidator
+        implements Function<PaddockExtensionCreationContext, PaddockExtensionCreationContext> {
 
     CanOverlapPredicate canOverlapPredicate = new CanOverlapPredicate();
 
     @Override
-    public boolean test(PaddockExtensionCreationContext t) {
-        return !this.overlapWithOthers(t) && this.overlapWithYourself(t);
+    public PaddockExtensionCreationContext apply(PaddockExtensionCreationContext t) {
+         if(this.overlapWithOthers(t) || !this.overlapWithYourself(t)){
+             t.getErrors().add(new BusinessError(ErrorType.INCORRECT_LOCATION));
+         }
+         return t;
     }
 
     private boolean overlapWithOthers(PaddockExtensionCreationContext t){
