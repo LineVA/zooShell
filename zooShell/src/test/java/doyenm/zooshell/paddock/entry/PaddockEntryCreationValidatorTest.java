@@ -64,7 +64,6 @@ public class PaddockEntryCreationValidatorTest {
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
-        assertThat(result.getErrors()).isEmpty();
-        assertThat(result.getConvertedPaddock()).isNotNull();
+        assertThat(result.getErrors()).hasSize(1);
     }
 }
