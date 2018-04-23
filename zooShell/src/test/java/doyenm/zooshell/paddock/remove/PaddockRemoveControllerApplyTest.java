@@ -1,4 +1,4 @@
-package doyenm.zooshell.controller.paddockcontroller;
+package doyenm.zooshell.paddock.remove;
 
 import doyenm.zooshell.paddock.PaddockContext;
 import doyenm.zooshell.model.Paddock;

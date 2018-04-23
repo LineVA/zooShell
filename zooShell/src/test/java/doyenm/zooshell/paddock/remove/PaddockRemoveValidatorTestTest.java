@@ -1,4 +1,4 @@
-package doyenm.zooshell.validator;
+package doyenm.zooshell.paddock.remove;
 
 import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.paddock.PaddockContext;
