@@ -54,4 +54,17 @@ public class PaddockEntryCreationValidatorTest {
         assertThat(result.getErrors()).isEmpty();
         assertThat(result.getConvertedPaddock()).isNotNull();
     }
+
+    @Test
+    public void shouldReturnOneErrorWhenPaddockIsUnknown(){
+        // Given
+        when(findPaddock.find(any(), anyString())).thenReturn(null);
+        // When
+        PaddockEntryCreationContext result = subject.apply(context);
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result.getErrors()).isNotNull();
+        assertThat(result.getErrors()).isEmpty();
+        assertThat(result.getConvertedPaddock()).isNotNull();
+    }
 }
