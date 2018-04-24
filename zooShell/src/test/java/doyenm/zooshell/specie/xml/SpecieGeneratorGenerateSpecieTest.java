@@ -1,10 +1,12 @@
 package doyenm.zooshell.specie.xml;
 
 import doyenm.zooshell.model.Specie;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import java.util.Map;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
+
 
 /**
  *
@@ -17,9 +19,9 @@ public class SpecieGeneratorGenerateSpecieTest {
         // Given
         SpecieGenerator generator = new SpecieGenerator();
         // When
-        Map<String, Specie> species = generator.generateSpecie("src/main/resources/doyenm/zooshell/species");
+        Map<String, Specie> species = generator.generateSpecie("src/test/resources/doyenm/zooshell/species");
         // Then
-        Assertions.assertThat(species).isNotNull();
-        Assertions.assertThat(species.size()).isEqualTo(1);
+        assertThat(species).isNotNull();
+        assertThat(species.size()).isEqualTo(1);
     }
 }

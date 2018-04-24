@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specie>
+    <names>
+        <name>South American coati</name>
+        <additionalNames>
+            <name>Ring-tailed coati</name>
+        </additionalNames>
+        <scientificName>Nasua nasua</scientificName>
+    </names>
+    <uicn>LEAST_CONCERN</uicn>
+    <family>LEMURIDAE</family>
+    <reproductionAttributes>
+        <femaleMaturityAge>24</femaleMaturityAge>
+        <maleMaturityAge>24</maleMaturityAge>
+        <frequency>1.0</frequency>
+        <litterSize>5</litterSize>
+        <gestationDuration>2</gestationDuration>
+        <weaningAge>4</weaningAge>
+    </reproductionAttributes>
+    <lifespanAttributes>
+        <femaleLifespan>90</femaleLifespan>
+        <maleLifespan>90</maleLifespan>
+    </lifespanAttributes>
+    <biomes>
+        <biome>01</biome>
+        <biome>07</biome>
+    </biomes>
+    <arrangements>
+        <arrangement>CLIMBING_STRUCTURE</arrangement>
+    </arrangements>
+    <diets>
+        <diet>OMNIVOROUS</diet>
+    </diets>
+    <foodAttributes>
+        <quantity>0.225</quantity>
+        <fastDays>0</fastDays>
+    </foodAttributes>
+    <territoryAttributes>
+        <territorySizeForOneGroup>200</territorySizeForOneGroup>
+    </territoryAttributes>
+    <socialAttributes>
+        <individualsPerGroup>7</individualsPerGroup>
+    </socialAttributes>
+    <sizeAttributes>
+        <femaleWeight>4.5</femaleWeight>
+        <femaleWeight>4.5</femaleWeight>
+    </sizeAttributes>
+    <characterAttributes>
+        <agressvity>0.0</agressvity>
+        <cohabitationFactor>0.1</cohabitationFactor>
+    </characterAttributes>
+</specie>
