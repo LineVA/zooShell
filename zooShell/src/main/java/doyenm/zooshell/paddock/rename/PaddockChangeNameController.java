@@ -1,6 +1,5 @@
 package doyenm.zooshell.paddock.rename;
 
-import doyenm.zooshell.paddock.rename.PaddockChangeNameContext;
 import doyenm.zooshell.model.Paddock;
 
 import java.util.function.Function;
@@ -17,8 +16,8 @@ public class PaddockChangeNameController
         PaddockChangeNameContext context = t;
         Paddock pad = context.getConvertedPaddock();
         pad.setName(context.getNewName());
-        context.getZoo().getPaddocks().remove(context.getCurrentName());
-        context.getZoo().getPaddocks().put(pad.getName(), pad);
+        context.getZoo().getPaddocks().remove(context.getCurrentName().toUpperCase());
+        context.getZoo().getPaddocks().put(pad.getName().toUpperCase(), pad);
         return context;
     }
 
