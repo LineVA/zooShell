@@ -50,14 +50,12 @@ public class PaddockRemoveControllerApplyTest {
         keeperName = RandomStringUtils.randomAlphabetic(10);
         animalKeeper = mock(AnimalKeeper.class);
         keeperOccupation = mock(TimedOccupation.class);
-        when(keeperOccupation.getPaddock()).thenReturn(paddock);
         when(animalKeeper.getOccupations()).thenReturn(Lists.newArrayList(keeperOccupation));
         when(animalKeeper.getName()).thenReturn(keeperName);
         when(zoo.getKeepers()).thenReturn(ImmutableMap.<String, AnimalKeeper>builder().put(keeperName.toUpperCase(), animalKeeper).build());
 
         handymanName = RandomStringUtils.randomAlphabetic(10);
         handyman = mock(Handyman.class);
-        when(handyman.getAffectations()).thenReturn(Lists.newArrayList(paddock));
         when(handyman.getName()).thenReturn(handymanName);
         when(zoo.getHandymen()).thenReturn(ImmutableMap.<String, Handyman>builder().put(handymanName.toUpperCase(), handyman).build());
 
@@ -75,6 +73,7 @@ public class PaddockRemoveControllerApplyTest {
         String name2 = RandomStringUtils.randomAlphabetic(10);
         givenZooWithNames(paddockName, name2);
         when(keeperOccupation.getPaddock()).thenReturn(paddock);
+        when(handyman.getAffectations()).thenReturn(Lists.newArrayList(paddock));
         // When
         PaddockContext actualContext = subject.apply(context);
         // Then
@@ -96,6 +95,36 @@ public class PaddockRemoveControllerApplyTest {
         assertThat(actualHandyman).isNotNull();
         assertThat(actualHandyman.getAffectations()).isNotNull();
         assertThat(actualHandyman.getAffectations()).isEmpty();
+    }
+
+    @Test
+    public void shouldRemoveThePaddockOfTheMapAndNoOccupationOfTheKeepersAndTheHandymenIfTheAreNotAffectedToThisPaddock() {
+        // Given
+        String name2 = RandomStringUtils.randomAlphabetic(10);
+        givenZooWithNames(paddockName, name2);
+        when(keeperOccupation.getPaddock()).thenReturn(mock(Paddock.class));
+        when(handyman.getAffectations()).thenReturn(Lists.newArrayList(mock(Paddock.class)));
+        // When
+        PaddockContext actualContext = subject.apply(context);
+        // Then
+        assertThat(paddockName).isNotEqualToIgnoringCase(name2);
+        assertThat(actualContext).isNotNull();
+        assertThat(actualContext.getZoo()).isNotNull();
+        assertThat(actualContext.getZoo().getPaddocks()).isNotNull();
+        assertThat(actualContext.getZoo().getPaddocks()).hasSize(1);
+        assertThat(actualContext.getZoo().getPaddocks().containsKey(paddockName)).isFalse();
+
+        assertThat(actualContext.getZoo().getKeepers()).isNotNull();
+        AnimalKeeper actualKeeper = actualContext.getZoo().getKeepers().get(keeperName.toUpperCase());
+        assertThat(actualKeeper).isNotNull();
+        assertThat(actualKeeper.getOccupations()).isNotNull();
+        assertThat(actualKeeper.getOccupations()).hasSize(1);
+
+        assertThat(actualContext.getZoo().getHandymen()).isNotNull();
+        Handyman actualHandyman = actualContext.getZoo().getHandymen().get(handymanName.toUpperCase());
+        assertThat(actualHandyman).isNotNull();
+        assertThat(actualHandyman.getAffectations()).isNotNull();
+        assertThat(actualHandyman.getAffectations()).hasSize(1);
     }
 
     private void givenZooWithNames(String... names) {
