@@ -1,4 +1,4 @@
-package doyenm.zooshell.context;
+package doyenm.zooshell.paddock.rename;
 
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.paddock.rename.PaddockChangeNameContext;

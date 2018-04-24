@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.commandLineImpl.paddock;
+package doyenm.zooshell.paddock.rename;
 
 import doyenm.zooshell.paddock.rename.RenamePaddock;
 import org.apache.commons.lang.RandomStringUtils;
