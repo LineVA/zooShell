@@ -3,7 +3,6 @@ package doyenm.zooshell.paddock.extension;
 import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.model.Coordinates;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -43,7 +42,7 @@ public class PaddockExtensionCreationContext {
         this.convertedX = Integer.parseInt(this.x);
         this.convertedY = Integer.parseInt(this.y);
     }
-    
+
     public List<Coordinates> getCoordinatesListExceptYours(){
         Collection<Paddock> paddocksCollection = this.getZoo().getPaddocks().values();
         paddocksCollection.remove(this.getConvertedPaddock());
