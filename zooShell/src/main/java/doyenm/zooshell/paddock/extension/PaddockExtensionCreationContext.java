@@ -43,20 +43,6 @@ public class PaddockExtensionCreationContext {
         this.convertedX = Integer.parseInt(this.x);
         this.convertedY = Integer.parseInt(this.y);
     }
-
-    public void build() {
-        Position position = Position.builder()
-                .x(this.getConvertedX())
-                .y(this.getConvertedY())
-                .build();
-        Coordinates coordinates = Coordinates.builder()
-                .height(this.getConvertedHeight())
-                .width(this.getConvertedWidth())
-                .position(position)
-                .build();
-        this.getConvertedPaddock().getExtensions().add(coordinates);
-        this.getZoo().getPaddocks().replace(this.getPaddock(), this.getConvertedPaddock());
-    }
     
     public List<Coordinates> getCoordinatesListExceptYours(){
         Collection<Paddock> paddocksCollection = this.getZoo().getPaddocks().values();
