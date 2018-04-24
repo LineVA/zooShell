@@ -2,7 +2,11 @@ package doyenm.zooshell.model.utils;
 
 import doyenm.zooshell.model.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -13,13 +17,15 @@ import java.util.stream.Stream;
 @Slf4j
 public class CohabitationFactorHandler {
 
+    private final List<Diet> aggressiveDiets = Arrays.asList(Diet.CARNIVOROUS, Diet.OMNIVOROUS);
+
     public double compute(double agressivity, Specie specie, SizeAttributes sizeAttributes, Sex sex) {
         double cohabitation = 0.0;
         double weight = sizeAttributes.getWeigthGivenSex(sex);
 
         // Cohabitation = (
         //    weight/ 1 tonne
-        //    + 1 if carnivore
+        //    + 1 if aggressive diet
         //    + agressivity
         //        + specie_agresivity)
         //    / 4
@@ -29,7 +35,9 @@ public class CohabitationFactorHandler {
                     return t;
                 })
                 .map(t -> {
-                    if (specie.getDiets().getDiets().contains(Diet.CARNIVOROUS)) {
+                   boolean hasAggressiveDiets = !CollectionUtils
+                           .intersection(aggressiveDiets, specie.getDiets().getDiets()).isEmpty();
+                    if(hasAggressiveDiets){
                         t += 1.0;
                     }
                     return t;
