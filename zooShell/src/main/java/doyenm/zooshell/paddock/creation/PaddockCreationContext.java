@@ -1,5 +1,6 @@
 package doyenm.zooshell.paddock.creation;
 
+import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.PaddockType;
@@ -30,6 +31,8 @@ public class PaddockCreationContext {
     private final String y;
     private final String width;
     private final String height;
+
+    private List<BusinessError> errors = new ArrayList<>();
 
     private int convertedX;
     private int convertedY;

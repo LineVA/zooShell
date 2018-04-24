@@ -1,20 +1,21 @@
 package doyenm.zooshell.zoo.creation;
 
-import doyenm.zooshell.zoo.creation.ZooCreationContext;
+import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;
+import doyenm.zooshell.errorhandling.ErrorType;
 import lombok.RequiredArgsConstructor;
 
 import java.util.HashSet;
-import java.util.function.Predicate;
+import java.util.function.Function;
 
 /**
  *
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class ZooCreationValidator implements Predicate<ZooCreationContext> {
+public class ZooCreationValidator implements Function<ZooCreationContext, ZooCreationContext> {
 
     private final IntegerValuePredicates integerValuePredicates;
     private final NameValidator nameValidator;
@@ -26,26 +27,54 @@ public class ZooCreationValidator implements Predicate<ZooCreationContext> {
     private final int maxSpeed;
 
     @Override
-    public boolean test(ZooCreationContext t) {
+    public ZooCreationContext apply(ZooCreationContext t) {
         ZooCreationContext context = t;
         context.convert();
-        boolean result
-                = this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedWidth(), minWidth);
-        result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedHeight(), minHeight);
-        int min = Math.min(context.getConvertedHeight(), context.getConvertedWidth());
-        result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedHorizon(), minHorizon);
-        result &= this.integerValuePredicates.mustBeLowerOrEqualsThan(context.getConvertedHorizon(), min);
-        result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedSpeed(), minSpeed);
-        result &= this.integerValuePredicates.mustBeLowerOrEqualsThan(context.getConvertedSpeed(), maxSpeed);
-        result &= testName(context.getName());
-        return result;
+        testDimensions(context);
+        testHorizon(context);
+        testSpeed(context);
+        testName(context);
+        return context;
     }
-    
-    private boolean testName(String name){
+
+    private void testDimensions(ZooCreationContext context){
+        boolean isCorrect
+                = this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedWidth(), minWidth);
+        isCorrect &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedHeight(), minHeight);
+        if(!isCorrect){
+            context.getErrors().add(new BusinessError(ErrorType.INCORRECT_DIMENSIONS));
+        }
+    }
+
+    private void testHorizon(ZooCreationContext context){
+        boolean isCorrect = true;
+        int max = Math.min(context.getConvertedHeight(), context.getConvertedWidth());
+        isCorrect &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedHorizon(), minHorizon);
+        isCorrect &= this.integerValuePredicates.mustBeLowerOrEqualsThan(context.getConvertedHorizon(), max);
+        if(!isCorrect){
+            context.getErrors().add(new BusinessError(ErrorType.INCORRECT_HORIZON));
+        }
+    }
+
+    private void testSpeed(ZooCreationContext context){
+        boolean isCorrect = true;
+        isCorrect &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedSpeed(), minSpeed);
+        isCorrect &= this.integerValuePredicates.mustBeLowerOrEqualsThan(context.getConvertedSpeed(), maxSpeed);
+        if(!isCorrect){
+            context.getErrors().add(new BusinessError(ErrorType.INCORRECT_HORIZON));
+        }
+    }
+
+
+    private ZooCreationContext testName(ZooCreationContext context){
         NameDto dto = NameDto.builder()
-                .testing(name)
+                .testing(context.getName())
                 .existingNames(new HashSet<>())
                 .build();
-        return nameValidator.test(dto);
+        boolean result = nameValidator.test(dto);
+        if(!result){
+            context.getErrors().add(new BusinessError(ErrorType.INCORRECT_NAME));
+        }
+        return context;
     }
 }

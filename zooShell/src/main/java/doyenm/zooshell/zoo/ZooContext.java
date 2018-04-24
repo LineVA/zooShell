@@ -1,6 +1,7 @@
 package doyenm.zooshell.zoo;
 
 import doyenm.zooshell.commandline.utils.Couple;
+import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.model.Zoo;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,9 @@ public class ZooContext {
     private boolean detailed;
     private List<Couple> couples = new ArrayList<>();
     private String saveName;
+
+    @Setter
+    private List<BusinessError> errors = new ArrayList<>();
 
     public ZooContext(Zoo zoo, String saveName) {
         this.zoo = zoo;

@@ -1,6 +1,6 @@
 package doyenm.zooshell.paddock.entry;
 
-import doyenm.zooshell.paddock.entry.PaddockEntryCreationContext;
+import doyenm.zooshell.model.Position;
 
 import java.util.function.Function;
 
@@ -14,7 +14,9 @@ public class PaddockEntryCreationController
     @Override
     public PaddockEntryCreationContext apply(PaddockEntryCreationContext t) {
         PaddockEntryCreationContext context = t;
-        context.build();
+        Position entry = new Position(t.getConvertedX(), t.getConvertedY());
+        t.getConvertedPaddock().setEntry(entry);
+        t.getZoo().getPaddocks().replace(t.getPaddock(), t.getConvertedPaddock());
         return context;
     }
 

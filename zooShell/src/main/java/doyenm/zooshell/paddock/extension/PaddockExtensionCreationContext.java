@@ -1,8 +1,8 @@
 package doyenm.zooshell.paddock.extension;
 
+import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.model.Coordinates;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.Position;
 import doyenm.zooshell.model.Zoo;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +28,8 @@ public class PaddockExtensionCreationContext {
     private final String width;
     private final String height;
 
+    private List<BusinessError> errors = new ArrayList<>();
+
     private Paddock convertedPaddock;
     private int convertedX;
     private int convertedY;
@@ -41,20 +43,6 @@ public class PaddockExtensionCreationContext {
         this.convertedY = Integer.parseInt(this.y);
     }
 
-    public void build() {
-        Position position = Position.builder()
-                .x(this.getConvertedX())
-                .y(this.getConvertedY())
-                .build();
-        Coordinates coordinates = Coordinates.builder()
-                .height(this.getConvertedHeight())
-                .width(this.getConvertedWidth())
-                .position(position)
-                .build();
-        this.getConvertedPaddock().getExtensions().add(coordinates);
-        this.getZoo().getPaddocks().replace(this.getPaddock(), this.getConvertedPaddock());
-    }
-    
     public List<Coordinates> getCoordinatesListExceptYours(){
         Collection<Paddock> paddocksCollection = this.getZoo().getPaddocks().values();
         paddocksCollection.remove(this.getConvertedPaddock());

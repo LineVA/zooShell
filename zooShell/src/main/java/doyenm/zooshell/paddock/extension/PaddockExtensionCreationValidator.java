@@ -1,8 +1,12 @@
 package doyenm.zooshell.paddock.extension;
 
 import doyenm.zooshell.common.FindPaddock;
+import doyenm.zooshell.errorhandling.BusinessError;
+import doyenm.zooshell.errorhandling.ErrorType;
+import doyenm.zooshell.model.Paddock;
 import lombok.RequiredArgsConstructor;
 
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -11,22 +15,27 @@ import java.util.function.Predicate;
  */
 @RequiredArgsConstructor
 public class PaddockExtensionCreationValidator
-        implements Predicate<PaddockExtensionCreationContext> {
+        implements Function<PaddockExtensionCreationContext, PaddockExtensionCreationContext> {
 
     private final FindPaddock findPaddock;
 
     @Override
-    public boolean test(PaddockExtensionCreationContext t) {
+    public PaddockExtensionCreationContext apply(PaddockExtensionCreationContext t) {
         t.convert();
         retrievePaddock(t);
-        if (t.getConvertedPaddock() != null) {
-            return t.getConvertedPaddock().getEntry() != null;
-        }
-        return false;
+        return t;
     }
 
     private PaddockExtensionCreationContext retrievePaddock(PaddockExtensionCreationContext t) {
-        t.setConvertedPaddock(findPaddock.find(t.getZoo(), t.getPaddock()));
+        Paddock pad = findPaddock.find(t.getZoo(), t.getPaddock());
+        if(pad == null){
+            t.getErrors().add(new BusinessError(ErrorType.UNKNOWN_PADDOCK));
+        } else {
+            if(pad.getEntry() == null){
+                t.getErrors().add(new BusinessError((ErrorType.NO_ENTRY)));
+            }
+            t.setConvertedPaddock(pad);
+        }
         return t;
     }
 

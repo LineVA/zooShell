@@ -24,11 +24,11 @@ public class PaddockRemoveController implements Function<PaddockContext, Paddock
         context.getZoo().getKeepers().values()
                 .stream()
                 .forEach(keeper -> {
-                    List<TimedOccupation> occutpationsToDelete = keeper.getOccupations()
+                    List<TimedOccupation> occupationsToDelete = keeper.getOccupations()
                             .stream()
                             .filter(occ -> occ.getPaddock().equals(pad))
                             .collect(Collectors.toList());
-                    context.getZoo().getKeepers().get(keeper.getName().toUpperCase()).getOccupations().removeAll(occutpationsToDelete);
+                    context.getZoo().getKeepers().get(keeper.getName().toUpperCase()).getOccupations().removeAll(occupationsToDelete);
                 });
         // Delete the occupations of the handymen in this paddock
         context.getZoo().getHandymen().values()

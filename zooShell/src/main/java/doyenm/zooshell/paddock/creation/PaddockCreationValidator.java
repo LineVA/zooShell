@@ -1,13 +1,13 @@
 package doyenm.zooshell.paddock.creation;
 
-import doyenm.zooshell.paddock.creation.PaddockCreationContext;
 import doyenm.zooshell.common.name.NameDto;
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;
+import doyenm.zooshell.errorhandling.BusinessError;
+import doyenm.zooshell.errorhandling.ErrorType;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Set;
-import java.util.function.Predicate;
+import java.util.function.Function;
 
 /**
  *
@@ -15,7 +15,7 @@ import java.util.function.Predicate;
  */
 @RequiredArgsConstructor
 public class PaddockCreationValidator
-        implements Predicate<PaddockCreationContext> {
+        implements Function<PaddockCreationContext, PaddockCreationContext> {
 
     private final NameValidator nameValidator;
     private final IntegerValuePredicates integerValuePredicates;
@@ -24,21 +24,32 @@ public class PaddockCreationValidator
     private final int minWidth;
 
     @Override
-    public boolean test(PaddockCreationContext t) {
+    public PaddockCreationContext apply(PaddockCreationContext t) {
         PaddockCreationContext context = t;
         context.convert();
-        boolean result;
-        result = testName(context.getName(), context.getPaddocks().keySet());
-        result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedHeight(), minHeight);
-        result &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedWidth(), minWidth);
-        return result;
+        testName(context);
+        testDimensions(context);
+        return context;
+    }
+
+    private void testDimensions(PaddockCreationContext context){
+        boolean isCorrect
+                = this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedWidth(), minWidth);
+        isCorrect &= this.integerValuePredicates.mustBeGreaterOrEqualsThan(context.getConvertedHeight(), minHeight);
+        if(!isCorrect){
+            context.getErrors().add(new BusinessError(ErrorType.INCORRECT_DIMENSIONS));
+        }
     }
     
-    private boolean testName(String name, Set<String> otherNames){
+    private PaddockCreationContext testName(PaddockCreationContext context){
         NameDto dto = NameDto.builder()
-                .testing(name)
-                .existingNames(otherNames)
+                .testing(context.getName())
+                .existingNames(context.getPaddocksNameSet())
                 .build();
-        return nameValidator.test(dto);
+        boolean result = nameValidator.test(dto);
+        if(!result){
+            context.getErrors().add(new BusinessError(ErrorType.INCORRECT_NAME));
+        }
+        return context;
     }
 }
