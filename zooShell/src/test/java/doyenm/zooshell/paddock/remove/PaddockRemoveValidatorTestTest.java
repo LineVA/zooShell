@@ -30,18 +30,6 @@ import static org.mockito.Mockito.when;
  */
 public class PaddockRemoveValidatorTestTest {
 
-    private Animal givenAnimalWithPaddock(Paddock pad) {
-        Animal animal = mock(Animal.class);
-        when(animal.getPaddock()).thenReturn(pad);
-        return animal;
-    }
-
-    private FindPaddock givenFindWithPad(Paddock pad) {
-        FindPaddock find = mock(FindPaddock.class);
-        Mockito.doReturn(pad).when(find).find(Mockito.any(Zoo.class), Mockito.anyString());
-        return find;
-    }
-
     private PaddockRemoveValidator subject;
 
     private FindPaddock findPaddock;
@@ -113,5 +101,11 @@ public class PaddockRemoveValidatorTestTest {
         context.setErrors(new ArrayList<>());
 
         return context;
+    }
+
+    private Animal givenAnimalWithPaddock(Paddock pad) {
+        Animal animal = mock(Animal.class);
+        when(animal.getPaddock()).thenReturn(pad);
+        return animal;
     }
 }
