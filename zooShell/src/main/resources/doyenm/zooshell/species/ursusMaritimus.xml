@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specie>
+    <names>
+        <name>Polar bear</name>
+        <additionalNames>
+            <name>White bear</name>
+        </additionalNames>
+        <scientificName>Usrus maritimus</scientificName>
+    </names>
+    <uicn>VULNERABLE</uicn>
+    <family>URSIDAE</family>
+    <reproductionAttributes>
+        <femaleMaturityAge>60</femaleMaturityAge>
+        <maleMaturityAge>60</maleMaturityAge>
+        <frequency>1.0</frequency>
+        <litterSize>2</litterSize>
+        <gestationDuration>8</gestationDuration>
+        <weaningAge>30</weaningAge>
+    </reproductionAttributes>
+    <lifespanAttributes>
+        <femaleLifespan>330</femaleLifespan>
+        <maleLifespan>330</maleLifespan>
+    </lifespanAttributes>
+    <biomes>
+        <biome>TUNDRA</biome>
+    </biomes>
+    <arrangements>
+        <arrangement>CLIMBING_STRUCTURE</arrangement>
+        <arrangement>POOL</arrangement>
+    </arrangements>
+    <diets>
+        <diet>CARNIVOROUS</diet>
+    </diets>
+    <foodAttributes>
+        <quantity>2.62</quantity>
+        <fastDays>0</fastDays>
+    </foodAttributes>
+    <territoryAttributes>
+        <territorySizeForOneGroup>260</territorySizeForOneGroup>
+    </territoryAttributes>
+    <socialAttributes>
+        <individualsPerGroup>1</individualsPerGroup>
+    </socialAttributes>
+    <sizeAttributes>
+        <femaleWeight>225</femaleWeight>
+        <maleWeight>475</maleWeight>
+    </sizeAttributes>
+    <characterAttributes>
+        <agressvity>0.5</agressvity>
+        <cohabitationFactor>0.0</cohabitationFactor>
+    </characterAttributes>
+</specie>
