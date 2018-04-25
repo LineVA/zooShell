@@ -1,6 +1,5 @@
 package doyenm.zooshell.paddock.facilities;
 
-import doyenm.zooshell.paddock.facilities.UpdatePaddockArrangementContext;
 import java.util.function.Function;
 
 /**
