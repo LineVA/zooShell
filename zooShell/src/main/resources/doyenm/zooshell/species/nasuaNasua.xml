@@ -7,8 +7,8 @@
         </additionalNames>
         <scientificName>Nasua nasua</scientificName>
     </names>
-    <uicn>LEAST_CONCERN</uicn>
-    <family>LEMURIDAE</family>
+    <uicn>LEAST_CONCERNED</uicn>
+    <family>PROCYONIDAE</family>
     <reproductionAttributes>
         <femaleMaturityAge>24</femaleMaturityAge>
         <maleMaturityAge>24</maleMaturityAge>
@@ -22,8 +22,8 @@
         <maleLifespan>90</maleLifespan>
     </lifespanAttributes>
     <biomes>
-        <biome>01</biome>
-        <biome>07</biome>
+        <biome>RAINFOREST</biome>
+        <biome>TROPICAL_GRASSLANDS</biome>
     </biomes>
     <arrangements>
         <arrangement>CLIMBING_STRUCTURE</arrangement>
@@ -43,7 +43,7 @@
     </socialAttributes>
     <sizeAttributes>
         <femaleWeight>4.5</femaleWeight>
-        <femaleWeight>4.5</femaleWeight>
+        <maleWeight>4.5</maleWeight>
     </sizeAttributes>
     <characterAttributes>
         <agressvity>0.0</agressvity>

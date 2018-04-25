@@ -18,7 +18,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public enum Family {
 
     UNKNOWN(0),
-    LEMURIDAE(1);
+    LEMURIDAE(1),
+    PROCYONIDAE(2),
+    URSIDAE(3);
 
     int id;
 
