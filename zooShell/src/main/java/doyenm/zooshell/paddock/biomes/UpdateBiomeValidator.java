@@ -1,38 +1,47 @@
 package doyenm.zooshell.paddock.biomes;
 
-import doyenm.zooshell.model.Paddock;
+import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.common.context.FindingBiomeContext;
 import doyenm.zooshell.common.function.FindingBiomeFunction;
-import doyenm.zooshell.common.FindPaddock;
+import doyenm.zooshell.errorhandling.BusinessError;
+import doyenm.zooshell.errorhandling.ErrorType;
+import doyenm.zooshell.model.Biome;
+import doyenm.zooshell.model.Paddock;
 import lombok.RequiredArgsConstructor;
 
-import java.util.function.Predicate;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class UpdateBiomeValidator implements Predicate<UpdateBiomeContext> {
+public class UpdateBiomeValidator
+        implements Function<UpdateBiomeContext, UpdateBiomeContext> {
 
     private final FindPaddock findPaddock;
     private final FindingBiomeFunction findingBiomeFunction;
 
     @Override
-    public boolean test(UpdateBiomeContext t) {
+    public UpdateBiomeContext apply(UpdateBiomeContext t) {
         UpdateBiomeContext context = t;
         FindingBiomeContext findingBiomeContext = new FindingBiomeContext(context.getBiome());
         Paddock pad = findPaddock.find(context.getZoo(), context.getPaddock());
         if (pad == null) {
-            return false;
+            context.getErrors().add(new BusinessError(ErrorType.UNKNOWN_PADDOCK));
         }
         context.setConvertedPaddock(pad);
-        context.setConvertedBiome(Stream.of(findingBiomeContext)
+        Biome convertedBiome = Stream.of(findingBiomeContext)
                 .map(findingBiomeFunction)
+                .filter(Objects::nonNull)
                 .findFirst()
-                .orElseGet(null)
-                .getConvertedBiome());
-       return context.getConvertedBiome() != null;
+                .orElse(null);
+        if (convertedBiome == null) {
+            context.getErrors().add(new BusinessError(ErrorType.UNKNOWN_BIOME));
+        } else {
+            context.setConvertedBiome(convertedBiome);
+        }
+        return context;
     }
 }

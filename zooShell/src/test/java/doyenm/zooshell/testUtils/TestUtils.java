@@ -1,6 +1,7 @@
 package doyenm.zooshell.testUtils;
 
 import doyenm.zooshell.errorhandling.ErrorType;
+import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.PaddockArrangement;
 
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.Random;
 
 public class TestUtils {
 
+   private final static Random random = new Random();
+
     public static PaddockArrangement getPaddockArrangementExcluding(PaddockArrangement... arrangements) {
         List<PaddockArrangement> excludings = Arrays.asList(arrangements);
         List<PaddockArrangement> includings = new ArrayList<>();
@@ -18,13 +21,26 @@ public class TestUtils {
                 includings.add(input);
             }
         }
-        Random random = new Random();
         return includings.get(random.nextInt(includings.size()));
     }
 
     public static PaddockArrangement getPaddockArrangement() {
-        Random random = new Random();
         return PaddockArrangement.values()[random.nextInt(PaddockArrangement.values().length)];
+    }
+
+    public static Biome getBiomeExcluding(Biome... biomes) {
+        List<Biome> excludings = Arrays.asList(biomes);
+        List<Biome> includings = new ArrayList<>();
+        for(Biome input : Biome.values()){
+            if(!excludings.contains(input)){
+                includings.add(input);
+            }
+        }
+        return includings.get(random.nextInt(includings.size()));
+    }
+
+    public static Biome getBiome() {
+        return Biome.values()[random.nextInt(Biome.values().length)];
     }
 
     public static ErrorType getErrorTypeExcluding(ErrorType... excluded) {
@@ -35,12 +51,10 @@ public class TestUtils {
                 includings.add(input);
             }
         }
-        Random random = new Random();
         return includings.get(random.nextInt(includings.size()));
     }
 
     public static ErrorType getErrorType() {
-        Random random = new Random();
         return ErrorType.values()[random.nextInt(ErrorType.values().length)];
     }
 }

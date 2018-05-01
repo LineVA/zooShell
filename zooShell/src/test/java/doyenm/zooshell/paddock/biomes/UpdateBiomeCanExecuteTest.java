@@ -1,12 +1,12 @@
 package doyenm.zooshell.paddock.biomes;
 
-import doyenm.zooshell.paddock.biomes.UpdateBiome;
 import org.apache.commons.lang.RandomStringUtils;
-import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
+
 /**
- *
  * @author doyenm
  */
 public class UpdateBiomeCanExecuteTest {
@@ -15,69 +15,75 @@ public class UpdateBiomeCanExecuteTest {
     private final String paddockBiome = "paddock-biome";
     private final String update = "update";
 
+    private UpdateBiome subject;
+
+    @Before
+    public void setUp(){
+        subject = new UpdateBiome(null, null);
+    }
+
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPaddock() {
         // Given
-        UpdateBiome updateBiome = new UpdateBiome(null, null);
-        String[] cmd = {this.paddockBiome, this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
+        String[] cmd = {this.paddockBiome, this.update, RandomStringUtils.randomAlphabetic(10),
+                RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = updateBiome.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(actualResult).isTrue();
+        assertThat(actualResult).isTrue();
     }
-    
+
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsByPad() {
         // Given
-        UpdateBiome updateBiome = new UpdateBiome(null, null);
-        String[] cmd = {this.padBiome, this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
+        String[] cmd = {this.padBiome, this.update, RandomStringUtils.randomAlphabetic(10),
+                RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = updateBiome.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(actualResult).isTrue();
+        assertThat(actualResult).isTrue();
     }
-    
+
     @Test
     public void shouldReturnFalseWhenTheFirstElementIsIncorrect() {
         // Given
-        UpdateBiome updateBiome = new UpdateBiome(null, null);
-        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update,
+                RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = updateBiome.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(actualResult).isFalse();
+        assertThat(actualResult).isFalse();
     }
-    
+
     @Test
     public void shouldReturnFalseWhenTheSecondElementIsIncorrect() {
         // Given
-        UpdateBiome updateBiome = new UpdateBiome(null, null);
-        String[] cmd = {this.padBiome, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
+        String[] cmd = {this.padBiome, RandomStringUtils.randomAlphabetic(10),
+                RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = updateBiome.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(actualResult).isFalse();
+        assertThat(actualResult).isFalse();
     }
-    
+
     @Test
     public void shouldReturnFalseWhenThereIsLessThanFourElements() {
         // Give
-        UpdateBiome updateBiome = new UpdateBiome(null, null);
-        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10),};
+        String[] cmd = {this.padBiome, this.update, RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = updateBiome.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(actualResult).isFalse();
+        assertThat(actualResult).isFalse();
     }
-    
+
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanFourElements() {
         // Given
-        UpdateBiome updateBiome = new UpdateBiome(null, null);
-        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.update, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
+        String[] cmd = {this.padBiome, this.update, RandomStringUtils.randomAlphabetic(10),
+                RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = updateBiome.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(actualResult).isFalse();
+        assertThat(actualResult).isFalse();
     }
 }

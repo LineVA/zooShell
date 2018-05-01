@@ -9,12 +9,12 @@ import java.util.function.Function;
  *
  * @author doyenm
  */
-public class FindingBiomeFunction implements Function<FindingBiomeContext, FindingBiomeContext> {
+public class FindingBiomeFunction implements Function<FindingBiomeContext, Biome> {
 
     ReplaceSpacesWithUnderscores replaceSpacesWithUnderscores = new ReplaceSpacesWithUnderscores();
 
     @Override
-    public FindingBiomeContext apply(FindingBiomeContext t) {
+    public Biome apply(FindingBiomeContext t) {
         FindingBiomeContext context = t;
         try {
             int id = Integer.parseInt(context.getBiome());
@@ -31,6 +31,6 @@ public class FindingBiomeFunction implements Function<FindingBiomeContext, Findi
                 }
             }
         }
-        return context;
+        return context.getConvertedBiome();
     }
 }

@@ -1,7 +1,5 @@
 package doyenm.zooshell.paddock.biomes;
 
-import doyenm.zooshell.paddock.biomes.UpdateBiomeContext;
-
 import java.util.function.Function;
 
 /**
@@ -12,7 +10,8 @@ public class UpdateBiomeController implements Function<UpdateBiomeContext, Updat
 
     @Override
     public UpdateBiomeContext apply(UpdateBiomeContext t) {
-        t.build();
+        t.getConvertedPaddock().setBiome(t.getConvertedBiome());
+        t.getZoo().getPaddocks().replace(t.getPaddock(), t.getConvertedPaddock());
         return t;
     }
 

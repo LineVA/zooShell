@@ -1,4 +1,4 @@
-package doyenm.zooshell.paddock.biomes;
+package doyenm.zooshell.validator;
 
 import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.paddock.types.UpdatePaddockTypeContext;

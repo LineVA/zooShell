@@ -1,11 +1,15 @@
 package doyenm.zooshell.paddock.biomes;
 
+import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,9 +25,6 @@ public class UpdateBiomeContext {
     
     private Paddock convertedPaddock;
     private Biome convertedBiome;
-    
-    public void build(){
-        this.getConvertedPaddock().setBiome(this.getConvertedBiome());
-        this.getZoo().getPaddocks().replace(this.getPaddock(), this.getConvertedPaddock());
-    }
+
+    private List<BusinessError> errors = new ArrayList<>();
 }
