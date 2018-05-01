@@ -25,7 +25,8 @@ public class UpdatePaddockType implements Command {
         UpdatePaddockTypeContext context = new UpdatePaddockTypeContext(zoo,
                 cmd[2], cmd[3]);
         Optional<UpdatePaddockTypeContext> optional = Stream.of(context)
-                .filter(validator)
+                .map(validator)
+                .filter(t -> t.getErrors().isEmpty())
                 .map(controller)
                 .findFirst();
         if (optional.isPresent()) {

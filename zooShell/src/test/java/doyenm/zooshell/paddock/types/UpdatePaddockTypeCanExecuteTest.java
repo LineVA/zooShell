@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.commandLineImpl.paddock;
+package doyenm.zooshell.paddock.types;
 
 import doyenm.zooshell.paddock.types.UpdatePaddockType;
 import org.apache.commons.lang.RandomStringUtils;

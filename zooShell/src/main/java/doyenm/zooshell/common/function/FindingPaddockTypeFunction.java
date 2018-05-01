@@ -9,12 +9,12 @@ import java.util.function.Function;
  *
  * @author doyenm
  */
-public class FindingPaddockTypeFunction implements Function<FindingPaddockTypeContext, FindingPaddockTypeContext> {
+public class FindingPaddockTypeFunction implements Function<FindingPaddockTypeContext, PaddockType> {
 
     ReplaceSpacesWithUnderscores replaceSpacesWithUnderscores = new ReplaceSpacesWithUnderscores();
 
     @Override
-    public FindingPaddockTypeContext apply(FindingPaddockTypeContext t) {
+    public PaddockType apply(FindingPaddockTypeContext t) {
         FindingPaddockTypeContext context = t;
         try {
             int id = Integer.parseInt(context.getType());
@@ -31,7 +31,7 @@ public class FindingPaddockTypeFunction implements Function<FindingPaddockTypeCo
                 }
             }
         }
-        return context;
+        return context.getConvertedType();
     }
 
 }

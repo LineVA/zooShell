@@ -3,6 +3,7 @@ package doyenm.zooshell.testUtils;
 import doyenm.zooshell.errorhandling.ErrorType;
 import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +27,21 @@ public class TestUtils {
 
     public static PaddockArrangement getPaddockArrangement() {
         return PaddockArrangement.values()[random.nextInt(PaddockArrangement.values().length)];
+    }
+
+    public static PaddockType getPaddockTypeExcluding(PaddockType... types) {
+        List<PaddockType> excludings = Arrays.asList(types);
+        List<PaddockType> includings = new ArrayList<>();
+        for(PaddockType input : PaddockType.values()){
+            if(!excludings.contains(input)){
+                includings.add(input);
+            }
+        }
+        return includings.get(random.nextInt(includings.size()));
+    }
+
+    public static PaddockType getPaddockType() {
+        return PaddockType.values()[random.nextInt(PaddockType.values().length)];
     }
 
     public static Biome getBiomeExcluding(Biome... biomes) {
