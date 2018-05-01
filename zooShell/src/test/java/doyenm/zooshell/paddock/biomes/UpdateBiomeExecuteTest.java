@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.commandLineImpl.paddock;
+package doyenm.zooshell.paddock.biomes;
 
 import doyenm.zooshell.paddock.biomes.UpdateBiome;
 import doyenm.zooshell.commandline.general.ReturnExec;
