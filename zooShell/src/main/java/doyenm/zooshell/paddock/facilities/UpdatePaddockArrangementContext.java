@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -22,11 +24,18 @@ public class UpdatePaddockArrangementContext {
 
     private final Zoo zoo;
     private final String paddock;
-    private final String arrangement;
+    private final List<String> arrangements;
 
     private Paddock convertedPaddock;
-    private PaddockArrangement convertedArrangement;
+    private List<PaddockArrangement> convertedArrangements;
 
     private List<BusinessError> errors = new ArrayList<>();
+
+    public Set<PaddockArrangement> difflists(){
+        Set<PaddockArrangement> finalFacilities = new HashSet<>();
+        finalFacilities.addAll(convertedPaddock.getArrangements());
+        finalFacilities.addAll(convertedArrangements);
+        return finalFacilities;
+    }
 
 }
