@@ -1,7 +1,5 @@
 package doyenm.zooshell.animal.diets;
 
-import doyenm.zooshell.animal.diets.AnimalUpdateDietContext;
-
 import java.util.function.Function;
 
 /**
