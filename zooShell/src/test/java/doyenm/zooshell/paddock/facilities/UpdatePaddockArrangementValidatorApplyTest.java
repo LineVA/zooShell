@@ -6,12 +6,15 @@ import doyenm.zooshell.common.function.FindingPaddockArrangementFunction;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Matchers.any;
@@ -22,7 +25,7 @@ import static org.mockito.Mockito.*;
  *
  * @author doyenm
  */
-public class UpdatePaddockArrangmentValidatorApplyTest {
+public class UpdatePaddockArrangementValidatorApplyTest {
 
     private UpdatePaddockArrangementValidator subject;
 
@@ -62,10 +65,16 @@ public class UpdatePaddockArrangmentValidatorApplyTest {
     }
 
     @Test
-    public void shouldReturnTrueIfThePaddockAndTheFacilityExist() {
+    public void shouldReturnTrueIfThePaddockAndAllTheFacilitiesExist() {
         // Given
         doReturn(paddock).when(findPaddock).find(any(Zoo.class), anyString());
-        when(findingPaddockArrangementFunction.apply(any())).thenReturn(TestUtils.getPaddockArrangement());
+        List<String> arrangementsStr = Arrays.asList(
+                RandomStringUtils.randomAlphabetic(5),
+                RandomStringUtils.randomAlphabetic(5));
+        when(context.getArrangements()).thenReturn(arrangementsStr);
+        when(findingPaddockArrangementFunction.apply(any()))
+                .thenReturn(TestUtils.getPaddockArrangement())
+                .thenReturn(TestUtils.getPaddockArrangement());
         // When
         UpdatePaddockArrangementContext result = subject.apply(context);
         // Then
@@ -75,10 +84,16 @@ public class UpdatePaddockArrangmentValidatorApplyTest {
     }
     
     @Test
-    public void shouldReturnFalseIfThePaddockExistsButNotTheFacility() {
+    public void shouldReturnFalseIfThePaddockExistsButNotOneOfTheFacilities() {
         // Given
         doReturn(paddock).when(findPaddock).find(any(Zoo.class), anyString());
-        when(findingPaddockArrangementFunction.apply(any())).thenReturn(null);
+        List<String> arrangementsStr = Arrays.asList(
+                RandomStringUtils.randomAlphabetic(5),
+                RandomStringUtils.randomAlphabetic(5));
+        when(context.getArrangements()).thenReturn(arrangementsStr);
+        when(findingPaddockArrangementFunction.apply(any()))
+                .thenReturn(null)
+                .thenReturn(TestUtils.getPaddockArrangement());
         // When
         UpdatePaddockArrangementContext result = subject.apply(context);
         // Then
@@ -88,7 +103,7 @@ public class UpdatePaddockArrangmentValidatorApplyTest {
     }
     
     @Test
-    public void shouldReturnTrueIfTheFacilityExistsButNotThePaddock() {
+    public void shouldReturnTrueIfTheFacilitiesExistButNotThePaddock() {
         // Given
         doReturn(null).when(findPaddock).find(any(Zoo.class), anyString());
         when(findingPaddockArrangementFunction.apply(any())).thenReturn(TestUtils.getPaddockArrangement());

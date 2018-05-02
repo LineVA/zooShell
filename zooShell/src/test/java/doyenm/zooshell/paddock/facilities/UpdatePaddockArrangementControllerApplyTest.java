@@ -10,6 +10,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Matchers.any;
@@ -49,13 +51,20 @@ public class UpdatePaddockArrangementControllerApplyTest {
     }
 
     @Test
-    public void shouldReturnAZooWithAPaddockWithOneMoreFacility() {
+    public void shouldReturnAZooWithAPaddockWithTwoMoreFacility() {
         // Given
         PaddockArrangement facility1 = TestUtils.getPaddockArrangement();
         PaddockArrangement facility2 = TestUtils.getPaddockArrangement();
+        PaddockArrangement facility3 = TestUtils.getPaddockArrangement();
         assertThat(facility1).isNotEqualTo(facility2);
-        paddock.getArrangements().add(facility1);
-        when(context.getConvertedArrangement()).thenReturn(facility2);
+        assertThat(facility1).isNotEqualTo(facility3);
+        assertThat(facility2).isNotEqualTo(facility3);
+
+        Set<PaddockArrangement> facilitiesSet = new HashSet<>();
+        facilitiesSet.add(facility1);
+        facilitiesSet.add(facility2);
+        facilitiesSet.add(facility3);
+        when(context.difflists()).thenReturn(facilitiesSet);
         // When
         UpdatePaddockArrangementContext result = subject.apply(context);
         // Then
@@ -66,8 +75,9 @@ public class UpdatePaddockArrangementControllerApplyTest {
         Paddock updatedPaddock = result.getZoo().getPaddocks().get(name);
         assertThat(updatedPaddock).isNotNull();
         assertThat(updatedPaddock.getArrangements()).isNotNull();
-        assertThat(updatedPaddock.getArrangements()).hasSize(2);
+        assertThat(updatedPaddock.getArrangements()).hasSize(3);
         assertThat(updatedPaddock.getArrangements()).contains(facility1);
         assertThat(updatedPaddock.getArrangements()).contains(facility2);
+        assertThat(updatedPaddock.getArrangements()).contains(facility3);
     }
 }

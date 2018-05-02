@@ -1,5 +1,6 @@
 package doyenm.zooshell.paddock.facilities;
 
+import java.util.ArrayList;
 import java.util.function.Function;
 
 /**
@@ -11,10 +12,9 @@ public class UpdatePaddockArrangementController
 
     @Override
     public UpdatePaddockArrangementContext apply(UpdatePaddockArrangementContext t) {
-        if (!t.getConvertedPaddock().getArrangements().contains(t.getConvertedArrangement())) {
-            t.getConvertedPaddock().getArrangements().add(t.getConvertedArrangement());
-            t.getZoo().getPaddocks().replace(t.getPaddock(), t.getConvertedPaddock());
-        }
+        t.getConvertedPaddock().setArrangements(new ArrayList<>());
+        t.getConvertedPaddock().getArrangements().addAll(t.difflists());
+        t.getZoo().getPaddocks().replace(t.getPaddock(), t.getConvertedPaddock());
         return t;
     }
 
