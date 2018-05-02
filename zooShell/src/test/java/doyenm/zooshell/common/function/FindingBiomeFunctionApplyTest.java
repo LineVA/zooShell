@@ -1,83 +1,84 @@
 package doyenm.zooshell.common.function;
 
-import doyenm.zooshell.model.Biome;
 import doyenm.zooshell.common.context.FindingBiomeContext;
-import org.assertj.core.api.Assertions;
+import doyenm.zooshell.model.Biome;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 
 /**
- *
  * @author doyenm
  */
 public class FindingBiomeFunctionApplyTest {
 
-    private FindingBiomeContext givenContextWithInput(String input) {
-        FindingBiomeContext context = Mockito.mock(FindingBiomeContext.class);
-        Mockito.when(context.getConvertedBiome()).thenCallRealMethod();
-        Mockito.doCallRealMethod().when(context).setConvertedBiome(Mockito.any(Biome.class));
-        Mockito.when(context.getBiome()).thenReturn(input);
-        return context;
+    private FindingBiomeFunction subject;
+    private FindingBiomeContext context;
+
+    @Before
+    public void setUp() {
+        context = mock(FindingBiomeContext.class);
+        when(context.getConvertedBiome()).thenCallRealMethod();
+        doCallRealMethod().when(context).setConvertedBiome(any(Biome.class));
+
+        subject = new FindingBiomeFunction();
     }
 
     @Test
     public void shouldSetTheConvertedBiomeWhenTheInputIsIntegerCorrespondingToAnExistingBiome() {
         // Given
         String input = "11";
-        FindingBiomeContext context = givenContextWithInput(input);
-        FindingBiomeFunction function = new FindingBiomeFunction();
+        when(context.getBiome()).thenReturn(input);
         // When
-        FindingBiomeContext actualContext = function.apply(context);
+        Biome result = subject.apply(context);
         // Then 
-        Assertions.assertThat(actualContext.getConvertedBiome()).isEqualTo(Biome.TUNDRA);
+        assertThat(result).isEqualTo(Biome.TUNDRA);
     }
-    
-     @Test
+
+    @Test
     public void shouldSetTheConvertedBiomeWhenTheInputIsStringCorrespondingToAnExistingBiomeWithoutSpace() {
         // Given
         String input = "tundra";
-        FindingBiomeContext context = givenContextWithInput(input);
-        FindingBiomeFunction function = new FindingBiomeFunction();
+        when(context.getBiome()).thenReturn(input);
         // When
-        FindingBiomeContext actualContext = function.apply(context);
-        // Then 
-        Assertions.assertThat(actualContext.getConvertedBiome()).isEqualTo(Biome.TUNDRA);
+        Biome result = subject.apply(context);
+        // Then
+        assertThat(result).isEqualTo(Biome.TUNDRA);
     }
-    
+
     @Test
     public void shouldSetTheConvertedBiomeWhenTheInputIsStringCorrespondingToAnExistingBiomeWithSpace() {
         // Given
         String input = "tropical grasslands";
-        FindingBiomeContext context = givenContextWithInput(input);
-        FindingBiomeFunction function = new FindingBiomeFunction();
+        when(context.getBiome()).thenReturn(input);
         // When
-        FindingBiomeContext actualContext = function.apply(context);
-        // Then 
-        Assertions.assertThat(actualContext.getConvertedBiome()).isEqualTo(Biome.TROPICAL_GRASSLANDS);
+        Biome result = subject.apply(context);
+        // Then
+        assertThat(result).isEqualTo(Biome.TROPICAL_GRASSLANDS);
     }
-    
+
     @Test
     public void shouldSetTheConvertedBiomeToNullWhenTheInputIsStringNotCorrespondingToAnExistingBiome() {
         // Given
         String input = "FALSE_TUNDRA";
-        FindingBiomeContext context = givenContextWithInput(input);
-        FindingBiomeFunction function = new FindingBiomeFunction();
+        when(context.getBiome()).thenReturn(input);
         // When
-        FindingBiomeContext actualContext = function.apply(context);
-        // Then 
-        Assertions.assertThat(actualContext.getConvertedBiome()).isNull();
+        Biome result = subject.apply(context);
+        // Then
+        assertThat(result).isNull();
     }
-    
-     @Test
+
+    @Test
     public void shouldSetTheConvertedBiomeToNullWhenTheInputIsIntegerNotCorrespondingToAnExistingBiome() {
         // Given
         String input = "111";
-        FindingBiomeContext context = givenContextWithInput(input);
-        FindingBiomeFunction function = new FindingBiomeFunction();
+        when(context.getBiome()).thenReturn(input);
         // When
-        FindingBiomeContext actualContext = function.apply(context);
-        // Then 
-        Assertions.assertThat(actualContext.getConvertedBiome()).isNull();
+        Biome result = subject.apply(context);
+        // Then
+        assertThat(result).isNull();
     }
 
 }

@@ -1,6 +1,6 @@
-package doyenm.zooshell.commandline.commandLineImpl.ls;
+package doyenm.zooshell.paddock.biomes;
 
-import doyenm.zooshell.paddock.types.LsPaddockType;
+import doyenm.zooshell.paddock.biomes.LsBiome;
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
 import doyenm.zooshell.model.Zoo;
@@ -13,22 +13,22 @@ import org.mockito.Mockito;
  *
  * @author doyenm
  */
-public class LsPaddockTypeExecuteTest {
+public class LsBiomeExecuteTest {
 
-    private Zoo givenZoo() {
+       private String[] givenCmd(){
+         String[] cmd = {RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
+         return cmd;
+     }
+       
+     private Zoo givenZoo() {
         return Mockito.mock(Zoo.class);
     }
-
-    private String[] givenCmd() {
-        String[] cmd = {RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
-        return cmd;
-    }
-
+    
     @Test
-    public void shouldReturnAReturnExecWithSuccessAndANotEmptyString() {
+    public void shouldReturnAReturnExecWithSuccessAndANotEmptyString(){
         // Given
         String[] cmd = givenCmd();
-        LsPaddockType cmdImpl = new LsPaddockType();
+        LsBiome cmdImpl = new LsBiome();
         // When
         ReturnExec returnExec = cmdImpl.execute(cmd, givenZoo());
         // Then

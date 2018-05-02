@@ -1,7 +1,5 @@
 package doyenm.zooshell.paddock.types;
 
-import doyenm.zooshell.paddock.types.UpdatePaddockTypeContext;
-
 import java.util.function.Function;
 
 /**
@@ -13,7 +11,8 @@ public class UpdatePaddockTypeController
 
     @Override
     public UpdatePaddockTypeContext apply(UpdatePaddockTypeContext t) {
-        t.build();
+        t.getConvertedPaddock().setType(t.getConvertedType());
+        t.getZoo().getPaddocks().replace(t.getPaddock(), t.getConvertedPaddock());
         return t;
     }
 

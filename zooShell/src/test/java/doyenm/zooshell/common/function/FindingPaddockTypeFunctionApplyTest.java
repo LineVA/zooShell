@@ -27,9 +27,9 @@ public class FindingPaddockTypeFunctionApplyTest {
         FindingPaddockTypeContext context = givenContextWithInput(input);
         FindingPaddockTypeFunction function = new FindingPaddockTypeFunction();
         // When
-        FindingPaddockTypeContext actualContext = function.apply(context);
+        PaddockType result = function.apply(context);
         // Then 
-        Assertions.assertThat(actualContext.getConvertedType()).isEqualTo(PaddockType.AQUARIUM);
+        Assertions.assertThat(result).isEqualTo(PaddockType.AQUARIUM);
     }
     
     
@@ -40,9 +40,9 @@ public class FindingPaddockTypeFunctionApplyTest {
         FindingPaddockTypeContext context = givenContextWithInput(input);
         FindingPaddockTypeFunction function = new FindingPaddockTypeFunction();
         // When
-        FindingPaddockTypeContext actualContext = function.apply(context);
-        // Then 
-        Assertions.assertThat(actualContext.getConvertedType()).isEqualTo(PaddockType.AQUARIUM);
+        PaddockType result = function.apply(context);
+        // Then
+        Assertions.assertThat(result).isEqualTo(PaddockType.AQUARIUM);
     }
     
     
@@ -53,9 +53,9 @@ public class FindingPaddockTypeFunctionApplyTest {
         FindingPaddockTypeContext context = givenContextWithInput(input);
         FindingPaddockTypeFunction function = new FindingPaddockTypeFunction();
         // When
-        FindingPaddockTypeContext actualContext = function.apply(context);
-        // Then 
-        Assertions.assertThat(actualContext.getConvertedType()).isNull();
+        PaddockType result = function.apply(context);
+        // Then
+        Assertions.assertThat(result).isNull();
     }
     
     
@@ -66,9 +66,9 @@ public class FindingPaddockTypeFunctionApplyTest {
         FindingPaddockTypeContext context = givenContextWithInput(input);
         FindingPaddockTypeFunction function = new FindingPaddockTypeFunction();
         // When
-        FindingPaddockTypeContext actualContext = function.apply(context);
-        // Then 
-        Assertions.assertThat(actualContext.getConvertedType()).isNull();
+        PaddockType result = function.apply(context);
+        // Then
+        Assertions.assertThat(result).isNull();
     }
 
 }
