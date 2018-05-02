@@ -76,7 +76,7 @@ public class UpdatePaddockArrangementCanExecuteTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenThereIsMoreThanFourElements() {
+    public void shouldReturnTrueWhenThereIsMoreThanFourElementsAndTheyBeginsWithTheExpectedValues() {
         // Given
         String[] cmd = {this.PADDOCK, this.UPDATE,
                 RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
@@ -84,7 +84,7 @@ public class UpdatePaddockArrangementCanExecuteTest {
         // When
         boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(actualResult).isFalse();
+        Assertions.assertThat(actualResult).isTrue();
     }
 
 }

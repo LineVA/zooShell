@@ -8,7 +8,9 @@ import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.utils.DisplayingErrorsList;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -24,7 +26,7 @@ public class UpdatePaddockArrangements implements Command {
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         UpdatePaddockArrangementContext context = new UpdatePaddockArrangementContext(zoo,
-                cmd[2], cmd[3]);
+                cmd[2], generateFacilitiesList(cmd));
         Optional<UpdatePaddockArrangementContext> optional = Stream.of(context)
                 .map(validator)
                 .filter(t -> t.getErrors().isEmpty())
@@ -39,12 +41,20 @@ public class UpdatePaddockArrangements implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 4
+        return cmd.length >= 4
                 && Arrays.asList(Constants.PAD_OR_PADDOCK_ARRANGEMENT)
                 .stream()
                 .anyMatch(cmd[0]::equalsIgnoreCase)
                 && Arrays.asList(Constants.UPDATE)
                 .stream()
                 .anyMatch(cmd[1]::equalsIgnoreCase);
+    }
+
+    private List<String> generateFacilitiesList(String[] cmd) {
+        List<String> list = new ArrayList<>();
+        for (int i = 3; i < cmd.length; i++) {
+            list.add(cmd[i]);
+        }
+        return list;
     }
 }
