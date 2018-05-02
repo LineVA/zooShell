@@ -9,6 +9,7 @@ import doyenm.zooshell.paddock.creation.PaddockCreationController;
 import doyenm.zooshell.paddock.details.PaddockDetailsController;
 import doyenm.zooshell.paddock.entry.PaddockEntryCreationController;
 import doyenm.zooshell.paddock.extension.PaddockExtensionCreationController;
+import doyenm.zooshell.paddock.facilities.ResetPaddockFacilitiesController;
 import doyenm.zooshell.paddock.facilities.UpdatePaddockArrangementController;
 import doyenm.zooshell.paddock.remove.PaddockRemoveController;
 import doyenm.zooshell.paddock.rename.PaddockChangeNameController;
@@ -73,6 +74,11 @@ public class PaddockControllerConfig {
     @Bean
     public UpdatePaddockArrangementController updatePaddockArrangementController() {
         return new UpdatePaddockArrangementController();
+    }
+
+    @Bean
+    public ResetPaddockFacilitiesController resetPaddockFacilitiesController(){
+        return new ResetPaddockFacilitiesController();
     }
 
     // Evaluation
