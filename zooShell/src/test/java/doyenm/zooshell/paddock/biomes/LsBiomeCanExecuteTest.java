@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.commandLineImpl.ls;
+package doyenm.zooshell.paddock.biomes;
 
 import doyenm.zooshell.paddock.biomes.LsBiome;
 import org.apache.commons.lang.RandomStringUtils;
