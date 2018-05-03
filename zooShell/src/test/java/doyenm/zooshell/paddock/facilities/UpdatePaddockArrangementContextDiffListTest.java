@@ -35,8 +35,8 @@ public class UpdatePaddockArrangementContextDiffListTest {
     @Test
     public void shouldReturnSetWithTwoElementsWhenOneIsCommonBetweenOldAndNewFacilities(){
         // Given
-        PaddockArrangement facility1 = TestUtils.getPaddockArrangement();
-        PaddockArrangement commonFacility = TestUtils.getPaddockArrangementExcluding(facility1);
+        PaddockArrangement facility1 = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
+        PaddockArrangement commonFacility = TestUtils.getPaddockArrangementExcluding(facility1, PaddockArrangement.NONE);
         subject.setConvertedArrangements(Lists.newArrayList(facility1, commonFacility));
         when(paddock.getArrangements()).thenReturn(Arrays.asList(commonFacility));
         // When
@@ -46,5 +46,19 @@ public class UpdatePaddockArrangementContextDiffListTest {
         assertThat(result).hasSize(2);
         assertThat(result).contains(facility1);
         assertThat(result).contains(commonFacility);
+    }
+
+    @Test
+    public void shouldReturnSetWithOnlyTheOldElementsWhenTheNewOneIsNONE(){
+        // Given
+        PaddockArrangement oldFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
+        subject.setConvertedArrangements(Lists.newArrayList(PaddockArrangement.NONE));
+        when(paddock.getArrangements()).thenReturn(Arrays.asList(oldFacility));
+        // When
+        Set<PaddockArrangement> result = subject.difflists();
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(1);
+        assertThat(result).contains(oldFacility);
     }
 }

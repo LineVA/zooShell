@@ -35,6 +35,7 @@ public class UpdatePaddockArrangementContext {
         Set<PaddockArrangement> finalFacilities = new HashSet<>();
         finalFacilities.addAll(convertedPaddock.getArrangements());
         finalFacilities.addAll(convertedArrangements);
+        finalFacilities.remove(PaddockArrangement.NONE);
         return finalFacilities;
     }
 
