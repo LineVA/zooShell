@@ -1,7 +1,7 @@
 package doyenm.zooshell.paddock.creation;
 
-import doyenm.zooshell.paddock.creation.PaddockCreationContext;
 import doyenm.zooshell.model.*;
+import org.assertj.core.util.Lists;
 
 import java.util.ArrayList;
 import java.util.function.Function;
@@ -32,7 +32,7 @@ public class PaddockCreationController
                 .obsolescence(0.0)
                 .biome(Biome.NONE)
                 .type(PaddockType.UNKNOWN)
-                .arrangements(new ArrayList<>())
+                .arrangements(Lists.newArrayList(PaddockArrangement.NONE))
                 .turnsOfUnusableState(0)
                 .build();
         context.getZoo().getPaddocks().put(context.getName().toUpperCase(), paddock);
