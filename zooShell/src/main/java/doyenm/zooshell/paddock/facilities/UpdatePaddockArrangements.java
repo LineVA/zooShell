@@ -23,10 +23,12 @@ public class UpdatePaddockArrangements implements Command {
     private final UpdatePaddockArrangementValidator validator;
     private final UpdatePaddockArrangementController controller;
 
+    private boolean isAdding;
+
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         UpdatePaddockArrangementContext context = new UpdatePaddockArrangementContext(zoo,
-                cmd[2], generateFacilitiesList(cmd));
+                cmd[2], generateFacilitiesList(cmd), isAdding);
         Optional<UpdatePaddockArrangementContext> optional = Stream.of(context)
                 .map(validator)
                 .filter(t -> t.getErrors().isEmpty())
@@ -41,13 +43,23 @@ public class UpdatePaddockArrangements implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length >= 4
+        boolean isCommandCorrect = cmd.length >= 4
                 && Arrays.asList(Constants.PAD_OR_PADDOCK_ARRANGEMENT)
                 .stream()
                 .anyMatch(cmd[0]::equalsIgnoreCase)
-                && Arrays.asList(Constants.UPDATE)
+                && Arrays.asList(Constants.ADD_OR_REMOVE)
                 .stream()
                 .anyMatch(cmd[1]::equalsIgnoreCase);
+        if (isCommandCorrect) {
+            if (Arrays.asList(Constants.ADD)
+                    .stream()
+                    .anyMatch(cmd[1]::equalsIgnoreCase)) {
+                isAdding = true;
+            } else {
+                isAdding = false;
+            }
+        }
+        return isCommandCorrect;
     }
 
     private List<String> generateFacilitiesList(String[] cmd) {

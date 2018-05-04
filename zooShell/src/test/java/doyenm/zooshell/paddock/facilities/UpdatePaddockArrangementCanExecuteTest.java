@@ -1,8 +1,9 @@
 package doyenm.zooshell.paddock.facilities;
 
 import org.apache.commons.lang.RandomStringUtils;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 /**
  * @author doyenm
@@ -11,80 +12,104 @@ public class UpdatePaddockArrangementCanExecuteTest {
 
     private final String PADDOCK = "paddock-arrangement";
     private final String PAD = "pad-arrangement";
-    private final String UPDATE = "update";
+    private final String ADD = "add";
+    private final String REMOVE = "remove";
 
     private final UpdatePaddockArrangements subject = new UpdatePaddockArrangements(null, null);
 
 
     @Test
-    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsWithPaddock() {
+    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsWithPaddockAndAdd() {
         // Given
-        String[] cmd = {this.PADDOCK, this.UPDATE,
+        String[] cmd = {this.PADDOCK, this.ADD,
                 RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(actualResult).isTrue();
+        assertThat(actualResult).isTrue();
     }
 
     @Test
-    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsWithPad() {
+    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsWithPadAndRemove() {
         // Given
-        String[] cmd = {this.PAD, this.UPDATE, RandomStringUtils.randomAlphabetic(10),
+        String[] cmd = {this.PAD, this.REMOVE, RandomStringUtils.randomAlphabetic(10),
                 RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(actualResult).isTrue();
+        assertThat(actualResult).isTrue();
     }
 
     @Test
-    public void shouldReturnFalseWhenTheTheFirstElementIsNotPadOrPaddockArrangement() {
+    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsWithPaddockAndRemove() {
+        // Given
+        String[] cmd = {this.PADDOCK, this.REMOVE,
+                RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
+        // When
+        boolean actualResult = subject.canExecute(cmd);
+        // Then
+        assertThat(actualResult).isTrue();
+    }
+
+    @Test
+    public void shouldReturnTrueWhenTheCommandIsCorrectAndBeginsWithPadAndAdd() {
+        // Given
+        String[] cmd = {this.PAD, this.ADD, RandomStringUtils.randomAlphabetic(10),
+                RandomStringUtils.randomAlphabetic(10)};
+        // When
+        boolean actualResult = subject.canExecute(cmd);
+        // Then
+        assertThat(actualResult).isTrue();
+    }
+
+    @Test
+    public void shouldReturnFalseWhenTheTheFirstElementIsNotPadNorPaddockArrangement() {
         // Given
         String falsePad = RandomStringUtils.randomAlphabetic(10);
-        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.UPDATE,
+        String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.ADD,
                 RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(falsePad).isNotEqualToIgnoringCase(PADDOCK);
-        Assertions.assertThat(falsePad).isNotEqualToIgnoringCase(PAD);
-        Assertions.assertThat(actualResult).isFalse();
+        assertThat(falsePad).isNotEqualToIgnoringCase(PADDOCK);
+        assertThat(falsePad).isNotEqualToIgnoringCase(PAD);
+        assertThat(actualResult).isFalse();
     }
 
     @Test
-    public void shouldReturnFalseWhenTheTheSecondElementIsNotCreate() {
+    public void shouldReturnFalseWhenTheTheSecondElementIsNotAddNorRemove() {
         // Given
-        String falseUpdate = RandomStringUtils.randomAlphabetic(10);
-        String[] cmd = {this.PADDOCK, falseUpdate,
+        String falseAction = RandomStringUtils.randomAlphabetic(10);
+        String[] cmd = {this.PADDOCK, falseAction,
                 RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(falseUpdate).isNotEqualToIgnoringCase(UPDATE);
-        Assertions.assertThat(actualResult).isFalse();
+        assertThat(falseAction).isNotEqualToIgnoringCase(ADD);
+        assertThat(falseAction).isNotEqualToIgnoringCase(REMOVE);
+        assertThat(actualResult).isFalse();
     }
 
     @Test
     public void shouldReturnFalseWhenThereIsLessThanFourElements() {
         // Given
-        String[] cmd = {this.PADDOCK, this.UPDATE, RandomStringUtils.randomAlphabetic(10)};
+        String[] cmd = {this.PADDOCK, this.ADD, RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(actualResult).isFalse();
+        assertThat(actualResult).isFalse();
     }
 
     @Test
     public void shouldReturnTrueWhenThereIsMoreThanFourElementsAndTheyBeginsWithTheExpectedValues() {
         // Given
-        String[] cmd = {this.PADDOCK, this.UPDATE,
+        String[] cmd = {this.PADDOCK, this.ADD,
                 RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
                 RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = subject.canExecute(cmd);
         // Then
-        Assertions.assertThat(actualResult).isTrue();
+        assertThat(actualResult).isTrue();
     }
 
 }
