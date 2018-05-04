@@ -12,6 +12,8 @@ public class Constants {
     public static final String[] ACTION_POINTS = {"action_points"};
     // add
     public static final String[] ADD = {"add"};
+    // add, remove
+    public static final String[] ADD_OR_REMOVE = {"add", "remove"};
     // animal
     public static final String[] ANIMAL = {"animal"};
     // animals
