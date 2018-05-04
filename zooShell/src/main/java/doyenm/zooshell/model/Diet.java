@@ -20,8 +20,9 @@ public enum Diet {
     NONE(0),
     CARNIVOROUS(1),
     FOLIVOROUS(2),
-    NECTARIVOROUS(3),
-    OMNIVOROUS(4);
+    FRUGIVOROUS(3),
+    NECTARIVOROUS(4),
+    OMNIVOROUS(5);
 
     int id;
 

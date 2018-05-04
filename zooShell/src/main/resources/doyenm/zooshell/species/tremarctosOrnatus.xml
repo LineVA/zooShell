@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specie>
+    <names>
+        <name>Spectacled bear</name>
+        <additionalNames>
+            <name>Andean bear</name>
+            <name>Andean short-faced bear</name>
+        </additionalNames>
+        <scientificName>Tremarctos ornatus</scientificName>
+    </names>
+    <uicn>VULNERABLE</uicn>
+    <family>URSIDAE</family>
+    <reproductionAttributes>
+        <femaleMaturityAge>66</femaleMaturityAge>
+        <maleMaturityAge>66</maleMaturityAge>
+        <frequency>1.0</frequency>
+        <litterSize>2</litterSize>
+        <gestationDuration>7</gestationDuration>
+        <weaningAge>5</weaningAge>
+    </reproductionAttributes>
+    <lifespanAttributes>
+        <femaleLifespan>240</femaleLifespan>
+        <maleLifespan>240</maleLifespan>
+    </lifespanAttributes>
+    <biomes>
+        <biome>RAINFOREST</biome>
+    </biomes>
+    <arrangements>
+        <arrangement>DIGGING_ZONE</arrangement>
+        <arrangement>CLIMBING_STRUCTURE</arrangement>
+        <arrangement>POOL</arrangement>
+    </arrangements>
+    <diets>
+        <diet>FOLIVOROUS</diet>
+        <diet>FRUGIVOROUS</diet>
+    </diets>
+    <foodAttributes>
+        <quantity>0.9</quantity>
+        <fastDays>0</fastDays>
+    </foodAttributes>
+    <territoryAttributes>
+        <territorySizeForOneGroup>150</territorySizeForOneGroup>
+    </territoryAttributes>
+    <socialAttributes>
+        <individualsPerGroup>1</individualsPerGroup>
+    </socialAttributes>
+    <sizeAttributes>
+        <femaleWeight>70</femaleWeight>
+        <maleWeight>130</maleWeight>
+    </sizeAttributes>
+    <characterAttributes>
+        <agressvity>0.0</agressvity>
+        <cohabitationFactor>0.0</cohabitationFactor>
+    </characterAttributes>
+</specie>
