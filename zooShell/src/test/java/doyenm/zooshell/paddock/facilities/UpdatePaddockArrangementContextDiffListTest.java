@@ -109,4 +109,26 @@ public class UpdatePaddockArrangementContextDiffListTest {
         assertThat(result).hasSize(1);
         assertThat(result).contains(PaddockArrangement.NONE);
     }
+
+    @Test
+    public void shouldReturnTheInitialSetWhenAddingIsSetToFalseAndWeAreRemovingFacilityWhichAreNotInThePaddock(){
+        // Given
+        subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
+                RandomStringUtils.randomAlphabetic(5),
+                Arrays.asList(),
+                false);
+        subject.setConvertedPaddock(paddock);
+
+        PaddockArrangement oldFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
+        PaddockArrangement unknownFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE, oldFacility);
+
+        subject.setConvertedArrangements(Lists.newArrayList(unknownFacility));
+        when(paddock.getArrangements()).thenReturn(Arrays.asList(oldFacility));
+        // When
+        Set<PaddockArrangement> result = subject.difflists();
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(1);
+        assertThat(result).contains(oldFacility);
+    }
 }
