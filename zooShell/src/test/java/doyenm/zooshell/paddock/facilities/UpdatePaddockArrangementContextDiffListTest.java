@@ -91,7 +91,7 @@ public class UpdatePaddockArrangementContextDiffListTest {
     }
 
     @Test
-    public void shouldReturnSetWithOnlyTheElementNoneWhenAddingIsSetToFalseAndWeAreRemovngAllOfThem(){
+    public void shouldReturnSetWithOnlyTheElementNoneWhenAddingIsSetToFalseAndWeAreRemovingAllOfThem(){
         // Given
         subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
                 RandomStringUtils.randomAlphabetic(5),
