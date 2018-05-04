@@ -26,7 +26,7 @@ public class UpdatePaddockArrangements implements Command {
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         UpdatePaddockArrangementContext context = new UpdatePaddockArrangementContext(zoo,
-                cmd[2], generateFacilitiesList(cmd));
+                cmd[2], generateFacilitiesList(cmd), true);
         Optional<UpdatePaddockArrangementContext> optional = Stream.of(context)
                 .map(validator)
                 .filter(t -> t.getErrors().isEmpty())

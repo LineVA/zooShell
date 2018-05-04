@@ -5,6 +5,7 @@ import doyenm.zooshell.model.PaddockArrangement;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +29,8 @@ public class UpdatePaddockArrangementContextDiffListTest {
 
         subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
                 RandomStringUtils.randomAlphabetic(5),
-                Arrays.asList());
+                Arrays.asList(),
+                RandomUtils.nextBoolean());
         subject.setConvertedPaddock(paddock);
     }
 

@@ -25,6 +25,7 @@ public class UpdatePaddockArrangementContext {
     private final Zoo zoo;
     private final String paddock;
     private final List<String> arrangements;
+    private final boolean isAddingFacilities;
 
     private Paddock convertedPaddock;
     private List<PaddockArrangement> convertedArrangements;
