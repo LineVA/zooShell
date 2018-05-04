@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
  * @author doyenm
  */
 @Getter
@@ -32,11 +31,18 @@ public class UpdatePaddockArrangementContext {
 
     private List<BusinessError> errors = new ArrayList<>();
 
-    public Set<PaddockArrangement> difflists(){
+    public Set<PaddockArrangement> difflists() {
         Set<PaddockArrangement> finalFacilities = new HashSet<>();
         finalFacilities.addAll(convertedPaddock.getArrangements());
-        finalFacilities.addAll(convertedArrangements);
-        finalFacilities.remove(PaddockArrangement.NONE);
+        if (isAddingFacilities) {
+            finalFacilities.addAll(convertedArrangements);
+            finalFacilities.remove(PaddockArrangement.NONE);
+        } else {
+            finalFacilities.removeAll(convertedArrangements);
+            if(finalFacilities.isEmpty()){
+                finalFacilities.add(PaddockArrangement.NONE);
+            }
+        }
         return finalFacilities;
     }
 
