@@ -12,7 +12,8 @@ import doyenm.zooshell.paddock.creation.PaddockLocationValidator;
 import doyenm.zooshell.paddock.entry.PaddockEntryCreationValidator;
 import doyenm.zooshell.paddock.extension.PaddockExtensionCreationValidator;
 import doyenm.zooshell.paddock.extension.PaddockExtensionLocationValidator;
-import doyenm.zooshell.paddock.facilities.UpdatePaddockArrangementValidator;
+import doyenm.zooshell.paddock.facilities.UpdatePaddockArrangementCoherenceValidator;
+import doyenm.zooshell.paddock.facilities.UpdatePaddockArrangementExistenceValidator;
 import doyenm.zooshell.paddock.remove.PaddockRemoveValidator;
 import doyenm.zooshell.paddock.rename.PaddockChangeNameValidator;
 import doyenm.zooshell.paddock.types.UpdatePaddockTypeValidator;
@@ -106,8 +107,13 @@ public class PaddockValidatorsConfig {
     }
     
     @Bean
-    public UpdatePaddockArrangementValidator updatePaddockArrangementValidator() {
-        return new UpdatePaddockArrangementValidator(findPaddock, findingPaddockArrangementFunction);
+    public UpdatePaddockArrangementExistenceValidator updatePaddockArrangementExistenceValidator() {
+        return new UpdatePaddockArrangementExistenceValidator(findPaddock, findingPaddockArrangementFunction);
+    }
+
+    @Bean
+    public UpdatePaddockArrangementCoherenceValidator updatePaddockArrangementCoherenceValidator() {
+        return new UpdatePaddockArrangementCoherenceValidator();
     }
 
 }

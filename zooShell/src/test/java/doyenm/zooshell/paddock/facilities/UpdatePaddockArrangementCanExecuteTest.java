@@ -15,7 +15,7 @@ public class UpdatePaddockArrangementCanExecuteTest {
     private final String ADD = "add";
     private final String REMOVE = "remove";
 
-    private final UpdatePaddockArrangements subject = new UpdatePaddockArrangements(null, null);
+    private final UpdatePaddockArrangements subject = new UpdatePaddockArrangements(null, null, null);
 
 
     @Test

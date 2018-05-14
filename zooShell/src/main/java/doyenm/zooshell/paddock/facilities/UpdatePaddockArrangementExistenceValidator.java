@@ -18,7 +18,7 @@ import java.util.stream.Stream;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class UpdatePaddockArrangementValidator
+public class UpdatePaddockArrangementExistenceValidator
         implements Function<UpdatePaddockArrangementContext, UpdatePaddockArrangementContext> {
 
     private final FindPaddock findPaddock;

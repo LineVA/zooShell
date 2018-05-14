@@ -20,7 +20,8 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class UpdatePaddockArrangements implements Command {
 
-    private final UpdatePaddockArrangementValidator validator;
+    private final UpdatePaddockArrangementExistenceValidator existenceValidator;
+    private final UpdatePaddockArrangementCoherenceValidator coherenceValidator;
     private final UpdatePaddockArrangementController controller;
 
     private boolean isAdding;
@@ -30,7 +31,9 @@ public class UpdatePaddockArrangements implements Command {
         UpdatePaddockArrangementContext context = new UpdatePaddockArrangementContext(zoo,
                 cmd[2], generateFacilitiesList(cmd), isAdding);
         Optional<UpdatePaddockArrangementContext> optional = Stream.of(context)
-                .map(validator)
+                .map(existenceValidator)
+                .filter(t -> t.getErrors().isEmpty())
+                .map(coherenceValidator)
                 .filter(t -> t.getErrors().isEmpty())
                 .map(controller)
                 .findFirst();

@@ -25,9 +25,9 @@ import static org.mockito.Mockito.*;
  *
  * @author doyenm
  */
-public class UpdatePaddockArrangementValidatorApplyTest {
+public class UpdatePaddockArrangementExistenceValidatorApplyTest {
 
-    private UpdatePaddockArrangementValidator subject;
+    private UpdatePaddockArrangementExistenceValidator subject;
 
     private FindPaddock findPaddock;
     private FindingPaddockArrangementFunction findingPaddockArrangementFunction;
@@ -61,7 +61,7 @@ public class UpdatePaddockArrangementValidatorApplyTest {
         context.setErrors(new ArrayList<>());
 
 
-        subject = new UpdatePaddockArrangementValidator(findPaddock, findingPaddockArrangementFunction);
+        subject = new UpdatePaddockArrangementExistenceValidator(findPaddock, findingPaddockArrangementFunction);
     }
 
     @Test
@@ -103,7 +103,7 @@ public class UpdatePaddockArrangementValidatorApplyTest {
     }
     
     @Test
-    public void shouldReturnTrueIfTheFacilitiesExistButNotThePaddock() {
+    public void shouldReturnFalseIfTheFacilitiesExistButNotThePaddock() {
         // Given
         doReturn(null).when(findPaddock).find(any(Zoo.class), anyString());
         when(findingPaddockArrangementFunction.apply(any())).thenReturn(TestUtils.getPaddockArrangement());

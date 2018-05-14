@@ -99,7 +99,8 @@ public class PaddockCommandsConfig {
     @Bean
     public UpdatePaddockArrangements updatePaddockArrangements() {
         return new UpdatePaddockArrangements(
-                validators.updatePaddockArrangementValidator(),
+                validators.updatePaddockArrangementExistenceValidator(),
+                validators.updatePaddockArrangementCoherenceValidator(),
                 controllers.updatePaddockArrangementController());
     }
 
