@@ -25,7 +25,8 @@ public class UpdatePaddockArrangementsExecuteTest {
 
     private UpdatePaddockArrangements subject;
 
-    private UpdatePaddockArrangementExistenceValidator validator;
+    private UpdatePaddockArrangementExistenceValidator existenceValidator;
+    private UpdatePaddockArrangementCoherenceValidator coherenceValidator;
     private UpdatePaddockArrangementController controller;
 
     private UpdatePaddockArrangementContext contextWithNoError;
@@ -36,7 +37,8 @@ public class UpdatePaddockArrangementsExecuteTest {
 
     @Before
     public void setUp(){
-        validator = mock(UpdatePaddockArrangementExistenceValidator.class);
+        existenceValidator = mock(UpdatePaddockArrangementExistenceValidator.class);
+        coherenceValidator = mock(UpdatePaddockArrangementCoherenceValidator.class);
         controller = mock(UpdatePaddockArrangementController.class);
         when(controller.apply(any(UpdatePaddockArrangementContext.class))).thenAnswer(new Answer<UpdatePaddockArrangementContext>() {
             @Override
@@ -52,13 +54,14 @@ public class UpdatePaddockArrangementsExecuteTest {
         contextWithError = mock(UpdatePaddockArrangementContext.class);
         when(contextWithError.getErrors()).thenReturn(Arrays.asList(new BusinessError(ErrorType.INCORRECT_LOCATION)));
 
-        subject = new UpdatePaddockArrangements(validator, controller);
+        subject = new UpdatePaddockArrangements(existenceValidator, coherenceValidator, controller);
     }
 
     @Test
     public void shouldReturnAReturnExecWithTypeReturnToSuccessWhenTheCommandIsInSuccess() {
         // Given
-        doReturn(contextWithNoError).when(validator).apply(any());
+        doReturn(contextWithNoError).when(existenceValidator).apply(any());
+        doReturn(contextWithNoError).when(coherenceValidator).apply(any());
         // When
         ReturnExec result = subject.execute(cmd, mock(Zoo.class));
         // Then
@@ -69,9 +72,23 @@ public class UpdatePaddockArrangementsExecuteTest {
     }
 
     @Test
-    public void shouldReturnAReturnExecWithTypeReturnToErrorWhenTheValidatorReturnsFalse() {
+    public void shouldReturnAReturnExecWithTypeReturnToErrorWhenTheExistenceValidatorReturnsFalse() {
         // Given
-        doReturn(contextWithError).when(validator).apply(any());
+        doReturn(contextWithError).when(existenceValidator).apply(any());
+        doReturn(existenceValidator.apply(any())).when(coherenceValidator).apply(any());
+        // When
+        ReturnExec result = subject.execute(cmd, mock(Zoo.class));
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result.getTypeReturn()).isEqualTo(TypeReturn.ERROR);
+        assertThat(result.getMessage()).isNotEmpty();
+    }
+
+    @Test
+    public void shouldReturnAReturnExecWithTypeReturnToErrorWhenTheCoherenceValidatorReturnsFalse() {
+        // Given
+        doReturn(contextWithNoError).when(existenceValidator).apply(any());
+        doReturn(contextWithError).when(coherenceValidator).apply(any());
         // When
         ReturnExec result = subject.execute(cmd, mock(Zoo.class));
         // Then
