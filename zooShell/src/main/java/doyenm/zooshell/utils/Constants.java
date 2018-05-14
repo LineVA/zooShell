@@ -9,7 +9,7 @@ public class Constants {
     private Constants(){}
 
     // action_points
-    public static final String[] ACTION_POINTS = {"action_points"};
+    public static final String[] ACTION_POINTS = {"action-points"};
     // add
     public static final String[] ADD = {"add"};
     // add, remove
