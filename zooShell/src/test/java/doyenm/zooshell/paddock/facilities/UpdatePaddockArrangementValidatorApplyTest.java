@@ -103,7 +103,7 @@ public class UpdatePaddockArrangementValidatorApplyTest {
     }
     
     @Test
-    public void shouldReturnTrueIfTheFacilitiesExistButNotThePaddock() {
+    public void shouldReturnFalseIfTheFacilitiesExistButNotThePaddock() {
         // Given
         doReturn(null).when(findPaddock).find(any(Zoo.class), anyString());
         when(findingPaddockArrangementFunction.apply(any())).thenReturn(TestUtils.getPaddockArrangement());
