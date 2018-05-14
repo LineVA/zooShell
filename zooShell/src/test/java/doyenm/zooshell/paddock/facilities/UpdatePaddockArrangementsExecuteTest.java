@@ -25,7 +25,7 @@ public class UpdatePaddockArrangementsExecuteTest {
 
     private UpdatePaddockArrangements subject;
 
-    private UpdatePaddockArrangementValidator validator;
+    private UpdatePaddockArrangementExistenceValidator validator;
     private UpdatePaddockArrangementController controller;
 
     private UpdatePaddockArrangementContext contextWithNoError;
@@ -36,7 +36,7 @@ public class UpdatePaddockArrangementsExecuteTest {
 
     @Before
     public void setUp(){
-        validator = mock(UpdatePaddockArrangementValidator.class);
+        validator = mock(UpdatePaddockArrangementExistenceValidator.class);
         controller = mock(UpdatePaddockArrangementController.class);
         when(controller.apply(any(UpdatePaddockArrangementContext.class))).thenAnswer(new Answer<UpdatePaddockArrangementContext>() {
             @Override

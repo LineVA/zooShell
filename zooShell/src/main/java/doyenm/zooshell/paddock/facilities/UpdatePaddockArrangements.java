@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class UpdatePaddockArrangements implements Command {
 
-    private final UpdatePaddockArrangementValidator validator;
+    private final UpdatePaddockArrangementExistenceValidator validator;
     private final UpdatePaddockArrangementController controller;
 
     private boolean isAdding;

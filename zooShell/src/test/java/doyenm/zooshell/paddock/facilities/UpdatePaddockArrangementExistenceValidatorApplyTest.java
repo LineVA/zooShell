@@ -25,9 +25,9 @@ import static org.mockito.Mockito.*;
  *
  * @author doyenm
  */
-public class UpdatePaddockArrangementValidatorApplyTest {
+public class UpdatePaddockArrangementExistenceValidatorApplyTest {
 
-    private UpdatePaddockArrangementValidator subject;
+    private UpdatePaddockArrangementExistenceValidator subject;
 
     private FindPaddock findPaddock;
     private FindingPaddockArrangementFunction findingPaddockArrangementFunction;
@@ -61,7 +61,7 @@ public class UpdatePaddockArrangementValidatorApplyTest {
         context.setErrors(new ArrayList<>());
 
 
-        subject = new UpdatePaddockArrangementValidator(findPaddock, findingPaddockArrangementFunction);
+        subject = new UpdatePaddockArrangementExistenceValidator(findPaddock, findingPaddockArrangementFunction);
     }
 
     @Test
