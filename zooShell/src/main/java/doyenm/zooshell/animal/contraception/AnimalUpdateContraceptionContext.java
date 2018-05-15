@@ -1,5 +1,6 @@
 package doyenm.zooshell.animal.contraception;
 
+import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.model.Zoo;
@@ -7,6 +8,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,6 +27,8 @@ public class AnimalUpdateContraceptionContext {
 
     private Animal convertedAnimal;
     private ContraceptionMethod convertedContraceptionMethod;
+
+    private List<BusinessError> errors = new ArrayList<>();
 
     public Map<String, Animal> getAnimals(){
         return getZoo().getAnimals();

@@ -1,18 +1,17 @@
-package doyenm.zooshell.validator;
+package doyenm.zooshell.animal.contraception;
 
-import doyenm.zooshell.animal.contraception.AnimalUpdateContraceptionContext;
-import doyenm.zooshell.animal.contraception.AnimalUpdateContraceptionValidator;
 import doyenm.zooshell.common.FindAnimal;
-import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.common.context.FindingContraceptionContext;
 import doyenm.zooshell.common.function.FindingContraceptionFunction;
 import doyenm.zooshell.common.predicates.CanHaveAChirurgicalContraceptionPredicate;
 import doyenm.zooshell.common.predicates.CanHaveAHormonalContraceptionPredicate;
 import doyenm.zooshell.common.predicates.IsContraceptionCompatibleWithPreviousPredicate;
 import doyenm.zooshell.common.predicates.IsContraceptionCompatibleWithSexPredicate;
+import doyenm.zooshell.model.Animal;
+import doyenm.zooshell.model.ContraceptionMethod;
+import doyenm.zooshell.model.Zoo;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -23,6 +22,11 @@ import java.util.HashMap;
  * @author doyenm
  */
 public class AnimalUpdateContraceptionValidatorApplyTest {
+
+    private AnimalUpdateContraceptionValidator subject;
+
+    @Before
+
 
     private FindingContraceptionFunction givenFindingContraception(ContraceptionMethod value) {
         FindingContraceptionFunction mock = Mockito.mock(FindingContraceptionFunction.class);

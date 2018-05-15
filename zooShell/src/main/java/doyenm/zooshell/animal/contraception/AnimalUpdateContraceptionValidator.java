@@ -1,17 +1,18 @@
 package doyenm.zooshell.animal.contraception;
 
-import doyenm.zooshell.model.ContraceptionMethod;
+import doyenm.zooshell.common.FindAnimal;
 import doyenm.zooshell.common.context.FindingContraceptionContext;
 import doyenm.zooshell.common.function.FindingContraceptionFunction;
 import doyenm.zooshell.common.predicates.CanHaveAChirurgicalContraceptionPredicate;
 import doyenm.zooshell.common.predicates.CanHaveAHormonalContraceptionPredicate;
 import doyenm.zooshell.common.predicates.IsContraceptionCompatibleWithPreviousPredicate;
 import doyenm.zooshell.common.predicates.IsContraceptionCompatibleWithSexPredicate;
-import doyenm.zooshell.common.FindAnimal;
+import doyenm.zooshell.errorhandling.BusinessError;
+import doyenm.zooshell.errorhandling.ErrorType;
+import doyenm.zooshell.model.ContraceptionMethod;
 import lombok.RequiredArgsConstructor;
 
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -19,7 +20,7 @@ import java.util.stream.Stream;
  */
 @RequiredArgsConstructor
 public class AnimalUpdateContraceptionValidator
-        implements Predicate<AnimalUpdateContraceptionContext> {
+        implements Function<AnimalUpdateContraceptionContext, AnimalUpdateContraceptionContext> {
 
     private final FindingContraceptionFunction findingContraceptionMethodFunction;
     private final FindAnimal findAnimal;
@@ -30,21 +31,29 @@ public class AnimalUpdateContraceptionValidator
     private final IsContraceptionCompatibleWithSexPredicate compatibleWithSexPredicate;
 
     @Override
-    public boolean test(AnimalUpdateContraceptionContext t) {
+    public AnimalUpdateContraceptionContext apply(AnimalUpdateContraceptionContext t) {
         AnimalUpdateContraceptionContext context = retrieveAnimal(t);
         retrieveContraceptionMethod(context);
-        return !Stream.of(context)
-                .filter(t1 -> t1.getConvertedAnimal() != null && t1.getConvertedContraceptionMethod() != null)
-                .filter(compatibleWithSexPredicate)
-                .filter(hormonalContraceptionPredicate)
-                .filter(chirurgicalContraceptionPredicate)
-                .filter(compatibleWithPreviousPredicate)
-                .collect(Collectors.toList()).isEmpty();
+        if(context.getErrors().isEmpty()) {
+            boolean isAdequate = Stream.of(context)
+                    .filter(compatibleWithSexPredicate)
+                    .filter(hormonalContraceptionPredicate)
+                    .filter(chirurgicalContraceptionPredicate)
+                    .filter(compatibleWithPreviousPredicate)
+                    .anyMatch(i -> true);
+            if(!isAdequate){
+                t.getErrors().add(new BusinessError(ErrorType.INADEQUATE_CONTRACEPTION));
+            }
+        }
+         return context;
 
     }
 
     private AnimalUpdateContraceptionContext retrieveAnimal(AnimalUpdateContraceptionContext t) {
         t.setConvertedAnimal(findAnimal.find(t.getZoo(), t.getAnimal()));
+        if(t.getConvertedAnimal() == null){
+            t.getErrors().add(new BusinessError(ErrorType.UNKNOWN_ANIMAL));
+        }
         return t;
     }
 
@@ -58,7 +67,9 @@ public class AnimalUpdateContraceptionValidator
                         findingContraceptionMethodContext
                 )
                 .getConvertedContraception();
-
+        if(method == null){
+            t.getErrors().add(new BusinessError(ErrorType.UNKNOWN_CONTRACEPTION));
+        }
         t.setConvertedContraceptionMethod(method);
 
         return t;
