@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 
 public class UpdatePaddockFacilityContextDiffListTest {
 
-    private UpdatePaddockArrangementContext subject;
+    private UpdatePaddockFacilityContext subject;
 
     private Paddock paddock;
 
@@ -30,7 +30,7 @@ public class UpdatePaddockFacilityContextDiffListTest {
     @Test
     public void shouldReturnSetWithTwoElementsWhenAddingIsSetToTrueAndOneIsCommonBetweenOldAndNewFacilities(){
         // Given
-        subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
+        subject = new UpdatePaddockFacilityContext(mock(Zoo.class),
                 RandomStringUtils.randomAlphabetic(5),
                 Arrays.asList(),
                true);
@@ -52,7 +52,7 @@ public class UpdatePaddockFacilityContextDiffListTest {
     @Test
     public void shouldReturnSetWithOnlyTheOldElementsWhenAddingIsSetToTrueAndTheNewOneIsNONE(){
         // Given
-        subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
+        subject = new UpdatePaddockFacilityContext(mock(Zoo.class),
                 RandomStringUtils.randomAlphabetic(5),
                 Arrays.asList(),
                 true);
@@ -72,7 +72,7 @@ public class UpdatePaddockFacilityContextDiffListTest {
     @Test
     public void shouldReturnSetWithOneElementsWhenAddingIsSetToFalseAndOneIsCommonBetweenPresentAndRemovedFacilities(){
         // Given
-        subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
+        subject = new UpdatePaddockFacilityContext(mock(Zoo.class),
                 RandomStringUtils.randomAlphabetic(5),
                 Arrays.asList(),
                 false);
@@ -93,7 +93,7 @@ public class UpdatePaddockFacilityContextDiffListTest {
     @Test
     public void shouldReturnSetWithOnlyTheElementNoneWhenAddingIsSetToFalseAndWeAreRemovingAllOfThem(){
         // Given
-        subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
+        subject = new UpdatePaddockFacilityContext(mock(Zoo.class),
                 RandomStringUtils.randomAlphabetic(5),
                 Arrays.asList(),
                 false);
@@ -113,7 +113,7 @@ public class UpdatePaddockFacilityContextDiffListTest {
     @Test
     public void shouldReturnTheInitialSetWhenAddingIsSetToFalseAndWeAreRemovingFacilityWhichAreNotInThePaddock(){
         // Given
-        subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
+        subject = new UpdatePaddockFacilityContext(mock(Zoo.class),
                 RandomStringUtils.randomAlphabetic(5),
                 Arrays.asList(),
                 false);

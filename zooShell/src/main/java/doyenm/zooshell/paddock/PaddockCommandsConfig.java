@@ -8,7 +8,7 @@ import doyenm.zooshell.paddock.entry.CreatePaddockEntry;
 import doyenm.zooshell.paddock.extension.CreatePaddockExtension;
 import doyenm.zooshell.paddock.facilities.LsPaddockFacilities;
 import doyenm.zooshell.paddock.facilities.ResetPaddockFacilities;
-import doyenm.zooshell.paddock.facilities.UpdatePaddockArrangements;
+import doyenm.zooshell.paddock.facilities.UpdatePaddockFacilities;
 import doyenm.zooshell.paddock.list.LsPaddock;
 import doyenm.zooshell.paddock.remove.RemovePaddock;
 import doyenm.zooshell.paddock.rename.RenamePaddock;
@@ -97,8 +97,8 @@ public class PaddockCommandsConfig {
     }
     
     @Bean
-    public UpdatePaddockArrangements updatePaddockArrangements() {
-        return new UpdatePaddockArrangements(
+    public UpdatePaddockFacilities updatePaddockArrangements() {
+        return new UpdatePaddockFacilities(
                 validators.updatePaddockArrangementExistenceValidator(),
                 validators.updatePaddockArrangementCoherenceValidator(),
                 controllers.updatePaddockArrangementController());

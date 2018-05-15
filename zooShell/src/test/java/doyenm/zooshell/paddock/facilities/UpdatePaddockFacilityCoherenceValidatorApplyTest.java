@@ -20,9 +20,9 @@ import static org.mockito.Mockito.*;
  */
 public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
 
-    private UpdatePaddockArrangementCoherenceValidator subject;
+    private UpdatePaddockFacilityCoherenceValidator subject;
 
-    private UpdatePaddockArrangementContext context;
+    private UpdatePaddockFacilityContext context;
 
     private Paddock paddock;
     private PaddockFacility alreadyPresentFacility;
@@ -34,7 +34,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         paddock = mock(Paddock.class);
         zoo = mock(Zoo.class);
 
-        context = mock(UpdatePaddockArrangementContext.class);
+        context = mock(UpdatePaddockFacilityContext.class);
         when(context.getConvertedPaddock()).thenReturn(paddock);
         when(context.getZoo()).thenReturn(zoo);
 
@@ -43,7 +43,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         context.setErrors(new ArrayList<>());
 
 
-        subject = new UpdatePaddockArrangementCoherenceValidator();
+        subject = new UpdatePaddockFacilityCoherenceValidator();
     }
 
     @Test
@@ -55,7 +55,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(true);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -72,7 +72,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(true);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -89,7 +89,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(true);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -105,7 +105,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(false);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -122,7 +122,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(false);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -139,7 +139,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(false);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();

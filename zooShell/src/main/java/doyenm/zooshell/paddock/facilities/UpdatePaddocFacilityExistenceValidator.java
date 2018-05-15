@@ -18,14 +18,14 @@ import java.util.stream.Stream;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class UpdatePaddockArrangementExistenceValidator
-        implements Function<UpdatePaddockArrangementContext, UpdatePaddockArrangementContext> {
+public class UpdatePaddocFacilityExistenceValidator
+        implements Function<UpdatePaddockFacilityContext, UpdatePaddockFacilityContext> {
 
     private final FindPaddock findPaddock;
     private final FindingPaddockArrangementFunction findingPaddockArrangementFunction;
 
     @Override
-    public UpdatePaddockArrangementContext apply(UpdatePaddockArrangementContext context) {
+    public UpdatePaddockFacilityContext apply(UpdatePaddockFacilityContext context) {
         Paddock pad = findPaddock.find(context.getZoo(), context.getPaddock());
         if (pad == null) {
             context.getErrors().add(new BusinessError(ErrorType.UNKNOWN_PADDOCK));
@@ -35,7 +35,7 @@ public class UpdatePaddockArrangementExistenceValidator
         return context;
     }
 
-    private void retrieveFacilities(UpdatePaddockArrangementContext context) {
+    private void retrieveFacilities(UpdatePaddockFacilityContext context) {
         FindingPaddockArrangementContext findingPaddockArrangementContext;
         PaddockFacility convertedArrangement;
         context.setConvertedArrangements(new ArrayList<>());

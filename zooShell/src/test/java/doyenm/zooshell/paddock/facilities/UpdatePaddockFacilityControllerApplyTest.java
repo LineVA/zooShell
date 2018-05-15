@@ -20,9 +20,9 @@ import static org.mockito.Mockito.*;
 
 public class UpdatePaddockFacilityControllerApplyTest {
 
-    private UpdatePaddockArrangementController subject;
+    private UpdatePaddockFacilityController subject;
 
-    private UpdatePaddockArrangementContext context;
+    private UpdatePaddockFacilityContext context;
 
     private String name;
     private Paddock paddock;
@@ -43,11 +43,11 @@ public class UpdatePaddockFacilityControllerApplyTest {
         paddock.setFacilities(new ArrayList<>());
 
         zoo.getPaddocks().put(name, paddock);
-        context = mock(UpdatePaddockArrangementContext.class);
+        context = mock(UpdatePaddockFacilityContext.class);
         when(context.getZoo()).thenReturn(zoo);
         when(context.getConvertedPaddock()).thenReturn(paddock);
 
-        subject = new UpdatePaddockArrangementController();
+        subject = new UpdatePaddockFacilityController();
     }
 
     @Test
@@ -66,7 +66,7 @@ public class UpdatePaddockFacilityControllerApplyTest {
         facilitiesSet.add(facility3);
         when(context.difflists()).thenReturn(facilitiesSet);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getZoo()).isNotNull();

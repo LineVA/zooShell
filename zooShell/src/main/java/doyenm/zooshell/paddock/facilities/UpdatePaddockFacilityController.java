@@ -10,11 +10,11 @@ import java.util.function.Function;
  *
  * @author doyenm
  */
-public class UpdatePaddockArrangementController
-        implements Function<UpdatePaddockArrangementContext, UpdatePaddockArrangementContext> {
+public class UpdatePaddockFacilityController
+        implements Function<UpdatePaddockFacilityContext, UpdatePaddockFacilityContext> {
 
     @Override
-    public UpdatePaddockArrangementContext apply(UpdatePaddockArrangementContext t) {
+    public UpdatePaddockFacilityContext apply(UpdatePaddockFacilityContext t) {
         Set<PaddockFacility> finalSet = t.difflists();
         t.getConvertedPaddock().setFacilities(new ArrayList<>());
         t.getConvertedPaddock().getFacilities().addAll(finalSet);

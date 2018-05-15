@@ -27,11 +27,11 @@ import static org.mockito.Mockito.*;
  */
 public class UpdatePaddockFacilityExistenceValidatorApplyTest {
 
-    private UpdatePaddockArrangementExistenceValidator subject;
+    private UpdatePaddocFacilityExistenceValidator subject;
 
     private FindPaddock findPaddock;
     private FindingPaddockArrangementFunction findingPaddockArrangementFunction;
-    private UpdatePaddockArrangementContext context;
+    private UpdatePaddockFacilityContext context;
 
     private Paddock paddock;
     private Zoo zoo;
@@ -52,7 +52,7 @@ public class UpdatePaddockFacilityExistenceValidatorApplyTest {
         paddock = mock(Paddock.class);
         zoo = mock(Zoo.class);
 
-        context = mock(UpdatePaddockArrangementContext.class);
+        context = mock(UpdatePaddockFacilityContext.class);
         when(context.getConvertedPaddock()).thenReturn(paddock);
         when(context.getZoo()).thenReturn(zoo);
 
@@ -61,7 +61,7 @@ public class UpdatePaddockFacilityExistenceValidatorApplyTest {
         context.setErrors(new ArrayList<>());
 
 
-        subject = new UpdatePaddockArrangementExistenceValidator(findPaddock, findingPaddockArrangementFunction);
+        subject = new UpdatePaddocFacilityExistenceValidator(findPaddock, findingPaddockArrangementFunction);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class UpdatePaddockFacilityExistenceValidatorApplyTest {
                 .thenReturn(TestUtils.getPaddockArrangement())
                 .thenReturn(TestUtils.getPaddockArrangement());
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -95,7 +95,7 @@ public class UpdatePaddockFacilityExistenceValidatorApplyTest {
                 .thenReturn(null)
                 .thenReturn(TestUtils.getPaddockArrangement());
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -108,7 +108,7 @@ public class UpdatePaddockFacilityExistenceValidatorApplyTest {
         doReturn(null).when(findPaddock).find(any(Zoo.class), anyString());
         when(findingPaddockArrangementFunction.apply(any())).thenReturn(TestUtils.getPaddockArrangement());
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();

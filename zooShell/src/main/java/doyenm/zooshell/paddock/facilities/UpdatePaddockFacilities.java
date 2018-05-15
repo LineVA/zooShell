@@ -18,19 +18,19 @@ import java.util.stream.Stream;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class UpdatePaddockArrangements implements Command {
+public class UpdatePaddockFacilities implements Command {
 
-    private final UpdatePaddockArrangementExistenceValidator existenceValidator;
-    private final UpdatePaddockArrangementCoherenceValidator coherenceValidator;
-    private final UpdatePaddockArrangementController controller;
+    private final UpdatePaddocFacilityExistenceValidator existenceValidator;
+    private final UpdatePaddockFacilityCoherenceValidator coherenceValidator;
+    private final UpdatePaddockFacilityController controller;
 
     private boolean isAdding;
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        UpdatePaddockArrangementContext context = new UpdatePaddockArrangementContext(zoo,
+        UpdatePaddockFacilityContext context = new UpdatePaddockFacilityContext(zoo,
                 cmd[2], generateFacilitiesList(cmd), isAdding);
-        Optional<UpdatePaddockArrangementContext> optional = Stream.of(context)
+        Optional<UpdatePaddockFacilityContext> optional = Stream.of(context)
                 .map(existenceValidator)
                 .filter(t -> t.getErrors().isEmpty())
                 .map(coherenceValidator)

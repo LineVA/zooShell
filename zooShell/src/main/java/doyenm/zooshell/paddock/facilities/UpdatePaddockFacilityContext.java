@@ -19,7 +19,7 @@ import java.util.Set;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class UpdatePaddockArrangementContext {
+public class UpdatePaddockFacilityContext {
 
     private final Zoo zoo;
     private final String paddock;

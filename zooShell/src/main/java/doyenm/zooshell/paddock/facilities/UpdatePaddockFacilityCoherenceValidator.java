@@ -11,17 +11,17 @@ import java.util.function.Function;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class UpdatePaddockArrangementCoherenceValidator
-        implements Function<UpdatePaddockArrangementContext, UpdatePaddockArrangementContext> {
+public class UpdatePaddockFacilityCoherenceValidator
+        implements Function<UpdatePaddockFacilityContext, UpdatePaddockFacilityContext> {
 
     @Override
-    public UpdatePaddockArrangementContext apply(UpdatePaddockArrangementContext context) {
+    public UpdatePaddockFacilityContext apply(UpdatePaddockFacilityContext context) {
         checkWhenTryingToRemoveAFacility(context);
         checkWhenTryingToAddAFacility(context);
         return context;
     }
 
-    private void checkWhenTryingToRemoveAFacility(UpdatePaddockArrangementContext context) {
+    private void checkWhenTryingToRemoveAFacility(UpdatePaddockFacilityContext context) {
         if (!context.isAddingFacilities()) {
             context.getConvertedArrangements()
                     .stream()
@@ -31,7 +31,7 @@ public class UpdatePaddockArrangementCoherenceValidator
         }
     }
 
-    private void checkWhenTryingToAddAFacility(UpdatePaddockArrangementContext context) {
+    private void checkWhenTryingToAddAFacility(UpdatePaddockFacilityContext context) {
         if (context.isAddingFacilities()) {
             context.getConvertedArrangements()
                     .stream()
