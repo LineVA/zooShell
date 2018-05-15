@@ -24,10 +24,10 @@
     <biomes>
         <biome>TUNDRA</biome>
     </biomes>
-    <arrangements>
-        <arrangement>CLIMBING_STRUCTURE</arrangement>
-        <arrangement>POOL</arrangement>
-    </arrangements>
+    <facilities>
+        <facility>CLIMBING_STRUCTURE</facility>
+        <facility>POOL</facility>
+    </facilities>
     <diets>
         <diet>CARNIVOROUS</diet>
     </diets>

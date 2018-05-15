@@ -97,11 +97,11 @@ public class PaddockCommandsConfig {
     }
     
     @Bean
-    public UpdatePaddockFacilities updatePaddockArrangements() {
+    public UpdatePaddockFacilities updatePaddockFacilities() {
         return new UpdatePaddockFacilities(
-                validators.updatePaddockArrangementExistenceValidator(),
-                validators.updatePaddockArrangementCoherenceValidator(),
-                controllers.updatePaddockArrangementController());
+                validators.updatePaddockFacilityExistenceValidator(),
+                validators.updatePaddockFacilityCoherenceValidator(),
+                controllers.updatePaddockFacilityController());
     }
 
     @Bean
@@ -122,7 +122,7 @@ public class PaddockCommandsConfig {
     }
     
      @Bean
-    public LsPaddockFacilities lsPaddockArrangements() {
+    public LsPaddockFacilities lsPaddockFacilities() {
         return new LsPaddockFacilities();
     }
 }

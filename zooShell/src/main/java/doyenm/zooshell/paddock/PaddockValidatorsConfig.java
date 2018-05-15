@@ -2,7 +2,7 @@ package doyenm.zooshell.paddock;
 
 import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.common.function.FindingBiomeFunction;
-import doyenm.zooshell.common.function.FindingPaddockArrangementFunction;
+import doyenm.zooshell.common.function.FindingPaddockFacilityFunction;
 import doyenm.zooshell.common.function.FindingPaddockTypeFunction;
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;
@@ -44,7 +44,7 @@ public class PaddockValidatorsConfig {
     FindingPaddockTypeFunction findingPaddockTypeFunction;
 
       @Autowired
-    FindingPaddockArrangementFunction findingPaddockArrangementFunction;
+      FindingPaddockFacilityFunction findingPaddockFacilityFunction;
     
     @Autowired
     Environment environment;
@@ -107,12 +107,12 @@ public class PaddockValidatorsConfig {
     }
     
     @Bean
-    public UpdatePaddocFacilityExistenceValidator updatePaddockArrangementExistenceValidator() {
-        return new UpdatePaddocFacilityExistenceValidator(findPaddock, findingPaddockArrangementFunction);
+    public UpdatePaddocFacilityExistenceValidator updatePaddockFacilityExistenceValidator() {
+        return new UpdatePaddocFacilityExistenceValidator(findPaddock, findingPaddockFacilityFunction);
     }
 
     @Bean
-    public UpdatePaddockFacilityCoherenceValidator updatePaddockArrangementCoherenceValidator() {
+    public UpdatePaddockFacilityCoherenceValidator updatePaddockFacilityCoherenceValidator() {
         return new UpdatePaddockFacilityCoherenceValidator();
     }
 

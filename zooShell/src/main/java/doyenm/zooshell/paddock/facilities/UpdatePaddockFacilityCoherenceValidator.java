@@ -23,7 +23,7 @@ public class UpdatePaddockFacilityCoherenceValidator
 
     private void checkWhenTryingToRemoveAFacility(UpdatePaddockFacilityContext context) {
         if (!context.isAddingFacilities()) {
-            context.getConvertedArrangements()
+            context.getConvertedFacilities()
                     .stream()
                     .filter(f -> !context.getConvertedPaddock().getFacilities().contains(f)
                             || PaddockFacility.NONE == f)
@@ -33,7 +33,7 @@ public class UpdatePaddockFacilityCoherenceValidator
 
     private void checkWhenTryingToAddAFacility(UpdatePaddockFacilityContext context) {
         if (context.isAddingFacilities()) {
-            context.getConvertedArrangements()
+            context.getConvertedFacilities()
                     .stream()
                     .filter(f -> context.getConvertedPaddock().getFacilities().contains(f)
                             || PaddockFacility.NONE == f)

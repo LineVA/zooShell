@@ -25,11 +25,11 @@
     <biomes>
         <biome>RAINFOREST</biome>
     </biomes>
-    <arrangements>
-        <arrangement>DIGGING_ZONE</arrangement>
-        <arrangement>CLIMBING_STRUCTURE</arrangement>
-        <arrangement>POOL</arrangement>
-    </arrangements>
+    <facilities>
+        <facility>DIGGING_ZONE</facility>
+        <facility>CLIMBING_STRUCTURE</facility>
+        <facility>POOL</facility>
+    </facilities>
     <diets>
         <diet>FOLIVOROUS</diet>
         <diet>FRUGIVOROUS</diet>

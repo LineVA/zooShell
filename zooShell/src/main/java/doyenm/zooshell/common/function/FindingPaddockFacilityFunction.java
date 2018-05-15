@@ -1,37 +1,37 @@
 package doyenm.zooshell.common.function;
 
 import doyenm.zooshell.model.PaddockFacility;
-import doyenm.zooshell.common.context.FindingPaddockArrangementContext;
+import doyenm.zooshell.common.context.FindingPaddockFacilityContext;
 import java.util.function.Function;
 
 /**
  *
  * @author doyenm
  */
-public class FindingPaddockArrangementFunction
-        implements Function<FindingPaddockArrangementContext, PaddockFacility> {
+public class FindingPaddockFacilityFunction
+        implements Function<FindingPaddockFacilityContext, PaddockFacility> {
 
     ReplaceSpacesWithUnderscores replaceSpacesWithUnderscores = new ReplaceSpacesWithUnderscores();
 
     @Override
-    public PaddockFacility apply(FindingPaddockArrangementContext t) {
-        FindingPaddockArrangementContext context = t;
+    public PaddockFacility apply(FindingPaddockFacilityContext t) {
+        FindingPaddockFacilityContext context = t;
         try {
-            int id = Integer.parseInt(context.getArrangement());
+            int id = Integer.parseInt(context.getFacility());
             for (PaddockFacility arrangement : PaddockFacility.values()) {
                 if (id == arrangement.getId()) {
-                    context.setConvertedArrangement(arrangement);
+                    context.setConvertedFacility(arrangement);
                 }
             }
         } catch (NumberFormatException ex) {
-            String input = replaceSpacesWithUnderscores.replace(context.getArrangement());
+            String input = replaceSpacesWithUnderscores.replace(context.getFacility());
             for (PaddockFacility arrangement : PaddockFacility.values()) {
                 if (input.equalsIgnoreCase(arrangement.name())) {
-                    context.setConvertedArrangement(arrangement);
+                    context.setConvertedFacility(arrangement);
                 }
             }
         }
-        return context.getConvertedArrangement();
+        return context.getConvertedFacility();
     }
 
 }

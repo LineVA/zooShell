@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class FindingPaddockArrangementContext {
-    private final String arrangement;
-    private PaddockFacility convertedArrangement;
+public class FindingPaddockFacilityContext {
+    private final String facility;
+    private PaddockFacility convertedFacility;
 }

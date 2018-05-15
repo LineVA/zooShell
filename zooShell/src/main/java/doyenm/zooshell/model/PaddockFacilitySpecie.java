@@ -17,11 +17,11 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PaddockFacilitySpecie {
 
-     @XmlElement(name = "arrangement")
-    List<PaddockFacility> arrangements;
+     @XmlElement(name = "facility")
+    List<PaddockFacility> facilities;
 
     public PaddockFacilitySpecie(List<PaddockFacility> arrangements) {
-        this.arrangements = arrangements;
+        this.facilities = arrangements;
     }
 
     public PaddockFacilitySpecie() {

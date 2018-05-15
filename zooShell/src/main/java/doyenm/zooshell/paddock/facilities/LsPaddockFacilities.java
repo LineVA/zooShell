@@ -21,7 +21,7 @@ public class LsPaddockFacilities implements Command {
         LsContext context = new LsContext(zoo);
         return Stream.of(context)
                 .map(t ->
-                        new ReturnExec(FormattingInList.formatList(context.getPaddockArrangements()), TypeReturn.SUCCESS)
+                        new ReturnExec(FormattingInList.formatList(context.getPaddockFacilities()), TypeReturn.SUCCESS)
                 )
                 .findFirst()
                 .orElseGet(null);

@@ -25,9 +25,9 @@
         <biome>RAINFOREST</biome>
         <biome>TROPICAL_GRASSLANDS</biome>
     </biomes>
-    <arrangements>
-        <arrangement>CLIMBING_STRUCTURE</arrangement>
-    </arrangements>
+    <facilities>
+        <facility>CLIMBING_STRUCTURE</facility>
+    </facilities>
     <diets>
         <diet>OMNIVOROUS</diet>
     </diets>

@@ -51,7 +51,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         // Given
         alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
         givenFacility = alreadyPresentFacility;
-        when(context.getConvertedArrangements()).thenReturn(Arrays.asList(givenFacility));
+        when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(true);
         // When
@@ -68,7 +68,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         // Given
         alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
         givenFacility = PaddockFacility.NONE;
-        when(context.getConvertedArrangements()).thenReturn(Arrays.asList(givenFacility));
+        when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(true);
         // When
@@ -85,7 +85,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         // Given
         alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
         givenFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE, alreadyPresentFacility);
-        when(context.getConvertedArrangements()).thenReturn(Arrays.asList(givenFacility));
+        when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(true);
         // When
@@ -101,7 +101,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         // Given
         alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
         givenFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE, alreadyPresentFacility);
-        when(context.getConvertedArrangements()).thenReturn(Arrays.asList(givenFacility));
+        when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(false);
         // When
@@ -118,7 +118,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         // Given
         alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
         givenFacility = PaddockFacility.NONE;
-        when(context.getConvertedArrangements()).thenReturn(Arrays.asList(givenFacility));
+        when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(false);
         // When
@@ -135,7 +135,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
         // Given
         alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
         givenFacility = alreadyPresentFacility;
-        when(context.getConvertedArrangements()).thenReturn(Arrays.asList(givenFacility));
+        when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(false);
         // When

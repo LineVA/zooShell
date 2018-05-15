@@ -23,11 +23,11 @@ public class UpdatePaddockFacilityContext {
 
     private final Zoo zoo;
     private final String paddock;
-    private final List<String> arrangements;
+    private final List<String> facilities;
     private final boolean isAddingFacilities;
 
     private Paddock convertedPaddock;
-    private List<PaddockFacility> convertedArrangements;
+    private List<PaddockFacility> convertedFacilities;
 
     private List<BusinessError> errors = new ArrayList<>();
 
@@ -35,10 +35,10 @@ public class UpdatePaddockFacilityContext {
         Set<PaddockFacility> finalFacilities = new HashSet<>();
         finalFacilities.addAll(convertedPaddock.getFacilities());
         if (isAddingFacilities) {
-            finalFacilities.addAll(convertedArrangements);
+            finalFacilities.addAll(convertedFacilities);
             finalFacilities.remove(PaddockFacility.NONE);
         } else {
-            finalFacilities.removeAll(convertedArrangements);
+            finalFacilities.removeAll(convertedFacilities);
             if(finalFacilities.isEmpty()){
                 finalFacilities.add(PaddockFacility.NONE);
             }

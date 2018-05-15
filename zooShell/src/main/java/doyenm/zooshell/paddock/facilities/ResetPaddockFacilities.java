@@ -32,7 +32,7 @@ public class ResetPaddockFacilities implements Command {
                 .map(controller)
                 .findFirst();
         if (optional.isPresent()) {
-            return new ReturnExec("RESET_PADDOCK_ARRANGEMENT_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
+            return new ReturnExec("RESET_PADDOCK_FACILITIES_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } else {
             return DisplayingErrorsList.displayErrorList(context.getErrors());
         }

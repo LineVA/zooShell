@@ -38,7 +38,7 @@ public class UpdatePaddockFacilities implements Command {
                 .map(controller)
                 .findFirst();
         if (optional.isPresent()) {
-            return new ReturnExec("UPDATE_PADDOCK_ARRANGEMENT_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
+            return new ReturnExec("UPDATE_PADDOCK_FACILITIES_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } else {
             return DisplayingErrorsList.displayErrorList(context.getErrors());
         }

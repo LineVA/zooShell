@@ -38,7 +38,7 @@ public class UpdatePaddockFacilityContextDiffListTest {
 
         PaddockFacility facility1 = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
         PaddockFacility commonFacility = TestUtils.getPaddockArrangementExcluding(facility1, PaddockFacility.NONE);
-        subject.setConvertedArrangements(Lists.newArrayList(facility1, commonFacility));
+        subject.setConvertedFacilities(Lists.newArrayList(facility1, commonFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(commonFacility));
         // When
         Set<PaddockFacility> result = subject.difflists();
@@ -59,7 +59,7 @@ public class UpdatePaddockFacilityContextDiffListTest {
         subject.setConvertedPaddock(paddock);
 
         PaddockFacility oldFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
-        subject.setConvertedArrangements(Lists.newArrayList(PaddockFacility.NONE));
+        subject.setConvertedFacilities(Lists.newArrayList(PaddockFacility.NONE));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(oldFacility));
         // When
         Set<PaddockFacility> result = subject.difflists();
@@ -80,7 +80,7 @@ public class UpdatePaddockFacilityContextDiffListTest {
 
         PaddockFacility facility1 = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
         PaddockFacility commonFacility = TestUtils.getPaddockArrangementExcluding(facility1, PaddockFacility.NONE);
-        subject.setConvertedArrangements(Lists.newArrayList(commonFacility));
+        subject.setConvertedFacilities(Lists.newArrayList(commonFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(facility1, commonFacility));
         // When
         Set<PaddockFacility> result = subject.difflists();
@@ -100,7 +100,7 @@ public class UpdatePaddockFacilityContextDiffListTest {
         subject.setConvertedPaddock(paddock);
 
         PaddockFacility oldFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
-        subject.setConvertedArrangements(Lists.newArrayList(oldFacility));
+        subject.setConvertedFacilities(Lists.newArrayList(oldFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(oldFacility));
         // When
         Set<PaddockFacility> result = subject.difflists();
@@ -122,7 +122,7 @@ public class UpdatePaddockFacilityContextDiffListTest {
         PaddockFacility oldFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
         PaddockFacility unknownFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE, oldFacility);
 
-        subject.setConvertedArrangements(Lists.newArrayList(unknownFacility));
+        subject.setConvertedFacilities(Lists.newArrayList(unknownFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(oldFacility));
         // When
         Set<PaddockFacility> result = subject.difflists();

@@ -72,7 +72,7 @@ public class PaddockControllerConfig {
     }
     
     @Bean
-    public UpdatePaddockFacilityController updatePaddockArrangementController() {
+    public UpdatePaddockFacilityController updatePaddockFacilityController() {
         return new UpdatePaddockFacilityController();
     }
 

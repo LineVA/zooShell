@@ -24,10 +24,10 @@
     <biomes>
         <biome>DRY_BROADLEAF</biome>
     </biomes>
-    <arrangements>
+    <facilities>
         <arrangement>CLIMBING_STRUCTURE</arrangement>
         <arrangement>SETBACK_ZONE</arrangement>
-    </arrangements>
+    </facilities>
     <diets>
         <diet>FOLIVOROUS</diet>
         <diet>NECTARIVOROUS</diet>

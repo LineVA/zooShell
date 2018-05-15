@@ -1,8 +1,8 @@
 package doyenm.zooshell.paddock.facilities;
 
 import doyenm.zooshell.common.FindPaddock;
-import doyenm.zooshell.common.context.FindingPaddockArrangementContext;
-import doyenm.zooshell.common.function.FindingPaddockArrangementFunction;
+import doyenm.zooshell.common.context.FindingPaddockFacilityContext;
+import doyenm.zooshell.common.function.FindingPaddockFacilityFunction;
 import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.errorhandling.ErrorType;
 import doyenm.zooshell.model.Paddock;
@@ -22,7 +22,7 @@ public class UpdatePaddocFacilityExistenceValidator
         implements Function<UpdatePaddockFacilityContext, UpdatePaddockFacilityContext> {
 
     private final FindPaddock findPaddock;
-    private final FindingPaddockArrangementFunction findingPaddockArrangementFunction;
+    private final FindingPaddockFacilityFunction findingPaddockFacilityFunction;
 
     @Override
     public UpdatePaddockFacilityContext apply(UpdatePaddockFacilityContext context) {
@@ -36,21 +36,21 @@ public class UpdatePaddocFacilityExistenceValidator
     }
 
     private void retrieveFacilities(UpdatePaddockFacilityContext context) {
-        FindingPaddockArrangementContext findingPaddockArrangementContext;
-        PaddockFacility convertedArrangement;
-        context.setConvertedArrangements(new ArrayList<>());
-        for (String str : context.getArrangements()) {
-            findingPaddockArrangementContext
-                    = new FindingPaddockArrangementContext(str);
-            convertedArrangement = Stream.of(findingPaddockArrangementContext)
-                    .map(findingPaddockArrangementFunction)
+        FindingPaddockFacilityContext findingPaddockFacilityContext;
+        PaddockFacility convertedFacility;
+        context.setConvertedFacilities(new ArrayList<>());
+        for (String str : context.getFacilities()) {
+            findingPaddockFacilityContext
+                    = new FindingPaddockFacilityContext(str);
+            convertedFacility = Stream.of(findingPaddockFacilityContext)
+                    .map(findingPaddockFacilityFunction)
                     .filter(Objects::nonNull)
                     .findFirst()
                     .orElse(null);
-            if (convertedArrangement == null) {
+            if (convertedFacility == null) {
                 context.getErrors().add(new BusinessError(ErrorType.UNKNOWN_PADDOCK_FACILITY));
             }
-            context.getConvertedArrangements().add(convertedArrangement);
+            context.getConvertedFacilities().add(convertedFacility);
         }
     }
 }

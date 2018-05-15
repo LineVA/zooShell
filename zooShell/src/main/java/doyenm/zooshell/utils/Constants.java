@@ -67,7 +67,7 @@ public class Constants {
     public static final String[] PAD_OR_PADDOCK = {"paddock", "pad"};
     // paddocks || pads
     public static final String[] PADS_OR_PADDOCKS = {"paddocks", "pads"};
-  // paddock-arrangement || pad-arrangement
+  // paddock-facility || pad-facility
     public static final String[] PAD_OR_PADDOCK_FACILITY = {"paddock-facility", "pad-facility"};
     // paddock-biome || pad-biome
     public static final String[] PAD_OR_PADDOCK_BIOME = {"paddock-biome", "pad-biome"};
