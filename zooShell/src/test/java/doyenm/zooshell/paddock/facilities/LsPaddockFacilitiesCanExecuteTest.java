@@ -10,7 +10,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
  */
 public class LsPaddockFacilitiesCanExecuteTest {
 
-    private final String ARRANGEMENTS = "facilities";
+    private final String FACILITIES = "facilities";
 
     private final LsPaddockFacilities subject = new LsPaddockFacilities();
 
@@ -18,7 +18,7 @@ public class LsPaddockFacilitiesCanExecuteTest {
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
-        String[] cmd = {this.ARRANGEMENTS};
+        String[] cmd = {this.FACILITIES};
         // When
         boolean actualResult = subject.canExecute(cmd);
         // Then
@@ -33,7 +33,7 @@ public class LsPaddockFacilitiesCanExecuteTest {
         // When
         boolean actualResult = subject.canExecute(cmd);
         // Then
-        assertThat(falsePad).isNotEqualToIgnoringCase(ARRANGEMENTS);
+        assertThat(falsePad).isNotEqualToIgnoringCase(FACILITIES);
         assertThat(actualResult).isFalse();
     }
 
@@ -50,7 +50,7 @@ public class LsPaddockFacilitiesCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanOneElement() {
         // Given
-        String[] cmd = {this.ARRANGEMENTS,
+        String[] cmd = {this.FACILITIES,
                 RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = subject.canExecute(cmd);

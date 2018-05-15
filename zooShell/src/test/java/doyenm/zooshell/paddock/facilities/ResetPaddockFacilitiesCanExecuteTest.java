@@ -9,8 +9,8 @@ import org.junit.Test;
  */
 public class ResetPaddockFacilitiesCanExecuteTest {
 
-    private final String PADDOCK = "paddock-arrangement";
-    private final String PAD = "pad-arrangement";
+    private final String PADDOCK = "paddock-facility";
+    private final String PAD = "pad-facility";
     private final String RESET = "reset";
 
     private final ResetPaddockFacilities subject = new ResetPaddockFacilities(null, null);

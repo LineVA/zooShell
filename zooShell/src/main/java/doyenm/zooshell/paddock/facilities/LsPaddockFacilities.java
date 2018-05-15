@@ -30,7 +30,7 @@ public class LsPaddockFacilities implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 1
-                && Arrays.asList(Constants.ARRANGEMENTS)
+                && Arrays.asList(Constants.FACILITIES)
                 .stream()
                 .anyMatch(cmd[0]::equalsIgnoreCase);
     }

@@ -39,7 +39,7 @@ public class Constants {
     public static final String[] AK_OR_ANIMALKEEPER_TRAINING = {"animalKeeper-training",
         "ak-training"};
     // facilities
-    public static final String[] ARRANGEMENTS = {"facilities"};
+    public static final String[] FACILITIES = {"facilities"};
     // biomes
     public static final String[] BIOMES = {"biomes"};
     // contraception methods
@@ -67,10 +67,8 @@ public class Constants {
     public static final String[] PAD_OR_PADDOCK = {"paddock", "pad"};
     // paddocks || pads
     public static final String[] PADS_OR_PADDOCKS = {"paddocks", "pads"};
-      // paddockArrangements || padArrangements
-    public static final String[] PADDOCKARRANGEMENTS_OR_PADARRANGEMENTS = {"paddockArrangements", "padArrangements"};
   // paddock-arrangement || pad-arrangement
-    public static final String[] PAD_OR_PADDOCK_ARRANGEMENT = {"paddock-arrangement", "pad-arrangement"};
+    public static final String[] PAD_OR_PADDOCK_FACILITY = {"paddock-facility", "pad-facility"};
     // paddock-biome || pad-biome
     public static final String[] PAD_OR_PADDOCK_BIOME = {"paddock-biome", "pad-biome"};
     // paddock-entry || pad-entry

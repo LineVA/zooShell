@@ -10,8 +10,8 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
  */
 public class UpdatePaddockFacilityCanExecuteTest {
 
-    private final String PADDOCK = "paddock-arrangement";
-    private final String PAD = "pad-arrangement";
+    private final String PADDOCK = "paddock-facility";
+    private final String PAD = "pad-facility";
     private final String ADD = "add";
     private final String REMOVE = "remove";
 

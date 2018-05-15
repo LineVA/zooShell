@@ -47,7 +47,7 @@ public class UpdatePaddockArrangements implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         boolean isCommandCorrect = cmd.length >= 4
-                && Arrays.asList(Constants.PAD_OR_PADDOCK_ARRANGEMENT)
+                && Arrays.asList(Constants.PAD_OR_PADDOCK_FACILITY)
                 .stream()
                 .anyMatch(cmd[0]::equalsIgnoreCase)
                 && Arrays.asList(Constants.ADD_OR_REMOVE)
