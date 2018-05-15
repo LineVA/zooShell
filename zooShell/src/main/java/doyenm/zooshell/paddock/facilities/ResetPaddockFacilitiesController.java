@@ -1,6 +1,6 @@
 package doyenm.zooshell.paddock.facilities;
 
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import doyenm.zooshell.paddock.PaddockContext;
 import org.assertj.core.util.Lists;
 
@@ -14,7 +14,7 @@ public class ResetPaddockFacilitiesController
 
     @Override
     public PaddockContext apply(PaddockContext t) {
-        t.getConvertedPaddock().setArrangements(Lists.newArrayList(PaddockArrangement.NONE));
+        t.getConvertedPaddock().setArrangements(Lists.newArrayList(PaddockFacility.NONE));
         return t;
     }
 

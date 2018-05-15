@@ -8,7 +8,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 /**
  * @author doyenm
  */
-public class UpdatePaddockArrangementCanExecuteTest {
+public class UpdatePaddockFacilityCanExecuteTest {
 
     private final String PADDOCK = "paddock-arrangement";
     private final String PAD = "pad-arrangement";

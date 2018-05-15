@@ -115,11 +115,11 @@ public class AnimalEvaluationContext {
                 .collect(Collectors.toList());
     }
 
-    public List<PaddockArrangement> getArrangements(){
+    public List<PaddockFacility> getArrangements(){
         return getAnimal().getPaddock().getArrangements();
     }
 
-    public List<PaddockArrangement> getSpecieArrangements(){
+    public List<PaddockFacility> getSpecieArrangements(){
         return getAnimal().getSpecie().getArrangements().getArrangements();
     }
 

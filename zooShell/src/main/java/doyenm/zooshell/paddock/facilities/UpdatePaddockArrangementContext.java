@@ -2,7 +2,7 @@ package doyenm.zooshell.paddock.facilities;
 
 import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import doyenm.zooshell.model.Zoo;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -27,20 +27,20 @@ public class UpdatePaddockArrangementContext {
     private final boolean isAddingFacilities;
 
     private Paddock convertedPaddock;
-    private List<PaddockArrangement> convertedArrangements;
+    private List<PaddockFacility> convertedArrangements;
 
     private List<BusinessError> errors = new ArrayList<>();
 
-    public Set<PaddockArrangement> difflists() {
-        Set<PaddockArrangement> finalFacilities = new HashSet<>();
+    public Set<PaddockFacility> difflists() {
+        Set<PaddockFacility> finalFacilities = new HashSet<>();
         finalFacilities.addAll(convertedPaddock.getArrangements());
         if (isAddingFacilities) {
             finalFacilities.addAll(convertedArrangements);
-            finalFacilities.remove(PaddockArrangement.NONE);
+            finalFacilities.remove(PaddockFacility.NONE);
         } else {
             finalFacilities.removeAll(convertedArrangements);
             if(finalFacilities.isEmpty()){
-                finalFacilities.add(PaddockArrangement.NONE);
+                finalFacilities.add(PaddockFacility.NONE);
             }
         }
         return finalFacilities;

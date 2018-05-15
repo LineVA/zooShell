@@ -2,7 +2,7 @@ package doyenm.zooshell.paddock.facilities;
 
 import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.errorhandling.ErrorType;
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Function;
@@ -26,7 +26,7 @@ public class UpdatePaddockArrangementCoherenceValidator
             context.getConvertedArrangements()
                     .stream()
                     .filter(f -> !context.getConvertedPaddock().getArrangements().contains(f)
-                            || PaddockArrangement.NONE == f)
+                            || PaddockFacility.NONE == f)
                     .forEach(f -> context.getErrors().add(new BusinessError(ErrorType.NOT_PRESENT_FACILITY)));
         }
     }
@@ -36,7 +36,7 @@ public class UpdatePaddockArrangementCoherenceValidator
             context.getConvertedArrangements()
                     .stream()
                     .filter(f -> context.getConvertedPaddock().getArrangements().contains(f)
-                            || PaddockArrangement.NONE == f)
+                            || PaddockFacility.NONE == f)
                     .forEach(f -> context.getErrors().add(new BusinessError(ErrorType.ALREADY_PRESENT_FACILITY)));
         }
     }

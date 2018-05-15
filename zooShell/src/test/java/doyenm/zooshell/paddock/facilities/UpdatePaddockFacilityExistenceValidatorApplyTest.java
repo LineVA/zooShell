@@ -25,7 +25,7 @@ import static org.mockito.Mockito.*;
  *
  * @author doyenm
  */
-public class UpdatePaddockArrangementExistenceValidatorApplyTest {
+public class UpdatePaddockFacilityExistenceValidatorApplyTest {
 
     private UpdatePaddockArrangementExistenceValidator subject;
 

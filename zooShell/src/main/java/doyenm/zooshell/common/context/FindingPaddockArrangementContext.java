@@ -1,6 +1,6 @@
 package doyenm.zooshell.common.context;
 
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -14,5 +14,5 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class FindingPaddockArrangementContext {
     private final String arrangement;
-    private PaddockArrangement convertedArrangement;
+    private PaddockFacility convertedArrangement;
 }

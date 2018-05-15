@@ -1,7 +1,7 @@
 package doyenm.zooshell.paddock.facilities;
 
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.paddock.PaddockContext;
 import doyenm.zooshell.testUtils.TestUtils;
@@ -52,7 +52,7 @@ public class ResetPaddockFacilitiesControllerApplyTest {
     @Test
     public void shouldReturnAZooWithAPaddockWithOnlyNoneFacility() {
         // Given
-        PaddockArrangement oldFacility = TestUtils.getPaddockArrangement();
+        PaddockFacility oldFacility = TestUtils.getPaddockArrangement();
         paddock.getArrangements().add(oldFacility);
         // When
         PaddockContext result = subject.apply(context);
@@ -65,6 +65,6 @@ public class ResetPaddockFacilitiesControllerApplyTest {
         assertThat(updatedPaddock).isNotNull();
         assertThat(updatedPaddock.getArrangements()).isNotNull();
         assertThat(updatedPaddock.getArrangements()).hasSize(1);
-        assertThat(updatedPaddock.getArrangements()).contains(PaddockArrangement.NONE);
+        assertThat(updatedPaddock.getArrangements()).contains(PaddockFacility.NONE);
     }
 }

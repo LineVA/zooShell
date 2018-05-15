@@ -1,7 +1,7 @@
 package doyenm.zooshell.paddock.facilities;
 
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.apache.commons.lang.RandomStringUtils;
@@ -18,7 +18,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyMap;
 import static org.mockito.Mockito.*;
 
-public class UpdatePaddockArrangementControllerApplyTest {
+public class UpdatePaddockFacilityControllerApplyTest {
 
     private UpdatePaddockArrangementController subject;
 
@@ -53,14 +53,14 @@ public class UpdatePaddockArrangementControllerApplyTest {
     @Test
     public void shouldReturnAZooWithAPaddockWithTwoMoreFacility() {
         // Given
-        PaddockArrangement facility1 = TestUtils.getPaddockArrangement();
-        PaddockArrangement facility2 = TestUtils.getPaddockArrangement();
-        PaddockArrangement facility3 = TestUtils.getPaddockArrangement();
+        PaddockFacility facility1 = TestUtils.getPaddockArrangement();
+        PaddockFacility facility2 = TestUtils.getPaddockArrangement();
+        PaddockFacility facility3 = TestUtils.getPaddockArrangement();
         assertThat(facility1).isNotEqualTo(facility2);
         assertThat(facility1).isNotEqualTo(facility3);
         assertThat(facility2).isNotEqualTo(facility3);
 
-        Set<PaddockArrangement> facilitiesSet = new HashSet<>();
+        Set<PaddockFacility> facilitiesSet = new HashSet<>();
         facilitiesSet.add(facility1);
         facilitiesSet.add(facility2);
         facilitiesSet.add(facility3);

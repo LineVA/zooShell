@@ -6,7 +6,7 @@ import doyenm.zooshell.common.function.FindingPaddockArrangementFunction;
 import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.errorhandling.ErrorType;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class UpdatePaddockArrangementExistenceValidator
 
     private void retrieveFacilities(UpdatePaddockArrangementContext context) {
         FindingPaddockArrangementContext findingPaddockArrangementContext;
-        PaddockArrangement convertedArrangement;
+        PaddockFacility convertedArrangement;
         context.setConvertedArrangements(new ArrayList<>());
         for (String str : context.getArrangements()) {
             findingPaddockArrangementContext

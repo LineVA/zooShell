@@ -2,7 +2,7 @@ package doyenm.zooshell.evaluation.animal.wellbeing;
 
 import doyenm.zooshell.evaluation.AnimalEvaluationContext;
 import doyenm.zooshell.model.Animal;
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import doyenm.zooshell.model.WellBeing;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.assertj.core.api.Assertions;
@@ -31,8 +31,8 @@ public class AnimalArrangementsEvaluationControllerApplyTest {
         return animal;
     }
 
-    private AnimalEvaluationContext givenContextWithAnimal(Animal animal, List<PaddockArrangement> paddockArrangements,
-                                                           List<PaddockArrangement> specieArrangements) {
+    private AnimalEvaluationContext givenContextWithAnimal(Animal animal, List<PaddockFacility> paddockFacilities,
+                                                           List<PaddockFacility> specieArrangements) {
         AnimalEvaluationContext context = mock(AnimalEvaluationContext.class);
         when(context.getAnimal()).thenReturn(animal);
         WellBeing wb = mock(WellBeing.class);
@@ -40,7 +40,7 @@ public class AnimalArrangementsEvaluationControllerApplyTest {
         doCallRealMethod().when(wb).setInstallationsWellBeing(Mockito.anyDouble());
         when(context.getWellBeingObj()).thenReturn(wb);
         when(context.getInstallationsWellBeing()).thenCallRealMethod();
-        when(context.getArrangements()).thenReturn(paddockArrangements);
+        when(context.getArrangements()).thenReturn(paddockFacilities);
         when(context.getSpecieArrangements()).thenReturn(specieArrangements);
         return context;
     }
@@ -50,10 +50,10 @@ public class AnimalArrangementsEvaluationControllerApplyTest {
     public void shouldSetInstallationsWellBeingToZeroWhenTheInstallationsOfThePaddockIsNoneOfTheSpecie() {
         // Given
         Animal animal = givenAnimal();
-        PaddockArrangement paddockArrangement = TestUtils.getPaddockArrangement();
-        PaddockArrangement specieArrangement = TestUtils.getPaddockArrangementExcluding(paddockArrangement);
+        PaddockFacility paddockFacility = TestUtils.getPaddockArrangement();
+        PaddockFacility specieArrangement = TestUtils.getPaddockArrangementExcluding(paddockFacility);
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
-                Arrays.asList(paddockArrangement),
+                Arrays.asList(paddockFacility),
                 Arrays.asList(specieArrangement)
         );
         // When
@@ -66,9 +66,9 @@ public class AnimalArrangementsEvaluationControllerApplyTest {
     public void shouldSetInstallationWellBeingToZeroWhenTheAnimalHasANullInstallation() {
         // Given
         Animal animal = givenAnimal();
-        PaddockArrangement paddockArrangement = TestUtils.getPaddockArrangement();
+        PaddockFacility paddockFacility = TestUtils.getPaddockArrangement();
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
-                Arrays.asList(paddockArrangement),
+                Arrays.asList(paddockFacility),
                 null
         );
         // When
@@ -81,9 +81,9 @@ public class AnimalArrangementsEvaluationControllerApplyTest {
     public void shouldSetInstallationWellBeingToZeroWhenTheAnimalHasAnEmptyInstallationsList() {
         // Given
         Animal animal = givenAnimal();
-        PaddockArrangement paddockArrangement = TestUtils.getPaddockArrangement();
+        PaddockFacility paddockFacility = TestUtils.getPaddockArrangement();
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
-                Arrays.asList(paddockArrangement),
+                Arrays.asList(paddockFacility),
                 Arrays.asList()
         );
         // When
@@ -96,7 +96,7 @@ public class AnimalArrangementsEvaluationControllerApplyTest {
     public void shouldSetInstallationWellBeingToZeroWhenThePaddockHasAnEmptyInstallationsList() {
         // Given
         Animal animal = givenAnimal();
-        PaddockArrangement specieArrangement = TestUtils.getPaddockArrangement();
+        PaddockFacility specieArrangement = TestUtils.getPaddockArrangement();
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
                 Arrays.asList(),
                 Arrays.asList(specieArrangement)
@@ -111,7 +111,7 @@ public class AnimalArrangementsEvaluationControllerApplyTest {
     public void shouldSetInstallationWellBeingToZeroWhenThePaddockHasAnNullInstallationsList() {
         // Given
         Animal animal = givenAnimal();
-        PaddockArrangement specieArrangements = TestUtils.getPaddockArrangement();
+        PaddockFacility specieArrangements = TestUtils.getPaddockArrangement();
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
                 null,
                 Arrays.asList(specieArrangements)
@@ -126,7 +126,7 @@ public class AnimalArrangementsEvaluationControllerApplyTest {
     public void shouldSetInstallationWellBeingToZeroWhenThePaddockAndTheSpecieHaveAnNullInstallationsList() {
         // Given
         Animal animal = givenAnimal();
-        PaddockArrangement specieArrangements = TestUtils.getPaddockArrangement();
+        PaddockFacility specieArrangements = TestUtils.getPaddockArrangement();
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
                 null,
                 null
@@ -155,8 +155,8 @@ public class AnimalArrangementsEvaluationControllerApplyTest {
     public void shouldSetInstallationWellBeingToMaxWhenThePaddockAndTheSpecieHaveTheSameInstallations() {
         // Given
         Animal animal = givenAnimal();
-        PaddockArrangement specieArrangements = TestUtils.getPaddockArrangement();
-        PaddockArrangement paddockArrangements = specieArrangements;
+        PaddockFacility specieArrangements = TestUtils.getPaddockArrangement();
+        PaddockFacility paddockArrangements = specieArrangements;
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
                 Arrays.asList(paddockArrangements),
                 Arrays.asList(specieArrangements)

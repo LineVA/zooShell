@@ -6,7 +6,7 @@ import lombok.Getter;
  *
  * @author doyenm
  */
-public enum PaddockArrangement {
+public enum PaddockFacility {
 
     NONE(0),
     BRANCH_CHEW(1),
@@ -24,7 +24,7 @@ public enum PaddockArrangement {
     @Getter
     private int id;
 
-    private PaddockArrangement(int id) {
+    private PaddockFacility(int id) {
         this.id = id;
     }
 }

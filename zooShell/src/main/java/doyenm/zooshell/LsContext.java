@@ -105,7 +105,7 @@ public class LsContext {
     
     public List<String> getPaddockArrangements() {
         List<String> list = new ArrayList<>();
-        for (PaddockArrangement arrangement : PaddockArrangement.values()) {
+        for (PaddockFacility arrangement : PaddockFacility.values()) {
             list.add(arrangement.getId() + " - " + arrangement.toString());
         }
         return list;

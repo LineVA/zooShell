@@ -1,6 +1,6 @@
 package doyenm.zooshell.paddock.facilities;
 
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -15,7 +15,7 @@ public class UpdatePaddockArrangementController
 
     @Override
     public UpdatePaddockArrangementContext apply(UpdatePaddockArrangementContext t) {
-        Set<PaddockArrangement> finalSet = t.difflists();
+        Set<PaddockFacility> finalSet = t.difflists();
         t.getConvertedPaddock().setArrangements(new ArrayList<>());
         t.getConvertedPaddock().getArrangements().addAll(finalSet);
         t.getZoo().getPaddocks().replace(t.getPaddock(), t.getConvertedPaddock());
