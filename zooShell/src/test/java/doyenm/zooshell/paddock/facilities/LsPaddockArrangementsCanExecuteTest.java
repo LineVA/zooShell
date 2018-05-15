@@ -10,7 +10,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
  */
 public class LsPaddockArrangementsCanExecuteTest {
 
-    private final String ARRANGEMENTS = "arrangements";
+    private final String ARRANGEMENTS = "facilities";
 
     private final LsPaddockArrangements subject = new LsPaddockArrangements();
 

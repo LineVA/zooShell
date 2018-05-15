@@ -43,9 +43,9 @@ public class Paddock {
      */
     private PaddockType type;
     /**
-     * its arrangements
+     * its facilities
      */
-    private List<PaddockFacility> arrangements;
+    private List<PaddockFacility> facilities;
     /**
      * List of extensions
      */

@@ -33,7 +33,7 @@ public class UpdatePaddockArrangementContext {
 
     public Set<PaddockFacility> difflists() {
         Set<PaddockFacility> finalFacilities = new HashSet<>();
-        finalFacilities.addAll(convertedPaddock.getArrangements());
+        finalFacilities.addAll(convertedPaddock.getFacilities());
         if (isAddingFacilities) {
             finalFacilities.addAll(convertedArrangements);
             finalFacilities.remove(PaddockFacility.NONE);

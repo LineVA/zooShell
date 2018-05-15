@@ -38,9 +38,9 @@ public class UpdatePaddockFacilityControllerApplyTest {
 
         paddock = mock(Paddock.class);
         when(paddock.getName()).thenReturn(name);
-        when(paddock.getArrangements()).thenCallRealMethod();
-        doCallRealMethod().when(paddock).setArrangements(any());
-        paddock.setArrangements(new ArrayList<>());
+        when(paddock.getFacilities()).thenCallRealMethod();
+        doCallRealMethod().when(paddock).setFacilities(any());
+        paddock.setFacilities(new ArrayList<>());
 
         zoo.getPaddocks().put(name, paddock);
         context = mock(UpdatePaddockArrangementContext.class);
@@ -74,10 +74,10 @@ public class UpdatePaddockFacilityControllerApplyTest {
         assertThat(result.getZoo().getPaddocks()).hasSize(1);
         Paddock updatedPaddock = result.getZoo().getPaddocks().get(name);
         assertThat(updatedPaddock).isNotNull();
-        assertThat(updatedPaddock.getArrangements()).isNotNull();
-        assertThat(updatedPaddock.getArrangements()).hasSize(3);
-        assertThat(updatedPaddock.getArrangements()).contains(facility1);
-        assertThat(updatedPaddock.getArrangements()).contains(facility2);
-        assertThat(updatedPaddock.getArrangements()).contains(facility3);
+        assertThat(updatedPaddock.getFacilities()).isNotNull();
+        assertThat(updatedPaddock.getFacilities()).hasSize(3);
+        assertThat(updatedPaddock.getFacilities()).contains(facility1);
+        assertThat(updatedPaddock.getFacilities()).contains(facility2);
+        assertThat(updatedPaddock.getFacilities()).contains(facility3);
     }
 }

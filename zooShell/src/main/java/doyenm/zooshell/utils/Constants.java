@@ -38,8 +38,8 @@ public class Constants {
      // animalKeeper-training || ak-training
     public static final String[] AK_OR_ANIMALKEEPER_TRAINING = {"animalKeeper-training",
         "ak-training"};
-    // arrangements
-    public static final String[] ARRANGEMENTS = {"arrangements"};
+    // facilities
+    public static final String[] ARRANGEMENTS = {"facilities"};
     // biomes
     public static final String[] BIOMES = {"biomes"};
     // contraception methods

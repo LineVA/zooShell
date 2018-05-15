@@ -16,8 +16,8 @@ public class UpdatePaddockArrangementController
     @Override
     public UpdatePaddockArrangementContext apply(UpdatePaddockArrangementContext t) {
         Set<PaddockFacility> finalSet = t.difflists();
-        t.getConvertedPaddock().setArrangements(new ArrayList<>());
-        t.getConvertedPaddock().getArrangements().addAll(finalSet);
+        t.getConvertedPaddock().setFacilities(new ArrayList<>());
+        t.getConvertedPaddock().getFacilities().addAll(finalSet);
         t.getZoo().getPaddocks().replace(t.getPaddock(), t.getConvertedPaddock());
         return t;
     }

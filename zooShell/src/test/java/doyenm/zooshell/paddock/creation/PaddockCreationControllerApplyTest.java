@@ -63,8 +63,8 @@ public class PaddockCreationControllerApplyTest {
         assertThat(pad.getName()).isEqualTo(name);
         assertThat(pad.getBiome()).isEqualTo(Biome.NONE);
         assertThat(pad.getType()).isEqualTo(PaddockType.UNKNOWN);
-        assertThat(pad.getArrangements()).isNotNull();
-        assertThat(pad.getArrangements()).hasSize(1);
-        assertThat(pad.getArrangements().get(0)).isEqualTo(PaddockFacility.NONE);
+        assertThat(pad.getFacilities()).isNotNull();
+        assertThat(pad.getFacilities()).hasSize(1);
+        assertThat(pad.getFacilities().get(0)).isEqualTo(PaddockFacility.NONE);
     }
 }

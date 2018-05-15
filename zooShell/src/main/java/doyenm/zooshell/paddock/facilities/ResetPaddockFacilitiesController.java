@@ -14,7 +14,7 @@ public class ResetPaddockFacilitiesController
 
     @Override
     public PaddockContext apply(PaddockContext t) {
-        t.getConvertedPaddock().setArrangements(Lists.newArrayList(PaddockFacility.NONE));
+        t.getConvertedPaddock().setFacilities(Lists.newArrayList(PaddockFacility.NONE));
         return t;
     }
 

@@ -116,7 +116,7 @@ public class AnimalEvaluationContext {
     }
 
     public List<PaddockFacility> getArrangements(){
-        return getAnimal().getPaddock().getArrangements();
+        return getAnimal().getPaddock().getFacilities();
     }
 
     public List<PaddockFacility> getSpecieArrangements(){

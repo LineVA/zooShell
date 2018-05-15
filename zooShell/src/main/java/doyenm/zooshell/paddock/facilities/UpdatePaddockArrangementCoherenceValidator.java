@@ -25,7 +25,7 @@ public class UpdatePaddockArrangementCoherenceValidator
         if (!context.isAddingFacilities()) {
             context.getConvertedArrangements()
                     .stream()
-                    .filter(f -> !context.getConvertedPaddock().getArrangements().contains(f)
+                    .filter(f -> !context.getConvertedPaddock().getFacilities().contains(f)
                             || PaddockFacility.NONE == f)
                     .forEach(f -> context.getErrors().add(new BusinessError(ErrorType.NOT_PRESENT_FACILITY)));
         }
@@ -35,7 +35,7 @@ public class UpdatePaddockArrangementCoherenceValidator
         if (context.isAddingFacilities()) {
             context.getConvertedArrangements()
                     .stream()
-                    .filter(f -> context.getConvertedPaddock().getArrangements().contains(f)
+                    .filter(f -> context.getConvertedPaddock().getFacilities().contains(f)
                             || PaddockFacility.NONE == f)
                     .forEach(f -> context.getErrors().add(new BusinessError(ErrorType.ALREADY_PRESENT_FACILITY)));
         }

@@ -32,7 +32,7 @@ public class PaddockDetailsController
         context.addCouple("State", paddockStateFunction.apply(context.getConvertedPaddock().getObsolescence()).toString());
         context.addCouple("Biome", context.getConvertedPaddock().getBiome().toString());
         context.addCouple("Type", context.getConvertedPaddock().getType().toString());
-        context.addCouple("Arrangements", context.getConvertedPaddock().getArrangements().toString());
+        context.addCouple("Arrangements", context.getConvertedPaddock().getFacilities().toString());
         context.addCouple("Turns in the unsusable state", context.getConvertedPaddock().getTurnsOfUnusableState());
         return context;
     }
