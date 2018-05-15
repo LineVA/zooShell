@@ -60,7 +60,7 @@ public class ResetPaddockFacilitiesExecuteTest {
     @Test
     public void shouldReturnAReturnExecWithTypeReturnToSuccessWhenTheCommandIsInSuccess() {
         // Given
-        doReturn(true).when(validator).test(any());
+        doReturn(contextWithNoError).when(validator).apply(any());
         // When
         ReturnExec result = subject.execute(cmd, mock(Zoo.class));
         // Then
@@ -73,7 +73,7 @@ public class ResetPaddockFacilitiesExecuteTest {
     @Test
     public void shouldReturnAReturnExecWithTypeReturnToErrorWhenTheValidatorReturnsFalse() {
         // Given
-        doReturn(false).when(validator).test(any());
+        doReturn(contextWithError).when(validator).apply(any());
         // When
         ReturnExec result = subject.execute(cmd, mock(Zoo.class));
         // Then

@@ -8,6 +8,7 @@ import doyenm.zooshell.paddock.PaddockContext;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.utils.Constants;
 import doyenm.zooshell.paddock.PaddockValidator;
+import doyenm.zooshell.utils.DisplayingErrorsList;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
@@ -27,14 +28,15 @@ public class DetailPad implements Command {
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         PaddockContext context = new PaddockContext(zoo, cmd[1]);
         Optional<PaddockContext> optional = Stream.of(context)
-                .filter(validator)
+                .map(validator)
+                .filter(t -> t.getErrors().isEmpty())
                 .map(controller)
                 .findFirst();
         if (optional.isPresent()) {
             FormattingInList formatting = new FormattingInList();
             return new ReturnExec(formatting.format(context.getCouples()), TypeReturn.SUCCESS);
         } else {
-            return new ReturnExec("ERROR", TypeReturn.ERROR);
+            return DisplayingErrorsList.displayErrorList(context.getErrors());
         }
     }
 

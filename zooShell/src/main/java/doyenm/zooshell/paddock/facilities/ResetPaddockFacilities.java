@@ -28,7 +28,8 @@ public class ResetPaddockFacilities implements Command {
         PaddockContext context = new PaddockContext(zoo,
                 cmd[2]);
         Optional<PaddockContext> optional = Stream.of(context)
-                .filter(validator)
+                .map(validator)
+                .filter(t -> t.getErrors().isEmpty())
                 .map(controller)
                 .findFirst();
         if (optional.isPresent()) {
