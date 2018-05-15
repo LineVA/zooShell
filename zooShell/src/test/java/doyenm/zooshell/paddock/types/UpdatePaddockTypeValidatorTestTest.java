@@ -4,7 +4,6 @@ import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.common.context.FindingPaddockTypeContext;
 import doyenm.zooshell.common.function.FindingPaddockTypeFunction;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockType;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.junit.Before;
@@ -22,19 +21,6 @@ import static org.mockito.Mockito.*;
  * @author doyenm
  */
 public class UpdatePaddockTypeValidatorTestTest {
-
-    private FindingPaddockTypeFunction givenFindingPaddockType(PaddockType type) {
-        FindingPaddockTypeFunction finding = mock(FindingPaddockTypeFunction.class);
-        doAnswer(new Answer<FindingPaddockTypeContext>() {
-            @Override
-            public FindingPaddockTypeContext answer(InvocationOnMock invocation) throws Throwable {
-                Object[] args = invocation.getArguments();
-                return (FindingPaddockTypeContext) args[0];
-            }
-        })
-                .when(finding).apply(Mockito.any(FindingPaddockTypeContext.class));
-        return finding;
-    }
 
     private UpdatePaddockTypeValidator subject;
 
