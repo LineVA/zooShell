@@ -1,6 +1,5 @@
-package doyenm.zooshell.specie;
+package doyenm.zooshell.specie.details;
 
-import doyenm.zooshell.specie.SpecieDetailsContext;
 import doyenm.zooshell.common.context.FindingSpecieContext;
 import doyenm.zooshell.common.function.FindingSpecieFunction;
 

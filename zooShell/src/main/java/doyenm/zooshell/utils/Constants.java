@@ -94,7 +94,7 @@ public class Constants {
     // species
     public static final String[] SPECIES = {"species"};
     // xml || spec
-    public static final String[] SPEC_OR_SPECIE = {"xml", "spec"};
+    public static final String[] SPEC_OR_SPECIE = {"specie", "spec"};
     // tasks
     public static final String[] TASKS = {"tasks"};
     // update

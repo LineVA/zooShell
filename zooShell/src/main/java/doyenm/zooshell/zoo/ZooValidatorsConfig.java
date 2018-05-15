@@ -5,7 +5,7 @@ import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;
 import doyenm.zooshell.common.predicates.StringLengthPredicates;
 import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;
-import doyenm.zooshell.specie.SpecieDetailsValidator;
+import doyenm.zooshell.specie.details.SpecieDetailsValidator;
 import doyenm.zooshell.zoo.creation.ZooCreationValidator;
 import doyenm.zooshell.zoo.rename.RenameZooValidator;
 import org.springframework.beans.factory.annotation.Autowired;

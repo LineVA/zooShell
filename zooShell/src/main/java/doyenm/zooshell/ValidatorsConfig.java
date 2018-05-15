@@ -7,7 +7,7 @@ import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;
 import doyenm.zooshell.common.predicates.StringLengthPredicates;
 import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;
-import doyenm.zooshell.specie.SpecieDetailsValidator;
+import doyenm.zooshell.specie.details.SpecieDetailsValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -1,6 +1,6 @@
-package doyenm.zooshell.commandline.commandLineImpl;
+package doyenm.zooshell.specie.list;
 
-import doyenm.zooshell.specie.LsSpecie;
+import doyenm.zooshell.specie.list.LsSpecie;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

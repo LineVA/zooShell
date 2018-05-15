@@ -1,5 +1,6 @@
 package doyenm.zooshell.specie;
 
+import doyenm.zooshell.specie.details.SpecieDetailsController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
