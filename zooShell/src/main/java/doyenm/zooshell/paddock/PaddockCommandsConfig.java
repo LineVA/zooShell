@@ -6,7 +6,7 @@ import doyenm.zooshell.paddock.creation.CreatePaddock;
 import doyenm.zooshell.paddock.details.DetailPad;
 import doyenm.zooshell.paddock.entry.CreatePaddockEntry;
 import doyenm.zooshell.paddock.extension.CreatePaddockExtension;
-import doyenm.zooshell.paddock.facilities.LsPaddockArrangements;
+import doyenm.zooshell.paddock.facilities.LsPaddockFacilities;
 import doyenm.zooshell.paddock.facilities.ResetPaddockFacilities;
 import doyenm.zooshell.paddock.facilities.UpdatePaddockArrangements;
 import doyenm.zooshell.paddock.list.LsPaddock;
@@ -122,7 +122,7 @@ public class PaddockCommandsConfig {
     }
     
      @Bean
-    public LsPaddockArrangements lsPaddockArrangements() {
-        return new LsPaddockArrangements();
+    public LsPaddockFacilities lsPaddockArrangements() {
+        return new LsPaddockFacilities();
     }
 }

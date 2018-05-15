@@ -8,11 +8,11 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 /**
  * @author doyenm
  */
-public class LsPaddockArrangementsCanExecuteTest {
+public class LsPaddockFacilitiesCanExecuteTest {
 
     private final String ARRANGEMENTS = "facilities";
 
-    private final LsPaddockArrangements subject = new LsPaddockArrangements();
+    private final LsPaddockFacilities subject = new LsPaddockFacilities();
 
 
     @Test

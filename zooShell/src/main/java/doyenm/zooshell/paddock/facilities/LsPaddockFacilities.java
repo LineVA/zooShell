@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 /**
  * @author doyenm
  */
-public class LsPaddockArrangements implements Command {
+public class LsPaddockFacilities implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
