@@ -49,7 +49,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
     @Test
     public void shouldReturnFalseIfOneOfTheFacilityIsAlreadyInThePaddockAndWeTryToAddItAgain() {
         // Given
-        alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
+        alreadyPresentFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
         givenFacility = alreadyPresentFacility;
         when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
@@ -66,7 +66,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
     @Test
     public void shouldReturnFalseIfTheFacilityWeTryToAddIsNONE() {
         // Given
-        alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
+        alreadyPresentFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
         givenFacility = PaddockFacility.NONE;
         when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
@@ -83,8 +83,8 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
     @Test
     public void shouldReturnTrueIfOneOfTheFacilityIsNotAlreadyInThePaddockAndWeTryToAddIt() {
         // Given
-        alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
-        givenFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE, alreadyPresentFacility);
+        alreadyPresentFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        givenFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE, alreadyPresentFacility);
         when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(true);
@@ -99,8 +99,8 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
     @Test
     public void shouldReturnFalseIfOneOfTheFacilityIsNotAlreadyInThePaddockAndWeTryToRemoveIt() {
         // Given
-        alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
-        givenFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE, alreadyPresentFacility);
+        alreadyPresentFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        givenFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE, alreadyPresentFacility);
         when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(false);
@@ -116,7 +116,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
     @Test
     public void shouldReturnFalseIfTheFacilityWeTryToRemoveIsNONE() {
         // Given
-        alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
+        alreadyPresentFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
         givenFacility = PaddockFacility.NONE;
         when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
@@ -133,7 +133,7 @@ public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
     @Test
     public void shouldReturnTrueIfOneOfTheFacilityIsAlreadyInThePaddockAndWeTryToRemoveIt() {
         // Given
-        alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
+        alreadyPresentFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
         givenFacility = alreadyPresentFacility;
         when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));

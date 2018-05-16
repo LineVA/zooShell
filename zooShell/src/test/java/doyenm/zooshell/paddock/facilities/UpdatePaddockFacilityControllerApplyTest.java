@@ -53,9 +53,9 @@ public class UpdatePaddockFacilityControllerApplyTest {
     @Test
     public void shouldReturnAZooWithAPaddockWithTwoMoreFacility() {
         // Given
-        PaddockFacility facility1 = TestUtils.getPaddockArrangement();
-        PaddockFacility facility2 = TestUtils.getPaddockArrangement();
-        PaddockFacility facility3 = TestUtils.getPaddockArrangement();
+        PaddockFacility facility1 = TestUtils.getPaddockFacility();
+        PaddockFacility facility2 = TestUtils.getPaddockFacility();
+        PaddockFacility facility3 = TestUtils.getPaddockFacility();
         assertThat(facility1).isNotEqualTo(facility2);
         assertThat(facility1).isNotEqualTo(facility3);
         assertThat(facility2).isNotEqualTo(facility3);

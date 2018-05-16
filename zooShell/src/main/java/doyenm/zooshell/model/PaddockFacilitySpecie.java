@@ -20,8 +20,8 @@ public class PaddockFacilitySpecie {
      @XmlElement(name = "facility")
     List<PaddockFacility> facilities;
 
-    public PaddockFacilitySpecie(List<PaddockFacility> arrangements) {
-        this.facilities = arrangements;
+    public PaddockFacilitySpecie(List<PaddockFacility> facilities) {
+        this.facilities = facilities;
     }
 
     public PaddockFacilitySpecie() {

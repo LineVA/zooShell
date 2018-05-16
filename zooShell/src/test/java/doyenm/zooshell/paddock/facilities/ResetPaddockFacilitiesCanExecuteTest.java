@@ -39,7 +39,7 @@ public class ResetPaddockFacilitiesCanExecuteTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenTheTheFirstElementIsNotPadOrPaddockArrangement() {
+    public void shouldReturnFalseWhenTheTheFirstElementIsNotPadOrPaddockFacility() {
         // Given
         String falsePad = RandomStringUtils.randomAlphabetic(10);
         String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.RESET,

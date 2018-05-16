@@ -39,7 +39,7 @@ public class ResetPaddockFacilitiesControllerApplyTest {
         when(paddock.getName()).thenReturn(name);
         when(paddock.getFacilities()).thenCallRealMethod();
         doCallRealMethod().when(paddock).setFacilities(any());
-        paddock.setFacilities(Lists.newArrayList(TestUtils.getPaddockArrangement()));
+        paddock.setFacilities(Lists.newArrayList(TestUtils.getPaddockFacility()));
 
         zoo.getPaddocks().put(name, paddock);
         context = mock(PaddockContext.class);
@@ -52,7 +52,7 @@ public class ResetPaddockFacilitiesControllerApplyTest {
     @Test
     public void shouldReturnAZooWithAPaddockWithOnlyNoneFacility() {
         // Given
-        PaddockFacility oldFacility = TestUtils.getPaddockArrangement();
+        PaddockFacility oldFacility = TestUtils.getPaddockFacility();
         paddock.getFacilities().add(oldFacility);
         // When
         PaddockContext result = subject.apply(context);

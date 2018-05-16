@@ -14,8 +14,8 @@ public class TestUtils {
 
    private final static Random random = new Random();
 
-    public static PaddockFacility getPaddockArrangementExcluding(PaddockFacility... arrangements) {
-        List<PaddockFacility> excludings = Arrays.asList(arrangements);
+    public static PaddockFacility getPaddockFacilityExcluding(PaddockFacility... facilities) {
+        List<PaddockFacility> excludings = Arrays.asList(facilities);
         List<PaddockFacility> includings = new ArrayList<>();
         for(PaddockFacility input : PaddockFacility.values()){
             if(!excludings.contains(input)){
@@ -25,7 +25,7 @@ public class TestUtils {
         return includings.get(random.nextInt(includings.size()));
     }
 
-    public static PaddockFacility getPaddockArrangement() {
+    public static PaddockFacility getPaddockFacility() {
         return PaddockFacility.values()[random.nextInt(PaddockFacility.values().length)];
     }
 

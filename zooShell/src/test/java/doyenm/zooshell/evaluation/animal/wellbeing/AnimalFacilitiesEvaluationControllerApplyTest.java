@@ -32,7 +32,7 @@ public class AnimalFacilitiesEvaluationControllerApplyTest {
     }
 
     private AnimalEvaluationContext givenContextWithAnimal(Animal animal, List<PaddockFacility> paddockFacilities,
-                                                           List<PaddockFacility> specieArrangements) {
+                                                           List<PaddockFacility> specieFacilities) {
         AnimalEvaluationContext context = mock(AnimalEvaluationContext.class);
         when(context.getAnimal()).thenReturn(animal);
         WellBeing wb = mock(WellBeing.class);
@@ -41,7 +41,7 @@ public class AnimalFacilitiesEvaluationControllerApplyTest {
         when(context.getWellBeingObj()).thenReturn(wb);
         when(context.getInstallationsWellBeing()).thenCallRealMethod();
         when(context.getFacilities()).thenReturn(paddockFacilities);
-        when(context.getSpecieFacilities()).thenReturn(specieArrangements);
+        when(context.getSpecieFacilities()).thenReturn(specieFacilities);
         return context;
     }
 
@@ -50,11 +50,11 @@ public class AnimalFacilitiesEvaluationControllerApplyTest {
     public void shouldSetInstallationsWellBeingToZeroWhenTheInstallationsOfThePaddockIsNoneOfTheSpecie() {
         // Given
         Animal animal = givenAnimal();
-        PaddockFacility paddockFacility = TestUtils.getPaddockArrangement();
-        PaddockFacility specieArrangement = TestUtils.getPaddockArrangementExcluding(paddockFacility);
+        PaddockFacility paddockFacility = TestUtils.getPaddockFacility();
+        PaddockFacility specieFacility = TestUtils.getPaddockFacilityExcluding(paddockFacility);
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
                 Arrays.asList(paddockFacility),
-                Arrays.asList(specieArrangement)
+                Arrays.asList(specieFacility)
         );
         // When
         AnimalEvaluationContext actualContext = subject.apply(context);
@@ -66,7 +66,7 @@ public class AnimalFacilitiesEvaluationControllerApplyTest {
     public void shouldSetInstallationWellBeingToZeroWhenTheAnimalHasANullInstallation() {
         // Given
         Animal animal = givenAnimal();
-        PaddockFacility paddockFacility = TestUtils.getPaddockArrangement();
+        PaddockFacility paddockFacility = TestUtils.getPaddockFacility();
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
                 Arrays.asList(paddockFacility),
                 null
@@ -81,7 +81,7 @@ public class AnimalFacilitiesEvaluationControllerApplyTest {
     public void shouldSetInstallationWellBeingToZeroWhenTheAnimalHasAnEmptyInstallationsList() {
         // Given
         Animal animal = givenAnimal();
-        PaddockFacility paddockFacility = TestUtils.getPaddockArrangement();
+        PaddockFacility paddockFacility = TestUtils.getPaddockFacility();
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
                 Arrays.asList(paddockFacility),
                 Arrays.asList()
@@ -96,10 +96,10 @@ public class AnimalFacilitiesEvaluationControllerApplyTest {
     public void shouldSetInstallationWellBeingToZeroWhenThePaddockHasAnEmptyInstallationsList() {
         // Given
         Animal animal = givenAnimal();
-        PaddockFacility specieArrangement = TestUtils.getPaddockArrangement();
+        PaddockFacility specieFacility = TestUtils.getPaddockFacility();
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
                 Arrays.asList(),
-                Arrays.asList(specieArrangement)
+                Arrays.asList(specieFacility)
         );
         // When
         AnimalEvaluationContext actualContext = subject.apply(context);
@@ -111,10 +111,10 @@ public class AnimalFacilitiesEvaluationControllerApplyTest {
     public void shouldSetInstallationWellBeingToZeroWhenThePaddockHasAnNullInstallationsList() {
         // Given
         Animal animal = givenAnimal();
-        PaddockFacility specieArrangements = TestUtils.getPaddockArrangement();
+        PaddockFacility specieFacility = TestUtils.getPaddockFacility();
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
                 null,
-                Arrays.asList(specieArrangements)
+                Arrays.asList(specieFacility)
         );
         // When
         AnimalEvaluationContext actualContext = subject.apply(context);
@@ -126,7 +126,6 @@ public class AnimalFacilitiesEvaluationControllerApplyTest {
     public void shouldSetInstallationWellBeingToZeroWhenThePaddockAndTheSpecieHaveAnNullInstallationsList() {
         // Given
         Animal animal = givenAnimal();
-        PaddockFacility specieArrangements = TestUtils.getPaddockArrangement();
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
                 null,
                 null
@@ -155,11 +154,11 @@ public class AnimalFacilitiesEvaluationControllerApplyTest {
     public void shouldSetInstallationWellBeingToMaxWhenThePaddockAndTheSpecieHaveTheSameInstallations() {
         // Given
         Animal animal = givenAnimal();
-        PaddockFacility specieArrangements = TestUtils.getPaddockArrangement();
-        PaddockFacility paddockArrangements = specieArrangements;
+        PaddockFacility specieFacility = TestUtils.getPaddockFacility();
+        PaddockFacility paddockFacility = specieFacility;
         AnimalEvaluationContext context = givenContextWithAnimal(animal,
-                Arrays.asList(paddockArrangements),
-                Arrays.asList(specieArrangements)
+                Arrays.asList(paddockFacility),
+                Arrays.asList(specieFacility)
         );
         // When
         AnimalEvaluationContext actualContext = subject.apply(context);

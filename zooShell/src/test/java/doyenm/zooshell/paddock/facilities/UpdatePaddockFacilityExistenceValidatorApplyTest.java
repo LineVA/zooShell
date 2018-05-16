@@ -68,13 +68,13 @@ public class UpdatePaddockFacilityExistenceValidatorApplyTest {
     public void shouldReturnTrueIfThePaddockAndAllTheFacilitiesExist() {
         // Given
         doReturn(paddock).when(findPaddock).find(any(Zoo.class), anyString());
-        List<String> arrangementsStr = Arrays.asList(
+        List<String> facilitiesStr = Arrays.asList(
                 RandomStringUtils.randomAlphabetic(5),
                 RandomStringUtils.randomAlphabetic(5));
-        when(context.getFacilities()).thenReturn(arrangementsStr);
+        when(context.getFacilities()).thenReturn(facilitiesStr);
         when(findingPaddockFacilityFunction.apply(any()))
-                .thenReturn(TestUtils.getPaddockArrangement())
-                .thenReturn(TestUtils.getPaddockArrangement());
+                .thenReturn(TestUtils.getPaddockFacility())
+                .thenReturn(TestUtils.getPaddockFacility());
         // When
         UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
@@ -87,13 +87,13 @@ public class UpdatePaddockFacilityExistenceValidatorApplyTest {
     public void shouldReturnFalseIfThePaddockExistsButNotOneOfTheFacilities() {
         // Given
         doReturn(paddock).when(findPaddock).find(any(Zoo.class), anyString());
-        List<String> arrangementsStr = Arrays.asList(
+        List<String> facilitiesStr = Arrays.asList(
                 RandomStringUtils.randomAlphabetic(5),
                 RandomStringUtils.randomAlphabetic(5));
-        when(context.getFacilities()).thenReturn(arrangementsStr);
+        when(context.getFacilities()).thenReturn(facilitiesStr);
         when(findingPaddockFacilityFunction.apply(any()))
                 .thenReturn(null)
-                .thenReturn(TestUtils.getPaddockArrangement());
+                .thenReturn(TestUtils.getPaddockFacility());
         // When
         UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
@@ -106,7 +106,7 @@ public class UpdatePaddockFacilityExistenceValidatorApplyTest {
     public void shouldReturnFalseIfTheFacilitiesExistButNotThePaddock() {
         // Given
         doReturn(null).when(findPaddock).find(any(Zoo.class), anyString());
-        when(findingPaddockFacilityFunction.apply(any())).thenReturn(TestUtils.getPaddockArrangement());
+        when(findingPaddockFacilityFunction.apply(any())).thenReturn(TestUtils.getPaddockFacility());
         // When
         UpdatePaddockFacilityContext result = subject.apply(context);
         // Then

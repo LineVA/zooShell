@@ -63,7 +63,7 @@ public class UpdatePaddockFacilityCanExecuteTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenTheTheFirstElementIsNotPadNorPaddockArrangement() {
+    public void shouldReturnFalseWhenTheTheFirstElementIsNotPadNorPaddockFacility() {
         // Given
         String falsePad = RandomStringUtils.randomAlphabetic(10);
         String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.ADD,

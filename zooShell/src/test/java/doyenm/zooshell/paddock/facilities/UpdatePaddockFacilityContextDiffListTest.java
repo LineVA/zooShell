@@ -36,8 +36,8 @@ public class UpdatePaddockFacilityContextDiffListTest {
                true);
         subject.setConvertedPaddock(paddock);
 
-        PaddockFacility facility1 = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
-        PaddockFacility commonFacility = TestUtils.getPaddockArrangementExcluding(facility1, PaddockFacility.NONE);
+        PaddockFacility facility1 = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        PaddockFacility commonFacility = TestUtils.getPaddockFacilityExcluding(facility1, PaddockFacility.NONE);
         subject.setConvertedFacilities(Lists.newArrayList(facility1, commonFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(commonFacility));
         // When
@@ -58,7 +58,7 @@ public class UpdatePaddockFacilityContextDiffListTest {
                 true);
         subject.setConvertedPaddock(paddock);
 
-        PaddockFacility oldFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
+        PaddockFacility oldFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
         subject.setConvertedFacilities(Lists.newArrayList(PaddockFacility.NONE));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(oldFacility));
         // When
@@ -78,8 +78,8 @@ public class UpdatePaddockFacilityContextDiffListTest {
                 false);
         subject.setConvertedPaddock(paddock);
 
-        PaddockFacility facility1 = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
-        PaddockFacility commonFacility = TestUtils.getPaddockArrangementExcluding(facility1, PaddockFacility.NONE);
+        PaddockFacility facility1 = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        PaddockFacility commonFacility = TestUtils.getPaddockFacilityExcluding(facility1, PaddockFacility.NONE);
         subject.setConvertedFacilities(Lists.newArrayList(commonFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(facility1, commonFacility));
         // When
@@ -99,7 +99,7 @@ public class UpdatePaddockFacilityContextDiffListTest {
                 false);
         subject.setConvertedPaddock(paddock);
 
-        PaddockFacility oldFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
+        PaddockFacility oldFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
         subject.setConvertedFacilities(Lists.newArrayList(oldFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(oldFacility));
         // When
@@ -119,8 +119,8 @@ public class UpdatePaddockFacilityContextDiffListTest {
                 false);
         subject.setConvertedPaddock(paddock);
 
-        PaddockFacility oldFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE);
-        PaddockFacility unknownFacility = TestUtils.getPaddockArrangementExcluding(PaddockFacility.NONE, oldFacility);
+        PaddockFacility oldFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        PaddockFacility unknownFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE, oldFacility);
 
         subject.setConvertedFacilities(Lists.newArrayList(unknownFacility));
         when(paddock.getFacilities()).thenReturn(Arrays.asList(oldFacility));

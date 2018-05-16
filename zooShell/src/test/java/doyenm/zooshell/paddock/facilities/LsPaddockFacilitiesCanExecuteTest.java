@@ -26,7 +26,7 @@ public class LsPaddockFacilitiesCanExecuteTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenTheTheFirstElementIsNotArrangements() {
+    public void shouldReturnFalseWhenTheTheFirstElementIsNotFacilities() {
         // Given
         String falsePad = RandomStringUtils.randomAlphabetic(10);
         String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
