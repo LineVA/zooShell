@@ -12,8 +12,8 @@ import doyenm.zooshell.paddock.creation.PaddockLocationValidator;
 import doyenm.zooshell.paddock.entry.PaddockEntryCreationValidator;
 import doyenm.zooshell.paddock.extension.PaddockExtensionCreationValidator;
 import doyenm.zooshell.paddock.extension.PaddockExtensionLocationValidator;
-import doyenm.zooshell.paddock.facilities.UpdatePaddockFacilityCoherenceValidator;
 import doyenm.zooshell.paddock.facilities.UpdatePaddocFacilityExistenceValidator;
+import doyenm.zooshell.paddock.facilities.UpdatePaddockFacilityCoherenceValidator;
 import doyenm.zooshell.paddock.remove.PaddockRemoveValidator;
 import doyenm.zooshell.paddock.rename.PaddockChangeNameValidator;
 import doyenm.zooshell.paddock.types.UpdatePaddockTypeValidator;
@@ -24,7 +24,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 /**
- *
  * @author doyenm
  */
 @Configuration
@@ -43,13 +42,14 @@ public class PaddockValidatorsConfig {
     @Autowired
     FindingPaddockTypeFunction findingPaddockTypeFunction;
 
-      @Autowired
-      FindingPaddockFacilityFunction findingPaddockFacilityFunction;
-    
+    @Autowired
+    FindingPaddockFacilityFunction findingPaddockFacilityFunction;
+
+    @Autowired
+    FindPaddock findPaddock;
+
     @Autowired
     Environment environment;
-
-    FindPaddock findPaddock = new FindPaddock();
 
     @Bean
     public PaddockChangeNameValidator paddockChangeNameValidator() {
@@ -105,7 +105,7 @@ public class PaddockValidatorsConfig {
     public UpdatePaddockTypeValidator updatePaddockTypeValidator() {
         return new UpdatePaddockTypeValidator(findPaddock, findingPaddockTypeFunction);
     }
-    
+
     @Bean
     public UpdatePaddocFacilityExistenceValidator updatePaddockFacilityExistenceValidator() {
         return new UpdatePaddocFacilityExistenceValidator(findPaddock, findingPaddockFacilityFunction);

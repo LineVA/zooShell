@@ -1,5 +1,6 @@
 package doyenm.zooshell;
 
+import doyenm.zooshell.actionpoint.ActionPointCommandsConfig;
 import doyenm.zooshell.animal.AnimalCommandsConfig;
 import doyenm.zooshell.backup.BackupConfig;
 import doyenm.zooshell.backup.Load;
@@ -21,17 +22,17 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * @author doyenm
  */
 @Configuration
 @Import({AnimalCommandsConfig.class, HandymanCommandsConfig.class,
-    KeeperCommandsConfig.class,
-    PaddockCommandsConfig.class,
-    ZooCommandsConfig.class,
-    BackupConfig.class,
-    ControllersConfig.class,
-    SpecieCommandsConfig.class})
+        KeeperCommandsConfig.class,
+        PaddockCommandsConfig.class,
+        ZooCommandsConfig.class,
+        BackupConfig.class,
+        ControllersConfig.class,
+        SpecieCommandsConfig.class,
+        ActionPointCommandsConfig.class})
 public class CommandsConfig {
 
     @Autowired
@@ -54,6 +55,9 @@ public class CommandsConfig {
 
     @Autowired
     SpecieCommandsConfig specieCommandsConfig;
+
+    @Autowired
+    ActionPointCommandsConfig actionPointCommandsConfig;
 
     @Autowired
     BackupConfig backupConfig;

@@ -8,6 +8,7 @@ import doyenm.zooshell.animal.diets.AnimalUpdateFoodQuantityValidator;
 import doyenm.zooshell.animal.list.AnimalsWithCriteria;
 import doyenm.zooshell.animal.move.AnimalChangePaddockValidator;
 import doyenm.zooshell.animal.rename.AnimalChangeNameValidator;
+import doyenm.zooshell.common.CommonConfigs;
 import doyenm.zooshell.common.FindAnimal;
 import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.animal.list.criteria.*;
@@ -17,6 +18,7 @@ import doyenm.zooshell.common.predicates.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
@@ -28,6 +30,7 @@ import java.util.List;
  */
 @Configuration
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
+@Import({CommonConfigs.class})
 public class AnimalValidatorsConfig {
 
     @Autowired
@@ -55,47 +58,31 @@ public class AnimalValidatorsConfig {
     DoubleValuesPredicates doubleValuesPredicates;
 
     @Autowired
-    StringLengthPredicates stringLenghtPredicates;
-
-    @Autowired
-    UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
-
-    @Autowired
     IntegerValuePredicates integerValuePredicates;
 
     @Autowired
-    NameValidator nameValidator;
+    NameValidator animalNameValidator;
 
-    @Bean
-    public FindingContraceptionFunction findingContraceptionFunction() {
-        return new FindingContraceptionFunction();
-    }
+    @Autowired
+    FindingContraceptionFunction findingContraceptionFunction;
 
-    @Bean
-    public CanHaveAChirurgicalContraceptionPredicate canHaveAChirurgicalContraceptionPredicate() {
-        return new CanHaveAChirurgicalContraceptionPredicate();
-    }
+    @Autowired
+    CanHaveAChirurgicalContraceptionPredicate canHaveAChirurgicalContraceptionPredicate;
 
-    @Bean
-    public CanHaveAHormonalContraceptionPredicate canHaveAHormonalContraceptionPredicate() {
-        return new CanHaveAHormonalContraceptionPredicate();
-    }
+    @Autowired
+    CanHaveAHormonalContraceptionPredicate canHaveAHormonalContraceptionPredicate;
 
-    @Bean
-    public IsContraceptionCompatibleWithPreviousPredicate isContraceptionCompatibleWithPreviousPredicate() {
-        return new IsContraceptionCompatibleWithPreviousPredicate();
-    }
+    @Autowired
+    IsContraceptionCompatibleWithPreviousPredicate isContraceptionCompatibleWithPreviousPredicate;
 
-    @Bean
-    public IsContraceptionCompatibleWithSexPredicate isContraceptionCompatibleWithSexPredicate() {
-        return new IsContraceptionCompatibleWithSexPredicate();
-    }
+    @Autowired
+    IsContraceptionCompatibleWithSexPredicate isContraceptionCompatibleWithSexPredicate;
 
     // Validator
     @Bean
     public AnimalChangeNameValidator animalChangeNameValidator() {
         return new AnimalChangeNameValidator(findAnimal,
-                nameValidator
+                animalNameValidator
         );
     }
 
@@ -113,12 +100,13 @@ public class AnimalValidatorsConfig {
 
     @Bean
     public AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator() {
-        return new AnimalUpdateContraceptionValidator(findingContraceptionFunction(),
+        return new AnimalUpdateContraceptionValidator(findingContraceptionFunction,
                 findAnimal,
-                canHaveAHormonalContraceptionPredicate(),
-                canHaveAChirurgicalContraceptionPredicate(),
-                isContraceptionCompatibleWithPreviousPredicate(),
-                isContraceptionCompatibleWithSexPredicate());
+                canHaveAHormonalContraceptionPredicate,
+                canHaveAChirurgicalContraceptionPredicate,
+                isContraceptionCompatibleWithPreviousPredicate,
+                isContraceptionCompatibleWithSexPredicate
+        );
     }
 
     @Bean
@@ -170,7 +158,7 @@ public class AnimalValidatorsConfig {
 
     @Bean
     public AnimalsListWithContraceptionCriteriaValidator animalsListWithContraceptionCriteriaValidator() {
-        return new AnimalsListWithContraceptionCriteriaValidator(excluded, lsWithCriteriaParser(), findingContraceptionFunction());
+        return new AnimalsListWithContraceptionCriteriaValidator(excluded, lsWithCriteriaParser(), findingContraceptionFunction);
     }
 
     @Bean

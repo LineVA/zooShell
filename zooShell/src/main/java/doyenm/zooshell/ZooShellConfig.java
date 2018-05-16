@@ -1,8 +1,6 @@
 package doyenm.zooshell;
 
-import doyenm.zooshell.zoo.GetActionPoints;
 import doyenm.zooshell.commandline.general.ActionPointCommand;
-import doyenm.zooshell.commandline.general.ActionPointsHandler;
 import doyenm.zooshell.commandline.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,18 +27,6 @@ public class ZooShellConfig {
     @Bean
     MainGUI mainGUI() {
         return new MainGUI();
-    }
-
-    @Bean
-    ActionPointsHandler actionPointsHandler() {
-        ActionPointsHandler actionPointsHandler = new ActionPointsHandler();
-        actionPointsHandler.initialize(25);
-        return actionPointsHandler;
-    }
-
-    @Bean
-    GetActionPoints getActionPoints() {
-        return new GetActionPoints();
     }
 
     @Bean
@@ -106,7 +92,7 @@ public class ZooShellConfig {
                 // General
                 new ActionPointCommand(commandsConfig.load(), 0),
                 new ActionPointCommand(commandsConfig.save(), 0));
-        return new CommandManager(commands, actionPointsHandler(), getActionPoints(), commandsConfig.evaluate());
+        return new CommandManager(commands, commandsConfig.actionPointCommandsConfig.actionPointsHandler(), commandsConfig.actionPointCommandsConfig.getActionPoints(), commandsConfig.evaluate());
     }
 
     @Bean

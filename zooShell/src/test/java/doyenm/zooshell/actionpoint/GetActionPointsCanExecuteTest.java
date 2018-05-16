@@ -1,5 +1,6 @@
-package doyenm.zooshell.zoo;
+package doyenm.zooshell.actionpoint;
 
+import doyenm.zooshell.actionpoint.GetActionPoints;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
