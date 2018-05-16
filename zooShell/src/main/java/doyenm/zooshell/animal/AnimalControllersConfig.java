@@ -252,8 +252,8 @@ public class AnimalControllersConfig {
     }
 
     @Bean
-    AnimalArrangementsEvaluationController animalArrangementsEvaluationController() {
-        return new AnimalArrangementsEvaluationController();
+    AnimalFacilitiesEvaluationController animalFacilitiesEvaluationController() {
+        return new AnimalFacilitiesEvaluationController();
     }
 
     @Bean
@@ -266,7 +266,7 @@ public class AnimalControllersConfig {
                 animalGroupSizeEvaluationController(),
                 animalTasksInfluenceEvaluationController(),
                 animalKeepersTimeInfluenceEvaluationController(),
-                animalArrangementsEvaluationController());
+                animalFacilitiesEvaluationController());
     }
 
     @Bean

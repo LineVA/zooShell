@@ -25,7 +25,7 @@ public class AnimalWellBeingController
     private final AnimalGroupSizeEvaluationController animalGroupSizeEvaluationController;
     private final AnimalTasksInfluenceEvaluationController animalTasksInfluenceEvaluationController;
     private final AnimalKeepersTimeInfluenceEvaluationController animalKeepersTimeInfluenceEvaluationController;
-    private final AnimalArrangementsEvaluationController animalArrangementsEvaluationController;
+    private final AnimalFacilitiesEvaluationController animalFacilitiesEvaluationController;
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
@@ -39,7 +39,7 @@ public class AnimalWellBeingController
                 .map(animalTerritorySizeEvaluationController)
                 .map(animalTasksInfluenceEvaluationController)
                 .map(animalKeepersTimeInfluenceEvaluationController)
-                .map(animalArrangementsEvaluationController)
+                .map(animalFacilitiesEvaluationController)
                 .findFirst();
         if (optional.isPresent()) {
             return optional.get();
