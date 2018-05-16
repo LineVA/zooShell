@@ -59,16 +59,6 @@ public class CommonConfigs {
         return new UniquenessNamesBiPredicates();
     }
 
-
-    @Bean
-    public NameValidator animalNameValidator() {
-        return new NameValidator(
-                stringLengthPredicates(),
-                uniquenessNamesBiPredicates(),
-                Integer.parseInt(environment.getProperty("animal.name.max_length"))
-        );
-    }
-
     @Bean
     NameValidator zooNameValidator() {
         return new NameValidator(stringLengthPredicates(),

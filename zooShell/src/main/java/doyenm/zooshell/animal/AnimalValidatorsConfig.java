@@ -58,7 +58,15 @@ public class AnimalValidatorsConfig {
     IntegerValuePredicates integerValuePredicates;
 
     @Autowired
-    NameValidator animalNameValidator;
+    CommonConfigs commonConfigs;
+
+    public NameValidator animalNameValidator() {
+        return new NameValidator(
+                commonConfigs.stringLengthPredicates(),
+                commonConfigs.uniquenessNamesBiPredicates(),
+                Integer.parseInt(environment.getProperty("animal.name.max_length"))
+        );
+    }
 
     private FindingContraceptionFunction findingContraceptionFunction = new FindingContraceptionFunction();
 
@@ -66,7 +74,7 @@ public class AnimalValidatorsConfig {
     @Bean
     public AnimalChangeNameValidator animalChangeNameValidator() {
         return new AnimalChangeNameValidator(findAnimal,
-                animalNameValidator
+                animalNameValidator()
         );
     }
 
