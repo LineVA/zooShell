@@ -2,9 +2,9 @@ package doyenm.zooshell.animal.creation;
 
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.common.FindPaddock;
-import doyenm.zooshell.common.context.FindingSexContext;
+import doyenm.zooshell.animal.FindingSexContext;
 import doyenm.zooshell.common.context.FindingSpecieContext;
-import doyenm.zooshell.common.function.FindingSexFunction;
+import doyenm.zooshell.animal.FindingSexFunction;
 import doyenm.zooshell.common.function.FindingSpecieFunction;
 import doyenm.zooshell.common.predicates.StringLengthPredicates;
 import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;

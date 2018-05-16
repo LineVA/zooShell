@@ -1,6 +1,9 @@
 package doyenm.zooshell.common;
 
-import doyenm.zooshell.common.function.*;
+import doyenm.zooshell.common.function.FindingBiomeFunction;
+import doyenm.zooshell.common.function.FindingPaddockFacilityFunction;
+import doyenm.zooshell.common.function.FindingPaddockTypeFunction;
+import doyenm.zooshell.common.function.FindingSpecieFunction;
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;
@@ -22,11 +25,6 @@ public class CommonConfigs {
     @Bean
     public FindAnimal findAnimal() {
         return new FindAnimal();
-    }
-
-    @Bean
-    public FindingSexFunction findingSexFunction() {
-        return new FindingSexFunction();
     }
 
     @Bean

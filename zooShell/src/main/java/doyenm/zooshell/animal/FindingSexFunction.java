@@ -1,7 +1,8 @@
-package doyenm.zooshell.common.function;
+package doyenm.zooshell.animal;
 
+import doyenm.zooshell.common.function.ReplaceSpacesWithUnderscores;
 import doyenm.zooshell.model.Sex;
-import doyenm.zooshell.common.context.FindingSexContext;
+import doyenm.zooshell.animal.FindingSexContext;
 
 import java.util.function.Function;
 
