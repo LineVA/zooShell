@@ -2,7 +2,7 @@ package doyenm.zooshell.paddock.facilities;
 
 import doyenm.zooshell.errorhandling.ErrorType;
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.junit.Before;
@@ -18,15 +18,15 @@ import static org.mockito.Mockito.*;
  *
  * @author doyenm
  */
-public class UpdatePaddockArrangementCoherenceValidatorApplyTest {
+public class UpdatePaddockFacilityCoherenceValidatorApplyTest {
 
-    private UpdatePaddockArrangementCoherenceValidator subject;
+    private UpdatePaddockFacilityCoherenceValidator subject;
 
-    private UpdatePaddockArrangementContext context;
+    private UpdatePaddockFacilityContext context;
 
     private Paddock paddock;
-    private PaddockArrangement alreadyPresentFacility;
-    private PaddockArrangement givenFacility;
+    private PaddockFacility alreadyPresentFacility;
+    private PaddockFacility givenFacility;
     private Zoo zoo;
 
     @Before
@@ -34,7 +34,7 @@ public class UpdatePaddockArrangementCoherenceValidatorApplyTest {
         paddock = mock(Paddock.class);
         zoo = mock(Zoo.class);
 
-        context = mock(UpdatePaddockArrangementContext.class);
+        context = mock(UpdatePaddockFacilityContext.class);
         when(context.getConvertedPaddock()).thenReturn(paddock);
         when(context.getZoo()).thenReturn(zoo);
 
@@ -43,19 +43,19 @@ public class UpdatePaddockArrangementCoherenceValidatorApplyTest {
         context.setErrors(new ArrayList<>());
 
 
-        subject = new UpdatePaddockArrangementCoherenceValidator();
+        subject = new UpdatePaddockFacilityCoherenceValidator();
     }
 
     @Test
     public void shouldReturnFalseIfOneOfTheFacilityIsAlreadyInThePaddockAndWeTryToAddItAgain() {
         // Given
-        alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
+        alreadyPresentFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
         givenFacility = alreadyPresentFacility;
-        when(context.getConvertedArrangements()).thenReturn(Arrays.asList(givenFacility));
-        when(paddock.getArrangements()).thenReturn(Arrays.asList(alreadyPresentFacility));
+        when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
+        when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(true);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -66,13 +66,13 @@ public class UpdatePaddockArrangementCoherenceValidatorApplyTest {
     @Test
     public void shouldReturnFalseIfTheFacilityWeTryToAddIsNONE() {
         // Given
-        alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
-        givenFacility = PaddockArrangement.NONE;
-        when(context.getConvertedArrangements()).thenReturn(Arrays.asList(givenFacility));
-        when(paddock.getArrangements()).thenReturn(Arrays.asList(alreadyPresentFacility));
+        alreadyPresentFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        givenFacility = PaddockFacility.NONE;
+        when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
+        when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(true);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -83,13 +83,13 @@ public class UpdatePaddockArrangementCoherenceValidatorApplyTest {
     @Test
     public void shouldReturnTrueIfOneOfTheFacilityIsNotAlreadyInThePaddockAndWeTryToAddIt() {
         // Given
-        alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
-        givenFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE, alreadyPresentFacility);
-        when(context.getConvertedArrangements()).thenReturn(Arrays.asList(givenFacility));
-        when(paddock.getArrangements()).thenReturn(Arrays.asList(alreadyPresentFacility));
+        alreadyPresentFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        givenFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE, alreadyPresentFacility);
+        when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
+        when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(true);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -99,13 +99,13 @@ public class UpdatePaddockArrangementCoherenceValidatorApplyTest {
     @Test
     public void shouldReturnFalseIfOneOfTheFacilityIsNotAlreadyInThePaddockAndWeTryToRemoveIt() {
         // Given
-        alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
-        givenFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE, alreadyPresentFacility);
-        when(context.getConvertedArrangements()).thenReturn(Arrays.asList(givenFacility));
-        when(paddock.getArrangements()).thenReturn(Arrays.asList(alreadyPresentFacility));
+        alreadyPresentFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        givenFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE, alreadyPresentFacility);
+        when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
+        when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(false);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -116,13 +116,13 @@ public class UpdatePaddockArrangementCoherenceValidatorApplyTest {
     @Test
     public void shouldReturnFalseIfTheFacilityWeTryToRemoveIsNONE() {
         // Given
-        alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
-        givenFacility = PaddockArrangement.NONE;
-        when(context.getConvertedArrangements()).thenReturn(Arrays.asList(givenFacility));
-        when(paddock.getArrangements()).thenReturn(Arrays.asList(alreadyPresentFacility));
+        alreadyPresentFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        givenFacility = PaddockFacility.NONE;
+        when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
+        when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(false);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -133,13 +133,13 @@ public class UpdatePaddockArrangementCoherenceValidatorApplyTest {
     @Test
     public void shouldReturnTrueIfOneOfTheFacilityIsAlreadyInThePaddockAndWeTryToRemoveIt() {
         // Given
-        alreadyPresentFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
+        alreadyPresentFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
         givenFacility = alreadyPresentFacility;
-        when(context.getConvertedArrangements()).thenReturn(Arrays.asList(givenFacility));
-        when(paddock.getArrangements()).thenReturn(Arrays.asList(alreadyPresentFacility));
+        when(context.getConvertedFacilities()).thenReturn(Arrays.asList(givenFacility));
+        when(paddock.getFacilities()).thenReturn(Arrays.asList(alreadyPresentFacility));
         when(context.isAddingFacilities()).thenReturn(false);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();

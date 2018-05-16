@@ -18,19 +18,19 @@ import java.util.stream.Stream;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class UpdatePaddockArrangements implements Command {
+public class UpdatePaddockFacilities implements Command {
 
-    private final UpdatePaddockArrangementExistenceValidator existenceValidator;
-    private final UpdatePaddockArrangementCoherenceValidator coherenceValidator;
-    private final UpdatePaddockArrangementController controller;
+    private final UpdatePaddocFacilityExistenceValidator existenceValidator;
+    private final UpdatePaddockFacilityCoherenceValidator coherenceValidator;
+    private final UpdatePaddockFacilityController controller;
 
     private boolean isAdding;
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        UpdatePaddockArrangementContext context = new UpdatePaddockArrangementContext(zoo,
+        UpdatePaddockFacilityContext context = new UpdatePaddockFacilityContext(zoo,
                 cmd[2], generateFacilitiesList(cmd), isAdding);
-        Optional<UpdatePaddockArrangementContext> optional = Stream.of(context)
+        Optional<UpdatePaddockFacilityContext> optional = Stream.of(context)
                 .map(existenceValidator)
                 .filter(t -> t.getErrors().isEmpty())
                 .map(coherenceValidator)
@@ -38,7 +38,7 @@ public class UpdatePaddockArrangements implements Command {
                 .map(controller)
                 .findFirst();
         if (optional.isPresent()) {
-            return new ReturnExec("UPDATE_PADDOCK_ARRANGEMENT_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
+            return new ReturnExec("UPDATE_PADDOCK_FACILITIES_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } else {
             return DisplayingErrorsList.displayErrorList(context.getErrors());
         }
@@ -47,7 +47,7 @@ public class UpdatePaddockArrangements implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         boolean isCommandCorrect = cmd.length >= 4
-                && Arrays.asList(Constants.PAD_OR_PADDOCK_ARRANGEMENT)
+                && Arrays.asList(Constants.PAD_OR_PADDOCK_FACILITY)
                 .stream()
                 .anyMatch(cmd[0]::equalsIgnoreCase)
                 && Arrays.asList(Constants.ADD_OR_REMOVE)

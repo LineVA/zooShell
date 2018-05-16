@@ -1,7 +1,7 @@
 package doyenm.zooshell.paddock.facilities;
 
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.apache.commons.lang.RandomStringUtils;
@@ -18,11 +18,11 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyMap;
 import static org.mockito.Mockito.*;
 
-public class UpdatePaddockArrangementControllerApplyTest {
+public class UpdatePaddockFacilityControllerApplyTest {
 
-    private UpdatePaddockArrangementController subject;
+    private UpdatePaddockFacilityController subject;
 
-    private UpdatePaddockArrangementContext context;
+    private UpdatePaddockFacilityContext context;
 
     private String name;
     private Paddock paddock;
@@ -38,35 +38,35 @@ public class UpdatePaddockArrangementControllerApplyTest {
 
         paddock = mock(Paddock.class);
         when(paddock.getName()).thenReturn(name);
-        when(paddock.getArrangements()).thenCallRealMethod();
-        doCallRealMethod().when(paddock).setArrangements(any());
-        paddock.setArrangements(new ArrayList<>());
+        when(paddock.getFacilities()).thenCallRealMethod();
+        doCallRealMethod().when(paddock).setFacilities(any());
+        paddock.setFacilities(new ArrayList<>());
 
         zoo.getPaddocks().put(name, paddock);
-        context = mock(UpdatePaddockArrangementContext.class);
+        context = mock(UpdatePaddockFacilityContext.class);
         when(context.getZoo()).thenReturn(zoo);
         when(context.getConvertedPaddock()).thenReturn(paddock);
 
-        subject = new UpdatePaddockArrangementController();
+        subject = new UpdatePaddockFacilityController();
     }
 
     @Test
     public void shouldReturnAZooWithAPaddockWithTwoMoreFacility() {
         // Given
-        PaddockArrangement facility1 = TestUtils.getPaddockArrangement();
-        PaddockArrangement facility2 = TestUtils.getPaddockArrangement();
-        PaddockArrangement facility3 = TestUtils.getPaddockArrangement();
+        PaddockFacility facility1 = TestUtils.getPaddockFacility();
+        PaddockFacility facility2 = TestUtils.getPaddockFacility();
+        PaddockFacility facility3 = TestUtils.getPaddockFacility();
         assertThat(facility1).isNotEqualTo(facility2);
         assertThat(facility1).isNotEqualTo(facility3);
         assertThat(facility2).isNotEqualTo(facility3);
 
-        Set<PaddockArrangement> facilitiesSet = new HashSet<>();
+        Set<PaddockFacility> facilitiesSet = new HashSet<>();
         facilitiesSet.add(facility1);
         facilitiesSet.add(facility2);
         facilitiesSet.add(facility3);
         when(context.difflists()).thenReturn(facilitiesSet);
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getZoo()).isNotNull();
@@ -74,10 +74,10 @@ public class UpdatePaddockArrangementControllerApplyTest {
         assertThat(result.getZoo().getPaddocks()).hasSize(1);
         Paddock updatedPaddock = result.getZoo().getPaddocks().get(name);
         assertThat(updatedPaddock).isNotNull();
-        assertThat(updatedPaddock.getArrangements()).isNotNull();
-        assertThat(updatedPaddock.getArrangements()).hasSize(3);
-        assertThat(updatedPaddock.getArrangements()).contains(facility1);
-        assertThat(updatedPaddock.getArrangements()).contains(facility2);
-        assertThat(updatedPaddock.getArrangements()).contains(facility3);
+        assertThat(updatedPaddock.getFacilities()).isNotNull();
+        assertThat(updatedPaddock.getFacilities()).hasSize(3);
+        assertThat(updatedPaddock.getFacilities()).contains(facility1);
+        assertThat(updatedPaddock.getFacilities()).contains(facility2);
+        assertThat(updatedPaddock.getFacilities()).contains(facility3);
     }
 }

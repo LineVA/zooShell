@@ -32,7 +32,7 @@ public class ResetPaddockFacilities implements Command {
                 .map(controller)
                 .findFirst();
         if (optional.isPresent()) {
-            return new ReturnExec("RESET_PADDOCK_ARRANGEMENT_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
+            return new ReturnExec("RESET_PADDOCK_FACILITIES_SUCCESS", TypeReturn.SUCCESS, context.getZoo());
         } else {
             return DisplayingErrorsList.displayErrorList(context.getErrors());
         }
@@ -41,7 +41,7 @@ public class ResetPaddockFacilities implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 3
-                && Arrays.asList(Constants.PAD_OR_PADDOCK_ARRANGEMENT)
+                && Arrays.asList(Constants.PAD_OR_PADDOCK_FACILITY)
                 .stream()
                 .anyMatch(cmd[0]::equalsIgnoreCase)
                 && Arrays.asList(Constants.RESET)

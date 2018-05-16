@@ -103,10 +103,10 @@ public class LsContext {
         return list;
     }
     
-    public List<String> getPaddockArrangements() {
+    public List<String> getPaddockFacilities() {
         List<String> list = new ArrayList<>();
-        for (PaddockArrangement arrangement : PaddockArrangement.values()) {
-            list.add(arrangement.getId() + " - " + arrangement.toString());
+        for (PaddockFacility facility : PaddockFacility.values()) {
+            list.add(facility.getId() + " - " + facility.toString());
         }
         return list;
     }

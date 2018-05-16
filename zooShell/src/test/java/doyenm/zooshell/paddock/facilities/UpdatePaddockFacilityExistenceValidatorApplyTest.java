@@ -1,8 +1,8 @@
 package doyenm.zooshell.paddock.facilities;
 
 import doyenm.zooshell.common.FindPaddock;
-import doyenm.zooshell.common.context.FindingPaddockArrangementContext;
-import doyenm.zooshell.common.function.FindingPaddockArrangementFunction;
+import doyenm.zooshell.common.context.FindingPaddockFacilityContext;
+import doyenm.zooshell.common.function.FindingPaddockFacilityFunction;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
@@ -25,13 +25,13 @@ import static org.mockito.Mockito.*;
  *
  * @author doyenm
  */
-public class UpdatePaddockArrangementExistenceValidatorApplyTest {
+public class UpdatePaddockFacilityExistenceValidatorApplyTest {
 
-    private UpdatePaddockArrangementExistenceValidator subject;
+    private UpdatePaddocFacilityExistenceValidator subject;
 
     private FindPaddock findPaddock;
-    private FindingPaddockArrangementFunction findingPaddockArrangementFunction;
-    private UpdatePaddockArrangementContext context;
+    private FindingPaddockFacilityFunction findingPaddockFacilityFunction;
+    private UpdatePaddockFacilityContext context;
 
     private Paddock paddock;
     private Zoo zoo;
@@ -39,20 +39,20 @@ public class UpdatePaddockArrangementExistenceValidatorApplyTest {
     @Before
     public void setUp(){
         findPaddock = mock(FindPaddock.class);
-        findingPaddockArrangementFunction = mock(FindingPaddockArrangementFunction.class);
-        doAnswer(new Answer<FindingPaddockArrangementContext>() {
+        findingPaddockFacilityFunction = mock(FindingPaddockFacilityFunction.class);
+        doAnswer(new Answer<FindingPaddockFacilityContext>() {
             @Override
-            public FindingPaddockArrangementContext answer(InvocationOnMock invocation) throws Throwable {
+            public FindingPaddockFacilityContext answer(InvocationOnMock invocation) throws Throwable {
                 Object[] args = invocation.getArguments();
-                return (FindingPaddockArrangementContext) args[0];
+                return (FindingPaddockFacilityContext) args[0];
             }
         })
-                .when(findingPaddockArrangementFunction).apply(any(FindingPaddockArrangementContext.class));
+                .when(findingPaddockFacilityFunction).apply(any(FindingPaddockFacilityContext.class));
 
         paddock = mock(Paddock.class);
         zoo = mock(Zoo.class);
 
-        context = mock(UpdatePaddockArrangementContext.class);
+        context = mock(UpdatePaddockFacilityContext.class);
         when(context.getConvertedPaddock()).thenReturn(paddock);
         when(context.getZoo()).thenReturn(zoo);
 
@@ -61,22 +61,22 @@ public class UpdatePaddockArrangementExistenceValidatorApplyTest {
         context.setErrors(new ArrayList<>());
 
 
-        subject = new UpdatePaddockArrangementExistenceValidator(findPaddock, findingPaddockArrangementFunction);
+        subject = new UpdatePaddocFacilityExistenceValidator(findPaddock, findingPaddockFacilityFunction);
     }
 
     @Test
     public void shouldReturnTrueIfThePaddockAndAllTheFacilitiesExist() {
         // Given
         doReturn(paddock).when(findPaddock).find(any(Zoo.class), anyString());
-        List<String> arrangementsStr = Arrays.asList(
+        List<String> facilitiesStr = Arrays.asList(
                 RandomStringUtils.randomAlphabetic(5),
                 RandomStringUtils.randomAlphabetic(5));
-        when(context.getArrangements()).thenReturn(arrangementsStr);
-        when(findingPaddockArrangementFunction.apply(any()))
-                .thenReturn(TestUtils.getPaddockArrangement())
-                .thenReturn(TestUtils.getPaddockArrangement());
+        when(context.getFacilities()).thenReturn(facilitiesStr);
+        when(findingPaddockFacilityFunction.apply(any()))
+                .thenReturn(TestUtils.getPaddockFacility())
+                .thenReturn(TestUtils.getPaddockFacility());
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -87,15 +87,15 @@ public class UpdatePaddockArrangementExistenceValidatorApplyTest {
     public void shouldReturnFalseIfThePaddockExistsButNotOneOfTheFacilities() {
         // Given
         doReturn(paddock).when(findPaddock).find(any(Zoo.class), anyString());
-        List<String> arrangementsStr = Arrays.asList(
+        List<String> facilitiesStr = Arrays.asList(
                 RandomStringUtils.randomAlphabetic(5),
                 RandomStringUtils.randomAlphabetic(5));
-        when(context.getArrangements()).thenReturn(arrangementsStr);
-        when(findingPaddockArrangementFunction.apply(any()))
+        when(context.getFacilities()).thenReturn(facilitiesStr);
+        when(findingPaddockFacilityFunction.apply(any()))
                 .thenReturn(null)
-                .thenReturn(TestUtils.getPaddockArrangement());
+                .thenReturn(TestUtils.getPaddockFacility());
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();
@@ -106,9 +106,9 @@ public class UpdatePaddockArrangementExistenceValidatorApplyTest {
     public void shouldReturnFalseIfTheFacilitiesExistButNotThePaddock() {
         // Given
         doReturn(null).when(findPaddock).find(any(Zoo.class), anyString());
-        when(findingPaddockArrangementFunction.apply(any())).thenReturn(TestUtils.getPaddockArrangement());
+        when(findingPaddockFacilityFunction.apply(any())).thenReturn(TestUtils.getPaddockFacility());
         // When
-        UpdatePaddockArrangementContext result = subject.apply(context);
+        UpdatePaddockFacilityContext result = subject.apply(context);
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getErrors()).isNotNull();

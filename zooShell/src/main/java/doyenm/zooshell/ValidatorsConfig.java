@@ -55,8 +55,8 @@ public class ValidatorsConfig {
     }
 
     @Bean
-    FindingPaddockArrangementFunction findingPaddockArrangementFunction() {
-        return new FindingPaddockArrangementFunction();
+    FindingPaddockFacilityFunction findingPaddockArrangementFunction() {
+        return new FindingPaddockFacilityFunction();
     }
 
     @Bean

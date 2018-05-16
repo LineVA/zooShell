@@ -27,7 +27,7 @@ public class Specie {
     private LifespanAttributes lifespanAttributes;
     private BiomesSpecie biomes;
     private DietsSpecie diets;
-    private PaddockArrangementSpecie arrangements;
+    private PaddockFacilitySpecie facilities;
     private FoodAttributes foodAttributes;
     private SocialAttributes socialAttributes;
     private TerritoryAttributes territoryAttributes;
@@ -35,11 +35,11 @@ public class Specie {
     private CharacterAttributes characterAttributes;
 
     public Specie(Names names, Uicn uicn, BiomesSpecie biomes, DietsSpecie diets,
-            PaddockArrangementSpecie arrangements) {
+            PaddockFacilitySpecie facilities) {
         this.names = names;
         this.uicn = uicn;
         this.biomes = biomes;
         this.diets = diets;
-        this.arrangements = arrangements;
+        this.facilities = facilities;
     }
 }

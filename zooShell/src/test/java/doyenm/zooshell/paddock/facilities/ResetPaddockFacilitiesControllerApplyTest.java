@@ -1,7 +1,7 @@
 package doyenm.zooshell.paddock.facilities;
 
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.paddock.PaddockContext;
 import doyenm.zooshell.testUtils.TestUtils;
@@ -37,9 +37,9 @@ public class ResetPaddockFacilitiesControllerApplyTest {
 
         paddock = mock(Paddock.class);
         when(paddock.getName()).thenReturn(name);
-        when(paddock.getArrangements()).thenCallRealMethod();
-        doCallRealMethod().when(paddock).setArrangements(any());
-        paddock.setArrangements(Lists.newArrayList(TestUtils.getPaddockArrangement()));
+        when(paddock.getFacilities()).thenCallRealMethod();
+        doCallRealMethod().when(paddock).setFacilities(any());
+        paddock.setFacilities(Lists.newArrayList(TestUtils.getPaddockFacility()));
 
         zoo.getPaddocks().put(name, paddock);
         context = mock(PaddockContext.class);
@@ -52,8 +52,8 @@ public class ResetPaddockFacilitiesControllerApplyTest {
     @Test
     public void shouldReturnAZooWithAPaddockWithOnlyNoneFacility() {
         // Given
-        PaddockArrangement oldFacility = TestUtils.getPaddockArrangement();
-        paddock.getArrangements().add(oldFacility);
+        PaddockFacility oldFacility = TestUtils.getPaddockFacility();
+        paddock.getFacilities().add(oldFacility);
         // When
         PaddockContext result = subject.apply(context);
         // Then
@@ -63,8 +63,8 @@ public class ResetPaddockFacilitiesControllerApplyTest {
         assertThat(result.getZoo().getPaddocks()).hasSize(1);
         Paddock updatedPaddock = result.getZoo().getPaddocks().get(name);
         assertThat(updatedPaddock).isNotNull();
-        assertThat(updatedPaddock.getArrangements()).isNotNull();
-        assertThat(updatedPaddock.getArrangements()).hasSize(1);
-        assertThat(updatedPaddock.getArrangements()).contains(PaddockArrangement.NONE);
+        assertThat(updatedPaddock.getFacilities()).isNotNull();
+        assertThat(updatedPaddock.getFacilities()).hasSize(1);
+        assertThat(updatedPaddock.getFacilities()).contains(PaddockFacility.NONE);
     }
 }

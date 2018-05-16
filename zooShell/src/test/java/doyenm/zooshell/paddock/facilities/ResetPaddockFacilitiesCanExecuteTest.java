@@ -9,8 +9,8 @@ import org.junit.Test;
  */
 public class ResetPaddockFacilitiesCanExecuteTest {
 
-    private final String PADDOCK = "paddock-arrangement";
-    private final String PAD = "pad-arrangement";
+    private final String PADDOCK = "paddock-facility";
+    private final String PAD = "pad-facility";
     private final String RESET = "reset";
 
     private final ResetPaddockFacilities subject = new ResetPaddockFacilities(null, null);
@@ -39,7 +39,7 @@ public class ResetPaddockFacilitiesCanExecuteTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenTheTheFirstElementIsNotPadOrPaddockArrangement() {
+    public void shouldReturnFalseWhenTheTheFirstElementIsNotPadOrPaddockFacility() {
         // Given
         String falsePad = RandomStringUtils.randomAlphabetic(10);
         String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.RESET,

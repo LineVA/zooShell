@@ -8,14 +8,14 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 /**
  * @author doyenm
  */
-public class UpdatePaddockArrangementCanExecuteTest {
+public class UpdatePaddockFacilityCanExecuteTest {
 
-    private final String PADDOCK = "paddock-arrangement";
-    private final String PAD = "pad-arrangement";
+    private final String PADDOCK = "paddock-facility";
+    private final String PAD = "pad-facility";
     private final String ADD = "add";
     private final String REMOVE = "remove";
 
-    private final UpdatePaddockArrangements subject = new UpdatePaddockArrangements(null, null, null);
+    private final UpdatePaddockFacilities subject = new UpdatePaddockFacilities(null, null, null);
 
 
     @Test
@@ -63,7 +63,7 @@ public class UpdatePaddockArrangementCanExecuteTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenTheTheFirstElementIsNotPadNorPaddockArrangement() {
+    public void shouldReturnFalseWhenTheTheFirstElementIsNotPadNorPaddockFacility() {
         // Given
         String falsePad = RandomStringUtils.randomAlphabetic(10);
         String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.ADD,

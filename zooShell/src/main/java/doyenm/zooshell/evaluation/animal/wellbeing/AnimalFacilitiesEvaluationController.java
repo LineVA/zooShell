@@ -1,7 +1,7 @@
 package doyenm.zooshell.evaluation.animal.wellbeing;
 
 import doyenm.zooshell.evaluation.AnimalEvaluationContext;
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import java.util.List;
 import java.util.function.Function;
 
@@ -9,25 +9,25 @@ import java.util.function.Function;
  *
  * @author doyenm
  */
-public class AnimalArrangementsEvaluationController 
+public class AnimalFacilitiesEvaluationController
         implements Function<AnimalEvaluationContext, AnimalEvaluationContext> {
 
     @Override
     public AnimalEvaluationContext apply(AnimalEvaluationContext t) {
-        List<PaddockArrangement> paddockInstallations = t.getArrangements();
-        List<PaddockArrangement> specieInstallations = t.getSpecieArrangements();
-        if(specieInstallations == null || paddockInstallations == null){
+        List<PaddockFacility> paddockFacilities = t.getFacilities();
+        List<PaddockFacility> specieFacilities = t.getSpecieFacilities();
+        if(specieFacilities == null || paddockFacilities == null){
             return t;
         }
         int commonInstallations = 0;
-        for(PaddockArrangement installation : paddockInstallations){
-            if(specieInstallations.contains(installation)){
+        for(PaddockFacility installation : paddockFacilities){
+            if(specieFacilities.contains(installation)){
                 commonInstallations += 1;
             } else {
                 commonInstallations -= 1;
             }
         }
-        double specieSize = specieInstallations.isEmpty() ? 1.0 : specieInstallations.size();
+        double specieSize = specieFacilities.isEmpty() ? 1.0 : specieFacilities.size();
         t.getWellBeingObj().setInstallationsWellBeing(
                 commonInstallations / specieSize * AnimalEvaluationContext.BASE);
         return t;

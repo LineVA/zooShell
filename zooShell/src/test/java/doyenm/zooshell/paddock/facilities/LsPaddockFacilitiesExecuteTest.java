@@ -13,16 +13,16 @@ import static org.mockito.Mockito.mock;
  *
  * @author doyenm
  */
-public class LsPaddockArrangementsExecuteTest {
+public class LsPaddockFacilitiesExecuteTest {
 
-    private LsPaddockArrangements subject;
+    private LsPaddockFacilities subject;
 
     private String[] cmd = new String[1];
 
 
     @Before
     public void setUp(){
-        subject = new LsPaddockArrangements();
+        subject = new LsPaddockFacilities();
     }
 
     @Test

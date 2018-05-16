@@ -8,17 +8,17 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 /**
  * @author doyenm
  */
-public class LsPaddockArrangementsCanExecuteTest {
+public class LsPaddockFacilitiesCanExecuteTest {
 
-    private final String ARRANGEMENTS = "arrangements";
+    private final String FACILITIES = "facilities";
 
-    private final LsPaddockArrangements subject = new LsPaddockArrangements();
+    private final LsPaddockFacilities subject = new LsPaddockFacilities();
 
 
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
-        String[] cmd = {this.ARRANGEMENTS};
+        String[] cmd = {this.FACILITIES};
         // When
         boolean actualResult = subject.canExecute(cmd);
         // Then
@@ -26,14 +26,14 @@ public class LsPaddockArrangementsCanExecuteTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenTheTheFirstElementIsNotArrangements() {
+    public void shouldReturnFalseWhenTheTheFirstElementIsNotFacilities() {
         // Given
         String falsePad = RandomStringUtils.randomAlphabetic(10);
         String[] cmd = {RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = subject.canExecute(cmd);
         // Then
-        assertThat(falsePad).isNotEqualToIgnoringCase(ARRANGEMENTS);
+        assertThat(falsePad).isNotEqualToIgnoringCase(FACILITIES);
         assertThat(actualResult).isFalse();
     }
 
@@ -50,7 +50,7 @@ public class LsPaddockArrangementsCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanOneElement() {
         // Given
-        String[] cmd = {this.ARRANGEMENTS,
+        String[] cmd = {this.FACILITIES,
                 RandomStringUtils.randomAlphabetic(10)};
         // When
         boolean actualResult = subject.canExecute(cmd);

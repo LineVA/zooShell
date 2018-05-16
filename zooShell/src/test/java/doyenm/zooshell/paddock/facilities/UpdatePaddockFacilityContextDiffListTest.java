@@ -1,7 +1,7 @@
 package doyenm.zooshell.paddock.facilities;
 
 import doyenm.zooshell.model.Paddock;
-import doyenm.zooshell.model.PaddockArrangement;
+import doyenm.zooshell.model.PaddockFacility;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;
 import org.apache.commons.lang.RandomStringUtils;
@@ -16,9 +16,9 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class UpdatePaddockArrangementContextDiffListTest {
+public class UpdatePaddockFacilityContextDiffListTest {
 
-    private UpdatePaddockArrangementContext subject;
+    private UpdatePaddockFacilityContext subject;
 
     private Paddock paddock;
 
@@ -30,18 +30,18 @@ public class UpdatePaddockArrangementContextDiffListTest {
     @Test
     public void shouldReturnSetWithTwoElementsWhenAddingIsSetToTrueAndOneIsCommonBetweenOldAndNewFacilities(){
         // Given
-        subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
+        subject = new UpdatePaddockFacilityContext(mock(Zoo.class),
                 RandomStringUtils.randomAlphabetic(5),
                 Arrays.asList(),
                true);
         subject.setConvertedPaddock(paddock);
 
-        PaddockArrangement facility1 = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
-        PaddockArrangement commonFacility = TestUtils.getPaddockArrangementExcluding(facility1, PaddockArrangement.NONE);
-        subject.setConvertedArrangements(Lists.newArrayList(facility1, commonFacility));
-        when(paddock.getArrangements()).thenReturn(Arrays.asList(commonFacility));
+        PaddockFacility facility1 = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        PaddockFacility commonFacility = TestUtils.getPaddockFacilityExcluding(facility1, PaddockFacility.NONE);
+        subject.setConvertedFacilities(Lists.newArrayList(facility1, commonFacility));
+        when(paddock.getFacilities()).thenReturn(Arrays.asList(commonFacility));
         // When
-        Set<PaddockArrangement> result = subject.difflists();
+        Set<PaddockFacility> result = subject.difflists();
         // Then
         assertThat(result).isNotNull();
         assertThat(result).hasSize(2);
@@ -52,17 +52,17 @@ public class UpdatePaddockArrangementContextDiffListTest {
     @Test
     public void shouldReturnSetWithOnlyTheOldElementsWhenAddingIsSetToTrueAndTheNewOneIsNONE(){
         // Given
-        subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
+        subject = new UpdatePaddockFacilityContext(mock(Zoo.class),
                 RandomStringUtils.randomAlphabetic(5),
                 Arrays.asList(),
                 true);
         subject.setConvertedPaddock(paddock);
 
-        PaddockArrangement oldFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
-        subject.setConvertedArrangements(Lists.newArrayList(PaddockArrangement.NONE));
-        when(paddock.getArrangements()).thenReturn(Arrays.asList(oldFacility));
+        PaddockFacility oldFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        subject.setConvertedFacilities(Lists.newArrayList(PaddockFacility.NONE));
+        when(paddock.getFacilities()).thenReturn(Arrays.asList(oldFacility));
         // When
-        Set<PaddockArrangement> result = subject.difflists();
+        Set<PaddockFacility> result = subject.difflists();
         // Then
         assertThat(result).isNotNull();
         assertThat(result).hasSize(1);
@@ -72,18 +72,18 @@ public class UpdatePaddockArrangementContextDiffListTest {
     @Test
     public void shouldReturnSetWithOneElementsWhenAddingIsSetToFalseAndOneIsCommonBetweenPresentAndRemovedFacilities(){
         // Given
-        subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
+        subject = new UpdatePaddockFacilityContext(mock(Zoo.class),
                 RandomStringUtils.randomAlphabetic(5),
                 Arrays.asList(),
                 false);
         subject.setConvertedPaddock(paddock);
 
-        PaddockArrangement facility1 = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
-        PaddockArrangement commonFacility = TestUtils.getPaddockArrangementExcluding(facility1, PaddockArrangement.NONE);
-        subject.setConvertedArrangements(Lists.newArrayList(commonFacility));
-        when(paddock.getArrangements()).thenReturn(Arrays.asList(facility1, commonFacility));
+        PaddockFacility facility1 = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        PaddockFacility commonFacility = TestUtils.getPaddockFacilityExcluding(facility1, PaddockFacility.NONE);
+        subject.setConvertedFacilities(Lists.newArrayList(commonFacility));
+        when(paddock.getFacilities()).thenReturn(Arrays.asList(facility1, commonFacility));
         // When
-        Set<PaddockArrangement> result = subject.difflists();
+        Set<PaddockFacility> result = subject.difflists();
         // Then
         assertThat(result).isNotNull();
         assertThat(result).hasSize(1);
@@ -93,39 +93,39 @@ public class UpdatePaddockArrangementContextDiffListTest {
     @Test
     public void shouldReturnSetWithOnlyTheElementNoneWhenAddingIsSetToFalseAndWeAreRemovingAllOfThem(){
         // Given
-        subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
+        subject = new UpdatePaddockFacilityContext(mock(Zoo.class),
                 RandomStringUtils.randomAlphabetic(5),
                 Arrays.asList(),
                 false);
         subject.setConvertedPaddock(paddock);
 
-        PaddockArrangement oldFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
-        subject.setConvertedArrangements(Lists.newArrayList(oldFacility));
-        when(paddock.getArrangements()).thenReturn(Arrays.asList(oldFacility));
+        PaddockFacility oldFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        subject.setConvertedFacilities(Lists.newArrayList(oldFacility));
+        when(paddock.getFacilities()).thenReturn(Arrays.asList(oldFacility));
         // When
-        Set<PaddockArrangement> result = subject.difflists();
+        Set<PaddockFacility> result = subject.difflists();
         // Then
         assertThat(result).isNotNull();
         assertThat(result).hasSize(1);
-        assertThat(result).contains(PaddockArrangement.NONE);
+        assertThat(result).contains(PaddockFacility.NONE);
     }
 
     @Test
     public void shouldReturnTheInitialSetWhenAddingIsSetToFalseAndWeAreRemovingFacilityWhichAreNotInThePaddock(){
         // Given
-        subject = new UpdatePaddockArrangementContext(mock(Zoo.class),
+        subject = new UpdatePaddockFacilityContext(mock(Zoo.class),
                 RandomStringUtils.randomAlphabetic(5),
                 Arrays.asList(),
                 false);
         subject.setConvertedPaddock(paddock);
 
-        PaddockArrangement oldFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE);
-        PaddockArrangement unknownFacility = TestUtils.getPaddockArrangementExcluding(PaddockArrangement.NONE, oldFacility);
+        PaddockFacility oldFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE);
+        PaddockFacility unknownFacility = TestUtils.getPaddockFacilityExcluding(PaddockFacility.NONE, oldFacility);
 
-        subject.setConvertedArrangements(Lists.newArrayList(unknownFacility));
-        when(paddock.getArrangements()).thenReturn(Arrays.asList(oldFacility));
+        subject.setConvertedFacilities(Lists.newArrayList(unknownFacility));
+        when(paddock.getFacilities()).thenReturn(Arrays.asList(oldFacility));
         // When
-        Set<PaddockArrangement> result = subject.difflists();
+        Set<PaddockFacility> result = subject.difflists();
         // Then
         assertThat(result).isNotNull();
         assertThat(result).hasSize(1);

@@ -14,14 +14,14 @@ import java.util.stream.Stream;
 /**
  * @author doyenm
  */
-public class LsPaddockArrangements implements Command {
+public class LsPaddockFacilities implements Command {
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
         LsContext context = new LsContext(zoo);
         return Stream.of(context)
                 .map(t ->
-                        new ReturnExec(FormattingInList.formatList(context.getPaddockArrangements()), TypeReturn.SUCCESS)
+                        new ReturnExec(FormattingInList.formatList(context.getPaddockFacilities()), TypeReturn.SUCCESS)
                 )
                 .findFirst()
                 .orElseGet(null);
@@ -30,7 +30,7 @@ public class LsPaddockArrangements implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         return cmd.length == 1
-                && Arrays.asList(Constants.ARRANGEMENTS)
+                && Arrays.asList(Constants.FACILITIES)
                 .stream()
                 .anyMatch(cmd[0]::equalsIgnoreCase);
     }
