@@ -1,8 +1,8 @@
 package doyenm.zooshell.common.function;
 
-import doyenm.zooshell.animal.contraception.FindingContraceptionFunction;
+import doyenm.zooshell.animal.FindingContraceptionFunction;
 import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.animal.contraception.FindingContraceptionContext;
+import doyenm.zooshell.animal.FindingContraceptionContext;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

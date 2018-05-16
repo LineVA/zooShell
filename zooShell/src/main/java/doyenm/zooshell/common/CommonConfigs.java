@@ -25,11 +25,6 @@ public class CommonConfigs {
     }
 
     @Bean
-    public FindingDietFunction findingDietFunction() {
-        return new FindingDietFunction();
-    }
-
-    @Bean
     public FindingSexFunction findingSexFunction() {
         return new FindingSexFunction();
     }

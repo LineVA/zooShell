@@ -1,7 +1,7 @@
 package doyenm.zooshell.animal.diets;
 
-import doyenm.zooshell.common.context.FindingDietContext;
-import doyenm.zooshell.common.function.FindingDietFunction;
+import doyenm.zooshell.animal.FindingDietContext;
+import doyenm.zooshell.animal.FindingDietFunction;
 import doyenm.zooshell.common.FindAnimal;
 import lombok.RequiredArgsConstructor;
 

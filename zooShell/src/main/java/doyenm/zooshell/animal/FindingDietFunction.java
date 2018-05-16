@@ -1,7 +1,8 @@
-package doyenm.zooshell.common.function;
+package doyenm.zooshell.animal;
 
+import doyenm.zooshell.animal.FindingDietContext;
+import doyenm.zooshell.common.function.ReplaceSpacesWithUnderscores;
 import doyenm.zooshell.model.Diet;
-import doyenm.zooshell.common.context.FindingDietContext;
 
 import java.util.function.Function;
 

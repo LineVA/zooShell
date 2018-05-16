@@ -1,4 +1,4 @@
-package doyenm.zooshell.animal.contraception;
+package doyenm.zooshell.animal;
 
 import doyenm.zooshell.common.function.ReplaceSpacesWithUnderscores;
 import doyenm.zooshell.model.ContraceptionMethod;

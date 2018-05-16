@@ -1,5 +1,7 @@
 package doyenm.zooshell.animal.contraception;
 
+import doyenm.zooshell.animal.FindingContraceptionContext;
+import doyenm.zooshell.animal.FindingContraceptionFunction;
 import doyenm.zooshell.model.ContraceptionMethod;
 import doyenm.zooshell.common.FindAnimal;
 import lombok.RequiredArgsConstructor;

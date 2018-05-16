@@ -40,9 +40,6 @@ public class AnimalValidatorsConfig {
     FindAnimal findAnimal;
 
     @Autowired
-    FindingDietFunction findingDietFunction;
-
-    @Autowired
     FindingSexFunction findingSexFunction;
 
     @Autowired
@@ -69,6 +66,8 @@ public class AnimalValidatorsConfig {
     }
 
     private FindingContraceptionFunction findingContraceptionFunction = new FindingContraceptionFunction();
+
+    private FindingDietFunction findingDietFunction = new FindingDietFunction();
 
     // Validators
     @Bean
