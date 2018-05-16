@@ -31,7 +31,6 @@ import java.util.List;
     ZooCommandsConfig.class,
     BackupConfig.class,
     ControllersConfig.class,
-    ValidatorsConfig.class,
     SpecieCommandsConfig.class})
 public class CommandsConfig {
 
