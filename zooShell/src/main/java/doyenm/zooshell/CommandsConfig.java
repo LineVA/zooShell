@@ -1,19 +1,17 @@
 package doyenm.zooshell;
 
-import doyenm.zooshell.backup.BackupConfig;
 import doyenm.zooshell.animal.AnimalCommandsConfig;
+import doyenm.zooshell.backup.BackupConfig;
 import doyenm.zooshell.backup.Load;
 import doyenm.zooshell.backup.Save;
+import doyenm.zooshell.commandline.general.displayingevent.*;
 import doyenm.zooshell.evaluation.Evaluate;
 import doyenm.zooshell.handyman.HandymanCommandsConfig;
 import doyenm.zooshell.keeper.KeeperCommandsConfig;
 import doyenm.zooshell.paddock.PaddockCommandsConfig;
-import doyenm.zooshell.specie.details.DetailSpecie;
-import doyenm.zooshell.specie.list.LsSpecie;
-import doyenm.zooshell.zoo.penalty.LsPenalties;
+import doyenm.zooshell.specie.SpecieCommandsConfig;
 import doyenm.zooshell.zoo.ZooCommandsConfig;
-import doyenm.zooshell.commandline.general.displayingevent.*;
-import doyenm.zooshell.specie.SpecieControllersConfig;
+import doyenm.zooshell.zoo.penalty.LsPenalties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,7 +32,7 @@ import java.util.List;
     BackupConfig.class,
     ControllersConfig.class,
     ValidatorsConfig.class,
-    SpecieControllersConfig.class})
+    SpecieCommandsConfig.class})
 public class CommandsConfig {
 
     @Autowired
@@ -56,10 +54,7 @@ public class CommandsConfig {
     ControllersConfig controllersConfig;
 
     @Autowired
-    ValidatorsConfig validatorsConfig;
-
-    @Autowired
-    SpecieControllersConfig specieControllersConfig;
+    SpecieCommandsConfig specieCommandsConfig;
 
     @Autowired
     BackupConfig backupConfig;
@@ -69,18 +64,18 @@ public class CommandsConfig {
         return new LsPenalties();
     }
 
-    @Bean
-    public DetailSpecie detailSpecie() {
-        return new DetailSpecie(
-                validatorsConfig.specieDetailsValidator(),
-                specieControllersConfig.specieDetailsController()
-        );
-    }
-
-    @Bean
-    public LsSpecie lsSpecie() {
-        return new LsSpecie();
-    }
+//    @Bean
+//    public DetailSpecie detailSpecie() {
+//        return new DetailSpecie(
+//                validatorsConfig.specieDetailsValidator(),
+//                specieControllersConfig.specieDetailsController()
+//        );
+//    }
+//
+//    @Bean
+//    public LsSpecie lsSpecie() {
+//        return new LsSpecie();
+//    }
 
     @Bean
     public Save save() {

@@ -51,8 +51,8 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.zooCommandsConfig.renameZoo(), 1),
                 new ActionPointCommand(commandsConfig.zooCommandsConfig.detailZoo(), 0),
                 // Specie
-                new ActionPointCommand(commandsConfig.lsSpecie(), 0),
-                new ActionPointCommand(commandsConfig.detailSpecie(), 0),
+                new ActionPointCommand(commandsConfig.specieCommandsConfig.lsSpecie(), 0),
+                new ActionPointCommand(commandsConfig.specieCommandsConfig.detailSpecie(), 0),
                 // Paddock
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.changePaddockName(), 1),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.createPaddock(), 3),

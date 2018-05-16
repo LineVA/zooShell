@@ -7,7 +7,6 @@ import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;
 import doyenm.zooshell.common.predicates.StringLengthPredicates;
 import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;
-import doyenm.zooshell.specie.details.SpecieDetailsValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -84,8 +83,8 @@ public class ValidatorsConfig {
         return new UniquenessNamesBiPredicates();
     }
 
-    @Bean
-    public SpecieDetailsValidator specieDetailsValidator() {
-        return new SpecieDetailsValidator();
-    }
+//    @Bean
+//    public SpecieDetailsValidator specieDetailsValidator() {
+//        return new SpecieDetailsValidator();
+//    }
 }
