@@ -1,6 +1,6 @@
 package doyenm.zooshell.animal;
 
-import doyenm.zooshell.animal.contraception.AnimalUpdateContraceptionValidator;
+import doyenm.zooshell.animal.contraception.*;
 import doyenm.zooshell.animal.creation.AnimalCreationValidator;
 import doyenm.zooshell.animal.diets.AnimalUpdateDietValidator;
 import doyenm.zooshell.animal.diets.AnimalUpdateFastDaysValidator;
@@ -40,9 +40,6 @@ public class AnimalValidatorsConfig {
     FindAnimal findAnimal;
 
     @Autowired
-    FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction;
-
-    @Autowired
     FindingDietFunction findingDietFunction;
 
     @Autowired
@@ -63,22 +60,9 @@ public class AnimalValidatorsConfig {
     @Autowired
     NameValidator animalNameValidator;
 
-    @Autowired
-    FindingContraceptionFunction findingContraceptionFunction;
+    private FindingContraceptionFunction findingContraceptionFunction = new FindingContraceptionFunction();
 
-    @Autowired
-    CanHaveAChirurgicalContraceptionPredicate canHaveAChirurgicalContraceptionPredicate;
-
-    @Autowired
-    CanHaveAHormonalContraceptionPredicate canHaveAHormonalContraceptionPredicate;
-
-    @Autowired
-    IsContraceptionCompatibleWithPreviousPredicate isContraceptionCompatibleWithPreviousPredicate;
-
-    @Autowired
-    IsContraceptionCompatibleWithSexPredicate isContraceptionCompatibleWithSexPredicate;
-
-    // Validator
+    // Validators
     @Bean
     public AnimalChangeNameValidator animalChangeNameValidator() {
         return new AnimalChangeNameValidator(findAnimal,
@@ -102,10 +86,10 @@ public class AnimalValidatorsConfig {
     public AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator() {
         return new AnimalUpdateContraceptionValidator(findingContraceptionFunction,
                 findAnimal,
-                canHaveAHormonalContraceptionPredicate,
-                canHaveAChirurgicalContraceptionPredicate,
-                isContraceptionCompatibleWithPreviousPredicate,
-                isContraceptionCompatibleWithSexPredicate
+                new CanHaveAHormonalContraceptionPredicate(),
+                new CanHaveAChirurgicalContraceptionPredicate(),
+                new IsContraceptionCompatibleWithPreviousPredicate(),
+                new IsContraceptionCompatibleWithSexPredicate()
         );
     }
 

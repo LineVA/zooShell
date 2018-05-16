@@ -2,7 +2,10 @@ package doyenm.zooshell.common;
 
 import doyenm.zooshell.common.function.*;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.common.predicates.*;
+import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
+import doyenm.zooshell.common.predicates.IntegerValuePredicates;
+import doyenm.zooshell.common.predicates.StringLengthPredicates;
+import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,11 +22,6 @@ public class CommonConfigs {
     @Bean
     public FindAnimal findAnimal() {
         return new FindAnimal();
-    }
-
-    @Bean
-    public FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction() {
-        return new FindingAnimalWithEntryCheckFunction();
     }
 
     @Bean
@@ -85,31 +83,6 @@ public class CommonConfigs {
                 uniquenessNamesBiPredicates(),
                 Integer.parseInt(environment.getProperty("paddock.name.max_length"))
         );
-    }
-
-    @Bean
-    public FindingContraceptionFunction findingContraceptionFunction() {
-        return new FindingContraceptionFunction();
-    }
-
-    @Bean
-    public CanHaveAChirurgicalContraceptionPredicate canHaveAChirurgicalContraceptionPredicate() {
-        return new CanHaveAChirurgicalContraceptionPredicate();
-    }
-
-    @Bean
-    public CanHaveAHormonalContraceptionPredicate canHaveAHormonalContraceptionPredicate() {
-        return new CanHaveAHormonalContraceptionPredicate();
-    }
-
-    @Bean
-    public IsContraceptionCompatibleWithPreviousPredicate isContraceptionCompatibleWithPreviousPredicate() {
-        return new IsContraceptionCompatibleWithPreviousPredicate();
-    }
-
-    @Bean
-    public IsContraceptionCompatibleWithSexPredicate isContraceptionCompatibleWithSexPredicate() {
-        return new IsContraceptionCompatibleWithSexPredicate();
     }
 
     @Bean

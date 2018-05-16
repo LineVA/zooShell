@@ -1,8 +1,8 @@
 package doyenm.zooshell.animal.list.criteria;
 
 import doyenm.zooshell.animal.list.LsWithCriteriaContext;
-import doyenm.zooshell.common.context.FindingContraceptionContext;
-import doyenm.zooshell.common.function.FindingContraceptionFunction;
+import doyenm.zooshell.animal.contraception.FindingContraceptionContext;
+import doyenm.zooshell.animal.contraception.FindingContraceptionFunction;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

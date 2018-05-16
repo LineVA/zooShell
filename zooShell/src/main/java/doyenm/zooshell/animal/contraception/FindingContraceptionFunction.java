@@ -1,7 +1,7 @@
-package doyenm.zooshell.common.function;
+package doyenm.zooshell.animal.contraception;
 
+import doyenm.zooshell.common.function.ReplaceSpacesWithUnderscores;
 import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.common.context.FindingContraceptionContext;
 
 import java.util.function.Function;
 
