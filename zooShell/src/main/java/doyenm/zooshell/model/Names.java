@@ -1,6 +1,8 @@
 package doyenm.zooshell.model;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -9,19 +11,12 @@ import java.util.List;
  * @author doyenm
  */
 @EqualsAndHashCode(of={"name"})
+@AllArgsConstructor
+@NoArgsConstructor
 public class Names {
     private String name;
     private List<Name> additionalNames;
     private  String scientificName;
-
-    public Names(String name, List<Name> additionalNames, String scientificName) {
-        this.name = name;
-        this.additionalNames = additionalNames;
-        this.scientificName = scientificName;
-    }
-    
-    public Names() {
-    }
 
     public String getName() {
         return name;

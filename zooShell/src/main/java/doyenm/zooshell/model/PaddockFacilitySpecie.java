@@ -1,6 +1,8 @@
 package doyenm.zooshell.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -15,16 +17,10 @@ import java.util.List;
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
+@AllArgsConstructor
+@NoArgsConstructor
 public class PaddockFacilitySpecie {
 
      @XmlElement(name = "facility")
     List<PaddockFacility> facilities;
-
-    public PaddockFacilitySpecie(List<PaddockFacility> facilities) {
-        this.facilities = facilities;
-    }
-
-    public PaddockFacilitySpecie() {
-    }
-
 }
