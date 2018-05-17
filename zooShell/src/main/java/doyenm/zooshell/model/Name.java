@@ -1,8 +1,6 @@
 package doyenm.zooshell.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 /**
  *
@@ -11,14 +9,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Name {
 
     private String name;
-
-    Name() {
-    }
-
-    Name(String name) {
-        this.name = name;
-    }
 }

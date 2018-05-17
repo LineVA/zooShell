@@ -29,7 +29,7 @@ public enum Uicn {
     int id;
     double coefficient;
     double standardDeviation;
-    
+
     Uicn(int id, double coefficient, double deviation){
         this.id = id;
         this.coefficient = coefficient;
