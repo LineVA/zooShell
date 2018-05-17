@@ -1,12 +1,8 @@
 package doyenm.zooshell.animal.contraception;
 
+import doyenm.zooshell.animal.FindingContraceptionContext;
+import doyenm.zooshell.animal.FindingContraceptionFunction;
 import doyenm.zooshell.model.ContraceptionMethod;
-import doyenm.zooshell.common.context.FindingContraceptionContext;
-import doyenm.zooshell.common.function.FindingContraceptionFunction;
-import doyenm.zooshell.common.predicates.CanHaveAChirurgicalContraceptionPredicate;
-import doyenm.zooshell.common.predicates.CanHaveAHormonalContraceptionPredicate;
-import doyenm.zooshell.common.predicates.IsContraceptionCompatibleWithPreviousPredicate;
-import doyenm.zooshell.common.predicates.IsContraceptionCompatibleWithSexPredicate;
 import doyenm.zooshell.common.FindAnimal;
 import lombok.RequiredArgsConstructor;
 

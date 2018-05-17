@@ -51,7 +51,7 @@ public class UpdatePaddockFacilityControllerApplyTest {
     }
 
     @Test
-    public void shouldReturnAZooWithAPaddockWithTwoMoreFacility() {
+    public void shouldReturnAZooWithAPaddockWithTwoMoreFacilities() {
         // Given
         PaddockFacility facility1 = TestUtils.getPaddockFacility();
         PaddockFacility facility2 = TestUtils.getPaddockFacility();

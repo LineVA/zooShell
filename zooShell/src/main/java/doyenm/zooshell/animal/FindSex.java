@@ -1,7 +1,7 @@
-package doyenm.zooshell.common;
+package doyenm.zooshell.animal;
 
-import doyenm.zooshell.common.context.FindingSexContext;
-import doyenm.zooshell.common.function.FindingSexFunction;
+import doyenm.zooshell.animal.FindingSexContext;
+import doyenm.zooshell.animal.FindingSexFunction;
 import doyenm.zooshell.model.Sex;
 import doyenm.zooshell.model.Zoo;
 

@@ -1,7 +1,8 @@
 package doyenm.zooshell.common.function;
 
 import doyenm.zooshell.model.PaddockType;
-import doyenm.zooshell.common.context.FindingPaddockTypeContext;
+import doyenm.zooshell.paddock.FindingPaddockTypeContext;
+import doyenm.zooshell.paddock.FindingPaddockTypeFunction;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

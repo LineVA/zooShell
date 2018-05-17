@@ -1,7 +1,8 @@
 package doyenm.zooshell.common.function;
 
+import doyenm.zooshell.animal.FindingDietFunction;
 import doyenm.zooshell.model.Diet;
-import doyenm.zooshell.common.context.FindingDietContext;
+import doyenm.zooshell.animal.FindingDietContext;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;

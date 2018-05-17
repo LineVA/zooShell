@@ -1,19 +1,16 @@
 package doyenm.zooshell.paddock;
 
+import doyenm.zooshell.common.CommonConfigs;
 import doyenm.zooshell.common.FindPaddock;
-import doyenm.zooshell.common.function.FindingBiomeFunction;
-import doyenm.zooshell.common.function.FindingPaddockFacilityFunction;
-import doyenm.zooshell.common.function.FindingPaddockTypeFunction;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.common.predicates.IntegerValuePredicates;
 import doyenm.zooshell.paddock.biomes.UpdateBiomeValidator;
 import doyenm.zooshell.paddock.creation.PaddockCreationValidator;
 import doyenm.zooshell.paddock.creation.PaddockLocationValidator;
 import doyenm.zooshell.paddock.entry.PaddockEntryCreationValidator;
 import doyenm.zooshell.paddock.extension.PaddockExtensionCreationValidator;
 import doyenm.zooshell.paddock.extension.PaddockExtensionLocationValidator;
-import doyenm.zooshell.paddock.facilities.UpdatePaddockFacilityCoherenceValidator;
 import doyenm.zooshell.paddock.facilities.UpdatePaddocFacilityExistenceValidator;
+import doyenm.zooshell.paddock.facilities.UpdatePaddockFacilityCoherenceValidator;
 import doyenm.zooshell.paddock.remove.PaddockRemoveValidator;
 import doyenm.zooshell.paddock.rename.PaddockChangeNameValidator;
 import doyenm.zooshell.paddock.types.UpdatePaddockTypeValidator;
@@ -24,7 +21,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 /**
- *
  * @author doyenm
  */
 @Configuration
@@ -35,32 +31,39 @@ public class PaddockValidatorsConfig {
     NameValidator nameValidator;
 
     @Autowired
-    IntegerValuePredicates integerValuePredicates;
+    FindPaddock findPaddock;
 
-    @Autowired
-    FindingBiomeFunction findingBiomeFunction;
-
-    @Autowired
-    FindingPaddockTypeFunction findingPaddockTypeFunction;
-
-      @Autowired
-      FindingPaddockFacilityFunction findingPaddockFacilityFunction;
-    
     @Autowired
     Environment environment;
 
-    FindPaddock findPaddock = new FindPaddock();
+    @Autowired
+    CommonConfigs commonConfigs;
+
+
+    private FindingBiomeFunction findingBiomeFunction = new FindingBiomeFunction();
+
+    private FindingPaddockTypeFunction findingPaddockTypeFunction = new FindingPaddockTypeFunction();
+
+   private FindingPaddockFacilityFunction findingPaddockFacilityFunction =  new FindingPaddockFacilityFunction();
+
+    @Bean
+    NameValidator paddockNameValiator() {
+        return new NameValidator(commonConfigs.stringLengthPredicates(),
+                commonConfigs.uniquenessNamesBiPredicates(),
+                Integer.parseInt(environment.getProperty("zoo.name.max_length"))
+        );
+    }
 
     @Bean
     public PaddockChangeNameValidator paddockChangeNameValidator() {
-        return new PaddockChangeNameValidator(findPaddock, nameValidator);
+        return new PaddockChangeNameValidator(findPaddock, paddockNameValiator());
     }
 
     @Bean
     public PaddockCreationValidator paddockCreationValidator() {
         return new PaddockCreationValidator(
-                nameValidator,
-                integerValuePredicates,
+                paddockNameValiator(),
+                commonConfigs.integerValuePredicates(),
                 Integer.parseInt(environment.getProperty("paddock.height.min")),
                 Integer.parseInt(environment.getProperty("paddock.width.min"))
         );
@@ -105,7 +108,7 @@ public class PaddockValidatorsConfig {
     public UpdatePaddockTypeValidator updatePaddockTypeValidator() {
         return new UpdatePaddockTypeValidator(findPaddock, findingPaddockTypeFunction);
     }
-    
+
     @Bean
     public UpdatePaddocFacilityExistenceValidator updatePaddockFacilityExistenceValidator() {
         return new UpdatePaddocFacilityExistenceValidator(findPaddock, findingPaddockFacilityFunction);

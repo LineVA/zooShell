@@ -2,8 +2,8 @@ package doyenm.zooshell.keeper.tasks;
 
 import doyenm.zooshell.model.TaskType;
 import doyenm.zooshell.model.TimedOccupation;
-import doyenm.zooshell.common.context.FindingTaskContext;
-import doyenm.zooshell.common.function.FindingTaskFunction;
+import doyenm.zooshell.handyman.FindingTaskContext;
+import doyenm.zooshell.handyman.FindingTaskFunction;
 import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
 import doyenm.zooshell.common.FindKeeper;
 import doyenm.zooshell.common.FindPaddock;

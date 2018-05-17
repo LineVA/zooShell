@@ -1,22 +1,23 @@
 package doyenm.zooshell.animal;
 
-import doyenm.zooshell.animal.contraception.AnimalUpdateContraceptionValidator;
+import doyenm.zooshell.animal.contraception.*;
 import doyenm.zooshell.animal.creation.AnimalCreationValidator;
 import doyenm.zooshell.animal.diets.AnimalUpdateDietValidator;
 import doyenm.zooshell.animal.diets.AnimalUpdateFastDaysValidator;
 import doyenm.zooshell.animal.diets.AnimalUpdateFoodQuantityValidator;
 import doyenm.zooshell.animal.list.AnimalsWithCriteria;
+import doyenm.zooshell.animal.list.criteria.*;
 import doyenm.zooshell.animal.move.AnimalChangePaddockValidator;
 import doyenm.zooshell.animal.rename.AnimalChangeNameValidator;
+import doyenm.zooshell.common.CommonConfigs;
 import doyenm.zooshell.common.FindAnimal;
 import doyenm.zooshell.common.FindPaddock;
-import doyenm.zooshell.animal.list.criteria.*;
-import doyenm.zooshell.common.function.*;
+import doyenm.zooshell.common.function.FindingSpecieFunction;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.common.predicates.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
@@ -28,6 +29,7 @@ import java.util.List;
  */
 @Configuration
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
+@Import({CommonConfigs.class})
 public class AnimalValidatorsConfig {
 
     @Autowired
@@ -37,65 +39,33 @@ public class AnimalValidatorsConfig {
     FindAnimal findAnimal;
 
     @Autowired
-    FindingAnimalWithEntryCheckFunction findingAnimalWithEntryCheckFunction;
-
-    @Autowired
-    FindingDietFunction findingDietFunction;
-
-    @Autowired
-    FindingSexFunction findingSexFunction;
-
-    @Autowired
     FindingSpecieFunction findingSpecieFunction;
 
     @Autowired
     FindPaddock findPaddock;
 
     @Autowired
-    DoubleValuesPredicates doubleValuesPredicates;
+    CommonConfigs commonConfigs;
 
-    @Autowired
-    StringLengthPredicates stringLenghtPredicates;
-
-    @Autowired
-    UniquenessNamesBiPredicates uniquenessNamesBiPredicates;
-
-    @Autowired
-    IntegerValuePredicates integerValuePredicates;
-
-    @Autowired
-    NameValidator nameValidator;
-
-    @Bean
-    public FindingContraceptionFunction findingContraceptionFunction() {
-        return new FindingContraceptionFunction();
+    public NameValidator animalNameValidator() {
+        return new NameValidator(
+                commonConfigs.stringLengthPredicates(),
+                commonConfigs.uniquenessNamesBiPredicates(),
+                Integer.parseInt(environment.getProperty("animal.name.max_length"))
+        );
     }
 
-    @Bean
-    public CanHaveAChirurgicalContraceptionPredicate canHaveAChirurgicalContraceptionPredicate() {
-        return new CanHaveAChirurgicalContraceptionPredicate();
-    }
+    private FindingContraceptionFunction findingContraceptionFunction = new FindingContraceptionFunction();
 
-    @Bean
-    public CanHaveAHormonalContraceptionPredicate canHaveAHormonalContraceptionPredicate() {
-        return new CanHaveAHormonalContraceptionPredicate();
-    }
+    private FindingDietFunction findingDietFunction = new FindingDietFunction();
 
-    @Bean
-    public IsContraceptionCompatibleWithPreviousPredicate isContraceptionCompatibleWithPreviousPredicate() {
-        return new IsContraceptionCompatibleWithPreviousPredicate();
-    }
+    private FindingSexFunction findingSexFunction = new FindingSexFunction();
 
-    @Bean
-    public IsContraceptionCompatibleWithSexPredicate isContraceptionCompatibleWithSexPredicate() {
-        return new IsContraceptionCompatibleWithSexPredicate();
-    }
-
-    // Validator
+    // Validators
     @Bean
     public AnimalChangeNameValidator animalChangeNameValidator() {
         return new AnimalChangeNameValidator(findAnimal,
-                nameValidator
+                animalNameValidator()
         );
     }
 
@@ -113,12 +83,13 @@ public class AnimalValidatorsConfig {
 
     @Bean
     public AnimalUpdateContraceptionValidator animalUpdateContraceptionValidator() {
-        return new AnimalUpdateContraceptionValidator(findingContraceptionFunction(),
+        return new AnimalUpdateContraceptionValidator(findingContraceptionFunction,
                 findAnimal,
-                canHaveAHormonalContraceptionPredicate(),
-                canHaveAChirurgicalContraceptionPredicate(),
-                isContraceptionCompatibleWithPreviousPredicate(),
-                isContraceptionCompatibleWithSexPredicate());
+                new CanHaveAHormonalContraceptionPredicate(),
+                new CanHaveAChirurgicalContraceptionPredicate(),
+                new IsContraceptionCompatibleWithPreviousPredicate(),
+                new IsContraceptionCompatibleWithSexPredicate()
+        );
     }
 
     @Bean
@@ -128,12 +99,12 @@ public class AnimalValidatorsConfig {
 
     @Bean
     public AnimalUpdateFastDaysValidator animalUpdateFastDaysValidator() {
-        return new AnimalUpdateFastDaysValidator(findAnimal, integerValuePredicates);
+        return new AnimalUpdateFastDaysValidator(findAnimal, commonConfigs.integerValuePredicates());
     }
 
     @Bean
     public AnimalUpdateFoodQuantityValidator animalUpdateFoodQuantityValidator() {
-        return new AnimalUpdateFoodQuantityValidator(doubleValuesPredicates, findAnimal);
+        return new AnimalUpdateFoodQuantityValidator(commonConfigs.doubleValuesPredicates(), findAnimal);
     }
 
     @Bean
@@ -170,7 +141,7 @@ public class AnimalValidatorsConfig {
 
     @Bean
     public AnimalsListWithContraceptionCriteriaValidator animalsListWithContraceptionCriteriaValidator() {
-        return new AnimalsListWithContraceptionCriteriaValidator(excluded, lsWithCriteriaParser(), findingContraceptionFunction());
+        return new AnimalsListWithContraceptionCriteriaValidator(excluded, lsWithCriteriaParser(), findingContraceptionFunction);
     }
 
     @Bean

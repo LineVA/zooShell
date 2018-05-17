@@ -1,7 +1,8 @@
 package doyenm.zooshell.commandline.general;
 
+import doyenm.zooshell.actionpoint.ActionPointsHandler;
 import doyenm.zooshell.evaluation.Evaluate;
-import doyenm.zooshell.zoo.GetActionPoints;
+import doyenm.zooshell.actionpoint.GetActionPoints;
 import doyenm.zooshell.model.Zoo;
 import lombok.RequiredArgsConstructor;
 

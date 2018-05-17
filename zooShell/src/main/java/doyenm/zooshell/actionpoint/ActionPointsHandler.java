@@ -1,4 +1,4 @@
-package doyenm.zooshell.commandline.general;
+package doyenm.zooshell.actionpoint;
 
 import doyenm.zooshell.model.Zoo;
 import lombok.NoArgsConstructor;

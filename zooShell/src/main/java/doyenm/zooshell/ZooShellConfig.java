@@ -1,8 +1,6 @@
 package doyenm.zooshell;
 
-import doyenm.zooshell.zoo.GetActionPoints;
 import doyenm.zooshell.commandline.general.ActionPointCommand;
-import doyenm.zooshell.commandline.general.ActionPointsHandler;
 import doyenm.zooshell.commandline.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,18 +30,6 @@ public class ZooShellConfig {
     }
 
     @Bean
-    ActionPointsHandler actionPointsHandler() {
-        ActionPointsHandler actionPointsHandler = new ActionPointsHandler();
-        actionPointsHandler.initialize(25);
-        return actionPointsHandler;
-    }
-
-    @Bean
-    GetActionPoints getActionPoints() {
-        return new GetActionPoints();
-    }
-
-    @Bean
     CommandManager commandManager() {
         List<ActionPointCommand> commands = Arrays.asList(
                 // Zoo
@@ -51,8 +37,8 @@ public class ZooShellConfig {
                 new ActionPointCommand(commandsConfig.zooCommandsConfig.renameZoo(), 1),
                 new ActionPointCommand(commandsConfig.zooCommandsConfig.detailZoo(), 0),
                 // Specie
-                new ActionPointCommand(commandsConfig.lsSpecie(), 0),
-                new ActionPointCommand(commandsConfig.detailSpecie(), 0),
+                new ActionPointCommand(commandsConfig.specieCommandsConfig.lsSpecie(), 0),
+                new ActionPointCommand(commandsConfig.specieCommandsConfig.detailSpecie(), 0),
                 // Paddock
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.changePaddockName(), 1),
                 new ActionPointCommand(commandsConfig.paddockCommandsConfig.createPaddock(), 3),
@@ -106,7 +92,7 @@ public class ZooShellConfig {
                 // General
                 new ActionPointCommand(commandsConfig.load(), 0),
                 new ActionPointCommand(commandsConfig.save(), 0));
-        return new CommandManager(commands, actionPointsHandler(), getActionPoints(), commandsConfig.evaluate());
+        return new CommandManager(commands, commandsConfig.actionPointCommandsConfig.actionPointsHandler(), commandsConfig.actionPointCommandsConfig.getActionPoints(), commandsConfig.evaluate());
     }
 
     @Bean

@@ -1,4 +1,4 @@
-package doyenm.zooshell.common.context;
+package doyenm.zooshell.animal;
 
 import doyenm.zooshell.model.ContraceptionMethod;
 import lombok.Getter;

@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
 /**
- *
  * @author doyenm
  */
 @Configuration
@@ -25,8 +24,11 @@ public class HandymanValidatorsConfig {
     @Autowired
     NameValidator nameValidator;
 
-    FindHandyman findHandyman = new FindHandyman();
-    FindPaddock findPaddock = new FindPaddock();
+    @Autowired
+    FindPaddock findPaddock;
+
+    @Autowired
+    FindHandyman findHandyman;
 
     // Validator
     @Bean

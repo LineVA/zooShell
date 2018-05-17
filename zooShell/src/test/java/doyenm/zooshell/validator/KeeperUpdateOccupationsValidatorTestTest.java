@@ -5,7 +5,7 @@ import doyenm.zooshell.common.FindPaddock;
 import doyenm.zooshell.keeper.tasks.KeeperUpdateOccupationsContext;
 import doyenm.zooshell.keeper.tasks.KeeperUpdateOccupationsValidator;
 import doyenm.zooshell.model.*;
-import doyenm.zooshell.common.function.FindingTaskFunction;
+import doyenm.zooshell.handyman.FindingTaskFunction;
 import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;

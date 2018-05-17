@@ -1,8 +1,8 @@
 package doyenm.zooshell.animal.list.criteria;
 
 import doyenm.zooshell.animal.list.LsWithCriteriaContext;
-import doyenm.zooshell.common.context.FindingSexContext;
-import doyenm.zooshell.common.function.FindingSexFunction;
+import doyenm.zooshell.animal.FindingSexContext;
+import doyenm.zooshell.animal.FindingSexFunction;
 import doyenm.zooshell.model.Sex;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Before;

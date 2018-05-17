@@ -1,4 +1,4 @@
-package doyenm.zooshell.common.predicates;
+package doyenm.zooshell.animal.contraception;
 
 import doyenm.zooshell.animal.contraception.AnimalUpdateContraceptionContext;
 import doyenm.zooshell.model.Animal;

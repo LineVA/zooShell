@@ -1,11 +1,8 @@
 package doyenm.zooshell.zoo;
 
 
+import doyenm.zooshell.common.CommonConfigs;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.common.predicates.IntegerValuePredicates;
-import doyenm.zooshell.common.predicates.StringLengthPredicates;
-import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;
-import doyenm.zooshell.specie.details.SpecieDetailsValidator;
 import doyenm.zooshell.zoo.creation.ZooCreationValidator;
 import doyenm.zooshell.zoo.rename.RenameZooValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,39 +13,21 @@ import org.springframework.core.env.Environment;
 
 
 /**
- *
  * @author doyenm
  */
 @Configuration
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
 public class ZooValidatorsConfig {
-     @Autowired
+    @Autowired
     Environment environment;
 
-    @Bean
-    SpecieDetailsValidator specieDetailsValidator() {
-        return new SpecieDetailsValidator();
-    }
-
-    @Bean
-    IntegerValuePredicates integerValuePredicates() {
-        return new IntegerValuePredicates();
-    }
-
-    @Bean
-    StringLengthPredicates stringLengthPredicates() {
-        return new StringLengthPredicates();
-    }
-
-    @Bean
-    UniquenessNamesBiPredicates uniquenessNamesBiPredicates() {
-        return new UniquenessNamesBiPredicates();
-    }
+    @Autowired
+    CommonConfigs commonConfigs;
 
     @Bean
     NameValidator nameValidator() {
-        return new NameValidator(stringLengthPredicates(),
-                uniquenessNamesBiPredicates(),
+        return new NameValidator(commonConfigs.stringLengthPredicates(),
+                commonConfigs.uniquenessNamesBiPredicates(),
                 Integer.parseInt(environment.getProperty("zoo.name.max_length"))
         );
     }
@@ -56,7 +35,7 @@ public class ZooValidatorsConfig {
     @Bean
     public ZooCreationValidator zooCreationValidator() {
         return new ZooCreationValidator(
-                integerValuePredicates(),
+                commonConfigs.integerValuePredicates(),
                 nameValidator(),
                 Integer.parseInt(environment.getProperty("zoo.width.min")),
                 Integer.parseInt(environment.getProperty("zoo.height.min")),
@@ -67,7 +46,7 @@ public class ZooValidatorsConfig {
     }
 
     @Bean
-    public RenameZooValidator renameZooValidator(){
+    public RenameZooValidator renameZooValidator() {
         return new RenameZooValidator(nameValidator());
     }
 }

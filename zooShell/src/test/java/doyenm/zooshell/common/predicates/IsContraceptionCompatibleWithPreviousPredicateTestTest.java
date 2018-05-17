@@ -1,5 +1,6 @@
 package doyenm.zooshell.common.predicates;
 
+import doyenm.zooshell.animal.contraception.IsContraceptionCompatibleWithPreviousPredicate;
 import doyenm.zooshell.animal.contraception.AnimalUpdateContraceptionContext;
 import doyenm.zooshell.model.Animal;
 import doyenm.zooshell.model.ContraceptionMethod;

@@ -1,7 +1,8 @@
 package doyenm.zooshell.common.function;
 
-import doyenm.zooshell.common.context.FindingBiomeContext;
+import doyenm.zooshell.paddock.FindingBiomeContext;
 import doyenm.zooshell.model.Biome;
+import doyenm.zooshell.paddock.FindingBiomeFunction;
 import org.junit.Before;
 import org.junit.Test;
 
