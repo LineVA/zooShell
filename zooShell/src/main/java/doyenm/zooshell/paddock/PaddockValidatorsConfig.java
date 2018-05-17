@@ -1,11 +1,8 @@
 package doyenm.zooshell.paddock;
 
+import doyenm.zooshell.common.CommonConfigs;
 import doyenm.zooshell.common.FindPaddock;
-import doyenm.zooshell.common.function.FindingBiomeFunction;
-import doyenm.zooshell.common.function.FindingPaddockFacilityFunction;
-import doyenm.zooshell.common.function.FindingPaddockTypeFunction;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.common.predicates.IntegerValuePredicates;
 import doyenm.zooshell.paddock.biomes.UpdateBiomeValidator;
 import doyenm.zooshell.paddock.creation.PaddockCreationValidator;
 import doyenm.zooshell.paddock.creation.PaddockLocationValidator;
@@ -34,33 +31,39 @@ public class PaddockValidatorsConfig {
     NameValidator nameValidator;
 
     @Autowired
-    IntegerValuePredicates integerValuePredicates;
-
-    @Autowired
-    FindingBiomeFunction findingBiomeFunction;
-
-    @Autowired
-    FindingPaddockTypeFunction findingPaddockTypeFunction;
-
-    @Autowired
-    FindingPaddockFacilityFunction findingPaddockFacilityFunction;
-
-    @Autowired
     FindPaddock findPaddock;
 
     @Autowired
     Environment environment;
 
+    @Autowired
+    CommonConfigs commonConfigs;
+
+
+    private FindingBiomeFunction findingBiomeFunction = new FindingBiomeFunction();
+
+    private FindingPaddockTypeFunction findingPaddockTypeFunction = new FindingPaddockTypeFunction();
+
+   private FindingPaddockFacilityFunction findingPaddockFacilityFunction =  new FindingPaddockFacilityFunction();
+
+    @Bean
+    NameValidator paddockNameValiator() {
+        return new NameValidator(commonConfigs.stringLengthPredicates(),
+                commonConfigs.uniquenessNamesBiPredicates(),
+                Integer.parseInt(environment.getProperty("zoo.name.max_length"))
+        );
+    }
+
     @Bean
     public PaddockChangeNameValidator paddockChangeNameValidator() {
-        return new PaddockChangeNameValidator(findPaddock, nameValidator);
+        return new PaddockChangeNameValidator(findPaddock, paddockNameValiator());
     }
 
     @Bean
     public PaddockCreationValidator paddockCreationValidator() {
         return new PaddockCreationValidator(
-                nameValidator,
-                integerValuePredicates,
+                paddockNameValiator(),
+                commonConfigs.integerValuePredicates(),
                 Integer.parseInt(environment.getProperty("paddock.height.min")),
                 Integer.parseInt(environment.getProperty("paddock.width.min"))
         );

@@ -1,8 +1,8 @@
 package doyenm.zooshell.paddock.types;
 
 import doyenm.zooshell.common.FindPaddock;
-import doyenm.zooshell.common.context.FindingPaddockTypeContext;
-import doyenm.zooshell.common.function.FindingPaddockTypeFunction;
+import doyenm.zooshell.paddock.FindingPaddockTypeContext;
+import doyenm.zooshell.paddock.FindingPaddockTypeFunction;
 import doyenm.zooshell.errorhandling.BusinessError;
 import doyenm.zooshell.errorhandling.ErrorType;
 import doyenm.zooshell.model.Paddock;

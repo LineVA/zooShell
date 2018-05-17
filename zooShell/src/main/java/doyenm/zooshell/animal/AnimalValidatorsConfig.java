@@ -6,15 +6,14 @@ import doyenm.zooshell.animal.diets.AnimalUpdateDietValidator;
 import doyenm.zooshell.animal.diets.AnimalUpdateFastDaysValidator;
 import doyenm.zooshell.animal.diets.AnimalUpdateFoodQuantityValidator;
 import doyenm.zooshell.animal.list.AnimalsWithCriteria;
+import doyenm.zooshell.animal.list.criteria.*;
 import doyenm.zooshell.animal.move.AnimalChangePaddockValidator;
 import doyenm.zooshell.animal.rename.AnimalChangeNameValidator;
 import doyenm.zooshell.common.CommonConfigs;
 import doyenm.zooshell.common.FindAnimal;
 import doyenm.zooshell.common.FindPaddock;
-import doyenm.zooshell.animal.list.criteria.*;
-import doyenm.zooshell.common.function.*;
+import doyenm.zooshell.common.function.FindingSpecieFunction;
 import doyenm.zooshell.common.name.NameValidator;
-import doyenm.zooshell.common.predicates.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,12 +43,6 @@ public class AnimalValidatorsConfig {
 
     @Autowired
     FindPaddock findPaddock;
-
-    @Autowired
-    DoubleValuesPredicates doubleValuesPredicates;
-
-    @Autowired
-    IntegerValuePredicates integerValuePredicates;
 
     @Autowired
     CommonConfigs commonConfigs;
@@ -106,12 +99,12 @@ public class AnimalValidatorsConfig {
 
     @Bean
     public AnimalUpdateFastDaysValidator animalUpdateFastDaysValidator() {
-        return new AnimalUpdateFastDaysValidator(findAnimal, integerValuePredicates);
+        return new AnimalUpdateFastDaysValidator(findAnimal, commonConfigs.integerValuePredicates());
     }
 
     @Bean
     public AnimalUpdateFoodQuantityValidator animalUpdateFoodQuantityValidator() {
-        return new AnimalUpdateFoodQuantityValidator(doubleValuesPredicates, findAnimal);
+        return new AnimalUpdateFoodQuantityValidator(commonConfigs.doubleValuesPredicates(), findAnimal);
     }
 
     @Bean

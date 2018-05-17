@@ -1,8 +1,5 @@
 package doyenm.zooshell.common;
 
-import doyenm.zooshell.common.function.FindingBiomeFunction;
-import doyenm.zooshell.common.function.FindingPaddockFacilityFunction;
-import doyenm.zooshell.common.function.FindingPaddockTypeFunction;
 import doyenm.zooshell.common.function.FindingSpecieFunction;
 import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
@@ -60,28 +57,7 @@ public class CommonConfigs {
         );
     }
 
-    @Bean
-    NameValidator paddockNameValidator() {
-        return new NameValidator(stringLengthPredicates(),
-                uniquenessNamesBiPredicates(),
-                Integer.parseInt(environment.getProperty("paddock.name.max_length"))
-        );
-    }
 
-    @Bean
-    public FindingBiomeFunction findingBiomeFunction() {
-        return new FindingBiomeFunction();
-    }
-
-    @Bean
-    public FindingPaddockTypeFunction findingPaddockTypeFunction(){
-        return new FindingPaddockTypeFunction();
-    }
-
-    @Bean
-    public FindingPaddockFacilityFunction findingPaddockFacilityFunction(){
-        return new FindingPaddockFacilityFunction();
-    }
 
     @Bean
     public FindPaddock findPaddock() {

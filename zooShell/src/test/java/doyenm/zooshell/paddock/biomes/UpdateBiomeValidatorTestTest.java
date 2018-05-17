@@ -1,8 +1,8 @@
 package doyenm.zooshell.paddock.biomes;
 
 import doyenm.zooshell.common.FindPaddock;
-import doyenm.zooshell.common.context.FindingBiomeContext;
-import doyenm.zooshell.common.function.FindingBiomeFunction;
+import doyenm.zooshell.paddock.FindingBiomeContext;
+import doyenm.zooshell.paddock.FindingBiomeFunction;
 import doyenm.zooshell.model.Paddock;
 import doyenm.zooshell.model.Zoo;
 import doyenm.zooshell.testUtils.TestUtils;

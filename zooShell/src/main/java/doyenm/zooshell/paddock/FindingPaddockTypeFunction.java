@@ -1,7 +1,7 @@
-package doyenm.zooshell.common.function;
+package doyenm.zooshell.paddock;
 
+import doyenm.zooshell.common.function.ReplaceSpacesWithUnderscores;
 import doyenm.zooshell.model.PaddockType;
-import doyenm.zooshell.common.context.FindingPaddockTypeContext;
 
 import java.util.function.Function;
 

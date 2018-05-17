@@ -6,6 +6,7 @@ import doyenm.zooshell.backup.BackupConfig;
 import doyenm.zooshell.backup.Load;
 import doyenm.zooshell.backup.Save;
 import doyenm.zooshell.commandline.general.displayingevent.*;
+import doyenm.zooshell.common.CommonConfigs;
 import doyenm.zooshell.evaluation.Evaluate;
 import doyenm.zooshell.handyman.HandymanCommandsConfig;
 import doyenm.zooshell.keeper.KeeperCommandsConfig;
@@ -25,7 +26,9 @@ import java.util.List;
  * @author doyenm
  */
 @Configuration
-@Import({AnimalCommandsConfig.class, HandymanCommandsConfig.class,
+@Import({
+        CommonConfigs.class,
+        AnimalCommandsConfig.class, HandymanCommandsConfig.class,
         KeeperCommandsConfig.class,
         PaddockCommandsConfig.class,
         ZooCommandsConfig.class,

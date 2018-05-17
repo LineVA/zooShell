@@ -1,4 +1,4 @@
-package doyenm.zooshell.common.context;
+package doyenm.zooshell.paddock;
 
 import doyenm.zooshell.model.PaddockType;
 import lombok.Getter;
