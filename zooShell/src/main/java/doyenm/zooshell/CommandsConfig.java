@@ -8,6 +8,7 @@ import doyenm.zooshell.backup.Save;
 import doyenm.zooshell.commandline.general.displayingevent.*;
 import doyenm.zooshell.common.CommonConfigs;
 import doyenm.zooshell.evaluation.Evaluate;
+import doyenm.zooshell.evaluation.EvaluationConfig;
 import doyenm.zooshell.handyman.HandymanCommandsConfig;
 import doyenm.zooshell.keeper.KeeperCommandsConfig;
 import doyenm.zooshell.paddock.PaddockCommandsConfig;
@@ -31,9 +32,9 @@ import java.util.List;
         AnimalCommandsConfig.class, HandymanCommandsConfig.class,
         KeeperCommandsConfig.class,
         PaddockCommandsConfig.class,
+        EvaluationConfig.class,
         ZooCommandsConfig.class,
         BackupConfig.class,
-        ControllersConfig.class,
         SpecieCommandsConfig.class,
         ActionPointCommandsConfig.class})
 public class CommandsConfig {
@@ -54,7 +55,7 @@ public class CommandsConfig {
     public ZooCommandsConfig zooCommandsConfig;
 
     @Autowired
-    ControllersConfig controllersConfig;
+    public EvaluationConfig evaluationConfig;
 
     @Autowired
     SpecieCommandsConfig specieCommandsConfig;
@@ -105,7 +106,7 @@ public class CommandsConfig {
 
     @Bean
     public Evaluate evaluate() {
-        return new Evaluate(controllersConfig.evaluationController(),
+        return new Evaluate(evaluationConfig.evaluationController(),
                 displayingEventsList);
     }
 
