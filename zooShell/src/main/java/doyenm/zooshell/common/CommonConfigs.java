@@ -1,23 +1,17 @@
 package doyenm.zooshell.common;
 
 import doyenm.zooshell.common.function.FindingSpecieFunction;
-import doyenm.zooshell.common.name.NameValidator;
 import doyenm.zooshell.common.predicates.DoubleValuesPredicates;
 import doyenm.zooshell.common.predicates.IntegerValuePredicates;
 import doyenm.zooshell.common.predicates.StringLengthPredicates;
 import doyenm.zooshell.common.predicates.UniquenessNamesBiPredicates;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 
 @Configuration
 @PropertySource("classpath:/doyenm/zooshell/zooshell.properties")
 public class CommonConfigs {
-
-    @Autowired
-    Environment environment;
 
     @Bean
     public FindAnimal findAnimal() {
@@ -48,16 +42,6 @@ public class CommonConfigs {
     public UniquenessNamesBiPredicates uniquenessNamesBiPredicates() {
         return new UniquenessNamesBiPredicates();
     }
-
-    @Bean
-    NameValidator zooNameValidator() {
-        return new NameValidator(stringLengthPredicates(),
-                uniquenessNamesBiPredicates(),
-                Integer.parseInt(environment.getProperty("zoo.name.max_length"))
-        );
-    }
-
-
 
     @Bean
     public FindPaddock findPaddock() {
