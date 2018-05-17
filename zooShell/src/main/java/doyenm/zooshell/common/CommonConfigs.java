@@ -24,6 +24,14 @@ public class CommonConfigs {
     }
 
     @Bean
+    public FindPaddock findPaddock() {
+        return new FindPaddock();
+    }
+
+    @Bean
+    public FindHandyman findHandyman() {return new FindHandyman(); }
+
+    @Bean
     public DoubleValuesPredicates doubleValuesPredicates() {
         return new DoubleValuesPredicates();
     }
@@ -43,8 +51,5 @@ public class CommonConfigs {
         return new UniquenessNamesBiPredicates();
     }
 
-    @Bean
-    public FindPaddock findPaddock() {
-        return new FindPaddock();
-    }
+
 }

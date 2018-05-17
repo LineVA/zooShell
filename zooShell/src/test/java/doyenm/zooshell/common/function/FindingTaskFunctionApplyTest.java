@@ -1,7 +1,8 @@
 package doyenm.zooshell.common.function;
 
+import doyenm.zooshell.handyman.FindingTaskFunction;
 import doyenm.zooshell.model.TaskType;
-import doyenm.zooshell.common.context.FindingTaskContext;
+import doyenm.zooshell.handyman.FindingTaskContext;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
