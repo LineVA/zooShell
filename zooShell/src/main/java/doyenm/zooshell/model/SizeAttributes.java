@@ -23,7 +23,7 @@ public class SizeAttributes {
     private double femaleWeight;
     private double maleWeight;
 
-    public double getWeigthGivenSex(Sex sex) {
+    public double getWeightGivenSex(Sex sex) {
         return Sex.FEMALE == sex
                 ? getFemaleWeight() : getMaleWeight();
     }

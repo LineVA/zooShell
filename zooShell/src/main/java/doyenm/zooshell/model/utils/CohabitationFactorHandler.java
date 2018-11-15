@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -21,7 +20,7 @@ public class CohabitationFactorHandler {
 
     public double compute(double agressivity, Specie specie, SizeAttributes sizeAttributes, Sex sex) {
         double cohabitation = 0.0;
-        double weight = sizeAttributes.getWeigthGivenSex(sex);
+        double weight = sizeAttributes.getWeightGivenSex(sex);
 
         // Cohabitation = (
         //    weight/ 1 tonne
