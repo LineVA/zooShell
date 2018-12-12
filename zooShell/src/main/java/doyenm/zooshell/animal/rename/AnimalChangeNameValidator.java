@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import java.util.function.Predicate;
 
 /**
- *
  * @author doyenm
  */
 @RequiredArgsConstructor
@@ -26,9 +25,11 @@ public class AnimalChangeNameValidator implements Predicate<AnimalChangeNameCont
             return false;
         }
         context.setConvertedAnimal(animal);
-        return nameValidator.test(NameDto.builder()
-                .testing(context.getNewName())
-                .existingNames(context.getAnimals())
-                .build());
+        return nameValidator.test(
+                NameDto.builder()
+                        .testing(context.getNewName())
+                        .existingNames(context.getAnimals())
+                        .build()
+        );
     }
 }
