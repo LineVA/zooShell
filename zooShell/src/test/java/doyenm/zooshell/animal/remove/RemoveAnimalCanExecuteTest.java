@@ -1,9 +1,12 @@
-package doyenm.zooshell.commandline.commandLineImpl.animal;
+package doyenm.zooshell.animal.remove;
 
-import doyenm.zooshell.animal.remove.RemoveAnimal;
+import doyenm.zooshell.animal.AnimalValidator;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
+
+import static org.mockito.Mockito.mock;
 
 /**
  *
@@ -14,13 +17,19 @@ public class RemoveAnimalCanExecuteTest {
     private final String ANIMAL = "animal";
     private final String REMOVE = "remove";
 
+    private RemoveAnimal subject;
+
+    @Before
+    public void setUp(){
+        subject = new RemoveAnimal(mock(AnimalValidator.class), mock(AnimalRemoveController.class));
+    }
+
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
-        RemoveAnimal commandImpl = new RemoveAnimal(null, null);
         String[] cmd = {this.ANIMAL, this.REMOVE, RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = commandImpl.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isTrue();
     }
@@ -28,11 +37,10 @@ public class RemoveAnimalCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheTheFirstElementIsIncorrect() {
         // Given
-        RemoveAnimal commandImpl = new RemoveAnimal(null, null);
         String[] cmd = {RandomStringUtils.randomAlphabetic(10), this.REMOVE,
             RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = commandImpl.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
@@ -40,11 +48,10 @@ public class RemoveAnimalCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheTheSecondElementIsIncorrect() {
         // Given
-        RemoveAnimal commandImpl = new RemoveAnimal(null, null);
         String[] cmd = {this.ANIMAL, RandomStringUtils.randomAlphabetic(10),
             RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = commandImpl.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
@@ -52,10 +59,9 @@ public class RemoveAnimalCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsLessThanThreeElements() {
         // Given
-        RemoveAnimal commandImpl = new RemoveAnimal(null, null);
         String[] cmd = {this.ANIMAL, this.REMOVE};
         // When
-        boolean actualResult = commandImpl.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
@@ -63,11 +69,10 @@ public class RemoveAnimalCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanThreeElements() {
         // Given
-        RemoveAnimal commandImpl = new RemoveAnimal(null, null);
         String[] cmd = {this.ANIMAL, this.REMOVE,
             RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = commandImpl.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
