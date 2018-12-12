@@ -1,5 +1,6 @@
-package doyenm.zooshell;
+package doyenm.zooshell.main;
 
+import doyenm.zooshell.ZooShellConfig;
 import doyenm.zooshell.commandline.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 @Slf4j
 @RequiredArgsConstructor
-public class Main {
+public class Start {
     
     private final MainGUI mainGUI;
     private final CommandManager manager;
@@ -23,7 +24,7 @@ public class Main {
         ctx.register(ZooShellConfig.class);
         ctx.refresh();
 
-        Main main = (Main) ctx.getBean("main");
+        Start main = (Start) ctx.getBean("main");
         main.start();
     }
     

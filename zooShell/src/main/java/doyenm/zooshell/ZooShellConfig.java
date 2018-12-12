@@ -3,6 +3,7 @@ package doyenm.zooshell;
 import doyenm.zooshell.commandline.general.ActionPointCommand;
 import doyenm.zooshell.commandline.general.CommandManager;
 import doyenm.zooshell.gui.MainGUI;
+import doyenm.zooshell.main.Start;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -96,7 +97,7 @@ public class ZooShellConfig {
     }
 
     @Bean
-    Main main() {
-        return new Main(mainGUI(), commandManager());
+    Start main() {
+        return new Start(mainGUI(), commandManager());
     }
 }
