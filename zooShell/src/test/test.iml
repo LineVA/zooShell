@@ -33,5 +33,6 @@
     </orderEntry>
     <orderEntry type="library" scope="TEST" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-all:1.10.19" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.sonatype.sisu:sisu-guice:noaop:2.1.7" level="project" />
   </component>
 </module>

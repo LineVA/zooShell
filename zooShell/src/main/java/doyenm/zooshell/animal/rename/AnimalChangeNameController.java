@@ -1,6 +1,5 @@
 package doyenm.zooshell.animal.rename;
 
-import doyenm.zooshell.animal.rename.AnimalChangeNameContext;
 import doyenm.zooshell.model.Animal;
 
 import java.util.function.Function;
