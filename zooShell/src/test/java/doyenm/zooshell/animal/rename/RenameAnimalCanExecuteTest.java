@@ -1,9 +1,11 @@
-package doyenm.zooshell.commandline.commandLineImpl.animal;
+package doyenm.zooshell.animal.rename;
 
-import doyenm.zooshell.animal.rename.RenameAnimal;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
+
+import static org.mockito.Mockito.mock;
 
 /**
  *
@@ -14,14 +16,20 @@ public class RenameAnimalCanExecuteTest {
     private final String ANIMAL = "animal";
     private final String RENAME = "rename";
 
+    private RenameAnimal subject;
+
+    @Before
+    public void setUp(){
+        subject = new RenameAnimal(mock(AnimalChangeNameValidator.class), mock(AnimalChangeNameController.class));
+    }
+
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
-        RenameAnimal commandImpl = new RenameAnimal(null, null);
         String[] cmd = {this.ANIMAL, this.RENAME, RandomStringUtils.randomAlphabetic(10),
             RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = commandImpl.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isTrue();
     }
@@ -29,11 +37,10 @@ public class RenameAnimalCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheTheFirstElementIsNotAnimal() {
         // Given
-        RenameAnimal commandImpl = new RenameAnimal(null, null);
         String falseAnimal = RandomStringUtils.randomAlphabetic(10);
         String[] cmd = {falseAnimal, this.RENAME, RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = commandImpl.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(falseAnimal).isNotEqualToIgnoringCase(ANIMAL);
         Assertions.assertThat(actualResult).isFalse();
@@ -42,11 +49,10 @@ public class RenameAnimalCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenTheTheSecondElementIsNotCreate() {
         // Given
-        RenameAnimal commandImpl = new RenameAnimal(null, null);
         String[] cmd = {this.ANIMAL, RandomStringUtils.randomAlphabetic(10),
             RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = commandImpl.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
@@ -54,10 +60,9 @@ public class RenameAnimalCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsLessThanFourElements() {
         // Given
-        RenameAnimal commandImpl = new RenameAnimal(null, null);
         String[] cmd = {this.ANIMAL, this.RENAME, RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = commandImpl.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
@@ -65,12 +70,11 @@ public class RenameAnimalCanExecuteTest {
     @Test
     public void shouldReturnFalseWhenThereIsMoreThanFourElements() {
         // Given
-        RenameAnimal commandImpl = new RenameAnimal(null, null);
-        String[] cmd = {this.ANIMAL, this.RENAME, 
+        String[] cmd = {this.ANIMAL, this.RENAME,
             RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10),
             RandomStringUtils.randomAlphabetic(10)};
         // When
-        boolean actualResult = commandImpl.canExecute(cmd);
+        boolean actualResult = subject.canExecute(cmd);
         // Then
         Assertions.assertThat(actualResult).isFalse();
     }
