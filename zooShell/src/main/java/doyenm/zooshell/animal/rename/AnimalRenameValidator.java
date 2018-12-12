@@ -12,14 +12,14 @@ import java.util.function.Predicate;
  * @author doyenm
  */
 @RequiredArgsConstructor
-public class AnimalChangeNameValidator implements Predicate<AnimalChangeNameContext> {
+public class AnimalRenameValidator implements Predicate<AnimalRenameContext> {
 
     private final FindAnimal findAnimal;
     private final NameValidator nameValidator;
 
     @Override
-    public boolean test(AnimalChangeNameContext t) {
-        AnimalChangeNameContext context = t;
+    public boolean test(AnimalRenameContext t) {
+        AnimalRenameContext context = t;
         Animal animal = findAnimal.find(context.getZoo(), context.getCurrentName());
         if (animal == null) {
             return false;

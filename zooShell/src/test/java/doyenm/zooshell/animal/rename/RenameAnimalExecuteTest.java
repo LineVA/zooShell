@@ -2,12 +2,7 @@ package doyenm.zooshell.animal.rename;
 
 import doyenm.zooshell.commandline.general.ReturnExec;
 import doyenm.zooshell.commandline.general.TypeReturn;
-import doyenm.zooshell.keeper.creation.CreateKeeper;
-import doyenm.zooshell.keeper.creation.KeeperCreationContext;
-import doyenm.zooshell.keeper.creation.KeeperCreationController;
-import doyenm.zooshell.keeper.creation.KeeperCreationValidator;
 import doyenm.zooshell.model.Zoo;
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,14 +17,14 @@ public class RenameAnimalExecuteTest {
 
     private String[] cmd = new String[7];
 
-    private AnimalChangeNameValidator validator;
-    private AnimalChangeNameController controller;
+    private AnimalRenameValidator validator;
+    private AnimalRenameController controller;
 
     @Before
     public void setUp() {
-        validator = mock(AnimalChangeNameValidator.class);
-        controller = mock(AnimalChangeNameController.class);
-        AnimalChangeNameContext context = mock(AnimalChangeNameContext.class);
+        validator = mock(AnimalRenameValidator.class);
+        controller = mock(AnimalRenameController.class);
+        AnimalRenameContext context = mock(AnimalRenameContext.class);
         when(controller.apply(any())).thenReturn(context);
         subject = new RenameAnimal(validator, controller);
     }

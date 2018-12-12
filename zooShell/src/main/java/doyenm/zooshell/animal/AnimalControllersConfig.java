@@ -10,7 +10,7 @@ import doyenm.zooshell.animal.diets.AnimalUpdateFoodQuantityController;
 import doyenm.zooshell.animal.list.*;
 import doyenm.zooshell.animal.move.AnimalChangePaddockController;
 import doyenm.zooshell.animal.remove.AnimalRemoveController;
-import doyenm.zooshell.animal.rename.AnimalChangeNameController;
+import doyenm.zooshell.animal.rename.AnimalRenameController;
 import doyenm.zooshell.evaluation.AnimalEvaluationController;
 import doyenm.zooshell.evaluation.animal.*;
 import doyenm.zooshell.evaluation.animal.death.AnimalDeathPredicates;
@@ -49,8 +49,8 @@ public class AnimalControllersConfig {
 
     // Controller
     @Bean
-    public AnimalChangeNameController animalChangeNameController() {
-        return new AnimalChangeNameController();
+    public AnimalRenameController animalChangeNameController() {
+        return new AnimalRenameController();
     }
 
     @Bean

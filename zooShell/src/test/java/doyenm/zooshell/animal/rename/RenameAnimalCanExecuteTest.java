@@ -20,7 +20,7 @@ public class RenameAnimalCanExecuteTest {
 
     @Before
     public void setUp(){
-        subject = new RenameAnimal(mock(AnimalChangeNameValidator.class), mock(AnimalChangeNameController.class));
+        subject = new RenameAnimal(mock(AnimalRenameValidator.class), mock(AnimalRenameController.class));
     }
 
     @Test

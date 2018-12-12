@@ -8,7 +8,7 @@ import doyenm.zooshell.animal.diets.AnimalUpdateFoodQuantityValidator;
 import doyenm.zooshell.animal.list.AnimalsWithCriteria;
 import doyenm.zooshell.animal.list.criteria.*;
 import doyenm.zooshell.animal.move.AnimalChangePaddockValidator;
-import doyenm.zooshell.animal.rename.AnimalChangeNameValidator;
+import doyenm.zooshell.animal.rename.AnimalRenameValidator;
 import doyenm.zooshell.common.CommonConfigs;
 import doyenm.zooshell.common.FindAnimal;
 import doyenm.zooshell.common.FindPaddock;
@@ -63,8 +63,8 @@ public class AnimalValidatorsConfig {
 
     // Validators
     @Bean
-    public AnimalChangeNameValidator animalChangeNameValidator() {
-        return new AnimalChangeNameValidator(findAnimal,
+    public AnimalRenameValidator animalChangeNameValidator() {
+        return new AnimalRenameValidator(findAnimal,
                 animalNameValidator()
         );
     }

@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
  *
  * @author doyenm
  */
-public class AnimalChangeNameControllerApplyTest {
+public class AnimalRenameControllerApplyTest {
 
     private Animal givenAnimalWithName(String name) {
         Animal animal = mock(Animal.class);
@@ -40,8 +40,8 @@ public class AnimalChangeNameControllerApplyTest {
         return zoo;
     }
 
-    private AnimalChangeNameContext givenContext(Zoo zoo, Animal animal, String newName) {
-        AnimalChangeNameContext context = mock(AnimalChangeNameContext.class);
+    private AnimalRenameContext givenContext(Zoo zoo, Animal animal, String newName) {
+        AnimalRenameContext context = mock(AnimalRenameContext.class);
         Mockito.when(context.getZoo()).thenReturn(zoo);
         Mockito.when(context.getConvertedAnimal()).thenReturn(animal);
         Mockito.when(context.getNewName()).thenReturn(newName);
@@ -51,12 +51,12 @@ public class AnimalChangeNameControllerApplyTest {
         return context;
     }
 
-    private AnimalChangeNameController subject;
+    private AnimalRenameController subject;
 
     String oldName;
     String newName;
     Animal animal;
-    AnimalChangeNameContext context;
+    AnimalRenameContext context;
 
     @Before
     public void setUp(){
@@ -69,7 +69,7 @@ public class AnimalChangeNameControllerApplyTest {
         when(animal.getName()).thenCallRealMethod();
         animal.setName(oldName);
 
-        context = mock(AnimalChangeNameContext.class);
+        context = mock(AnimalRenameContext.class);
         Zoo zoo = mock(Zoo.class);
         Map<String, Animal> map = new HashMap<>();
         map.put(animal.getName().toUpperCase(), animal);
@@ -80,14 +80,14 @@ public class AnimalChangeNameControllerApplyTest {
         when(context.getNewName()).thenReturn(newName);
         when(context.getCurrentName()).thenReturn(oldName);
 
-        subject = new AnimalChangeNameController();
+        subject = new AnimalRenameController();
     }
 
     @Test
     public void shouldReplaceTheNameOfTheAnimalByTheOneSpecified() {
         // Given
         // When
-        AnimalChangeNameContext actualContext = subject.apply(context);
+        AnimalRenameContext actualContext = subject.apply(context);
         // Then
         assertThat(actualContext.getZoo().getAnimals()).isNotNull();
         assertThat(actualContext.getZoo().getAnimals()).hasSize(1);

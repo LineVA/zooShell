@@ -22,22 +22,22 @@ import static org.mockito.Mockito.*;
  *
  * @author doyenm
  */
-public class AnimalChangeNameValidatorTestTest {
+public class AnimalRenameValidatorTestTest {
 
-    private AnimalChangeNameValidator subject;
+    private AnimalRenameValidator subject;
 
     FindAnimal findAnimal;
     NameValidator nameValidator;
 
     Animal animal;
-    AnimalChangeNameContext context;
+    AnimalRenameContext context;
 
     @Before
     public void setUp(){
 
         animal = mock(Animal.class);
 
-        context = mock(AnimalChangeNameContext.class);
+        context = mock(AnimalRenameContext.class);
         when(context.getNewName()).thenReturn(RandomStringUtils.random(10));
         when(context.getCurrentName()).thenReturn(RandomStringUtils.random(10));
         when(context.getZoo()).thenReturn(mock(Zoo.class));
@@ -46,7 +46,7 @@ public class AnimalChangeNameValidatorTestTest {
 
         findAnimal = mock(FindAnimal.class);
         nameValidator = mock(NameValidator.class);
-        subject = new AnimalChangeNameValidator(findAnimal, nameValidator);
+        subject = new AnimalRenameValidator(findAnimal, nameValidator);
     }
 
     /**
