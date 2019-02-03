@@ -1,6 +1,5 @@
-package doyenm.zooshell.commandline.commandLineImpl.animal;
+package doyenm.zooshell.animal.move;
 
-import doyenm.zooshell.animal.move.ChangePaddock;
 import org.apache.commons.lang.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
