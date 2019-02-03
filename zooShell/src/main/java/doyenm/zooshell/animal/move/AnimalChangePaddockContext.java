@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import java.util.Map;
-
 /**
  *
  * @author doyenm
@@ -24,11 +22,4 @@ public class AnimalChangePaddockContext {
     private Animal convertedAnimal;
     private Paddock convertedPaddock;
     
-    public Map<String, Paddock> getPaddocksMap(){
-        return getZoo().getPaddocks();
-    }
-    
-     public Map<String, Animal> getAnimalsMap(){
-        return getZoo().getAnimals();
-    }
 }

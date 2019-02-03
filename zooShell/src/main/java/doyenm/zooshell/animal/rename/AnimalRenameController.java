@@ -1,6 +1,5 @@
 package doyenm.zooshell.animal.rename;
 
-import doyenm.zooshell.animal.rename.AnimalChangeNameContext;
 import doyenm.zooshell.model.Animal;
 
 import java.util.function.Function;
@@ -9,12 +8,12 @@ import java.util.function.Function;
  *
  * @author doyenm
  */
-public class AnimalChangeNameController
-        implements Function<AnimalChangeNameContext, AnimalChangeNameContext> {
+public class AnimalRenameController
+        implements Function<AnimalRenameContext, AnimalRenameContext> {
 
     @Override
-    public AnimalChangeNameContext apply(AnimalChangeNameContext t) {
-        AnimalChangeNameContext context = t;
+    public AnimalRenameContext apply(AnimalRenameContext t) {
+        AnimalRenameContext context = t;
         Animal animal = context.getConvertedAnimal();
         animal.setName(context.getNewName());
         context.getZoo().getAnimals().remove(context.getCurrentName().toUpperCase());

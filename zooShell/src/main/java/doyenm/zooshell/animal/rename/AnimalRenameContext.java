@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class AnimalChangeNameContext {
+public class AnimalRenameContext {
 
     private final Zoo zoo;
     private final String currentName;

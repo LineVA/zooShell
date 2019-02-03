@@ -1,7 +1,5 @@
 package doyenm.zooshell.animal.move;
 
-import doyenm.zooshell.animal.move.AnimalChangePaddockContext;
-
 import java.util.function.Function;
 
 /**

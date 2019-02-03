@@ -17,12 +17,12 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class RenameAnimal implements Command {
 
-    private final AnimalChangeNameValidator validator;
-    private final AnimalChangeNameController controller;
+    private final AnimalRenameValidator validator;
+    private final AnimalRenameController controller;
 
     @Override
     public ReturnExec execute(String[] cmd, Zoo zoo) {
-        AnimalChangeNameContext context = new AnimalChangeNameContext(zoo,
+        AnimalRenameContext context = new AnimalRenameContext(zoo,
                 cmd[2], cmd[3]);
         Optional optional = Stream.of(context)
                 .filter(validator)
